@@ -1,11 +1,8 @@
-package service;
+package member.model;
 
 import java.util.Arrays;
 import java.util.function.IntPredicate;
-
-import dao.MemberDAO;
-import dao.MemberJdbcDAO;
-import model.MemberVO;
+import member.model.MemberVO;
 
 public class MemberService {
 	private MemberDAO dao;
