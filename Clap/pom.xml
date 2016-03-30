@@ -18,18 +18,18 @@
 			<id>jarRepo</id>
 			<url>file://${project.basedir}/repository</url>
 		</repository>
-	
+
 	</repositories>
 	<dependencies>
-		<!--  JDBC-->
+		<!-- JDBC -->
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>sqljdbc</artifactId>
 			<version>42</version>
 			<scope>provided</scope>
 		</dependency>
-		
-		
+
+
 		<!-- Servlet 3.0 API -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -124,6 +124,12 @@
 		</dependency>
 
 		<!-- json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20150729</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}-${project.version}</finalName>
