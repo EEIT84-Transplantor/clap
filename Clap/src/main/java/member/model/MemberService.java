@@ -12,10 +12,15 @@ public class MemberService {
 		System.out.println(ms.login("andrew@gmail.com", "andrew"));
 	}
 	
-	public MemberService(){
-		dao = new MemberJdbcDAO();
+	public MemberService() {
+
 	}
-	
+
+	public void setDao(MemberDAO dao) {
+		this.dao = dao;
+
+	}
+
 	public MemberVO login (String email, String password){
 		MemberVO result=null;
 		MemberVO member = dao.selectByEmail(email);
@@ -28,17 +33,18 @@ public class MemberService {
 		}
 		return result;
 	}
-//	public MemberVO signUp (String email, String password) {
-//		
-//	}
+	public MemberVO signUp (String email, String password) {
+		return dao.insert(email, password.getBytes());
+	}
 
 	public boolean changePassword (String email, String password) {
 		return dao.update(email, password.getBytes());
 	}
 
-//	public boolean sendComfirmEmail (String email){
-//		
-//	}
+	 public boolean sendComfirmEmail (String email){
+		 
+		 return false;
+	 }
 
 	public MemberVO findByEmail (String email){
 		MemberVO member = dao.selectByEmail(email);

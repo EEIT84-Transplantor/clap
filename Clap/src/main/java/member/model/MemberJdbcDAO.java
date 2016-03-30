@@ -8,12 +8,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import member.model.MemberVO;
 
 public class MemberJdbcDAO implements MemberDAO {
-	private Connection conn;
+	private DataSource dataSource;
+	private Connection conn =null;
 	
-	
+
 	public static void main(String[] args) {
 		MemberDAO mdao= new MemberJdbcDAO();
 //		System.out.println(mdao.selectAll());
@@ -22,13 +25,16 @@ public class MemberJdbcDAO implements MemberDAO {
 		
 	}
 	public MemberJdbcDAO(){
-		try {
-			conn=DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=clap","sa","passw0rd");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}	
+//		try {
+//			System.out.println(dataSource);
+//			conn=dataSource.getConnection();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
 	}
-
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
 	private static final String SELECT_ALL="select * from Member";
 	/* (non-Javadoc)
 	 * @see dao.MemberDAO#selectAll()
@@ -38,6 +44,7 @@ public class MemberJdbcDAO implements MemberDAO {
 		List<MemberVO> result = null;
 		
 		try {
+			conn=dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(SELECT_ALL);
 			ResultSet rs;	
 			rs= ps.executeQuery();
