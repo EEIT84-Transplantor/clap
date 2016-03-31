@@ -1,4 +1,4 @@
-package com.eeit84.Clap;
+package com.eeit84.clap.Clap;
 
 import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
