@@ -21,12 +21,10 @@
 		<div class="container-fulid">
 			<div class="row">
 				<div class="col-md-6" style="background: red; ">
-				<form action="#">
-				
-				<label>Password : </label><input type="text" name="email" palceholder="abc.@clap.com"><br />
-				<label>Re-enter password : </label><input type="text" name="email" palceholder="abc.@clap.com"><br />
-				
-				<input type="submit" value="Log in">
+				<form action="passwordSettingServlet.action" method="post">
+					<label>Password : </label><input type="text" name="password" palceholder="abc.@clap.com">${requestScope.error.password}<br />
+					<label>Re-enter password : </label><input type="text" name="passwordconfirm" palceholder="abc.@clap.com"><br />
+					<input type="submit" value="Log in">
 				</form>
 				</div>
 				<div class="col-md-6" style="background: blue; height: 10px;"></div>

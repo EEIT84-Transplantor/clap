@@ -12,10 +12,8 @@ public class MemberService {
 	private MemberDAO dao;
 
 	public static void main(String[] args) {
-
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		MemberService ms = (MemberService) context.getBean("memberService");
-
 		System.out.println(ms.login("andrew@gmail.com", "andrew"));
 	}
 
@@ -41,7 +39,7 @@ public class MemberService {
 	}
 
 	public MemberVO signUp (String email, String password) {
-		return dao.insert(email, password.getBytes(),null,null);
+		return dao.insert(email, password.getBytes(),2,null);
 	}
 
 	public boolean changePassword(String email, String password) {
@@ -59,6 +57,7 @@ public class MemberService {
 	}
 	
 	public boolean checkConfirmCode (String email, String comfirmCode){
+		
 		return false;
 	}
 
