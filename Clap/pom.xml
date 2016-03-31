@@ -21,9 +21,17 @@
 
 	</repositories>
 	<dependencies>
-
-
-
+		<!-- JavaMail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>javax.mail-api</artifactId>
+			<version>1.5.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.5.5</version>
+		</dependency>
 		<!-- Servlet 3.0 API -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -123,7 +131,6 @@
 			<artifactId>json</artifactId>
 			<version>20150729</version>
 		</dependency>
-		
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}-${project.version}</finalName>
@@ -153,4 +160,5 @@
 				</configuration>
 			</plugin>
 		</plugins>
-	</build></project>
+	</build>
+</project>
