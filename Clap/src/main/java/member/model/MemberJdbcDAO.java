@@ -112,7 +112,8 @@ public class MemberJdbcDAO implements MemberDAO {
 			PreparedStatement ps = conn.prepareStatement(INSERT);
 			ps.setString(1, email);
 			ps.setString(2, password.toString());
-
+			ps.setInt(3, confirmed);
+			ps.setString(4,confirmCode);
 			int returnedValue = ps.executeUpdate();
 			if (returnedValue == 1) {
 				result = new MemberVO();
