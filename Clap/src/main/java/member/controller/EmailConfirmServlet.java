@@ -1,6 +1,7 @@
 package member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,11 +32,10 @@ public class EmailConfirmServlet extends HttpServlet{
 		String email = request.getParameter("email");
 		String comfirmCode = request.getParameter("comfirmCode");
 		
-		System.out.println(123);
+		
 		//mvc
 		
-	
-	
+
 	}
 	
 	
