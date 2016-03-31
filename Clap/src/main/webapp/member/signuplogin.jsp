@@ -60,12 +60,10 @@
 		<div class="container-fulid">
 			<div class="row">
 				<div class="col-md-6" style="background: red;">
-				<form action="#">
-
-				<label>E-mail : </label><input type="text" name="email" placeholder="abc.@clap.com"><br />
-				<label>Password : </label><input type="text" name="password"><br />
-				<input type="submit" value="Log in">
-
+				<form action="login.action" method="post">
+					<label>E-mail : </label><input type="text" name="email" value="poan@gmail.com">${requestScope.error.email}<br />
+					<label>Password : </label><input type="text" name="password" value="poan">${requestScope.error.password}<br />
+					<input type="submit" value="Log in">
 				</form>
 				<span>need more help?</span>
 				<span><a href="#">forgot password</a></span>

@@ -22,8 +22,8 @@ public class LoginServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request , HttpServletResponse response) throws ServletException, IOException {
 		
 		MemberVO memberVO;
-		MemberService memberService = new MemberService();
-		Map<String,String> error = new HashMap<String, String>();
+		MemberService memberService = (MemberService) request.getAttribute("memberService");
+		Map<String,String> error = new HashMap<>();
 		request.setAttribute("error", error);
 				
 		//input
@@ -37,17 +37,18 @@ public class LoginServlet extends HttpServlet {
 		
 		//mvc
 		if(!error.isEmpty()){
-			request.getRequestDispatcher("SignUpLogin.view").forward(request, response);
+			request.getRequestDispatcher("signuplogin.jsp").forward(request, response);
+			return;
 		}
 		
 		if ((memberVO=memberService.login(email, password))!=null) {
 			request.getSession().setAttribute("login",memberVO);	
-			request.getRequestDispatcher("index.view").forward(request, response);
+			request.getRequestDispatcher("../index.jsp").forward(request, response);
 		}else {
 			error.put("password", "password is worng");
-			request.getRequestDispatcher("signuplogin.view").forward(request, response);			
+			request.getRequestDispatcher("signuplogin.jsp").forward(request, response);			
 		}
-		
+		return;
 		
 	}
 
