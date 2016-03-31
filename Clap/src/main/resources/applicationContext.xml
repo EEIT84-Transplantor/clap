@@ -2,16 +2,28 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-
 	<bean id="dataSource"
-		class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="java:comp/env/clap/db"></property>
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
+		</property>
+		<property name="url"
+			value="jdbc:sqlserver://localhost:1433;databaseName=clap">
+		</property>
+		<property name="username" value="sa"></property>
+		<property name="password" value="passw0rd"></property>
 	</bean>
+
+	
+<!-- 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> -->
+<!-- 		<property name="jndiName" value="java:comp/env/clap/db"></property> -->
+<!-- 	</bean> -->
 	<bean id="memberDAO" class="member.model.MemberJdbcDAO">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	<bean id="memberService" class="member.model.MemberService">
 		<property name="dao" ref="memberDAO"/>
 	</bean>
+
+
 </beans>
