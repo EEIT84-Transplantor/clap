@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.Id;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,11 +30,26 @@ public class EmailConfirmServlet extends HttpServlet{
 		
 		//ivc
 		String email = request.getParameter("email");
-		String comfirmCode = request.getParameter("comfirmCode");
+		String confirmCode = request.getParameter("confirmCode");
 		
-		System.out.println(123);
+		if (email==null || email.trim().length()==0) {
+			error.put("email", "email is null");
+		}
+		if (confirmCode==null || confirmCode.trim().length()==0) {
+			error.put("confirmCode", "confirmCode is null");
+		}
+		
 		//mvc
+		if (!error.isEmpty()) {
+			response.sendRedirect("index.jsp");
+		}
 		
+		if (memberService.checkConfirmCode(email,confirmCode)) {
+			request.getRequestDispatcher("passwordsetting.jsp");
+		} else {
+			error.put("confirmcode", "confirm is wrong");
+			response.sendRedirect("index.jsp");
+		}
 	
 	
 	}

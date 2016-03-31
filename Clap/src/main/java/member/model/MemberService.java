@@ -8,7 +8,6 @@ public class MemberService {
 	private MemberDAO dao;
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		MemberService ms = new MemberService();
 		System.out.println(ms.login("andrew@gmail.com", "andrew"));
 	}
@@ -17,11 +16,9 @@ public class MemberService {
 
 	}
 
-
 	public void setDao(MemberDAO dao) {
 		this.dao = dao;
 	}
-
 
 	public MemberVO login(String email, String password) {
 		MemberVO result = null;
@@ -52,6 +49,10 @@ public class MemberService {
 	public MemberVO findByEmail(String email) {
 		MemberVO member = dao.selectByEmail(email);
 		return member;
+	}
+	
+	public boolean checkConfirmCode (String email, String comfirmCode){
+		return false;
 	}
 
 }
