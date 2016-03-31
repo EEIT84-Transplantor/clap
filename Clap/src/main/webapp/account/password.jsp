@@ -23,8 +23,8 @@
 				<div class="col-md-6" style="background: red; ">
 				<form action="#">
 					
-					<label>Password : </label><input type="text" name="email" palceholder="abc.@clap.com"><br />
-					<label>Re-enter password : </label><input type="text" name="email" palceholder="abc.@clap.com"><br />
+					<label>Password : </label><input type="text" name="password" palceholder="abc.@clap.com"><br />
+					<label>Re-enter password : </label><input type="text" name="reEnterPassword" palceholder="abc.@clap.com"><br />
 					
 					<input type="submit" value="Log in">
 				</form>

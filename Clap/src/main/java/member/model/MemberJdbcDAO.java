@@ -27,7 +27,7 @@ public class MemberJdbcDAO implements MemberDAO {
 	private Connection conn = null;
 	private static final String SELECT_ALL = "select * from Member";
 	private static final String SELECT_BY_EMAIL = "select * from Member where email=?";
-	private static final String INSERT = "insert into Member(email,password) values(?,?)";
+	private static final String INSERT = "insert into Member(email,password,confirmed,confirmCode) values(?,?,?,?)";
 	private static final String UPDATE = "update Member set password=? where email=?";
 	private static final String DELETE = "delete from Member where email=?";
 
@@ -55,6 +55,8 @@ public class MemberJdbcDAO implements MemberDAO {
 				MemberVO mvo = new MemberVO();
 				mvo.setEmail(rs.getString("email"));
 				mvo.setPassword(rs.getBytes("password"));
+				mvo.setConfirmed(rs.getInt("confirmed"));
+				mvo.setConfirmCode(rs.getString("confirmCode"));
 				result.add(mvo);
 			}
 		} catch (SQLException e) {
@@ -84,6 +86,8 @@ public class MemberJdbcDAO implements MemberDAO {
 				result = new MemberVO();
 				result.setEmail(rs.getString("email"));
 				result.setPassword(rs.getBytes("password"));
+				result.setConfirmed(rs.getInt("confirmed"));
+				result.setConfirmCode(rs.getString("confirmCode"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -100,7 +104,7 @@ public class MemberJdbcDAO implements MemberDAO {
 	}
 
 	@Override
-	public MemberVO insert(String email, byte[] password) {
+	public MemberVO insert(String email, byte[] password, Integer confirmed,String confirmCode) {
 		MemberVO result = null;
 
 		try {
@@ -114,7 +118,8 @@ public class MemberJdbcDAO implements MemberDAO {
 				result = new MemberVO();
 				result.setEmail(email);
 				result.setPassword(password);
-				;
+				result.setConfirmed(confirmed);
+				result.setConfirmCode(confirmCode);
 			}
 
 		} catch (SQLException e) {
@@ -132,7 +137,7 @@ public class MemberJdbcDAO implements MemberDAO {
 	}
 
 	@Override
-	public boolean update(String email, byte[] password) {
+	public boolean update(String email, byte[] password, Integer confirmed,String confirmCode) {
 		boolean result = false;
 
 		try {
@@ -141,6 +146,9 @@ public class MemberJdbcDAO implements MemberDAO {
 			System.out.println(email + password);
 			ps.setString(1, password.toString());
 			ps.setString(2, email);
+			ps.setInt(3, confirmed);
+			ps.setString(4, confirmCode);
+			
 			int returnedValue = ps.executeUpdate();
 			if (returnedValue == 1) {
 				result = true;

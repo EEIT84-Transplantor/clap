@@ -42,11 +42,11 @@ public class MemberService {
 	}
 
 	public MemberVO signUp (String email, String password) {
-		return dao.insert(email, password.getBytes());
+		return dao.insert(email, password.getBytes(),null,null);
 	}
 
 	public boolean changePassword(String email, String password) {
-		return dao.update(email, password.getBytes());
+		return dao.update(email, password.getBytes(),null,null);
 	}
 
 	 public boolean sendComfirmEmail (String email){
