@@ -19,7 +19,7 @@ public class MemberJdbcDAO implements MemberDAO {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		MemberDAO mdao = (MemberDAO) context.getBean("memberDAO");
-		System.out.println(mdao.selectAll());
+		System.out.println(mdao.insert(null, "password".getBytes(), null, null));
 	}
 
 
