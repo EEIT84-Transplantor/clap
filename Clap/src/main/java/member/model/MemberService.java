@@ -14,8 +14,14 @@ public class MemberService {
 	}
 
 	public MemberService() {
-		dao = new MemberJdbcDAO();
+
 	}
+
+
+	public void setDao(MemberDAO dao) {
+		this.dao = dao;
+	}
+
 
 	public MemberVO login(String email, String password) {
 		MemberVO result = null;
@@ -29,10 +35,10 @@ public class MemberService {
 		}
 		return result;
 	}
-	
-	// public MemberVO signUp (String email, String password) {
-	//
-	// }
+
+	public MemberVO signUp (String email, String password) {
+		return dao.insert(email, password.getBytes());
+	}
 
 	public boolean changePassword(String email, String password) {
 		return dao.update(email, password.getBytes());
