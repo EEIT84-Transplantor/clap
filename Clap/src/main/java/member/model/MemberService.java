@@ -69,9 +69,9 @@ public class MemberService {
 		return member;
 	}
 	
-	public boolean checkConfirmCode (String email, String comfirmCode){
-		
-		return false;
+	public boolean checkConfirmCode (String email, String confirmCode){
+		String codeFromLink = confirmCode;
+		return sendEmail.checkingConfirmCode(email, codeFromLink);
 	}
 
 }
