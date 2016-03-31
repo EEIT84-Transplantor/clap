@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import member.*;
+
 
 public class MemberJdbcDAO implements MemberDAO {
 
