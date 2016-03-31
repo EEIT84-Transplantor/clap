@@ -30,7 +30,7 @@ public class EmailExistServlet extends HttpServlet{
 		Map<String,String> error = new HashMap<String, String>();
 		request.setAttribute("error", error);
 		
-		response.setContentType("application/json");
+		response.setContentType("text/plain");
 		PrintWriter printWriter = response.getWriter();
 		
 		//ivc

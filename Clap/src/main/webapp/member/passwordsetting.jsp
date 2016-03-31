@@ -45,6 +45,7 @@ $(document).ready(function(){
 <section id="wrap">
 		<div class="container-fulid">
 			<div class="row">
+
 				<div class="col-md-12">
 				
 				<form action="login.action" method="post" id="sign_form">
@@ -54,6 +55,7 @@ $(document).ready(function(){
 					<div class="row"><input type="button" value="confirm" class="btn col-md-12" id="btn_confirm"/></div>
 
 					
+
 				</form>
 				</div>
 				</div>
