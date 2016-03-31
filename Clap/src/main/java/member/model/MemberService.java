@@ -42,13 +42,19 @@ public class MemberService {
 	}
 
 	public MemberVO signUp (String email, String password) {
-		return dao.insert(email, password.getBytes(),null,null);
+		return dao.insert(email, password.getBytes());
 	}
 
-	public boolean changePassword(String email, String password) {
-		return dao.update(email, password.getBytes(),null,null);
+	public boolean setPassword(String email, String password) {
+		return dao.update(email, password.getBytes());
 	}
-
+	public boolean changePassword(String email, String oldPassword, String newPassword){
+		boolean result = false;
+		if(this.login(email, oldPassword)!=null){
+			result = dao.update(email, newPassword.getBytes());
+		}
+		return result;
+	}
 	 public boolean sendComfirmEmail (String email){
 		 
 		 return false;

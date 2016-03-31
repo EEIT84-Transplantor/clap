@@ -55,8 +55,6 @@ public class MemberJdbcDAO implements MemberDAO {
 				MemberVO mvo = new MemberVO();
 				mvo.setEmail(rs.getString("email"));
 				mvo.setPassword(rs.getBytes("password"));
-				mvo.setConfirmed(rs.getInt("confirmed"));
-				mvo.setConfirmCode(rs.getString("confirmCode"));
 				result.add(mvo);
 			}
 		} catch (SQLException e) {
@@ -86,8 +84,6 @@ public class MemberJdbcDAO implements MemberDAO {
 				result = new MemberVO();
 				result.setEmail(rs.getString("email"));
 				result.setPassword(rs.getBytes("password"));
-				result.setConfirmed(rs.getInt("confirmed"));
-				result.setConfirmCode(rs.getString("confirmCode"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -104,7 +100,7 @@ public class MemberJdbcDAO implements MemberDAO {
 	}
 
 	@Override
-	public MemberVO insert(String email, byte[] password, Integer confirmed,String confirmCode) {
+	public MemberVO insert(String email, byte[] password) {
 		MemberVO result = null;
 
 		try {
@@ -112,15 +108,12 @@ public class MemberJdbcDAO implements MemberDAO {
 			PreparedStatement ps = conn.prepareStatement(INSERT);
 			ps.setString(1, email);
 			ps.setString(2, password.toString());
-			ps.setInt(3, confirmed);
-			ps.setString(4,confirmCode);
 			int returnedValue = ps.executeUpdate();
 			if (returnedValue == 1) {
 				result = new MemberVO();
 				result.setEmail(email);
 				result.setPassword(password);
-				result.setConfirmed(confirmed);
-				result.setConfirmCode(confirmCode);
+
 			}
 
 		} catch (SQLException e) {
@@ -138,7 +131,7 @@ public class MemberJdbcDAO implements MemberDAO {
 	}
 
 	@Override
-	public boolean update(String email, byte[] password, Integer confirmed,String confirmCode) {
+	public boolean update(String email, byte[] password) {
 		boolean result = false;
 
 		try {
@@ -147,8 +140,6 @@ public class MemberJdbcDAO implements MemberDAO {
 			System.out.println(email + password);
 			ps.setString(1, password.toString());
 			ps.setString(2, email);
-			ps.setInt(3, confirmed);
-			ps.setString(4, confirmCode);
 			
 			int returnedValue = ps.executeUpdate();
 			if (returnedValue == 1) {
