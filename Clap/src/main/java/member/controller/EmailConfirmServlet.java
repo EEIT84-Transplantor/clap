@@ -47,7 +47,7 @@ public class EmailConfirmServlet extends HttpServlet{
 		
 		if (memberService.checkConfirmCode(email,confirmCode)) {
 			request.setAttribute("email", email);
-			request.getRequestDispatcher("passwordsetting.jsp");
+			request.getRequestDispatcher("passwordsetting.jsp").forward(request, response);
 		} else {
 			error.put("confirmcode", "confirm is wrong");
 			response.sendRedirect("index.jsp");

@@ -18,7 +18,7 @@ public class PasswordSettingServlet extends HttpServlet {
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response){
-		
+		System.out.println("okokokok");
 		
 		HttpSession session = request.getSession();
 		String email = (String) session.getAttribute("email");

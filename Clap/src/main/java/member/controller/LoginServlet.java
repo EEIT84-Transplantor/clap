@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	public void doPost(HttpServletRequest request , HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("yali");
 		MemberVO memberVO;
 		MemberService memberService = (MemberService) request.getAttribute("memberService");
 		Map<String,String> error = new HashMap<>();
