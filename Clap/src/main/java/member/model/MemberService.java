@@ -2,14 +2,19 @@ package member.model;
 
 import java.util.Arrays;
 import java.util.function.IntPredicate;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import member.model.MemberVO;
 
 public class MemberService {
 	private MemberDAO dao;
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		MemberService ms = new MemberService();
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		MemberService ms = (MemberService) context.getBean("memberService");
+
 		System.out.println(ms.login("andrew@gmail.com", "andrew"));
 	}
 
