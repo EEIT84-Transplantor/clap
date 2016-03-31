@@ -3,9 +3,15 @@ package member.model;
 import java.util.Arrays;
 import java.util.function.IntPredicate;
 import member.model.MemberVO;
+import member.model.email.EmailconfirmCode;
 
 public class MemberService {
 	private MemberDAO dao;
+	private EmailconfirmCode emailConfirm;
+
+	public void setEmailConfirm(EmailconfirmCode emailConfirm) {
+		this.emailConfirm = emailConfirm;
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -45,6 +51,8 @@ public class MemberService {
 	}
 
 	 public boolean sendComfirmEmail (String email){
+		 emailConfirm.generateEmailCfmCode(email);
+		 
 		 
 		 return false;
 	 }
