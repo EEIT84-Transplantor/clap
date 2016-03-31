@@ -26,6 +26,7 @@ public class MemberJdbcDAO implements MemberDAO {
 	}
 	public MemberJdbcDAO(){
 //		try {
+//			()
 //			System.out.println(dataSource);
 //			conn=dataSource.getConnection();
 //		} catch (SQLException e) {
@@ -80,6 +81,7 @@ public class MemberJdbcDAO implements MemberDAO {
 	public MemberVO selectByEmail(String email){
 		MemberVO result = null;
 		try {
+			conn=dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(SELECT_BY_EMAIL);
 			ResultSet rs;	
 			ps.setString(1, email);
@@ -113,6 +115,7 @@ public class MemberJdbcDAO implements MemberDAO {
 		MemberVO result = null;
 		
 		try {
+			conn=dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(INSERT);
 			ps.setString(1, email);
 			ps.setString(2, password.toString());
@@ -150,6 +153,7 @@ public class MemberJdbcDAO implements MemberDAO {
 		boolean result = false;
 		
 		try {
+			conn=dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(UPDATE);
 			System.out.println(email+password);
 			ps.setString(1, password.toString());
@@ -184,6 +188,7 @@ public class MemberJdbcDAO implements MemberDAO {
 		boolean result = false;
 		
 		try {
+			conn=dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(DELETE);
 	
 			ps.setString(1, email);
