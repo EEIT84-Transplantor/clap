@@ -10,9 +10,9 @@ public interface MemberDAO {
 
 	public abstract MemberVO selectByEmail(String email);
 
-	public abstract MemberVO insert(String email, byte[] password, Integer confirmed, String confirmCode);
+	public abstract MemberVO insert(String email, byte[] password);
 
-	public abstract boolean update(String email, byte[] password, Integer confirmed, String confirmCode);
+	public abstract boolean update(String email, byte[] password);
 
 	public abstract boolean delete(String email);
 

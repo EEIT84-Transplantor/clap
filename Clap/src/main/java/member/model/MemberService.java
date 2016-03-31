@@ -48,13 +48,21 @@ public class MemberService {
 
 
 	public MemberVO signUp (String email, String password) {
-		return dao.insert(email, password.getBytes(),2,null);
+
+		return dao.insert(email, password.getBytes());
 	}
 
 
+	public boolean setPassword(String email, String password) {
+		return dao.update(email, password.getBytes());
 
-	public boolean changePassword(String email, String password) {
-		return dao.update(email, password.getBytes(), null, null);
+	}
+	public boolean changePassword(String email, String oldPassword, String newPassword){
+		boolean result = false;
+		if(this.login(email, oldPassword)!=null){
+			result = dao.update(email, newPassword.getBytes());
+		}
+		return result;
 	}
 
 	public String sendComfirmEmail(String email) {
@@ -62,7 +70,6 @@ public class MemberService {
 		String resultMessage = sendingInfo.get("resultMessage"); //sending Message(successful or failed)
 		return resultMessage;
 	}
-	
 
 	public MemberVO findByEmail(String email) {
 		MemberVO member = dao.selectByEmail(email);
