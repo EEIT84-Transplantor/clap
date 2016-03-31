@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 		
 		MemberVO memberVO;
 		MemberService memberService = new MemberService();
-		Map<String,String> error = new HashMap<>();
+		Map<String,String> error = new HashMap<String, String>();
 		request.setAttribute("error", error);
 				
 		//input

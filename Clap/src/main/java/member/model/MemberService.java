@@ -2,6 +2,10 @@ package member.model;
 
 import java.util.Arrays;
 import java.util.function.IntPredicate;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import member.model.MemberVO;
 import member.model.email.EmailconfirmCode;
 
@@ -14,8 +18,9 @@ public class MemberService {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		MemberService ms = new MemberService();
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		MemberService ms = (MemberService) context.getBean("memberService");
+
 		System.out.println(ms.login("andrew@gmail.com", "andrew"));
 	}
 
@@ -43,11 +48,11 @@ public class MemberService {
 	}
 
 	public MemberVO signUp (String email, String password) {
-		return dao.insert(email, password.getBytes());
+		return dao.insert(email, password.getBytes(),null,null);
 	}
 
 	public boolean changePassword(String email, String password) {
-		return dao.update(email, password.getBytes());
+		return dao.update(email, password.getBytes(),null,null);
 	}
 
 	 public boolean sendComfirmEmail (String email){
