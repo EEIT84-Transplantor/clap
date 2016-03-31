@@ -19,7 +19,7 @@ public class MemberJdbcDAO implements MemberDAO {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		MemberDAO mdao = (MemberDAO) context.getBean("memberDAO");
-		System.out.println(mdao.insert(null, "password".getBytes(), null, null));
+		System.out.println(mdao.insert(null, "password".getBytes()));
 	}
 
 
@@ -27,7 +27,7 @@ public class MemberJdbcDAO implements MemberDAO {
 	private Connection conn = null;
 	private static final String SELECT_ALL = "select * from Member";
 	private static final String SELECT_BY_EMAIL = "select * from Member where email=?";
-	private static final String INSERT = "insert into Member(email,password,confirmed,confirmCode) values(?,?,?,?)";
+	private static final String INSERT = "insert into Member(email,password values(?,?)";
 	private static final String UPDATE = "update Member set password=? where email=?";
 	private static final String DELETE = "delete from Member where email=?";
 
