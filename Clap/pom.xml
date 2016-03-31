@@ -21,13 +21,7 @@
 
 	</repositories>
 	<dependencies>
-		<!-- JDBC -->
-		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>sqljdbc</artifactId>
-			<version>42</version>
-			<scope>provided</scope>
-		</dependency>
+
 
 
 		<!-- Servlet 3.0 API -->
@@ -159,5 +153,4 @@
 				</configuration>
 			</plugin>
 		</plugins>
-	</build>
-</project>
+	</build></project>
