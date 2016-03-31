@@ -4,9 +4,7 @@ drop table Member
 
 create table Member(
 email varchar(320) NOT NULL,
-password varchar(50)NOT NULL,
-confirmed int,
-confirmCode varchar(40),
+password varchar(50)NOT NULL
 primary key(email)
 )
 

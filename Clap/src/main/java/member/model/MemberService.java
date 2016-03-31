@@ -22,6 +22,7 @@ public class MemberService {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		MemberService ms = (MemberService) context.getBean("memberService");
+//		System.out.println(ms.login("lala@gmail.com", "lala"));
 		System.out.println(ms.login("andrew@gmail.com", "andrew"));
 	}
 
