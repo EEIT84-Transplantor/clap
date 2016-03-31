@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+=======
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 <!DOCTYPE">
 <html>
 <head>
@@ -14,6 +17,7 @@
 <script src="../src/js/jquery-1.12.2.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
+<<<<<<< HEAD
 		$("input").eq(1).click(function(){
 			emailConfirm($("input").eq(0).val());
 			console.log("sd");
@@ -43,6 +47,16 @@
     			console.log("Error Code:"+request.status+", "+request.statusText);
     		}
     	}
+=======
+		$("input").eq(0).blur(function(){
+			emailConfirm($("input").eq(0).val());
+		});
+	});
+    
+    
+    function emailConfirm(email){
+    	request = new Http
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
     }
 	</script>
 </head>
@@ -57,6 +71,7 @@
 			<div class="row">
 				<div class="col-md-6" style="background: red;">
 				<form action="#">
+<<<<<<< HEAD
 					<label>E-mail : </label><input type="text" name="email" placeholder="abc.@clap.com"><br />
 					<input type="button"  value="Next"> 
 					
@@ -69,6 +84,11 @@
 
 
 
+=======
+				<label>E-mail : </label><input type="text" name="email" placeholder="abc.@clap.com"><br />
+				<label>Password : </label><input type="text" name="password"><br />
+				<input type="submit" value="Log in">
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 				</form>
 				<span>need more help?</span>
 				<span><a href="#">forgot password</a></span>
