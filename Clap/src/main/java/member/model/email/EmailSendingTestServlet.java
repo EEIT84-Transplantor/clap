@@ -23,7 +23,7 @@ public class EmailSendingTestServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		MemberService memberService = (MemberService)WebApplicationContextUtils.getWebApplicationContext(request.getServletContext()).getBean("memberService");
-		String sendingResult = memberService.sendComfirmEmail("jlin218@uw.edu");
+		String sendingResult = memberService.sendComfirmEmail("hsiaolee03@gmail.com");
 		response.getWriter().print(sendingResult);
 	}
 
