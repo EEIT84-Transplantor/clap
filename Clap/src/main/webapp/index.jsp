@@ -22,7 +22,7 @@
 	<section id="wrap">
 		<div class="container-fulid">
 			<div class="row">
-				<div class="col-md-6" style="background: red; height: 10px;"></div>
+				<div class="col-md-6" style="background: red; height: 10px;">index</div>
 				<div class="col-md-6" style="background: blue; height: 10px;"></div>
 			</div>
 		</div>

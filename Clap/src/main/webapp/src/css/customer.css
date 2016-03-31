@@ -1,0 +1,38 @@
+body,html{background:#000; }
+p{
+	color:#fff;
+}
+#sign_form{
+border:2px solid #47BED9;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;	
+width:600px;
+padding:30px 60px;
+box-sizing: border-box;
+margin:100px auto;
+color:#fff;
+}
+#sign_form input{color:#000;}
+#sign_form .row{
+	margin:10px 0;
+}
+.form_title{
+	border-bottom:1px solid #fff;
+	padding-bottom:5px;
+	
+}
+#btn_group .col{
+	padding:0 10px;
+}
+#sign_form .btn{
+	color:#fff;
+	background:#47BED9;
+}
+
+label{
+	color:#fff;
+	width:70px;
+}
+
+span{color:#fff;}

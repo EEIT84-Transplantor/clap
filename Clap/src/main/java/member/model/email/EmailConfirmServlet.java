@@ -33,10 +33,10 @@ public class EmailConfirmServlet extends HttpServlet {
 			confirmCode = request.getParameter("cfr");
 			if(memberService.checkConfirmCode(email, confirmCode))
 			{
-				out.print("Successful");
+				out.print("Successful");// redirect to successful page
 				return;
 			}
-				out.print("Failed");
+				out.print("Failed");// redirect to failing page
 				return;
 		} catch (Exception e) {
 			

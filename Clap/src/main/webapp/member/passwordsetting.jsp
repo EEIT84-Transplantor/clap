@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE">
+
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,36 +10,55 @@
 <title>CLAP</title>
 <!-- Bootstrap -->
 <link href="../src/css/bootstrap.min.css" rel="stylesheet">
+<link href="../src/css/customer.css" rel="stylesheet">
+
 </head>
 <body>
-	<header>
-	
-	
-	</header>
+	<header> </header>
 
 	<section id="wrap">
 		<div class="container-fulid">
 			<div class="row">
-				<div class="col-md-6" style="background: red; ">
-				<form action="passwordSettingServlet.action" method="post">
-					<label>Password : </label><input type="text" name="password" palceholder="abc.@clap.com">${requestScope.error.password}<br />
-					<label>Re-enter password : </label><input type="text" name="passwordconfirm" palceholder="abc.@clap.com"><br />
-					<input type="submit" value="Log in">
-				</form>
+
+				<div class="col-md-12">
+
+					<form action="login.action" method="post" id="sign_form">
+						<div class="row">
+							<label class="col-md-3">Password : </label><input type="text"
+								name="password" class="col-md-9">
+						</div>
+						<div class="row">
+							<label class="col-md-3">Re-enter : </label><input type="text"
+								name="passwordconfirm" class="col-md-9">
+						</div>
+						<div class="row">
+							<label id="info_text" class="col-md-12"></label>
+						</div>
+						<div class="row">
+							<input type="button" value="confirm" class="btn col-md-12"
+								id="btn_confirm" />
+						</div>
+
+					</form>
 				</div>
-				<div class="col-md-6" style="background: blue; height: 10px;"></div>
 			</div>
 		</div>
 	</section>
 
-	<footer>
-	
-	
-	
-	</footer>
+	<footer> </footer>
 
-	<!-- 載入js -->
-	<script src="../src/js/jquery-1.12.2.min.js"></script>
-	<script src="../src/js/bootstrap.min.js"></script>
+<!-- 載入js -->
+<script src="../src/js/jquery-1.12.2.min.js"></script>
+<script src="../src/js/bootstrap.min.js"></script>
+<script src="../src/js/loginsignup.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#btn_confirm").click(function(){
+			var oldPassword = $("input[name='password']").val();
+			var newPassword = $("input[name='passwordconfirm']").val();
+			comparePassword("${param.email}",oldPassword,newPassword,"${pageContext.request.contextPath}");
+		});
+	});
+</script>
 </body>
 </html>

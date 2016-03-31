@@ -27,7 +27,7 @@ public class MemberJdbcDAO implements MemberDAO {
 	private Connection conn = null;
 	private static final String SELECT_ALL = "select * from Member";
 	private static final String SELECT_BY_EMAIL = "select * from Member where email=?";
-	private static final String INSERT = "insert into Member(email,password values(?,?)";
+	private static final String INSERT = "insert into Member(email,password) values(?,?)";
 	private static final String UPDATE = "update Member set password=? where email=?";
 	private static final String DELETE = "delete from Member where email=?";
 

@@ -14,6 +14,7 @@ import member.model.MemberService;
 
 @WebServlet("/emailSending.servlet")
 public class EmailSendingServlet extends HttpServlet {
+	{System.out.println("QQQQ");}
 	private static final long serialVersionUID = 1L;
 
 	public EmailSendingServlet() {

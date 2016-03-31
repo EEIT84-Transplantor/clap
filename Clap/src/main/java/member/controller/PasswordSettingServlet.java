@@ -25,6 +25,7 @@ public class PasswordSettingServlet extends HttpServlet {
 		doPost(request, response);
 	}
 
+
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		MemberVO memberVO;
@@ -34,6 +35,7 @@ public class PasswordSettingServlet extends HttpServlet {
 
 		// ivc
 		String email = request.getParameter("email");
+
 		String password = request.getParameter("password");
 		String passwordconfirm = request.getParameter("passwordconfirm");
 

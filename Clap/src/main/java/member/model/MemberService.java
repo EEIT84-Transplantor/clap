@@ -40,6 +40,7 @@ public class MemberService {
 		if (member != null) {
 			byte[] temp = password.getBytes();
 			byte[] memberPassword = member.getPassword();
+		
 			if (Arrays.equals(temp, memberPassword)) {
 				result = member;
 			}
@@ -68,7 +69,7 @@ public class MemberService {
 
 	public String sendComfirmEmail(String email) {
 		Map<String, String> sendingInfo = sendEmail.sendEmail(email);
-		String resultMessage = sendingInfo.get("resultMessage");
+		String resultMessage = sendingInfo.get("resultMessage"); //sending Message(successful or failed)
 		return resultMessage;
 	}
 
@@ -78,7 +79,7 @@ public class MemberService {
 	}
 	
 	public boolean checkConfirmCode (String email, String confirmCode){
-		String codeFromLink = confirmCode;
+		String codeFromLink = confirmCode;	// full string got from parameter "cfr"
 		return sendEmail.checkingConfirmCode(email, codeFromLink);
 	}
 
