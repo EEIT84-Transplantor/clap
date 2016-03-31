@@ -26,11 +26,11 @@ public class EmailExistServlet extends HttpServlet{
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
 		
 		MemberVO memberVO;
-		MemberService memberService = new MemberService();
+		MemberService memberService = (MemberService) request.getAttribute("memberService");
 		Map<String,String> error = new HashMap<String, String>();
 		request.setAttribute("error", error);
 		
-		response.setContentType("application/json");
+		response.setContentType("text/plain");
 		PrintWriter printWriter = response.getWriter();
 		
 		//ivc
@@ -43,11 +43,10 @@ public class EmailExistServlet extends HttpServlet{
 		if(!error.isEmpty()){
 			request.getRequestDispatcher("SignUpLogin.view").forward(request, response);
 		}
-		if ((memberVO=memberService.findByEmail(email))!=null) {
-			JSONObject jsonObject = new JSONObject(memberVO);
-			printWriter.write(jsonObject.toString());			
+		if ((memberService.findByEmail(email))!=null) {
+			printWriter.write("true");
 		}else {
-			memberService.sendComfirmEmail(email);
+			printWriter.write("false");
 		}
 	}
 }
