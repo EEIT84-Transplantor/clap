@@ -39,6 +39,7 @@ public class MemberService {
 		if (member != null) {
 			byte[] temp = password.getBytes();
 			byte[] memberPassword = member.getPassword();
+		
 			if (Arrays.equals(temp, memberPassword)) {
 				result = member;
 			}
