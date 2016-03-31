@@ -2,6 +2,7 @@
 function comparePassword(email,oldPassword,newPassword,url){
 	if(oldPassword!=null&&oldPassword.length!==0){
 		if (oldPassword!=newPassword) {
+			console.log(oldPassword);
 			$("#info_text").text("inconsistent password, please try again!");
 		} else {
 			var url = url+"/member/passwordSettingServlet.action";
