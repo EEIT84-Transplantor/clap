@@ -1,6 +1,7 @@
 package member.model;
 
 import java.util.Arrays;
+import java.util.Map;
 import java.util.function.IntPredicate;
 
 import org.springframework.context.ApplicationContext;
@@ -8,13 +9,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import member.model.MemberVO;
 import member.model.email.EmailconfirmCode;
+import member.model.email.SendEmail;
 
 public class MemberService {
 	private MemberDAO dao;
-	private EmailconfirmCode emailConfirm;
+	private SendEmail sendEmail;
 
-	public void setEmailConfirm(EmailconfirmCode emailConfirm) {
-		this.emailConfirm = emailConfirm;
+	public void setSendEmail(SendEmail sendEmail) {
+		this.sendEmail = sendEmail;
 	}
 
 	public static void main(String[] args) {
@@ -28,11 +30,9 @@ public class MemberService {
 
 	}
 
-
 	public void setDao(MemberDAO dao) {
 		this.dao = dao;
 	}
-
 
 	public MemberVO login(String email, String password) {
 		MemberVO result = null;
@@ -47,20 +47,20 @@ public class MemberService {
 		return result;
 	}
 
-	public MemberVO signUp (String email, String password) {
-		return dao.insert(email, password.getBytes(),null,null);
+	public MemberVO signUp(String email, String password) {
+		return dao.insert(email, password.getBytes(), null, null);
 	}
 
 	public boolean changePassword(String email, String password) {
-		return dao.update(email, password.getBytes(),null,null);
+		return dao.update(email, password.getBytes(), null, null);
 	}
 
-	 public boolean sendComfirmEmail (String email){
-		 emailConfirm.generateEmailCfmCode(email);
-		 
-		 
-		 return false;
-	 }
+	public String sendComfirmEmail(String email) {
+		Map<String, String> sendingInfo = sendEmail.sendEmail(email);
+		String resultMessage = sendingInfo.get("resultMessage");
+		return resultMessage;
+	}
+	
 
 	public MemberVO findByEmail(String email) {
 		MemberVO member = dao.selectByEmail(email);
