@@ -9,6 +9,19 @@
 <title>CLAP</title>
 <!-- Bootstrap -->
 <link href="../src/css/bootstrap.min.css" rel="stylesheet">
+<script src="../src/js/jquery-1.12.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+		$("input").eq(0).blur(function(){
+			emailConfirm($("input").eq(0).val());
+		});
+	});
+    
+    
+    function emailConfirm(email){
+    	request = new Http
+    }
+	</script>
 </head>
 <body>
 	<header>
@@ -21,8 +34,8 @@
 			<div class="row">
 				<div class="col-md-6" style="background: red;">
 				<form action="#">
-				<label>E-mail : </label><input type="text" name="email" palceholder="abc.@clap.com"><br />
-				<label>Password : </label><input type="text" name="email" palceholder="abc.@clap.com"><br />
+				<label>E-mail : </label><input type="text" name="email" placeholder="abc.@clap.com"><br />
+				<label>Password : </label><input type="text" name="password"><br />
 				<input type="submit" value="Log in">
 				</form>
 				<span>need more help?</span>
@@ -40,7 +53,8 @@
 	</footer>
 
 	<!-- 載入js -->
-	<script src="../src/js/jquery-1.12.2.min.js"></script>
+	
 	<script src="../src/js/bootstrap.min.js"></script>
+	
 </body>
 </html>
