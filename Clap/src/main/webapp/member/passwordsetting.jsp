@@ -14,7 +14,9 @@
 
 </head>
 <body>
-	<header> </header>
+	<header>
+	 <jsp:include page="/header.jsp" />
+	</header>
 
 	<section id="wrap">
 		<div class="container-fulid">
@@ -45,7 +47,9 @@
 		</div>
 	</section>
 
-	<footer> </footer>
+	<footer>
+	<jsp:include page="/footer.jsp" />
+	</footer>
 
 <!-- 載入js -->
 <script src="../src/js/jquery-1.12.2.min.js"></script>

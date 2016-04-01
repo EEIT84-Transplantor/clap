@@ -10,6 +10,7 @@ function comparePassword(email,oldPassword,newPassword,url){
 			window.location = url+ queryString;
 		}
 	}else{
+		$("#info_text").show();
 		$("#info_text").text("You need to enter a password");
 	}
 }
@@ -21,13 +22,14 @@ function doReadyStateChange() {
 			$("#emailcheck_btn").hide();
 			//email是否存在
 			if(request.responseText == "true"){
-				$("#info_text").html("");
+				$("#info_text").html("").hide();
 				$("input[name='email']").prop("readonly", true);
 				$("#btn_group").hide();
 				$("#password_group").show();
 			}else{
 				$("#info_text").html("This email is not in our system.<br /> Already a member? Please check your email again<br /> Not a member yet? -> Sign up");
 				$("#btn_group").show();
+				$("#info_text").show();
 			}
 		} else {
 			console.log("Error Code:"+request.status+", "+request.statusText);
