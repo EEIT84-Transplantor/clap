@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>Clap</display-name>
+  <resource-ref>
+    <res-ref-name>clap/db</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+    <res-sharing-scope>Shareable</res-sharing-scope>
+  </resource-ref>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <filter>
+    <filter-name>ActoinContextFilter</filter-name>
+    <filter-class>member.filter.ActoinContextFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ActoinContextFilter</filter-name>
+    <url-pattern>/member/*</url-pattern>
+  </filter-mapping>
+  <context-param>
+    <param-name>host</param-name>
+    <param-value>smtp.gmail.com</param-value>
+  </context-param>
+  <context-param>
+    <param-name>port</param-name>
+    <param-value>587</param-value>
+  </context-param>
+  <context-param>
+    <param-name>user</param-name>
+    <param-value>EEIT84Transplantor@gmail.com</param-value>
+  </context-param>
+  <context-param>
+    <param-name>pass</param-name>
+    <param-value>TransplantorEEIT84</param-value>
+  </context-param>
+</web-app>
