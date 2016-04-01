@@ -39,10 +39,10 @@
 					</div>
 
 					<div class="col-md-2" style="border-left: #fff 1px solid;">
-						<img src="${pageContext.request.contextPath}/src/images/logo-m.png">
-						<ul>
-							<li><a href="#">TEL : 5+28+253545</a></li>
-							<li><a href="#">FAX : 86476436</a></li>
+					<img src="${pageContext.request.contextPath}/resource/images/logo-m.png" /> 
+					    <ul>
+						   <li><a href="#">TEL : 5+28+253545</a></li>
+						   <li><a href="#">FAX : 86476436</a></li>
 							<li><a href="#">MAIL : sdoh@hla.csp</a></li>
 						</ul>
 					</div>

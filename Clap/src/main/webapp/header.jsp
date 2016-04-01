@@ -15,8 +15,8 @@
 
 
 					<a class="navbar-brand" href="${pageContext.request.contextPath}"> <img class="hidden-xs"
-						src="${pageContext.request.contextPath}/src/images/logo.png"> <img class="visible-xs"
-						src="${pageContext.request.contextPath}/src/images/logo-s.png">
+						src="${pageContext.request.contextPath}/resource/images/logo.png"> <img class="visible-xs"
+						src="${pageContext.request.contextPath}/resource/images/logo-s.png">
 					</a>
 
 				</div>
@@ -32,7 +32,7 @@
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown" role="button" aria-haspopup="true"
 								aria-expanded="false">language <img
-									src="${pageContext.request.contextPath}/src/images/usa_flag.png"><span class="caret"></span></a>
+									src="${pageContext.request.contextPath}/resource/images/usa_flag.png"><span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="#">English</a></li>
 
@@ -42,7 +42,7 @@
 					</div>
 					<div class="row">
 						<ul class="nav navbar-nav navbar-right">
-							<li><img src="${pageContext.request.contextPath}/src/images/box.png"></li>
+							<li><img src="${pageContext.request.contextPath}/resource/images/box.png"></li>
 							<li><a href="#">Purchase</a></li>
 							<li class="active"><a href="#">About</a></li>
 							<li><a href="#">Simulator</a></li>
