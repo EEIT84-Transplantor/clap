@@ -19,12 +19,10 @@ import member.model.MemberVO;
 
 @WebServlet(urlPatterns = { "/member/passwordSettingServlet.action" })
 public class PasswordSettingServlet extends HttpServlet {
-	private MemberService memberService;
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
-
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -35,7 +33,6 @@ public class PasswordSettingServlet extends HttpServlet {
 
 		// ivc
 		String email = request.getParameter("email");
-
 		String password = request.getParameter("password");
 		String passwordconfirm = request.getParameter("passwordconfirm");
 
@@ -49,7 +46,6 @@ public class PasswordSettingServlet extends HttpServlet {
 			error.put("password", "password confirm failure");
 			request.getRequestDispatcher("passwordsetting.jsp").forward(request, response);
 		}
-
 		return;
 	}
 }
