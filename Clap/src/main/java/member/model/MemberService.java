@@ -36,10 +36,11 @@ public class MemberService {
 	public MemberVO login(String email, String password) {
 		MemberVO result = null;
 		MemberVO member = dao.selectByEmail(email);
+
 		if (member != null) {
 			byte[] temp = password.getBytes();
 			byte[] memberPassword = member.getPassword();
-		
+
 			if (Arrays.equals(temp, memberPassword)) {
 				result = member;
 			}
@@ -47,20 +48,17 @@ public class MemberService {
 		return result;
 	}
 
-
-	public MemberVO signUp (String email, String password) {
-
-		return dao.insert(email, password.getBytes());
+	public void signUp(String email, String password) {
+		if (findByEmail(email)==null) {
+			dao.insert(email, password.getBytes());
+		}else {
+			dao.update(email, password.getBytes());
+		}
 	}
 
-
-	public boolean setPassword(String email, String password) {
-		return dao.update(email, password.getBytes());
-
-	}
-	public boolean changePassword(String email, String oldPassword, String newPassword){
+	public boolean changePassword(String email, String oldPassword, String newPassword) {
 		boolean result = false;
-		if(this.login(email, oldPassword)!=null){
+		if (this.login(email, oldPassword) != null) {
 			result = dao.update(email, newPassword.getBytes());
 		}
 		return result;
@@ -68,7 +66,10 @@ public class MemberService {
 
 	public String sendComfirmEmail(String email) {
 		Map<String, String> sendingInfo = sendEmail.sendEmail(email);
-		String resultMessage = sendingInfo.get("resultMessage"); //sending Message(successful or failed)
+		String resultMessage = sendingInfo.get("resultMessage"); // sending
+																	// Message(successful
+																	// or
+																	// failed)
 		return resultMessage;
 	}
 
@@ -76,9 +77,10 @@ public class MemberService {
 		MemberVO member = dao.selectByEmail(email);
 		return member;
 	}
-	
-	public boolean checkConfirmCode (String email, String confirmCode){
-		String codeFromLink = confirmCode;	// full string got from parameter "cfr"
+
+	public boolean checkConfirmCode(String email, String confirmCode) {
+		String codeFromLink = confirmCode; // full string got from parameter
+											// "cfr"
 		return sendEmail.checkingConfirmCode(email, codeFromLink);
 	}
 

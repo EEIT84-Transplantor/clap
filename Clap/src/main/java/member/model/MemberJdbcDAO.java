@@ -107,7 +107,7 @@ public class MemberJdbcDAO implements MemberDAO {
 			conn=dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(INSERT);
 			ps.setString(1, email);
-			ps.setString(2, password.toString());
+			ps.setBytes(2, password);
 			int returnedValue = ps.executeUpdate();
 			if (returnedValue == 1) {
 				result = new MemberVO();
@@ -138,7 +138,7 @@ public class MemberJdbcDAO implements MemberDAO {
 			conn=dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(UPDATE);
 			System.out.println(email + password);
-			ps.setString(1, password.toString());
+			ps.setBytes(1, password);
 			ps.setString(2, email);
 			
 			int returnedValue = ps.executeUpdate();

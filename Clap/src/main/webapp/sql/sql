@@ -4,15 +4,12 @@ drop table Member
 
 create table Member(
 email varchar(320) NOT NULL,
-password varchar(50)NOT NULL,
-confirmed int,
-confirmCode varchar(40),
+password varbinary(50)NOT NULL
 primary key(email)
 )
 
 select*from Member
-
-insert into Member(email,password) values('caca@gmail.com','caca');
-insert into Member(email,password) values('andrew@gmail.com','andrew');
-insert into Member(email,password) values('lee@gmail.com','lee');
-insert into Member(email,password) values('poan@gmail.com','poan');
+insert into Member(email,password) values('caca@gmail.com',CONVERT(VARBINARY, 'caca'));
+insert into Member(email,password) values('andrew@gmail.com',CONVERT(VARBINARY, 'andrew'));
+insert into Member(email,password) values('lee@gmail.com',CONVERT(VARBINARY, 'lee'));
+insert into Member(email,password) values('poan@gmail.com',CONVERT(VARBINARY, 'poan'));
