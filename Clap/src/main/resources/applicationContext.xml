@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
+		</property>
+		<property name="url"
+			value="jdbc:sqlserver://localhost:1433;databaseName=clap">
+		</property>
+		<property name="username" value="sa"></property>
+		<property name="password" value="passw0rd"></property>
+	</bean>
+
+	
+<!-- 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> -->
+<!-- 		<property name="jndiName" value="java:comp/env/clap/db"></property> -->
+<!-- 	</bean> -->
+	<bean id="memberDAO" class="member.model.MemberJdbcDAO">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<bean id="memberService" class="member.model.MemberService">
+		<property name="dao" ref="memberDAO"/>
+		<property name="emailConfirm">
+			<bean class="member.model.email.EmailconfirmCode"></bean>
+		</property>
+	</bean>
+
+<!-- payment  -->
+    <bean id="creditCardDAO" class="payment.model.CreditCardjdbcDAO">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<bean id="creditCardService" class="payment.model.CreditCardService">
+		<property name="dao" ref="creditCardDAO"/>
+	</bean>
+
+    <bean id="giftCardDAO" class="payment.model.GiftCardjdbcDAO">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<bean id="giftCardService" class="payment.model.GiftCardService">
+		<property name="dao" ref="giftCardDAO"/>
+	</bean>
+
+    <bean id="promoDAO" class="payment.model.PromojdbcDAO">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<bean id="promoService" class="payment.model.PromoService">
+		<property name="dao" ref="promoDAO"/>
+	</bean>
+
+    <bean id="promoCodeDAO" class="payment.model.PromoCodejdbcDAO">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<bean id="promoCodeService" class="payment.model.PromoCodeService">
+		<property name="dao" ref="promoCodeDAO"/>
+	</bean>
+
+</beans>
