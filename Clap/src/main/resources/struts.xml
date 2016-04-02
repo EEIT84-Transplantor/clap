@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC
-   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-   "http://struts.apache.org/dtds/struts-2.0.dtd">
- <struts>
- 	<constant name="struts.devMode" value="true"></constant>
- 	<constant name="struts.objectFactory" value="spring"></constant>
- 	<package name="payment" namespace="/payment" extends="struts-default">
- 		
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	 <constant name="struts.objectFactory" value="spring" />
+
+	<package name="example" namespace="/example" extends="struts-default">
+	</package>
+	<package name="payment" namespace="/payment" extends="struts-default">	
  		<action name="managePayment" class="payment.controller.PaymentManageAction" >
  			<result name="success">/paymentTest.jsp</result>
  		</action>
- 		
- 		
- 		
  	</package>
- 
- </struts>
+
+</struts>
+

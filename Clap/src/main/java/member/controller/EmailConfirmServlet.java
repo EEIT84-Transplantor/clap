@@ -17,7 +17,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import member.model.MemberService;
 import member.model.MemberVO;
 
-@WebServlet(urlPatterns = { "/member/emailconfirm.action" })
+@WebServlet(urlPatterns = { "/member/emailconfirm.servlet" })
 public class EmailConfirmServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

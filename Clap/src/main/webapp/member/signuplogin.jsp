@@ -21,7 +21,7 @@
 		<div class="container-fulid">
 			<div class="row">
 				<div class="col-md-12">
-				<form action="login.action" method="post" id="sign_form">
+				<form action="login.servlet" method="post" id="sign_form">
 				    <div class="row form_title"><p class="col-md-12"><h3>Welcome to C.L.A.P</h3><span>Please Enter your email below for Login / Sign Up</span> </p></div>
 				    
 					<div class="row"><label class="col-md-3">E-mail : </label><input type="text" name="email" value="${param.email}" class="col-md-9">${requestScope.error.email}</div>
@@ -71,8 +71,8 @@
         var request = null;
     	
     	//註冊按鈕監聽器
-    	$("#emailcheck_btn_new").click(function(){ sendPostRequestEmail("emailexist.action",$("input[name='email']").val());});
-    	$("#emailcheck_btn").click(function(){ sendPostRequestEmail("emailexist.action",$("input[name='email']").val()); });
+    	$("#emailcheck_btn_new").click(function(){ sendPostRequestEmail("emailexist.servlet",$("input[name='email']").val());});
+    	$("#emailcheck_btn").click(function(){ sendPostRequestEmail("emailexist.servlet",$("input[name='email']").val()); });
     	$("#forgotPassword_new").click(function(){ sendEmail(); });
     	$("#forgotPassword").click(function(){ sendEmail(); });
 	});

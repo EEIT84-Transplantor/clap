@@ -24,7 +24,7 @@
 
 				<div class="col-md-12">
 
-					<form action="login.action" method="post" id="sign_form">
+					<form action="login.servlet" method="post" id="sign_form">
 						<div class="row">
 							<label class="col-md-3">Password : </label><input type="text"
 								name="password" class="col-md-9">
