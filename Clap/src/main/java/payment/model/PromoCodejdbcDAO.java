@@ -22,7 +22,9 @@ public class PromoCodejdbcDAO implements PromoCodeDAO {
 		System.out.println(pdao.selectByEmail("caca@gmail.com").size());
 		
 	//	pdao.insert("poan@gmail.com", "222");
-		pdao.delete("poan@gmail.com");
+	//	pdao.delete("poan@gmail.com", "222");
+		
+		System.out.println(pdao.selectPromoVOByEmail("caca@gmail.com").size());
 	}
 	
 	
@@ -30,8 +32,9 @@ public class PromoCodejdbcDAO implements PromoCodeDAO {
     private Connection conn = null;
     private static final String SELECT_ALL = "select * from promocode";
 	private static final String SELECT_BY_EMAIL = "select * from promocode where mb_email=?";
+	private static final String SELECT_BY_CODE = "select pm_code,pd_category,pm_discount,pm_expire,pm_tiltle from promocode join promo on(pm_code=pc_code) where mb_email=?";
 	private static final String INSERT = "insert into promocode(mb_email,pc_code) values(?,?)";
-	private static final String DELETE = "delete from promocode where mb_email=?";
+	private static final String DELETE = "delete from promocode where mb_email=? and pc_code=?";
 
 	
 	public PromoCodejdbcDAO() {
@@ -136,6 +139,53 @@ public class PromoCodejdbcDAO implements PromoCodeDAO {
 	}
 
 	@Override
+	public List<PromoVO> selectPromoVOByEmail(String mb_email){
+		List<PromoVO> result = new ArrayList<PromoVO>();
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+			
+			try {
+			conn = dataSource.getConnection();
+			ps = conn.prepareStatement(SELECT_BY_CODE);
+			ps.setString(1, mb_email);
+			rs = ps.executeQuery();
+			PromoVO temp = null;
+			while(rs.next()){
+				temp = new PromoVO();
+				temp.setPm_code(rs.getString("pm_code"));
+				temp.setPd_category(rs.getString("pd_category"));
+				temp.setPm_discount(rs.getDouble("pm_discount"));
+				temp.setPm_expire(rs.getDate("pm_expire"));
+				temp.setPm_tiltle(rs.getString("pm_tiltle"));
+				
+				result.add(temp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			
+			if(ps!=null){
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(conn!=null){
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return result;
+	}
+	
+	@Override
 	public PromoCodeVO insert(String mb_email, String pc_code) {
 		PromoCodeVO result = null;
 		PreparedStatement ps = null;
@@ -145,7 +195,7 @@ public class PromoCodejdbcDAO implements PromoCodeDAO {
 			ps = conn.prepareStatement(INSERT);
 			ps.setString(1, mb_email);
 			ps.setString(2, pc_code);
-			
+			System.out.println("ss");
 			if(ps.executeUpdate() == 1){
 				result = new PromoCodeVO();
 				result.setMb_email(mb_email);
@@ -177,7 +227,7 @@ public class PromoCodejdbcDAO implements PromoCodeDAO {
 	}
 
 	@Override
-	public boolean delete(String mb_email) {
+	public boolean delete(String mb_email,String pc_code) {
 		boolean result = false;
 		PreparedStatement ps = null;
 		
@@ -185,7 +235,8 @@ public class PromoCodejdbcDAO implements PromoCodeDAO {
 			conn = dataSource.getConnection();
 			ps = conn.prepareStatement(DELETE);
 			ps.setString(1, mb_email);
-
+			ps.setString(2, pc_code);
+			
 			if(ps.executeUpdate() == 1){
 				result = true;
 			}

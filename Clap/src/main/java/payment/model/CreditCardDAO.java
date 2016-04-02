@@ -5,6 +5,8 @@ import java.util.List;
 public interface CreditCardDAO {
 	
 	public abstract List<CreditCardVO> selectByEmail(String mb_email);
+	
+	public abstract CreditCardVO selectByCcNumber(String cc_number);
 
 	public abstract CreditCardVO insert(CreditCardVO creditCardVO);
 

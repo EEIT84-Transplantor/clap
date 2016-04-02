@@ -30,7 +30,7 @@
 		</property>
 	</bean>
 
-<!-- payment  -->
+<!-- payment package  -->
     <bean id="creditCardDAO" class="payment.model.CreditCardjdbcDAO">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
