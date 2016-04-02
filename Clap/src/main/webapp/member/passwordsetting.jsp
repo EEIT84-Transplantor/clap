@@ -9,8 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
 <!-- Bootstrap -->
-<link href="../src/css/bootstrap.min.css" rel="stylesheet">
-<link href="../src/css/customer.css" rel="stylesheet">
+<link href="../resource/css/bootstrap.min.css" rel="stylesheet">
+<link href="../resource/css/customer.css" rel="stylesheet">
 
 </head>
 <body>
@@ -52,9 +52,9 @@
 	</footer>
 
 <!-- 載入js -->
-<script src="../src/js/jquery-1.12.2.min.js"></script>
-<script src="../src/js/bootstrap.min.js"></script>
-<script src="../src/js/loginsignup.js"></script>
+<script src="../resource/js/jquery-1.12.2.min.js"></script>
+<script src="../resource/js/bootstrap.min.js"></script>
+<script src="../resource/js/loginsignup.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#btn_confirm").click(function(){
