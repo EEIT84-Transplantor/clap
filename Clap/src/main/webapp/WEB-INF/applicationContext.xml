@@ -75,7 +75,10 @@
 	</bean>
 	
 	<!-- setting -->
-	<bean id="demoAction" class="setting.controller.GetSettingAction">
+	<bean id="getSettingAction" class="setting.controller.GetSettingAction">
+		<property name="memberService" ref="memberService"></property>
+	</bean>
+	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction">
 		<property name="memberService" ref="memberService"></property>
 	</bean>
 
