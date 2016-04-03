@@ -6,11 +6,8 @@
 	<!-- datasource -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
-		</property>
-		<property name="url"
-			value="jdbc:sqlserver://localhost:1433;databaseName=clap">
-		</property>
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+		<property name="url" value="jdbc:sqlserver://localhost:1433;databaseName=clap"/>
 		<property name="username" value="sa"></property>
 		<property name="password" value="passw0rd"></property>
 	</bean>
@@ -24,10 +21,6 @@
 			<value>classpath:hibernate.cfg.xml</value>
 		</property>
 	</bean>
-
-	<!-- <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> -->
-	<!-- <property name="jndiName" value="java:comp/env/clap/db"></property> -->
-	<!-- </bean> -->
 
 	<!-- member -->
 	<bean id="memberDAO" class="member.model.MemberJdbcDAO">
