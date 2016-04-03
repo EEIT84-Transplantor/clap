@@ -1,8 +1,8 @@
 use clap 
 
-drop table Member
+drop table member
 
-create table Member(
+create table member(
 email varchar(320) NOT NULL,
 password varbinary(50)NOT NULL
 primary key(email)
