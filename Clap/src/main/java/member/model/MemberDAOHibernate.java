@@ -86,4 +86,30 @@ public class MemberDAOHibernate implements MemberDAO {
 		
 	}
 
+	@Override
+	public MemberVO insert(MemberVO memberVO) {
+		session = sessionFactory.getCurrentSession();
+		
+		try {
+			session.save(memberVO);
+			return memberVO;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public boolean update(MemberVO memberVO) {
+		session = sessionFactory.getCurrentSession();
+		
+		try {
+			session.update(memberVO);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 }
