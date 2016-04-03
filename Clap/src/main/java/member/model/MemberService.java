@@ -12,21 +12,21 @@ import member.model.email.EmailconfirmCode;
 import member.model.email.SendEmail;
 
 public class MemberService {
-	private MemberDAO dao;
-	private SendEmail sendEmail;
-
-	public void setSendEmail(SendEmail sendEmail) {
-		this.sendEmail = sendEmail;
-	}
-
+	
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		MemberService ms = (MemberService) context.getBean("memberService");
 		System.out.println(ms.login("andrew@gmail.com", "andrew"));
 	}
 
-	public MemberService() {
+	private MemberDAO dao;
+	private SendEmail sendEmail;
 
+	public MemberService() {
+	}
+
+	public void setSendEmail(SendEmail sendEmail) {
+		this.sendEmail = sendEmail;
 	}
 
 	public void setDao(MemberDAO dao) {
