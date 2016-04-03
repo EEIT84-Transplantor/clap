@@ -28,11 +28,9 @@ public class MemberService {
 	public void setSendEmail(SendEmail sendEmail) {
 		this.sendEmail = sendEmail;
 	}
-
 	public void setDao(MemberDAO dao) {
 		this.dao = dao;
 	}
-
 	public MemberVO login(String email, String password) {
 		MemberVO result = null;
 		MemberVO member = dao.selectByEmail(email);
@@ -47,7 +45,6 @@ public class MemberService {
 		}
 		return result;
 	}
-
 	public void signUp(String email, String password) {
 		if (findByEmail(email)==null) {
 			dao.insert(email, password.getBytes());
@@ -55,7 +52,6 @@ public class MemberService {
 			dao.update(email, password.getBytes());
 		}
 	}
-
 	public boolean changePassword(String email, String oldPassword, String newPassword) {
 		boolean result = false;
 		if (this.login(email, oldPassword) != null) {
@@ -63,7 +59,6 @@ public class MemberService {
 		}
 		return result;
 	}
-
 	public String sendComfirmEmail(String email) {
 		Map<String, String> sendingInfo = sendEmail.sendEmail(email);
 		String resultMessage = sendingInfo.get("resultMessage"); // sending
@@ -72,16 +67,14 @@ public class MemberService {
 																	// failed)
 		return resultMessage;
 	}
-
 	public MemberVO findByEmail(String email) {
 		MemberVO member = dao.selectByEmail(email);
 		return member;
 	}
-
 	public boolean checkConfirmCode(String email, String confirmCode) {
 		String codeFromLink = confirmCode; // full string got from parameter
 											// "cfr"
 		return sendEmail.checkingConfirmCode(email, codeFromLink);
 	}
-
+	
 }
