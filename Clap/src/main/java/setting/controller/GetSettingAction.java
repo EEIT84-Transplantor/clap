@@ -28,7 +28,4 @@ public class GetSettingAction extends ActionSupport implements ServletRequestAwa
 		
 	}
 
-
-
-
 }
