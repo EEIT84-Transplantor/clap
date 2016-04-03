@@ -14,8 +14,8 @@
 	<s:textfield label="password" name="member.email"/>
 	<s:textfield label="newpassword" name="newpassword"/>
 	<s:textfield label="confirm" name="confirm"/>
-	<s:textfield label="name" name="member.name" value="%{#request.login.name}"/>
-	<s:textfield label="phone" name="member.phone" value="%{#request.login.phone}"/>
+	<s:textfield label="name" name="member.name" value="%{#request.login.mb_name}"/>
+	<s:textfield label="phone" name="member.phone" value="%{#request.login.mb_phone}"/>
 	<s:file label="photo"></s:file>
 </s:form>
 
