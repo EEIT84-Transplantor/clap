@@ -26,9 +26,9 @@
 	</bean>
 	<bean id="memberService" class="member.model.MemberService">
 		<property name="dao" ref="memberDAO" />
-<!-- 		<property name="emailConfirm"> -->
-<!-- 			<bean class="member.model.email.EmailconfirmCode"></bean> -->
-<!-- 		</property> -->
+		<property name="sendEmail" ref="sendEmail">
+			
+		</property>
 	</bean>
 
 	<!-- email -->
