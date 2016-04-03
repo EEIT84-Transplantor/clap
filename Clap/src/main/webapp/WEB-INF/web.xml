@@ -21,6 +21,9 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+
+
+	<!-- Filter -->
 	<filter>
 		<filter-name>ActoinContextFilter</filter-name>
 		<filter-class>member.filter.ActoinContextFilter</filter-class>
@@ -29,6 +32,18 @@
 		<filter-name>ActoinContextFilter</filter-name>
 		<url-pattern>/member/*</url-pattern>
 	</filter-mapping>
+
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<!-- context-param -->
 	<context-param>
 		<param-name>host</param-name>
 		<param-value>smtp.gmail.com</param-value>
@@ -46,21 +61,10 @@
 		<param-value>TransplantorEEIT84</param-value>
 	</context-param>
 
-	<filter>
-		<filter-name>OpenSessionViewFilter</filter-name>
-		<filter-class>hibernate.filter.OpenSessionViewFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>OpenSessionViewFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	<!-- listener -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 
-	<filter>
-		<filter-name>struts2</filter-name>
-		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>struts2</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+
 </web-app>
