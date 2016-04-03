@@ -61,5 +61,4 @@
 		<property name="memberService" ref="memberService"></property>
 	</bean>
 
-
 </beans>
