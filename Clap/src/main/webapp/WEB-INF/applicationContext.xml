@@ -32,7 +32,7 @@
 	</bean>
 
 	<bean id="memberService" class="member.model.MemberService">
-		<property name="dao" ref="memberDAO" />
+		<property name="dao" ref="memberDAOHiber" />
 		<property name="sendEmail" ref="sendEmail"></property>
 	</bean>
 
