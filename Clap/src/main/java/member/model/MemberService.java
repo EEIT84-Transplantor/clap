@@ -76,5 +76,7 @@ public class MemberService {
 											// "cfr"
 		return sendEmail.checkingConfirmCode(email, codeFromLink);
 	}
-	
+	public boolean updateSetting (String mb_password, String mb_name, String mb_phone, byte[] mb_photo){
+		return false;
+	}
 }
