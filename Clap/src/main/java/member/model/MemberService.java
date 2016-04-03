@@ -16,7 +16,7 @@ public class MemberService {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		MemberService ms = (MemberService) context.getBean("memberService");
-		System.out.println(ms.login("andrew@gmail.com", "andrew"));
+		System.out.println(ms.login("andrew@gmail.com", "andrew".getBytes()));
 	}
 
 	private MemberDAO dao;
@@ -31,12 +31,12 @@ public class MemberService {
 	public void setDao(MemberDAO dao) {
 		this.dao = dao;
 	}
-	public MemberVO login(String email, String password) {
+	public MemberVO login(String email, byte[] password) {
 		MemberVO result = null;
 		MemberVO member = dao.selectByEmail(email);
 
 		if (member != null) {
-			byte[] temp = password.getBytes();
+			byte[] temp = password;
 			byte[] memberPassword = member.getPassword();
 
 			if (Arrays.equals(temp, memberPassword)) {
@@ -52,7 +52,7 @@ public class MemberService {
 			dao.update(email, password.getBytes());
 		}
 	}
-	public boolean changePassword(String email, String oldPassword, String newPassword) {
+	public boolean changePassword(String email, byte[] oldPassword, String newPassword) {
 		boolean result = false;
 		if (this.login(email, oldPassword) != null) {
 			result = dao.update(email, newPassword.getBytes());
