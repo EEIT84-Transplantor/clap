@@ -18,7 +18,7 @@
 	</header>
 
 	<section id="wrap">
-		<div class="container-fulid">
+		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
 				<form action="login.servlet" method="post" id="sign_form">

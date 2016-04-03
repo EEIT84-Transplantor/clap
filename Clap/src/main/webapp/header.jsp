@@ -14,7 +14,7 @@
 					</button>
 
 
-					<a class="navbar-brand" href="${pageContext.request.contextPath}"> <img class="hidden-xs"
+					<a class="navbar-brand" href="${pageContext.request.contextPath}/"> <img class="hidden-xs"
 						src="${pageContext.request.contextPath}/resource/images/logo.png"> <img class="visible-xs"
 						src="${pageContext.request.contextPath}/resource/images/logo-s.png">
 					</a>

@@ -44,7 +44,7 @@ public class CreditCardService {
 		CreditCardVO result = null;
 		if(creditCardVO!=null){
 			String cc_cvv = creditCardVO.getCc_cvv();
-			String cc_goodrhru = creditCardVO.getCc_goodrhru();
+			String cc_goodrhru = creditCardVO.getCc_goodthru();
 			String cc_number = creditCardVO.getCc_number();
 			String mb_email = creditCardVO.getMb_email();
 			
@@ -88,8 +88,8 @@ public class CreditCardService {
 				if(temp!=null){
 					//舊卡
 					//expire
-					int month = Integer.parseInt(temp.getCc_goodrhru().split("/")[0]);
-					int year = Integer.parseInt(temp.getCc_goodrhru().split("/")[1]);
+					int month = Integer.parseInt(temp.getCc_goodthru().split("/")[0]);
+					int year = Integer.parseInt(temp.getCc_goodthru().split("/")[1]);
 					cal = Calendar.getInstance();
 					int now_year =Integer.parseInt(String.valueOf(cal.get(Calendar.YEAR)).substring(2));
 					if(year>now_year){
@@ -115,8 +115,8 @@ public class CreditCardService {
 					}
 					
 					//expire
-					int month = Integer.parseInt(temp.getCc_goodrhru().split("/")[0]);
-					int year = Integer.parseInt(temp.getCc_goodrhru().split("/")[1]);
+					int month = Integer.parseInt(temp.getCc_goodthru().split("/")[0]);
+					int year = Integer.parseInt(temp.getCc_goodthru().split("/")[1]);
 					cal = Calendar.getInstance();
 					int now_year =Integer.parseInt(String.valueOf(cal.get(Calendar.YEAR)).substring(2));
 					if(year>now_year){

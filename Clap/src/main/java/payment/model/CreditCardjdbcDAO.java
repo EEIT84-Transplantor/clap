@@ -27,7 +27,7 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 			CreditCardVO vo = new CreditCardVO();
 			vo.setCc_number("7777777777777777");
 			vo.setMb_email("caca@gmail.com");
-			vo.setCc_goodrhru("10/18");
+			vo.setCc_goodthru("10/18");
 			vo.setCc_cvv("333");
 			
            // System.out.println(cdao.insert(vo).getCc_cvv());
@@ -64,7 +64,7 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 			CreditCardVO temp = new CreditCardVO();
 			temp.setMb_email(rs.getString("mb_email"));
 			temp.setCc_number(rs.getString("cc_number"));
-			temp.setCc_goodrhru(rs.getString("cc_goodrhru"));
+			temp.setCc_goodthru(rs.getString("cc_goodrhru"));
 			temp.setCc_cvv(rs.getString("cc_cvv"));
 			
 			result.add(temp);
@@ -115,7 +115,7 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 			result = new CreditCardVO();
 			result.setMb_email(rs.getString("mb_email"));
 			result.setCc_number(rs.getString("cc_number"));
-			result.setCc_goodrhru(rs.getString("cc_goodrhru"));
+			result.setCc_goodthru(rs.getString("cc_goodrhru"));
 			result.setCc_cvv(rs.getString("cc_cvv"));
 			}
 			
@@ -160,7 +160,7 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 			ps = conn.prepareStatement(INSERT);
 			ps.setString(1, creditCardVO.getMb_email());
 			ps.setString(2, creditCardVO.getCc_number());
-			ps.setString(3, creditCardVO.getCc_goodrhru());
+			ps.setString(3, creditCardVO.getCc_goodthru());
 			ps.setString(4, creditCardVO.getCc_cvv());
 			
 			if(ps.executeUpdate() == 1){
