@@ -14,6 +14,17 @@
 		<property name="username" value="sa"></property>
 		<property name="password" value="passw0rd"></property>
 	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+	</bean>
+
 	<!-- <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> -->
 	<!-- <property name="jndiName" value="java:comp/env/clap/db"></property> -->
 	<!-- </bean> -->
@@ -22,12 +33,18 @@
 	<bean id="memberDAO" class="member.model.MemberJdbcDAO">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+
 	<bean id="memberService" class="member.model.MemberService">
 		<property name="dao" ref="memberDAO" />
 		<property name="sendEmail" ref="sendEmail"></property>
 	</bean>
 
 	<!-- email -->
+	
+	<bean id="memberDAOHiber" class="member.model.MemberDAOHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 	<bean id="sendEmail" class="member.model.email.SendEmail">
 		<property name="emailUtility">
 			<bean class="member.model.email.EmailUtility"></bean>
@@ -46,5 +63,6 @@
 	<bean id="demoAction" class="setting.controller.GetSettingAction">
 		<property name="memberService" ref="memberService"></property>
 	</bean>
+
 
 </beans>

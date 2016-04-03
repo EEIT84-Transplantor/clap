@@ -38,6 +38,7 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 	private DataSource dataSource;
 	private Connection conn = null;
 	private static final String SELECT_BY_EMAIL = "select * from creditcard where mb_email=?";
+	private static final String SELECT_BY_CCNUMBER = "select * from creditcard where cc_number=?";
 	private static final String INSERT = "insert into creditcard(mb_email,cc_number,cc_goodrhru,cc_cvv) values(?,?,?,?)";
 	private static final String DELETE = "delete from creditcard where cc_number=?";
 	
@@ -51,7 +52,7 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 	
 	@Override
 	public List<CreditCardVO> selectByEmail(String mb_email) {
-		List<CreditCardVO> result = new ArrayList<CreditCardVO>();;
+		List<CreditCardVO> result = new ArrayList<CreditCardVO>();
 		PreparedStatement ps= null;
 		ResultSet rs = null;
 		try {
@@ -100,6 +101,55 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 		return result;
 	}
 
+	@Override
+	public CreditCardVO selectByCcNumber(String cc_number) {
+		CreditCardVO result = null;
+		PreparedStatement ps= null;
+		ResultSet rs = null;
+		try {
+			conn = dataSource.getConnection();
+			ps = conn.prepareStatement(SELECT_BY_CCNUMBER);
+			ps.setString(1,cc_number);
+			rs =ps.executeQuery();
+			if(rs.next()){
+			result = new CreditCardVO();
+			result.setMb_email(rs.getString("mb_email"));
+			result.setCc_number(rs.getString("cc_number"));
+			result.setCc_goodrhru(rs.getString("cc_goodrhru"));
+			result.setCc_cvv(rs.getString("cc_cvv"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			if(rs!=null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(ps!=null){
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(conn!=null){
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return result;
+	}
+	
 	@Override
 	public CreditCardVO insert(CreditCardVO creditCardVO) {
 		CreditCardVO result = null;
@@ -178,5 +228,7 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 		
 		return result;
 	}
+
+	
 
 }

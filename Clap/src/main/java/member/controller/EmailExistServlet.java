@@ -16,7 +16,7 @@ import org.json.JSONObject;
 import member.model.MemberService;
 import member.model.MemberVO;
 
-@WebServlet(urlPatterns={"/member/emailexist.action"})
+@WebServlet(urlPatterns={"/member/emailexist.servlet"})
 
 public class EmailExistServlet extends HttpServlet{
 

@@ -17,7 +17,7 @@ import org.springframework.remoting.support.RemoteInvocationResult;
 import member.model.MemberService;
 import member.model.MemberVO;
 
-@WebServlet(urlPatterns = { "/member/passwordSettingServlet.action" })
+@WebServlet(urlPatterns = { "/member/passwordSettingServlet.servlet" })
 public class PasswordSettingServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
