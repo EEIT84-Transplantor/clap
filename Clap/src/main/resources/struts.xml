@@ -6,6 +6,7 @@
 
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.multipart.maxSize" value="-1" />
 
 	<package name="setting" namespace="/setting" extends="struts-default">
 		<action name="getsettingaction" class="setting.controller.GetSettingAction">
