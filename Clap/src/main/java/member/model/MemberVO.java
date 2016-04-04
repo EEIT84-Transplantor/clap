@@ -16,7 +16,7 @@ public class MemberVO {
 	@Column(name="mb_email")
 	private String email;
 	@Column(name="mb_password")
-	private byte[] password;
+	private byte[] mb_password;
 	private Double gc_amount;
 	private String mb_name;
 	private String mb_phone;
@@ -83,10 +83,10 @@ public class MemberVO {
 		this.email = email;
 	}
 	public byte[] getPassword() {
-		return password;
+		return mb_password;
 	}
 	public void setPassword(byte[] password) {
-		this.password = password;
+		this.mb_password = password;
 	}
 	public Double getGc_amount() {
 		return gc_amount;
