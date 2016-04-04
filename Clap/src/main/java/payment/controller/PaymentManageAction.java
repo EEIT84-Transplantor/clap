@@ -71,7 +71,7 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 	    	 if(creditCardVO.getCc_cvv()==null||!Pattern.matches("\\d{3}", creditCardVO.getCc_cvv())){
 	    		 addFieldError("error.errorMsg", "CVV is not valid");
 	    	 }
-	    	 String goodThru = creditCardVO.getCc_goodrhru();
+	    	 String goodThru = creditCardVO.getCc_goodthru();
 	    	 if(goodThru==null||!Pattern.matches("^\\d{2}[/]\\d{2}$", goodThru)||Integer.parseInt(goodThru.substring(3))<Calendar.getInstance().YEAR||
 	    			 Integer.parseInt(goodThru.substring(3))<Calendar.getInstance().YEAR &&Integer.parseInt(goodThru.substring(0,2))<Calendar.getInstance().MONTH){
 	    		 addFieldError("error.errorMsg", "GoodThru is not valid");
