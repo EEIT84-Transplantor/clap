@@ -26,9 +26,7 @@
 	</bean>
 	<bean id="memberService" class="member.model.MemberService">
 		<property name="dao" ref="memberDAO" />
-		<property name="sendEmail" ref="sendEmail">
-
-		</property>
+		<property name="sendEmail" ref="sendEmail"/>
 	</bean>
 
 	<!-- email -->
@@ -76,10 +74,14 @@
 
 	<!-- setting -->
 	<bean id="getSettingAction" class="setting.controller.GetSettingAction">
-		<property name="memberService" ref="memberService"></property>
+		<property name="memberService" ref="memberService"/>
 	</bean>
-<!-- 	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction"> -->
-<!-- 		<property name="memberService" ref="memberService"></property> -->
-<!-- 	</bean> -->
+	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction">
+		<property name="memberService" ref="memberService"/>
+	</bean>
+	<bean id="onClickAction" class="setting.controller.OnClickAction">
+		<property name="memberService" ref="memberService"/>
+		<property name="memberDAOHibernate" ref="memberDAO"/>
+	</bean>
 
 </beans>
