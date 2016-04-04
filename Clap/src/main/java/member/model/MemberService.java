@@ -1,5 +1,6 @@
 package member.model;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.function.IntPredicate;
@@ -84,7 +85,15 @@ public class MemberService {
 		return sendEmail.checkingConfirmCode(email, codeFromLink);
 	}
 
-	public boolean updateSetting(byte[] mb_password, String mb_name, String mb_phone, byte[] mb_photo) {
+	public boolean updateSetting(MemberVO memberVO,byte[] password, File photo) {
+		if (password!=null) {
+			memberVO.setPassword(password);
+		}
+		if (photo!=null) {
+			//photo放入db
+		}
+		//name phone 這可能會有問題
+		dao.update(memberVO);
 		return false;
 	}
 }
