@@ -12,12 +12,13 @@
 		<property name="username" value="sa"></property>
 		<property name="password" value="passw0rd"></property>
 	</bean>
-<!-- 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> -->
-<!-- 	<property name="jndiName" value="java:comp/env/clap/db"></property> -->
-<!-- 	</bean> -->
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+	<!-- <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> -->
+	<!-- <property name="jndiName" value="java:comp/env/clap/db"></property> -->
+	<!-- </bean> -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
 	</bean>
 
 	<!-- member -->
@@ -27,7 +28,7 @@
 	<bean id="memberService" class="member.model.MemberService">
 		<property name="dao" ref="memberDAO" />
 		<property name="sendEmail" ref="sendEmail">
-			
+
 		</property>
 	</bean>
 
@@ -73,7 +74,7 @@
 	<bean id="promoCodeService" class="payment.model.PromoCodeService">
 		<property name="dao" ref="promoCodeDAO" />
 	</bean>
-	
+
 	<!-- setting -->
 	<bean id="getSettingAction" class="setting.controller.GetSettingAction">
 		<property name="memberService" ref="memberService"></property>
