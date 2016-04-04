@@ -38,21 +38,83 @@ label {
 #payment_detail{
 	border:1px solid #fff;
 	border-top:none;
-	padding:15px;
+	padding:10px;
 	
-	
+}
+#payment_detail .row{
+	padding:10px;
 }
 #payment_detail .col-md-4{
-	padding:6px;
+	padding:10px;
 }
 .creditCard{
-	padding:15px;
+	
 	background:url("../images/credit_card.png") center no-repeat;
 	background-size:cover;
-	width:300px;
+	width:290px;
 	height:170px;
 	margin:0 auto;
+	
 }
+.credit_info{
+	padding:15px;
+	position: relative;
+	height:100%;
+	width:100%;
+}
+
+.creditCard img{
+	position:absolute;
+	top:5px;
+	right:15px;
+}
+.cc_number{
+	position:absolute;
+	letter-spacing:3px;
+	font-size:20px;
+	top:85px;
+	left:30px;
+}
+.cc_goodthru{
+	position:absolute;
+	top:120px;
+	left:165px;
+}
+.cc_name{
+	position:absolute;
+	top:140px;
+	left:35px;
+	letter-spacing:3px;
+}
+.delete_card{display:none;}
+.creditCard:hover .delete_card{background:rgba(0,0,0,0.7);width:100%;height:100%;position:absolute; top:0;left:0;display:block;}
+
+.delete_card span.glyphicon{
+	text-shadow: 1px 1px #fff;
+	color: #CE0000;
+    font-weight:light;
+	font-size:50px;
+	text-align:center;
+	display:inline-block;
+	width:100%;
+	height:100%;
+	padding-top:70px;
+}
+.addCard{
+	background:#47BED9;
+	color:#fff;
+	width:290px;
+	height:170px;
+	margin:0 auto;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	padding:15px;
+}
+.addCard input{
+	color:#000;
+}
+
 /*---------------------------*/
 @CHARSET "UTF-8";
 
@@ -135,6 +197,7 @@ footer{
 	padding-top:45px;
 	padding-bottom:30px;
 	background-size:container;
+	margin-top:50px;
 }
 li{
 	list-style-type: none;

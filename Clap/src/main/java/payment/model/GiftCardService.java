@@ -21,8 +21,8 @@ public class GiftCardService {
 	public void setDao(GiftCardDAO dao) {
 		this.dao = dao;
 	}
-	public boolean useCard (String gc_number,String gc_code){
-		boolean result = false;
+	public Double useCard (String gc_number,String gc_code){
+		Double result = 0.0;
 		if(gc_number==null||gc_number.length()==0){
 			return result;
 		}
@@ -31,20 +31,18 @@ public class GiftCardService {
 		}
 		 GiftCardVO temp = dao.selectByGcNumber(gc_number);
 		 if(temp==null){
-			 return false;
+			 return result;
 		 }
 		 
 		 if(temp.getGc_code().equals(gc_code)&&isAvailable(gc_number)){
-			//把金額放入會員帳號gc_amount
-			 
 			//此卡片失效
 			 temp.setGc_available(0);
 			 if(dao.update(temp)){
-				 result = true;
+				 result = temp.getGc_amount();
 			 }
 			 
 		 }
-		return false;
+		return result;
 	};
 	private boolean isAvailable(String gc_number){
 		boolean result = false;
