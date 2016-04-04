@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.opensymphony.xwork2.conversion.annotations.TypeConversion;
+
 
 @Entity
 @Table(name = "member")
@@ -16,66 +18,26 @@ public class MemberVO {
 	@Column(name="mb_email")
 	private String email;
 	@Column(name="mb_password")
-	private byte[] mb_password;
-	private Double gc_amount;
-	private String mb_name;
-	private String mb_phone;
-	private byte[] mb_photo;
-	private Boolean mb_oneclick;
-	private Integer hp_id;
-	private String cc_number;
-	private Boolean mb_autorenew;
-	private Date mb_expire;
-
-
-	public String getMb_name() {
-		return mb_name;
-	}
-	public void setMb_name(String mb_name) {
-		this.mb_name = mb_name;
-	}
-	public String getMb_phone() {
-		return mb_phone;
-	}
-	public void setMb_phone(String mb_phone) {
-		this.mb_phone = mb_phone;
-	}
-	public byte[] getMb_photo() {
-		return mb_photo;
-	}
-	public void setMb_photo(byte[] mb_photo) {
-		this.mb_photo = mb_photo;
-	}
-	public Boolean getMb_oneclick() {
-		return mb_oneclick;
-	}
-	public void setMb_oneclick(Boolean mb_oneclick) {
-		this.mb_oneclick = mb_oneclick;
-	}
-	public Integer getHp_id() {
-		return hp_id;
-	}
-	public void setHp_id(Integer hp_id) {
-		this.hp_id = hp_id;
-	}
-	public String getCc_number() {
-		return cc_number;
-	}
-	public void setCc_number(String cc_number) {
-		this.cc_number = cc_number;
-	}
-	public Boolean getMb_autorenew() {
-		return mb_autorenew;
-	}
-	public void setMb_autorenew(Boolean mb_autorenew) {
-		this.mb_autorenew = mb_autorenew;
-	}
-	public Date getMb_expire() {
-		return mb_expire;
-	}
-	public void setMb_expire(Date mb_expire) {
-		this.mb_expire = mb_expire;
-	}
+	private byte[] password;
+	@Column(name="gc_amount")
+	private Double amount;
+	@Column(name="mb_name")
+	private String name;
+	@Column(name="mb_phone")
+	private String phone;
+	@Column(name="mb_photo")
+	private byte[] photo;
+	@Column(name="mb_oneclick")
+	private Boolean oneclick;
+	@Column(name="hp_id")
+	private Integer id;
+	@Column(name="cc_number")
+	private String number;
+	@Column(name="mb_autorenew")
+	private Boolean autorenew;
+	@Column(name="mb_expire")
+	private Date expire;
+	
 	public String getEmail() {
 		return email;
 	}
@@ -83,16 +45,65 @@ public class MemberVO {
 		this.email = email;
 	}
 	public byte[] getPassword() {
-		return mb_password;
+		return password;
 	}
+	@TypeConversion(converter="converter.BytearrayConverter")
 	public void setPassword(byte[] password) {
-		this.mb_password = password;
+		this.password = password;
 	}
-	public Double getGc_amount() {
-		return gc_amount;
+	public Double getAmount() {
+		return amount;
 	}
-	public void setGc_amount(Double gc_amount) {
-		this.gc_amount = gc_amount;
+	public void setAmount(Double amount) {
+		this.amount = amount;
 	}
-	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public byte[] getPhoto() {
+		return photo;
+	}
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
+	}
+	public Boolean getOneclick() {
+		return oneclick;
+	}
+	public void setOneclick(Boolean oneclick) {
+		this.oneclick = oneclick;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getNumber() {
+		return number;
+	}
+	public void setNumber(String number) {
+		this.number = number;
+	}
+	public Boolean getAutorenew() {
+		return autorenew;
+	}
+	public void setAutorenew(Boolean autorenew) {
+		this.autorenew = autorenew;
+	}
+	public Date getExpire() {
+		return expire;
+	}
+	public void setExpire(Date expire) {
+		this.expire = expire;
+	}
+
 }
