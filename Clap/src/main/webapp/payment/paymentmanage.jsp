@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@taglib prefix="sx" uri="/struts-dojo-tags" %>
 <%@ page import="java.util.Map" %>
 <!DOCTYPE html>
 <html>
@@ -12,8 +13,16 @@
 <!-- Bootstrap -->
 <link href="../resource/css/bootstrap.min.css" rel="stylesheet">
 <link href="../resource/css/customer.css" rel="stylesheet">
+<sx:head/>
 </head>
 <body>
+
+	
+
+
+
+
+
 	<header>
 	 <jsp:include page="/header.jsp" />
 	</header>
@@ -57,11 +66,14 @@
 				     <div class="addCard">
 						   <strong>NEW CARD </strong>
 						    <s:form id="addCreditForm">
-						      <s:textfield name="cardVO.cc_number" label="Number" ></s:textfield>
-						      <s:textfield name="cardVO.cc_goodthru" label="Good thru" ></s:textfield>
-						      <s:textfield name="cardVO.cc_cvv" label="CVV"  ></s:textfield>
-						      <s:submit id="addCreditCard" value="add"></s:submit>
+						      <s:textfield name="creditCardVO.cc_number" label="Number" />
+						      <s:textfield name="creditCardVO.cc_goodthru" label="Good thru" />
+						      <s:textfield name="creditCardVO.cc_cvv" label="CVV" />
+		
+						      <sx:submit href="managePayment.action"  targets="newCardDiv" loadingText="Loading..." showLoadingText="true" errorText="載入失敗!" formId="addCreditForm">用戶信息列表</sx:submit> 
+						
 						    </s:form>
+						<div id="newCardDiv">newCardDiv</div>  
 						</div>
 				      </div>
 				   </c:if>
@@ -69,13 +81,15 @@
 				   <c:if test="${index.count%3==0||index.count==4}">
 				      </div>
 				   </c:if>
+				
 				   
 				</c:forEach>
+				
 				</div>
 			</div>
 			</div>
 	</section>
-
+<div id="ssss">sss</div>
 	<footer>
 	<jsp:include page="/footer.jsp" />
 	</footer>
@@ -84,30 +98,6 @@
 	<script src="../resource/js/jquery-1.12.2.min.js"></script>
 	<script src="../resource/js/bootstrap.min.js"></script>
 	<script src="../resource/js/loginsignup.js"></script>
-<script>
 
-
-function sendPostRequestPayment(url,data){
-	//改這個
-	var target = url+"/testPay/test.action";
-	var quertString = data;
-	alert(target);
-	alert(quertString);
-	request = new XMLHttpRequest();
-//	request.onreadystatechange = doReadyStateChange;
-	request.open("POST",target);
-	request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-	request.send(quertString);
-}
-
-$("#addCreditCard").click(function(){
-    var url ="${pageContext.request.contextPath}";
-  
-    var data = $("#addCreditForm").serialize(); 
-    sendPostRequestPayment(url,data);
-});
-
-
- </script> 
 </body>
 </html>
