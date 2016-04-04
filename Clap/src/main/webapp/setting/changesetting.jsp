@@ -9,15 +9,15 @@
 </head>
 <body>
 
-<s:form method="post" action="setting/changesettingaction">
+<s:form action="changeSettingAction" method="post" enctype="multipart/form-data">
 <%-- 	<s:textfield label="email" name="memberVO.email" value="%{#request.login.email}"/> --%>
 	<s:textfield label="email" name="memberVO.email" value="poan@gmail.com"/>
-	<s:textfield label="password" name="memberVO.mb_password"/>
-	<s:textfield label="newpassword" name="newpassword"/>
-	<s:textfield label="confirm" name="confirm"/>
-	<s:textfield label="name" name="memberVO.mb_name" value="%{#request.login.mb_name}"/>
-	<s:textfield label="phone" name="memberVO.mb_phone" value="%{#request.login.mb_phone}"/>
-	<s:file label="photo" name="memberVO.mb_photo"/>
+	<s:textfield label="password" name="memberVO.password" value=""/>
+	<s:textfield label="newpassword" name="newpassword" value=""/>
+	<s:textfield label="confirm" name="confirm" value=""/>
+	<s:textfield label="name" name="memberVO.name" value="%{#request.login.name}"/>
+	<s:textfield label="phone" name="memberVO.phone" value="%{#request.login.phone}"/>
+	<s:file label="photo" name="photo"/>
 	<s:submit label="submit"/>
 </s:form>
 

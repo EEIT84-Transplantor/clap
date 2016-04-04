@@ -1,4 +1,4 @@
-package datetime.converter;
+package converter;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -16,19 +16,19 @@ public class SqlDateConverter extends StrutsTypeConverter {
 		};
 		for (DateFormat df : SqlDateFormat)
 			try {
-				System.out.println("¡´SqlDateConverter¡´");
+				System.out.println("ï¿½ï¿½SqlDateConverterï¿½ï¿½");
 				java.util.Date date = (java.util.Date) df.parse(values[0]);
 				return new java.sql.Date(date.getTime());
 			} catch (ParseException e) {
 				//e.printStackTrace();
-				//System.out.println("Invalid format - ®æ¥Ü¤£¥¿½T");
-				//throw new TypeConversionException("Invalid format - ®æ¥Ü¤£¥¿½T");
+				//System.out.println("Invalid format - ï¿½ï¿½Ü¤ï¿½ï¿½ï¿½ï¿½T");
+				//throw new TypeConversionException("Invalid format - ï¿½ï¿½Ü¤ï¿½ï¿½ï¿½ï¿½T");
 			}
 		return null;
 	}
 
 	public String convertToString(Map context, Object obj) {
-		System.out.println("¡´SqlDateConverter To String¡´");
+		System.out.println("ï¿½ï¿½SqlDateConverter To Stringï¿½ï¿½");
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		return df.format(obj);
 	}

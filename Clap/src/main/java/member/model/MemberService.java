@@ -84,16 +84,11 @@ public class MemberService {
 											// "cfr"
 		return sendEmail.checkingConfirmCode(email, codeFromLink);
 	}
-
-	public boolean updateSetting(MemberVO memberVO,byte[] password, File photo) {
-		if (password!=null) {
-			memberVO.setPassword(password);
-		}
-		if (photo!=null) {
-			//photo放入db
-		}
-		//name phone 這可能會有問題
-		dao.update(memberVO);
+	
+	//如果有新圖片就改成新圖片、如果是null就不改
+	//如果有新圖片就改成新圖片、如果是null就不改
+	public boolean updateSetting(MemberVO memberVO,byte[] newpassword, File photo) {
+		
 		return false;
 	}
 }

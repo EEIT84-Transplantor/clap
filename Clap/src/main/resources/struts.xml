@@ -9,14 +9,19 @@
 	<constant name="struts.multipart.maxSize" value="-1" />
 
 	<package name="setting" namespace="/setting" extends="struts-default">
-		<action name="getsettingaction" class="setting.controller.GetSettingAction">
+		<action name="getSettingAction" class="setting.controller.GetSettingAction">
 			<result name="success">/setting/changesetting.jsp</result>
 		</action>
-		<action name="changesettingaction" class="setting.controller.ChangeSettingAction">
+		<action name="changeSettingAction" class="setting.controller.ChangeSettingAction">
 			<result name="success">/setting/changesetting.jsp</result>
 			<result name="input">/setting/changesetting.jsp</result>
 		</action>
+		<action name="onClickAction" class="setting.controller.OnClickAction">
+			<result name="success">/setting/oneclick.jsp</result>
+			<result name="input">/setting/oneclick.jsp</result>
+		</action>
 	</package>
+	
 	<package name="payment" namespace="/payment" extends="struts-default">	
  		<action name="managePayment" class="payment.controller.PaymentManageAction" >
  			<result name="success">/paymentTest.jsp</result>
