@@ -39,7 +39,7 @@ public class PasswordSettingServlet extends HttpServlet {
 		// mvc
 		if (password.trim().length() != 0 && password.equals(passwordconfirm)) {
 			memberService.signUp(email, password);
-			memberVO = memberService.login(email, password);
+			memberVO = memberService.login(email, password.getBytes());
 			request.setAttribute("login", memberVO);
 			request.getRequestDispatcher("../index.jsp").forward(request, response);
 		} else {

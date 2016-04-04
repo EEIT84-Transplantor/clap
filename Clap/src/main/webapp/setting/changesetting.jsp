@@ -9,14 +9,16 @@
 </head>
 <body>
 
-<s:form method="post">
-	<s:textfield label="email" name="member.email" value="%{#request.login.email}"/>
-	<s:textfield label="password" name="member.email"/>
+<s:form method="post" action="setting/changesettingaction">
+<%-- 	<s:textfield label="email" name="memberVO.email" value="%{#request.login.email}"/> --%>
+	<s:textfield label="email" name="memberVO.email" value="poan@gmail.com"/>
+	<s:textfield label="password" name="memberVO.mb_password"/>
 	<s:textfield label="newpassword" name="newpassword"/>
 	<s:textfield label="confirm" name="confirm"/>
-	<s:textfield label="name" name="member.name" value="%{#request.login.mb_name}"/>
-	<s:textfield label="phone" name="member.phone" value="%{#request.login.mb_phone}"/>
-	<s:file label="photo"></s:file>
+	<s:textfield label="name" name="memberVO.mb_name" value="%{#request.login.mb_name}"/>
+	<s:textfield label="phone" name="memberVO.mb_phone" value="%{#request.login.mb_phone}"/>
+	<s:file label="photo" name="memberVO.mb_photo"/>
+	<s:submit label="submit"/>
 </s:form>
 
 </body>

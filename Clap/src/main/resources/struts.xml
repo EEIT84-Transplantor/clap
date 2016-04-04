@@ -6,6 +6,7 @@
 
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.multipart.maxSize" value="-1" />
 
 	<package name="setting" namespace="/setting" extends="struts-default">
 		<action name="getsettingaction" class="setting.controller.GetSettingAction">
@@ -16,5 +17,12 @@
 			<result name="input">/setting/changesetting.jsp</result>
 		</action>
 	</package>
+	<package name="payment" namespace="/payment" extends="struts-default">	
+ 		<action name="managePayment" class="payment.controller.PaymentManageAction" >
+ 			<result name="success">/paymentTest.jsp</result>
+ 			<result name="input">/paymentTest.jsp</result>
+ 		</action>
+ 	</package>
 
 </struts>
+

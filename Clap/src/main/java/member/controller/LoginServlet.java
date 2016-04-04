@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
 			return;
 		}
 		
-		if ((memberVO=memberService.login(email, password))!=null) {
+		if ((memberVO=memberService.login(email, password.getBytes()))!=null) {
 			request.getSession().setAttribute("login",memberVO);	
 			response.sendRedirect("../index.jsp");
 		}else {

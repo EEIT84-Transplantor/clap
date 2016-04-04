@@ -1,5 +1,6 @@
 package member.model;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.function.IntPredicate;
@@ -12,11 +13,11 @@ import member.model.email.EmailconfirmCode;
 import member.model.email.SendEmail;
 
 public class MemberService {
-	
+
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		MemberService ms = (MemberService) context.getBean("memberService");
-		System.out.println(ms.login("andrew@gmail.com", "andrew"));
+		System.out.println(ms.login("andrew@gmail.com", "andrew".getBytes()));
 	}
 
 	private MemberDAO dao;
@@ -28,15 +29,17 @@ public class MemberService {
 	public void setSendEmail(SendEmail sendEmail) {
 		this.sendEmail = sendEmail;
 	}
+
 	public void setDao(MemberDAO dao) {
 		this.dao = dao;
 	}
-	public MemberVO login(String email, String password) {
+
+	public MemberVO login(String email, byte[] password) {
 		MemberVO result = null;
 		MemberVO member = dao.selectByEmail(email);
 
 		if (member != null) {
-			byte[] temp = password.getBytes();
+			byte[] temp = password;
 			byte[] memberPassword = member.getPassword();
 
 			if (Arrays.equals(temp, memberPassword)) {
@@ -45,20 +48,23 @@ public class MemberService {
 		}
 		return result;
 	}
+
 	public void signUp(String email, String password) {
-		if (findByEmail(email)==null) {
+		if (findByEmail(email) == null) {
 			dao.insert(email, password.getBytes());
-		}else {
+		} else {
 			dao.update(email, password.getBytes());
 		}
 	}
-	public boolean changePassword(String email, String oldPassword, String newPassword) {
+
+	public boolean changePassword(String email, byte[] oldPassword, String newPassword) {
 		boolean result = false;
 		if (this.login(email, oldPassword) != null) {
 			result = dao.update(email, newPassword.getBytes());
 		}
 		return result;
 	}
+
 	public String sendComfirmEmail(String email) {
 		Map<String, String> sendingInfo = sendEmail.sendEmail(email);
 		String resultMessage = sendingInfo.get("resultMessage"); // sending
@@ -67,14 +73,27 @@ public class MemberService {
 																	// failed)
 		return resultMessage;
 	}
+
 	public MemberVO findByEmail(String email) {
 		MemberVO member = dao.selectByEmail(email);
 		return member;
 	}
+
 	public boolean checkConfirmCode(String email, String confirmCode) {
 		String codeFromLink = confirmCode; // full string got from parameter
 											// "cfr"
 		return sendEmail.checkingConfirmCode(email, codeFromLink);
 	}
-	
+
+	public boolean updateSetting(MemberVO memberVO,byte[] password, File photo) {
+		if (password!=null) {
+			memberVO.setPassword(password);
+		}
+		if (photo!=null) {
+			//photo放入db
+		}
+		//name phone 這可能會有問題
+		dao.update(memberVO);
+		return false;
+	}
 }
