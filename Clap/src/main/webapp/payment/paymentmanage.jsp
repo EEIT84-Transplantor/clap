@@ -70,7 +70,7 @@
 						      <s:textfield name="creditCardVO.cc_goodthru" label="Good thru" />
 						      <s:textfield name="creditCardVO.cc_cvv" label="CVV" />
 		
-						      <sx:submit href="managePayment.action"  targets="newCardDiv" loadingText="Loading..." showLoadingText="true" errorText="載入失敗!" formId="addCreditForm">用戶信息列表</sx:submit> 
+						      <sx:submit href="managePayment.action"  targets="newCardDiv" loadingText="Loading..." showLoadingText="true" errorText="載入失敗!" formId="addCreditForm"></sx:submit> 
 						
 						    </s:form>
 						<div id="newCardDiv">newCardDiv</div>  
@@ -89,7 +89,7 @@
 			</div>
 			</div>
 	</section>
-<div id="ssss">sss</div>
+
 	<footer>
 	<jsp:include page="/footer.jsp" />
 	</footer>
