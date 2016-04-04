@@ -11,11 +11,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="<s:url action='setting/getsettingaction'/>">Hello World</a>
-	<sql:setDataSource var="snapshot" dataSource="clap/db"/>
-	<sql:query dataSource="${snapshot}" var="members">SELECT * from member;</sql:query>
-	<c:forEach var="member" items="${members.rows}">
-		<br>${member.mb_email}
-	</c:forEach>
+	<%-- 	<a href="<s:url action='setting/getsettingaction'/>">Hello World</a> --%>
+	<%-- 	<sql:setDataSource var="snapshot" dataSource="clap/db"/> --%>
+	<%-- 	<sql:query dataSource="${snapshot}" var="members">SELECT * from member;</sql:query> --%>
+	<%-- 	<c:forEach var="member" items="${members.rows}"> --%>
+	<%-- 		<br>${member.mb_email} --%>
+	<%-- 	</c:forEach> --%>
+	
+	<s:form action="setting/onClickAction">
+		<s:radio label="oneclick" name="memberVO.oneclick"	list="#{'true':'yes','false':'no'}" value="false"/>
+		<s:submit value="submit"/>
+	</s:form>
 </body>
 </html>
