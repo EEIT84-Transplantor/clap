@@ -13,9 +13,9 @@
     
     <mapping class="member.model.MemberVO"/>
     
-<!--     <mapping resource="creditcard.hbm.xml"/> -->
-<!--     <mapping resource="giftcard.hbm.xml"/> -->
-<!--     <mapping resource="promo.hbm.xml"/> -->
-<!--     <mapping resource="promocode.hbm.xml"/> -->
+    <mapping resource="creditcard.hbm.xml"/>
+    <mapping resource="giftcard.hbm.xml"/>
+    <mapping resource="promo.hbm.xml"/>
+    <mapping resource="promocode.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
