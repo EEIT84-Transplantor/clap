@@ -17,5 +17,12 @@
 			<result name="input">/setting/changesetting.jsp</result>
 		</action>
 	</package>
+	<package name="payment" namespace="/payment" extends="struts-default">	
+ 		<action name="managePayment" class="payment.controller.PaymentManageAction" >
+ 			<result name="success">/paymentTest.jsp</result>
+ 			<result name="input">/paymentTest.jsp</result>
+ 		</action>
+ 	</package>
 
 </struts>
+
