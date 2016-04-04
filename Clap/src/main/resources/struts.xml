@@ -3,10 +3,19 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
     "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-	<constant name="struts.devMode" value="true" />
-	 <constant name="struts.objectFactory" value="spring" />
 
-	<package name="example" namespace="/example" extends="struts-default">
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.multipart.maxSize" value="-1" />
+
+	<package name="setting" namespace="/setting" extends="struts-default">
+		<action name="getsettingaction" class="setting.controller.GetSettingAction">
+			<result name="success">/setting/changesetting.jsp</result>
+		</action>
+		<action name="changesettingaction" class="setting.controller.ChangeSettingAction">
+			<result name="success">/setting/changesetting.jsp</result>
+			<result name="input">/setting/changesetting.jsp</result>
+		</action>
 	</package>
 	<package name="payment" namespace="/payment" extends="struts-default">	
  		<action name="managePayment" class="payment.controller.PaymentManageAction" >

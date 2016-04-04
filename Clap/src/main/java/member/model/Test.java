@@ -29,7 +29,7 @@ public class Test extends HttpServlet {
        
 	private MemberService memberService;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		MemberVO rs = memberService.login("andrew@gmail.com", "andrew");
+		MemberVO rs = memberService.login("andrew@gmail.com", "andrew".getBytes());
 		HttpSession session =request.getSession();
 		
 		session.setAttribute("user", rs.getEmail());
