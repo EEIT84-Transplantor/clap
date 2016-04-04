@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<s:form action="changesettingaction" method="post" enctype="multipart/form-data">
+<s:form action="changeSettingAction" method="post" enctype="multipart/form-data">
 <%-- 	<s:textfield label="email" name="memberVO.email" value="%{#request.login.email}"/> --%>
 	<s:textfield label="email" name="memberVO.email" value="poan@gmail.com"/>
 	<s:textfield label="password" name="memberVO.password" value=""/>
