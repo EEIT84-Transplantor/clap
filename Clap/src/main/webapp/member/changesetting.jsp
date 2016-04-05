@@ -20,10 +20,10 @@
 
 	<section id="wrap">
 		<div class="container">
-			<form role="form" action="${pageContext.request.contextPath}/setting/ChangeSettingAction" method="POST" enctype="multipart/form-data">
+			<form role="form" action="${pageContext.request.contextPath}/setting/changeSettingAction" method="POST" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="email">Email:</label>
-					<input class="form-control" name="memberVO.email" type="email" value="test@DDD.COM" readonly="readonly">
+					<input class="form-control" name="memberVO.email" type="email" value="poan@gmail.com" readonly="readonly">
 				</div>
 				<div class="form-group">
 					<label for="password">Password:</label>
