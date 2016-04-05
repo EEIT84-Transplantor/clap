@@ -83,5 +83,11 @@
 		<property name="memberService" ref="memberService"/>
 	</bean>	
 	
+	<!-- interceptor -->
+	<bean id="creditCardInterceptor" class="interceptor.CreditCardInterceptor">
+		<property name="creditCardService" ref="creditCardService"/>
+	</bean>	
+	
+	
 	
 </beans>
