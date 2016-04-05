@@ -25,7 +25,7 @@
 				<div class="form-group">
 					<label for="email">Email:</label> <input class="form-control"
 						name="memberVO.email" type="email"
-						value="test@DDD.COM" readonly="readonly">
+						value="andrew@gmail.com" readonly="readonly">
 				</div>
 				<div class="form-group">
 					<label for="password">Password:</label> <input class="form-control"
@@ -84,7 +84,7 @@
 								passwordLabel.html("Password: checking");
 								$.ajax({
 									  method: "POST",
-									  url: contextPath+"/TempTestServlet.servlet",
+									  url: contextPath+"/member/getpassword.servlet",
 									  data: { email:email
 										  , oldPassword: oldPassword.val()
 										  }

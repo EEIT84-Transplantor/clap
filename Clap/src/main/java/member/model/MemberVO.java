@@ -44,8 +44,9 @@ public class MemberVO {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public MemberVO setEmail(String email) {
 		this.email = email;
+		return this;
 	}
 
 	public byte[] getPassword() {
@@ -53,80 +54,90 @@ public class MemberVO {
 	}
 
 	@TypeConversion(converter = "converter.BytearrayConverter")
-	public void setPassword(byte[] password) {
+	public MemberVO setPassword(byte[] password) {
 		this.password = password;
+		return this;
 	}
 
 	public Double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(Double amount) {
+	public MemberVO setAmount(Double amount) {
 		this.amount = amount;
+		return this;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public MemberVO setName(String name) {
 		this.name = name;
+		return this;
 	}
 
 	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(String phone) {
+	public MemberVO setPhone(String phone) {
 		this.phone = phone;
+		return this;
 	}
 
 	public byte[] getPhoto() {
 		return photo;
 	}
 
-	public void setPhoto(byte[] photo) {
+	public MemberVO setPhoto(byte[] photo) {
 		this.photo = photo;
+		return this;
 	}
 
 	public Boolean getOneclick() {
 		return oneclick;
 	}
 
-	public void setOneclick(Boolean oneclick) {
+	public MemberVO setOneclick(Boolean oneclick) {
 		this.oneclick = oneclick;
+		return this;
 	}
 
 	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public MemberVO setId(Integer id) {
 		this.id = id;
+		return this;
 	}
 
 	public String getNumber() {
 		return number;
 	}
 
-	public void setNumber(String number) {
+	public MemberVO setNumber(String number) {
 		this.number = number;
+		return this;
 	}
 
 	public Boolean getAutorenew() {
 		return autorenew;
 	}
 
-	public void setAutorenew(Boolean autorenew) {
+	public MemberVO setAutorenew(Boolean autorenew) {
 		this.autorenew = autorenew;
+		return this;
 	}
 
 	public Date getExpire() {
 		return expire;
 	}
 
-	public void setExpire(Date expire) {
+	public MemberVO setExpire(Date expire) {
 		this.expire = expire;
+		return this;
 	}
 
 	@Override
