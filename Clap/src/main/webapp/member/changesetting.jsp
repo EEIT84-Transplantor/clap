@@ -42,7 +42,7 @@
 				</div>
 				<div class="form-group">
 					<label for="phone">Phone:</label> <input class="form-control"
-						name="memberVO.phone" type="number" maxlength="12" value="223">
+						name="memberVO.phone" type="number" maxlength="12">
 				</div>
 				<div class="form-group">
 					<label for="photo">Photo:</label> <input class="form-control"
@@ -67,8 +67,9 @@
 					var contextPath = "${pageContext.request.contextPath}";
 					//onclick oldPassword column
 					$("input[name='oldPassword']").on(
-					"change", function(){
-						
+					"click", function(){
+						var oldPassword = $("input[name='oldPassword']");
+						oldPassword.attr("placeholder","");
 					}
 							
 					
@@ -91,7 +92,7 @@
 								  .done(function( msg ) {
 									    if(msg=="true"){
 											var htmlStr1 = "<label for='new password'>New Password:</label> <input class='form-control' name='newPassword' type='password'>";
-											var htmlStr2 = "<label for='confirm newPass'>Confirm Password:</label> <input class='form-control' name='memberVO.password' readonly='readonly' type='password'>";
+											var htmlStr2 = "<label for='confirm newPass'>Confirm New Password:</label> <input class='form-control' name='memberVO.password' readonly='readonly' type='password'>";
 											oldPassword.attr("readonly","readonly");
 											oldPassword.on("click",function(){});
 											oldPassword.parent().next().html(htmlStr1);
@@ -107,11 +108,11 @@
 					function onclickNewColumns(){
 						var newPassword = $("input[name='newPassword']");
 						var confirmPass = $("input[name='memberVO.password']");
-						newPassword.on("click",function(){confirmPass.removeAttr("readonly");})
+						newPassword.on("focus",function(){confirmPass.removeAttr("readonly");})
 						.on("blur",function(){
 							checkPasswordSame();
 						});
-						confirmPass.on("blur",function(){
+						confirmPass.on("keyup",function(){
 							checkPasswordSame();
 						});
 					}
@@ -120,9 +121,11 @@
 						var newPassword = $("input[name='newPassword']");
 						var confirmPass = $("input[name='memberVO.password']");
 						if(newPassword.val().length >= 6 && newPassword.val() == confirmPass.val()){
-							confirmPass.prev().html("Confirm Password: password consistent");
+							newPassword.prev().html("New Password:");
+							confirmPass.prev().html("Confirm New Password: password consistent");
 						}else{
-							confirmPass.prev().html("Confirm Password: CHECK YOUR INPUT");
+							newPassword.prev().html("New Password: CHECK YOUR INPUT");
+							confirmPass.prev().html("Confirm New Password: CHECK YOUR INPUT");
 						}
 					}
 				
@@ -135,12 +138,12 @@
 								$("form").submit();
 							});
 					$("form").submit(function(event) {
-						if ($("input[name='memberVO.phone']").val() == 123) {
-							console.log("Submit done");
-							return;
-						} else {
+						if ($("input").val() == "") {
 							console.log("Submit error");
-							event.preventDefault();																				
+							event.preventDefault();	
+						} else {
+							console.log("Submit done");
+							return;																		
 						}
 					});
 

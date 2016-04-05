@@ -20,27 +20,28 @@
 	</header>
 
 	<section id="wrap">
-				<div class="container">
-			<form role="form">
+		<div class="container">
+			<form role="form" action="" method="POST">
 				<div class="form-group">
-					<label for="email">Email:</label>
-					<input class="form-control" type="email" value="${pageContext.request.contextPath}" readonly="readonly">
+					<label for="email">Email:</label> <input class="form-control"
+						type="email" value="${pageContext.request.contextPath}"
+						readonly="readonly">
 				</div>
 				<div class="form-group">
-					<label for="password">Password:</label>
-					<input class="form-control" type="password" value="">
+					<label for="password">Password:</label> <input class="form-control"
+						type="password" value="">
 				</div>
 				<div class="form-group">
-					<label for="name">Name:</label>
-					<input class="form-control" type="text" value="">
+					<label for="name">Name:</label> <input class="form-control"
+						type="text" value="">
 				</div>
 				<div class="form-group">
-					<label for="phone">Phone:</label>
-					<input class="form-control" type="text" value="">
+					<label for="phone">Phone:</label> <input class="form-control"
+						type="text" value="">
 				</div>
 				<div class="form-group">
-					<label for="photo">Photo:</label>
-					<input class="form-control" type="file" accept="image/*" value="">
+					<label for="photo">Photo:</label> <input class="form-control"
+						type="file" accept="image/*" value="">
 				</div>
 				<button class="btn btn-default" type="button">Submit</button>
 			</form>
@@ -57,7 +58,20 @@
 	<script src="../resource/js/loginsignup.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-
+			$("form button").on("click", function() {
+				console.log();
+				console.log();
+				$("form").submit();
+			});
+			$("form").submit(function(event) {
+				if ($("input").val() == "") {
+					console.log("Submit error");
+					event.preventDefault();
+				} else {
+					console.log("Submit done");
+					return;
+				}
+			});
 		});
 	</script>
 </body>
