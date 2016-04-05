@@ -1,6 +1,7 @@
 package member.model;
 
 import java.sql.Date;
+import java.util.Arrays;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -127,6 +128,13 @@ public class MemberVO {
 
 	public void setExpire(Date expire) {
 		this.expire = expire;
+	}
+
+	@Override
+	public String toString() {
+		return "MemberVO [email=" + email + ", password=" + Arrays.toString(password) + ", amount=" + amount + ", name="
+				+ name + ", phone=" + phone + ", photo=" + Arrays.toString(photo) + ", oneclick=" + oneclick + ", id="
+				+ id + ", number=" + number + ", autorenew=" + autorenew + ", expire=" + expire + "]";
 	}
 
 }

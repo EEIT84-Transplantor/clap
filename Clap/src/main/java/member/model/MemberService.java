@@ -99,4 +99,11 @@ public class MemberService {
 		memberVO.setName("May");
 		return dao.update(memberVO);
 	}
+	
+	public boolean setAmount (String email, Double gc_amount){
+		MemberVO memberVO = dao.selectByEmail(email);
+		memberVO.setAmount(gc_amount);
+		boolean isUpdated = dao.update(memberVO);
+		return isUpdated;
+	}
 }
