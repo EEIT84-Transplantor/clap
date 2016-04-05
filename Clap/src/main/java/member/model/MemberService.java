@@ -104,4 +104,9 @@ public class MemberService {
 	public Boolean updateVIP(MemberVO memberVO, int month) {
 		
 	}
+
+	//update memberVO的autorenew
+	public Boolean setAutoRenew(MemberVO memberVO, Boolean autorenew) {
+
+	}
 }
