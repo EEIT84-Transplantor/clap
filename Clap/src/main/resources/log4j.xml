@@ -10,9 +10,9 @@
 	</appender>
 
 	<!-- specify the logging level for loggers from other libraries -->
-	<logger name="com.opensymphony">
-		<level value="DEBUG" />
-	</logger>
+<!-- 	<logger name="com.opensymphony"> -->
+<!-- 		<level value="DEBUG" /> -->
+<!-- 	</logger> -->
 
 	<logger name="org.apache.struts2">
 		<level value="DEBUG" />

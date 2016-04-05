@@ -80,8 +80,8 @@
 		<property name="memberService" ref="memberService"/>
 	</bean>
 	<bean id="onClickAction" class="setting.controller.OnClickAction">
-		<property name="memberService" ref="memberService"/>
 		<property name="memberDAOHibernate" ref="memberDAO"/>
+		<property name="memberService" ref="memberService"/>
 	</bean>
 
 </beans>

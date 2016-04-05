@@ -8,6 +8,7 @@ import java.util.function.IntPredicate;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import antlr.collections.List;
 import member.model.MemberVO;
 import member.model.email.EmailconfirmCode;
 import member.model.email.SendEmail;
@@ -90,5 +91,12 @@ public class MemberService {
 	public boolean updateSetting(MemberVO memberVO,byte[] newpassword, File photo) {
 		
 		return false;
+	}
+	
+	public boolean update() {
+		MemberVO memberVO = new MemberVO();
+		memberVO.setEmail("poan@gmail.com");
+		memberVO.setName("May");
+		return dao.update(memberVO);
 	}
 }
