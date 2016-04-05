@@ -73,7 +73,7 @@
 	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction">
 		<property name="memberService" ref="memberService"/>
 	</bean>
-	<bean id="onClickAction" class="setting.controller.OnClickAction">
+	<bean id="oneClickAction" class="setting.controller.OneClickAction">
 		<property name="memberService" ref="memberService"/>
 	</bean>
 	<bean id="renewVIPAction" class="setting.controller.AutoRenewVIPAction">

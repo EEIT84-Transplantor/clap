@@ -6,7 +6,7 @@ import member.model.MemberDAOHibernate;
 import member.model.MemberService;
 import member.model.MemberVO;
 
-public class OnClickAction extends ActionSupport {
+public class OneClickAction extends ActionSupport {
 
 	private String email;
 	private String phone;
