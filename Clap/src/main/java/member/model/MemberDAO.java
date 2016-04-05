@@ -18,6 +18,7 @@ public interface MemberDAO {
 	public abstract boolean update(MemberVO memberVO);
 
 	public abstract boolean delete(String email);
+	
 
 	
 

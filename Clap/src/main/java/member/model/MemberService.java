@@ -1,6 +1,7 @@
 package member.model;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.function.IntPredicate;
@@ -91,12 +92,5 @@ public class MemberService {
 	public boolean updateSetting(MemberVO memberVO,byte[] newpassword, File photo) {
 		
 		return false;
-	}
-	
-	public boolean update() {
-		MemberVO memberVO = new MemberVO();
-		memberVO.setEmail("poan@gmail.com");
-		memberVO.setName("May");
-		return dao.update(memberVO);
 	}
 }

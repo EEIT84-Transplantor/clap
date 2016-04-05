@@ -30,7 +30,6 @@ public class OnClickAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
-		System.out.println(memberService.update());
 		return SUCCESS;
 	}
 
