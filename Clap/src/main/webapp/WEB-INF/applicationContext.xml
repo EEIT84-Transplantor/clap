@@ -73,7 +73,7 @@
 	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction">
 		<property name="memberService" ref="memberService"/>
 	</bean>
-	<bean id="onClickAction" class="setting.controller.OnClickAction">
+	<bean id="oneClickAction" class="setting.controller.OneClickAction">
 		<property name="memberService" ref="memberService"/>
 	</bean>
 	<bean id="renewVIPAction" class="setting.controller.AutoRenewVIPAction">
@@ -82,6 +82,12 @@
 	<bean id="autoRenewVIPAction" class="setting.controller.AutoRenewVIPAction">
 		<property name="memberService" ref="memberService"/>
 	</bean>	
+	
+	<!-- interceptor -->
+	<bean id="creditCardInterceptor" class="interceptor.CreditCardInterceptor">
+		<property name="creditCardService" ref="creditCardService"/>
+	</bean>	
+	
 	
 	
 </beans>

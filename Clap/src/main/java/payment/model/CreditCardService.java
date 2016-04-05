@@ -140,4 +140,9 @@ public class CreditCardService {
 
 	}
 
+	//由卡號取得卡片VO
+	public CreditCardVO getCard(String number) {
+
+	}
+
 }
