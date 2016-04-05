@@ -53,12 +53,17 @@ public class paymentFilter implements Filter {
 //		Double amount = mService.getAmount();
 		
 		List<PromoVO>promoCodes=promoCodeService.getPromos(email);
+		request.setAttribute("cards",payment );
+		request.setAttribute("amount", amount);
+		request.setAttribute("promos", promoCodes);
+
 		
-		JSONObject object = new JSONObject();
-		object.put("creditCards", payment);
-		object.put("amount", amount);
-		object.put("promoCodes", promoCodes);
-		request.setAttribute("payment", object);
+		
+		//		JSONObject object = new JSONObject();
+//		object.put("creditCards", payment);
+//		object.put("amount", amount);
+//		object.put("promoCodes", promoCodes);
+//		request.setAttribute("payment", object);
 		chain.doFilter(request, response);
 	}
 
