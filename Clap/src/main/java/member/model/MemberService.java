@@ -2,6 +2,7 @@ package member.model;
 
 import java.io.File;
 import java.lang.reflect.Method;
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.function.IntPredicate;
@@ -86,30 +87,39 @@ public class MemberService {
 											// "cfr"
 		return sendEmail.checkingConfirmCode(email, codeFromLink);
 	}
-	
-	//如果有新圖片就改成新圖片、如果是null就不改
-	//如果有新圖片就改成新圖片、如果是null就不改
-	public boolean updateSetting(MemberVO memberVO,byte[] newpassword, File photo) {
-		
-	}
-	
-	
-	//如果oneclick是true就update所有資料、如果是false就只update onclick
-	public boolean setOneClick (String email, String phone, Integer id, String number, Boolean oneclick){
+
+	// 如果有新圖片就改成新圖片、如果是null就不改
+	// 如果有新圖片就改成新圖片、如果是null就不改
+	public boolean updateSetting(MemberVO memberVO, byte[] newpassword, File photo) {
 
 	}
 
-	//讓memberVO的expire延長month個月
+	// 如果oneclick是true就update所有資料、如果是false就只update onclick
+	public boolean setOneClick(String email, String phone, Integer id, String number, Boolean oneclick) {
+
+	}
+
+	// 讓memberVO的expire延長month個月
 	public Boolean updateVIP(MemberVO memberVO, int month) {
+		java.sql.Date now = new Date(new java.util.Date().getTime());
+		Date expire = memberVO.getExpire();
+		Date result;
+
+		if (now.compareTo(expire) >= 0) {
+			result = now;
+		} else {
+			result = expire;
+		}
 		
+		memberVO.setExpire(result);
 	}
 
-	//update memberVO的autorenew
-	public Boolean setAutoRenew(MemberVO memberVO, Boolean autorenew) {
-
+	// update memberVO的autorenew
+	public void setAutoRenew(MemberVO memberVO, Boolean autorenew) {
+		memberVO.setAutorenew(autorenew);
 	}
-	
-	public boolean setAmount (String email, Double gc_amount){
+
+	public boolean setAmount(String email, Double gc_amount) {
 		MemberVO memberVO = dao.selectByEmail(email);
 		memberVO.setAmount(gc_amount);
 		boolean isUpdated = dao.update(memberVO);
