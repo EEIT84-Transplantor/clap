@@ -69,7 +69,7 @@
 						     Number :<input type="text" name="creditCardVO.cc_number" value="1111222233334447"/> <br />
 						     Good thru :<input type="text" name="creditCardVO.cc_goodthru" value="11/22"/> <br />
 						     CVV :<input type="text" name="creditCardVO.cc_cvv" value="333"/> <br />
-						     <input type="button" value="add"  id="addCreditCard"><br />
+						     <input type="button" value="add" id="addCreditCard"><br />
 						    </form>
 						<div id="newCardDiv">newCardDiv</div>  
 						</div>
@@ -91,8 +91,8 @@
 				     <div class="addCard">
 						   <strong>USE GIFT CARD </strong>
 						    <form id="useGiftForm">
-						     Number :<input type="text" name="gifttCardVO.gc_number" value="123456789"/> <br />
-						     Code :<input type="text" name="gifttCardVO.gc_code" value="123"/> <br />
+						     Number :<input type="text" name="giftCardVO.gc_number" value="123456789"/> <br />
+						     Code :<input type="text" name="giftCardVO.gc_code" value="123"/> <br />
 						     <input type="button" value="use"  id="useGiftCard"><br />
 						    </form>
 				      </div>
@@ -157,7 +157,7 @@ $("#useGiftCard").click(function(){
 
 
 function sendPostRwquestPayment(url,data,action){
-	var target = url+"/payment/managePayment.action?buttonClicked"+action;
+	var target = url+"/payment/managePayment.action?buttonClicked="+action;
 	request = new XMLHttpRequest();
 	request.onreadystatechange = doReadyStateChange;
 	request.open("POST", target, true);
