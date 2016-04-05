@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
+import org.json.JSONObject;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -41,6 +42,17 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 	private CreditCardVO creditCardVO;
 	private GiftCardVO giftCardVO;
 	private PromoCodeVO promoCodeVO;
+	private PromoVO promoVO;
+	public PromoVO getPromoVO() {
+		return promoVO;
+	}
+
+	public void setPromoVO(PromoVO promoVO) {
+		this.promoVO = promoVO;
+	}
+
+
+
 	private PromoService promoService = new PromoService();
 	private GiftCardService giftCardService = new GiftCardService();
 	
@@ -102,8 +114,8 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 	    	 }
 	     }
 	}
-	private boolean checkCreditCard(String cardNum){
-		boolean result = true;
+	private Boolean checkCreditCard(String cardNum){
+		Boolean result = true;
 		String visa = "^4[0-9]{12}(?:[0-9]{3})?$";
 		String master = "^5[1-5][0-9]{14}$";
 		String americanExpress="^3[47][0-9]{13}$";
@@ -133,36 +145,51 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 //		String email = (String) request.getSession().getAttribute("mb_email");
 		String email = "caca@gmail.com";
 		request.setAttribute("buttonClicked", buttonClicked);
+		JSONObject res = new JSONObject();
+		res.put("buttonClicked", buttonClicked);
+		
 		if(buttonClicked.equalsIgnoreCase("AddCreditCard")){
 			CreditCardService cservice = (CreditCardService)context.getBean("creditCardService");
 			creditCardVO.setMb_email(email);
 			CreditCardVO result = cservice.setCard(creditCardVO);			
-			System.out.println("result="+result);
-			if(result!=null){
-				request.setAttribute("result", result);
-			}
-		}else if(buttonClicked.equalsIgnoreCase("AddGiftCard")){
+			res.put("result", result);	
+			
+		}else if(buttonClicked.equalsIgnoreCase("USEGiftCard")){
 			GiftCardService gservice = (GiftCardService)context.getBean("giftCardService");
 			Double amount = gservice.useCard(giftCardVO.getGc_number(), giftCardVO.getGc_code());
 			if(amount!=0.0){
 				MemberService mservice = (MemberService)context.getBean("memeberService");
 //				amount += oldAmount;
 				mservice.setAmount(email,amount);	//這個setamount沒有getamount無法得知之前的$$
-				request.setAttribute("result", amount);
 			}
+			res.put("result", amount);	
+			
 		}else if(buttonClicked.equalsIgnoreCase("AddPromoCode")){
 			PromoService promoService = (PromoService)context.getBean("promoService");
+			Boolean resultBoolean=false;
 			if(promoService.isAvailable(promoCodeVO.getPc_code())){
 				PromoCodeService promoCodeService = (PromoCodeService)context.getBean("promoCodeService");
 				PromoCodeVO result = promoCodeService.setPromotionCode(email,promoCodeVO.getPc_code());
 				if(result!=null){
-					request.setAttribute("result", "result");
+					resultBoolean = true;
 				}
 			}	
+			res.put("result", resultBoolean);
+		}else if(buttonClicked.equalsIgnoreCase("deleteCreditCard")){
+			CreditCardService cservice = (CreditCardService)context.getBean("creditCardService");
+			//removeCard should be able to take in email as param
+			Boolean result = cservice.removeCard(creditCardVO.getCc_number());
+			res.put("result", result);
+			res.put("creditCardVO.cc_number",creditCardVO.getCc_number());
+		}else if(buttonClicked.equalsIgnoreCase("deletePromotion")){
+			PromoCodeService promoCodeService = (PromoCodeService)context.getBean("promoCodeService");
+			Boolean result= false;
+//			cannot delete the promoCode with the information passed in (needs promoCode)
+//			result = promoCodeService.removePromotionCode(email, ));
+			res.put("reuslt",result);
 		}
 		
-		
-		
+		request.setAttribute("results", res);
 		
 		try {
 			rd.forward(request, response);
@@ -174,8 +201,5 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		((ConfigurableApplicationContext)context).close();
 		return "success";
 		
-	
 	}
-	
-
 }
