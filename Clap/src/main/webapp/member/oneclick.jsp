@@ -34,7 +34,7 @@
 			<br>
 			<table class="table table-bordered" hidden="true">
 			  <tr>
-			 	<th colspan="4">One Click Setting</th>			 	
+			 	<th colspan="4" id="tableTitle">One Click Setting</th>			 	
 			 </tr>
 			  <tr>
 			 	<th>Deliver to</th>		
@@ -62,6 +62,10 @@
 			 	</select></td>
 			 </tr>
 			</table>
+			<form role="form">
+			<button class="btn btn-default" type="button" style="display: none;">Submit</button>
+			<button class="btn btn-default" type="button" style="display: none;">Reset</button>
+			</form>
 		</div>
 	</section>
 
@@ -75,33 +79,74 @@
 	<script src="../resource/js/loginsignup.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
 			var oneClickYes = $("input[type='radio']").eq(0);
 			var oneClickNo = $("input[type='radio']").eq(1);
+			var submitBtn = $("form > button");
+			var ajaxUrl = "${pageContext.request.contextPath}"+"/TempTestServlet.servlet";
+			
 			oneClickYes.on("change", function(){
-				$("table").fadeIn()
-				
+				$("table").fadeIn();
+				submitBtn.fadeIn();
 				});
 			oneClickNo.on("change", function(){
-				$("table").fadeOut()
-				
+				var email = "${memberVO.email}";
+				if(email==""){
+					email = "andrew@gmail.com";
+				}
+				var phone = $("input[type='text']").val();
+				var hospital = $("select option:selected").eq(0).text();
+				var creditcard = $("select option:selected").eq(1).text();
+				$("table").fadeOut();
+				submitBtn.fadeOut();
+				$.ajax({
+					  method: "POST",
+					  url: ajaxUrl,
+					  data: { email:email,
+						  phone: phone,
+						  hospital: hospital,
+						  creditcard: creditcard,
+						  oneclick:"false"
+						  }
+				}).done(function(msg){
+					//ajax success
+					console.log("send ajax " + msg);
+					var formTitle = $("#tableTitle");
+					formTitle.html("One Click Setting");
+					});
 				});
 			
 			//onclick submit button
-			$("form button").on("click", function() {
-				console.log();
-				console.log();
-				$("form").submit();
-			});
-			$("form").submit(function(event) {
-				if ($("input").val() == "") {
-					console.log("Submit error");
-					event.preventDefault();
-				} else {
-					console.log("Submit done");
-					return;
+			$("form button").eq(0).on("click", function() {
+				console.log("submit");
+				var email = "${memberVO.email}";
+				if(email==""){
+					email = "andrew@gmail.com";
 				}
+				var phone = $("input[type='text']").val();
+				var hospital = $("select option:selected").eq(0).text();
+				var creditcard = $("select option:selected").eq(1).text();
+				//ajax to xxx.action
+				$.ajax({
+					  method: "POST",
+					  url: ajaxUrl,
+					  data: { email:email,
+						  phone: phone,
+						  hospital: hospital,
+						  creditcard: creditcard,
+						  oneclick:"true"
+						  }
+				}).done(function(msg){
+					//ajax success
+					console.log("send ajax " + msg);
+					var formTitle = $("#tableTitle");
+					formTitle.html("One Click Setting: info updated");
+					});
 			});
+			//onclick reset button
+			$("form button").eq(1).on("click", function() {
+				alert("function not yet done");
+				});
+			
 		});
 	</script>
 </body>

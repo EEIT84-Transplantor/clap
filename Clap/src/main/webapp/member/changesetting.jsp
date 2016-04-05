@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -21,32 +20,29 @@
 
 	<section id="wrap">
 		<div class="container">
-			<form role="form" action="${pageContext.request.contextPath}/member/ChangeSettingAction" method="POST">
+			<form role="form" action="${pageContext.request.contextPath}/setting/changeSettingAction" method="POST" enctype="multipart/form-data">
 				<div class="form-group">
-					<label for="email">Email:</label> <input class="form-control"
-						name="memberVO.email" type="email"
-						value="test@DDD.COM" readonly="readonly">
+
+					<label for="email">Email:</label> <input class="form-control" name="memberVO.email" type="email" value="poan@gmail.com" readonly="readonly">
+
 				</div>
 				<div class="form-group">
-					<label for="password">Password:</label> <input class="form-control"
-						name="oldPassword" type="password" placeholder="click to change password">
+					<label for="password">Password:</label>
+					<input class="form-control" name="oldPassword" type="password" placeholder="click to change password">
+				</div>
+				<div class="form-group"></div>
+				<div class="form-group"></div>
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input class="form-control" name="memberVO.name" type="text" value="test" />
 				</div>
 				<div class="form-group">
+					<label for="phone">Phone:</label>
+					<input class="form-control" name="memberVO.phone" type="number" maxlength="12">
 				</div>
 				<div class="form-group">
-				</div>
-				<div class="form-group">
-					<label for="name">Name:</label> <input class="form-control"
-						name="memberVO.name" type="text"
-						value="test">
-				</div>
-				<div class="form-group">
-					<label for="phone">Phone:</label> <input class="form-control"
-						name="memberVO.phone" type="number" maxlength="12">
-				</div>
-				<div class="form-group">
-					<label for="photo">Photo:</label> <input class="form-control"
-						name="memberVO.photo" type="file" accept="image/*">
+					<label for="photo">Photo:</label>
+					<input class="form-control" name="photo" type="file" accept="image/*">
 				</div>
 				<button class="btn btn-default" type="button">Submit</button>
 			</form>
@@ -62,6 +58,7 @@
 	<script src="../resource/js/bootstrap.min.js"></script>
 	<script src="../resource/js/loginsignup.js"></script>
 	<script type="text/javascript">
+
 		$(document).ready(
 				function() {
 					var contextPath = "${pageContext.request.contextPath}";
@@ -78,13 +75,13 @@
 								var email = $("input[name='memberVO.email']").val();
 								var oldPassword = $("input[name='oldPassword']");
 								var passwordLabel = oldPassword.prev();
-								if(oldPassword.val().length < 6 || oldPassword.attr("readonly") == "readonly"){
+								if(oldPassword.val().length < 4 || oldPassword.attr("readonly") == "readonly"){
 									return;
 								}
 								passwordLabel.html("Password: checking");
 								$.ajax({
 									  method: "POST",
-									  url: contextPath+"/TempTestServlet.servlet",
+									  url: contextPath+"/member/getpassword.servlet",
 									  data: { email:email
 										  , oldPassword: oldPassword.val()
 										  }
@@ -104,6 +101,7 @@
 									    	}
 								  })	
 							});
+						
 					//onclick newPassword column
 					function onclickNewColumns(){
 						var newPassword = $("input[name='newPassword']");
@@ -120,7 +118,7 @@
 					function checkPasswordSame(){
 						var newPassword = $("input[name='newPassword']");
 						var confirmPass = $("input[name='memberVO.password']");
-						if(newPassword.val().length >= 6 && newPassword.val() == confirmPass.val()){
+						if(newPassword.val().length >= 4 && newPassword.val() == confirmPass.val()){
 							newPassword.prev().html("New Password:");
 							confirmPass.prev().html("Confirm New Password: password consistent");
 						}else{
@@ -147,8 +145,8 @@
 						}
 					});
 
-				});
-		
+
+		});
 	</script>
 </body>
 </html>

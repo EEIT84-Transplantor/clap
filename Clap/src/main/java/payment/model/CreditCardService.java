@@ -134,15 +134,15 @@ public class CreditCardService {
 		}
 		return result;
 	}
-
-	//memberVO支付amount元
-	public boolean payBill(MemberVO memberVO, Double amount) {
-
-	}
-
-	//由卡號取得卡片VO
-	public CreditCardVO getCard(String number) {
-
-	}
+//
+//	//memberVO支付amount元
+//	public boolean payBill(MemberVO memberVO, Double amount) {
+//
+//	}
+//
+//	//由卡號取得卡片VO
+//	public CreditCardVO getCard(String number) {
+//
+//	}
 
 }
