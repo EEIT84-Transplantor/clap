@@ -76,9 +76,6 @@
 	<bean id="onClickAction" class="setting.controller.OnClickAction">
 		<property name="memberService" ref="memberService"/>
 	</bean>
-	<bean id="becomeVIPAction" class="setting.controller.RenewVIPAction">
-		<property name="memberService" ref="memberService"/>
-	</bean>
 	<bean id="renewVIPAction" class="setting.controller.AutoRenewVIPAction">
 		<property name="memberService" ref="memberService"/>
 	</bean>	
