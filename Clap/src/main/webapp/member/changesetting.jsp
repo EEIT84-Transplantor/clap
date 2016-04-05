@@ -117,7 +117,7 @@
 					function checkPasswordSame(){
 						var newPassword = $("input[name='newPassword']");
 						var confirmPass = $("input[name='memberVO.password']");
-						if(newPassword.val().length >= 6 && newPassword.val() == confirmPass.val()){
+						if(newPassword.val().length >= 4 && newPassword.val() == confirmPass.val()){
 							newPassword.prev().html("New Password:");
 							confirmPass.prev().html("Confirm New Password: password consistent");
 						}else{
