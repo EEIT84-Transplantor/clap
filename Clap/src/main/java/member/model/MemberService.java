@@ -100,4 +100,8 @@ public class MemberService {
 		return false;
 	}
 
+	//讓memberVO的expire延長month個月
+	public Boolean updateVIP(MemberVO memberVO, int month) {
+		
+	}
 }
