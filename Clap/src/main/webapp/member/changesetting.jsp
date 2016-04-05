@@ -75,7 +75,7 @@
 								var email = $("input[name='memberVO.email']").val();
 								var oldPassword = $("input[name='oldPassword']");
 								var passwordLabel = oldPassword.prev();
-								if(oldPassword.val().length < 6 || oldPassword.attr("readonly") == "readonly"){
+								if(oldPassword.val().length < 5 || oldPassword.attr("readonly") == "readonly"){
 									return;
 								}
 								passwordLabel.html("Password: checking");
