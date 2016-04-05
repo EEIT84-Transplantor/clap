@@ -93,4 +93,10 @@ public class MemberService {
 		
 		return false;
 	}
+	
+	public boolean setOneClick (String email, String phone, String id, String number){
+		return false;
+		
+	}
+
 }
