@@ -28,7 +28,7 @@
 				</div>
 				<div class="form-group">
 					<label for="password">Password:</label>
-					<input class="form-control" name="memberVO.password" type="password" placeholder="click to change password">
+					<input class="form-control" name="oldPassword" type="password" placeholder="click to change password">
 				</div>
 				<div class="form-group"></div>
 				<div class="form-group"></div>
@@ -75,7 +75,7 @@
 								var email = $("input[name='memberVO.email']").val();
 								var oldPassword = $("input[name='oldPassword']");
 								var passwordLabel = oldPassword.prev();
-								if(oldPassword.val().length < 5 || oldPassword.attr("readonly") == "readonly"){
+								if(oldPassword.val().length < 4 || oldPassword.attr("readonly") == "readonly"){
 									return;
 								}
 								passwordLabel.html("Password: checking");
@@ -101,6 +101,7 @@
 									    	}
 								  })	
 							});
+						
 					//onclick newPassword column
 					function onclickNewColumns(){
 						var newPassword = $("input[name='newPassword']");
