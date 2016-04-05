@@ -94,9 +94,10 @@ public class MemberService {
 		return false;
 	}
 	
-	public boolean setOneClick (String email, String phone, String id, String number){
+	
+	//如果oneclick是true就update所有資料、如果是false就只update onclick
+	public boolean setOneClick (String email, String phone, Integer id, String number, Boolean oneclick){
 		return false;
-		
 	}
 
 }
