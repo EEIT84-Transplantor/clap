@@ -14,7 +14,6 @@ import com.opensymphony.xwork2.conversion.annotations.TypeConversion;
 
 @Entity
 @Table(name = "member")
-@DynamicUpdate(value = true)
 public class MemberVO {
 
 	@Id

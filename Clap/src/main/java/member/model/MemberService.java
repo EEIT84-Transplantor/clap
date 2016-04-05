@@ -1,6 +1,7 @@
 package member.model;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.function.IntPredicate;
@@ -93,11 +94,20 @@ public class MemberService {
 		return false;
 	}
 	
-	public boolean update() {
-		MemberVO memberVO = new MemberVO();
-		memberVO.setEmail("poan@gmail.com");
-		memberVO.setName("May");
-		return dao.update(memberVO);
+	
+	//如果oneclick是true就update所有資料、如果是false就只update onclick
+	public boolean setOneClick (String email, String phone, Integer id, String number, Boolean oneclick){
+		return false;
+	}
+
+	//讓memberVO的expire延長month個月
+	public Boolean updateVIP(MemberVO memberVO, int month) {
+		
+	}
+
+	//update memberVO的autorenew
+	public Boolean setAutoRenew(MemberVO memberVO, Boolean autorenew) {
+
 	}
 	
 	public boolean setAmount (String email, Double gc_amount){

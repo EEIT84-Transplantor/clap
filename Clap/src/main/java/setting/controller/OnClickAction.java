@@ -8,29 +8,60 @@ import member.model.MemberVO;
 
 public class OnClickAction extends ActionSupport {
 
-	private MemberVO memberVO;
+	private String email;
+	private String phone;
+	private Integer id;
+	private String number;
+	private Boolean oneclick;
 	private MemberService memberService;
-	private MemberDAOHibernate memberDAOHibernate;
 
-	public MemberVO getMemberVO() {
-		return memberVO;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setMemberVO(MemberVO memberVO) {
-		this.memberVO = memberVO;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public Boolean getOneclick() {
+		return oneclick;
+	}
+
+	public void setOneclick(Boolean oneclick) {
+		this.oneclick = oneclick;
 	}
 
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
 
-	public void setMemberDAOHibernate(MemberDAOHibernate memberDAOHibernate) {
-		this.memberDAOHibernate = memberDAOHibernate;
-	}
-
 	@Override
 	public String execute() throws Exception {
-		System.out.println(memberService.update());
+		memberService.setOneClick(email, phone, id, number, oneclick);
 		return SUCCESS;
 	}
 

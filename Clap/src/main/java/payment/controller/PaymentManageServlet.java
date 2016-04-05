@@ -15,8 +15,9 @@ public class PaymentManageServlet extends HttpServlet {
 		System.out.println("hello");
 		String buttonClicked =(String) request.getParameter("payment.id");
 		System.out.println(buttonClicked);
+		CreditCardVO creditCardVO = (CreditCardVO)request.getAttribute("creditCardVO");
+		response.getWriter().append("Served at: ").append(request.getContextPath()).append(creditCardVO.getCc_cvv());
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

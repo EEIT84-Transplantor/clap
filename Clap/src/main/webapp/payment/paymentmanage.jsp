@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sx" uri="/struts-dojo-tags" %>
 <%@ page import="java.util.Map" %>
 <!DOCTYPE html>
 <html>
@@ -13,7 +12,7 @@
 <!-- Bootstrap -->
 <link href="../resource/css/bootstrap.min.css" rel="stylesheet">
 <link href="../resource/css/customer.css" rel="stylesheet">
-<sx:head/>
+
 </head>
 <body>
 
@@ -41,9 +40,10 @@
 					<li role="presentation"><a href="#">Gift Cards</a></li>
 					<li role="presentation"><a href="#">Promotions</a></li>
 				</ul>
-				<div id="payment_detail"><p>Registered credit cards</p>
+				<div id="payment_detail">
+				<p>Registered credit cards</p>
 				
-				<c:forEach begin="1" end="4" step="1" var="cards" varStatus="index">
+				<c:forEach begin="1" end="2" step="1" var="cards" varStatus="index">
 				   <c:if test="${index.count%3==1}">
 				      <div class="row">
 				   </c:if>
@@ -59,33 +59,60 @@
 						   <span class="glyphicon glyphicon-remove"></span>
 						   </div>
 						</div>
+						
 				      </div>
-				   <c:if test="${index.count==4}">
-				     
+				   <c:if test="${index.count==2}">
 				     <div class="col-md-4">
 				     <div class="addCard">
 						   <strong>NEW CARD </strong>
-						    <s:form id="addCreditForm">
-						      <s:textfield name="creditCardVO.cc_number" label="Number" />
-						      <s:textfield name="creditCardVO.cc_goodthru" label="Good thru" />
-						      <s:textfield name="creditCardVO.cc_cvv" label="CVV" />
-		
-						      <sx:submit href="managePayment.action"  targets="newCardDiv" loadingText="Loading..." showLoadingText="true" errorText="載入失敗!" formId="addCreditForm"></sx:submit> 
-						
-						    </s:form>
+						    <form id="addCreditForm">
+						     Number :<input type="text" name="creditCardVO.cc_number" value="1111222233334447"/> <br />
+						     Good thru :<input type="text" name="creditCardVO.cc_goodthru" value="11/22"/> <br />
+						     CVV :<input type="text" name="creditCardVO.cc_cvv" value="333"/> <br />
+						     <input type="button" value="add"  id="addCreditCard"><br />
+						    </form>
 						<div id="newCardDiv">newCardDiv</div>  
 						</div>
 				      </div>
 				   </c:if>
 				   
-				   <c:if test="${index.count%3==0||index.count==4}">
+				   <c:if test="${index.count%3==0||index.count==2}">
 				      </div>
 				   </c:if>
 				
 				   
 				</c:forEach>
 				
+				<!-- ******************************* -->
+				
+				<p>Received gift cards</p>
+				<div class="row">
+				<div class="col-md-12">
+				     <div class="addCard">
+						   <strong>USE GIFT CARD </strong>
+						    <form id="useGiftForm">
+						     Number :<input type="text" name="gifttCardVO.gc_number" value="123456789"/> <br />
+						     Code :<input type="text" name="gifttCardVO.gc_code" value="123"/> <br />
+						     <input type="button" value="use"  id="useGiftCard"><br />
+						    </form>
+				      </div>
 				</div>
+			    <!-- ******************************* -->
+			    <p>Received Promotions</p>
+			    
+			    <ul>
+			      <li>Title : ${promoVO.expire}</li>
+			      <li>Expire : ${promoVO.title}</li>
+			    </ul>
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+				</div><!-- payment_detail -->
 			</div>
 			</div>
 	</section>
@@ -97,7 +124,60 @@
 	<!-- 載入js -->
 	<script src="../resource/js/jquery-1.12.2.min.js"></script>
 	<script src="../resource/js/bootstrap.min.js"></script>
-	<script src="../resource/js/loginsignup.js"></script>
+	<script src="../resource/js/json2.js"></script>
+<script type="text/javascript">
+var path = "${pageContext.request.contextPath}";
+//CreditCard
+$("#addCreditCard").click(function(){
+	    var data = $("#addCreditForm").serialize();
+	 	var url = path;
+        var action = "AddCreditCard";
+        sendPostRwquestPayment(url,data,action);
+});
 
+$(".delete_card").click(function(){
+	var data = "creditCardVO.cc_number="+$(this).prev().children(".cc_number").text();
+ 	var url = path;
+    var action = "deleteCreditCard";
+    sendPostRwquestPayment(url,data,action);
+});
+
+// GiftCard
+$("#useGiftCard").click(function(){
+    var data = $("#useGiftForm").serialize();
+ 	var url = path;
+    var action = "UseGifttCard";
+    sendPostRwquestPayment(url,data,action);
+});
+
+
+
+
+
+
+
+function sendPostRwquestPayment(url,data,action){
+	var target = url+"/payment/managePayment.action?buttonClicked"+action;
+	request = new XMLHttpRequest();
+	request.onreadystatechange = doReadyStateChange;
+	request.open("POST", target, true);
+	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	request.send(data);
+};
+
+
+function doReadyStateChange() {
+	if(request.readyState==4) {
+		if(request.status==200) {
+			console.log("haha"+request.responseText);
+		} else {
+			console.log("Error Code:"+request.status+", "+request.statusText);
+		}
+	}
+}
+
+
+
+</script>
 </body>
 </html>
