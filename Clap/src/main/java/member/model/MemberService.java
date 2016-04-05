@@ -1,6 +1,7 @@
 package member.model;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.function.IntPredicate;
@@ -8,6 +9,7 @@ import java.util.function.IntPredicate;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import antlr.collections.List;
 import member.model.MemberVO;
 import member.model.email.EmailconfirmCode;
 import member.model.email.SendEmail;
