@@ -83,7 +83,7 @@
 				}).done(function(msg) {
 					if (msg == "true") {
 						var htmlStr1 = "<label for='new password'>New Password:</label> <input class='form-control' name='newPassword' type='password'>";
-						var htmlStr2 = "<label for='confirm newPass'>Confirm New Password:</label> <input class='form-control' name='memberVO.password' readonly='readonly' type='password'>";
+						var htmlStr2 = "<label for='confirm newPass'>Confirm New Password:</label> <input class='form-control' name='confirm' readonly='readonly' type='password'>";
 						oldPassword.attr("readonly", "readonly");
 						oldPassword.on("click", function() {
 						});
