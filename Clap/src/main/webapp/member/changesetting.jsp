@@ -21,20 +21,21 @@
 
 	<section id="wrap">
 		<div class="container">
+		
 			<form role="form" action="<c:url value="/setting/changeSettingAction"/>" method="POST" enctype="multipart/form-data">
 				<div class="form-group">
-					<s:textfield class="form-control" name="email" type="email" label="email" readonly="true" value="poan@gmail.com" />
+					<s:textfield class="form-control" name="email" type="email" label="Email" readonly="true" value="poan@gmail.com" />
 				</div>
 				<div class="form-group">
-					<s:textfield class="form-control" name="name" label="name" />
+					<s:textfield class="form-control" name="name" label="Name" />
 				</div>
 				<div class="form-group">
-					<s:textfield class="form-control" name="phone" type="text" label="phone" />
+					<s:textfield class="form-control" name="phone" type="text" label="Phone" errorPosition="bottom"/>
 				</div>
 				<div class="form-group">
-					<s:file class="form-control" name="photo" label="photo" />
+					<s:file class="form-control" name="photo" label="Photo" errorPosition="bottom"/>
 				</div>
-				<s:submit class="form-control" value="submit"/>
+				<button class="btn btn-default" type="button">Submit</button>
 			</form>
 		</div>
 	</section>
@@ -47,5 +48,18 @@
 	<script src="../resource/js/jquery-1.12.2.min.js"></script>
 	<script src="../resource/js/bootstrap.min.js"></script>
 	<script src="../resource/js/loginsignup.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			
+			//onclick submit button
+			$("form button").on("click", function() {
+				$("form").submit();
+			});
+			
+			//errorMessage color red
+			$("span.errorMessage").css("color","white").css("text-shadow","0px 0px 1px grey");
+			
+		});
+	</script>
 </body>
 </html>

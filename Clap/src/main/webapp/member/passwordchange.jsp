@@ -26,17 +26,17 @@
 			<form role="form" action="<c:url value="/setting/changePasswordAction"/>" method="POST" >
 
 				<div class="form-group">
-					<s:textfield class="form-control" name="email" type="email" label="email" readonly="true" value="poan@gmail.com" />
+					<s:textfield class="form-control" name="email" type="email" label="Email" readonly="true" value="poan@gmail.com" />
 
 				</div>
 				<div class="form-group">
-				<s:textfield class="form-control" name="password" type="password" label="password" />
+				<s:textfield class="form-control" name="password" type="password" label="Password" />
 
 				</div>
 				<div class="form-group">
-					<s:textfield class="form-control" name="confirm" type="password" label="confirm" />
+					<s:textfield class="form-control" name="confirm" type="password" label="Confirm" />
 				</div>
-				<s:submit class="form-control" value="submit" />
+				<button class="btn btn-default" type="button">Submit</button>
 			</form>
 			</div>
 		</div>
@@ -53,6 +53,10 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
+			//onclick submit button
+			$("form button").on("click", function() {
+				$("form").submit();
+			});
 			});
 	</script>
 </body>
