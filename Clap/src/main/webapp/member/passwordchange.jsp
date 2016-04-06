@@ -21,20 +21,20 @@
 
 	<section id="wrap">
 		<div class="container">
-			<form role="form" action="<c:url value="/setting/changeSettingAction"/>" method="POST" enctype="multipart/form-data">
+			<form role="form" action="<c:url value="/setting/changePasswordAction"/>" method="POST" >
 				<div class="form-group">
 					<s:textfield class="form-control" name="email" type="email" label="email" readonly="true" value="poan@gmail.com" />
 				</div>
 				<div class="form-group">
-					<s:textfield class="form-control" name="name" label="name" />
+					<s:textfield class="form-control" name="password" type="password" label="password" />
 				</div>
 				<div class="form-group">
-					<s:textfield class="form-control" name="phone" type="text" label="phone" />
+					<s:textfield class="form-control" name="newpassword" type="password" label="newpassword" />
 				</div>
 				<div class="form-group">
-					<s:file class="form-control" name="photo" label="photo" />
+					<s:textfield class="form-control" name="confirm" type="password" label="confirm" />
 				</div>
-				<s:submit class="form-control" value="submit"/>
+				<s:submit class="form-control" value="submit" />
 			</form>
 		</div>
 	</section>

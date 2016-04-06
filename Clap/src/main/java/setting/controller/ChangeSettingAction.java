@@ -14,7 +14,8 @@ import member.model.MemberService;
 import member.model.MemberVO;
 
 public class ChangeSettingAction extends ActionSupport {
-
+	
+	
 	private String email;
 	private String name;
 	private String phone;

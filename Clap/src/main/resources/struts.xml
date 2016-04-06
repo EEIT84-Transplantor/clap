@@ -40,6 +40,10 @@
 			<result name="success">/member/changesetting.jsp</result>
 			<result name="input">/member/changesetting.jsp</result>
 		</action>
+		<action name="changePasswordAction" class="setting.controller.ChangePasswordAction">
+			<result name="success">/member/passwordchange.jsp</result>
+			<result name="input">/member/passwordchange.jsp</result>
+		</action>
 		<action name="oneClickAction" class="setting.controller.OneClickAction">
 			<result name="success">/setting/oneclick.jsp</result>
 			<result name="input">/setting/oneclick.jsp</result>

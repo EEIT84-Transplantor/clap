@@ -73,6 +73,9 @@
 	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction" scope="prototype">
 		<property name="memberService" ref="memberService"/>
 	</bean>
+	<bean id="changePasswordAction" class="setting.controller.ChangePasswordAction" scope="prototype">
+		<property name="memberService" ref="memberService"/>
+	</bean>
 	<bean id="oneClickAction" class="setting.controller.OneClickAction">
 		<property name="memberService" ref="memberService"/>
 	</bean>

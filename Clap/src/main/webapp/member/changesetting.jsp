@@ -23,15 +23,18 @@
 		<div class="container">
 			<form role="form" action="<c:url value="/setting/changeSettingAction"/>" method="POST" enctype="multipart/form-data">
 				<div class="form-group">
-					<s:textfield class="form-control" name="password" type="password" label="password" />
+					<s:textfield class="form-control" name="email" type="email" label="email" readonly="true" value="poan@gmail.com" />
 				</div>
 				<div class="form-group">
-					<s:textfield class="form-control" name="newpassword" type="password" label="newpassword" />
+					<s:textfield class="form-control" name="name" label="name" />
 				</div>
 				<div class="form-group">
-					<s:textfield class="form-control" name="confirm" type="password" label="confirm" />
+					<s:textfield class="form-control" name="phone" type="text" label="phone" />
 				</div>
-				<s:submit class="form-control" value="submit" />
+				<div class="form-group">
+					<s:file class="form-control" name="photo" label="photo" />
+				</div>
+				<s:submit class="form-control" value="submit"/>
 			</form>
 		</div>
 	</section>
