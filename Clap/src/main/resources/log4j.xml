@@ -15,7 +15,7 @@
 <!-- 	</logger> -->
 
 	<logger name="org.apache.struts2">
-		<level value="DEBUG" />
+		<level value="FATAL"  />
 	</logger>
 
 	<!-- for all other loggers log only info and above log messages -->

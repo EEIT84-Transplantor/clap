@@ -22,7 +22,7 @@
 	<section id="wrap">
 		<div class="container">
 			
-			<form class="form-horizontal" role="form" action="" method="POST" style="border:solid white;">
+			<form class="form-horizontal" role="form" method="POST" style="border:solid white;">
 				<div class="form-group">
 					<label class="col-md-2 control-label" for="expire">Your VIP valid until:</label> 
 					<div class="col-md-10"><p class="form-control-static" name="memberVO.expire" >2016/02/29${memberVO.expire }</p></div>
@@ -31,10 +31,10 @@
 					<label class="col-md-2 control-label" for="autorenew">Activate auto renewal?</label> 
 					<div class="col-md-10">
 					<label class="radio-inline">
-  					  <input type="radio" name="inlineRadioOptions" id="inlineRenew01" value="yes">Yes
+  					  <input type="radio" name="autorenew" id="inlineRenew01" value="true">Yes
 					</label>
 					<label class="radio-inline">
-					  <input type="radio" name="inlineRadioOptions" id="inlineRenew02" value="no" checked="checked">No
+					  <input type="radio" name="autorenew" id="inlineRenew02" value="false" checked="checked">No
 					</label>
 					</div>
 				</div>
@@ -56,45 +56,24 @@
 	<script src="../resource/js/loginsignup.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			var isRenewal = false;
-			//onchange for click auto-renewal
-			$("#inlineRenew01").on("change",function(){
-				$("div[class='container']>button").eq(1).fadeOut();	
-				isRenewal = true;
-			});
-			//onchange for cancel auto-renewal
-			$("#inlineRenew02").on("change",function(){
-				$("div[class='container']>button").eq(1).fadeIn();
-				isRenewal = false;
-			});
-			
+			var contextPath = "${pageContext.request.contextPath}";
 			//onclick Confirm auto renewal button
 			$("div[class='container']>button").eq(0).on("click", function() {
+				var confirmed = confirm("Buy one more year VIP by credit card, are you sure?");
+				if(confirmed){
+				$("form").attr("action",contextPath+"/setting/autoRenewVIPAction.action" );
 				console.log("Confirm auto renewal");
-				
-				if(isRenewal){
-					var confirmed = confirm("Auto pay by your credit card, are you sure?");
-					if(confirmed){
-						//send autorenew to servlet
-						console.log("send auto-renewal");
-						$.ajax().done();
-					}
-				}else{
-					var confirmed = confirm("Auto-renewal will be cancelled, are you sure?");
-					if(confirmed){
-						//cancel autorenew in servlet
-						console.log("cancel auto-renewal");
-						$.ajax().done();
-					}
+				$("form").submit();
 				}
 			});
 			//onclick Buy one more year button
 			$("div[class='container']>button").eq(1).on("click", function() {
 				var confirmed = confirm("Buy one more year VIP by credit card, are you sure?");
 				if(confirmed){
-					//send Buy one more year to servlet
+					//send Buy one more year
+					$("form").attr("action", contextPath+"/setting/renewVIPAction.action" );
 					console.log("Buy one more year");
-					$.ajax().done();
+					$("form").submit();
 				}
 			});
 

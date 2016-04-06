@@ -1,9 +1,21 @@
 package payment.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="giftcard")
 public class GiftCardVO {
+	@Id
+	@Column(name="gc_number")
 	private String gc_number;
+	@Column(name="gc_code")
 	private String gc_code;
+	@Column(name="gc_amount")
 	private Double gc_amount;
+	@Column(name="gc_available")
 	private Integer gc_available;
 	public String getGc_number() {
 		return gc_number;

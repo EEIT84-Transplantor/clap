@@ -37,6 +37,14 @@
 		<url-pattern>/member/*</url-pattern>
 	</filter-mapping>
 	<filter>
+		<filter-name>BctoinContextFilter</filter-name>
+		<filter-class>payment.controller.paymentFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>BctoinContextFilter</filter-name>
+		<url-pattern>/payment/*</url-pattern>
+	</filter-mapping>
+	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
 	</filter>

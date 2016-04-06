@@ -46,9 +46,9 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var contextPath = "${pageContext.request.contextPath}";
-			var paymentmanageUrl = contextPath + "/payment/paymentmanage.jsp";
-			var passwordchangeUrl = contextPath + "/member/passwordchange.jsp";
-			var changesettingUrl = contextPath + "/member/changesetting.jsp";
+			var paymentmanageUrl = contextPath + "/payment/paymentmanage.action";
+			var passwordchangeUrl = contextPath + "/member/passwordchange.action";
+			var changesettingUrl = contextPath + "/member/changesetting.action";
 			
 			
 			//onclick paymentmanage button
