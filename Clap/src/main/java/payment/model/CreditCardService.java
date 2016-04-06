@@ -71,6 +71,7 @@ public class CreditCardService {
 	}
 
 	public boolean removeCard(String cc_number) {
+		
 		boolean result = false;
 		if (cc_number != null && cc_number.length() != 0) {
 			if (dao.delete(cc_number)) {
@@ -136,9 +137,9 @@ public class CreditCardService {
 	}
 
 	//memberVO支付amount元
-	public boolean payBill(MemberVO memberVO, Double amount) {
-
-	}
+//	public boolean payBill(MemberVO memberVO, Double amount) {
+//
+//	}
 
 	//由卡號取得卡片VO
 	public CreditCardVO getCard(String number) {

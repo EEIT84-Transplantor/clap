@@ -2,11 +2,18 @@ package payment.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-
+@Entity
+@Table(name="promocode")
 public class PromoCodeVO implements Serializable{
+	@Column(name="mb_email")
 	private String mb_email;
+	@Column(name="pc_code")
 	private String pc_code;
 	
 	public String getMb_email() {
