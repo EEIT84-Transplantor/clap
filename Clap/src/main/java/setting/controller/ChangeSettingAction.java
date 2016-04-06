@@ -1,11 +1,11 @@
 package setting.controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.util.Arrays;
+import java.io.InputStream;
 import java.util.regex.Pattern;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.conversion.annotations.TypeConversion;
 
 import member.model.MemberService;
 import member.model.MemberVO;
@@ -19,7 +19,7 @@ public class ChangeSettingAction extends ActionSupport {
 	private File photo;
 	private String contentType;
 	private String filename;
-	private String result;
+	private InputStream inputStream;
 
 	public String getEmail() {
 		return email;
@@ -60,9 +60,9 @@ public class ChangeSettingAction extends ActionSupport {
 	public void setPhotoFileName(String filename) {
 		this.filename = filename;
 	}
-	
-	public String getResult() {
-		return result;
+
+	public InputStream getInputStream() {
+		return inputStream;
 	}
 
 	@Override
@@ -87,8 +87,9 @@ public class ChangeSettingAction extends ActionSupport {
 		memberVO.setName(name);
 		memberVO.setPhone(phone);
 		memberService.updateSetting(memberVO, photo, contentType);
-		result="success";
-		System.out.println(email+" "+name+" "+phone);
+
+		inputStream = new ByteArrayInputStream("Hello World! This is a text string response from a Struts 2 Action.".getBytes("UTF-8"));
+
 		return SUCCESS;
 	}
 }
