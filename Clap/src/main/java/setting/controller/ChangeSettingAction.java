@@ -88,6 +88,7 @@ public class ChangeSettingAction extends ActionSupport {
 		memberVO.setPhone(phone);
 		memberService.updateSetting(memberVO, photo, contentType);
 		result="success";
+		System.out.println(email+" "+name+" "+phone);
 		return SUCCESS;
 	}
 }

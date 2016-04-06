@@ -54,7 +54,7 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var contextPath = "${pageContext.request.contextPath}";
-			var ajaxurl = contextPath + "/setting/changeSettingAction";
+			var ajaxurl = contextPath + "/setting/changeSettingAction.action";
 
 
 
@@ -65,9 +65,9 @@
 					url : ajaxurl,
 					data : $("form").serialize()
 				}).done(function(msg) {
-					alert("done");
-					if (msg == "true") {
-						
+					
+					if (msg == "success") {
+						alert("done");
 					} else {
 						
 					}
