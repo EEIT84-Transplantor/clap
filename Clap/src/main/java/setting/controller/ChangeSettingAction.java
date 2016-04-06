@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.regex.Pattern;
 
+import org.json.JSONObject;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import member.model.MemberService;
@@ -69,10 +71,10 @@ public class ChangeSettingAction extends ActionSupport {
 
 	@Override
 	public void validate() {
-		
 		// 手機格式是否正確
-		if (phone.trim().length() != 0 && !Pattern.matches("/^09[0-9]{8}$/", phone)) {
+		if (phone.trim().length() != 0 && !Pattern.matches("^09[0-9]{8}$", phone)) {
 			try {
+				System.out.println(phone);
 				inputStream = new ByteArrayInputStream("phone error".getBytes("UTF-8"));
 				super.addActionError("");
 //				super.addFieldError("fieldName", "errorMessage");
@@ -94,12 +96,19 @@ public class ChangeSettingAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
-//		MemberVO memberVO = memberService.findByEmail(email);
-//		memberVO.setName(name);
-//		memberVO.setPhone(phone);
-//		memberService.updateSetting(memberVO, photo, contentType);
+		MemberVO memberVO = memberService.findByEmail(email);
+		memberVO.setName(name);
+		memberVO.setPhone(phone);
+		memberService.updateSetting(memberVO, photo, contentType);
+		JSONObject jObject = new JSONObject();
+		jObject.put("email", memberVO.getEmail());
+		jObject.put("name", memberVO.getName());
+		jObject.put("phone", memberVO.getPhone());
+		jObject.put("amount", memberVO.getAmount());
+		jObject.put("oneclick", memberVO.getAutorenew());
+		String ajaxMsg = jObject.toString();
 		
-		inputStream=new ByteArrayInputStream("給我過".getBytes("UTF-8"));
+		inputStream=new ByteArrayInputStream(ajaxMsg.getBytes("UTF-8"));
 		return SUCCESS;
 	}
 }
