@@ -139,14 +139,26 @@
 			var action = "AddCreditCard";
 			sendPostRwquestPayment(url,data,action);
 		});
-		$(".delete_card").click(function() {
+		
+		
+		
+		
+		$('body').on('click','.delete_card',function() {
 			if (confirm("Do you want to delete this promotion code?") == true) {
-			var data = "creditCardVO.cc_number="+$(this).prev().children(".cc_number").text();
-		 	var url = path;
-		    var action = "deleteCreditCard";
-		    sendPostRwquestPayment(url,data,action);
-			}
-		});
+				var data = "creditCardVO.cc_number="+$(this).prev().children(".cc_number").text();
+			 	var url = path;
+			    var action = "deleteCreditCard";
+			    sendPostRwquestPayment(url,data,action);
+				}
+			});
+// 		$(".delete_card").click(function() {
+// 			if (confirm("Do you want to delete this promotion code?") == true) {
+// 			var data = "creditCardVO.cc_number="+$(this).prev().children(".cc_number").text();
+// 		 	var url = path;
+// 		    var action = "deleteCreditCard";
+// 		    sendPostRwquestPayment(url,data,action);
+// 			}
+// 		});
 		// GiftCard
 		$("#useGiftCard").click(function() {
 			var data = $("#useGiftForm").serialize();
