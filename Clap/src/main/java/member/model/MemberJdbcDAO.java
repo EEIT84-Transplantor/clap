@@ -190,4 +190,16 @@ public class MemberJdbcDAO implements MemberDAO {
 		return result;
 	}
 
+	@Override
+	public MemberVO insert(MemberVO memberVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean update(MemberVO memberVO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

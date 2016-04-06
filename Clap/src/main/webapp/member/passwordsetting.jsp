@@ -9,20 +9,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
 <!-- Bootstrap -->
-<link href="../src/css/bootstrap.min.css" rel="stylesheet">
-<link href="../src/css/customer.css" rel="stylesheet">
+<link href="../resource/css/bootstrap.min.css" rel="stylesheet">
+<link href="../resource/css/customer.css" rel="stylesheet">
 
 </head>
 <body>
-	<header> </header>
+	<header>
+	 <jsp:include page="/header.jsp" />
+	</header>
 
 	<section id="wrap">
-		<div class="container-fulid">
+		<div class="container">
 			<div class="row">
 
 				<div class="col-md-12">
 
-					<form action="login.action" method="post" id="sign_form">
+					<form action="login.servlet" method="post" id="sign_form">
 						<div class="row">
 							<label class="col-md-3">Password : </label><input type="text"
 								name="password" class="col-md-9">
@@ -45,12 +47,14 @@
 		</div>
 	</section>
 
-	<footer> </footer>
+	<footer>
+	<jsp:include page="/footer.jsp" />
+	</footer>
 
 <!-- 載入js -->
-<script src="../src/js/jquery-1.12.2.min.js"></script>
-<script src="../src/js/bootstrap.min.js"></script>
-<script src="../src/js/loginsignup.js"></script>
+<script src="../resource/js/jquery-1.12.2.min.js"></script>
+<script src="../resource/js/bootstrap.min.js"></script>
+<script src="../resource/js/loginsignup.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#btn_confirm").click(function(){
