@@ -92,7 +92,6 @@ public class MemberService {
 	// 如果有新圖片就改成新圖片、如果是null就不改
 	public boolean updateSetting(MemberVO memberVO, File photo, String contentType) {
 
-
 		if (photo != null) {
 			try {
 				memberVO.setPhoto(read(photo));

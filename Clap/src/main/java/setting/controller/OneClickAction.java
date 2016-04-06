@@ -5,6 +5,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import member.model.MemberDAOHibernate;
 import member.model.MemberService;
 import member.model.MemberVO;
+import payment.model.PromoService;
 
 public class OneClickAction extends ActionSupport {
 

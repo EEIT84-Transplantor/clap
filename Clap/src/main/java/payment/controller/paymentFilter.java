@@ -14,9 +14,12 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.struts2.ServletActionContext;
 import org.json.JSONObject;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import member.model.MemberService;
 import payment.model.CreditCardService;
@@ -29,7 +32,7 @@ import payment.model.PromoVO;
 /**
  * Servlet Filter implementation class paymentFilter
  */
-@WebFilter("/payment/*")
+//@WebFilter("/payment/*")
 public class paymentFilter implements Filter {
 //	CreditCardService cservice;
 //	MemberService mServic;
@@ -46,7 +49,7 @@ public class paymentFilter implements Filter {
 //	public void setPromoCodeService(PromoCodeService promoCodeService) {
 //		this.promoCodeService = promoCodeService;
 //	}
-
+  private FilterConfig fConfig;
 	public void destroy() {
 		// TODO Auto-generated method stub
 	}
@@ -59,20 +62,23 @@ public class paymentFilter implements Filter {
 //		}else{
 			String email = "caca@gmail.com";
 			
-			ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+			
+			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(fConfig.getServletContext());
+
 			CreditCardService cservice = (CreditCardService)context.getBean("creditCardService");
 			MemberService mService = (MemberService)context.getBean("memberService");
-			PromoCodeService promoCodeService = (PromoCodeService)context.getBean("promoCodeService");
+		//	PromoCodeService promoCodeService = (PromoCodeService)context.getBean("promoCodeService");
 			
 			List<CreditCardVO> payment = cservice.getCards(email);
+			System.out.println("aaa"+cservice);
 			
 			Double amount = 9.99;
 //			Double amount = mService.getAmount();
 			
-			List<PromoVO>promoCodes=promoCodeService.getPromos(email);
+	//		List<PromoVO>promoCodes=promoCodeService.getPromos(email);
 			request.setAttribute("cards",payment );
 			request.setAttribute("amount", amount);
-			request.setAttribute("promos", promoCodes);
+	//		request.setAttribute("promos", promoCodes);
 			chain.doFilter(request, response);	
 //		}
 
@@ -83,14 +89,14 @@ public class paymentFilter implements Filter {
 		// object.put("amount", amount);
 		// object.put("promoCodes", promoCodes);
 		// request.setAttribute("payment", object);
-
+			
 	}
 
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
+		this.fConfig = fConfig;
 	}
 
 }
