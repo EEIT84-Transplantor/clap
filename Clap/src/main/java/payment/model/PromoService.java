@@ -1,0 +1,73 @@
+package payment.model;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class PromoService {
+	private PromoDAO dao;
+	
+	public static void main(String[] args){
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		PromoService pservice = (PromoService)context.getBean("promoService");
+		PromoDAO pdao = (PromoDAO)context.getBean("promoDAO");
+		PromoVO vo = pdao.selectByCode("111");
+		//vo.setPm_code("666");
+		//System.out.println(pservice.setPromo(vo));
+		System.out.println(pservice.isAvailable("666"));
+	}
+	
+	public PromoService() {
+	}
+
+	public void setDao(PromoDAO dao) {
+		this.dao = dao;
+	}
+
+	public boolean setPromo(PromoVO promoVO){
+		boolean result = false;
+		if(promoVO!=null){
+			String pd_category = promoVO.getPd_category();
+			String pm_code = promoVO.getPm_code();
+			Double pm_discount = promoVO.getPm_discount();
+			java.util.Date pm_expire = promoVO.getPm_expire();
+			String pm_tiltle = promoVO.getPm_tiltle();
+			
+			if(pd_category==null||pd_category.length()==0){
+				return result;
+			}
+			if(pm_code==null||pm_code.length()==0){
+				return result;
+			}
+			if(pm_discount==null||pm_discount==0){
+				return result;
+			}
+			
+			if(pm_expire==null||pm_expire.getTime()<System.currentTimeMillis()){
+				return result;
+			}
+			if(pm_tiltle==null||pm_tiltle.length()==0){
+				return result;
+			}
+			if(dao.insert(promoVO)!=null){
+				result = true;
+			}
+		}
+		return result;
+	};
+
+	public boolean isAvailable(String pm_code){
+		boolean result = false;
+		
+		if(pm_code==null||pm_code.length()!=0){
+			PromoVO temp = dao.selectByCode(pm_code);
+			
+			if(temp!=null){
+				if(temp.getPm_expire().getTime()>=System.currentTimeMillis()){
+					result = true;
+				}
+			}
+		}
+		return result;
+	};
+
+}

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import member.model.MemberService;
 import member.model.MemberVO;
 
-@WebServlet(urlPatterns = { "/member/login.action" })
+@WebServlet(urlPatterns = { "/member/login.servlet" })
 public class LoginServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
 			return;
 		}
 		
-		if ((memberVO=memberService.login(email, password))!=null) {
+		if ((memberVO=memberService.login(email, password.getBytes()))!=null) {
 			request.getSession().setAttribute("login",memberVO);	
 			response.sendRedirect("../index.jsp");
 		}else {

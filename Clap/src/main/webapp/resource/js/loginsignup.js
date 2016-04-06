@@ -5,7 +5,7 @@ function comparePassword(email,oldPassword,newPassword,url){
 			console.log(oldPassword);
 			$("#info_text").text("inconsistent password, please try again!");
 		} else {
-			var url = url+"/member/passwordSettingServlet.action";
+			var url = url+"/member/passwordSettingServlet.servlet";
 			var queryString = "?email="+email+"&passwordconfirm="+newPassword+"&password="+oldPassword;
 			console.log(queryString);
 			window.location = url+ queryString;

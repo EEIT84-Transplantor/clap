@@ -69,7 +69,7 @@ public class SendEmail {
 		if (confirmCode != null) {
 			String recipient = email;
 			String subject = "Confirming email from C.L.A.P Transplantor";
-			String content = "Please click the link below \n\n" + "http://localhost:8080/Clap/member/emailconfirm.action?email=" + email + "&confirmCode=" + confirmCode
+			String content = "Please click the link below \n\n" + "http://localhost:8080/Clap/member/emailconfirm.servlet?email=" + email + "&confirmCode=" + confirmCode
 					+ "\n\n C.L.A.P Transplantor";
 
 			System.out.println(host + "\n" + port + "\n" + user + "\n" + pass + "\n" + recipient + "\n" + subject + "\n"
