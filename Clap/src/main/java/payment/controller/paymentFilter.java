@@ -38,9 +38,9 @@ public class paymentFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpSession session = ((HttpServletRequest)request).getSession();
-		if(session.getAttribute("login")==null){
-			
-		}else{
+//		if(session.getAttribute("login")==null){
+//			session.put("uri", ((HttpServletRequest)request).getRequestURI());
+//		}else{
 			String email = "caca@gmail.com";
 			
 			ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -58,7 +58,7 @@ public class paymentFilter implements Filter {
 			request.setAttribute("amount", amount);
 			request.setAttribute("promos", promoCodes);
 			chain.doFilter(request, response);	
-		}
+//		}
 //		String email = (String) session.getAttribute("email");
 		
 		
