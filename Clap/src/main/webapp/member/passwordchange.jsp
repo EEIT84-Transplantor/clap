@@ -29,12 +29,18 @@
 					<s:textfield class="form-control" name="email" type="email" label="Email" readonly="true" value="poan@gmail.com" />
 
 				</div>
+
 				<div class="form-group">
-				<s:textfield class="form-control" name="password" type="password" label="Password" />
+					<s:textfield class="form-control" name="password" type="password" label="password" errorPosition="bottom" value=""/>
 
 				</div>
 				<div class="form-group">
-					<s:textfield class="form-control" name="confirm" type="password" label="Confirm" />
+
+					<s:textfield class="form-control" name="newpassword" type="password" label="newpassword" errorPosition="bottom" value=""/>
+				</div>
+				<div class="form-group">
+					<s:textfield class="form-control" name="confirm" type="password" label="confirm" errorPosition="bottom" value=""/>
+
 				</div>
 				<button class="btn btn-default" type="button">Submit</button>
 			</form>
