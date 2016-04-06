@@ -37,9 +37,10 @@
 			<interceptor-ref name="loginStack" />
 		</action>
 		<action name="changeSettingAction" class="setting.controller.ChangeSettingAction">
-			<result name="success">/setting/changesetting.jsp</result>
-			<result name="input">/setting/changesetting.jsp</result>
-			<interceptor-ref name="loginStack" />
+			<result name="plaintext">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">result</param>
+			</result>
 		</action>
 		<action name="oneClickAction" class="setting.controller.OneClickAction">
 			<result name="success">/setting/oneclick.jsp</result>
@@ -56,6 +57,7 @@
 			<result name="input">/setting/vip.jsp</result>
 			<interceptor-ref name="creditCardInterceptor" />
 		</action>
+
 	</package>
 
 	<package name="payment" namespace="/payment" extends="struts-default">
