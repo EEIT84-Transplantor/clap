@@ -58,9 +58,8 @@ public class PromoService {
 	public boolean isAvailable(String pm_code){
 		boolean result = false;
 		
-		if(pm_code==null||pm_code.length()!=0){
+		if(pm_code!=null||pm_code.length()!=0){
 			PromoVO temp = dao.selectByCode(pm_code);
-			
 			if(temp!=null){
 				if(temp.getPm_expire().getTime()>=System.currentTimeMillis()){
 					result = true;
@@ -69,5 +68,13 @@ public class PromoService {
 		}
 		return result;
 	};
-
+	public PromoVO getPromoDetail(String pm_code){
+		PromoVO result = null;
+		if(pm_code==null||pm_code.length()==0||!this.isAvailable(pm_code)){
+			return result;
+		}else{			
+			result = dao.selectByCode(pm_code);
+		}
+		return result;
+	}
 }

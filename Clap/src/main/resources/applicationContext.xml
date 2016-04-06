@@ -70,7 +70,7 @@
 	</bean>
 
 	<!-- setting -->
-	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction" scope="prototype">
+	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction">
 		<property name="memberService" ref="memberService"/>
 	</bean>
 	<bean id="oneClickAction" class="setting.controller.OneClickAction">
@@ -87,9 +87,7 @@
 	<bean id="creditCardInterceptor" class="interceptor.CreditCardInterceptor">
 		<property name="creditCardService" ref="creditCardService"/>
 	</bean>	
-	<bean id="paymentManageInterceptor" class="interceptor.PaymentManageInterceptor">
-		<property name="creditCardService" ref="creditCardService"/>
-	</bean>	
+	
 	
 	
 </beans>

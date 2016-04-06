@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +27,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.Result;
 import com.opensymphony.xwork2.ValidationAware;
 
 import member.model.MemberService;
@@ -53,6 +55,7 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 	public void setPromoVO(PromoVO promoVO) {
 		this.promoVO = promoVO;
 	}
+
 
 	private PromoService promoService;
 	private GiftCardService giftCardService;
@@ -89,39 +92,31 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		this.promoCodeVO = promoCodeVO;
 	}
 	public void validate(){
-		System.out.println("5");
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		PromoService promoService = (PromoService)context.getBean("promoService");
 		if(buttonClicked.equalsIgnoreCase("AddCreditCard")){
 	    	 System.out.println("button");
 	    	 if(creditCardVO.getCc_number()==null||!checkCreditCard(creditCardVO.getCc_number())){
-	    		 addFieldError("error.errorMsg", "Credit Card Number is not valid");
+	    		 addFieldError("errorMsg", "Credit Card Number is not valid");
 	    	 }
 	    	 if(creditCardVO.getCc_cvv()==null||!Pattern.matches("\\d{3}", creditCardVO.getCc_cvv())){
-	    		 addFieldError("error.errorMsg", "CVV is not valid");
+	    		 addFieldError("errorMsg", "CVV is not valid");
 	    		 System.out.println("hello2");
 	    	 }
 	    	 String goodThru = creditCardVO.getCc_goodthru();
 	    	 if(goodThru==null||!Pattern.matches("^(0[1-9]|1[0-2])/([0-9]{2})$", goodThru)||Integer.parseInt(goodThru.substring(3))+2000<Calendar.getInstance().get(Calendar.YEAR)||
 	    			 Integer.parseInt(goodThru.substring(3))+2000==Calendar.getInstance().get(Calendar.YEAR) &&Integer.parseInt(goodThru.substring(0,2))<Calendar.getInstance().get(Calendar.MONTH)+1){
-	    		 addFieldError("error.errorMsg", "GoodThru is not valid");
-	    		 System.out.println("hello233");
+	    		 addFieldError("errorMsg", "GoodThru is not valid");
 	    	 }
 	    	 System.out.println("1");
 	     }else if(buttonClicked.equalsIgnoreCase("AddPromoCode")){
-	    	 System.out.println("2");
-	    	 System.out.println(promoCodeVO.getPc_code());
-	    	 System.out.println(promoService.isAvailable(promoCodeVO.getPc_code()));
 	    	 if(promoCodeVO.getPc_code()==null||!promoService.isAvailable(promoCodeVO.getPc_code())){
-	    		 System.out.println(promoCodeVO.getPc_code());
-	    		 System.out.println(promoService.isAvailable(promoCodeVO.getPc_code()));
-	    		 addFieldError("error.errorMsg", "Promo Code is not valid");
-	    
+	    		 addFieldError("errorMsg", "Promo Code is not valid");
 	    	 }
-	     }else if(buttonClicked.equalsIgnoreCase("AddGiftCard")){
+	     }else if(buttonClicked.equalsIgnoreCase("UseGiftCard")){
 	    	 System.out.println("4");
 	    	 if(giftCardVO.getGc_number()==null||giftCardVO.getGc_code()==null){
-	    		 addFieldError("error.errorMsg", "Gift Card is not valid");
+	    		 addFieldError("errorMsg", "Gift Card is not valid");
 	    	 }
 	     }
 	}
@@ -180,54 +175,72 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 			res.put(result);	
 			
 		}else if(buttonClicked.equalsIgnoreCase("USEGiftCard")){
-			GiftCardService gservice = (GiftCardService)context.getBean("giftCardService");
-			System.out.println(giftCardVO.getGc_number()+""+ giftCardVO.getGc_code());
+			ApplicationContext context2 = WebApplicationContextUtils.getWebApplicationContext(ServletActionContext.getServletContext());
+			GiftCardService gservice = (GiftCardService)context2.getBean("giftCardService");
 			Double amount = gservice.useCard(giftCardVO.getGc_number(), giftCardVO.getGc_code());
+			Boolean success1=false;
+			Double amountPrev = amount;
 			if(amount!=0.0){
-				MemberService mservice = (MemberService)context.getBean("memeberService");
-				amount+=mservice.getAmount(email);
-//				amount += oldAmount;
-				mservice.setAmount(email,amount);	//這個setamount沒有getamount無法得知之前的$$
+				MemberService mservice = (MemberService)context2.getBean("memberService");
+				Double a= 0.0;
+				if(mservice.getAmount(email)!=null){
+					a=mservice.getAmount(email);
+				}
+				amount+=a;
+
+				success1 =mservice.setAmount(email,amount);
 			}
+			JSONObject success = new JSONObject();
+			success.put("success", success1);
 			JSONObject result = new JSONObject();
-			result.put("result", amount);
+			result.put("result", amountPrev);
+			JSONObject total = new JSONObject();
+			total.put("total", amount);
+			res.put(success);	
 			res.put(result);	
+			res.put(total);	
 			
 		}else if(buttonClicked.equalsIgnoreCase("AddPromoCode")){
 			PromoService promoService = (PromoService)context.getBean("promoService");
-		System.out.println("huuuuuuuuuu");
 			Boolean resultBoolean=false;
+			JSONObject promoDetails = null;
 			if(promoService.isAvailable(promoCodeVO.getPc_code())){
 				PromoCodeService promoCodeService = (PromoCodeService)context.getBean("promoCodeService");
 				PromoCodeVO result = promoCodeService.setPromotionCode(email,promoCodeVO.getPc_code());
-				System.out.println("huuuuuuuuuu3");
 				if(result!=null){
 					resultBoolean = true;
+					PromoVO promoDetailVO = promoService.getPromoDetail(promoCodeVO.getPc_code());
+					promoDetails=new JSONObject();
+					System.out.println(promoDetailVO);
+					promoDetails.put("pm_title", promoDetailVO.getPm_tiltle());
+					promoDetails.put("pm_expire", promoDetailVO.getPm_expire());
+					promoDetails.put("pm_code", promoDetailVO.getPm_code());
+					promoDetails.put("pd_category", promoDetailVO.getPd_category());
+					promoDetails.put("pm_discount", promoDetailVO.getPm_discount());
 				}
 			}
 			JSONObject result = new JSONObject();
 			result.put("result", resultBoolean);
-			System.out.println(resultBoolean);
 			res.put(result);
+			if(promoDetails!=null){
+				res.put(promoDetails);
+			}
+			System.out.println(res.toString());
+			
 		}else if(buttonClicked.equalsIgnoreCase("deleteCreditCard")){
 			CreditCardService cservice = (CreditCardService)context.getBean("creditCardService");
 			//removeCard should be able to take in email as param
 			Boolean resultBoolean = cservice.removeCard(creditCardVO.getCc_number());
 			JSONObject result = new JSONObject();
 			
-			
 			result.put("result", resultBoolean);
 			result.put("cc_number",creditCardVO.getCc_number());
-			
 			res.put(result);
-			
-			
-			
 		}else if(buttonClicked.equalsIgnoreCase("deletePromotion")){
 			PromoCodeService promoCodeService = (PromoCodeService)context.getBean("promoCodeService");
 			Boolean resultBoolean= false;
-//			cannot delete the promoCode with the information passed in (needs promoCode)
 			resultBoolean = promoCodeService.removePromotionCode(email, promoCodeVO.getPc_code());
+
 			JSONObject result = new JSONObject();
 			result.put("result", resultBoolean);
 			res.put(result);
