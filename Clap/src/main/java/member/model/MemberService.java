@@ -45,7 +45,6 @@ public class MemberService {
 		if (member != null) {
 			byte[] temp = password;
 			byte[] memberPassword = member.getPassword();
-
 			if (Arrays.equals(temp, memberPassword)) {
 				result = member;
 			}
@@ -61,12 +60,10 @@ public class MemberService {
 		}
 	}
 
-	public boolean changePassword(String email, byte[] oldPassword, String newPassword) {
-		boolean result = false;
-		if (this.login(email, oldPassword) != null) {
-			result = dao.update(email, newPassword.getBytes());
-		}
-		return result;
+	public void changePassword(String email, byte[] newPassword) {
+		MemberVO memberVO = findByEmail(email);
+		memberVO.setPassword(newPassword);
+		dao.update(memberVO);
 	}
 
 	public String sendComfirmEmail(String email) {
@@ -146,8 +143,8 @@ public class MemberService {
 	}
 
 	public Double getAmount(String email) {
-		System.out.println("kkkk"+dao);
-		
+		System.out.println("kkkk" + dao);
+
 		return dao.selectByEmail(email).getAmount();
 	}
 

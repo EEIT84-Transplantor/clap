@@ -30,11 +30,13 @@
 
 				</div>
 				<div class="form-group">
-				<s:textfield class="form-control" name="password" type="password" label="password" />
-
+					<s:textfield class="form-control" name="password" type="password" label="password" errorPosition="bottom" value=""/>
 				</div>
 				<div class="form-group">
-					<s:textfield class="form-control" name="confirm" type="password" label="confirm" />
+					<s:textfield class="form-control" name="newpassword" type="password" label="newpassword" errorPosition="bottom" value=""/>
+				</div>
+				<div class="form-group">
+					<s:textfield class="form-control" name="confirm" type="password" label="confirm" errorPosition="bottom" value=""/>
 				</div>
 				<s:submit class="form-control" value="submit" />
 			</form>
