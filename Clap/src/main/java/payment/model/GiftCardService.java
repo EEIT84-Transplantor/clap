@@ -39,6 +39,7 @@ public class GiftCardService {
 			 temp.setGc_available(0);
 			 if(dao.update(temp)){
 				 result = temp.getGc_amount();
+				 System.out.println(result);
 			 }
 			 
 		 }

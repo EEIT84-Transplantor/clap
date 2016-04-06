@@ -3,7 +3,10 @@ package setting.controller;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.regex.Pattern;
+
+import org.json.JSONObject;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -60,23 +63,33 @@ public class ChangeSettingAction extends ActionSupport {
 	public void setPhotoFileName(String filename) {
 		this.filename = filename;
 	}
-
+	
 	public InputStream getInputStream() {
 		return inputStream;
 	}
 
+
 	@Override
 	public void validate() {
-
 		// 手機格式是否正確
-		if (phone.trim().length() != 0 && !Pattern.matches("/^09[0-9]{8}$/", phone)) {
-			super.addFieldError("memberVO.phone", super.getText("phone.type"));
+		if (phone.trim().length() != 0 && !Pattern.matches("^09[0-9]{8}$", phone)) {
+			try {
+				System.out.println(phone);
+				inputStream = new ByteArrayInputStream("phone error".getBytes("UTF-8"));
+				super.addActionError("");
+//				super.addFieldError("fieldName", "errorMessage");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 		}
 
 		// 照片尺寸小於1mb
 		if (photo != null && photo.length() > 1024 * 1024) {
-			System.out.println(photo.length());
-			super.addFieldError("photo", super.getText("photo.oversize"));
+			try {
+				inputStream = new ByteArrayInputStream("photo error".getBytes("UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -87,9 +100,15 @@ public class ChangeSettingAction extends ActionSupport {
 		memberVO.setName(name);
 		memberVO.setPhone(phone);
 		memberService.updateSetting(memberVO, photo, contentType);
-
-		inputStream = new ByteArrayInputStream("Hello World! This is a text string response from a Struts 2 Action.".getBytes("UTF-8"));
-
+		JSONObject jObject = new JSONObject();
+		jObject.put("email", memberVO.getEmail());
+		jObject.put("name", memberVO.getName());
+		jObject.put("phone", memberVO.getPhone());
+		jObject.put("amount", memberVO.getAmount());
+		jObject.put("oneclick", memberVO.getAutorenew());
+		String ajaxMsg = jObject.toString();
+		
+		inputStream=new ByteArrayInputStream(ajaxMsg.getBytes("UTF-8"));
 		return SUCCESS;
 	}
 }
