@@ -27,6 +27,8 @@ public class MemberVO {
 	private String name;
 	@Column(name = "mb_phone")
 	private String phone;
+	@Column(name = "mb_contenttype")
+	private String contentType;
 	@Column(name = "mb_photo")
 	private byte[] photo;
 	@Column(name = "mb_oneclick")
@@ -84,6 +86,14 @@ public class MemberVO {
 	public MemberVO setPhone(String phone) {
 		this.phone = phone;
 		return this;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
 	}
 
 	public byte[] getPhoto() {

@@ -1,19 +1,19 @@
 package member.model;
 
 import java.io.File;
-import java.lang.reflect.Method;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Date;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Map;
-import java.util.function.IntPredicate;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import antlr.collections.List;
-import member.model.MemberVO;
-import member.model.email.EmailconfirmCode;
+import com.sun.mail.handlers.message_rfc822;
+
 import member.model.email.SendEmail;
 
 public class MemberService {
@@ -90,17 +90,25 @@ public class MemberService {
 	}
 
 	// 如果有新圖片就改成新圖片、如果是null就不改
-	// 如果有新圖片就改成新圖片、如果是null就不改
-	public boolean updateSetting(MemberVO memberVO, byte[] newpassword, File photo) {
-		
-		if (newpassword.length!=0) {
+	public boolean updateSetting(MemberVO memberVO, byte[] newpassword, File photo, String contentType) {
+
+		if (newpassword.length != 0) {
 			memberVO.setPassword(newpassword);
 		}
-		
-		if (photo!=null) {
-			byte[] bs = Files.
+
+		if (photo != null) {
+			try {
+				memberVO.setPhoto(read(photo));
+				memberVO.setContentType(contentType);
+			} catch (IOException e) {
+				e.printStackTrace();
+				return false;
+			}
 		}
-	
+
+		dao.update(memberVO);
+		return true;
+
 	}
 
 	// 如果oneclick是true就update所有資料、如果是false就只update onclick
@@ -113,7 +121,7 @@ public class MemberService {
 			memberVO.setId(id);
 			memberVO.setNumber(number);
 		}
-		
+
 		dao.update(memberVO);
 	}
 
@@ -140,7 +148,18 @@ public class MemberService {
 		boolean isUpdated = dao.update(memberVO);
 		return isUpdated;
 	}
+
 	public Double getAmount(String email) {
 		return dao.selectByEmail(email).getAmount();
+	}
+
+	public byte[] read(File file) throws IOException {
+
+		byte[] buffer = new byte[(int) file.length()];
+
+		try (InputStream ios = new FileInputStream(file)) {
+			ios.read(buffer);
+		}
+		return buffer;
 	}
 }

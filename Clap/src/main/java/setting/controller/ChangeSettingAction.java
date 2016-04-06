@@ -91,7 +91,7 @@ public class ChangeSettingAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
-		memberService.updateSetting(memberVO, newpassword, photo);
+		memberService.updateSetting(memberVO, newpassword, photo,contentType);
 		return SUCCESS;
 	}
 }
