@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -21,20 +20,25 @@
 
 	<section id="wrap">
 		<div class="container">
-			<form role="form" action="<c:url value="/setting/changeSettingAction"/>" method="POST" enctype="multipart/form-data">
+			<form role="form" action="${pageContext.request.contextPath}/setting/changeSettingAction" method="POST" enctype="multipart/form-data">
 				<div class="form-group">
-					<s:textfield class="form-control" name="email" type="email" label="email" readonly="true" value="poan@gmail.com" />
+					<label for="email">Email:</label>
+					<input class="form-control" name="email" type="email" value="poan@gmail.com" readonly="readonly">
+				</div>
+
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input class="form-control" name="name" type="text" value="test" />
 				</div>
 				<div class="form-group">
-					<s:textfield class="form-control" name="name" label="name" />
+					<label for="phone">Phone:</label>
+					<input class="form-control" name="phone" type="number" maxlength="12">
 				</div>
 				<div class="form-group">
-					<s:textfield class="form-control" name="phone" type="text" label="phone" />
+					<label for="photo">Photo:</label>
+					<input class="form-control" name="photo" type="file" accept="image/*">
 				</div>
-				<div class="form-group">
-					<s:file class="form-control" name="photo" label="photo" />
-				</div>
-				<s:submit class="form-control" value="submit"/>
+				<button class="btn btn-default" type="button">Submit</button>
 			</form>
 		</div>
 	</section>
@@ -47,5 +51,23 @@
 	<script src="../resource/js/jquery-1.12.2.min.js"></script>
 	<script src="../resource/js/bootstrap.min.js"></script>
 	<script src="../resource/js/loginsignup.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var contextPath = "${pageContext.request.contextPath}";
+			var ajaxurl = contextPath + "/setting/changeSettingAction.action";
+
+			//onclick submit button
+			$("form button").on("click", function() {
+				$.ajax({
+					method : "POST",
+					url : ajaxurl,
+					data : $("form").serialize()
+				}).done(function(msg) {
+					alert(msg);
+				});
+			});
+
+		});
+	</script>
 </body>
 </html>

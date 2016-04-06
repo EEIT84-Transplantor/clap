@@ -13,7 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import member.model.MemberService;
 import member.model.MemberVO;
 
-public class ChangeSettingAction extends ActionSupport {
+public class ChangeSettingAction2 extends ActionSupport {
 
 	private String email;
 	private String name;
@@ -22,6 +22,7 @@ public class ChangeSettingAction extends ActionSupport {
 	private File photo;
 	private String contentType;
 	private String filename;
+	private InputStream inputStream;
 
 	public String getEmail() {
 		return email;
@@ -63,17 +64,31 @@ public class ChangeSettingAction extends ActionSupport {
 		this.filename = filename;
 	}
 	
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+
 
 	@Override
 	public void validate() {
 		// 手機格式是否正確
-		if (phone.trim().length()!=0&&!Pattern.matches("^09[0-9]{8}$", phone)) {
-				super.addFieldError("phone",getText("phone.type"));
+		if (!Pattern.matches("^09[0-9]{8}$", phone)) {
+			try {
+				inputStream = new ByteArrayInputStream("phone error".getBytes("UTF-8"));
+				super.addActionError("");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 		}
 
 		// 照片尺寸小於1mb
 		if (photo != null && photo.length() > 1024 * 1024) {
-				super.addFieldError("photo",getText("photo.oversize"));
+			try {
+				inputStream = new ByteArrayInputStream("photo error".getBytes("UTF-8"));
+				super.addActionError("");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -84,6 +99,7 @@ public class ChangeSettingAction extends ActionSupport {
 		memberVO.setName(name);
 		memberVO.setPhone(phone);
 		memberService.updateSetting(memberVO, photo, contentType);
+		inputStream=new ByteArrayInputStream("update success".getBytes("UTF-8"));
 		return SUCCESS;
 	}
 }

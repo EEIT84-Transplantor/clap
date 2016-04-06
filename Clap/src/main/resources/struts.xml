@@ -37,8 +37,8 @@
 			<interceptor-ref name="loginStack" />
 		</action>
 		<action name="changeSettingAction" class="setting.controller.ChangeSettingAction">
-			<result type="stream" />
-			<result type="stream" name="input" />
+			<result name="success">/member/changesetting.jsp</result>
+			<result name="input">/member/changesetting.jsp</result>
 		</action>
 		<action name="oneClickAction" class="setting.controller.OneClickAction">
 			<result name="success">/setting/oneclick.jsp</result>
