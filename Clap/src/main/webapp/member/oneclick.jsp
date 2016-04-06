@@ -113,8 +113,8 @@
 					method : "POST",
 					url : ajaxUrl,
 					data : {
-						'memberVO.email' : email,
-						'phone' : phone,
+						email : email,
+						phone : phone,
 						hospital : hospital,
 						creditcard : creditcard,
 						oneclick : "false"
