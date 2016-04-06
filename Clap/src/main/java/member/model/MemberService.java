@@ -4,6 +4,7 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.sql.Date;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Map;
 import java.util.function.IntPredicate;
 
@@ -90,28 +91,42 @@ public class MemberService {
 
 	// 如果有新圖片就改成新圖片、如果是null就不改
 	// 如果有新圖片就改成新圖片、如果是null就不改
-	public boolean updateSetting(MemberVO memberVO, byte[] newpassword, File photo) {
-
-	}
+//	public boolean updateSetting(MemberVO memberVO, byte[] newpassword, File photo) {
+//		
+//		if (newpassword.length!=0) {
+//			memberVO.setPassword(newpassword);
+//		}
+//		
+//		if (photo!=null) {
+//			byte[] bs = Files.
+//		}
+//	
+//	}
 
 	// 如果oneclick是true就update所有資料、如果是false就只update onclick
-	public boolean setOneClick(String email, String phone, Integer id, String number, Boolean oneclick) {
+	public void setOneClick(String email, String phone, Integer id, String number, Boolean oneclick) {
+		MemberVO memberVO = findByEmail(email);
+		memberVO.setOneclick(oneclick);
 
+		if (oneclick) {
+			memberVO.setPhone(phone);
+			memberVO.setId(id);
+			memberVO.setNumber(number);
+		}
+		
+		dao.update(memberVO);
 	}
 
 	// 讓memberVO的expire延長month個月
-	public Boolean updateVIP(MemberVO memberVO, int month) {
-		java.sql.Date now = new Date(new java.util.Date().getTime());
-		Date expire = memberVO.getExpire();
-		Date result;
+	public void updateVIP(MemberVO memberVO, int month) {
+		Calendar calendar = Calendar.getInstance();
+		Long now = calendar.getTimeInMillis();
+		Long expire = memberVO.getExpire().getTime();
 
-		if (now.compareTo(expire) >= 0) {
-			result = now;
-		} else {
-			result = expire;
-		}
-		
-		memberVO.setExpire(result);
+		expire = Math.max(now, expire);
+		calendar.setTimeInMillis(expire);
+		calendar.add(Calendar.DAY_OF_YEAR, month * 30);
+		memberVO.setExpire(new Date(calendar.getTimeInMillis()));
 	}
 
 	// update memberVO的autorenew
@@ -124,5 +139,8 @@ public class MemberService {
 		memberVO.setAmount(gc_amount);
 		boolean isUpdated = dao.update(memberVO);
 		return isUpdated;
+	}
+	public Double getAmount(String email) {
+		return dao.selectByEmail(email).getAmount();
 	}
 }

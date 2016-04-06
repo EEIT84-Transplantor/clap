@@ -29,12 +29,28 @@ import payment.model.PromoVO;
 /**
  * Servlet Filter implementation class paymentFilter
  */
-@WebFilter("/payment/*")
+//@WebFilter("/payment/*")
 public class paymentFilter implements Filter {
+	CreditCardService cservice;
+	MemberService mServic;
+	PromoCodeService promoCodeService;
+	
+	public void setCservice(CreditCardService cservice) {
+		this.cservice = cservice;
+	}
+
+	public void setmServic(MemberService mServic) {
+		this.mServic = mServic;
+	}
+
+	public void setPromoCodeService(PromoCodeService promoCodeService) {
+		this.promoCodeService = promoCodeService;
+	}
 
 	public void destroy() {
 		// TODO Auto-generated method stub
 	}
+
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpSession session = ((HttpServletRequest)request).getSession();
@@ -59,15 +75,15 @@ public class paymentFilter implements Filter {
 			request.setAttribute("promos", promoCodes);
 			chain.doFilter(request, response);	
 //		}
-//		String email = (String) session.getAttribute("email");
-		
-		
-		
-//		JSONObject object = new JSONObject();
-//		object.put("creditCards", payment);
-//		object.put("amount", amount);
-//		object.put("promoCodes", promoCodes);
-//		request.setAttribute("payment", object);
+
+		// String email = (String) session.getAttribute("email");
+	
+		// JSONObject object = new JSONObject();
+		// object.put("creditCards", payment);
+		// object.put("amount", amount);
+		// object.put("promoCodes", promoCodes);
+		// request.setAttribute("payment", object);
+
 	}
 
 	/**

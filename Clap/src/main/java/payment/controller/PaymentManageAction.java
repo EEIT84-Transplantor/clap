@@ -53,8 +53,6 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		this.promoVO = promoVO;
 	}
 
-
-
 	private PromoService promoService = new PromoService();
 	private GiftCardService giftCardService = new GiftCardService();
 	
@@ -173,9 +171,11 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 			
 		}else if(buttonClicked.equalsIgnoreCase("USEGiftCard")){
 			GiftCardService gservice = (GiftCardService)context.getBean("giftCardService");
+			System.out.println(giftCardVO.getGc_number()+""+ giftCardVO.getGc_code());
 			Double amount = gservice.useCard(giftCardVO.getGc_number(), giftCardVO.getGc_code());
 			if(amount!=0.0){
 				MemberService mservice = (MemberService)context.getBean("memeberService");
+				amount+=mservice.getAmount(email);
 //				amount += oldAmount;
 				mservice.setAmount(email,amount);	//這個setamount沒有getamount無法得知之前的$$
 			}
