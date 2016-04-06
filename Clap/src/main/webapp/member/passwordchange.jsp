@@ -20,33 +20,19 @@
 
 	<section id="wrap">
 		<div class="container">
-			<form role="form" action="${pageContext.request.contextPath}/setting/changeSettingAction" method="POST" enctype="multipart/form-data">
+			<div class="center-block" style="width:40%;">
+			<form role="form">
 				<div class="form-group">
-
-					<label for="email">Email:</label>
-					<input class="form-control" name="memberVO.email" type="email" value="poan@gmail.com" readonly="readonly">
-
+					<label for="name">Password:</label>
+					<input class="form-control" name="memberVO.password" type="text" placeholder="input current password" />
 				</div>
 				<div class="form-group">
-					<label for="password">Password:</label>
-					<input class="form-control" name="oldPassword" type="password" placeholder="click to change password">
-				</div>
-				<div class="form-group"></div>
-				<div class="form-group"></div>
-				<div class="form-group">
-					<label for="name">Name:</label>
-					<input class="form-control" name="memberVO.name" type="text" value="test" />
 				</div>
 				<div class="form-group">
-					<label for="phone">Phone:</label>
-					<input class="form-control" name="memberVO.phone" type="number" maxlength="12">
-				</div>
-				<div class="form-group">
-					<label for="photo">Photo:</label>
-					<input class="form-control" name="photo" type="file" accept="image/*">
 				</div>
 				<button class="btn btn-default" type="button">Submit</button>
 			</form>
+			</div>
 		</div>
 	</section>
 
@@ -61,85 +47,21 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var contextPath = "${pageContext.request.contextPath}";
-			//onclick oldPassword column
-			$("input[name='oldPassword']").on("click", function() {
-				var oldPassword = $("input[name='oldPassword']");
-				oldPassword.attr("placeholder", "");
-			}
-
-			).on("keyup", function() {
-				var email = $("input[name='memberVO.email']").val();
-				var oldPassword = $("input[name='oldPassword']");
-				var passwordLabel = oldPassword.prev();
-				if (oldPassword.val().length < 4 || oldPassword.attr("readonly") == "readonly") {
-					return;
-				}
-				passwordLabel.html("Password: checking");
-				$.ajax({
-					method : "POST",
-					url : contextPath + "/member/getpassword.servlet",
-					data : {
-						email : email,
-						oldPassword : oldPassword.val()
-					}
-				}).done(function(msg) {
-					if (msg == "true") {
-						var htmlStr1 = "<label for='new password'>New Password:</label> <input class='form-control' name='newPassword' type='password'>";
-						var htmlStr2 = "<label for='confirm newPass'>Confirm New Password:</label> <input class='form-control' name='memberVO.password' readonly='readonly' type='password'>";
-						oldPassword.attr("readonly", "readonly");
-						oldPassword.on("click", function() {
-						});
-						oldPassword.parent().next().html(htmlStr1);
-						oldPassword.parent().next().next().html(htmlStr2);
-						onclickNewColumns();
-						passwordLabel.html("Password: correct");
-					} else {
-						passwordLabel.html("Password: wrong");
-					}
-				});
+			//onclick current password
+			$("form>div>input").eq(0).on("click", function(){
+				$("form>div>input").attr("placeholder","");
+			}).on("blur", function(){
+				$("form>div>input").attr("placeholder","input current password");
 			});
+			
+			//onclick submit
+			$("form button").eq(0).on("click", function(){
+				alert($("form>div>input").val());
+				
+			})
+			
 
-			//onclick newPassword column
-			function onclickNewColumns() {
-				var newPassword = $("input[name='newPassword']");
-				var confirmPass = $("input[name='memberVO.password']");
-				newPassword.on("focus", function() {
-					confirmPass.removeAttr("readonly");
-				}).on("blur", function() {
-					checkPasswordSame();
-				});
-				confirmPass.on("keyup", function() {
-					checkPasswordSame();
-				});
-			}
-			//new passwords confirmation
-			function checkPasswordSame() {
-				var newPassword = $("input[name='newPassword']");
-				var confirmPass = $("input[name='memberVO.password']");
-				if (newPassword.val().length >= 4 && newPassword.val() == confirmPass.val()) {
-					newPassword.prev().html("New Password:");
-					confirmPass.prev().html("Confirm New Password: password consistent");
-				} else {
-					newPassword.prev().html("New Password: CHECK YOUR INPUT");
-					confirmPass.prev().html("Confirm New Password: CHECK YOUR INPUT");
-				}
-			}
-
-			//onclick submit button
-			$("form button").on("click", function() {
-				console.log();
-				console.log();
-				$("form").submit();
-			});
-			$("form").submit(function(event) {
-				if ($("input").val() == "") {
-					console.log("Submit error");
-					event.preventDefault();
-				} else {
-					console.log("Submit done");
-					return;
-				}
-			});
+			
 
 		});
 	</script>
