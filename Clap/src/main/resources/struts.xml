@@ -82,7 +82,7 @@
 		</global-results>
 
 		<!-- actions -->
-		<action name="managePayment" class="payment.controller.PaymentManageAction">
+		<action name="managePayment" class="paymentManageAction">
 			<result name="success">/payment/paymentmanage.jsp</result>
 			<result name="input">/payment/paymentmanage.jsp</result>
 		</action>
