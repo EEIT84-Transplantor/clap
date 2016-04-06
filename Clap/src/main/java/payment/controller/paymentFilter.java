@@ -29,7 +29,7 @@ import payment.model.PromoVO;
 /**
  * Servlet Filter implementation class paymentFilter
  */
-@WebFilter("/payment/*")
+//@WebFilter("/payment/*")
 public class paymentFilter implements Filter {
 	CreditCardService cservice;
 	MemberService mServic;
@@ -51,7 +51,6 @@ public class paymentFilter implements Filter {
 		// TODO Auto-generated method stub
 	}
 
-<<<<<<< HEAD
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpSession session = ((HttpServletRequest) request).getSession();
