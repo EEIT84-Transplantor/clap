@@ -140,4 +140,7 @@ public class MemberService {
 		boolean isUpdated = dao.update(memberVO);
 		return isUpdated;
 	}
+	public Double getAmount(String email) {
+		return dao.selectByEmail(email).getAmount();
+	}
 }
