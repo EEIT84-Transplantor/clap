@@ -70,7 +70,7 @@
 	</bean>
 
 	<!-- setting -->
-	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction">
+	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction" scope="prototype">
 		<property name="memberService" ref="memberService"/>
 	</bean>
 	<bean id="oneClickAction" class="setting.controller.OneClickAction">

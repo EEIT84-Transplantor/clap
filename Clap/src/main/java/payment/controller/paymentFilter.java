@@ -29,45 +29,52 @@ import payment.model.PromoVO;
 /**
  * Servlet Filter implementation class paymentFilter
  */
-@WebFilter("/payment/*")
+//@WebFilter("/payment/*")
 public class paymentFilter implements Filter {
+	CreditCardService cservice;
+	MemberService mServic;
+	PromoCodeService promoCodeService;
+	
+	public void setCservice(CreditCardService cservice) {
+		this.cservice = cservice;
+	}
+
+	public void setmServic(MemberService mServic) {
+		this.mServic = mServic;
+	}
+
+	public void setPromoCodeService(PromoCodeService promoCodeService) {
+		this.promoCodeService = promoCodeService;
+	}
 
 	public void destroy() {
 		// TODO Auto-generated method stub
 	}
 
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpSession session = ((HttpServletRequest)request).getSession();
-		if(session.getAttribute("login")==null){
-			
-		}else{
-			String email = "caca@gmail.com";
-			
-			ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-			CreditCardService cservice = (CreditCardService)context.getBean("creditCardService");
-			MemberService mService = (MemberService)context.getBean("memberService");
-			PromoCodeService promoCodeService = (PromoCodeService)context.getBean("promoCodeService");
-			
-			List<CreditCardVO> payment = cservice.getCards(email);
-			
-			Double amount = 9.99;
-//			Double amount = mService.getAmount();
-			
-			List<PromoVO>promoCodes=promoCodeService.getPromos(email);
-			request.setAttribute("cards",payment );
-			request.setAttribute("amount", amount);
-			request.setAttribute("promos", promoCodes);
-			chain.doFilter(request, response);	
-		}
-//		String email = (String) session.getAttribute("email");
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		HttpSession session = ((HttpServletRequest) request).getSession();
+
+		// String email = (String) session.getAttribute("email");
+		String email = "caca@gmail.com";
 		
-		
-		
-//		JSONObject object = new JSONObject();
-//		object.put("creditCards", payment);
-//		object.put("amount", amount);
-//		object.put("promoCodes", promoCodes);
-//		request.setAttribute("payment", object);
+		List<CreditCardVO> payment = cservice.getCards(email);
+
+		Double amount = 9.99;
+		// Double amount = mService.getAmount();
+
+		List<PromoVO> promoCodes = promoCodeService.getPromos(email);
+		request.setAttribute("cards", payment);
+		request.setAttribute("amount", amount);
+		request.setAttribute("promos", promoCodes);
+
+		// JSONObject object = new JSONObject();
+		// object.put("creditCards", payment);
+		// object.put("amount", amount);
+		// object.put("promoCodes", promoCodes);
+		// request.setAttribute("payment", object);
+		chain.doFilter(request, response);
+
 	}
 
 	/**
