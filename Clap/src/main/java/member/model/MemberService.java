@@ -152,6 +152,7 @@ public class MemberService {
 	}
 
 	public Double getAmount(String email) {
+		System.out.println(dao);
 		return dao.selectByEmail(email).getAmount();
 	}
 

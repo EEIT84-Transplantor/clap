@@ -214,7 +214,7 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 			PromoCodeService promoCodeService = (PromoCodeService)context.getBean("promoCodeService");
 			Boolean resultBoolean= false;
 //			cannot delete the promoCode with the information passed in (needs promoCode)
-//			result = promoCodeService.removePromotionCode(email, ));
+			resultBoolean = promoCodeService.removePromotionCode(email,promoCodeVO.getPc_code());
 			JSONObject result = new JSONObject();
 			result.put("result", resultBoolean);
 			res.put(result);

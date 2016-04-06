@@ -41,7 +41,7 @@ public class MemberVO {
 	private Boolean autorenew;
 	@Column(name = "mb_expire")
 	private Date expire;
-
+	
 	public String getEmail() {
 		return email;
 	}
