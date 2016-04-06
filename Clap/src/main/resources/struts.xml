@@ -37,8 +37,12 @@
 			<interceptor-ref name="loginStack" />
 		</action>
 		<action name="changeSettingAction" class="setting.controller.ChangeSettingAction">
-			<result type="stream" />
-			<result type="stream" name="input" />
+			<result name="success">/member/changesetting.jsp</result>
+			<result name="input">/member/changesetting.jsp</result>
+		</action>
+		<action name="changePasswordAction" class="setting.controller.ChangePasswordAction">
+			<result name="success">/member/passwordchange.jsp</result>
+			<result name="input">/member/passwordchange.jsp</result>
 		</action>
 		<action name="oneClickAction" class="setting.controller.OneClickAction">
 			<result name="success">/setting/oneclick.jsp</result>
@@ -82,7 +86,7 @@
 		</global-results>
 
 		<!-- actions -->
-		<action name="managePayment" class="payment.controller.PaymentManageAction">
+		<action name="managePayment" class="paymentManageAction">
 			<result name="success">/payment/paymentmanage.jsp</result>
 			<result name="input">/payment/paymentmanage.jsp</result>
 		</action>

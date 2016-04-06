@@ -73,6 +73,9 @@
 	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction" scope="prototype">
 		<property name="memberService" ref="memberService"/>
 	</bean>
+	<bean id="changePasswordAction" class="setting.controller.ChangePasswordAction" scope="prototype">
+		<property name="memberService" ref="memberService"/>
+	</bean>
 	<bean id="oneClickAction" class="setting.controller.OneClickAction">
 		<property name="memberService" ref="memberService"/>
 	</bean>
@@ -91,5 +94,12 @@
 		<property name="creditCardService" ref="creditCardService"/>
 	</bean>	
 	
-	
+	<bean id="paymentManageAction" class="payment.controller.PaymentManageAction">
+		<property name="promoService" ref="promoService"/>
+		<property name="giftCardService" ref="giftCardService"/>
+		<property name="memberService" ref="memberService"/>
+		<property name="creditCardService" ref="creditCardService"/>
+		<property name="promoCodeService" ref="promoCodeService"/>
+
+	</bean>
 </beans>

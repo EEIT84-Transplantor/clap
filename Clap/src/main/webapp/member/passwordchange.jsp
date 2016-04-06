@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -20,17 +21,22 @@
 
 	<section id="wrap">
 		<div class="container">
+
 			<div class="center-block" style="width:40%;">
-			<form role="form">
+			<form role="form" action="<c:url value="/setting/changePasswordAction"/>" method="POST" >
+
 				<div class="form-group">
-					<label for="name">Password:</label>
-					<input class="form-control" name="memberVO.password" type="text" placeholder="input current password" />
+					<s:textfield class="form-control" name="email" type="email" label="email" readonly="true" value="poan@gmail.com" />
+
 				</div>
 				<div class="form-group">
+				<s:textfield class="form-control" name="password" type="password" label="password" />
+
 				</div>
 				<div class="form-group">
+					<s:textfield class="form-control" name="confirm" type="password" label="confirm" />
 				</div>
-				<button class="btn btn-default" type="button">Submit</button>
+				<s:submit class="form-control" value="submit" />
 			</form>
 			</div>
 		</div>
@@ -44,26 +50,10 @@
 	<script src="../resource/js/jquery-1.12.2.min.js"></script>
 	<script src="../resource/js/bootstrap.min.js"></script>
 	<script src="../resource/js/loginsignup.js"></script>
+
 	<script type="text/javascript">
 		$(document).ready(function() {
-			var contextPath = "${pageContext.request.contextPath}";
-			//onclick current password
-			$("form>div>input").eq(0).on("click", function(){
-				$("form>div>input").attr("placeholder","");
-			}).on("blur", function(){
-				$("form>div>input").attr("placeholder","input current password");
 			});
-			
-			//onclick submit
-			$("form button").eq(0).on("click", function(){
-				alert($("form>div>input").val());
-				
-			})
-			
-
-			
-
-		});
 	</script>
 </body>
 </html>
