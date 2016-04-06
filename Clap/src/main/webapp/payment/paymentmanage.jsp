@@ -89,20 +89,32 @@
 								<p>Received Promotions</p>
 								<table class="table table-striped">
 									<thead>
-										<tr>
+										<tr><th>Promotion Code</th>
 											<th>Expire</th>
 											<th>Title</th>
+											
 											<th>Delete</th>
 										</tr>
 									</thead>
 									<tbody>
 									<c:forEach var="promo" items="${promos}"> 
 										<tr>
+										<td>${promo.pm_code}</td>
 										    <td>${promo.pm_expire}</td>
+										    
 										    <td>${promo.pm_tiltle}</td>
+										     
 											<td><a href="#" class="delete_promo"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
 										</tr>
 									</c:forEach>
+									<div class="addCard">
+									<strong>Add Promotion code</strong>
+									<form id="AddPromoForm">
+										Code :<input type="text" name="promoCodeVO.pc_code" value="333" /> <br /> 
+										<input type="button" value="ADD" id="AddPromoCode"><br />
+									</form>
+								</div>
+								
 								</tbody>
 								</table>
 							</div>
@@ -139,14 +151,20 @@
 			var action = "AddCreditCard";
 			sendPostRwquestPayment(url,data,action);
 		});
-		$(".delete_card").click(function() {
+		
+		
+		
+		
+		$('body').on('click','.delete_card',function() {
 			if (confirm("Do you want to delete this promotion code?") == true) {
-			var data = "creditCardVO.cc_number="+$(this).prev().children(".cc_number").text();
-		 	var url = path;
-		    var action = "deleteCreditCard";
-		    sendPostRwquestPayment(url,data,action);
-			}
-		});
+				alert("sss");
+				var data = "creditCardVO.cc_number="+$(this).prev().children(".cc_number").text();
+			 	var url = path;
+			    var action = "deleteCreditCard";
+			    sendPostRwquestPayment(url,data,action);
+				}
+			});
+
 		// GiftCard
 		$("#useGiftCard").click(function() {
 			var data = $("#useGiftForm").serialize();
@@ -158,13 +176,25 @@
 		//Promotion
 		$(".delete_promo").click(function() {
 			 if (confirm("Do you want to delete this promotion code?") == true) {
-				var data = "promoVO.pm_tiltle="+$(this).parent().prev().text();
+				var data = "promoCodeVO.pc_code="+$(this).parent().parent().children(':first-child').text();
 				var url = path;
 				var action = "deletePromotion";
 	 			sendPostRwquestPayment(url,data,action);
 	 			$(this).parent().parent().hide();
 			 }
 		});
+
+		$("#AddPromoCode").click(function() {
+				var data = "promoCodeVO.pc_code="+$(this).prev().prev().val();
+				var url = path;
+				var action = "AddPromoCode";
+	 			sendPostRwquestPayment(url,data,action);
+		});
+		
+		
+		
+		
+		
 		function sendPostRwquestPayment(url, data, action) {
 			var target = url + "/payment/managePayment.action?buttonClicked="+ action;
 			request = new XMLHttpRequest();
@@ -176,9 +206,7 @@
 		function doReadyStateChange() {
 			if (request.readyState == 4) {
 				if (request.status == 200) {
-					
                     processJSON(request.responseText);
-				
 				} else {
 					console.log("Error Code:" + request.status + ", "+ request.statusText);
 				}
@@ -196,7 +224,7 @@
 		    case "deleteCreditCard":
 		    	 if(info.result){
 		    		var temp = info.cc_number;
-		    		 $("p:contains("+temp+")").parent().parent().parent().hide();
+		    		 $("p:contains("+temp+")").parnet().parnet().css("background-color","red");
 		    	 }
 		        break;
 		    case "UseGiftCard":
@@ -207,6 +235,8 @@
 		    	 }
 		        break;
 		    case "deletePromotion":
+		        break;
+		    case "AddPromoCode":
 		        break;
 		    }
 		}
