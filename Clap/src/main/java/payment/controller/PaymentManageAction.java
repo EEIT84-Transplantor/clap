@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -27,6 +28,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ValidationAware;
 
 import member.model.MemberService;
+import member.model.MemberVO;
 import payment.model.CreditCardDAO;
 import payment.model.CreditCardService;
 import payment.model.CreditCardVO;
@@ -99,8 +101,8 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 	    		 System.out.println("hello2");
 	    	 }
 	    	 String goodThru = creditCardVO.getCc_goodthru();
-	    	 if(goodThru==null||!Pattern.matches("^(0[1-9]|1[0-2])/([0-9]{2})$", goodThru)||Integer.parseInt(goodThru.substring(3))<Calendar.getInstance().get(Calendar.YEAR)||
-	    			 Integer.parseInt(goodThru.substring(3))==Calendar.getInstance().get(Calendar.YEAR) &&Integer.parseInt(goodThru.substring(0,2))<Calendar.getInstance().get(Calendar.MONTH)){
+	    	 if(goodThru==null||!Pattern.matches("^(0[1-9]|1[0-2])/([0-9]{2})$", goodThru)||Integer.parseInt(goodThru.substring(3))+2000<Calendar.getInstance().get(Calendar.YEAR)||
+	    			 Integer.parseInt(goodThru.substring(3))+2000==Calendar.getInstance().get(Calendar.YEAR) &&Integer.parseInt(goodThru.substring(0,2))<Calendar.getInstance().get(Calendar.MONTH)+1){
 	    		 addFieldError("error.errorMsg", "GoodThru is not valid");
 	    		 System.out.println("hello233");
 	    	 }
@@ -130,7 +132,6 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 	    }else{
 	    	return false;
 	    }
-	    
 	}
 	
 	
@@ -142,17 +143,33 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		HttpServletResponse response = ServletActionContext.getResponse();
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		
-//		String email = (String) request.getSession().getAttribute("mb_email");
+		MemberVO memberVO = (MemberVO) request.getSession().getAttribute("login");
+//		String email = memberVO.getEmail();
+//		String name = memberVO.getName();
+		String name="haha";
+		if(name== null||name.length()==0){
+			name="Guest";
+		}
 		String email = "caca@gmail.com";
 		request.setAttribute("buttonClicked", buttonClicked);
-		JSONObject res = new JSONObject();
-		res.put("buttonClicked", buttonClicked);
-		
+		JSONArray res = new JSONArray();
+		JSONObject buttonClickedJson = new JSONObject();
+		buttonClickedJson.put("buttonClicked", buttonClicked);
+		res.put(buttonClickedJson);
 		if(buttonClicked.equalsIgnoreCase("AddCreditCard")){
 			CreditCardService cservice = (CreditCardService)context.getBean("creditCardService");
 			creditCardVO.setMb_email(email);
-			CreditCardVO result = cservice.setCard(creditCardVO);			
-			res.put("result", result);	
+			
+			CreditCardVO resultVO = cservice.setCard(creditCardVO);			
+			JSONObject result = new JSONObject();
+			String cardType = this.checkCreditCardType(resultVO.getCc_number());
+			result.put("cc_number", resultVO.getCc_number());
+			result.put("cc_goodthru()", resultVO.getCc_goodthru());
+			result.put("name", name);
+			result.put("cardType", cardType);
+			
+
+			res.put(result);	
 			
 		}else if(buttonClicked.equalsIgnoreCase("USEGiftCard")){
 			GiftCardService gservice = (GiftCardService)context.getBean("giftCardService");
@@ -162,7 +179,9 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 //				amount += oldAmount;
 				mservice.setAmount(email,amount);	//這個setamount沒有getamount無法得知之前的$$
 			}
-			res.put("result", amount);	
+			JSONObject result = new JSONObject();
+			result.put("result", amount);
+			res.put(result);	
 			
 		}else if(buttonClicked.equalsIgnoreCase("AddPromoCode")){
 			PromoService promoService = (PromoService)context.getBean("promoService");
@@ -173,22 +192,35 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 				if(result!=null){
 					resultBoolean = true;
 				}
-			}	
-			res.put("result", resultBoolean);
+			}
+			JSONObject result = new JSONObject();
+			result.put("result", resultBoolean);
+			res.put(result);
 		}else if(buttonClicked.equalsIgnoreCase("deleteCreditCard")){
 			CreditCardService cservice = (CreditCardService)context.getBean("creditCardService");
 			//removeCard should be able to take in email as param
-			Boolean result = cservice.removeCard(creditCardVO.getCc_number());
-			res.put("result", result);
-			res.put("creditCardVO.cc_number",creditCardVO.getCc_number());
+			Boolean resultBoolean = cservice.removeCard(creditCardVO.getCc_number());
+			JSONObject result = new JSONObject();
+			
+			
+			result.put("result", resultBoolean);
+			result.put("creditCardVO.cc_number",creditCardVO.getCc_number());
+			
+			res.put(result);
+			
+			
+			
 		}else if(buttonClicked.equalsIgnoreCase("deletePromotion")){
 			PromoCodeService promoCodeService = (PromoCodeService)context.getBean("promoCodeService");
-			Boolean result= false;
+			Boolean resultBoolean= false;
 //			cannot delete the promoCode with the information passed in (needs promoCode)
 //			result = promoCodeService.removePromotionCode(email, ));
-			res.put("reuslt",result);
+			JSONObject result = new JSONObject();
+			result.put("result", resultBoolean);
+			res.put(result);
 		}
-		
+
+
 		request.setAttribute("results", res);
 		
 		try {
@@ -202,4 +234,31 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		return "success";
 		
 	}
+	
+	private String checkCreditCardType(String cardNum){
+		String visa = "^4[0-9]{12}(?:[0-9]{3})?$";
+		String master = "^5[1-5][0-9]{14}$";
+		String americanExpress="^3[47][0-9]{13}$";
+		String dinersClub =" ^3(?:0[0-5]|[68][0-9])[0-9]{11}$";
+		String discover ="^6(?:011|5[0-9]{2})[0-9]{12}$";
+		String jcb="^(?:2131|1800|35\\d{3})\\d{11}$";
+
+	    if(Pattern.matches(visa,cardNum)){
+	    	return "Visa";
+	    }else if(Pattern.matches(master,cardNum)){
+	    	return "Master";
+	    }else if(Pattern.matches(americanExpress,cardNum)){
+	    	return "AmericanExpress";
+	    }else if(Pattern.matches(dinersClub,cardNum)){
+	    	return "DinersClub";
+	    }else if(Pattern.matches(discover,cardNum)){
+	    	return "Discover";
+	    }else if(Pattern.matches(jcb,cardNum)){
+	    	return "JCB";
+	    }
+		return "";
+	}
+	
+	
+	
 }

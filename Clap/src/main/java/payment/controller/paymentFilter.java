@@ -51,6 +51,7 @@ public class paymentFilter implements Filter {
 		// TODO Auto-generated method stub
 	}
 
+<<<<<<< HEAD
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpSession session = ((HttpServletRequest) request).getSession();
@@ -74,6 +75,7 @@ public class paymentFilter implements Filter {
 		// object.put("promoCodes", promoCodes);
 		// request.setAttribute("payment", object);
 		chain.doFilter(request, response);
+
 	}
 
 	/**
