@@ -91,5 +91,12 @@
 		<property name="creditCardService" ref="creditCardService"/>
 	</bean>	
 	
-	
+	<bean id="paymentManageAction" class="payment.controller.PaymentManageAction">
+		<property name="promoService" ref="promoService"/>
+		<property name="giftCardService" ref="giftCardService"/>
+		<property name="memberService" ref="memberService"/>
+		<property name="creditCardService" ref="creditCardService"/>
+		<property name="promoCodeService" ref="promoCodeService"/>
+
+	</bean>
 </beans>

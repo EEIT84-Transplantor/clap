@@ -48,6 +48,33 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 	private GiftCardVO giftCardVO;
 	private PromoCodeVO promoCodeVO;
 	private PromoVO promoVO;
+	
+	private PromoService promoService;
+	private GiftCardService giftCardService;
+	private CreditCardService creditCardService;
+	private MemberService memberService;
+	private PromoCodeService promoCodeService;
+	
+	public void setPromoCodeService(PromoCodeService promoCodeService) {
+		this.promoCodeService = promoCodeService;
+	}
+
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
+	}
+
+	public void setCreditCardService(CreditCardService creditCardService) {
+		this.creditCardService = creditCardService;
+	}
+
+	public void setPromoService(PromoService promoService) {
+		this.promoService = promoService;
+	}
+
+	public void setGiftCardService(GiftCardService giftCardService) {
+		this.giftCardService = giftCardService;
+	}
+
 	public PromoVO getPromoVO() {
 		return promoVO;
 	}
@@ -55,10 +82,6 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 	public void setPromoVO(PromoVO promoVO) {
 		this.promoVO = promoVO;
 	}
-
-
-	private PromoService promoService;
-	private GiftCardService giftCardService;
 	
 	public String getButtonClicked() {
 		return buttonClicked;
@@ -92,12 +115,12 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		this.promoCodeVO = promoCodeVO;
 	}
 	public void validate(){
-		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		PromoService promoService = (PromoService)context.getBean("promoService");
 		if(buttonClicked.equalsIgnoreCase("AddCreditCard")){
 	    	 System.out.println("button");
 	    	 if(creditCardVO.getCc_number()==null||!checkCreditCard(creditCardVO.getCc_number())){
 	    		 addFieldError("errorMsg", "Credit Card Number is not valid");
+		    	 System.out.println("33");
+
 	    	 }
 	    	 if(creditCardVO.getCc_cvv()==null||!Pattern.matches("\\d{3}", creditCardVO.getCc_cvv())){
 	    		 addFieldError("errorMsg", "CVV is not valid");
@@ -107,6 +130,8 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 	    	 if(goodThru==null||!Pattern.matches("^(0[1-9]|1[0-2])/([0-9]{2})$", goodThru)||Integer.parseInt(goodThru.substring(3))+2000<Calendar.getInstance().get(Calendar.YEAR)||
 	    			 Integer.parseInt(goodThru.substring(3))+2000==Calendar.getInstance().get(Calendar.YEAR) &&Integer.parseInt(goodThru.substring(0,2))<Calendar.getInstance().get(Calendar.MONTH)+1){
 	    		 addFieldError("errorMsg", "GoodThru is not valid");
+		    	 System.out.println("444");
+
 	    	 }
 	    	 System.out.println("1");
 	     }else if(buttonClicked.equalsIgnoreCase("AddPromoCode")){
@@ -145,7 +170,6 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		HttpServletRequest request = ServletActionContext.getRequest();
 		RequestDispatcher rd= request.getRequestDispatcher("/payment/manage.controller");
 		HttpServletResponse response = ServletActionContext.getResponse();
-		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		MemberVO memberVO = (MemberVO) request.getSession().getAttribute("login");
 //		String email = memberVO.getEmail();
 //		String name = memberVO.getName();
@@ -160,10 +184,9 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		buttonClickedJson.put("buttonClicked", buttonClicked);
 		res.put(buttonClickedJson);
 		if(buttonClicked.equalsIgnoreCase("AddCreditCard")){
-			CreditCardService cservice = (CreditCardService)context.getBean("creditCardService");
 			creditCardVO.setMb_email(email);
 			
-			CreditCardVO resultVO = cservice.setCard(creditCardVO);			
+			CreditCardVO resultVO = creditCardService.setCard(creditCardVO);			
 			JSONObject result = new JSONObject();
 			String cardType = this.checkCreditCardType(resultVO.getCc_number());
 			result.put("cc_number", resultVO.getCc_number());
@@ -175,20 +198,19 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 			res.put(result);	
 			
 		}else if(buttonClicked.equalsIgnoreCase("USEGiftCard")){
-			ApplicationContext context2 = WebApplicationContextUtils.getWebApplicationContext(ServletActionContext.getServletContext());
-			GiftCardService gservice = (GiftCardService)context2.getBean("giftCardService");
-			Double amount = gservice.useCard(giftCardVO.getGc_number(), giftCardVO.getGc_code());
+//			ApplicationContext context2 = WebApplicationContextUtils.getWebApplicationContext(ServletActionContext.getServletContext());
+//			GiftCardService giftCardService = (GiftCardService)context2.getBean("giftCardService");
+			Double amount = giftCardService.useCard(giftCardVO.getGc_number(), giftCardVO.getGc_code());
 			Boolean success1=false;
 			Double amountPrev = amount;
 			if(amount!=0.0){
-				MemberService mservice = (MemberService)context2.getBean("memberService");
 				Double a= 0.0;
-				if(mservice.getAmount(email)!=null){
-					a=mservice.getAmount(email);
+				if(memberService.getAmount(email)!=null){
+					a=memberService.getAmount(email);
 				}
 				amount+=a;
 
-				success1 =mservice.setAmount(email,amount);
+				success1 =memberService.setAmount(email,amount);
 			}
 			JSONObject success = new JSONObject();
 			success.put("success", success1);
@@ -201,11 +223,9 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 			res.put(total);	
 			
 		}else if(buttonClicked.equalsIgnoreCase("AddPromoCode")){
-			PromoService promoService = (PromoService)context.getBean("promoService");
 			Boolean resultBoolean=false;
 			JSONObject promoDetails = null;
 			if(promoService.isAvailable(promoCodeVO.getPc_code())){
-				PromoCodeService promoCodeService = (PromoCodeService)context.getBean("promoCodeService");
 				PromoCodeVO result = promoCodeService.setPromotionCode(email,promoCodeVO.getPc_code());
 				if(result!=null){
 					resultBoolean = true;
@@ -228,16 +248,14 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 			System.out.println(res.toString());
 			
 		}else if(buttonClicked.equalsIgnoreCase("deleteCreditCard")){
-			CreditCardService cservice = (CreditCardService)context.getBean("creditCardService");
 			//removeCard should be able to take in email as param
-			Boolean resultBoolean = cservice.removeCard(creditCardVO.getCc_number());
+			Boolean resultBoolean = creditCardService.removeCard(creditCardVO.getCc_number());
 			JSONObject result = new JSONObject();
 			
 			result.put("result", resultBoolean);
 			result.put("cc_number",creditCardVO.getCc_number());
 			res.put(result);
 		}else if(buttonClicked.equalsIgnoreCase("deletePromotion")){
-			PromoCodeService promoCodeService = (PromoCodeService)context.getBean("promoCodeService");
 			Boolean resultBoolean= false;
 			resultBoolean = promoCodeService.removePromotionCode(email, promoCodeVO.getPc_code());
 
@@ -256,7 +274,6 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		((ConfigurableApplicationContext)context).close();
 		return "success";
 		
 	}
