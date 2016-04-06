@@ -67,7 +67,7 @@
 				}).done(function(msg) {
 					
 					if (msg == "success") {
-						alert("done");
+						alert(msg);
 					} else {
 						
 					}
