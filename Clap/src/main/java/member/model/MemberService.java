@@ -90,13 +90,8 @@ public class MemberService {
 	}
 
 	// 如果有新圖片就改成新圖片、如果是null就不改
+	public boolean updateSetting(MemberVO memberVO, File photo, String contentType) {
 
-
-	public boolean updateSetting(MemberVO memberVO, byte[] newpassword, File photo, String contentType) {
-
-		if (newpassword.length != 0) {
-			memberVO.setPassword(newpassword);
-		}
 
 		if (photo != null) {
 			try {
@@ -152,7 +147,8 @@ public class MemberService {
 	}
 
 	public Double getAmount(String email) {
-		System.out.println(dao);
+		System.out.println("kkkk"+dao);
+		
 		return dao.selectByEmail(email).getAmount();
 	}
 

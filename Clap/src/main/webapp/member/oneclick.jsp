@@ -93,7 +93,7 @@
 			var oneClickYes = $("input[type='radio']").eq(0);
 			var oneClickNo = $("input[type='radio']").eq(1);
 			var submitBtn = $("form > button");
-			var ajaxUrl = "${pageContext.request.contextPath}" + "/TempTestServlet.servlet";
+			var ajaxUrl = "${pageContext.request.contextPath}" + "/setting/oneClickAction.action";
 
 			oneClickYes.on("change", function() {
 				$("table").fadeIn();
@@ -121,6 +121,7 @@
 					}
 				}).done(function(msg) {
 					//ajax success
+					JSON.parse(msg);
 					console.log("send ajax " + msg);
 					var formTitle = $("#tableTitle");
 					formTitle.html("One Click Setting");

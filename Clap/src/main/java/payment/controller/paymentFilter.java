@@ -29,23 +29,23 @@ import payment.model.PromoVO;
 /**
  * Servlet Filter implementation class paymentFilter
  */
-//@WebFilter("/payment/*")
+@WebFilter("/payment/*")
 public class paymentFilter implements Filter {
-	CreditCardService cservice;
-	MemberService mServic;
-	PromoCodeService promoCodeService;
-	
-	public void setCservice(CreditCardService cservice) {
-		this.cservice = cservice;
-	}
-
-	public void setmServic(MemberService mServic) {
-		this.mServic = mServic;
-	}
-
-	public void setPromoCodeService(PromoCodeService promoCodeService) {
-		this.promoCodeService = promoCodeService;
-	}
+//	CreditCardService cservice;
+//	MemberService mServic;
+//	PromoCodeService promoCodeService;
+//	
+//	public void setCservice(CreditCardService cservice) {
+//		this.cservice = cservice;
+//	}
+//
+//	public void setmServic(MemberService mServic) {
+//		this.mServic = mServic;
+//	}
+//
+//	public void setPromoCodeService(PromoCodeService promoCodeService) {
+//		this.promoCodeService = promoCodeService;
+//	}
 
 	public void destroy() {
 		// TODO Auto-generated method stub
