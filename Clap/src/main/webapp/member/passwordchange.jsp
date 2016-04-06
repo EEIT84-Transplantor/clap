@@ -21,9 +21,13 @@
 
 	<section id="wrap">
 		<div class="container">
+
+			<div class="center-block" style="width:40%;">
 			<form role="form" action="<c:url value="/setting/changePasswordAction"/>" method="POST" >
+
 				<div class="form-group">
 					<s:textfield class="form-control" name="email" type="email" label="email" readonly="true" value="poan@gmail.com" />
+
 				</div>
 				<div class="form-group">
 					<s:textfield class="form-control" name="password" type="password" label="password" errorPosition="bottom" value=""/>
@@ -36,6 +40,7 @@
 				</div>
 				<s:submit class="form-control" value="submit" />
 			</form>
+			</div>
 		</div>
 	</section>
 
@@ -47,5 +52,10 @@
 	<script src="../resource/js/jquery-1.12.2.min.js"></script>
 	<script src="../resource/js/bootstrap.min.js"></script>
 	<script src="../resource/js/loginsignup.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			});
+	</script>
 </body>
 </html>
