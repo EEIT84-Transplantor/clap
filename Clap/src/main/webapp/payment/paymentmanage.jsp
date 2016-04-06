@@ -35,13 +35,13 @@
 						<div class="tab-content" id="tabs">
 							<div class="tab-pane" id="credit_content">
 								<p>Registered credit cards</p>
-								<c:forEach begin="1" end="4" step="1" var="cards" varStatus="index">
+								<c:forEach var="card" varStatus="index" items="${cards}">
 									<div class="payment_detail_box">
 										<div class="creditCard">
 											<div class="credit_info">
-												<p class="cc_number">1111 2222 3333 4444</p>
-												<p class="cc_goodthru">12 / 22</p>
-												<p class="cc_name">YAlI HSIAO</p>
+												<p class="cc_number">${card.cc_number}</p>
+												<p class="cc_goodthru">${card.cc_goodthru}</p>
+												<p class="cc_name">xxx</p>
 												<img src="../resource/images/master.png" width="60" />
 											</div>
 											<div class="delete_card">
@@ -75,6 +75,7 @@
 							</div>
 							<div class="tab-pane" id="gift_content">
 								<p>Received gift cards</p>
+								<p>Total amount : ${amount}</p>
 								<div class="addCard">
 									<strong>USE GIFT CARD </strong>
 									<form id="useGiftForm">
@@ -96,14 +97,10 @@
 										</tr>
 									</thead>
 									<tbody>
+									<c:forEach var="promo" items="${promos}"> </c:forEach>
 										<tr>
-										    <td>2016/11/12</td>
-										    <td>caowp'rv8prb</td>
-											<td><a href="#" class="delete_promo"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
-										</tr>
-										<tr>
-										    <td>2016/05/11</td>
-											<td>caowp'rfhsrtjev8prb</td>
+										    <td>${promo.pm_expire}</td>
+										    <td>${promo.pm_tiltle}</td>
 											<td><a href="#" class="delete_promo"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
 										</tr>
 								</tbody>
@@ -169,7 +166,7 @@
 			 }
 		});
 		function sendPostRwquestPayment(url, data, action) {
-			var target = url + "/payment/managePayment.action?buttonClicked"+ action;
+			var target = url + "/payment/managePayment.action?buttonClicked="+ action;
 			request = new XMLHttpRequest();
 			request.onreadystatechange = doReadyStateChange;
 			request.open("POST", target, true);
