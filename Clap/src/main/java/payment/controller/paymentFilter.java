@@ -21,6 +21,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import member.model.MemberService;
+import member.model.MemberVO;
 import payment.model.CreditCardService;
 import payment.model.CreditCardVO;
 import payment.model.PromoCodeService;
@@ -57,20 +58,20 @@ public class paymentFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpSession session = ((HttpServletRequest)request).getSession();
 		if(session.getAttribute("login")==null){
-			session.setAttribute("uri", ((HttpServletRequest)request).getServletPath()+((HttpServletRequest)request).getRequestURI());
+			session.setAttribute("uri", ((HttpServletRequest)request).getRequestURI());
 			((HttpServletResponse)response).sendRedirect("/Clap/member/signuplogin.jsp");
 		}else{
 			String email = "caca@gmail.com";
-			
+			MemberVO mVo = (MemberVO)session.getAttribute("login");
 			ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 			CreditCardService cservice = (CreditCardService)context.getBean("creditCardService");
 			MemberService mService = (MemberService)context.getBean("memberService");
 			PromoCodeService promoCodeService = (PromoCodeService)context.getBean("promoCodeService");
-			
+			session.getAttribute("login");
 			List<CreditCardVO> payment = cservice.getCards(email);
-			
-			Double amount = 9.99;
-//			Double amount = mService.getAmount();
+			email = mVo.getEmail();
+//			Double amount = 9.99;
+			Double amount = mVo.getAmount();
 			
 			List<PromoVO>promoCodes=promoCodeService.getPromos(email);
 			request.setAttribute("cards",payment );
