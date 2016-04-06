@@ -31,15 +31,15 @@ select*from Member
 create table creditcard(
 mb_email varchar(320) FOREIGN KEY REFERENCES Member(mb_email),
 cc_number varchar(50) ,
-cc_goodrhru varchar(50) NOT NULL,
+cc_goodthru varchar(50) NOT NULL,
 cc_cvv varchar(10) NOT NULL,
 PRIMARY KEY (mb_email, cc_number)
 )
 
 
-insert into creditcard(mb_email,cc_number,cc_goodrhru,cc_cvv) values('caca@gmail.com','1111222233335555','12/30','444');
-insert into creditcard(mb_email,cc_number,cc_goodrhru,cc_cvv) values('caca@gmail.com','1111222233334444','12/22','555');
-insert into creditcard(mb_email,cc_number,cc_goodrhru,cc_cvv) values('lee@gmail.com','5555666677778888','01/18','666');
+insert into creditcard(mb_email,cc_number,cc_goodthru,cc_cvv) values('caca@gmail.com','1111222233335555','12/30','444');
+insert into creditcard(mb_email,cc_number,cc_goodthru,cc_cvv) values('caca@gmail.com','1111222233334444','12/22','555');
+insert into creditcard(mb_email,cc_number,cc_goodthru,cc_cvv) values('lee@gmail.com','5555666677778888','01/18','666');
 select*from creditcard
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table giftcard(
