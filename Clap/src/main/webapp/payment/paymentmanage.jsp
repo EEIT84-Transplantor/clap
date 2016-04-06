@@ -169,7 +169,7 @@
 			 }
 		});
 		function sendPostRwquestPayment(url, data, action) {
-			var target = url + "/payment/managePayment.action?buttonClicked"+ action;
+			var target = url + "/payment/managePayment.action?buttonClicked="+ action;
 			request = new XMLHttpRequest();
 			request.onreadystatechange = doReadyStateChange;
 			request.open("POST", target, true);
