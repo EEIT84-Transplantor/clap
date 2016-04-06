@@ -119,21 +119,16 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 	    	 System.out.println("button");
 	    	 if(creditCardVO.getCc_number()==null||!checkCreditCard(creditCardVO.getCc_number())){
 	    		 addFieldError("errorMsg", "Credit Card Number is not valid");
-		    	 System.out.println("33");
 
 	    	 }
 	    	 if(creditCardVO.getCc_cvv()==null||!Pattern.matches("\\d{3}", creditCardVO.getCc_cvv())){
 	    		 addFieldError("errorMsg", "CVV is not valid");
-	    		 System.out.println("hello2");
 	    	 }
 	    	 String goodThru = creditCardVO.getCc_goodthru();
 	    	 if(goodThru==null||!Pattern.matches("^(0[1-9]|1[0-2])/([0-9]{2})$", goodThru)||Integer.parseInt(goodThru.substring(3))+2000<Calendar.getInstance().get(Calendar.YEAR)||
 	    			 Integer.parseInt(goodThru.substring(3))+2000==Calendar.getInstance().get(Calendar.YEAR) &&Integer.parseInt(goodThru.substring(0,2))<Calendar.getInstance().get(Calendar.MONTH)+1){
 	    		 addFieldError("errorMsg", "GoodThru is not valid");
-		    	 System.out.println("444");
-
 	    	 }
-	    	 System.out.println("1");
 	     }else if(buttonClicked.equalsIgnoreCase("AddPromoCode")){
 	    	 if(promoCodeVO.getPc_code()==null||!promoService.isAvailable(promoCodeVO.getPc_code())){
 	    		 addFieldError("errorMsg", "Promo Code is not valid");
@@ -146,7 +141,6 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 	     }
 	}
 	private Boolean checkCreditCard(String cardNum){
-		Boolean result = true;
 		String visa = "^4[0-9]{12}(?:[0-9]{3})?$";
 		String master = "^5[1-5][0-9]{14}$";
 		String americanExpress="^3[47][0-9]{13}$";
@@ -198,8 +192,6 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 			res.put(result);	
 			
 		}else if(buttonClicked.equalsIgnoreCase("USEGiftCard")){
-//			ApplicationContext context2 = WebApplicationContextUtils.getWebApplicationContext(ServletActionContext.getServletContext());
-//			GiftCardService giftCardService = (GiftCardService)context2.getBean("giftCardService");
 			Double amount = giftCardService.useCard(giftCardVO.getGc_number(), giftCardVO.getGc_code());
 			Boolean success1=false;
 			Double amountPrev = amount;

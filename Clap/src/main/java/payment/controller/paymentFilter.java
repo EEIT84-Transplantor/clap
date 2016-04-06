@@ -7,11 +7,13 @@ import java.util.List;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
@@ -29,7 +31,7 @@ import payment.model.PromoVO;
 /**
  * Servlet Filter implementation class paymentFilter
  */
-@WebFilter("/payment/*")
+@WebFilter("/payment/paymentmanage.jsp")
 public class paymentFilter implements Filter {
 //	CreditCardService cservice;
 //	MemberService mServic;
@@ -54,9 +56,10 @@ public class paymentFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpSession session = ((HttpServletRequest)request).getSession();
-//		if(session.getAttribute("login")==null){
-//			session.put("uri", ((HttpServletRequest)request).getRequestURI());
-//		}else{
+		if(session.getAttribute("login")==null){
+			session.setAttribute("uri", ((HttpServletRequest)request).getServletPath()+((HttpServletRequest)request).getRequestURI());
+			((HttpServletResponse)response).sendRedirect("/Clap/member/signuplogin.jsp");
+		}else{
 			String email = "caca@gmail.com";
 			
 			ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -74,7 +77,7 @@ public class paymentFilter implements Filter {
 			request.setAttribute("amount", amount);
 			request.setAttribute("promos", promoCodes);
 			chain.doFilter(request, response);	
-//		}
+		}
 
 		// String email = (String) session.getAttribute("email");
 	

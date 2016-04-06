@@ -63,16 +63,19 @@
 		<!-- interceptors -->
 		<interceptors>
 			<interceptor name="loginInterceptor" class="interceptor.LoginInterceptor" />
-			<interceptor name="creditCardInterceptor" class="interceptor.CreditCardInterceptor" />
+<!-- 			<interceptor name="creditCardInterceptor" class="interceptor.CreditCardInterceptor" /> -->
+<!-- 			<interceptor name="paymentManageInterceptor" class="interceptor.PaymentManageInterceptor" /> -->
+
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
-			<interceptor-stack name="creditCardStack">
-				<interceptor-ref name="loginInterceptor" />
-				<interceptor-ref name="creditCardInterceptor" />
-				<interceptor-ref name="defaultStack" />
-			</interceptor-stack>
+			
+<!-- 			<interceptor-stack name="paymentManageStack"> -->
+<!-- 				<interceptor-ref name="loginInterceptor" /> -->
+<!-- 				<interceptor-ref name="paymentManageInterceptor" /> -->
+<!-- 				<interceptor-ref name="defaultStack" /> -->
+<!-- 			</interceptor-stack> -->
 		</interceptors>
 
 		<!-- global-results -->
@@ -86,14 +89,12 @@
 			<result name="success">/payment/paymentmanage.jsp</result>
 			<result name="input">/payment/paymentmanage.jsp</result>
 		</action>
-		<action name="*">
-			<interceptor-ref name="loginStack" />
-			<result>/payment/{1}.jsp</result>
-		</action>
-
+<!-- 		<action name="*"> -->
+<!-- 			<interceptor-ref name="loginStack" /> -->
+<!-- 			<result>/payment/{1}.jsp</result> -->
+<!-- 		</action> -->
 	</package>
 	<package name="member" namespace="/member" extends="struts-default">
-
 		<!-- interceptors -->
 		<interceptors>
 			<interceptor name="loginInterceptor" class="interceptor.LoginInterceptor" />
