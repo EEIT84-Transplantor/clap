@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page import="java.util.Map"%>
@@ -55,7 +54,7 @@
 									<div class="flipper">
 										<div class="front">
 											<div class="addCard_plus">
-												<span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span>ADD NEW
+												<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>ADD NEW
 											</div>
 										</div>
 										<div class="back">
@@ -97,12 +96,13 @@
 										</tr>
 									</thead>
 									<tbody>
-									<c:forEach var="promo" items="${promos}"> </c:forEach>
+									<c:forEach var="promo" items="${promos}"> 
 										<tr>
 										    <td>${promo.pm_expire}</td>
 										    <td>${promo.pm_tiltle}</td>
 											<td><a href="#" class="delete_promo"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
 										</tr>
+									</c:forEach>
 								</tbody>
 								</table>
 							</div>
@@ -177,7 +177,7 @@
 			if (request.readyState == 4) {
 				if (request.status == 200) {
 					
-                    //   processJSON(request.responseText);
+                    processJSON(request.responseText);
 					//   刪信用卡   $(this).parent().parent().hide(); 
 					//	   加信用卡       $(".payment_detail_box").last().after('<div class="payment_detail_box"><div class="creditCard"><div class="credit_info"><p class="cc_number">1111 2222 3333 4444</p><p class="cc_goodthru">12 / 22</p><p class="cc_name">YAlI HSIAO</p><img src="../resource/images/master.png" width="60" /></div><div class="delete_card"><span class="glyphicon glyphicon-remove"></span></div></div></div>');
 				} else {
@@ -188,16 +188,17 @@
 		
 		function processJSON(data) {
 			var json = JSON.parse(data);
-			var showTextNode = document.createTextNode(json[0].text);
-			var spanElement = document.getElementsByTagName("span")[0];
-			spanElement.appendChild(showTextNode);
-			if(json[0].hasMoreData) {
-				document.forms[0].id.value = json[1].id;
-				document.forms[0].name.value = json[1].name;
-				document.forms[0].price.value = json[1].price;
-				document.forms[0].make.value = json[1].make;
-				document.forms[0].expire.value = json[1].expire;
-			}
+			console.log("123"+json[0]);
+// 			var showTextNode = document.createTextNode(json[0].text);
+// 			var spanElement = document.getElementsByTagName("span")[0];
+// 			spanElement.appendChild(showTextNode);
+// 			if(json[0].hasMoreData) {
+// 				document.forms[0].id.value = json[1].id;
+// 				document.forms[0].name.value = json[1].name;
+// 				document.forms[0].price.value = json[1].price;
+// 				document.forms[0].make.value = json[1].make;
+// 				document.forms[0].expire.value = json[1].expire;
+// 			}
 		}
         
 	</script>
