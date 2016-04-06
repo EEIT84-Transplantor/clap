@@ -112,7 +112,6 @@ public class MemberService {
 		return true;
 
 	}
->>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 
 	// 如果oneclick是true就update所有資料、如果是false就只update onclick
 	public void setOneClick(String email, String phone, Integer id, String number, Boolean oneclick) {

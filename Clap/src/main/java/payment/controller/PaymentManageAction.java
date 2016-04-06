@@ -162,7 +162,7 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 			JSONObject result = new JSONObject();
 			String cardType = this.checkCreditCardType(resultVO.getCc_number());
 			result.put("cc_number", resultVO.getCc_number());
-			result.put("cc_goodthru()", resultVO.getCc_goodthru());
+			result.put("cc_goodthru", resultVO.getCc_goodthru());
 			result.put("name", name);
 			result.put("cardType", cardType);
 			
@@ -174,7 +174,7 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 			System.out.println(giftCardVO.getGc_number()+""+ giftCardVO.getGc_code());
 			Double amount = gservice.useCard(giftCardVO.getGc_number(), giftCardVO.getGc_code());
 			if(amount!=0.0){
-				MemberService mservice = (MemberService)context.getBean("memeberService");
+				MemberService mservice = (MemberService)context.getBean("memberService");
 				amount+=mservice.getAmount(email);
 //				amount += oldAmount;
 				mservice.setAmount(email,amount);	//這個setamount沒有getamount無法得知之前的$$
@@ -204,7 +204,7 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 			
 			
 			result.put("result", resultBoolean);
-			result.put("creditCardVO.cc_number",creditCardVO.getCc_number());
+			result.put("cc_number",creditCardVO.getCc_number());
 			
 			res.put(result);
 			
