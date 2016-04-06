@@ -61,7 +61,7 @@
 											<div class="addCard">
 												<strong>NEW CARD </strong>
 												<form id="addCreditForm">
-													Number :<input type="text" name="creditCardVO.cc_number" value="1111222233334447" /> <br /> 
+													Number :<input type="text" name="creditCardVO.cc_number" value="6011226470739645" /> <br /> 
 													Good thru :<input type="text" name="creditCardVO.cc_goodthru" value="11/22" /><br /> 
 													CVV :<input type="text" name="creditCardVO.cc_cvv" value="333" /> <br /> 
 													<input type="button" value="add" id="addCreditCard"><br />
@@ -157,7 +157,6 @@
 		
 		$('body').on('click','.delete_card',function() {
 			if (confirm("Do you want to delete this promotion code?") == true) {
-				alert("sss");
 				var data = "creditCardVO.cc_number="+$(this).prev().children(".cc_number").text();
 			 	var url = path;
 			    var action = "deleteCreditCard";
@@ -224,7 +223,7 @@
 		    case "deleteCreditCard":
 		    	 if(info.result){
 		    		var temp = info.cc_number;
-		    		 $("p:contains("+temp+")").parnet().parnet().css("background-color","red");
+		    		$("p:contains("+temp+")").parent().parent().parent().hide();
 		    	 }
 		        break;
 		    case "UseGiftCard":
