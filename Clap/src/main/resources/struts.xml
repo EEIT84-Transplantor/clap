@@ -37,9 +37,9 @@
 			<interceptor-ref name="loginStack" />
 		</action>
 		<action name="changeSettingAction" class="setting.controller.ChangeSettingAction">
-			<result name="plaintext">
-				<param name="contentType">text/plain</param>
-				<param name="inputName">result</param>
+			<result name="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
 			</result>
 		</action>
 		<action name="oneClickAction" class="setting.controller.OneClickAction">
