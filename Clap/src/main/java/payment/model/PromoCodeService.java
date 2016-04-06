@@ -16,11 +16,11 @@ public class PromoCodeService {
 	
 	}
 	
-	private PromoCodejdbcDAO dao;
+	private PromoCodeDAO dao;
 	
 	public PromoCodeService() {
 	}
-	public void setDao(PromoCodejdbcDAO dao) {
+	public void setDao(PromoCodeDAO dao) {
 		this.dao = dao;
 	}
 	public PromoCodeVO setPromotionCode(String mb_email, String pc_code){
