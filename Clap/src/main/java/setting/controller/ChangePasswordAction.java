@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.conversion.annotations.TypeConversion;
+import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 
 import member.model.MemberService;
 import member.model.MemberVO;
@@ -20,7 +22,6 @@ public class ChangePasswordAction extends ActionSupport {
 		return email;
 	}
 
-	@TypeConversion(converter = "converter.BytearrayConverter")
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -47,6 +48,7 @@ public class ChangePasswordAction extends ActionSupport {
 		return confirm;
 	}
 
+	@TypeConversion(converter = "converter.BytearrayConverter")
 	public void setConfirm(byte[] confirm) {
 		this.confirm = confirm;
 	}
@@ -57,12 +59,19 @@ public class ChangePasswordAction extends ActionSupport {
 
 	@Override
 	public void validate() {
+		
+		if (password.length==0) {
+			super.addFieldError("password", "password is null");			
+		}
+		if (newpassword.length==0) {
+			super.addFieldError("newpassword", "newpassword is null");			
+		}
+		
 		// 舊密碼是否正確、新密碼的驗證碼是否正確
 		if (password.length != 0) {
 			if (memberService.login(email, password) == null) {
 				super.addFieldError("password", super.getText("password.notmatch"));
 			} else if (!Arrays.equals(newpassword, confirm)) {
-				System.out.println("equals");
 				super.addFieldError("confirm", super.getText("confirm.notmatch"));
 			}
 		} else if (newpassword.length != 0) {
@@ -74,7 +83,7 @@ public class ChangePasswordAction extends ActionSupport {
 	public String execute() throws Exception {
 		MemberVO memberVO = memberService.findByEmail(email);
 		memberVO.setPassword(newpassword);
-		memberService.updateSetting(memberVO, null, null);
+		memberService.changePassword(email, newpassword);
 		return SUCCESS;
 	}
 
