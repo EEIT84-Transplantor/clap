@@ -66,11 +66,9 @@
 					data : $("form").serialize()
 				}).done(function(msg) {
 					
-					if (msg == "success") {
+					
 						alert(msg);
-					} else {
-						
-					}
+					
 				});
 			});
 
