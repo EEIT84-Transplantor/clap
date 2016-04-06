@@ -56,8 +56,6 @@
 			var contextPath = "${pageContext.request.contextPath}";
 			var ajaxurl = contextPath + "/setting/changeSettingAction.action";
 
-
-
 			//onclick submit button
 			$("form button").on("click", function() {
 				$.ajax({
@@ -65,10 +63,7 @@
 					url : ajaxurl,
 					data : $("form").serialize()
 				}).done(function(msg) {
-					
-					
-						alert(msg);
-					
+					alert(msg);
 				});
 			});
 
