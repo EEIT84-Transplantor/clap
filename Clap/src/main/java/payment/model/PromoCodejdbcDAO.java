@@ -57,9 +57,10 @@ public class PromoCodejdbcDAO implements PromoCodeDAO {
 			PromoCodeVO temp = null;
 			while(rs.next()){
 				temp = new PromoCodeVO();
-				temp.setMb_email(rs.getString("mb_email"));
-				temp.setPc_code(rs.getString("pc_code"));
-				
+				PromoCode promoCodetemp = new PromoCode();
+				promoCodetemp.setMb_email(rs.getString("mb_email"));
+				promoCodetemp.setPc_code(rs.getString("pc_code"));
+				temp.setPromoCode(promoCodetemp);
 				result.add(temp);
 			}
 		} catch (SQLException e) {
@@ -109,8 +110,10 @@ public class PromoCodejdbcDAO implements PromoCodeDAO {
 			PromoCodeVO temp = null;
 			while(rs.next()){
 				temp = new PromoCodeVO();
-				temp.setMb_email(rs.getString("mb_email"));
-				temp.setPc_code(rs.getString("pc_code"));
+				PromoCode promoCodetemp = new PromoCode();
+				promoCodetemp.setMb_email(rs.getString("mb_email"));
+				promoCodetemp.setPc_code(rs.getString("pc_code"));
+				temp.setPromoCode(promoCodetemp);
 				
 				result.add(temp);
 			}
@@ -198,8 +201,10 @@ public class PromoCodejdbcDAO implements PromoCodeDAO {
 			System.out.println("ss");
 			if(ps.executeUpdate() == 1){
 				result = new PromoCodeVO();
-				result.setMb_email(mb_email);
-				result.setPc_code(pc_code);
+				PromoCode promoCodetemp = new PromoCode();
+				promoCodetemp.setMb_email(mb_email);
+				promoCodetemp.setPc_code(pc_code);
+				result.setPromoCode(promoCodetemp);
 			}
 			
 		} catch (SQLException e) {
