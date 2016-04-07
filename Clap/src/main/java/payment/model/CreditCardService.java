@@ -47,8 +47,8 @@ public class CreditCardService {
 		if (creditCardVO != null) {
 			String cc_cvv = creditCardVO.getCc_cvv();
 			String cc_goodrhru = creditCardVO.getCc_goodthru();
-			String cc_number = creditCardVO.getCc_number();
-			String mb_email = creditCardVO.getMb_email();
+			String cc_number = creditCardVO.getCreditCard().getCc_number();
+			String mb_email = creditCardVO.getCreditCard().getMb_email();
 
 			if (cc_cvv == null || cc_cvv.length() == 0) {
 				return result;
@@ -84,7 +84,7 @@ public class CreditCardService {
 	public boolean isAvailable(CreditCardVO creditCardVO) {
 		boolean result = false;
 		if (creditCardVO != null) {
-			String cc_number = creditCardVO.getCc_number();
+			String cc_number = creditCardVO.getCreditCard().getCc_number();
 			if (cc_number != null && cc_number.length() != 0) {
 				CreditCardVO temp = dao.selectByCcNumber(cc_number);
 				Calendar cal = null;
@@ -108,7 +108,7 @@ public class CreditCardService {
 					// 新卡
 
 					// 卡號
-					if (temp.getCc_number() == null || temp.getCc_number().length() != 16) {
+					if (temp.getCreditCard().getCc_number() == null || temp.getCreditCard().getCc_number().length() != 16) {
 						return result;
 					}
 
@@ -136,10 +136,11 @@ public class CreditCardService {
 		return result;
 	}
 
-	//memberVO支付amount元
-//	public boolean payBill(MemberVO memberVO, Double amount) {
-//
-//	}
+//	memberVO支付amount元
+	public boolean payBill(MemberVO memberVO, Double amount) {
+		return false;
+	
+	}
 
 	//由卡號取得卡片VO
 	public CreditCardVO getCard(String number) {

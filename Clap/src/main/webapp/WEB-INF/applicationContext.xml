@@ -98,6 +98,5 @@
 		<property name="memberService" ref="memberService"/>
 		<property name="creditCardService" ref="creditCardService"/>
 		<property name="promoCodeService" ref="promoCodeService"/>
-
 	</bean>
 </beans>

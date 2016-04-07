@@ -42,8 +42,14 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		if ((memberVO=memberService.login(email, password.getBytes()))!=null) {
-			request.getSession().setAttribute("login",memberVO);	
-			response.sendRedirect("../index.jsp");
+			request.getSession().setAttribute("login",memberVO);
+			String uri = (String) request.getSession().getAttribute("uri");
+			if(uri==null){
+				response.sendRedirect("../index.jsp");	
+			}else{
+				response.sendRedirect(uri);
+			}
+			
 		}else {
 			error.put("password", "password is wrong");
 			request.getRequestDispatcher("signuplogin.jsp").forward(request, response);			

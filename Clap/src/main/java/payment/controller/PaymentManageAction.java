@@ -32,6 +32,7 @@ import com.opensymphony.xwork2.ValidationAware;
 
 import member.model.MemberService;
 import member.model.MemberVO;
+import payment.model.CreditCard;
 import payment.model.CreditCardDAO;
 import payment.model.CreditCardService;
 import payment.model.CreditCardVO;
@@ -44,6 +45,7 @@ import payment.model.PromoVO;
 
 public class PaymentManageAction extends ActionSupport implements ValidationAware {
 	private String buttonClicked;
+	private CreditCard creditCard;
 	private CreditCardVO creditCardVO;
 	private GiftCardVO giftCardVO;
 	private PromoCodeVO promoCodeVO;
@@ -55,6 +57,16 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 	private MemberService memberService;
 	private PromoCodeService promoCodeService;
 	
+
+
+	public CreditCard getCreditCard() {
+		return creditCard;
+	}
+
+	public void setCreditCard(CreditCard creditCard) {
+		this.creditCard = creditCard;
+	}
+
 	public void setPromoCodeService(PromoCodeService promoCodeService) {
 		this.promoCodeService = promoCodeService;
 	}
@@ -114,39 +126,33 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 	public void setPromoCodeVO(PromoCodeVO promoCodeVO) {
 		this.promoCodeVO = promoCodeVO;
 	}
-	public void validate(){
-		if(buttonClicked.equalsIgnoreCase("AddCreditCard")){
-	    	 System.out.println("button");
-	    	 if(creditCardVO.getCc_number()==null||!checkCreditCard(creditCardVO.getCc_number())){
-	    		 addFieldError("errorMsg", "Credit Card Number is not valid");
-		    	 System.out.println("33");
-
-	    	 }
-	    	 if(creditCardVO.getCc_cvv()==null||!Pattern.matches("\\d{3}", creditCardVO.getCc_cvv())){
-	    		 addFieldError("errorMsg", "CVV is not valid");
-	    		 System.out.println("hello2");
-	    	 }
-	    	 String goodThru = creditCardVO.getCc_goodthru();
-	    	 if(goodThru==null||!Pattern.matches("^(0[1-9]|1[0-2])/([0-9]{2})$", goodThru)||Integer.parseInt(goodThru.substring(3))+2000<Calendar.getInstance().get(Calendar.YEAR)||
-	    			 Integer.parseInt(goodThru.substring(3))+2000==Calendar.getInstance().get(Calendar.YEAR) &&Integer.parseInt(goodThru.substring(0,2))<Calendar.getInstance().get(Calendar.MONTH)+1){
-	    		 addFieldError("errorMsg", "GoodThru is not valid");
-		    	 System.out.println("444");
-
-	    	 }
-	    	 System.out.println("1");
-	     }else if(buttonClicked.equalsIgnoreCase("AddPromoCode")){
-	    	 if(promoCodeVO.getPc_code()==null||!promoService.isAvailable(promoCodeVO.getPc_code())){
-	    		 addFieldError("errorMsg", "Promo Code is not valid");
-	    	 }
-	     }else if(buttonClicked.equalsIgnoreCase("UseGiftCard")){
-	    	 System.out.println("4");
-	    	 if(giftCardVO.getGc_number()==null||giftCardVO.getGc_code()==null){
-	    		 addFieldError("errorMsg", "Gift Card is not valid");
-	    	 }
-	     }
-	}
+//	public void validate(){
+//		if(buttonClicked.equalsIgnoreCase("AddCreditCard")){
+//	    	 System.out.println("button");
+//	    	 if(creditCardVO.getCreditCard().getCc_number()==null||!checkCreditCard(creditCardVO.getCreditCard().getCc_number())){
+//	    		 addFieldError("errorMsg", "Credit Card Number is not valid");
+//
+//	    	 }
+//	    	 if(creditCardVO.getCc_cvv()==null||!Pattern.matches("\\d{3}", creditCardVO.getCc_cvv())){
+//	    		 addFieldError("errorMsg", "CVV is not valid");
+//	    	 }
+//	    	 String goodThru = creditCardVO.getCc_goodthru();
+//	    	 if(goodThru==null||!Pattern.matches("^(0[1-9]|1[0-2])/([0-9]{2})$", goodThru)||Integer.parseInt(goodThru.substring(3))+2000<Calendar.getInstance().get(Calendar.YEAR)||
+//	    			 Integer.parseInt(goodThru.substring(3))+2000==Calendar.getInstance().get(Calendar.YEAR) &&Integer.parseInt(goodThru.substring(0,2))<Calendar.getInstance().get(Calendar.MONTH)+1){
+//	    		 addFieldError("errorMsg", "GoodThru is not valid");
+//	    	 }
+//	     }else if(buttonClicked.equalsIgnoreCase("AddPromoCode")){
+//	    	 if(promoCodeVO.getPc_code()==null||!promoService.isAvailable(promoCodeVO.getPc_code())){
+//	    		 addFieldError("errorMsg", "Promo Code is not valid");
+//	    	 }
+//	     }else if(buttonClicked.equalsIgnoreCase("UseGiftCard")){
+//	    	 System.out.println("4");
+//	    	 if(giftCardVO.getGc_number()==null||giftCardVO.getGc_code()==null){
+//	    		 addFieldError("errorMsg", "Gift Card is not valid");
+//	    	 }
+//	     }
+//	}
 	private Boolean checkCreditCard(String cardNum){
-		Boolean result = true;
 		String visa = "^4[0-9]{12}(?:[0-9]{3})?$";
 		String master = "^5[1-5][0-9]{14}$";
 		String americanExpress="^3[47][0-9]{13}$";
@@ -183,13 +189,18 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		JSONObject buttonClickedJson = new JSONObject();
 		buttonClickedJson.put("buttonClicked", buttonClicked);
 		res.put(buttonClickedJson);
+		System.out.println("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ");
 		if(buttonClicked.equalsIgnoreCase("AddCreditCard")){
-			creditCardVO.setMb_email(email);
+			System.out.println("$$$$$$$$$$$");
+//			creditCard.setMb_email(email);
+//			creditCardVO.setCreditCard(creditCard);
+			System.out.println("################################");
+			
 			
 			CreditCardVO resultVO = creditCardService.setCard(creditCardVO);			
 			JSONObject result = new JSONObject();
-			String cardType = this.checkCreditCardType(resultVO.getCc_number());
-			result.put("cc_number", resultVO.getCc_number());
+			String cardType = this.checkCreditCardType(resultVO.getCreditCard().getCc_number());
+			result.put("cc_number", resultVO.getCreditCard().getCc_number());
 			result.put("cc_goodthru", resultVO.getCc_goodthru());
 			result.put("name", name);
 			result.put("cardType", cardType);
@@ -198,8 +209,6 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 			res.put(result);	
 			
 		}else if(buttonClicked.equalsIgnoreCase("USEGiftCard")){
-//			ApplicationContext context2 = WebApplicationContextUtils.getWebApplicationContext(ServletActionContext.getServletContext());
-//			GiftCardService giftCardService = (GiftCardService)context2.getBean("giftCardService");
 			Double amount = giftCardService.useCard(giftCardVO.getGc_number(), giftCardVO.getGc_code());
 			Boolean success1=false;
 			Double amountPrev = amount;
@@ -249,11 +258,11 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 			
 		}else if(buttonClicked.equalsIgnoreCase("deleteCreditCard")){
 			//removeCard should be able to take in email as param
-			Boolean resultBoolean = creditCardService.removeCard(creditCardVO.getCc_number());
+			Boolean resultBoolean = creditCardService.removeCard(creditCardVO.getCreditCard().getCc_number());
 			JSONObject result = new JSONObject();
 			
 			result.put("result", resultBoolean);
-			result.put("cc_number",creditCardVO.getCc_number());
+			result.put("cc_number",creditCardVO.getCreditCard().getCc_number());
 			res.put(result);
 		}else if(buttonClicked.equalsIgnoreCase("deletePromotion")){
 			Boolean resultBoolean= false;

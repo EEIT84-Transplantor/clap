@@ -30,7 +30,8 @@ public class PaymentManageInterceptor extends AbstractInterceptor {
          String uri = request.getRequestURI();
 
          if(mVo == null){
-        	 session.put("uri", uri);
+        	 session.put("uri", request.getRequestURI());
+        	 System.out.println("paymentManage Interceptor");
         	 return "login";
          }else{
         	String email=mVo.getEmail();
