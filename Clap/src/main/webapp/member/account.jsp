@@ -27,6 +27,8 @@
 				<button type="button" class="btn btn-primary btn-lg ">Payment Manage</button>
 				<button type="button" class="btn btn-default btn-lg ">Change Password</button>
 				<button type="button" class="btn btn-primary btn-lg ">Change Setting</button>
+				<button type="button" class="btn btn-default btn-lg ">Set Oneclick Shopping</button>
+				<button type="button" class="btn btn-primary btn-lg ">Activate VIP</button>
 				
 				
 			</form>
@@ -49,6 +51,8 @@
 			var paymentmanageUrl = contextPath + "/payment/paymentmanage.action";
 			var passwordchangeUrl = contextPath + "/member/passwordchange.action";
 			var changesettingUrl = contextPath + "/member/changesetting.action";
+			var oneclickUrl = contextPath + "/member/oneclick.action";
+			var vipUrl = contextPath + "/member/vip.action";
 			
 			
 			//onclick paymentmanage button
@@ -62,6 +66,14 @@
 			//onclick changesetting button
 			$("form button").eq(2).on("click", function() {
 				location.href = changesettingUrl;
+			});
+			//onclick Oneclick button
+			$("form button").eq(3).on("click", function() {
+				location.href = oneclickUrl;
+			});
+			//onclick VIP button
+			$("form button").eq(4).on("click", function() {
+				location.href = vipUrl;
 			});
 		});
 	</script>

@@ -121,7 +121,7 @@
 
 		<!-- actions -->
 		<action name="account" class="member.controller.AccountAction">
-			<interceptor-ref name="memberStack" />
+			<interceptor-ref name="loginStack" />
 			<result name="success">/member/account.jsp</result>
 			<result name="input">/member/account.jsp</result>
 		</action>

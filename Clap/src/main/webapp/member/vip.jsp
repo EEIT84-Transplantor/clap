@@ -25,7 +25,7 @@
 			<form class="form-horizontal" role="form" method="POST" style="border:solid white;">
 				<div class="form-group">
 					<label class="col-md-2 control-label" for="expire">Your VIP valid until:</label> 
-					<div class="col-md-10"><p class="form-control-static" name="memberVO.expire" >2016/02/29${memberVO.expire }</p></div>
+					<div class="col-md-10"><p class="form-control-static" name="memberVO.expire" >${login.expire}</p></div>
 				</div>
 				<div class="form-group">
 					<label class="col-md-2 control-label" for="autorenew">Activate auto renewal?</label> 
