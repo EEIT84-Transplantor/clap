@@ -38,7 +38,7 @@
 									<div class="payment_detail_box">
 										<div class="creditCard">
 											<div class="credit_info">
-												<p class="cc_number">${card.cc_number}</p>
+												<p class="cc_number">${card.creditCard.cc_number}</p>
 												<p class="cc_goodthru">${card.cc_goodthru}</p>
 												<p class="cc_name">xxx</p>
 												<img src="../resource/images/master.png" width="60" />
@@ -61,7 +61,7 @@
 											<div class="addCard">
 												<strong>NEW CARD </strong>
 												<form id="addCreditForm">
-													Number :<input type="text" name="creditCardVO.cc_number" value="6011226470739645" /> <br /> 
+													Number :<input type="text" name="creditCardVO.creditCard.cc_number" value="6011226470739645" /> <br /> 
 													Good thru :<input type="text" name="creditCardVO.cc_goodthru" value="11/22" /><br /> 
 													CVV :<input type="text" name="creditCardVO.cc_cvv" value="333" /> <br /> 
 													<input type="button" value="add" id="addCreditCard"><br />
@@ -205,6 +205,7 @@
 		function doReadyStateChange() {
 			if (request.readyState == 4) {
 				if (request.status == 200) {
+					
                     processJSON(request.responseText);
 				} else {
 					console.log("Error Code:" + request.status + ", "+ request.statusText);
@@ -218,6 +219,7 @@
 		    var info = json[1];
 		    switch(key) {
 		    case "AddCreditCard":
+		    	  alert(info);
 		    	  $(".payment_detail_box").last().after('<div class="payment_detail_box"><div class="creditCard"><div class="credit_info"><p class="cc_number">'+info.cc_number+'</p><p class="cc_goodthru">'+info.cc_goodthru+'</p><p class="cc_name">'+info.name+'</p><img src="../resource/images/master.png" width="60" /></div><div class="delete_card"><span class="glyphicon glyphicon-remove"></span></div></div></div>');
 		    	  break;
 		    case "deleteCreditCard":
