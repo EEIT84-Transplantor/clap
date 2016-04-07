@@ -149,7 +149,7 @@
 		</interceptors>
 		
 		<!-- action -->
-		<action name="test" class="test.TestAction">
+		<action name="testAction" class="test.TestAction">
 			<result name="success">/test/output.jsp</result>
 			<interceptor-ref name="testStack"/>
 		</action>
