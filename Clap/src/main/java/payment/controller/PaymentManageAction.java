@@ -217,30 +217,29 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		}else if(buttonClicked.equalsIgnoreCase("AddPromoCode")){
 			Boolean resultBoolean=false;
 			JSONObject promoDetails = null;
-			//我住
-//			if(promoService.isAvailable(promoCodeVO.getPc_code())){
-//				PromoCodeVO result = promoCodeService.setPromotionCode(email,promoCodeVO.getPc_code());
-//				if(result!=null){
-//					resultBoolean = true;
-//					PromoVO promoDetailVO = promoService.getPromoDetail(promoCodeVO.getPc_code());
-//					promoDetails=new JSONObject();
-//					System.out.println(promoDetailVO);
-//					promoDetails.put("pm_title", promoDetailVO.getPm_tiltle());
-//					promoDetails.put("pm_expire", promoDetailVO.getPm_expire());
-//					promoDetails.put("pm_code", promoDetailVO.getPm_code());
-//					promoDetails.put("pd_category", promoDetailVO.getPd_category());
-//					promoDetails.put("pm_discount", promoDetailVO.getPm_discount());
-//				}
-//			}
+			if(promoService.isAvailable(promoCodeVO.getPromoCode().getPromoVO().getPm_code())){
+				PromoCodeVO result = promoCodeService.setPromotionCode(email,promoCodeVO.getPromoCode().getPromoVO().getPm_code());
+				if(result!=null){
+					resultBoolean = true;
+					PromoVO promoDetailVO = promoService.getPromoDetail(promoCodeVO.getPromoCode().getPromoVO().getPm_code());
+					promoDetails=new JSONObject();
+					System.out.println(promoDetailVO);
+					promoDetails.put("pm_title", promoDetailVO.getPm_tiltle());
+					promoDetails.put("pm_expire", promoDetailVO.getPm_expire());
+					promoDetails.put("pm_code", promoDetailVO.getPm_code());
+					promoDetails.put("pd_category", promoDetailVO.getPd_category());
+					promoDetails.put("pm_discount", promoDetailVO.getPm_discount());
+				}
+			}
 			
-//			JSONObject result = new JSONObject();
-//			result.put("result", resultBoolean);
-//			res.put(result);
-//			if(promoDetails!=null){
-//				res.put(promoDetails);
-//			}
-//			System.out.println(res.toString());
-			//我住
+			JSONObject result = new JSONObject();
+			result.put("result", resultBoolean);
+			res.put(result);
+			if(promoDetails!=null){
+				res.put(promoDetails);
+			}
+			System.out.println(res.toString());
+		
 		}else if(buttonClicked.equalsIgnoreCase("deleteCreditCard")){
 			//removeCard should be able to take in email as param
 			Boolean resultBoolean = creditCardService.removeCard(creditCardVO.getCreditCard().getCc_number(),email);

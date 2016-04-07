@@ -110,7 +110,7 @@
 									<div class="addCard">
 									<strong>Add Promotion code</strong>
 									<form id="AddPromoForm">
-										Code :<input type="text" name="promoCodeVO.pc_code" value="333" /> <br /> 
+										Code :<input type="text" name="promoCodeVO.promoCode.promoVO.pm_code" value="333" /> <br /> 
 										<input type="button" value="ADD" id="AddPromoCode"><br />
 									</form>
 								</div>
@@ -176,7 +176,7 @@
 		//Promotion
 		$(".delete_promo").click(function() {
 			 if (confirm("Do you want to delete this promotion code?") == true) {
-				var data = "promoCodeVO.pc_code="+$(this).parent().parent().children(':first-child').text();
+				var data = "promoCodeVO.promoCode.promoVO.pm_code="+$(this).parent().parent().children(':first-child').text();
 				var url = path;
 				var action = "deletePromotion";
 	 			sendPostRwquestPayment(url,data,action);
@@ -185,7 +185,7 @@
 		});
 
 		$("#AddPromoCode").click(function() {
-				var data = "promoCodeVO.pc_code="+$(this).prev().prev().val();
+				var data = "promoCodeVO.promoCode.promoVO.pm_code="+$(this).prev().prev().val();
 				var url = path;
 				var action = "AddPromoCode";
 	 			sendPostRwquestPayment(url,data,action);
@@ -219,7 +219,7 @@
 		    var info = json[1];
 		    switch(key) {
 		    case "AddCreditCard":
-		    	  $(".payment_detail_box").last().after('<div class="payment_detail_box"><div class="creditCard"><div class="credit_info"><p class="cc_number">'+info.cc_number+'</p><p class="cc_goodthru">'+info.cc_goodthru+'</p><p class="cc_name">'+info.name+'</p><img src="../resource/images/master.png" width="60" /></div><div class="delete_card"><span class="glyphicon glyphicon-remove"></span></div></div></div>');
+		    	  $(".payment_detail_box").last().after('<div class="payment_detail_box"><div class="creditCard"><div class="credit_info"><p class="cc_number">'+info.cc_number+'</p><p class="cc_goodthru">'+info.cc_goodthru+'</p><p class="cc_name">'+info.name+'</p><img src="../resource/images/'+cardType+'.png" width="60" /></div><div class="delete_card"><span class="glyphicon glyphicon-remove"></span></div></div></div>');
 		    	  break;
 		    case "deleteCreditCard":
 		    	 if(info.result){
@@ -228,15 +228,17 @@
 		    	 }
 		        break;
 		    case "UseGiftCard": 
-		    	 if(info.result!=0){ //[{"buttonClicked":"UseGiftCard"},{"success":true},{"result":500},{"total":1500}]
+		    	 if(info.result!=0){ 
 		    		 $("#totalAmount").text("Total amount "+info.total);
 		    	 }else{
 		    		 $("#totalAmount").text("Can't use this card");
 		    	 }
 		        break;
 		    case "deletePromotion":
+		    	alert("移除優惠券");
 		        break;
 		    case "AddPromoCode":
+		    	alert("加入優惠券");
 		        break;
 		    }
 		}
