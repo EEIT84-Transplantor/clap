@@ -16,8 +16,6 @@ public class CreditCardVO {
 	@Column(name="cc_cvv")
 	private String cc_cvv;
 	
-	
-	
 	public CreditCard getCreditCard() {
 		return creditCard;
 	}
