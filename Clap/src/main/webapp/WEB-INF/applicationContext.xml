@@ -97,7 +97,7 @@
 		<property name="giftCardService" ref="giftCardService"/>
 		<property name="memberService" ref="memberService"/>
 		<property name="creditCardService" ref="creditCardService"/>
-		<property name="promoCodeService" ref="promoCodeService"/>
+<!-- 		<property name="promoCodeService" ref="promoCodeService"/> -->
 
 	</bean>
 </beans>
