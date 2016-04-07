@@ -153,6 +153,7 @@
 			<result name="success">/test/output.jsp</result>
 			<interceptor-ref name="testStack"/>
 		</action>
+		
 	</package>
 
 </struts>
