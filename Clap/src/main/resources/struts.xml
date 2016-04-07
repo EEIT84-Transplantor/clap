@@ -14,6 +14,11 @@
 		<interceptors>
 			<interceptor name="loginInterceptor" class="interceptor.LoginInterceptor" />
 			<interceptor name="creditCardInterceptor" class="interceptor.CreditCardInterceptor" />
+			<interceptor name="testInterceptor" class="interceptor.TestInterceptor" />
+			<interceptor-stack name="testStack">
+				<interceptor-ref name="testInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="defaultStack" />
@@ -35,6 +40,7 @@
 		<action name="changeSettingAction" class="setting.controller.ChangeSettingAction">
 			<result name="success">/member/changesetting.jsp</result>
 			<result name="input">/member/changesetting.jsp</result>
+			<interceptor-ref name="loginInterceptor"></interceptor-ref>
 		</action>
 		<action name="changePasswordAction" class="setting.controller.ChangePasswordAction">
 			<result name="success">/member/passwordchange.jsp</result>
@@ -57,25 +63,26 @@
 		</action>
 
 	</package>
-
 	<package name="payment" namespace="/payment" extends="struts-default">
 
 		<!-- interceptors -->
 		<interceptors>
 			<interceptor name="loginInterceptor" class="interceptor.LoginInterceptor" />
-<!-- 			<interceptor name="creditCardInterceptor" class="interceptor.CreditCardInterceptor" /> -->
-<!-- 			<interceptor name="paymentManageInterceptor" class="interceptor.PaymentManageInterceptor" /> -->
+			<!-- <interceptor name="creditCardInterceptor" class="interceptor.CreditCardInterceptor" 
+				/> -->
+			<!-- <interceptor name="paymentManageInterceptor" class="interceptor.PaymentManageInterceptor" 
+				/> -->
 
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
-			
-<!-- 			<interceptor-stack name="paymentManageStack"> -->
-<!-- 				<interceptor-ref name="loginInterceptor" /> -->
-<!-- 				<interceptor-ref name="paymentManageInterceptor" /> -->
-<!-- 				<interceptor-ref name="defaultStack" /> -->
-<!-- 			</interceptor-stack> -->
+
+			<!-- <interceptor-stack name="paymentManageStack"> -->
+			<!-- <interceptor-ref name="loginInterceptor" /> -->
+			<!-- <interceptor-ref name="paymentManageInterceptor" /> -->
+			<!-- <interceptor-ref name="defaultStack" /> -->
+			<!-- </interceptor-stack> -->
 		</interceptors>
 
 		<!-- global-results -->
@@ -89,12 +96,13 @@
 			<result name="success">/payment/paymentmanage.jsp</result>
 			<result name="input">/payment/paymentmanage.jsp</result>
 		</action>
-<!-- 		<action name="*"> -->
-<!-- 			<interceptor-ref name="loginStack" /> -->
-<!-- 			<result>/payment/{1}.jsp</result> -->
-<!-- 		</action> -->
+		<!-- <action name="*"> -->
+		<!-- <interceptor-ref name="loginStack" /> -->
+		<!-- <result>/payment/{1}.jsp</result> -->
+		<!-- </action> -->
 	</package>
 	<package name="member" namespace="/member" extends="struts-default">
+
 		<!-- interceptors -->
 		<interceptors>
 			<interceptor name="loginInterceptor" class="interceptor.LoginInterceptor" />
@@ -126,9 +134,27 @@
 			<interceptor-ref name="loginStack" />
 			<result>/member/{1}.jsp</result>
 		</action>
-		
+
 	</package>
 
+	<package name="test" namespace="/test" extends="struts-default">
+
+		<!-- interceptors -->
+		<interceptors>
+			<interceptor name="testInterceptor" class="interceptor.TestInterceptor" />
+			<interceptor-stack name="testStack">
+				<interceptor-ref name="testInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		
+		<!-- action -->
+		<action name="testAction" class="test.TestAction">
+			<result name="success">/test/output.jsp</result>
+			<interceptor-ref name="testStack"/>
+		</action>
+		
+	</package>
 
 </struts>
 
