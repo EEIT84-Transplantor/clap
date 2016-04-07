@@ -101,6 +101,4 @@
 		<property name="memberService" ref="memberService"/>
 	</bean>	
 	
-	
-
 </beans>
