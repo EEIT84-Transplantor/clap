@@ -49,8 +49,11 @@ public class PromoCodeHibernateDAO implements PromoCodeDAO{
 	public PromoCodeVO insert(String mb_email, String pc_code) {
 		session = sessionFactory.getCurrentSession();
 		PromoCodeVO result = new PromoCodeVO();
-		result.setMb_email(mb_email);
-		result.setPc_code(pc_code);
+		PromoCode temp = new PromoCode();
+		
+		temp.setMb_email(mb_email);
+		temp.setPc_code(pc_code);
+		result.setPromoCode(temp);
 		try {
 			session.save(result);
 			return result;
@@ -64,8 +67,11 @@ public class PromoCodeHibernateDAO implements PromoCodeDAO{
 	public boolean delete(String mb_email, String pc_code) {
 		session = sessionFactory.getCurrentSession();
 		PromoCodeVO result = new PromoCodeVO();
-		result.setMb_email(mb_email);
-		result.setPc_code(pc_code);
+        PromoCode temp = new PromoCode();
+		
+		temp.setMb_email(mb_email);
+		temp.setPc_code(pc_code);
+		result.setPromoCode(temp);
 		try {
 			session.delete(result);
 			return true;
