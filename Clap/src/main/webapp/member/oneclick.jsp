@@ -22,6 +22,7 @@ SELECT * from creditcard;
 
 </head>
 <body>
+
 	<header>
 		<jsp:include page="/header.jsp" />
 	</header>
@@ -32,14 +33,35 @@ SELECT * from creditcard;
 				<div class="table-responsive">
 					<table class="table table-bordered table-striped table-highlight" hidden="true">
 					<label for="oneclick">Do you want to activate OneClick shopping</label>
-					<div class="radio">
-						<label> <input class="form-control" name="oneclick" type="radio" value="true"> Yes
-						</label>
-					</div>
-					<div class="radio">
-						<label> <input class="form-control" name="oneclick" type="radio" value="false" checked="checked"> No
-						</label>
-					</div>
+<!-- 自己刪 -->
+<!-- 					<div class="radio"> -->
+<!-- 						<label> Yes <input class="form-control" name="oneclick" type="radio" value="true"> -->
+<!-- 						</label> -->
+<!-- 					</div> -->
+<!-- 					<div class="radio"> -->
+<!-- 						<label> <input class="form-control" name="oneclick" type="radio" value="false" checked="checked"> No -->
+<!-- 						</label> -->
+<!-- 					</div> -->
+<!-- 自己刪 -->
+<form role="form">
+    <div class="radio">
+      <label><input type="radio" name="oneclick" value="true">Yes</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="oneclick" value="false" checked="checked">No</label>
+    </div>
+  </form>
+
+          
+
+
+
+
+
+
+
+
+
 
 
 					<br>
