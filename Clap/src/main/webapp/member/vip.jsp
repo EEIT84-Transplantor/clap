@@ -34,7 +34,7 @@
   					  <input type="radio" name="autorenew" id="inlineRenew01" value="true">Yes
 					</label>
 					<label class="radio-inline">
-					  <input type="radio" name="autorenew" id="inlineRenew02" value="false" checked="checked">No
+					  <input type="radio" name="autorenew" id="inlineRenew02" value="false">No
 					</label>
 					</div>
 				</div>
@@ -57,6 +57,15 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var contextPath = "${pageContext.request.contextPath}";
+			var isAutorenew = ("${login.autorenew}" == "true")?true:false;
+			
+			//onload default checked
+			if(isAutorenew){
+				$("#inlineRenew01").attr("checked","checked");
+			}else{
+				$("#inlineRenew02").attr("checked","checked");
+			}
+			
 			//onclick Confirm auto renewal button
 			$("div[class='container']>button").eq(0).on("click", function() {
 				var confirmed = confirm("Buy one more year VIP by credit card, are you sure?");
