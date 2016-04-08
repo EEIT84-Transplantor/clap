@@ -67,6 +67,7 @@
 	</bean>
 	<bean id="promoCodeService" class="payment.model.PromoCodeService">
 		<property name="dao" ref="promoCodeDAO" />
+		<property name="promoService" ref="promoService" />
 	</bean>
 		<bean id="paymentManageAction" class="payment.controller.PaymentManageAction">
 		<property name="promoService" ref="promoService"/>

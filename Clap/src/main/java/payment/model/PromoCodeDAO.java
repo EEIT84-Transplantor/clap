@@ -7,7 +7,7 @@ public interface PromoCodeDAO {
 
 	public abstract List<PromoCodeVO> selectByEmail(String mb_email);
 	
-	public abstract List<PromoVO> selectPromoVOByEmail(String mb_email);
+//	public abstract List<PromoVO> selectPromoVOByEmail(String mb_email);
 
 	public abstract PromoCodeVO insert(PromoCode promoCode);
 

@@ -8,14 +8,20 @@ import javax.persistence.ManyToOne;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.dao.support.DaoSupport;
 
 public class PromoCodeHibernateDAO implements PromoCodeDAO{
-
+	
+	private static void main(String[] args) {
+		
+	}
 
 	private SessionFactory sessionFactory;
 	private Session session;
 	final private String SELECT_ALL = "from PromoCodeVO";
-
+	final private String SELECT_ALL_BY_EMAIL = "from PromoCodeVO where mb_email=?";
+	
+	
 	public PromoCodeHibernateDAO() {
 		
 	}
@@ -39,35 +45,20 @@ public class PromoCodeHibernateDAO implements PromoCodeDAO{
 	@Override
 	public List<PromoCodeVO> selectByEmail(String mb_email) {
 		List<PromoCodeVO> result = null;
+		session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(SELECT_ALL_BY_EMAIL);
+		query.setParameter(0, mb_email);
+		result = query.list();
 		return result;
 	}
 
 	@Override
-	public List<PromoVO> selectPromoVOByEmail(String mb_email) {
-		List<PromoVO> result = null;
-		return null;
-	}
-//	@EmbeddedId
-//	private PromoCode promoCode;
-//    @ManyToOne
-//	protected PromoVO promoVO;
-	@Override
 	public PromoCodeVO insert(PromoCode promoCode) {
-		System.out.println("################################A");
 		session = sessionFactory.getCurrentSession();
-		PromoCodeVO result = session.get(PromoCodeVO.class, promoCode);
-//		Query query = session.createQuery("select po.pm_code,pd_category,pm_expire,pm_tiltle,pm_discount,mb_email from promocode as pc inner join promo as po on pc.pm_code=po.pm_code where po.pm_code=?");
-//		System.out.println("################################q");
-//		query.setParameter(0, promoCode);
-//		PromoCodeVO result = null;
-//		List<PromoCodeVO> list = query.list();
-//	
-//		for(PromoCodeVO pcv:list){
-//			result = pcv;
-//		}
-		
-		System.out.println("################################B");
+		PromoCodeVO result;
 		try {
+			result = new PromoCodeVO();
+			result.setPromoCode(promoCode);
 			session.save(result);
 			return result;
 		} catch (Exception e) {
@@ -79,14 +70,14 @@ public class PromoCodeHibernateDAO implements PromoCodeDAO{
 	@Override
 	public boolean delete(String mb_email, String pm_code) {
 		session = sessionFactory.getCurrentSession();
-		PromoCodeVO result = new PromoCodeVO();
-        PromoCode temp = new PromoCode();
 		
+        PromoCode temp = new PromoCode();
 		temp.setMb_email(mb_email);
-		//temp.setPromoVO(promoVO);.setPm_code(pm_code);
-		result.setPromoCode(temp);
+		temp.setPm_code(pm_code);
+		PromoCodeVO result = session.get(PromoCodeVO.class, temp);
 		try {
 			session.delete(result);
+			System.out.println(result);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

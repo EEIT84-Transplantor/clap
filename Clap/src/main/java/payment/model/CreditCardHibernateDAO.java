@@ -45,14 +45,18 @@ public class CreditCardHibernateDAO implements CreditCardDAO{
 
 	@Override
 	public CreditCardVO insert(CreditCardVO creditCardVO) {
-		System.out.println("哈哈");
 		session = sessionFactory.getCurrentSession();
 		
+//		System.out.println("哈哈哈 :"+creditCardVO.getCreditCard().getMb_email()+creditCardVO.getCreditCard().getCc_number());
+//		CreditCard temp =  new CreditCard();
+//		temp.setCc_number(creditCardVO.getCreditCard().getCc_number());
+//		temp.setMb_email(creditCardVO.getCreditCard().getMb_email());
+//		CreditCardVO result = session.get(CreditCardVO.class, temp);
 		try {
-			CreditCardVO result = creditCardVO;
-			System.out.println("增加 :"+result);
-			session.save(result);
-			return result;
+			System.out.println("增加 :"+creditCardVO);
+			session.save(creditCardVO);
+			System.out.println("增加2 :"+creditCardVO);
+			return creditCardVO;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
