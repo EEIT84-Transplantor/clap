@@ -49,7 +49,7 @@
 		<action name="oneClickAction" class="setting.controller.OneClickAction">
 			<result name="success">/member/oneclick.jsp</result>
 			<result name="input">/member/oneclick.jsp</result>
-<!-- 			<interceptor-ref name="creditCardInterceptor" /> -->
+			<interceptor-ref name="creditCardInterceptor" />
 		</action>
 		<action name="renewVIPAction" class="setting.controller.RenewVIPAction">
 			<result name="success">/member/vip.jsp</result>
