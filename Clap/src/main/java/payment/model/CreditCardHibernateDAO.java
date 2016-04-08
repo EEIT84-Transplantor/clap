@@ -87,4 +87,10 @@ public class CreditCardHibernateDAO implements CreditCardDAO{
 		}
 	}
 
+	@Override
+	public boolean delete(String cc_number) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

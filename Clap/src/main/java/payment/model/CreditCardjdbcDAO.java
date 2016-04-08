@@ -234,6 +234,12 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 		return result;
 	}
 
+	@Override
+	public boolean delete(String cc_number, String mb_email) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 
 }

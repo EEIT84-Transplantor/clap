@@ -40,7 +40,7 @@ public class CreditCardInterceptor extends AbstractInterceptor {
 			session.put("uri", request.getRequestURI());
 			return "paymentManage";
 		}
-		CreditCardVO creditCardVO = creditCardService.getCard(memberVO.getNumber());
+		CreditCardVO creditCardVO = creditCardService.getCard(memberVO.getNumber(), memberVO.getEmail());
 		if (creditCardService.isAvailable(creditCardVO)) {
 			// 卡片無效 儲存上一個頁面 導入paymentManage.jsp
 			session.put("uri", request.getRequestURI());

@@ -85,4 +85,16 @@ public class PromoCodeHibernateDAO implements PromoCodeDAO{
 		}
 	}
 
+	@Override
+	public List<PromoVO> selectPromoVOByEmail(String mb_email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PromoCodeVO insert(String mb_email, String pc_code) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

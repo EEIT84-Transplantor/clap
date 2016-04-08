@@ -11,4 +11,6 @@ public interface CreditCardDAO {
 	public abstract CreditCardVO insert(CreditCardVO creditCardVO);
 
 	public abstract boolean delete(String cc_number,String mb_email);
+
+	boolean delete(String cc_number);
 }

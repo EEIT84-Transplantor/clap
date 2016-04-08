@@ -59,7 +59,7 @@ public class PromoCodejdbcDAO implements PromoCodeDAO {
 				temp = new PromoCodeVO();
 				PromoCode promoCodetemp = new PromoCode();
 				promoCodetemp.setMb_email(rs.getString("mb_email"));
-				promoCodetemp.setPc_code(rs.getString("pc_code"));
+				promoCodetemp.setPm_code(rs.getString("pc_code"));
 				temp.setPromoCode(promoCodetemp);
 				result.add(temp);
 			}
@@ -112,7 +112,7 @@ public class PromoCodejdbcDAO implements PromoCodeDAO {
 				temp = new PromoCodeVO();
 				PromoCode promoCodetemp = new PromoCode();
 				promoCodetemp.setMb_email(rs.getString("mb_email"));
-				promoCodetemp.setPc_code(rs.getString("pc_code"));
+				promoCodetemp.setPm_code(rs.getString("pc_code"));
 				temp.setPromoCode(promoCodetemp);
 				
 				result.add(temp);
@@ -203,7 +203,7 @@ public class PromoCodejdbcDAO implements PromoCodeDAO {
 				result = new PromoCodeVO();
 				PromoCode promoCodetemp = new PromoCode();
 				promoCodetemp.setMb_email(mb_email);
-				promoCodetemp.setPc_code(pc_code);
+				promoCodetemp.setPm_code(pc_code);
 				result.setPromoCode(promoCodetemp);
 			}
 			
@@ -267,6 +267,12 @@ public class PromoCodejdbcDAO implements PromoCodeDAO {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public PromoCodeVO insert(PromoCode promoCode) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
