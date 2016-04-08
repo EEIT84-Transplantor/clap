@@ -29,6 +29,7 @@
 				<button type="button" class="btn btn-primary btn-lg ">Change Setting</button>
 				<button type="button" class="btn btn-default btn-lg ">Set Oneclick Shopping</button>
 				<button type="button" class="btn btn-primary btn-lg ">Activate VIP</button>
+				<button type="button" class="btn btn-primary btn-lg ">Mail Box</button>
 				
 				
 			</form>
@@ -53,6 +54,7 @@
 			var changesettingUrl = contextPath + "/member/changesetting.action";
 			var oneclickUrl = contextPath + "/member/oneclick.action";
 			var vipUrl = contextPath + "/member/vip.action";
+			var mailUrl = contextPath + "/message/mailbox.jsp";
 			
 			
 			//onclick paymentmanage button
@@ -74,6 +76,10 @@
 			//onclick VIP button
 			$("form button").eq(4).on("click", function() {
 				location.href = vipUrl;
+			});
+			//onclick mailbox button
+			$("form button").eq(5).on("click", function() {
+				location.href = mailUrl;
 			});
 		});
 	</script>
