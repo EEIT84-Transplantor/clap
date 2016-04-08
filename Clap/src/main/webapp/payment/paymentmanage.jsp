@@ -40,7 +40,8 @@
 											<div class="credit_info">
 												<p class="cc_number">${card.creditCard.cc_number}</p>
 												<p class="cc_goodthru">${card.cc_goodthru}</p>
-												<p class="cc_name">xxx</p>
+												<p class="cc_name">${login.name}</p>
+												
 												<img src="../resource/images/master.png" width="60" />
 											</div>
 											<div class="delete_card">

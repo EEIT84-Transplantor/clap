@@ -213,7 +213,6 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 					a=memberService.getAmount(email);
 				}
 				amount+=a;
-
 				success1 =memberService.setAmount(email,amount);
 			}
 			JSONObject result = new JSONObject();
@@ -286,13 +285,13 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		String master = "^5[1-5][0-9]{14}$";
 		String jcb="^(?:2131|1800|35\\d{3})\\d{11}$";
 	    if(Pattern.matches(visa,cardNum)){
-	    	return "Visa";
+	    	return "visa";
 	    }else if(Pattern.matches(master,cardNum)){
-	    	return "Master";
+	    	return "master";
 	    }else if(Pattern.matches(jcb,cardNum)){
 	    	return "JCB";
 	    } else{
-	    	return "Master";	
+	    	return "master";	
 	    }
 	}
 	
