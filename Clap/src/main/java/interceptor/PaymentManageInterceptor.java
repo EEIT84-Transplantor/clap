@@ -30,7 +30,8 @@ public class PaymentManageInterceptor extends AbstractInterceptor {
          String uri = request.getRequestURI();
 
          if(mVo == null){
-        	 session.put("uri", request.getRequestURI());
+        	 session.put("uri", uri);
+        	 System.out.println(uri);
         	 System.out.println("paymentManage Interceptor");
         	 return "login";
          }else{
@@ -41,10 +42,11 @@ public class PaymentManageInterceptor extends AbstractInterceptor {
 // 			Double amount = mService.getAmount();
  			
  			List<PromoVO>promoCodes=promoCodeService.getPromos(email);
- 			request.setAttribute("cards",payment);
- 			request.setAttribute("amount", amount);
- 			request.setAttribute("promos", promoCodes);
- 			return "paymentManage";
+ 			session.put("cards",payment);
+ 			session.put("amount", amount);
+ 			session.put("promos", promoCodes);
+			return invocation.invoke();
+
          }
          
 	}
