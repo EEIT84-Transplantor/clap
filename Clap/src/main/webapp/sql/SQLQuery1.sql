@@ -5,6 +5,8 @@ drop table giftcard
 drop table promocode
 drop table promo
 drop table Member
+drop table hospital 
+drop table message
 
 create table member(
 mb_email varchar(320) NOT NULL,
@@ -56,6 +58,7 @@ gc_available int NOT NULL
 
 insert into giftcard(gc_number,gc_code,gc_amount,gc_available) values('1111','gccode1',1000,1);
 insert into giftcard(gc_number,gc_code,gc_amount,gc_available) values('2222','gccode2',500,0);
+insert into giftcard(gc_number,gc_code,gc_amount,gc_available) values('4444','gccode4',500,1);
 select * from giftcard
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table promo(
@@ -74,11 +77,43 @@ select * from promo
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table promocode(
 mb_email varchar(320) FOREIGN KEY REFERENCES Member(mb_email),
-pc_code varchar(50) FOREIGN KEY REFERENCES promo(pm_code),
-PRIMARY KEY (mb_email, pc_code)
+pm_code varchar(50) FOREIGN KEY REFERENCES promo(pm_code),
+PRIMARY KEY (mb_email, pm_code)
 )
 
-insert into promocode(mb_email,pc_code) values('caca@gmail.com','111');
-insert into promocode(mb_email,pc_code) values('caca@gmail.com','222');
-insert into promocode(mb_email,pc_code) values('lee@gmail.com','333');
+insert into promocode(mb_email,pm_code) values('caca@gmail.com','111');
+insert into promocode(mb_email,pm_code) values('caca@gmail.com','222');
+insert into promocode(mb_email,pm_code) values('lee@gmail.com','333');
 select * from promocode
+------------------------------------------------------------------------------------------------------------------------------------------------
+create table hospital(
+hp_id int primary key identity,
+hp_name nvarchar(50) not null,
+hp_address nvarchar(50) not null
+)
+
+insert hospital values('NTUH', '100 Renai Road');
+insert hospital values('NCKUH', '100 Renai Road');
+insert hospital values('超級醫院', '100 Renai Road');
+select * from hospital
+------------------------------------------------------------------------------------------------------------------------------------------------
+create table message (
+message_Id int primary key identity,
+mb_email varchar(320) FOREIGN KEY REFERENCES Member(mb_email) ,
+message_sender varchar(50) not null,
+message_subject varchar(500),
+message_content varchar(max),
+message_date datetime ,
+message_deleted bit)
+
+insert into message values('lee@gmail.com', 'caca@gmail.com', 'Hello i am caca', 'test test', CURRENT_TIMESTAMP, 0);
+insert into message values('andrew@gmail.com', 'caca@gmail.com', 'Hello i am caca', 'test test', CURRENT_TIMESTAMP, 0);
+insert into message values('caca@gmail.com', 'caca@gmail.com', 'Hello i am caca', 'test test', CURRENT_TIMESTAMP, 0);
+insert into message values('poan@gmail.com', 'caca@gmail.com', 'Hello i am caca', 'test test', CURRENT_TIMESTAMP, 0);
+insert into message values('lee@gmail.com', 'lee@gmail.com', 'Hello i am leelee', 'test test', CURRENT_TIMESTAMP, 0);
+insert into message values('andrew@gmail.com', 'lee@gmail.com', 'Hello i am leelee', 'test test', CURRENT_TIMESTAMP, 0);
+insert into message values('caca@gmail.com', 'lee@gmail.com', 'Hello i am leelee', 'test test', CURRENT_TIMESTAMP, 0);
+insert into message values('poan@gmail.com', 'lee@gmail.com', 'Hello i am leelee', 'test test', CURRENT_TIMESTAMP, 0);
+
+
+select * from message

@@ -30,24 +30,28 @@
 						<li><a href="#gift_content" data-toggle="tab">Gift Cards</a></li>
 						<li><a href="#promo_content" data-toggle="tab">Promotions</a></li>
 					</ul>
+					
 					<div id="payment_detail">
 						<div class="tab-content" id="tabs">
 							<div class="tab-pane" id="credit_content">
 								<p>Registered credit cards</p>
 								<c:forEach var="card" varStatus="index" items="${cards}">
+								
 									<div class="payment_detail_box">
 										<div class="creditCard">
 											<div class="credit_info">
 												<p class="cc_number">${card.creditCard.cc_number}</p>
 												<p class="cc_goodthru">${card.cc_goodthru}</p>
-												<p class="cc_name">xxx</p>
-												<img src="../resource/images/master.png" width="60" />
+												<p class="cc_name">${login.name}</p>
+												
+												<img src="../resource/images/${cardType[index.count-1]}.png" width="60" />
 											</div>
 											<div class="delete_card">
 												<span class="glyphicon glyphicon-remove"></span>
 											</div>
 										</div>
 									</div>
+								
 								</c:forEach>
 
 								<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
@@ -70,7 +74,8 @@
 										</div>
 									</div>
 								</div>
-								<div style="clear: both;"></div>
+								<div style="clear: both;" id="error"></div>
+								
 							</div>
 							<div class="tab-pane" id="gift_content">
 								<p>Received gift cards</p>
@@ -98,7 +103,7 @@
 									</thead>
 									<tbody>
 									<c:forEach var="promo" items="${promos}"> 
-										<tr>
+										<tr >
 										<td>${promo.pm_code}</td>
 										    <td>${promo.pm_expire}</td>
 										    
@@ -109,8 +114,10 @@
 									</c:forEach>
 									<div class="addCard">
 									<strong>Add Promotion code</strong>
+
 									<form id="AddPromoForm">
-										Code :<input type="text" name="promoCodeVO.pc_code" value="333" /> <br /> 
+										Code :<input type="text" name="promoCodeVO.promoCode.pm_code" value="333" /> <br /> 
+
 										<input type="button" value="ADD" id="AddPromoCode"><br />
 									</form>
 								</div>
@@ -150,6 +157,7 @@
 			var url = path;
 			var action = "AddCreditCard";
 			sendPostRwquestPayment(url,data,action);
+			
 		});
 		
 		
@@ -157,7 +165,7 @@
 		
 		$('body').on('click','.delete_card',function() {
 			if (confirm("Do you want to delete this promotion code?") == true) {
-				var data = "creditCardVO.cc_number="+$(this).prev().children(".cc_number").text();
+				var data = "creditCardVO.creditCard.cc_number="+$(this).prev().children(".cc_number").text();
 			 	var url = path;
 			    var action = "deleteCreditCard";
 			    sendPostRwquestPayment(url,data,action);
@@ -175,7 +183,7 @@
 		//Promotion
 		$(".delete_promo").click(function() {
 			 if (confirm("Do you want to delete this promotion code?") == true) {
-				var data = "promoCodeVO.pc_code="+$(this).parent().parent().children(':first-child').text();
+				var data = "promoCodeVO.promoCode.pm_code="+$(this).parent().parent().children(':first-child').text();
 				var url = path;
 				var action = "deletePromotion";
 	 			sendPostRwquestPayment(url,data,action);
@@ -184,7 +192,7 @@
 		});
 
 		$("#AddPromoCode").click(function() {
-				var data = "promoCodeVO.pc_code="+$(this).prev().prev().val();
+				var data = "promoCodeVO.promoCode.pm_code="+$(this).prev().prev().val();
 				var url = path;
 				var action = "AddPromoCode";
 	 			sendPostRwquestPayment(url,data,action);
@@ -205,7 +213,6 @@
 		function doReadyStateChange() {
 			if (request.readyState == 4) {
 				if (request.status == 200) {
-					
                     processJSON(request.responseText);
 				} else {
 					console.log("Error Code:" + request.status + ", "+ request.statusText);
@@ -216,11 +223,17 @@
 		function processJSON(data) {
 			var json = JSON.parse(data);
 		    var key = json[0].buttonClicked;
+		    var isError = json[0].isError;
+		    if(isError){
+		    	$('#error').css("color","rgb(255,0,0)");
+		    	$('#error').html("Error: "+json[0].errorMessage);
+		    	return;
+		    }
+		    $('#error').html("");
 		    var info = json[1];
 		    switch(key) {
 		    case "AddCreditCard":
-		    	  alert(info);
-		    	  $(".payment_detail_box").last().after('<div class="payment_detail_box"><div class="creditCard"><div class="credit_info"><p class="cc_number">'+info.cc_number+'</p><p class="cc_goodthru">'+info.cc_goodthru+'</p><p class="cc_name">'+info.name+'</p><img src="../resource/images/master.png" width="60" /></div><div class="delete_card"><span class="glyphicon glyphicon-remove"></span></div></div></div>');
+		    	  $(".payment_detail_box").last().after('<div class="payment_detail_box"><div class="creditCard"><div class="credit_info"><p class="cc_number">'+info.cc_number+'</p><p class="cc_goodthru">'+info.cc_goodthru+'</p><p class="cc_name">'+info.name+'</p><img src="../resource/images/'+info.cardType+'.png" width="60" /></div><div class="delete_card"><span class="glyphicon glyphicon-remove"></span></div></div></div>');
 		    	  break;
 		    case "deleteCreditCard":
 		    	 if(info.result){
@@ -228,20 +241,20 @@
 		    		$("p:contains("+temp+")").parent().parent().parent().hide();
 		    	 }
 		        break;
-		    case "UseGiftCard":
-		    	 if(info.result!=0){
-		    		 $("#totalAmount").text("Total amount"+info.result);
+		    case "UseGiftCard": 
+		    	 if(info.result!=0){ 
+		    		 $("#totalAmount").text("Total amount "+info.total);
 		    	 }else{
 		    		 $("#totalAmount").text("Can't use this card");
 		    	 }
 		        break;
-		    case "deletePromotion":
-		        break;
 		    case "AddPromoCode":
+		    	var promocodeinfo = json[2];
+		    	  $("#promo_content tbody:last-child").append('<tr><td>'+promocodeinfo.pm_code+'</td><td>'+promocodeinfo.pm_expire+'</td><td>'+promocodeinfo.pm_title+'</td><td><a href="#" class="delete_promo"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td></tr>');
 		        break;
 		    }
 		}
-        
+      
 	</script>
 </body>
 </html>
