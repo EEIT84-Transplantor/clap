@@ -54,12 +54,12 @@
 		<action name="renewVIPAction" class="setting.controller.RenewVIPAction">
 			<result name="success">/member/vip.jsp</result>
 			<result name="input">/member/vip.jsp</result>
-<!-- 			<interceptor-ref name="creditCardInterceptor" /> -->
+			<!-- <interceptor-ref name="creditCardInterceptor" /> -->
 		</action>
 		<action name="autoRenewVIPAction" class="setting.controller.AutoRenewVIPAction">
 			<result name="success">/member/vip.jsp</result>
 			<result name="input">/member/vip.jsp</result>
-<!-- 			<interceptor-ref name="creditCardInterceptor" /> -->
+			<!-- <interceptor-ref name="creditCardInterceptor" /> -->
 		</action>
 
 	</package>
@@ -68,7 +68,7 @@
 		<interceptors>
 			<interceptor name="loginInterceptor" class="interceptor.LoginInterceptor" />
 			<interceptor name="paymentManageInterceptor" class="interceptor.PaymentManageInterceptor" />
-			
+
 			<interceptor-stack name="paymentManageStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="paymentManageInterceptor" />
@@ -77,7 +77,7 @@
 
 		</interceptors>
 
-<!-- 		global-results -->
+		<!-- global-results -->
 		<global-results>
 			<result name="login">/member/signuplogin.jsp</result>
 			<result name="paymentManage">/payment/paymentmanage.jsp</result>
@@ -140,13 +140,19 @@
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
-		
+
 		<!-- action -->
 		<action name="testAction" class="test.TestAction">
 			<result name="success">/test/output.jsp</result>
-			<interceptor-ref name="testStack"/>
+			<interceptor-ref name="testStack" />
 		</action>
-		
+
+		<!-- unit test -->
+		<action name="register" class="test.Register" method="execute">
+			<result name="success">/test/output.jsp</result>
+			<result name="input">/test/input.jsp</result>
+		</action>
+
 	</package>
 
 </struts>
