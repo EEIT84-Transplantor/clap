@@ -192,7 +192,7 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 
 			creditCardVO.getCreditCard().setMb_email(email);
 
-			System.out.println("jsssssi"+creditCardVO.getCreditCard().getCc_number()+creditCardVO.getCreditCard().getMb_email()+creditCardVO.getCc_cvv()+creditCardVO.getCc_goodthru());
+			System.out.println("jsssssi"+creditCardVO.getCreditCard().getCc_number()+creditCardVO.getCreditCard().getMb_email()+creditCardVO.getCc_cvv());
 
 			CreditCardVO resultVO = creditCardService.setCard(creditCardVO);
 			JSONObject result = new JSONObject();
@@ -216,17 +216,10 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 
 				success1 =memberService.setAmount(email,amount);
 			}
-			JSONObject success = new JSONObject();
-			success.put("success", success1);
 			JSONObject result = new JSONObject();
+			result.put("success", success1);
 			result.put("result", amountPrev);
-			JSONObject total = new JSONObject();
-			total.put("amount", amount);
-			success.put("result", amountPrev);
-			success.put("total", amount);
-			
-			res.put(total);	
-			res.put(success);	
+			result.put("amount", amount);
 
 			res.put(result);	
 
@@ -278,7 +271,6 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		request.setAttribute("results", res);
 		
 		try {
-			System.out.println("這裡");
 			rd.forward(request, response);
 		} catch (ServletException e) {
 			e.printStackTrace();
@@ -292,25 +284,16 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 	private String checkCreditCardType(String cardNum){
 		String visa = "^4[0-9]{12}(?:[0-9]{3})?$";
 		String master = "^5[1-5][0-9]{14}$";
-		String americanExpress="^3[47][0-9]{13}$";
-		String dinersClub =" ^3(?:0[0-5]|[68][0-9])[0-9]{11}$";
-		String discover ="^6(?:011|5[0-9]{2})[0-9]{12}$";
 		String jcb="^(?:2131|1800|35\\d{3})\\d{11}$";
-
 	    if(Pattern.matches(visa,cardNum)){
 	    	return "Visa";
 	    }else if(Pattern.matches(master,cardNum)){
 	    	return "Master";
-	    }else if(Pattern.matches(americanExpress,cardNum)){
-	    	return "AmericanExpress";
-	    }else if(Pattern.matches(dinersClub,cardNum)){
-	    	return "DinersClub";
-	    }else if(Pattern.matches(discover,cardNum)){
-	    	return "Discover";
 	    }else if(Pattern.matches(jcb,cardNum)){
 	    	return "JCB";
+	    } else{
+	    	return "Master";	
 	    }
-		return "";
 	}
 	
 	
