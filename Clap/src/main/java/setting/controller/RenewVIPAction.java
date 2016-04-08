@@ -32,6 +32,8 @@ public class RenewVIPAction extends ActionSupport implements ServletRequestAware
 
 	@Override
 	public String execute() throws Exception {
+		System.out.println("renew");
+		
 		MemberVO memberVO = (MemberVO) request.getSession().getAttribute("login");
 		// 扣款
 		if (creditCardService.payBill(memberVO, CreditCardService.vip)) {

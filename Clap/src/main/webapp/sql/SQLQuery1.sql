@@ -5,6 +5,8 @@ drop table giftcard
 drop table promocode
 drop table promo
 drop table Member
+drop table hospital
+
 
 create table member(
 mb_email varchar(320) NOT NULL,
@@ -56,6 +58,7 @@ gc_available int NOT NULL
 
 insert into giftcard(gc_number,gc_code,gc_amount,gc_available) values('1111','gccode1',1000,1);
 insert into giftcard(gc_number,gc_code,gc_amount,gc_available) values('2222','gccode2',500,0);
+insert into giftcard(gc_number,gc_code,gc_amount,gc_available) values('4444','gccode4',500,1);
 select * from giftcard
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table promo(
@@ -74,11 +77,22 @@ select * from promo
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table promocode(
 mb_email varchar(320) FOREIGN KEY REFERENCES Member(mb_email),
-pc_code varchar(50) FOREIGN KEY REFERENCES promo(pm_code),
-PRIMARY KEY (mb_email, pc_code)
+pm_code varchar(50) FOREIGN KEY REFERENCES promo(pm_code),
+PRIMARY KEY (mb_email, pm_code)
 )
 
-insert into promocode(mb_email,pc_code) values('caca@gmail.com','111');
-insert into promocode(mb_email,pc_code) values('caca@gmail.com','222');
-insert into promocode(mb_email,pc_code) values('lee@gmail.com','333');
+insert into promocode(mb_email,pm_code) values('caca@gmail.com','111');
+insert into promocode(mb_email,pm_code) values('caca@gmail.com','222');
+insert into promocode(mb_email,pm_code) values('lee@gmail.com','333');
 select * from promocode
+------------------------------------------------------------------------------------------------------------------------------------------------
+create table hospital(
+hp_id int primary key identity,
+hp_name nvarchar(50) not null,
+hp_address nvarchar(50) not null
+)
+
+insert hospital values('NTUH', '100 Renai Road');
+insert hospital values('NCKUH', '100 Renai Road');
+insert hospital values('超級醫院', '100 Renai Road');
+select * from hospital

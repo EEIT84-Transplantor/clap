@@ -44,6 +44,7 @@ public class LoginServlet extends HttpServlet {
 		if ((memberVO=memberService.login(email, password.getBytes()))!=null) {
 			request.getSession().setAttribute("login",memberVO);
 			String uri = (String) request.getSession().getAttribute("uri");
+			System.out.println(uri);
 			if(uri==null){
 				response.sendRedirect("../index.jsp");	
 			}else{
