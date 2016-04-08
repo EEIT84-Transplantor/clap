@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 
 
@@ -36,19 +37,34 @@ public class CreditCardHibernateDAO implements CreditCardDAO{
 	}
 
 	@Override
-	public CreditCardVO selectByCcNumber(String cc_number) {
+	public CreditCardVO selectByCcNumber(String mb_email, String cc_number) {
 		session = sessionFactory.getCurrentSession();
-		CreditCardVO result = session.get(CreditCardVO.class, cc_number);
+		Query query = session.createQuery(SELECT_BY_EMAIL);
+		query.setParameter(0, mb_email);
+		List<CreditCardVO> creditCardVOs = query.list();
+		CreditCardVO result = null;
+		for(CreditCardVO vo : creditCardVOs){
+			if(vo.getCreditCard().getCc_number().equals(cc_number)){
+				result = vo;
+			}
+		}
 		return result;
 	}
 
 	@Override
 	public CreditCardVO insert(CreditCardVO creditCardVO) {
 		session = sessionFactory.getCurrentSession();
-		CreditCardVO result = creditCardVO;
+		
+//		System.out.println("哈哈哈 :"+creditCardVO.getCreditCard().getMb_email()+creditCardVO.getCreditCard().getCc_number());
+//		CreditCard temp =  new CreditCard();
+//		temp.setCc_number(creditCardVO.getCreditCard().getCc_number());
+//		temp.setMb_email(creditCardVO.getCreditCard().getMb_email());
+//		CreditCardVO result = session.get(CreditCardVO.class, temp);
 		try {
-			session.save(result);
-			return result;
+			System.out.println("增加 :"+creditCardVO);
+			session.save(creditCardVO);
+			System.out.println("增加2 :"+creditCardVO);
+			return creditCardVO;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -56,10 +72,13 @@ public class CreditCardHibernateDAO implements CreditCardDAO{
 	}
 
 	@Override
-	public boolean delete(String cc_number) {
+	public boolean delete(String cc_number,String mb_email) {
 		session = sessionFactory.getCurrentSession();
-		CreditCardVO cardVO = session.get(CreditCardVO.class, cc_number);
 		try {
+			CreditCard temp = new CreditCard();
+			temp.setCc_number(cc_number);
+			temp.setMb_email(mb_email);
+			CreditCardVO cardVO = (CreditCardVO)session.get(CreditCardVO.class, temp);
 			session.delete(cardVO);
 			return true;
 		} catch (Exception e) {

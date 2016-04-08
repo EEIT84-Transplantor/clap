@@ -3,7 +3,7 @@
 		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-   
+
     <session-factory>
     
     <property name="hibernate.cache.use_second_level_cache">false</property>
@@ -15,6 +15,6 @@
     <mapping class="payment.model.CreditCardVO"/>
     <mapping class="payment.model.GiftCardVO"/>
     <mapping class="payment.model.PromoVO"/>
-<!--     <mapping class="payment.model.PromoCodeVO"/> -->
+    <mapping class="payment.model.PromoCodeVO"/>
     </session-factory>
 </hibernate-configuration>

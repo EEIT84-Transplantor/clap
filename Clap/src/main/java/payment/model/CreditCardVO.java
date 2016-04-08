@@ -1,5 +1,7 @@
 package payment.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -8,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="creditcard")
-public class CreditCardVO {
+public class CreditCardVO implements Serializable{
 	@EmbeddedId
 	private CreditCard creditCard;
 	@Column(name="cc_goodthru")
