@@ -192,11 +192,12 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 
 			creditCardVO.getCreditCard().setMb_email(email);
 
-			
+			System.out.println("jsssssi"+creditCardVO.getCreditCard().getCc_number()+creditCardVO.getCreditCard().getMb_email()+creditCardVO.getCc_cvv()+creditCardVO.getCc_goodthru());
+
 			CreditCardVO resultVO = creditCardService.setCard(creditCardVO);
 			JSONObject result = new JSONObject();
 			String cardType = this.checkCreditCardType(resultVO.getCreditCard().getCc_number());
-			
+			System.out.println("ji"+resultVO);
 			result.put("cc_number", resultVO.getCreditCard().getCc_number());
 			result.put("cc_goodthru", resultVO.getCc_goodthru());
 			result.put("name", name);
