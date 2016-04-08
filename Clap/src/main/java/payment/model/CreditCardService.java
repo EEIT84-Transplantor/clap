@@ -49,9 +49,7 @@ public class CreditCardService {
 			String cc_goodrhru = creditCardVO.getCc_goodthru();
 			String cc_number = creditCardVO.getCreditCard().getCc_number();
 			String mb_email = creditCardVO.getCreditCard().getMb_email();
-			System.out.println("啥鬼"+cc_cvv+cc_goodrhru+cc_number+mb_email);
-			
-			
+
 			if (cc_cvv == null || cc_cvv.length() == 0) {
 				return result;
 			}

@@ -109,8 +109,10 @@
 									</c:forEach>
 									<div class="addCard">
 									<strong>Add Promotion code</strong>
+
 									<form id="AddPromoForm">
 										Code :<input type="text" name="promoCodeVO.promoCode.pm_code" value="333" /> <br /> 
+
 										<input type="button" value="ADD" id="AddPromoCode"><br />
 									</form>
 								</div>

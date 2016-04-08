@@ -5,6 +5,8 @@ drop table giftcard
 drop table promocode
 drop table promo
 drop table Member
+drop table hospital
+
 
 create table member(
 mb_email varchar(320) NOT NULL,
@@ -83,3 +85,14 @@ insert into promocode(mb_email,pm_code) values('caca@gmail.com','111');
 insert into promocode(mb_email,pm_code) values('caca@gmail.com','222');
 insert into promocode(mb_email,pm_code) values('lee@gmail.com','333');
 select * from promocode
+------------------------------------------------------------------------------------------------------------------------------------------------
+create table hospital(
+hp_id int primary key identity,
+hp_name nvarchar(50) not null,
+hp_address nvarchar(50) not null
+)
+
+insert hospital values('NTUH', '100 Renai Road');
+insert hospital values('NCKUH', '100 Renai Road');
+insert hospital values('超級醫院', '100 Renai Road');
+select * from hospital

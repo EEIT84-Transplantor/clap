@@ -169,13 +169,15 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		RequestDispatcher rd= request.getRequestDispatcher("/payment/manage.controller");
 		HttpServletResponse response = ServletActionContext.getResponse();
 		MemberVO memberVO = (MemberVO) request.getSession().getAttribute("login");
-//		String email = memberVO.getEmail();
-//		String name = memberVO.getName();
-		String name="haha";
+		String email = memberVO.getEmail();
+		String name = memberVO.getName();
+//		String name="haha";
 		if(name== null||name.length()==0){
 			name="Guest";
 		}
-		String email = "caca@gmail.com";
+//		String email = "caca@gmail.com";
+		System.out.println("jiii"+email);
+		
 		request.setAttribute("buttonClicked", buttonClicked);
 		JSONArray res = new JSONArray();
 		JSONObject buttonClickedJson = new JSONObject();
@@ -183,13 +185,19 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		res.put(buttonClickedJson);
 		
 		if(buttonClicked.equalsIgnoreCase("AddCreditCard")){
-			CreditCard temp = new CreditCard();
-			temp.setMb_email(email);
-			temp.setCc_number(creditCardVO.getCreditCard().getCc_number());
-			creditCardVO.setCreditCard(temp);
+			System.out.println("$$$$$$$$$$$");
+//			creditCard.setMb_email(email);
+//			creditCardVO.setCreditCard(creditCard);
+			System.out.println("################################");
+
+			creditCardVO.getCreditCard().setMb_email(email);
+
+			System.out.println("jsssssi"+creditCardVO.getCreditCard().getCc_number()+creditCardVO.getCreditCard().getMb_email()+creditCardVO.getCc_cvv()+creditCardVO.getCc_goodthru());
+
 			CreditCardVO resultVO = creditCardService.setCard(creditCardVO);
 			JSONObject result = new JSONObject();
 			String cardType = this.checkCreditCardType(resultVO.getCreditCard().getCc_number());
+			System.out.println("ji"+resultVO);
 			result.put("cc_number", resultVO.getCreditCard().getCc_number());
 			result.put("cc_goodthru", resultVO.getCc_goodthru());
 			result.put("name", name);
@@ -210,16 +218,27 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 			}
 			JSONObject success = new JSONObject();
 			success.put("success", success1);
+			JSONObject result = new JSONObject();
+			result.put("result", amountPrev);
+			JSONObject total = new JSONObject();
+			total.put("amount", amount);
 			success.put("result", amountPrev);
 			success.put("total", amount);
+			
+			res.put(total);	
 			res.put(success);	
+
+			res.put(result);	
+
 			
 		}else if(buttonClicked.equalsIgnoreCase("AddPromoCode")){
 			Boolean resultBoolean=false;
 			JSONObject promoDetails = null;
 			if(promoService.isAvailable(promoCodeVO.getPromoCode().getPm_code())){
 				PromoCodeVO result = promoCodeService.setPromotionCode(email,promoCodeVO.getPromoCode().getPm_code());
+
 				if(result!=null){
+
 					resultBoolean = true;
 					PromoVO promoDetailVO = promoService.getPromoDetail(promoCodeVO.getPromoCode().getPm_code());
 					promoDetails=new JSONObject();
@@ -247,8 +266,7 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 			result.put("result", resultBoolean);
 			result.put("cc_number",creditCardVO.getCreditCard().getCc_number());
 			res.put(result);
-		}
-			else if(buttonClicked.equalsIgnoreCase("deletePromotion")){
+		}else if(buttonClicked.equalsIgnoreCase("deletePromotion")){
 			Boolean resultBoolean= false;
 			resultBoolean = promoCodeService.removePromotionCode(email, promoCodeVO.getPromoCode().getPm_code());
 

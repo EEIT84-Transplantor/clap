@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -21,26 +20,28 @@
 
 	<section id="wrap">
 		<div class="container">
-			
-			<form class="form-horizontal" role="form" method="POST" style="border:solid white;">
+
+			<form class="form-horizontal" role="form" method="POST" style="border: solid white;">
 				<div class="form-group">
-					<label class="col-md-2 control-label" for="expire">Your VIP valid until:</label> 
-					<div class="col-md-10"><p class="form-control-static" name="memberVO.expire" >${login.expire}</p></div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label" for="autorenew">Activate auto renewal?</label> 
+					<label class="col-md-2 control-label" for="expire">Your VIP valid until:</label>
 					<div class="col-md-10">
-					<label class="radio-inline">
-  					  <input type="radio" name="autorenew" id="inlineRenew01" value="true">Yes
-					</label>
-					<label class="radio-inline">
-					  <input type="radio" name="autorenew" id="inlineRenew02" value="false" checked="checked">No
-					</label>
+						<p class="form-control-static" name="memberVO.expire">${login.expire}</p>
 					</div>
 				</div>
-				
-				</form>
-				<br>
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="autorenew">Activate auto renewal?</label>
+					<div class="col-md-10">
+						<label class="radio-inline"> 
+							<input type="radio" name="autorenew" id="inlineRenew01" value="true"> Yes
+						</label> 
+						<label class="radio-inline"> 
+							<input type="radio" name="autorenew" id="inlineRenew02" value="false"> No
+						</label>
+					</div>
+				</div>
+
+			</form>
+			<br>
 			<button type="button" class="btn btn-success">Confirm auto renewal</button>
 			<button type="button" class="btn btn-default">Buy one more year</button>
 		</div>
@@ -57,27 +58,37 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var contextPath = "${pageContext.request.contextPath}";
+			var isAutorenew = ("${login.autorenew}" == "true") ? true : false;
+
+			//onload default checked
+			if (isAutorenew) {
+				$("#inlineRenew01").attr("checked", "checked");
+			} else {
+				$("#inlineRenew02").attr("checked", "checked");
+			}
+
 			//onclick Confirm auto renewal button
 			$("div[class='container']>button").eq(0).on("click", function() {
-				var confirmed = confirm("Buy one more year VIP by credit card, are you sure?");
-				if(confirmed){
-				$("form").attr("action",contextPath+"/setting/autoRenewVIPAction.action" );
-				console.log("Confirm auto renewal");
-				$("form").submit();
+				var confirmed = confirm("You want to change auto-renewal service, are you sure?");
+				if (confirmed) {
+					$("form").attr("action", contextPath + "/setting/autoRenewVIPAction.action");
+					console.log("Confirm auto renewal");
+					$("form").submit();
+				}else{
+					location.reload();
 				}
 			});
 			//onclick Buy one more year button
 			$("div[class='container']>button").eq(1).on("click", function() {
 				var confirmed = confirm("Buy one more year VIP by credit card, are you sure?");
-				if(confirmed){
+				if (confirmed) {
 					//send Buy one more year
-					$("form").attr("action", contextPath+"/setting/renewVIPAction.action" );
+					$("form").attr("action", contextPath + "/setting/renewVIPAction.action");
 					console.log("Buy one more year");
 					$("form").submit();
 				}
 			});
 
-			
 		});
 	</script>
 </body>

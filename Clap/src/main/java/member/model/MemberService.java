@@ -133,6 +133,7 @@ public class MemberService {
 	// update memberVO的autorenew
 	public void setAutoRenew(MemberVO memberVO, Boolean autorenew) {
 		memberVO.setAutorenew(autorenew);
+		dao.update(memberVO);
 	}
 
 	public boolean setAmount(String email, Double gc_amount) {
