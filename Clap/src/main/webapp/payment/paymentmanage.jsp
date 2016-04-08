@@ -35,6 +35,7 @@
 							<div class="tab-pane" id="credit_content">
 								<p>Registered credit cards</p>
 								<c:forEach var="card" varStatus="index" items="${cards}">
+								
 									<div class="payment_detail_box">
 										<div class="creditCard">
 											<div class="credit_info">
@@ -42,13 +43,14 @@
 												<p class="cc_goodthru">${card.cc_goodthru}</p>
 												<p class="cc_name">${login.name}</p>
 												
-												<img src="../resource/images/master.png" width="60" />
+												<img src="../resource/images/${cardType[index.count]}.png" width="60" />
 											</div>
 											<div class="delete_card">
 												<span class="glyphicon glyphicon-remove"></span>
 											</div>
 										</div>
 									</div>
+								
 								</c:forEach>
 
 								<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
