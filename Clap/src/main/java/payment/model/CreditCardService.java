@@ -49,10 +49,6 @@ public class CreditCardService {
 			String cc_goodrhru = creditCardVO.getCc_goodthru();
 			String cc_number = creditCardVO.getCreditCard().getCc_number();
 			String mb_email = creditCardVO.getCreditCard().getMb_email();
-<<<<<<< HEAD
-=======
-			
->>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 			if (cc_cvv == null || cc_cvv.length() == 0) {
 				return result;
 			}

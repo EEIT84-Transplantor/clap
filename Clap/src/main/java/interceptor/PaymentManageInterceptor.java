@@ -8,7 +8,9 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
+import com.opensymphony.xwork2.inject.util.Function;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
+import com.opensymphony.xwork2.interceptor.PreResultListener;
 
 import member.model.MemberService;
 import member.model.MemberVO;
@@ -25,29 +27,26 @@ public class PaymentManageInterceptor extends AbstractInterceptor {
 	public String intercept(ActionInvocation invocation) throws Exception {
 		 ActionContext ctx = invocation.getInvocationContext();
          Map<String, Object> session = ctx.getSession();
-         MemberVO mVo  = (MemberVO)session.get("login");
-         HttpServletRequest request = ServletActionContext.getRequest();
-         String uri = request.getRequestURI();
+         MemberVO mVo  = (MemberVO)session.get("login");     
+         System.out.println(mVo+"sadasdasdas");
+         invocation.addPreResultListener(new PreResultListener() {
+			
+			@Override
+			public void beforeResult(ActionInvocation invocation, String resultCode) {
+				String email=mVo.getEmail();
+	 			List<CreditCardVO> payment = creditCardService.getCards(email);
+	 			
+	 			Double amount = mVo.getAmount();
+	 			
+	 			List<PromoVO>promoCodes=promoCodeService.getPromos(email);
+	 			session.put("cards",payment);
+	 			session.put("amount", amount);
+	 			session.put("promos", promoCodes);
+				
+			}
+		});       
+		return invocation.invoke();
 
-         if(mVo == null){
-        	 session.put("uri", uri);
-        	 System.out.println(uri);
-        	 System.out.println("paymentManage Interceptor");
-        	 return "login";
-         }else{
-        	String email=mVo.getEmail();
- 			List<CreditCardVO> payment = creditCardService.getCards(email);
- 			
- 			Double amount = mVo.getAmount();
-// 			Double amount = mService.getAmount();
- 			
- 			List<PromoVO>promoCodes=promoCodeService.getPromos(email);
- 			session.put("cards",payment);
- 			session.put("amount", amount);
- 			session.put("promos", promoCodes);
-			return invocation.invoke();
-
-         }
          
 	}
 	public void setMemberService(MemberService memberService) {
@@ -55,9 +54,6 @@ public class PaymentManageInterceptor extends AbstractInterceptor {
 	}
 	public void setCreditCardService(CreditCardService creditCardService) {
 		this.creditCardService = creditCardService;
-	}
-	public void setmService(MemberService mService) {
-		this.memberService = memberService;
 	}
 	public void setPromoCodeService(PromoCodeService promoCodeService) {
 		this.promoCodeService = promoCodeService;
