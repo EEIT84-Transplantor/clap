@@ -37,9 +37,17 @@ public class CreditCardHibernateDAO implements CreditCardDAO{
 	}
 
 	@Override
-	public CreditCardVO selectByCcNumber(String cc_number) {
+	public CreditCardVO selectByCcNumber(String mb_email, String cc_number) {
 		session = sessionFactory.getCurrentSession();
-		CreditCardVO result = session.get(CreditCardVO.class, cc_number);
+		Query query = session.createQuery(SELECT_BY_EMAIL);
+		query.setParameter(0, mb_email);
+		List<CreditCardVO> creditCardVOs = query.list();
+		CreditCardVO result = null;
+		for(CreditCardVO vo : creditCardVOs){
+			if(vo.getCreditCard().getCc_number().equals(cc_number)){
+				result = vo;
+			}
+		}
 		return result;
 	}
 

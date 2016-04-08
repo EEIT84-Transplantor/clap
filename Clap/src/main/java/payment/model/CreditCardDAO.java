@@ -6,7 +6,7 @@ public interface CreditCardDAO {
 	
 	public abstract List<CreditCardVO> selectByEmail(String mb_email);
 	
-	public abstract CreditCardVO selectByCcNumber(String cc_number);
+	public abstract CreditCardVO selectByCcNumber(String mb_email, String cc_number);
 
 	public abstract CreditCardVO insert(CreditCardVO creditCardVO);
 

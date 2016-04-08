@@ -30,6 +30,7 @@
 						<li><a href="#gift_content" data-toggle="tab">Gift Cards</a></li>
 						<li><a href="#promo_content" data-toggle="tab">Promotions</a></li>
 					</ul>
+					
 					<div id="payment_detail">
 						<div class="tab-content" id="tabs">
 							<div class="tab-pane" id="credit_content">
@@ -43,7 +44,7 @@
 												<p class="cc_goodthru">${card.cc_goodthru}</p>
 												<p class="cc_name">${login.name}</p>
 												
-												<img src="../resource/images/${cardType[index.count]}.png" width="60" />
+												<img src="../resource/images/${cardType[index.count-1]}.png" width="60" />
 											</div>
 											<div class="delete_card">
 												<span class="glyphicon glyphicon-remove"></span>
@@ -73,7 +74,8 @@
 										</div>
 									</div>
 								</div>
-								<div style="clear: both;">${errorMsg}</div>
+								<div style="clear: both;" id="error"></div>
+								
 							</div>
 							<div class="tab-pane" id="gift_content">
 								<p>Received gift cards</p>
@@ -87,7 +89,6 @@
 											type="button" value="use" id="useGiftCard"><br />
 									</form>
 								</div>
-								${errorMsg}
 							</div>
 							<div class="tab-pane" id="promo_content">
 								<p>Received Promotions</p>
@@ -111,7 +112,6 @@
 											<td><a href="#" class="delete_promo"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
 										</tr>
 									</c:forEach>
-									${errorMsg}
 									<div class="addCard">
 									<strong>Add Promotion code</strong>
 
@@ -223,6 +223,13 @@
 		function processJSON(data) {
 			var json = JSON.parse(data);
 		    var key = json[0].buttonClicked;
+		    var isError = json[0].isError;
+		    if(isError){
+		    	$('#error').css("color","rgb(255,0,0)");
+		    	$('#error').html("Error: "+json[0].errorMessage);
+		    	return;
+		    }
+		    $('#error').html("");
 		    var info = json[1];
 		    switch(key) {
 		    case "AddCreditCard":

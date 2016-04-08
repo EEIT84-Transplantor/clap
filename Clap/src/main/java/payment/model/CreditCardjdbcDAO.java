@@ -105,7 +105,7 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 	}
 
 	@Override
-	public CreditCardVO selectByCcNumber(String cc_number) {
+	public CreditCardVO selectByCcNumber(String mb_email, String cc_number) {
 		CreditCardVO result = null;
 		PreparedStatement ps= null;
 		ResultSet rs = null;
