@@ -36,7 +36,7 @@ import payment.model.PromoVO;
  * Servlet Filter implementation class paymentFilter
  */
 
-@WebFilter("/payment/paymentmanage.jsp")
+//@WebFilter("/payment/paymentmanage.jsp")
 
 public class paymentFilter implements Filter {
 //	CreditCardService cservice;
@@ -91,7 +91,7 @@ public class paymentFilter implements Filter {
 //			Double amount = mService.getAmount();
 
 			
-			List<PromoVO>promoCodes=promoCodeService.getPromos(email);
+			List<PromoVO>promoCodes=promoCodeService.getPromos("caca@gmail.com");
 			request.setAttribute("cards",payment );
 			request.setAttribute("amount", amount);
 			request.setAttribute("promos", promoCodes);

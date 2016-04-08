@@ -31,13 +31,11 @@
 				<div class="form-group">
 					<label class="col-md-2 control-label" for="autorenew">Activate auto renewal?</label>
 					<div class="col-md-10">
-						<label class="radio-inline">
-							<input type="radio" name="autorenew" id="inlineRenew01" value="true">
-							Yes
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="autorenew" id="inlineRenew02" value="false" checked="checked">
-							No
+						<label class="radio-inline"> 
+							<input type="radio" name="autorenew" id="inlineRenew01" value="true"> Yes
+						</label> 
+						<label class="radio-inline"> 
+							<input type="radio" name="autorenew" id="inlineRenew02" value="false"> No
 						</label>
 					</div>
 				</div>
@@ -60,13 +58,24 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var contextPath = "${pageContext.request.contextPath}";
+			var isAutorenew = ("${login.autorenew}" == "true") ? true : false;
+
+			//onload default checked
+			if (isAutorenew) {
+				$("#inlineRenew01").attr("checked", "checked");
+			} else {
+				$("#inlineRenew02").attr("checked", "checked");
+			}
+
 			//onclick Confirm auto renewal button
 			$("div[class='container']>button").eq(0).on("click", function() {
-				var confirmed = confirm("Buy one more year VIP by credit card, are you sure?");
+				var confirmed = confirm("You want to change auto-renewal service, are you sure?");
 				if (confirmed) {
 					$("form").attr("action", contextPath + "/setting/autoRenewVIPAction.action");
 					console.log("Confirm auto renewal");
 					$("form").submit();
+				}else{
+					location.reload();
 				}
 			});
 			//onclick Buy one more year button
