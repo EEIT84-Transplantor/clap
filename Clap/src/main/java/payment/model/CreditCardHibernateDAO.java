@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 
 
@@ -44,9 +45,12 @@ public class CreditCardHibernateDAO implements CreditCardDAO{
 
 	@Override
 	public CreditCardVO insert(CreditCardVO creditCardVO) {
+		System.out.println("哈哈");
 		session = sessionFactory.getCurrentSession();
-		CreditCardVO result = creditCardVO;
+		
 		try {
+			CreditCardVO result = creditCardVO;
+			System.out.println("增加 :"+result);
 			session.save(result);
 			return result;
 		} catch (Exception e) {
@@ -56,10 +60,13 @@ public class CreditCardHibernateDAO implements CreditCardDAO{
 	}
 
 	@Override
-	public boolean delete(String cc_number) {
+	public boolean delete(String cc_number,String mb_email) {
 		session = sessionFactory.getCurrentSession();
-		CreditCardVO cardVO = session.get(CreditCardVO.class, cc_number);
 		try {
+			CreditCard temp = new CreditCard();
+			temp.setCc_number(cc_number);
+			temp.setMb_email(mb_email);
+			CreditCardVO cardVO = (CreditCardVO)session.get(CreditCardVO.class, temp);
 			session.delete(cardVO);
 			return true;
 		} catch (Exception e) {

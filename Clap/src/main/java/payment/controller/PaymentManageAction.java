@@ -45,7 +45,6 @@ import payment.model.PromoVO;
 
 public class PaymentManageAction extends ActionSupport implements ValidationAware {
 	private String buttonClicked;
-	private CreditCard creditCard;
 	private CreditCardVO creditCardVO;
 	private GiftCardVO giftCardVO;
 	private PromoCodeVO promoCodeVO;
@@ -59,13 +58,6 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 	
 
 
-	public CreditCard getCreditCard() {
-		return creditCard;
-	}
-
-	public void setCreditCard(CreditCard creditCard) {
-		this.creditCard = creditCard;
-	}
 
 	public void setPromoCodeService(PromoCodeService promoCodeService) {
 		this.promoCodeService = promoCodeService;
@@ -191,17 +183,20 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		JSONObject buttonClickedJson = new JSONObject();
 		buttonClickedJson.put("buttonClicked", buttonClicked);
 		res.put(buttonClickedJson);
-		System.out.println("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ");
+		
 		if(buttonClicked.equalsIgnoreCase("AddCreditCard")){
 			System.out.println("$$$$$$$$$$$");
 //			creditCard.setMb_email(email);
 //			creditCardVO.setCreditCard(creditCard);
-	
 			System.out.println("################################");
 
 			creditCardVO.getCreditCard().setMb_email(email);
-			
-			
+
+			CreditCard temp = new CreditCard();
+			temp.setMb_email(email);
+			temp.setCc_number(creditCardVO.getCreditCard().getCc_number());
+			creditCardVO.setCreditCard(temp);
+
 			CreditCardVO resultVO = creditCardService.setCard(creditCardVO);
 			JSONObject result = new JSONObject();
 			String cardType = this.checkCreditCardType(resultVO.getCreditCard().getCc_number());
@@ -210,10 +205,7 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 			result.put("cc_goodthru", resultVO.getCc_goodthru());
 			result.put("name", name);
 			result.put("cardType", cardType);
-			
-
 			res.put(result);	
-			
 		}else if(buttonClicked.equalsIgnoreCase("USEGiftCard")){
 			Double amount = giftCardService.useCard(giftCardVO.getGc_number(), giftCardVO.getGc_code());
 			Boolean success1=false;
@@ -233,18 +225,24 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 			result.put("result", amountPrev);
 			JSONObject total = new JSONObject();
 			total.put("amount", amount);
+			success.put("result", amountPrev);
+			success.put("total", amount);
+			
 			res.put(total);	
 			res.put(success);	
+
 			res.put(result);	
+
 			
 		}else if(buttonClicked.equalsIgnoreCase("AddPromoCode")){
 			Boolean resultBoolean=false;
 			JSONObject promoDetails = null;
-			if(promoService.isAvailable(promoCodeVO.getPromoCode().getPc_code())){
-				PromoCodeVO result = promoCodeService.setPromotionCode(email,promoCodeVO.getPromoCode().getPc_code());
+			
+			if(promoService.isAvailable(promoCodeVO.getPromoCode().getPromoVO().getPm_code())){
+				PromoCodeVO result = promoCodeService.setPromotionCode(email,promoCodeVO.getPromoCode().getPromoVO().getPm_code());
 				if(result!=null){
 					resultBoolean = true;
-					PromoVO promoDetailVO = promoService.getPromoDetail(promoCodeVO.getPromoCode().getPc_code());
+					PromoVO promoDetailVO = promoService.getPromoDetail(promoCodeVO.getPromoCode().getPromoVO().getPm_code());
 					promoDetails=new JSONObject();
 					System.out.println(promoDetailVO);
 					promoDetails.put("pm_title", promoDetailVO.getPm_tiltle());
@@ -254,6 +252,7 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 					promoDetails.put("pm_discount", promoDetailVO.getPm_discount());
 				}
 			}
+			
 			JSONObject result = new JSONObject();
 			result.put("result", resultBoolean);
 			res.put(result);
@@ -261,27 +260,36 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 				res.put(promoDetails);
 			}
 			System.out.println(res.toString());
-			
+		
 		}else if(buttonClicked.equalsIgnoreCase("deleteCreditCard")){
 			//removeCard should be able to take in email as param
-			Boolean resultBoolean = creditCardService.removeCard(creditCardVO.getCreditCard().getCc_number());
+			Boolean resultBoolean = creditCardService.removeCard(creditCardVO.getCreditCard().getCc_number(),email);
 			JSONObject result = new JSONObject();
-			
 			result.put("result", resultBoolean);
 			result.put("cc_number",creditCardVO.getCreditCard().getCc_number());
 			res.put(result);
 		}else if(buttonClicked.equalsIgnoreCase("deletePromotion")){
 			Boolean resultBoolean= false;
-			resultBoolean = promoCodeService.removePromotionCode(email, promoCodeVO.getPromoCode().getPc_code());
+			resultBoolean = promoCodeService.removePromotionCode(email, promoCodeVO.getPromoCode().getPromoVO().getPm_code());
 			JSONObject result = new JSONObject();
 			result.put("result", resultBoolean);
 			res.put(result);
 		}
-
-
+//我住
+//			else if(buttonClicked.equalsIgnoreCase("deletePromotion")){
+//			Boolean resultBoolean= false;
+//			resultBoolean = promoCodeService.removePromotionCode(email, promoCodeVO.getPc_code());
+//
+//			JSONObject result = new JSONObject();
+//			result.put("result", resultBoolean);
+//			res.put(result);
+//		}
+		//我住
+		
 		request.setAttribute("results", res);
 		
 		try {
+			System.out.println("這裡");
 			rd.forward(request, response);
 		} catch (ServletException e) {
 			e.printStackTrace();

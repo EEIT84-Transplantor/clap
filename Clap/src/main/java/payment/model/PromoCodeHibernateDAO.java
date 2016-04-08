@@ -2,6 +2,9 @@ package payment.model;
 
 import java.util.List;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.ManyToOne;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -44,16 +47,26 @@ public class PromoCodeHibernateDAO implements PromoCodeDAO{
 		List<PromoVO> result = null;
 		return null;
 	}
-
+//	@EmbeddedId
+//	private PromoCode promoCode;
+//    @ManyToOne
+//	protected PromoVO promoVO;
 	@Override
-	public PromoCodeVO insert(String mb_email, String pc_code) {
+	public PromoCodeVO insert(PromoCode promoCode) {
+		System.out.println("################################A");
 		session = sessionFactory.getCurrentSession();
-		PromoCodeVO result = new PromoCodeVO();
-		PromoCode temp = new PromoCode();
+		PromoCodeVO result = session.get(PromoCodeVO.class, promoCode);
+//		Query query = session.createQuery("select po.pm_code,pd_category,pm_expire,pm_tiltle,pm_discount,mb_email from promocode as pc inner join promo as po on pc.pm_code=po.pm_code where po.pm_code=?");
+//		System.out.println("################################q");
+//		query.setParameter(0, promoCode);
+//		PromoCodeVO result = null;
+//		List<PromoCodeVO> list = query.list();
+//	
+//		for(PromoCodeVO pcv:list){
+//			result = pcv;
+//		}
 		
-		temp.setMb_email(mb_email);
-		temp.setPc_code(pc_code);
-		result.setPromoCode(temp);
+		System.out.println("################################B");
 		try {
 			session.save(result);
 			return result;
@@ -64,13 +77,13 @@ public class PromoCodeHibernateDAO implements PromoCodeDAO{
 	}
 
 	@Override
-	public boolean delete(String mb_email, String pc_code) {
+	public boolean delete(String mb_email, String pm_code) {
 		session = sessionFactory.getCurrentSession();
 		PromoCodeVO result = new PromoCodeVO();
         PromoCode temp = new PromoCode();
 		
 		temp.setMb_email(mb_email);
-		temp.setPc_code(pc_code);
+		//temp.setPromoVO(promoVO);.setPm_code(pm_code);
 		result.setPromoCode(temp);
 		try {
 			session.delete(result);

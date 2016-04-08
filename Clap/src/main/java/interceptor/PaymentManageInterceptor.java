@@ -50,6 +50,9 @@ public class PaymentManageInterceptor extends AbstractInterceptor {
          }
          
 	}
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
+	}
 	public void setCreditCardService(CreditCardService creditCardService) {
 		this.creditCardService = creditCardService;
 	}

@@ -15,6 +15,6 @@
     <mapping class="payment.model.CreditCardVO"/>
     <mapping class="payment.model.GiftCardVO"/>
     <mapping class="payment.model.PromoVO"/>
-<!--     <mapping class="payment.model.PromoCodeVO"/> -->
+    <mapping class="payment.model.PromoCodeVO"/>
     </session-factory>
 </hibernate-configuration>

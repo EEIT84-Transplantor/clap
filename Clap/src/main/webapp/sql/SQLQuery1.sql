@@ -22,10 +22,14 @@ gc_amount float
 primary key(mb_email))
 
 
-insert into Member(mb_email,mb_password) values('caca@gmail.com',CONVERT(VARBINARY, 'caca'));
-insert into Member(mb_email,mb_password) values('andrew@gmail.com',CONVERT(VARBINARY, 'andrew'));
-insert into Member(mb_email,mb_password) values('lee@gmail.com',CONVERT(VARBINARY, 'lee'));
-insert into Member(mb_email,mb_password) values('poan@gmail.com',CONVERT(VARBINARY, 'poan'));
+insert into Member values
+('caca@gmail.com',CONVERT(VARBINARY, 'caca'), 'caca', '0912345678', null , null, 0, null, null, 0, '2016-05-04', 0);
+insert into Member values
+('andrew@gmail.com',CONVERT(VARBINARY, 'andrew'), 'andrew', '0912345678', null , null, 0, null, null, 0, '2016-06-04', 0);
+insert into Member values
+('lee@gmail.com',CONVERT(VARBINARY, 'lee'), 'lee', '0912345678', null , null, 0, null, null, 0, '2016-07-04', 0);
+insert into Member values
+('poan@gmail.com',CONVERT(VARBINARY, 'poan'), 'poan', '0912345678', null , null, 0, null, null, 0, '2016-08-04', 0);
 select*from Member
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table creditcard(
@@ -52,6 +56,7 @@ gc_available int NOT NULL
 
 insert into giftcard(gc_number,gc_code,gc_amount,gc_available) values('1111','gccode1',1000,1);
 insert into giftcard(gc_number,gc_code,gc_amount,gc_available) values('2222','gccode2',500,0);
+insert into giftcard(gc_number,gc_code,gc_amount,gc_available) values('4444','gccode4',500,1);
 select * from giftcard
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table promo(
@@ -70,11 +75,11 @@ select * from promo
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table promocode(
 mb_email varchar(320) FOREIGN KEY REFERENCES Member(mb_email),
-pc_code varchar(50) FOREIGN KEY REFERENCES promo(pm_code),
-PRIMARY KEY (mb_email, pc_code)
+pm_code varchar(50) FOREIGN KEY REFERENCES promo(pm_code),
+PRIMARY KEY (mb_email, pm_code)
 )
 
-insert into promocode(mb_email,pc_code) values('caca@gmail.com','111');
-insert into promocode(mb_email,pc_code) values('caca@gmail.com','222');
-insert into promocode(mb_email,pc_code) values('lee@gmail.com','333');
+insert into promocode(mb_email,pm_code) values('caca@gmail.com','111');
+insert into promocode(mb_email,pm_code) values('caca@gmail.com','222');
+insert into promocode(mb_email,pm_code) values('lee@gmail.com','333');
 select * from promocode

@@ -1,10 +1,12 @@
 package interceptor;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -14,6 +16,8 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import member.model.MemberVO;
 import payment.model.CreditCardService;
 import payment.model.CreditCardVO;
+import payment.model.PromoCodeService;
+import payment.model.PromoVO;
 
 public class CreditCardInterceptor extends AbstractInterceptor {
 
@@ -43,6 +47,16 @@ public class CreditCardInterceptor extends AbstractInterceptor {
 			return "paymentManage";
 		} else {
 			// 卡片有效 繼續下去
+			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(request.getServletContext());
+			PromoCodeService promoCodeService = (PromoCodeService)context.getBean("promoCodeService");
+			CreditCardService cservice = (CreditCardService)context.getBean("creditCardService");
+			String email = memberVO.getEmail();
+			Double amount = memberVO.getAmount();
+			List<PromoVO>promoCodes=promoCodeService.getPromos(email);
+			List<CreditCardVO> payment = cservice.getCards(email);
+			request.setAttribute("cards", payment );
+			request.setAttribute("amount", amount);
+			request.setAttribute("promos", promoCodes);
 			return arg0.invoke();
 		}
 	}

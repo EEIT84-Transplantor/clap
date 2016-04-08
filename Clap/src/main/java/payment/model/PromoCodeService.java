@@ -23,7 +23,7 @@ public class PromoCodeService {
 	public void setDao(PromoCodeDAO dao) {
 		this.dao = dao;
 	}
-	public PromoCodeVO setPromotionCode(String mb_email, String pc_code){
+	public PromoCodeVO setPromotionCode(String mb_email, String pm_code){
 		PromoCodeVO result = null;
 		
 		if(mb_email==null||mb_email.length()==0){
@@ -33,8 +33,13 @@ public class PromoCodeService {
 		if(mb_email==null||mb_email.length()==0){
 			return result;
 		}
-
-		PromoCodeVO temp = dao.insert(mb_email, pc_code);
+		PromoVO promoVO = new PromoVO();
+		promoVO.setPm_code(pm_code);
+		PromoCode promoCode = new PromoCode();
+		promoCode.setMb_email(mb_email);
+		promoCode.setPromoVO(promoVO);
+		
+		PromoCodeVO temp = dao.insert(promoCode);
 
 		if(temp!=null){
 			result = temp;
