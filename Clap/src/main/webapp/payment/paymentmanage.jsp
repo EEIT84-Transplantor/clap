@@ -70,7 +70,7 @@
 										</div>
 									</div>
 								</div>
-								<div style="clear: both;"></div>
+								<div style="clear: both;">${errorMsg}</div>
 							</div>
 							<div class="tab-pane" id="gift_content">
 								<p>Received gift cards</p>
@@ -84,6 +84,7 @@
 											type="button" value="use" id="useGiftCard"><br />
 									</form>
 								</div>
+								${errorMsg}
 							</div>
 							<div class="tab-pane" id="promo_content">
 								<p>Received Promotions</p>
@@ -107,6 +108,7 @@
 											<td><a href="#" class="delete_promo"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
 										</tr>
 									</c:forEach>
+									${errorMsg}
 									<div class="addCard">
 									<strong>Add Promotion code</strong>
 
@@ -221,7 +223,7 @@
 		    var info = json[1];
 		    switch(key) {
 		    case "AddCreditCard":
-		    	  $(".payment_detail_box").last().after('<div class="payment_detail_box"><div class="creditCard"><div class="credit_info"><p class="cc_number">'+info.cc_number+'</p><p class="cc_goodthru">'+info.cc_goodthru+'</p><p class="cc_name">'+info.name+'</p><img src="../resource/images/master.png" width="60" /></div><div class="delete_card"><span class="glyphicon glyphicon-remove"></span></div></div></div>');
+		    	  $(".payment_detail_box").last().after('<div class="payment_detail_box"><div class="creditCard"><div class="credit_info"><p class="cc_number">'+info.cc_number+'</p><p class="cc_goodthru">'+info.cc_goodthru+'</p><p class="cc_name">'+info.name+'</p><img src="../resource/images/'+info.cardType+'.png" width="60" /></div><div class="delete_card"><span class="glyphicon glyphicon-remove"></span></div></div></div>');
 		    	  break;
 		    case "deleteCreditCard":
 		    	 if(info.result){
