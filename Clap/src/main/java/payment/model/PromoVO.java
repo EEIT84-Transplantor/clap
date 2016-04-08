@@ -1,5 +1,7 @@
 package payment.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="promo")
-public class PromoVO {
+public class PromoVO implements Serializable {
 	@Id
 	@Column(name="pm_code")
 	private String pm_code;

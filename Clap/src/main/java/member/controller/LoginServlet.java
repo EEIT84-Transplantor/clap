@@ -89,7 +89,7 @@ public class LoginServlet extends HttpServlet {
 			    }else if(Pattern.matches(jcb,cardNum)){
 			    	cardType.add("JCB");
 			    } else{
-			    	cardType.add("Master");	
+			    	cardType.add("master");	
 			    }	
  			}
  			Double amount = memberVO.getAmount();
@@ -98,7 +98,7 @@ public class LoginServlet extends HttpServlet {
  			session.setAttribute("cards",payment);
  			session.setAttribute("amount", amount);
  			session.setAttribute("promos", promoCodes);
- 			session.setAttribute("cardTypr", cardType);
+ 			session.setAttribute("cardType", cardType);
 			
 			if(uri==null){
 				response.sendRedirect("../index.jsp");	

@@ -69,7 +69,7 @@
 		<property name="dao" ref="promoCodeDAO" />
 		<property name="promoService" ref="promoService" />
 	</bean>
-		<bean id="paymentManageAction" class="payment.controller.PaymentManageAction">
+		<bean id="paymentManageAction" class="payment.controller.PaymentManageAction" scope="prototype">
 		<property name="promoService" ref="promoService"/>
 		<property name="giftCardService" ref="giftCardService"/>
 		<property name="memberService" ref="memberService"/>
@@ -78,16 +78,16 @@
 	</bean>
 
 	<!-- setting -->
-	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction">
+	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction" scope="prototype">
 		<property name="memberService" ref="memberService"/>
 	</bean>
 	<bean id="changePasswordAction" class="setting.controller.ChangePasswordAction" scope="prototype">
 		<property name="memberService" ref="memberService"/>
 	</bean>
-	<bean id="oneClickAction" class="setting.controller.OneClickAction">
+	<bean id="oneClickAction" class="setting.controller.OneClickAction" scope="prototype">
 		<property name="memberService" ref="memberService"/>
 	</bean>
-	<bean id="renewVIPAction" class="setting.controller.AutoRenewVIPAction">
+	<bean id="renewVIPAction" class="setting.controller.AutoRenewVIPAction" scope="prototype">
 		<property name="memberService" ref="memberService"/>
 	</bean>	
 	<bean id="autoRenewVIPAction" class="setting.controller.AutoRenewVIPAction">
