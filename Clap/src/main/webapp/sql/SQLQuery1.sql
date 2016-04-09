@@ -1,12 +1,14 @@
 use clap 
 
+drop table cart 
+drop table product
 drop table creditcard
 drop table giftcard
 drop table promocode
 drop table promo
-drop table Member
 drop table hospital 
 drop table message
+drop table Member
 
 create table member(
 mb_email varchar(320) NOT NULL,
@@ -117,3 +119,29 @@ insert into message values('poan@gmail.com', 'lee@gmail.com', 'Hello i am leelee
 
 
 select * from message
+
+
+
+create table product (
+pd_id int not null ,
+pd_title varchar(100)  not null
+PRIMARY KEY (pd_id)
+)
+insert product values(1, 'product1');
+insert product values(2,'product1');
+select * from product
+
+
+create table cart (
+mb_email varchar(320) FOREIGN KEY REFERENCES Member(mb_email) ,
+pd_id int FOREIGN KEY REFERENCES product(pd_id) ,
+ct_quantity int not null
+PRIMARY KEY (mb_email, pd_id)
+)
+
+insert cart values('caca@gmail.com', 1,10);
+insert cart values('caca@gmail.com', 2,20);
+insert cart values('lee@gmail.com', 1,10);
+select * from cart
+
+
