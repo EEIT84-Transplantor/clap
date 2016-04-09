@@ -50,10 +50,10 @@
 		$(document).ready(function() {
 			var contextPath = "${pageContext.request.contextPath}";
 			var paymentmanageUrl = contextPath + "/payment/paymentmanage.jsp";
-			var passwordchangeUrl = contextPath + "/member/passwordchange.action";
-			var changesettingUrl = contextPath + "/member/changesetting.action";
-			var oneclickUrl = contextPath + "/member/oneclick.action";
-			var vipUrl = contextPath + "/member/vip.action";
+			var passwordchangeUrl = contextPath + "/setting/passwordchange.action";
+			var changesettingUrl = contextPath + "/setting/changesetting.action";
+			var oneclickUrl = contextPath + "/setting/oneclick.action";
+			var vipUrl = contextPath + "/setting/vip.action";
 			var mailUrl = contextPath + "/message/mailbox.jsp";
 			
 			

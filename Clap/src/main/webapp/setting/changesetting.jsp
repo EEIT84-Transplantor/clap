@@ -1,25 +1,65 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>changesetting</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CLAP</title>
+<!-- Bootstrap -->
+<link href="../resource/css/bootstrap.min.css" rel="stylesheet">
+<link href="../resource/css/customer.css" rel="stylesheet">
+
 </head>
 <body>
+	<header>
+		<jsp:include page="/header.jsp" />
+	</header>
 
-<s:form action="changeSettingAction" method="post" enctype="multipart/form-data">
-<%-- 	<s:textfield label="email" name="memberVO.email" value="%{#request.login.email}"/> --%>
-	<s:textfield label="email" name="memberVO.email" value="poan@gmail.com"/>
-	<s:textfield label="password" name="memberVO.password" value=""/>
-	<s:textfield label="newpassword" name="newpassword" value=""/>
-	<s:textfield label="confirm" name="confirm" value=""/>
-	<s:textfield label="name" name="memberVO.name" value="%{#request.login.name}"/>
-	<s:textfield label="phone" name="memberVO.phone" value="%{#request.login.phone}"/>
-	<s:file label="photo" name="photo"/>
-	<s:submit label="submit"/>
-</s:form>
+	<section id="wrap">
+		<div class="container">
+		
+			<form role="form" action="<c:url value="/setting/changeSettingAction"/>" method="POST" enctype="multipart/form-data">
+				<div class="form-group">
+					<s:textfield class="form-control" name="email" type="email" label="Email" readonly="true" value="poan@gmail.com" />
+				</div>
+				<div class="form-group">
+					<s:textfield class="form-control" name="name" label="Name" />
+				</div>
+				<div class="form-group">
+					<s:textfield class="form-control" name="phone" type="text" label="Phone" errorPosition="bottom"/>
+				</div>
+				<div class="form-group">
+					<s:file class="form-control" name="photo" label="Photo" errorPosition="bottom"/>
+				</div>
+				<button class="btn btn-default" type="button">Submit</button>
+			</form>
+		</div>
+	</section>
 
+	<footer>
+		<jsp:include page="/footer.jsp" />
+	</footer>
+
+	<!-- 載入js -->
+	<script src="../resource/js/jquery-1.12.2.min.js"></script>
+	<script src="../resource/js/bootstrap.min.js"></script>
+	<script src="../resource/js/loginsignup.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			
+			//onclick submit button
+			$("form button").on("click", function() {
+				$("form").submit();
+			});
+			
+			//errorMessage color red
+			$("span.errorMessage").css("color","white").css("text-shadow","0px 0px 1px grey");
+			
+		});
+	</script>
 </body>
 </html>
