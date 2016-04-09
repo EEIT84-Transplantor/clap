@@ -16,6 +16,7 @@
     <mapping class="payment.model.GiftCardVO"/>
     <mapping class="payment.model.PromoVO"/>
     <mapping class="payment.model.PromoCodeVO"/>
-    <mapping resource="shopping/model/cart.hbm.xml"/>
+    <mapping resource="hbm/cartvo.hbm.xml"/>
+    <mapping resource="hbm/creditcardvo.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
