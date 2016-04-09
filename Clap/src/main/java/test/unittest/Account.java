@@ -2,9 +2,14 @@ package test.unittest;
 
 public class Account {
 
+	private String userName;
+
 	public String getUserName() {
-		// TODO Auto-generated method stub
-		return null;
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 }
