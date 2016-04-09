@@ -20,8 +20,8 @@ public class TestCartHibernateDAO extends TestCase {
 
 	@Override
 	protected void setUp() throws Exception {
-		ApplicationContext context = new ClassPathXmlApplicationContext("../applicationContext.xml");
-		cartHibernateDAO = (CartHibernateDAO) context.getBean("cartDAO");
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		cartHibernateDAO = (CartHibernateDAO) context.getBean("cartHibernateDAO");
 		sessionFactory = (SessionFactory) context.getBean("sessionFactory");
 		session = sessionFactory.getCurrentSession();
 

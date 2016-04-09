@@ -1,26 +1,19 @@
 package component.filter;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.struts2.ServletActionContext;
-import org.json.JSONObject;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import member.model.MemberService;
@@ -28,8 +21,6 @@ import member.model.MemberVO;
 import payment.model.CreditCardService;
 import payment.model.CreditCardVO;
 import payment.model.PromoCodeService;
-import payment.model.PromoCodeVO;
-import payment.model.PromoService;
 import payment.model.PromoVO;
 
 /**

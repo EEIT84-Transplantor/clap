@@ -15,8 +15,8 @@
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 		<property name="url" value="jdbc:sqlserver://localhost:1433;databaseName=clap" />
-		<property name="username" value="sa"/>
-		<property name="password" value="passw0rd"/>
+		<property name="username" value="sa" />
+		<property name="password" value="passw0rd" />
 	</bean>
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -28,9 +28,8 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="memberService" class="member.model.MemberService">
-		<property name="dao" ref="memberDAO" />
-		<property name="sendEmail" ref="sendEmail">
-		</property>
+		<property name="dao" ref="memberHibernateDAO" />
+		<property name="sendEmail" ref="sendEmail" />
 	</bean>
 
 	<!-- email -->
@@ -41,10 +40,10 @@
 		<property name="emailConfirm">
 			<bean class="component.email.EmailconfirmCode"></bean>
 		</property>
-		<property name="host" value="smtp.gmail.com"/>
-		<property name="port" value="587"/>
-		<property name="user" value="EEIT84Transplantor@gmail.com"/>
-		<property name="pass" value="TransplantorEEIT84"/>
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="user" value="EEIT84Transplantor@gmail.com" />
+		<property name="pass" value="TransplantorEEIT84" />
 	</bean>
 
 	<!-- payment model -->
@@ -52,25 +51,25 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="creditCardService" class="payment.model.CreditCardService">
-		<property name="dao" ref="creditCardDAO" />
+		<property name="dao" ref="creditCardHibernateDAO" />
 	</bean>
 	<bean id="giftCardHibernateDAO" class="payment.model.GiftCardHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="giftCardService" class="payment.model.GiftCardService">
-		<property name="dao" ref="giftCardDAO" />
+		<property name="dao" ref="giftCardHibernateDAO" />
 	</bean>
 	<bean id="promoHibernateDAO" class="payment.model.PromoHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="promoService" class="payment.model.PromoService">
-		<property name="dao" ref="promoDAO" />
+		<property name="dao" ref="promoHibernateDAO" />
 	</bean>
 	<bean id="promoCodeHibernateDAO" class="payment.model.PromoCodeHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="promoCodeService" class="payment.model.PromoCodeService">
-		<property name="dao" ref="promoCodeDAO" />
+		<property name="dao" ref="promoCodeHibernateDAO" />
 		<property name="promoService" ref="promoService" />
 	</bean>
 	<bean id="paymentManageAction" class="payment.controller.PaymentManageAction" scope="prototype">
@@ -100,10 +99,10 @@
 
 	<!-- shopping model -->
 	<bean id="cartHibernateDAO" class="shopping.model.CartHibernateDAO">
-		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="cartService" class="shopping.model.CartService">
-		<property name="cartDAO" ref="cartDAO"/>
+		<property name="cartDAO" ref="cartHibernateDAO" />
 	</bean>
 
 
