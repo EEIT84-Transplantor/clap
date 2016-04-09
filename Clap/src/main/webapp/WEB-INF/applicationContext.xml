@@ -107,9 +107,6 @@
 	<bean id="creditCardInterceptor" class="interceptor.CreditCardInterceptor">
 		<property name="creditCardService" ref="creditCardService"/>
 	</bean>	
-	<bean id="testInterceptor" class="interceptor.TestInterceptor">
-		<property name="memberService" ref="memberService"/>
-	</bean>
 	<bean id="paymentInterceptor" class="interceptor.PaymentManageInterceptor">
 		<property name="creditCardService" ref="creditCardService"/>
 		<property name="promoCodeService" ref="promoCodeService"/>
