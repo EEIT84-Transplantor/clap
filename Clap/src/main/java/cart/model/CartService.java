@@ -120,7 +120,7 @@ public class CartService {
 		}
 //		取得單品總價
 //		ProuctService pService = new pService();
-//		ProuctVO prouctVO = pService.getPriceById(cartVO.getId());
+//		ProuctVO prouctVO = pService.getProductById(cartVO.getId());
 //		result = prouctVO.getPrice()*cartVO.getQuantity();
 		
 		return result;
