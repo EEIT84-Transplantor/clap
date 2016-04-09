@@ -1,4 +1,4 @@
-package cart.model;
+package shopping.model;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,7 +20,7 @@ public class TestCartHibernateDAO extends TestCase {
 
 	@Override
 	protected void setUp() throws Exception {
-		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("../applicationContext.xml");
 		cartHibernateDAO = (CartHibernateDAO) context.getBean("cartDAO");
 		sessionFactory = (SessionFactory) context.getBean("sessionFactory");
 		session = sessionFactory.getCurrentSession();
