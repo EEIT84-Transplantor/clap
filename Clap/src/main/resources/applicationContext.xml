@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- datasource -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="url"
+			value="jdbc:sqlserver://localhost:1433;databaseName=clap" />
+		<property name="username" value="sa"></property>
+		<property name="password" value="passw0rd"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+	</bean>
+	
+	<!-- member -->
+	<bean id="memberDAO" class="member.model.MemberDAOHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="memberService" class="member.model.MemberService">
+		<property name="dao" ref="memberDAO" />
+		<property name="sendEmail" ref="sendEmail"/>
+	</bean>
+
+	<!-- email -->
+	<bean id="memberDAOHiber" class="member.model.MemberDAOHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="sendEmail" class="member.model.email.SendEmail">
+		<property name="emailUtility">
+			<bean class="member.model.email.EmailUtility"></bean>
+		</property>
+		<property name="emailConfirm">
+			<bean class="member.model.email.EmailconfirmCode"></bean>
+		</property>
+		<property name="host" value="smtp.gmail.com"></property>
+		<property name="port" value="587"></property>
+		<property name="user" value="EEIT84Transplantor@gmail.com"></property>
+		<property name="pass" value="TransplantorEEIT84"></property>
+	</bean>
+
+	<!-- payment package -->
+	<bean id="creditCardDAO" class="payment.model.CreditCardHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="creditCardService" class="payment.model.CreditCardService">
+		<property name="dao" ref="creditCardDAO" />
+	</bean>
+	<bean id="giftCardDAO" class="payment.model.GiftCardHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="giftCardService" class="payment.model.GiftCardService">
+		<property name="dao" ref="giftCardDAO" />
+	</bean>
+	<bean id="promoDAO" class="payment.model.PromoHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="promoService" class="payment.model.PromoService">
+		<property name="dao" ref="promoDAO" />
+	</bean>
+	<bean id="promoCodeDAO" class="payment.model.PromoCodeHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="promoCodeService" class="payment.model.PromoCodeService">
+		<property name="dao" ref="promoCodeDAO" />
+		<property name="promoService" ref="promoService" />
+	</bean>
+		<bean id="paymentManageAction" class="payment.controller.PaymentManageAction" scope="prototype">
+		<property name="promoService" ref="promoService"/>
+		<property name="giftCardService" ref="giftCardService"/>
+		<property name="memberService" ref="memberService"/>
+		<property name="creditCardService" ref="creditCardService"/>
+		<property name="promoCodeService" ref="promoCodeService"/>
+	</bean>
+
+	<!-- setting -->
+	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction" scope="prototype">
+		<property name="memberService" ref="memberService"/>
+	</bean>
+	<bean id="changePasswordAction" class="setting.controller.ChangePasswordAction" scope="prototype">
+		<property name="memberService" ref="memberService"/>
+	</bean>
+	<bean id="oneClickAction" class="setting.controller.OneClickAction" scope="prototype">
+		<property name="memberService" ref="memberService"/>
+	</bean>
+	<bean id="renewVIPAction" class="setting.controller.AutoRenewVIPAction" scope="prototype">
+		<property name="memberService" ref="memberService"/>
+	</bean>	
+	<bean id="autoRenewVIPAction" class="setting.controller.AutoRenewVIPAction">
+		<property name="memberService" ref="memberService"/>
+	</bean>	
+	
+	<!-- interceptor -->
+	<bean id="creditCardInterceptor" class="interceptor.CreditCardInterceptor">
+		<property name="creditCardService" ref="creditCardService"/>
+	</bean>	
+	<bean id="testInterceptor" class="interceptor.TestInterceptor">
+		<property name="memberService" ref="memberService"/>
+	</bean>
+	<bean id="paymentInterceptor" class="interceptor.PaymentManageInterceptor">
+		<property name="creditCardService" ref="creditCardService"/>
+		<property name="promoCodeService" ref="promoCodeService"/>
+		<property name="memberService" ref="memberService"/>
+	</bean>
+</beans>

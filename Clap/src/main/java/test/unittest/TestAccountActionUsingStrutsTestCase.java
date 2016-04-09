@@ -1,5 +1,6 @@
 package test.unittest;
 import org.apache.struts2.StrutsSpringTestCase;
+import org.apache.struts2.dispatcher.mapper.ActionMapping;
 
 import com.opensymphony.xwork2.ActionProxy;
 
@@ -9,8 +10,9 @@ public class TestAccountActionUsingStrutsTestCase extends StrutsSpringTestCase  
  
         request.setParameter("accountBean.userName", "Bruc");
         request.setParameter("accountBean.password", "test");
+     
  
-        ActionProxy proxy = getActionProxy("/createaccount");
+        ActionProxy proxy = getActionProxy("/test/createaccount");
  
         AccountAction accountAction = (AccountAction) proxy.getAction();
  
@@ -27,7 +29,7 @@ public class TestAccountActionUsingStrutsTestCase extends StrutsSpringTestCase  
         request.setParameter("accountBean.userName", "Bruce");
         request.setParameter("accountBean.password", "test");
  
-        ActionProxy proxy = getActionProxy("/createaccount");
+        ActionProxy proxy = getActionProxy("/test/createaccount");
  
         AccountAction accountAction = (AccountAction) proxy.getAction();
  
