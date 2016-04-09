@@ -12,9 +12,9 @@
 
 		<!-- interceptors -->
 		<interceptors>
-			<interceptor name="loginInterceptor" class="interceptor.LoginInterceptor" />
-			<interceptor name="creditCardInterceptor" class="interceptor.CreditCardInterceptor" />
-			<interceptor name="testInterceptor" class="interceptor.TestInterceptor" />
+			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
+			<interceptor name="creditCardInterceptor" class="component.interceptor.CreditCardInterceptor" />
+			<interceptor name="testInterceptor" class="component.interceptor.TestInterceptor" />
 			<interceptor-stack name="testStack">
 				<interceptor-ref name="testInterceptor" />
 				<interceptor-ref name="defaultStack" />
@@ -66,8 +66,8 @@
 	<package name="payment" namespace="/payment" extends="struts-default">
 
 		<interceptors>
-			<interceptor name="loginInterceptor" class="interceptor.LoginInterceptor" />
-			<interceptor name="paymentManageInterceptor" class="interceptor.PaymentManageInterceptor" />
+			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
+			<interceptor name="paymentManageInterceptor" class="component.interceptor.PaymentManageInterceptor" />
 
 			<interceptor-stack name="paymentManageStack">
 				<interceptor-ref name="loginInterceptor" />
@@ -98,8 +98,8 @@
 
 		<!-- interceptors -->
 		<interceptors>
-			<interceptor name="loginInterceptor" class="interceptor.LoginInterceptor" />
-			<interceptor name="creditCardInterceptor" class="interceptor.CreditCardInterceptor" />
+			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
+			<interceptor name="creditCardInterceptor" class="component.interceptor.CreditCardInterceptor" />
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="defaultStack" />
@@ -131,15 +131,6 @@
 	</package>
 
 	<package name="test" namespace="/test" extends="struts-default">
-
-		<!-- interceptors -->
-		<interceptors>
-			<interceptor name="testInterceptor" class="interceptor.TestInterceptor" />
-			<interceptor-stack name="testStack">
-				<interceptor-ref name="testInterceptor" />
-				<interceptor-ref name="defaultStack" />
-			</interceptor-stack>
-		</interceptors>
 
 		<!-- action -->
 		<action name="testAction" class="test.TestAction">

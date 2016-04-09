@@ -21,7 +21,7 @@
 
 	<filter>
 		<filter-name>OpenSessionViewFilter</filter-name>
-		<filter-class>hibernate.filter.OpenSessionViewFilter</filter-class>
+		<filter-class>component.filter.OpenSessionViewFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>OpenSessionViewFilter</filter-name>
@@ -29,7 +29,7 @@
 	</filter-mapping>
 	<filter>
 		<filter-name>ActoinContextFilter</filter-name>
-		<filter-class>member.filter.ActoinContextFilter</filter-class>
+		<filter-class>component.filter.ActoinContextFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>ActoinContextFilter</filter-name>

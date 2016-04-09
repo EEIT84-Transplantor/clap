@@ -2,10 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- interceptor -->
-	<bean id="creditCardInterceptor" class="interceptor.CreditCardInterceptor">
+	<bean id="creditCardInterceptor" class="component.interceptor.CreditCardInterceptor">
 		<property name="creditCardService" ref="creditCardService" />
 	</bean>
-	<bean id="paymentInterceptor" class="interceptor.PaymentManageInterceptor">
+	<bean id="paymentInterceptor" class="component.interceptor.PaymentManageInterceptor">
 		<property name="creditCardService" ref="creditCardService" />
 		<property name="promoCodeService" ref="promoCodeService" />
 		<property name="memberService" ref="memberService" />

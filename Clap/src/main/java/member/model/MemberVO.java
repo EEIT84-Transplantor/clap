@@ -55,7 +55,7 @@ public class MemberVO {
 		return password;
 	}
 
-	@TypeConversion(converter = "converter.BytearrayConverter")
+	@TypeConversion(converter = "component.converter.BytearrayConverter")
 	public MemberVO setPassword(byte[] password) {
 		this.password = password;
 		return this;
