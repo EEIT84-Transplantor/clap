@@ -35,18 +35,10 @@ public class CartHibernateDAO implements CartDAO {
 	@Override
 	public List<CartVO> selectByEmail(String email) {
 		List<CartVO> result = null;
-
-		try {
-			session = sessionFactory.getCurrentSession();
-			transaction = session.beginTransaction();
-			Query query = session.createQuery(SELECT_BY_EMAIL);
-			query.setParameter(0, email);
-			result = query.list();
-			transaction.commit();
-		} catch (Exception e) {
-			transaction.rollback();
-		}
-
+		session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(SELECT_BY_EMAIL);
+		query.setParameter(0, email);
+		result = query.list();
 		return result;
 	}
 
