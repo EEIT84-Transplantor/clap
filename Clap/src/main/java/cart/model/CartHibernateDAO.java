@@ -11,28 +11,25 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class CartHibernateDAO implements CartDAO {
+	
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		CartDAO dao = (CartDAO) context.getBean("cartDAO");
-		System.out.println("haha"+dao.selectByEmail("caca@gmail.com").size());
-	}
-	private SessionFactory sessionFactory;
-	private Session session;
-	
-	public CartHibernateDAO() {
+		System.out.println("haha" + dao.selectByEmail("caca@gmail.com").size());
 	}
 
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
+	private SessionFactory sessionFactory;
+	private Session session;
+	final private String SELECT_BY_EMAIL = "from CartVO where mb_email=?";
+	final private String DELETE_ALL = "delete from CartVO";
+
+	public CartHibernateDAO() {
 	}
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
-	final private String SELECT_BY_EMAIL = "from CartVO where mb_email=?";
-	final private String DELETE_ALL = "delete from CartVO";
-	
 	@Override
 	public List<CartVO> selectByEmail(String email) {
 		List<CartVO> result = null;
@@ -123,7 +120,7 @@ public class CartHibernateDAO implements CartDAO {
 		session = sessionFactory.getCurrentSession();
 		try {
 			int temp = session.createQuery(DELETE_ALL).executeUpdate();
-			if(temp==1){
+			if (temp == 1) {
 				result = true;
 			}
 		} catch (Exception e) {
