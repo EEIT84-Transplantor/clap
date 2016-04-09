@@ -7,6 +7,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import junit.framework.TestCase;
+import shopping.model.CartHibernateDAO;
+import shopping.model.CartVO;
 
 public class TestCartHibernateDAO extends TestCase {
 

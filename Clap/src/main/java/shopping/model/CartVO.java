@@ -1,4 +1,4 @@
-package cart.model;
+package shopping.model;
 
 import java.io.Serializable;
 

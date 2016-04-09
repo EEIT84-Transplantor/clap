@@ -1,4 +1,4 @@
-package payment.controller;
+package component.filter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ import payment.model.PromoVO;
 
 //@WebFilter("/payment/paymentmanage.jsp")
 
-public class paymentFilter implements Filter {
+public class PaymentFilter implements Filter {
 //	CreditCardService cservice;
 //	MemberService mServic;
 //	PromoCodeService promoCodeService;

@@ -37,7 +37,7 @@
 	</filter-mapping>
 	<filter>
 		<filter-name>BctoinContextFilter</filter-name>
-		<filter-class>payment.controller.paymentFilter</filter-class>
+		<filter-class>component.filter.PaymentFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>BctoinContextFilter</filter-name>
