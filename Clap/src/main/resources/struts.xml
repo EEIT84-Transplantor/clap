@@ -14,11 +14,6 @@
 		<interceptors>
 			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
 			<interceptor name="creditCardInterceptor" class="component.interceptor.CreditCardInterceptor" />
-			<interceptor name="testInterceptor" class="component.interceptor.TestInterceptor" />
-			<interceptor-stack name="testStack">
-				<interceptor-ref name="testInterceptor" />
-				<interceptor-ref name="defaultStack" />
-			</interceptor-stack>
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="defaultStack" />
@@ -135,7 +130,6 @@
 		<!-- action -->
 		<action name="testAction" class="test.TestAction">
 			<result name="success">/test/output.jsp</result>
-			<interceptor-ref name="testStack" />
 		</action>
 
 		<!-- unit test -->
