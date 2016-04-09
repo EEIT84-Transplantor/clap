@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class MemberDAOHibernate implements MemberDAO {
+public class MemberHibernateDAO implements MemberDAO {
 	
 	private SessionFactory sessionFactory;
 	public SessionFactory getSessionFactory() {
@@ -22,7 +22,7 @@ public class MemberDAOHibernate implements MemberDAO {
 	private Session session;
 	final private String SELECT_ALL = "from MemberVO";
 
-	public MemberDAOHibernate() {
+	public MemberHibernateDAO() {
 		
 	}
 

@@ -14,7 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.sun.mail.handlers.message_rfc822;
 
-import member.model.email.SendEmail;
+import component.email.SendEmail;
 
 public class MemberService {
 

@@ -1,4 +1,4 @@
-package member.model.email;
+package component.email;
 
 import java.util.Date;
 import java.util.Properties;

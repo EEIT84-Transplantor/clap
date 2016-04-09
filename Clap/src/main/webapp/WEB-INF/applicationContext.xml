@@ -24,7 +24,7 @@
 	</bean>
 
 	<!-- member -->
-	<bean id="memberDAO" class="member.model.MemberDAOHibernate">
+	<bean id="memberDAO" class="member.model.MemberHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="memberService" class="member.model.MemberService">
@@ -34,15 +34,15 @@
 	</bean>
 
 	<!-- email -->
-	<bean id="memberDAOHiber" class="member.model.MemberDAOHibernate">
+	<bean id="memberDAOHiber" class="member.model.MemberHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="sendEmail" class="member.model.email.SendEmail">
+	<bean id="sendEmail" class="component.email.SendEmail">
 		<property name="emailUtility">
-			<bean class="member.model.email.EmailUtility"></bean>
+			<bean class="component.email.EmailUtility"></bean>
 		</property>
 		<property name="emailConfirm">
-			<bean class="member.model.email.EmailconfirmCode"></bean>
+			<bean class="component.email.EmailconfirmCode"></bean>
 		</property>
 		<property name="host" value="smtp.gmail.com"></property>
 		<property name="port" value="587"></property>

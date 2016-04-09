@@ -1,4 +1,4 @@
-package member.model.email;
+package component.email;
 
 import java.io.IOException;
 
