@@ -1,10 +1,25 @@
 package payment.model;
 
-public class PromoVO {
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="promo")
+public class PromoVO implements Serializable {
+	@Id
+	@Column(name="pm_code")
 	private String pm_code;
+	@Column(name="pd_category")
 	private String pd_category;
+	@Column(name="pm_expire")
 	private java.util.Date pm_expire;
+	@Column(name="pm_tiltle")
 	private String pm_tiltle;
+	@Column(name="pm_discount")
 	private Double pm_discount;
 	
 	public String getPm_code() {

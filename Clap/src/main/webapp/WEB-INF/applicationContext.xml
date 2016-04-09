@@ -16,7 +16,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
 	</bean>
-
+	
 	<!-- member -->
 	<bean id="memberDAO" class="member.model.MemberDAOHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
@@ -44,39 +44,50 @@
 	</bean>
 
 	<!-- payment package -->
-	<bean id="creditCardDAO" class="payment.model.CreditCardjdbcDAO">
-		<property name="dataSource" ref="dataSource" />
+	<bean id="creditCardDAO" class="payment.model.CreditCardHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="creditCardService" class="payment.model.CreditCardService">
 		<property name="dao" ref="creditCardDAO" />
 	</bean>
-	<bean id="giftCardDAO" class="payment.model.GiftCardjdbcDAO">
-		<property name="dataSource" ref="dataSource" />
+	<bean id="giftCardDAO" class="payment.model.GiftCardHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="giftCardService" class="payment.model.GiftCardService">
 		<property name="dao" ref="giftCardDAO" />
 	</bean>
-	<bean id="promoDAO" class="payment.model.PromojdbcDAO">
-		<property name="dataSource" ref="dataSource" />
+	<bean id="promoDAO" class="payment.model.PromoHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="promoService" class="payment.model.PromoService">
 		<property name="dao" ref="promoDAO" />
 	</bean>
-	<bean id="promoCodeDAO" class="payment.model.PromoCodejdbcDAO">
-		<property name="dataSource" ref="dataSource" />
+	<bean id="promoCodeDAO" class="payment.model.PromoCodeHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="promoCodeService" class="payment.model.PromoCodeService">
 		<property name="dao" ref="promoCodeDAO" />
+		<property name="promoService" ref="promoService" />
+	</bean>
+		<bean id="paymentManageAction" class="payment.controller.PaymentManageAction" scope="prototype">
+		<property name="promoService" ref="promoService"/>
+		<property name="giftCardService" ref="giftCardService"/>
+		<property name="memberService" ref="memberService"/>
+		<property name="creditCardService" ref="creditCardService"/>
+		<property name="promoCodeService" ref="promoCodeService"/>
 	</bean>
 
 	<!-- setting -->
-	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction">
+	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction" scope="prototype">
 		<property name="memberService" ref="memberService"/>
 	</bean>
-	<bean id="oneClickAction" class="setting.controller.OneClickAction">
+	<bean id="changePasswordAction" class="setting.controller.ChangePasswordAction" scope="prototype">
 		<property name="memberService" ref="memberService"/>
 	</bean>
-	<bean id="renewVIPAction" class="setting.controller.AutoRenewVIPAction">
+	<bean id="oneClickAction" class="setting.controller.OneClickAction" scope="prototype">
+		<property name="memberService" ref="memberService"/>
+	</bean>
+	<bean id="renewVIPAction" class="setting.controller.AutoRenewVIPAction" scope="prototype">
 		<property name="memberService" ref="memberService"/>
 	</bean>	
 	<bean id="autoRenewVIPAction" class="setting.controller.AutoRenewVIPAction">
@@ -87,7 +98,12 @@
 	<bean id="creditCardInterceptor" class="interceptor.CreditCardInterceptor">
 		<property name="creditCardService" ref="creditCardService"/>
 	</bean>	
-	
-	
-	
+	<bean id="testInterceptor" class="interceptor.TestInterceptor">
+		<property name="memberService" ref="memberService"/>
+	</bean>
+	<bean id="paymentInterceptor" class="interceptor.PaymentManageInterceptor">
+		<property name="creditCardService" ref="creditCardService"/>
+		<property name="promoCodeService" ref="promoCodeService"/>
+		<property name="memberService" ref="memberService"/>
+	</bean>
 </beans>

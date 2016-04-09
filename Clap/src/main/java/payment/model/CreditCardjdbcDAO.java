@@ -25,11 +25,12 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 			System.out.print(list.get(0).getCc_cvv());
 			
 			CreditCardVO vo = new CreditCardVO();
-			vo.setCc_number("7777777777777777");
-			vo.setMb_email("caca@gmail.com");
+			CreditCard creditCard = new CreditCard();
+			creditCard.setCc_number("caca@gmail.com");
+			creditCard.setCc_number("111111111111111");
 			vo.setCc_goodthru("10/18");
 			vo.setCc_cvv("333");
-			
+			vo.setCreditCard(creditCard);
            // System.out.println(cdao.insert(vo).getCc_cvv());
            // System.out.println(cdao.delete(vo.getCc_number()));
             
@@ -62,8 +63,10 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 			rs =ps.executeQuery();
 			while(rs.next()){
 			CreditCardVO temp = new CreditCardVO();
-			temp.setMb_email(rs.getString("mb_email"));
-			temp.setCc_number(rs.getString("cc_number"));
+			CreditCard creditCard = new CreditCard();
+			creditCard.setCc_number(rs.getString("cc_number"));
+			creditCard.setMb_email(rs.getString("mb_email"));
+			temp.setCreditCard(creditCard);
 			temp.setCc_goodthru(rs.getString("cc_goodrhru"));
 			temp.setCc_cvv(rs.getString("cc_cvv"));
 			
@@ -102,7 +105,7 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 	}
 
 	@Override
-	public CreditCardVO selectByCcNumber(String cc_number) {
+	public CreditCardVO selectByCcNumber(String mb_email, String cc_number) {
 		CreditCardVO result = null;
 		PreparedStatement ps= null;
 		ResultSet rs = null;
@@ -113,8 +116,10 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 			rs =ps.executeQuery();
 			if(rs.next()){
 			result = new CreditCardVO();
-			result.setMb_email(rs.getString("mb_email"));
-			result.setCc_number(rs.getString("cc_number"));
+			CreditCard creditCard = new CreditCard();
+			creditCard.setCc_number(rs.getString("cc_number"));
+			creditCard.setMb_email(rs.getString("mb_email"));
+			result.setCreditCard(creditCard);
 			result.setCc_goodthru(rs.getString("cc_goodrhru"));
 			result.setCc_cvv(rs.getString("cc_cvv"));
 			}
@@ -158,8 +163,8 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 		try {
 			conn = dataSource.getConnection();
 			ps = conn.prepareStatement(INSERT);
-			ps.setString(1, creditCardVO.getMb_email());
-			ps.setString(2, creditCardVO.getCc_number());
+			ps.setString(1, creditCardVO.getCreditCard().getMb_email());
+			ps.setString(2, creditCardVO.getCreditCard().getCc_number());
 			ps.setString(3, creditCardVO.getCc_goodthru());
 			ps.setString(4, creditCardVO.getCc_cvv());
 			
@@ -227,6 +232,12 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public boolean delete(String cc_number, String mb_email) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	

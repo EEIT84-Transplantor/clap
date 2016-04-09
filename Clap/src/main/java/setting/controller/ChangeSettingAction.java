@@ -1,49 +1,51 @@
 package setting.controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.util.Arrays;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.regex.Pattern;
 
+import org.json.JSONObject;
+
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.conversion.annotations.TypeConversion;
 
 import member.model.MemberService;
 import member.model.MemberVO;
 
 public class ChangeSettingAction extends ActionSupport {
-
-	private MemberVO memberVO;
-	private byte[] newpassword;
-	private byte[] confirm;
+	
+	
+	private String email;
+	private String name;
+	private String phone;
 	private MemberService memberService;
 	private File photo;
 	private String contentType;
 	private String filename;
 
-	public MemberVO getMemberVO() {
-		return memberVO;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setMemberVO(MemberVO memberVO) {
-		this.memberVO = memberVO;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public byte[] getNewpassword() {
-		return newpassword;
+	public String getName() {
+		return name;
 	}
 
-	@TypeConversion(converter = "converter.BytearrayConverter")
-	public void setNewpassword(byte[] newpassword) {
-		this.newpassword = newpassword;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public byte[] getConfirm() {
-		return confirm;
+	public String getPhone() {
+		return phone;
 	}
 
-	@TypeConversion(converter = "converter.BytearrayConverter")
-	public void setConfirm(byte[] confirm) {
-		this.confirm = confirm;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public void setMemberService(MemberService memberService) {
@@ -61,37 +63,28 @@ public class ChangeSettingAction extends ActionSupport {
 	public void setPhotoFileName(String filename) {
 		this.filename = filename;
 	}
+	
 
 	@Override
 	public void validate() {
-
-		// 舊密碼是否正確、新密碼的驗證碼是否正確
-		if (memberVO.getPassword().length != 0) {
-			if (memberService.login(memberVO.getEmail(), memberVO.getPassword()) == null) {
-				super.addFieldError("memberVO.password", super.getText("password.notmatch"));
-			} else if (!Arrays.equals(newpassword, confirm)) {
-				System.out.println("equals");
-				super.addFieldError("confirm", super.getText("confirm.notmatch"));
-			}
-		} else if (newpassword.length != 0) {
-			super.addFieldError("memberVO.password", super.getText("password.notmatch"));
-		}
-
 		// 手機格式是否正確
-		if (memberVO.getPhone().trim().length() != 0 && !Pattern.matches("/^09[0-9]{8}$/", memberVO.getPhone())) {
-			super.addFieldError("memberVO.phone", super.getText("phone.type"));
+		if (phone.trim().length()!=0&&!Pattern.matches("^09[0-9]{8}$", phone)) {
+				super.addFieldError("phone",getText("phone.type"));
 		}
 
 		// 照片尺寸小於1mb
 		if (photo != null && photo.length() > 1024 * 1024) {
-			System.out.println(photo.length());
-			super.addFieldError("photo", super.getText("photo.oversize"));
+				super.addFieldError("photo",getText("photo.oversize"));
 		}
+
 	}
 
 	@Override
 	public String execute() throws Exception {
-		memberService.updateSetting(memberVO, newpassword, photo);
+		MemberVO memberVO = memberService.findByEmail(email);
+		memberVO.setName(name);
+		memberVO.setPhone(phone);
+		memberService.updateSetting(memberVO, photo, contentType);
 		return SUCCESS;
 	}
 }

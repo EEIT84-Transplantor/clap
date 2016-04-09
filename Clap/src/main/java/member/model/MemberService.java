@@ -1,18 +1,19 @@
 package member.model;
 
 import java.io.File;
-import java.lang.reflect.Method;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Date;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Map;
-import java.util.function.IntPredicate;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import antlr.collections.List;
-import member.model.MemberVO;
-import member.model.email.EmailconfirmCode;
+import com.sun.mail.handlers.message_rfc822;
+
 import member.model.email.SendEmail;
 
 public class MemberService {
@@ -44,7 +45,6 @@ public class MemberService {
 		if (member != null) {
 			byte[] temp = password;
 			byte[] memberPassword = member.getPassword();
-
 			if (Arrays.equals(temp, memberPassword)) {
 				result = member;
 			}
@@ -60,12 +60,10 @@ public class MemberService {
 		}
 	}
 
-	public boolean changePassword(String email, byte[] oldPassword, String newPassword) {
-		boolean result = false;
-		if (this.login(email, oldPassword) != null) {
-			result = dao.update(email, newPassword.getBytes());
-		}
-		return result;
+	public void changePassword(String email, byte[] newPassword) {
+		MemberVO memberVO = findByEmail(email);
+		memberVO.setPassword(newPassword);
+		dao.update(memberVO);
 	}
 
 	public String sendComfirmEmail(String email) {
@@ -89,34 +87,53 @@ public class MemberService {
 	}
 
 	// 如果有新圖片就改成新圖片、如果是null就不改
-	// 如果有新圖片就改成新圖片、如果是null就不改
-	public boolean updateSetting(MemberVO memberVO, byte[] newpassword, File photo) {
+	public boolean updateSetting(MemberVO memberVO, File photo, String contentType) {
+
+		if (photo != null) {
+			try {
+				memberVO.setPhoto(read(photo));
+				memberVO.setContentType(contentType);
+			} catch (IOException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}
+
+		dao.update(memberVO);
+		return true;
 
 	}
 
 	// 如果oneclick是true就update所有資料、如果是false就只update onclick
-	public boolean setOneClick(String email, String phone, Integer id, String number, Boolean oneclick) {
+	public void setOneClick(String email, String phone, Integer id, String number, Boolean oneclick) {
+		MemberVO memberVO = findByEmail(email);
+		memberVO.setOneclick(oneclick);
 
+		if (oneclick) {
+			memberVO.setPhone(phone);
+			memberVO.setId(id);
+			memberVO.setNumber(number);
+		}
+
+		dao.update(memberVO);
 	}
 
 	// 讓memberVO的expire延長month個月
-	public Boolean updateVIP(MemberVO memberVO, int month) {
-		java.sql.Date now = new Date(new java.util.Date().getTime());
-		Date expire = memberVO.getExpire();
-		Date result;
+	public void updateVIP(MemberVO memberVO, int month) {
+		Calendar calendar = Calendar.getInstance();
+		Long now = calendar.getTimeInMillis();
+		Long expire = memberVO.getExpire().getTime();
 
-		if (now.compareTo(expire) >= 0) {
-			result = now;
-		} else {
-			result = expire;
-		}
-		
-		memberVO.setExpire(result);
+		expire = Math.max(now, expire);
+		calendar.setTimeInMillis(expire);
+		calendar.add(Calendar.DAY_OF_YEAR, month * 30);
+		memberVO.setExpire(new Date(calendar.getTimeInMillis()));
 	}
 
 	// update memberVO的autorenew
 	public void setAutoRenew(MemberVO memberVO, Boolean autorenew) {
 		memberVO.setAutorenew(autorenew);
+		dao.update(memberVO);
 	}
 
 	public boolean setAmount(String email, Double gc_amount) {
@@ -124,5 +141,21 @@ public class MemberService {
 		memberVO.setAmount(gc_amount);
 		boolean isUpdated = dao.update(memberVO);
 		return isUpdated;
+	}
+
+	public Double getAmount(String email) {
+		System.out.println("kkkk" + dao);
+
+		return dao.selectByEmail(email).getAmount();
+	}
+
+	public byte[] read(File file) throws IOException {
+
+		byte[] buffer = new byte[(int) file.length()];
+
+		try (InputStream ios = new FileInputStream(file)) {
+			ios.read(buffer);
+		}
+		return buffer;
 	}
 }

@@ -7,11 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
+import com.opensymphony.xwork2.Result;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
 import member.model.MemberVO;
 
 public class LoginInterceptor extends AbstractInterceptor{
+
+	private String result;
 
 	@Override
 	public String intercept(ActionInvocation arg0) throws Exception {
@@ -28,8 +31,10 @@ public class LoginInterceptor extends AbstractInterceptor{
 			return "login";
 		} else {
 			//找到 繼續下去
-			return arg0.invoke();
+			result = arg0.invoke();			
+			return result;
 		}
+		
 	}
 
 }

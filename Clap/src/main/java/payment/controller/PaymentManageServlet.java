@@ -22,6 +22,7 @@ public class PaymentManageServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		response.setCharacterEncoding("UTF-8");
 		out.print(request.getAttribute("results"));
+		System.out.println("最後!!!!!!");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
