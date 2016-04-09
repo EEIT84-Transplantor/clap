@@ -13,6 +13,6 @@ Result Page
         <h3><%=request.getAttribute("Message")%></h3>
     </center>
     
-    <a href="<c:url value="/email/EmailForm.jsp" />">Go back to sending</a>
+    <a href="<c:url value="/email/emailform.jsp" />">Go back to sending</a>
 </body>
 </html>
