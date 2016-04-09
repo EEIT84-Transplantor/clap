@@ -7,11 +7,12 @@ import member.model.MemberService;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class CartHibernateDAO implements CartDAO {
-	
+
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		CartDAO dao = (CartDAO) context.getBean("cartDAO");
@@ -20,6 +21,7 @@ public class CartHibernateDAO implements CartDAO {
 
 	private SessionFactory sessionFactory;
 	private Session session;
+	private Transaction transaction;
 	final private String SELECT_BY_EMAIL = "from CartVO where mb_email=?";
 	final private String DELETE_ALL = "delete from CartVO";
 
@@ -33,10 +35,18 @@ public class CartHibernateDAO implements CartDAO {
 	@Override
 	public List<CartVO> selectByEmail(String email) {
 		List<CartVO> result = null;
-		session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery(SELECT_BY_EMAIL);
-		query.setParameter(0, email);
-		result = query.list();
+
+		try {
+			session = sessionFactory.getCurrentSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(SELECT_BY_EMAIL);
+			query.setParameter(0, email);
+			result = query.list();
+			transaction.commit();
+		} catch (Exception e) {
+			transaction.rollback();
+		}
+
 		return result;
 	}
 
