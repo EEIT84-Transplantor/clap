@@ -17,7 +17,11 @@ public class CartVO implements Serializable{
      
      public CartVO() {
  	}
-     
+     public CartVO(String email,Integer id,Integer quantity) {
+    	 this.email = email;
+    	 this.id = id;
+    	 this.quantity = quantity;
+  	}
 	public String getEmail() {
 		return email;
 	}

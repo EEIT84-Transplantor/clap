@@ -2,12 +2,20 @@ package cart.model;
 
 import java.util.List;
 
+import member.model.MemberService;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class CartHibernateDAO implements CartDAO {
-
+	public static void main(String[] args) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		CartDAO dao = (CartDAO) context.getBean("cartDAO");
+		System.out.println("haha"+dao.selectByEmail("caca@gmail.com").size());
+	}
 	private SessionFactory sessionFactory;
 	private Session session;
 	
@@ -23,7 +31,7 @@ public class CartHibernateDAO implements CartDAO {
 	}
 
 	final private String SELECT_BY_EMAIL = "from CartVO where mb_email=?";
-	
+	final private String DELETE_ALL = "delete from CartVO";
 	
 	@Override
 	public List<CartVO> selectByEmail(String email) {
@@ -48,7 +56,7 @@ public class CartHibernateDAO implements CartDAO {
 	}
 
 	@Override
-	public CartVO insert(String email, int id, int quantity) {
+	public CartVO insert(String email, Integer id, Integer quantity) {
 		CartVO result = null;
 		session = sessionFactory.getCurrentSession();
 		try {
@@ -77,7 +85,7 @@ public class CartHibernateDAO implements CartDAO {
 	}
 
 	@Override
-	public boolean update(String email, int id, int quantity) {
+	public boolean update(String email, Integer id, Integer quantity) {
 		boolean result = false;
 		CartVO temp = new CartVO();
 		temp.setEmail(email);
@@ -94,7 +102,7 @@ public class CartHibernateDAO implements CartDAO {
 	}
 
 	@Override
-	public boolean delete(String email, int id) {
+	public boolean delete(String email, Integer id) {
 		boolean result = false;
 		CartVO temp = new CartVO();
 		temp.setEmail(email);
@@ -109,4 +117,18 @@ public class CartHibernateDAO implements CartDAO {
 		return result;
 	}
 
+	@Override
+	public boolean delete() {
+		boolean result = false;
+		session = sessionFactory.getCurrentSession();
+		try {
+			int temp = session.createQuery(DELETE_ALL).executeUpdate();
+			if(temp==1){
+				result = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

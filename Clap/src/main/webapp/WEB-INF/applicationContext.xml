@@ -95,6 +95,14 @@
 		<property name="memberService" ref="memberService"/>
 	</bean>	
 	
+	<!-- setting -->
+	<bean id="cartDAO" class="cart.model.CartHibernateDAO">
+	    <property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="cartService" class="cart.model.CartService">
+	     <property name="cartDAO" ref="cartDAO"></property>
+	</bean>
+	
 	<!-- interceptor -->
 	<bean id="creditCardInterceptor" class="interceptor.CreditCardInterceptor">
 		<property name="creditCardService" ref="creditCardService"/>
