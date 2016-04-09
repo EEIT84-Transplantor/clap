@@ -1,98 +1,160 @@
 package member.model;
 
 import java.sql.Date;
+import java.util.Arrays;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicUpdate;
+
+import com.opensymphony.xwork2.conversion.annotations.TypeConversion;
 
 @Entity
 @Table(name = "member")
 public class MemberVO {
-	
+
 	@Id
-	@Column(name="mb_email")
+	@Column(name = "mb_email")
 	private String email;
-	@Column(name="mb_password")
+	@Column(name = "mb_password")
 	private byte[] password;
-	private Double gc_amount;
-	private String mb_name;
-	private String mb_phone;
-	private byte[] mb_photo;
-	private Boolean mb_oneclick;
-	private Integer hp_id;
-	private String cc_number;
-	private Boolean mb_autorenew;
-	private Date mb_expire;
-
-
-	public String getMb_name() {
-		return mb_name;
-	}
-	public void setMb_name(String mb_name) {
-		this.mb_name = mb_name;
-	}
-	public String getMb_phone() {
-		return mb_phone;
-	}
-	public void setMb_phone(String mb_phone) {
-		this.mb_phone = mb_phone;
-	}
-	public byte[] getMb_photo() {
-		return mb_photo;
-	}
-	public void setMb_photo(byte[] mb_photo) {
-		this.mb_photo = mb_photo;
-	}
-	public Boolean getMb_oneclick() {
-		return mb_oneclick;
-	}
-	public void setMb_oneclick(Boolean mb_oneclick) {
-		this.mb_oneclick = mb_oneclick;
-	}
-	public Integer getHp_id() {
-		return hp_id;
-	}
-	public void setHp_id(Integer hp_id) {
-		this.hp_id = hp_id;
-	}
-	public String getCc_number() {
-		return cc_number;
-	}
-	public void setCc_number(String cc_number) {
-		this.cc_number = cc_number;
-	}
-	public Boolean getMb_autorenew() {
-		return mb_autorenew;
-	}
-	public void setMb_autorenew(Boolean mb_autorenew) {
-		this.mb_autorenew = mb_autorenew;
-	}
-	public Date getMb_expire() {
-		return mb_expire;
-	}
-	public void setMb_expire(Date mb_expire) {
-		this.mb_expire = mb_expire;
-	}
+	@Column(name = "gc_amount")
+	private Double amount;
+	@Column(name = "mb_name")
+	private String name;
+	@Column(name = "mb_phone")
+	private String phone;
+	@Column(name = "mb_contenttype")
+	private String contentType;
+	@Column(name = "mb_photo")
+	private byte[] photo;
+	@Column(name = "mb_oneclick")
+	private Boolean oneclick;
+	@Column(name = "hp_id")
+	private Integer id;
+	@Column(name = "cc_number")
+	private String number;
+	@Column(name = "mb_autorenew")
+	private Boolean autorenew;
+	@Column(name = "mb_expire")
+	private Date expire;
+	
 	public String getEmail() {
 		return email;
 	}
-	public void setEmail(String email) {
+
+	public MemberVO setEmail(String email) {
 		this.email = email;
+		return this;
 	}
+
 	public byte[] getPassword() {
 		return password;
 	}
-	public void setPassword(byte[] password) {
+
+	@TypeConversion(converter = "converter.BytearrayConverter")
+	public MemberVO setPassword(byte[] password) {
 		this.password = password;
+		return this;
 	}
-	public Double getGc_amount() {
-		return gc_amount;
+
+	public Double getAmount() {
+		return amount;
 	}
-	public void setGc_amount(Double gc_amount) {
-		this.gc_amount = gc_amount;
+
+	public MemberVO setAmount(Double amount) {
+		this.amount = amount;
+		return this;
 	}
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public MemberVO setName(String name) {
+		this.name = name;
+		return this;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public MemberVO setPhone(String phone) {
+		this.phone = phone;
+		return this;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
+
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	public MemberVO setPhoto(byte[] photo) {
+		this.photo = photo;
+		return this;
+	}
+
+	public Boolean getOneclick() {
+		return oneclick;
+	}
+
+	public MemberVO setOneclick(Boolean oneclick) {
+		this.oneclick = oneclick;
+		return this;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public MemberVO setId(Integer id) {
+		this.id = id;
+		return this;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public MemberVO setNumber(String number) {
+		this.number = number;
+		return this;
+	}
+
+	public Boolean getAutorenew() {
+		return autorenew;
+	}
+
+	public MemberVO setAutorenew(Boolean autorenew) {
+		this.autorenew = autorenew;
+		return this;
+	}
+
+	public Date getExpire() {
+		return expire;
+	}
+
+	public MemberVO setExpire(Date expire) {
+		this.expire = expire;
+		return this;
+	}
+
+	@Override
+	public String toString() {
+		return "MemberVO [email=" + email + ", password=" + Arrays.toString(password) + ", amount=" + amount + ", name="
+				+ name + ", phone=" + phone + ", photo=" + Arrays.toString(photo) + ", oneclick=" + oneclick + ", id="
+				+ id + ", number=" + number + ", autorenew=" + autorenew + ", expire=" + expire + "]";
+	}
+
 }

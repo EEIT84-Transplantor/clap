@@ -16,14 +16,24 @@ public class PromoCodeService {
 	
 	}
 	
-	private PromoCodejdbcDAO dao;
-	
+	private PromoCodeDAO dao;
+	private PromoService promoService;
 	public PromoCodeService() {
 	}
-	public void setDao(PromoCodejdbcDAO dao) {
+	
+	public PromoService getPromoService() {
+		return promoService;
+	}
+
+	public void setPromoService(PromoService promoService) {
+		this.promoService = promoService;
+	}
+
+	public void setDao(PromoCodeDAO dao) {
 		this.dao = dao;
 	}
-	public PromoCodeVO setPromotionCode(String mb_email, String pc_code){
+	public PromoCodeVO setPromotionCode(String mb_email, String pm_code){
+		
 		PromoCodeVO result = null;
 		
 		if(mb_email==null||mb_email.length()==0){
@@ -33,9 +43,14 @@ public class PromoCodeService {
 		if(mb_email==null||mb_email.length()==0){
 			return result;
 		}
-
-		PromoCodeVO temp = dao.insert(mb_email, pc_code);
-
+		PromoVO promoVO = new PromoVO();
+		promoVO.setPm_code(pm_code);
+		PromoCode promoCode = new PromoCode();
+		promoCode.setMb_email(mb_email);
+		promoCode.setPm_code(pm_code);
+		System.out.println("######################################A");
+		PromoCodeVO temp = dao.insert(promoCode);
+		System.out.println("######################################B");
 		if(temp!=null){
 			result = temp;
 		}
@@ -62,14 +77,12 @@ public class PromoCodeService {
 	};
 
 	public List<PromoVO> getPromos(String mb_email){
+		List<PromoCodeVO> pcvs = dao.selectByEmail(mb_email);
+
 		List<PromoVO> result = new ArrayList<PromoVO>();
 		
-		if(mb_email==null||mb_email.length()==0){
-			return result;
-		}
-		List<PromoVO> temp = dao.selectPromoVOByEmail(mb_email);
-		if(temp!=null&&temp.size()!=0){
-			result = temp;
+		for(PromoCodeVO pcv :pcvs){
+			result.add(promoService.getPromoDetail(pcv.getPromoCode().getPm_code()));
 		}
 		return result;
 	};

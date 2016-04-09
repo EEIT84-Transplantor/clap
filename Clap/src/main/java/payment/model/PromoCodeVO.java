@@ -1,19 +1,30 @@
 package payment.model;
 
-public class PromoCodeVO {
-	private String mb_email;
-	private String pc_code;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+@Entity
+@Table(name="promocode")
+public class PromoCodeVO implements Serializable{
+	@EmbeddedId
+	private PromoCode promoCode;
+    
 	
-	public String getMb_email() {
-		return mb_email;
+	public PromoCode getPromoCode() {
+		return promoCode;
 	}
-	public void setMb_email(String mb_email) {
-		this.mb_email = mb_email;
+
+	public void setPromoCode(PromoCode promoCode) {
+		this.promoCode = promoCode;
 	}
-	public String getPc_code() {
-		return pc_code;
-	}
-	public void setPc_code(String pc_code) {
-		this.pc_code = pc_code;
-	}
+	
+	
+	
 }

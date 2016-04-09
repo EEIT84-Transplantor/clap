@@ -32,11 +32,9 @@ public class GiftCardService {
 		 GiftCardVO temp = dao.selectByGcNumber(gc_number);
 		 if(temp==null){
 			 return result;
-			 
 		 }
 		 
 		 if(temp.getGc_code().equals(gc_code)&&isAvailable(gc_number)){
-			
 			 temp.setGc_available(0);
 			 if(dao.update(temp)){
 				 result = temp.getGc_amount();

@@ -22,7 +22,7 @@ public class OpenSessionViewFilter implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
 		
 		sessionFactory = (SessionFactory)WebApplicationContextUtils.getWebApplicationContext(fConfig.getServletContext())
-				.getBean("sessionFactory");
+				.getBean("sessionFactory"); 
 	}
 
 	public void destroy() {

@@ -14,7 +14,7 @@
 					</button>
 
 
-					<a class="navbar-brand" href="${pageContext.request.contextPath}"> <img class="hidden-xs"
+					<a class="navbar-brand" href="${pageContext.request.contextPath}/"> <img class="hidden-xs"
 						src="${pageContext.request.contextPath}/resource/images/logo.png"> <img class="visible-xs"
 						src="${pageContext.request.contextPath}/resource/images/logo-s.png">
 					</a>
@@ -48,7 +48,7 @@
 							<li><a href="#">Simulator</a></li>
 							<li><a href="#">Appointment</a></li>
 							<li><a href="#">Contact</a></li>
-							<li><a href="#">Account</a></li>
+							<li><a href="${pageContext.request.contextPath}/member/account.action">Account</a></li>
 						</ul>
 					</div>
 

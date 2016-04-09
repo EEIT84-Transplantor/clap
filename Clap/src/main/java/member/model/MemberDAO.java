@@ -11,10 +11,14 @@ public interface MemberDAO {
 	public abstract MemberVO selectByEmail(String email);
 
 	public abstract MemberVO insert(String email, byte[] password);
+	public abstract MemberVO insert(MemberVO memberVO);
 
 	public abstract boolean update(String email, byte[] password);
 
+	public abstract boolean update(MemberVO memberVO);
+
 	public abstract boolean delete(String email);
+	
 
 	
 
