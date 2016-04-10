@@ -50,4 +50,10 @@ public class OrderFormVO {
 		this.os_id = os_id;
 	}
 
+	@Override
+	public String toString() {
+		return "OrderFormVO [id=" + id + ", mb_email=" + mb_email + ", time=" + time + ", total=" + total + ", os_id="
+				+ os_id + "]";
+	}
+	
 }
