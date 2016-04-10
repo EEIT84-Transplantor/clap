@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 
 @Entity
-@IdClass(OrderDetiailPK.class)
+@IdClass(OrderDetailPK.class)
 public class OrderDetailVO implements Serializable{
 
 	@Id

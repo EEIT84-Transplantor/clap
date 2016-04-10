@@ -10,15 +10,15 @@ import javax.persistence.Id;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-public class OrderDetiailPK implements Serializable{
+public class OrderDetailPK implements Serializable{
 	
 	private Integer id;
 	private Integer pd_id;
 
-	public OrderDetiailPK() {
+	public OrderDetailPK() {
 	}
 
-	public OrderDetiailPK(Integer id, Integer pd_id) {
+	public OrderDetailPK(Integer id, Integer pd_id) {
 		this.id = id;
 		this.pd_id = pd_id;
 	}
@@ -44,10 +44,10 @@ public class OrderDetiailPK implements Serializable{
 		if(obj==this){
 			return true;
 		}
-		if(!(obj instanceof OrderDetiailPK)){
+		if(!(obj instanceof OrderDetailPK)){
 			return false;
 		}
-		OrderDetiailPK orderDetiailPK = (OrderDetiailPK) obj;
+		OrderDetailPK orderDetiailPK = (OrderDetailPK) obj;
 		return new EqualsBuilder().append(id,orderDetiailPK.getId()).append(pd_id, orderDetiailPK.getPd_id()).isEquals();
 	}
 
