@@ -4,14 +4,14 @@ import java.util.List;
 
 public interface OrderFormDAO {
 
-	public Boolean insert(OrderFormDAO OrderFormDAO);
+	public Boolean insert(OrderFormDAO orderFormDAO);
 
 	public Boolean delete(Integer id);
 
-	public Boolean update(OrderFormDAO OrderFormDAO);
+	public Boolean update(OrderFormDAO orderFormDAO);
 
 	public List<OrderFormDAO> select();
 
-	public OrderFormDAO select(Integer id);
+	public OrderFormVO select(Integer id);
 
 }
