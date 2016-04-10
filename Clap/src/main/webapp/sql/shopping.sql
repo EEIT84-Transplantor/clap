@@ -40,7 +40,7 @@ insert into orderform(od_id,mb_email,od_time,od_total,os_id) values('28596','Adr
 use clap drop table orderdetail
 create table orderdetail(
 od_id int   ,
-pd_id int   REFERENCES product(pd_Id),
+pd_id int   REFERENCES product(pd_id),
 ct_quantity int   PRIMARY KEY(od_id,pd_id))
 
 insert into orderdetail(od_id,pd_id,ct_quantity) values('49834','2','1');
