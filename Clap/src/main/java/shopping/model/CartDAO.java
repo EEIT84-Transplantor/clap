@@ -3,6 +3,7 @@ package shopping.model;
 import java.util.List;
 
 public interface CartDAO {
+	public abstract List<CartVO> selectAll();
 	
 	public abstract List<CartVO> selectByEmail(String email);
 
@@ -16,5 +17,5 @@ public interface CartDAO {
 
 	public abstract boolean delete(String email, Integer id);
 	
-	public abstract boolean delete();
+	public abstract boolean delete(String email);
 }
