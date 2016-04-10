@@ -69,7 +69,12 @@
 			        <tbody>
 	              	<tr>
 		                <td><input type="text" value="" name="promoVO.code"/></td>
-		                <td><input type="text" name="categoryNames"/></td>
+		                <td><select id="category">
+							  <option value="Lung">Lung</option>
+							  <option value="Liver" >Liver</option>
+							  <option value="Kidney">Kidney</option>
+							</select>
+							<input type="text" name="categoryNames"/></td>
 		                <td><input type="text" name="promoVO.expire"/></td>
 		                <td><input type="text" name="promoVO.title"/></td>
 		                <td><input type="text" name="promoVO.discount"/></td>
