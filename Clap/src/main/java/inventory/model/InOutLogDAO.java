@@ -11,7 +11,6 @@ public interface InOutLogDAO {
 	InOutLogVO insert(InOutLogVO inOutLogVO);
 
 	boolean update(InOutLogVO inOutLogVO);
-
+	
 	boolean delete(String id);
-
 }

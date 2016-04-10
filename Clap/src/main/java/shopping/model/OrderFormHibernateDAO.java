@@ -43,10 +43,10 @@ public class OrderFormHibernateDAO implements OrderFormDAO {
 	}
 
 	@Override
-	public Boolean update(OrderFormVO OrderFormVO) {
+	public Boolean update(OrderFormVO orderFormVO) {
 		try {
 			session = sessionFactory.getCurrentSession();
-			session.update(OrderFormVO);
+			session.update(orderFormVO);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

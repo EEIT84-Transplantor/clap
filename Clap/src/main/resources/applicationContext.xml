@@ -104,6 +104,7 @@
 	<bean id="cartService" class="shopping.model.CartService">
 		<property name="cartDAO" ref="cartHibernateDAO" />
 	</bean>
+
 	<bean id="orderFormHibernateDAO" class="shopping.model.OrderFormHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>

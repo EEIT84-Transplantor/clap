@@ -5,22 +5,17 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.IdClass;
 
 @Entity
-@Table(name="orderdetail")
+@IdClass(OrderDetailPK.class)
 public class OrderDetailVO implements Serializable{
 
 	@Id
-	//主鍵的生成方式有四種(TABLE,SEQUENCE,IDENTITY,AUTO) 
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="od_id")
 	private Integer id;
+	@Id
 	@Column(name="pd_id")
 	private Integer pd_id;
 	@Column(name="ct_quantity")
