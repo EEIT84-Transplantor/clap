@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import product.model.ProductVO;
+
 @Entity
 @Table(name="orderdetail")
 public class OrderDetailVO implements Serializable{
