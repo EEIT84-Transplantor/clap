@@ -84,5 +84,11 @@ public class InOutLogVO {
 	public void setDate(Timestamp date) {
 		this.date = date;
 	}
+	@Override
+	public String toString() {
+		return "InOutLogVO [id=" + id + ", inventory_id=" + inventory_id + ", product_id=" + product_id
+				+ ", inQuantity=" + inQuantity + ", outQuantity=" + outQuantity + ", manufactureDate=" + manufactureDate
+				+ ", expiryDate=" + expiryDate + ", destination=" + destination + ", date=" + date + "]";
+	}
 
 }
