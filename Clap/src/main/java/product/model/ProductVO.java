@@ -66,5 +66,10 @@ public class ProductVO {
 	public void setCategory_id(String category_id) {
 		this.category_id = category_id;
 	}
+	@Override
+	public String toString() {
+		return "ProductVO [id=" + id + ", name=" + name + ", price=" + price + ", description=" + description
+				+ ", rating=" + rating + ", discount=" + discount + ", category_id=" + category_id + "]";
+	}
 	
 }

@@ -52,5 +52,10 @@ public class InventoryVO {
 	public void setExpiryDate(Timestamp expiryDate) {
 		this.expiryDate = expiryDate;
 	}
+	@Override
+	public String toString() {
+		return "InventoryVO [id=" + id + ", product_id=" + product_id + ", quantity=" + quantity + ", manufactureDate="
+				+ manufactureDate + ", expiryDate=" + expiryDate + "]";
+	}
 
 }
