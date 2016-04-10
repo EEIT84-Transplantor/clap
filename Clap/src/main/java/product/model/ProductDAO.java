@@ -6,7 +6,7 @@ public interface ProductDAO {
 
 	List<ProductVO> selectAll();
 
-	List<ProductVO> selectByProductId(String productId);
+	ProductVO selectByProductId(String productId);
 
 	ProductVO insert(ProductVO productVO);
 

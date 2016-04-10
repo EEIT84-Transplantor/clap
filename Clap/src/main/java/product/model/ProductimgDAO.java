@@ -6,7 +6,7 @@ public interface ProductimgDAO {
 
 	List<ProductimgVO> selectAll();
 
-	List<ProductimgVO> selectByProductId(String productId);
+	ProductimgVO selectByProductId(String productId);
 
 	ProductimgVO insert(ProductimgVO productimgVO);
 

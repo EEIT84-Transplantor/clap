@@ -18,36 +18,73 @@ public class ProductimgHibernateDAO implements ProductimgDAO {
 
 	private Session session;
 	final private String SELECT_ALL = "from ProductimgVO";
-
+	
 	@Override
 	public List<ProductimgVO> selectAll() {
+		session = sessionFactory.getCurrentSession();
 		List<ProductimgVO> productimgVOs = null;
-
+		try {
+			productimgVOs = session.createQuery(SELECT_ALL).list();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return productimgVOs;
 	};
 
 	@Override
-	public List<ProductimgVO> selectByProductId(String productId) {
-		List<ProductimgVO> productimgVOs = null;
-
-		return productimgVOs;
+	public ProductimgVO selectByProductId(String productId) {
+		session = sessionFactory.getCurrentSession();
+		ProductimgVO productimgVO = null;;
+		try {
+			productimgVO = session.get(ProductimgVO.class, productId);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return productimgVO;
+		
 	};
 
 	@Override
 	public ProductimgVO insert(ProductimgVO productimgVO) {
-
-		return productimgVO;
+		session = sessionFactory.getCurrentSession();
+		try {
+			session.save(productimgVO);
+			return productimgVO;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
 	};
 
 	@Override
 	public boolean update(ProductimgVO productimgVO) {
-
-		return false;
+		session = sessionFactory.getCurrentSession();
+		try {
+			session.save(productimgVO);
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	};
 
 	@Override
 	public boolean delete(String id) {
-
-		return false;
+		session = sessionFactory.getCurrentSession();
+		try {
+			ProductimgVO productimgVO = session.get(ProductimgVO.class, id);
+			session.delete(productimgVO);
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	};
 }
