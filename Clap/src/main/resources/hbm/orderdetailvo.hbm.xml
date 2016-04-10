@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="shopping.model.OrderDetailVO" table="orderdetail">
+		<composite-id>
+			<key-property name="id" column="od_id"/>
+			<key-property name="pd_id" column="pd_id"/>
+		</composite-id>
+		<property name="ct_quantity" column="ct_quantity"/>
+	</class>
+</hibernate-mapping>

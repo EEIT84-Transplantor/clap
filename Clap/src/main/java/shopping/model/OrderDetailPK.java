@@ -27,12 +27,14 @@ public class OrderDetailPK implements Serializable{
 		return id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	public Integer getPd_id() {
 		return pd_id;
+	}
+	
+	
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public void setPd_id(Integer pd_id) {
@@ -55,6 +57,8 @@ public class OrderDetailPK implements Serializable{
 	public int hashCode() {
 		return new HashCodeBuilder().append(id).append(pd_id).toHashCode();
 	}
+
+
 
 	
 

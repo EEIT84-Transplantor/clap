@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 public class OrderDetailHibernateDAO implements OrderDetailDAO {
 
 	private SessionFactory sessionFactory;
+	private OrderDetailVO orderDetailVO;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
@@ -30,9 +31,10 @@ public class OrderDetailHibernateDAO implements OrderDetailDAO {
 	public Boolean delete(Integer id, Integer pd_id) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			OrderDetailVO orderDetailVO = new OrderDetailVO();
-			orderDetailVO.setId(id);
-			orderDetailVO.setPd_Id(pd_id);
+			OrderDetailPK orderDetailPK = new OrderDetailPK();
+			orderDetailPK.setId(id);
+			orderDetailPK.setPd_id(pd_id);
+			orderDetailVO = session.get(OrderDetailVO.class, orderDetailPK);
 			session.delete(orderDetailVO);
 			return true;
 		} catch (Exception e) {
@@ -70,10 +72,10 @@ public class OrderDetailHibernateDAO implements OrderDetailDAO {
 	public OrderDetailVO select(Integer id, Integer pd_id) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			OrderDetailVO orderDetailVO = new OrderDetailVO();
-			orderDetailVO.setId(id);
-			orderDetailVO.setPd_Id(pd_id);
-			orderDetailVO = session.get(OrderDetailVO.class, orderDetailVO);
+			OrderDetailPK orderDetailPK = new OrderDetailPK();
+			orderDetailPK.setId(id);
+			orderDetailPK.setPd_id(pd_id);
+			OrderDetailVO orderDetailVO = session.get(OrderDetailVO.class, orderDetailPK);
 			return orderDetailVO;
 		} catch (Exception e) {
 			e.printStackTrace();

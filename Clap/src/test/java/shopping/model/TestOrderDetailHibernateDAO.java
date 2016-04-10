@@ -26,8 +26,8 @@ public class TestOrderDetailHibernateDAO {
 	private OrderDetailHibernateDAO orderDetailHibernateDAO;
 	private OrderDetailVO orderDetailVO;
 	private Integer id=999;
-	private Integer pd_id=5;
-	private Integer ct_quantity=10;
+	private Integer pd_id=26;
+	private Integer ct_quantity=null;
 
 	@Before
 	public void setUp() {
@@ -44,7 +44,7 @@ public class TestOrderDetailHibernateDAO {
 		
 		expected=true;
 		orderDetailVO.setId(id);
-		orderDetailVO.setPd_Id(pd_id);
+		orderDetailVO.setPd_id(pd_id);
 		actual=orderDetailHibernateDAO.insert(orderDetailVO);
 		
 		session.getTransaction().commit();
@@ -57,6 +57,7 @@ public class TestOrderDetailHibernateDAO {
 		session.beginTransaction();
 		
 		expected=id;
+		System.out.println(orderDetailHibernateDAO.select(id, pd_id));
 		actual=orderDetailHibernateDAO.select(id, pd_id).getId();
 
 		session.getTransaction().commit();
@@ -70,7 +71,7 @@ public class TestOrderDetailHibernateDAO {
 
 		expected=true;
 		orderDetailVO.setId(id);
-		orderDetailVO.setPd_Id(pd_id);
+		orderDetailVO.setPd_id(pd_id);
 		orderDetailVO.setCt_quantity(ct_quantity);
 		actual=orderDetailHibernateDAO.update(orderDetailVO);
 		
@@ -94,6 +95,10 @@ public class TestOrderDetailHibernateDAO {
 	public void eselect2() {
 		session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
+		
+		expected=true;
+		actual=orderDetailHibernateDAO.select().size()>10;
+		System.out.println(orderDetailHibernateDAO.select().size());
 
 		session.getTransaction().commit();
 		assertEquals(expected, actual);
