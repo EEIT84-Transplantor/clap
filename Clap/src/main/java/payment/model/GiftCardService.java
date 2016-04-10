@@ -35,13 +35,10 @@ public class GiftCardService {
 		 }
 		 
 		 if(temp.getGc_code().equals(gc_code)&&isAvailable(gc_number)){
-			//此卡片失效
 			 temp.setGc_available(0);
 			 if(dao.update(temp)){
 				 result = temp.getGc_amount();
-				 System.out.println(result);
 			 }
-			 
 		 }
 		return result;
 	};

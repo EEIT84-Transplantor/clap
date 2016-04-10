@@ -21,7 +21,7 @@
 
 	<filter>
 		<filter-name>OpenSessionViewFilter</filter-name>
-		<filter-class>hibernate.filter.OpenSessionViewFilter</filter-class>
+		<filter-class>component.filter.OpenSessionViewFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>OpenSessionViewFilter</filter-name>
@@ -29,7 +29,7 @@
 	</filter-mapping>
 	<filter>
 		<filter-name>ActoinContextFilter</filter-name>
-		<filter-class>member.filter.ActoinContextFilter</filter-class>
+		<filter-class>component.filter.ActoinContextFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>ActoinContextFilter</filter-name>
@@ -37,7 +37,7 @@
 	</filter-mapping>
 	<filter>
 		<filter-name>BctoinContextFilter</filter-name>
-		<filter-class>payment.controller.paymentFilter</filter-class>
+		<filter-class>component.filter.PaymentFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>BctoinContextFilter</filter-name>
@@ -72,5 +72,9 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/applicationContext.xml</param-value>
+	</context-param>
 
 </web-app>

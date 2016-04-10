@@ -30,7 +30,7 @@ public class ChangePasswordAction extends ActionSupport {
 		return password;
 	}
 
-	@TypeConversion(converter = "converter.BytearrayConverter")
+	@TypeConversion(converter = "component.converter.BytearrayConverter")
 	public void setPassword(byte[] password) {
 		this.password = password;
 	}
@@ -39,7 +39,7 @@ public class ChangePasswordAction extends ActionSupport {
 		return newpassword;
 	}
 
-	@TypeConversion(converter = "converter.BytearrayConverter")
+	@TypeConversion(converter = "component.converter.BytearrayConverter")
 	public void setNewpassword(byte[] newpassword) {
 		this.newpassword = newpassword;
 	}
@@ -48,7 +48,7 @@ public class ChangePasswordAction extends ActionSupport {
 		return confirm;
 	}
 
-	@TypeConversion(converter = "converter.BytearrayConverter")
+	@TypeConversion(converter = "component.converter.BytearrayConverter")
 	public void setConfirm(byte[] confirm) {
 		this.confirm = confirm;
 	}

@@ -2,7 +2,7 @@ package setting.controller;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import member.model.MemberDAOHibernate;
+import member.model.MemberHibernateDAO;
 import member.model.MemberService;
 import member.model.MemberVO;
 import payment.model.PromoService;

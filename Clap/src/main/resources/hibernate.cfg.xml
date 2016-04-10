@@ -12,9 +12,10 @@
     <property name="hibernate.current_session_context_class">thread</property>
     
     <mapping class="member.model.MemberVO"/>
-    <mapping class="payment.model.CreditCardVO"/>
     <mapping class="payment.model.GiftCardVO"/>
     <mapping class="payment.model.PromoVO"/>
     <mapping class="payment.model.PromoCodeVO"/>
+    <mapping class="payment.model.CreditCardVO"/>
+    <mapping resource="hbm/cartvo.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

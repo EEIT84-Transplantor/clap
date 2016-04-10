@@ -6,10 +6,25 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import shopping.model.CartVO;
 
 
 
 public class CreditCardHibernateDAO implements CreditCardDAO{
+	
+	public static void main(String[] args) {
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+		CreditCardHibernateDAO cardHibernateDAO = (CreditCardHibernateDAO) applicationContext.getBean("creditCardDAO");
+		SessionFactory sessionFactory = (SessionFactory) applicationContext.getBean("sessionFactory");
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		CreditCardVO cardVO = cardHibernateDAO.selectByCcNumber("caca@gmail.com", "1111222233334444");
+		System.out.println(cardVO.getMemberVO().getEmail());
+		session.getTransaction().commit();
+	}
 
 	private SessionFactory sessionFactory;
 	private Session session;
