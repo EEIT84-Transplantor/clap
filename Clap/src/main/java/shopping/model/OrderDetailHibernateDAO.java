@@ -15,12 +15,13 @@ public class OrderDetailHibernateDAO implements OrderDetailDAO {
 	}
 
 	@Override
-	public Boolean insert(OrderDetailVO OrderDetailVO) {
+	public Boolean insert(OrderDetailVO orderDetailVO) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			session.save(OrderDetailVO);
+			session.save(orderDetailVO);
 			return true;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -35,17 +36,19 @@ public class OrderDetailHibernateDAO implements OrderDetailDAO {
 			session.delete(orderDetailVO);
 			return true;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 	}
 
 	@Override
-	public Boolean update(OrderDetailVO OrderDetailVO) {
+	public Boolean update(OrderDetailVO orderDetailVO) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			session.update(OrderDetailVO);
+			session.update(orderDetailVO);
 			return true;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -58,6 +61,7 @@ public class OrderDetailHibernateDAO implements OrderDetailDAO {
 			List<OrderDetailVO> list = query.list();
 			return list;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -72,6 +76,7 @@ public class OrderDetailHibernateDAO implements OrderDetailDAO {
 			orderDetailVO = session.get(OrderDetailVO.class, orderDetailVO);
 			return orderDetailVO;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 	}
