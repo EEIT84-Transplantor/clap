@@ -16,7 +16,7 @@
     <mapping class="payment.model.PromoVO"/>
     <mapping class="payment.model.PromoCodeVO"/>
     <mapping class="payment.model.CreditCardVO"/>
-    <mapping class="shopping.model.OrderDetailVO.java"/>
+    <mapping class="shopping.model.OrderDetailVO"/>
     <mapping resource="hbm/cartvo.hbm.xml"/>
     <mapping resource="hbm/orderformvo.hbm.xml"/>
     

@@ -26,9 +26,9 @@ public class OrderDetailVO implements Serializable{
 	@Column(name="ct_quantity")
 	private Integer ct_quantity;
 	//optional 外鍵是否允許為空
-	@ManyToOne(optional=true)
-	@JoinColumn(name="pd_id",insertable=false,updatable=false)
-	private ProductVO productVO;
+//	@ManyToOne(optional=true)
+//	@JoinColumn(name="pd_id",insertable=false,updatable=false)
+//	private ProductVO productVO;
 
 	public Integer getId() {
 		return id;
@@ -54,12 +54,12 @@ public class OrderDetailVO implements Serializable{
 		this.ct_quantity = ct_quantity;
 	}
 
-	public ProductVO getProductVO() {
-		return productVO;
-	}
-
-	public void setProductVO(ProductVO productVO) {
-		this.productVO = productVO;
-	}
+//	public ProductVO getProductVO() {
+//		return productVO;
+//	}
+//
+//	public void setProductVO(ProductVO productVO) {
+//		this.productVO = productVO;
+//	}
 
 }
