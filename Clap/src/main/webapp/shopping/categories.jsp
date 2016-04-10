@@ -12,6 +12,7 @@
 <!-- Bootstrap -->
 <link href="../resource/css/bootstrap.min.css" rel="stylesheet">
 <link href="../resource/css/customer.css" rel="stylesheet">
+<link href="../resource/css/silderbanner.css" rel="stylesheet">
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
@@ -20,21 +21,90 @@
 	<section id="wrap">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-2">side-nav:sub-menu</div>
+				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
 				<div class="col-md-10">
-					<h2>CATEGORIES</h2> <!-- 該頁標題  -->
-					<!-- 
-                                                                    內容可以寫這裡
-                                                                    
+					<div class="row">
+						<div class="col-md-8">
+							<h2>HEART</h2>
+						</div>
+						<div class="col-md-4">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+								<div class="input-group-btn">
+									<button class="btn btn-default" type="submit">
+										<i class="glyphicon glyphicon-search"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--  內容可以寫這裡  -->
+
+					<div class="row">
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+							<div class="hovereffect">
+								<img class="img-responsive" src="../resource/images/orgins/brain.jpg" alt="">
+								<div class="overlay">
+									<h2>Brain one</h2>
+									<p>
+									<span>$159.99</span>
+									<a class="info" href="#">ADD TO CART</a>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+							<div class="hovereffect">
+								<img class="img-responsive" src="../resource/images/orgins/brain.jpg" alt="">
+								<div class="overlay">
+									<h2>Brain two</h2>
+									<p>
+									<span>$159.99</span>
+									<a class="info" href="#">ADD TO CART</a>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+							<div class="hovereffect">
+								<img class="img-responsive" src="../resource/images/orgins/brain.jpg" alt="">
+								<div class="overlay">
+									<h2>Brain three</h2>
+									<p>
+									<span>$159.99</span>
+									<a class="info" href="#">ADD TO CART</a>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+							<div class="hovereffect">
+								<img class="img-responsive" src="../resource/images/orgins/brain.jpg" alt="">
+								<div class="overlay">
+									<h2>Brain four</h2>
+									<p>
+									<span>$159.99</span>
+									<a class="info" href="#">ADD TO CART</a>
+									</p>
+								</div>
+							</div>
+						</div>
 
 
 
-                      -->
-					
-					
-				</div><!-- row -->
-			</div><!-- container -->
-		</div><!-- wrap -->
+
+
+
+
+					</div>
+					<!-- efw -->
+
+				</div>
+				<!-- row -->
+			</div>
+			<!-- container -->
+		</div>
+		<!-- wrap -->
 	</section>
 
 	<footer><jsp:include page="/footer.jsp" /></footer>

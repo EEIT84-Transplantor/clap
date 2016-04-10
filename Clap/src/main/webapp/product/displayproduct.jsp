@@ -15,7 +15,7 @@
       rel="stylesheet">
 <link href="../resource/css/customer.css" rel="stylesheet">
 <style type="text/css">
-	input{
+	input, select{
 		background-color:black;
 	}
 	#insertform{
@@ -56,7 +56,6 @@
 			                <th>Name</th>
 			                <th>Price</th>
 			                <th>Description</th>
-			                <th>Rating</th>
 			                <th>Discount</th>
 			                <th>Category</th>
 			            	<th></th>
@@ -71,10 +70,13 @@
 		                <td><input type="text" name="productVO.name"/></td>
 		                <td><input type="text" name="productVO.price"/></td>
 		                <td><input type="text" name="productVO.description"/></td>
-		                <td><input type="text" name="productVO.rating"/></td>
 		                <td><input type="text" name="productVO.discount"/></td>
-		                <td><input type="text" name="productVO.category"/></td>
-		            	<td><input id="submitInsert" type="submit" value="add"/><input id="insertCancel" type="button" value="cancel"/></td>
+		                <td><select id="category">
+							  <option value="Lung">Lung</option>
+							  <option value="Liver" >Liver</option>
+							  <option value="Kidney">Kidney</option>
+							</select></td>
+				      	<td><input id="submitInsert" type="submit" value="add"/><input id="insertCancel" type="button" value="cancel"/></td>
 		            </tr>
 	       			 </tbody>
 				</table>   
@@ -187,7 +189,7 @@
 			var data = table.row($(this).parent().parent().children(':first')).data();
 			var dataSend="productVO.id"+data[1]+"productVO.name"+data[2]+"productVO.price"+data[3]+"productVO.description"+data[4]
 			+"productVO.rating"+data[5]+"productVO.discount"+data[6]+"productVO.category"+data[7];
-			sendPostRequestProduct("${pageContext.request.contextPath}/product/SetProductAction.action?", dataSend);
+			sendPostRequestProduct("${pageContext.request.contextPath}/product/UpdateProductAction.action?", dataSend);
 			
 	    });
 		
