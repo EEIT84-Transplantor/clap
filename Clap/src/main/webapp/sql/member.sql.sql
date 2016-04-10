@@ -1,7 +1,6 @@
 use clap 
 
 drop table cart 
-drop table product
 drop table creditcard
 drop table giftcard
 drop table promocode
@@ -121,16 +120,6 @@ insert into message values('poan@gmail.com', 'lee@gmail.com', 'Hello i am leelee
 
 select * from message
 
-
-------------------------------------------------------------------------------------------------------------------------------------------------
-create table product (
-pd_id int not null ,
-pd_title varchar(100)  not null
-PRIMARY KEY (pd_id)
-)
-insert product values(1, 'product1');
-insert product values(2,'product1');
-select * from product
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table cart (
