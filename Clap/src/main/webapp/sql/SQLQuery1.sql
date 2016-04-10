@@ -185,7 +185,7 @@ select * from inventory
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table inoutlog (
 inoutlog_id	varchar(50),
-inventory_Id varchar(50) FOREIGN KEY REFERENCES inventory(inventory_Id),
+inventory_id varchar(50) FOREIGN KEY REFERENCES inventory(inventory_Id),
 pd_id int FOREIGN KEY REFERENCES product(pd_id),
 inoutlog_inQuantity	int,
 inoutlog_outQuantity	int,
