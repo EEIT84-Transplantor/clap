@@ -8,9 +8,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import junit.framework.TestCase;
 
-public class TestCartHibernateDAO extends TestCase{
-	
-	private CartHibernateDAO cartHibernateDAO;
+public class TestCartService extends TestCase{
+    
+	private CartService cartService;
 	private CartVO cartVO;
 	private SessionFactory sessionFactory;
 	private Session session;
@@ -19,92 +19,86 @@ public class TestCartHibernateDAO extends TestCase{
 	@Override
 	protected void setUp() throws Exception {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		cartHibernateDAO = (CartHibernateDAO) context.getBean("cartDAO");
+		cartService = (CartService) context.getBean("cartService");
 		sessionFactory=(SessionFactory) context.getBean("sessionFactory");
 		session=sessionFactory.getCurrentSession();
 		
 		cartVO=new CartVO();
-		cartVO.setEmail("lee@gmail.com");
-		cartVO.setId(1);
-		cartVO.setQuantity(5);
+		cartVO.setEmail("caca@gmail.com");
+		cartVO.setId(3);
+		cartVO.setQuantity(4);
 	}
 
 	@Override
 	protected void tearDown() throws Exception {
-		cartHibernateDAO=null;
+		cartService = null;
 	}
 	
-	public void testSelectByEmail() {
+	public void testgetCart(){
 //		transaction=session.beginTransaction();
-//		int expected=2;
-//		int actual= cartHibernateDAO.selectByEmail("caca@gmail.com").size();
-//		
-//		assertEquals(expected, actual);
-//		transaction.commit();
-	}
-	
-	public void testInsert() {
-//		transaction=session.beginTransaction();
-//		int temp = 7;
-//		int actual = cartHibernateDAO.insert("lee@gmail.com",2,temp).getQuantity();
-//		int expected = temp;
-//		assertEquals(expected, actual);
-//		transaction.commit();
-	}
-	public void testInsert1() {
-//		transaction=session.beginTransaction();
-//		int temp = 3;
-//		cartVO.setEmail("lee@gmail.com");
-//		cartVO.setId(2);
-//		cartVO.setQuantity(temp);
-//		int actual = cartHibernateDAO.insert(cartVO).getQuantity();
-//		int expected = temp;
-//		assertEquals(expected, actual);
-//		transaction.commit();
-	}
-	public void testUpdate() {
-//		transaction=session.beginTransaction();
-//		boolean actual = cartHibernateDAO.update(cartVO);
-//		boolean expected = true;
-//		assertEquals(expected, actual);
-//		transaction.commit();
-	}
-	public void testUpdate1() {
-//		transaction=session.beginTransaction();
-//		cartVO.setEmail("caca@gmail.com");
-//		cartVO.setId(2);
-//		cartVO.setQuantity(3);
-//		boolean actual = cartHibernateDAO.update(cartVO);
-//		boolean expected = true;
-//		assertEquals(expected, actual);
-//		transaction.commit();
-	}
-    public void testselectAll() {
-//    	transaction=session.beginTransaction();
-//		int actual = cartHibernateDAO.selectAll().size();
-//		int expected = 3;
+//		int actual = cartService.getCart("lee@gmail.com").size();
+//		int expected = 2;
 //		assertEquals(expected, actual);
 //		transaction.commit();
 	}
 	
-	public void testDelete() {
+	public void testsetCart(){
 //		transaction=session.beginTransaction();
-//		boolean actual = cartHibernateDAO.delete("lee@gmail.com");
+//		boolean actual = cartService.setCart(cartVO);
 //		boolean expected = true;
 //		assertEquals(expected, actual);
 //		transaction.commit();
 	}
-	public void testDelete1() {
+	
+	public void testsetCart1(){
+//		transaction=session.beginTransaction();
+//		boolean actual = cartService.setCart("lee@gmail.com",3,5);
+//		boolean expected = true;
+//		assertEquals(expected, actual);
+//		transaction.commit();
+	}
+
+	public void testremoveCart(){
+//		transaction=session.beginTransaction();
+//		boolean actual = cartService.removeCart("lee@gmail.com",3);
+//		boolean expected = true;
+//		assertEquals(expected, actual);
+//		transaction.commit();
+	}
+
+	public void testremoveCart1(){
+//		transaction=session.beginTransaction();
+//		boolean actual = cartService.removeCart("lee@gmail.com");
+//		boolean expected = true;
+//		assertEquals(expected, actual);
+//		transaction.commit();
+	}
+	
+	public void testupdateCart(){
+//		transaction=session.beginTransaction();
 //		cartVO=new CartVO();
 //		cartVO.setEmail("lee@gmail.com");
-//		cartVO.setId(1);
-//		transaction=session.beginTransaction();
-//		boolean actual = cartHibernateDAO.delete(cartVO.getEmail(),cartVO.getId());
+//		cartVO.setId(3);
+//		cartVO.setQuantity(4);
+//		boolean actual = cartService.updateCart(cartVO);
 //		boolean expected = true;
 //		assertEquals(expected, actual);
 //		transaction.commit();
 	}
 	
-
+	public void testupdateCart1(){
+//		transaction=session.beginTransaction();
+//		boolean actual = cartService.updateCart("lee@gmail.com",2,9);
+//		boolean expected = true;
+//		assertEquals(expected, actual);
+//		transaction.commit();
+	}
 	
+	public void getTotalAmount(){
+		//等產品好再測
+	}
+	
+	public void getTotalAmount1(){
+		//等產品好再測
+	}
 }

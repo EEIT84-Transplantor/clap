@@ -1,0 +1,17 @@
+package inventory.model;
+
+import java.util.List;
+
+public interface InventoryDAO {
+
+	List<InventoryVO> selectAll();
+
+	List<InventoryVO> selectByProductId(String productId);
+
+	InventoryVO insert(InventoryVO inventoryVO);
+
+	boolean update(InventoryVO inventoryVO);
+
+	boolean delete(String id);
+
+}

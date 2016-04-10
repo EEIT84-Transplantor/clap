@@ -20,6 +20,7 @@
 	}
 	#insertform{
 		display:none;
+		margin:25px;
 	}
 	#hi{
 		display:none;
@@ -109,15 +110,16 @@
 		          
 						<!-- ~需要一個servlet讀照片~ -->
 		<%-- 			${pageContext.request.contextPath}/products/productImgServlet.action?id=[index.count-1] --%>
+<%-- 		                <td><img src="data:image/png;base64,${ProductimgVOs[index-1}"/></td> --%>
 		                <td><img src="../resource/images/visa.png" height="20px" width="20px"/></td> 
 		                <td>12</td> 
-		<%--                 <td>${productVO.id}</td> --%>
-		<%--                 <td>${productVO.name}</td> --%>
-		<%--                 <td>${productVO.price}</td> --%>
-		<%--                 <td>${productVO.description}</td> --%>
-		<%--                 <td>${productVO.rating}</td> --%>
-		<%--                 <td>${productVO.discount}</td> --%>
-		<%--                 <td>${productVO.category}</td> --%>
+<%-- 		                <td>${productVO.id}</td> --%>
+<%-- 		                <td>${productVO.name}</td> --%>
+<%-- 		                <td>${productVO.price}</td> --%>
+<%-- 		                <td>${productVO.description}</td> --%>
+<%-- 		                <td>${productVO.rating}</td> --%>
+<%-- 		                <td>${productVO.discount}</td> --%>
+<%-- 		                <td>${productVO.category}</td> --%>
 		            	<td><img class="delete" src="../resource/images/delete.png" height="20px" width="20px"/>
 		            	<input id="submitInsert1" type="submit" value="add"/>
 		            	<input id="insertCancel" type="button" value="cancel"/></td>
@@ -176,27 +178,28 @@
 // 			}
 			
 // 		});
+	$("#insertCancel").click(function(){
+			$("#insertform").css("display","none");
+		});
 
 		$('#submitInsert1').click( function () {
 			alert("hello");
 			var data = table.row($(this).parent().parent().children(':first')).data();
-			var dataSend="";
-			for (var i = 0 ; i <data.length;i++){
-				console.log(data[i]);	
-			}
-			
+			var dataSend="productVO.id"+data[1]+"productVO.name"+data[2]+"productVO.price"+data[3]+"productVO.description"+data[4]
+			+"productVO.rating"+data[5]+"productVO.discount"+data[6]+"productVO.category"+data[7];
+			sendPostRequestProduct("${pageContext.request.contextPath}/product/SetProductAction.action?", dataSend);
 			
 	    });
 		
 		$('.delete').click( function () {
 			var id = table.row($(this).parent().parent().children(':first')).data()[1];
 			console.log(id);
-			sendPostRequestPayment("${pageContext.request.contextPath}/product/RemoveProductAction.action?", "productId="+id );
+			sendPostRequestProduct("${pageContext.request.contextPath}/product/RemoveProductAction.action?", "productId="+id );
 			$(this).parent().parent().addClass('selected');
 			alert("clicked");
 		
 	    });
-		function sendPostRequestPayment(url, data) {
+		function sendPostRequestProduct(url, data) {
 			request = new XMLHttpRequest();
 			request.onreadystatechange = doReadyStateChange;
 			request.open("POST", url, true);

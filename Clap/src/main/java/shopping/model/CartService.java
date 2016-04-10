@@ -50,9 +50,9 @@ public class CartService {
 		}
 		return result;
 	};
-	public Boolean removeCart (){
-		Boolean result = false;
-		result = cartDAO.delete();
+	public Boolean removeCart (String email){
+		boolean result = false;
+		result = cartDAO.delete(email);
 		return result;
 	};
 	

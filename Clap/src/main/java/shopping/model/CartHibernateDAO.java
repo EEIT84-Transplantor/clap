@@ -22,8 +22,9 @@ public class CartHibernateDAO implements CartDAO {
 	private SessionFactory sessionFactory;
 	private Session session;
 	private Transaction transaction;
+	final private String SELECT_ALL = "from CartVO"; 
 	final private String SELECT_BY_EMAIL = "from CartVO where mb_email=?";
-	final private String DELETE_ALL = "delete from CartVO";
+	final private String DELETE_BY_EMAIL = "delete from CartVO where mb_email=?";
 
 	public CartHibernateDAO() {
 	}
@@ -31,7 +32,16 @@ public class CartHibernateDAO implements CartDAO {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
+    
+	@Override
+	public List<CartVO> selectAll(){
+		List<CartVO> result = null;
+		session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(SELECT_ALL);
+		result = query.list();
+		return result;
+	};
+	
 	@Override
 	public List<CartVO> selectByEmail(String email) {
 		List<CartVO> result = null;
@@ -47,7 +57,7 @@ public class CartHibernateDAO implements CartDAO {
 		CartVO result = null;
 		session = sessionFactory.getCurrentSession();
 		try {
-			result = session.get(CartVO.class, cartVO);
+			result = (CartVO)session.save(cartVO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -63,7 +73,7 @@ public class CartHibernateDAO implements CartDAO {
 			temp.setEmail(email);
 			temp.setId(id);
 			temp.setQuantity(quantity);
-			result = session.get(CartVO.class, temp);
+			result = (CartVO)session.save(temp);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -117,12 +127,13 @@ public class CartHibernateDAO implements CartDAO {
 	}
 
 	@Override
-	public boolean delete() {
+	public boolean delete(String email) {
 		boolean result = false;
+		int total = selectByEmail(email).size();
 		session = sessionFactory.getCurrentSession();
 		try {
-			int temp = session.createQuery(DELETE_ALL).executeUpdate();
-			if (temp == 1) {
+			int temp = session.createQuery(DELETE_BY_EMAIL).setParameter(0, email).executeUpdate();
+			if (temp == total) {
 				result = true;
 			}
 		} catch (Exception e) {

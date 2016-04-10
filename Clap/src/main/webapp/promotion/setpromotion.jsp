@@ -38,8 +38,16 @@
 		<div class="container-fulid">
 		<div class="row">
 			<div class="col-md-1"></div>
-			<div class="col-md-10">
+			<div class="col-md-3">
 				<input type="button" value="Add New Item" id="add"/>
+			</div>
+			<div class="col-md-7">
+				<form>
+					Search By Starting Date<input type="datetime"/>
+					Ending Date<input type="datetime"/>
+					Category<input type="text"/>
+					<input type="submit" value="search"> 
+				</form>
 			</div>
 			<div class="col-md-1"></div>				
 		</div>
@@ -102,7 +110,7 @@
 		                <td>${promoVO.discount}</td> 
 		            	<td><img class="delete" src="../resource/images/delete.png" height="20px" width="20px"/>
 		            	<input id="submitInsert1" type="submit" value="add" onclick="fualert()" />
-		            	<input id="insertCancel" type="button" value="cancel"/></td>
+		            	<input type="button" value="cancel"/></td>
 		       		 
 		            </tr>
 	              	
@@ -139,7 +147,14 @@
 		});
 
 
-
+		$("#insertCancel").click(function(){
+			$("#insertform").css("display","none");
+// 			$('input[name="promoVO.code"]').html('');
+// 			$('input[name="categoryNames"]').html('');
+// 			$('input[name="promoVO.expire"]').html('');
+// 			$('input[name="promoVO.title"]').html('');
+// 			$('input[name="promoVO.discount"]').html('');
+		});
 		$('#submitInsert').click(function(){
 			alert("hhihi");
 		});
