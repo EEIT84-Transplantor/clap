@@ -1,6 +1,7 @@
 package shopping.model;
 
 import payment.model.PromoVO;
+import product.model.ProductVO;
 
 public class OrderDetailVO {
 
