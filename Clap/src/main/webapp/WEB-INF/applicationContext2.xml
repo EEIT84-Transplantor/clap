@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- interceptor -->
 	<bean id="creditCardInterceptor" class="component.interceptor.CreditCardInterceptor">
@@ -12,13 +14,16 @@
 	</bean>
 
 	<!-- datasource -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-		<property name="url" value="jdbc:sqlserver://localhost:1433;databaseName=clap" />
+		<property name="url"
+			value="jdbc:sqlserver://localhost:1433;databaseName=clap" />
 		<property name="username" value="sa"></property>
 		<property name="password" value="passw0rd"></property>
 	</bean>
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
 	</bean>
@@ -76,7 +81,8 @@
 		<property name="dao" ref="promoCodeDAO" />
 		<property name="promoService" ref="promoService" />
 	</bean>
-	<bean id="paymentManageAction" class="payment.controller.PaymentManageAction" scope="prototype">
+	<bean id="paymentManageAction" class="payment.controller.PaymentManageAction"
+		scope="prototype">
 		<property name="promoService" ref="promoService" />
 		<property name="giftCardService" ref="giftCardService" />
 		<property name="memberService" ref="memberService" />
@@ -85,16 +91,20 @@
 	</bean>
 
 	<!-- setting -->
-	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction" scope="prototype">
+	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction"
+		scope="prototype">
 		<property name="memberService" ref="memberService" />
 	</bean>
-	<bean id="changePasswordAction" class="setting.controller.ChangePasswordAction" scope="prototype">
+	<bean id="changePasswordAction" class="setting.controller.ChangePasswordAction"
+		scope="prototype">
 		<property name="memberService" ref="memberService" />
 	</bean>
-	<bean id="oneClickAction" class="setting.controller.OneClickAction" scope="prototype">
+	<bean id="oneClickAction" class="setting.controller.OneClickAction"
+		scope="prototype">
 		<property name="memberService" ref="memberService" />
 	</bean>
-	<bean id="renewVIPAction" class="setting.controller.AutoRenewVIPAction" scope="prototype">
+	<bean id="renewVIPAction" class="setting.controller.AutoRenewVIPAction"
+		scope="prototype">
 		<property name="memberService" ref="memberService" />
 	</bean>
 	<bean id="autoRenewVIPAction" class="setting.controller.AutoRenewVIPAction">
@@ -110,4 +120,29 @@
 	</bean>
 
 
+	<!-- inventory -->
+	<bean id="inOutLogDAO" class="inventory.model.InOutLogHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="inOutLogService" class="inventory.model.InOutLogService">
+		<property name="inOutLogDAO" ref="inOutLogDAO" />
+	</bean>
+	<bean id="inventoryDAO" class="inventory.model.InventoryHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="inventoryService" class="inventory.model.InventoryService">
+		<property name="inventoryDAO" ref="inventoryDAO" />
+	</bean>
+
+	<!-- product -->
+	<bean id="productDAO" class="product.model.ProductHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="productimgDAO" class="product.model.ProductimgHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="productService" class="product.model.ProductService">
+		<property name="productDAO" ref="productDAO" />
+		<property name="productimgDAO" ref="productimgDAO" />
+	</bean>
 </beans>

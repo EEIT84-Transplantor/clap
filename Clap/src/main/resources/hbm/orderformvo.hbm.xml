@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="shopping.model.OrderFormVO" table="orderform">
+		<id name="id" column="od_id"/>
+		<property name="mb_email" column="mb_email"/>
+		<property name="time" column="od_time"/>
+		<property name="total" column="od_total"/>
+		<property name="os_id" column="os_id"/>
+	</class>
+</hibernate-mapping>

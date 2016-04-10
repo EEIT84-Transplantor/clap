@@ -89,6 +89,7 @@
 											type="button" value="use" id="useGiftCard"><br />
 									</form>
 								</div>
+								<div style="clear: both;" id="errorGitCard"></div>
 							</div>
 							<div class="tab-pane" id="promo_content">
 								<p>Received Promotions</p>
@@ -124,6 +125,7 @@
 								
 								</tbody>
 								</table>
+								<div style="clear: both;" id="errorPromo"></div>
 							</div>
 						</div>
 					</div><!-- payment_detail -->
@@ -225,9 +227,24 @@
 		    var key = json[0].buttonClicked;
 		    var isError = json[0].isError;
 		    if(isError){
-		    	$('#error').css("color","rgb(255,0,0)");
-		    	$('#error').html("Error: "+json[0].errorMessage);
-		    	return;
+		    	switch(key){
+		    	case "addCreditCard":
+		    		$('#error').css("color","rgb(255,0,0)");
+			    	$('#error').html("Error: "+json[0].errorMessage);
+			    	return;
+		    	case "deleteCreditCard":
+		    		$('#errorGitCard').css("color","rgb(255,0,0)");
+			    	$('#errorGitCard').html("Error: "+json[0].errorMessage);
+			    	return;	
+		    	case "addPromoCode":
+		    		$('#errorPromo').css("color","rgb(255,0,0)");
+			    	$('#errorPromo').html("Error: "+json[0].errorMessage);
+			    	return;	
+		    	
+		    	
+		    	
+		    	}
+		    	
 		    }
 		    $('#error').html("");
 		    var info = json[1];

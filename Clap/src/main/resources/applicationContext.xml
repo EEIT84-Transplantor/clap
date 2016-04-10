@@ -105,5 +105,12 @@
 		<property name="cartDAO" ref="cartHibernateDAO" />
 	</bean>
 
+	<bean id="orderFormHibernateDAO" class="shopping.model.OrderFormHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="orderDetailHibernateDAO" class="shopping.model.OrderDetailHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
 
 </beans>
