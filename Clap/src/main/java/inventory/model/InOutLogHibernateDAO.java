@@ -33,7 +33,7 @@ public class InOutLogHibernateDAO implements InOutLogDAO {
 
 	final private String SELECT_BY_PRODUCT_ID="from InOutLogVO where pd_id=?";
 	@Override
-	public List<InOutLogVO> selectByProductId(String productId){		
+	public List<InOutLogVO> selectByProductId(Integer productId){		
 		session = sessionFactory.getCurrentSession();
 		List<InOutLogVO> inOutLogVOs = null;
 		Query query = session.createQuery(SELECT_BY_PRODUCT_ID);
@@ -67,7 +67,7 @@ public class InOutLogHibernateDAO implements InOutLogDAO {
 	}
 
 	@Override
-	public boolean delete(String id) {
+	public boolean delete(Integer id) {
 		session = sessionFactory.getCurrentSession();
 		InOutLogVO inOutLogVO = new InOutLogVO();
 		inOutLogVO.setId(id);

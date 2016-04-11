@@ -13,9 +13,9 @@ public class InOutLogVO {
 
 	@Id
 	@Column(name="inoutlog_id")
-	private String id;
+	private Integer id;
 	@Column(name="inventory_id")
-	private String inventory_id;
+	private Integer inventory_id;
 	@Column(name="pd_id")
 	private Integer product_id;
 	
@@ -32,16 +32,16 @@ public class InOutLogVO {
 	private String destination;
 	@Column(name="inoutlog_date")
 	private Timestamp date;
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getInventory_id() {
+	public Integer getInventory_id() {
 		return inventory_id;
 	}
-	public void setInventory_id(String inventory_id) {
+	public void setInventory_id(Integer inventory_id) {
 		this.inventory_id = inventory_id;
 	}
 	public Integer getProduct_id() {

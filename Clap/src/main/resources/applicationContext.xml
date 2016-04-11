@@ -112,6 +112,32 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
+	<!-- inventory -->
+	<bean id="inOutLogDAO" class="inventory.model.InOutLogHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="inOutLogService" class="inventory.model.InOutLogService">
+		<property name="inOutLogDAO" ref="inOutLogDAO" />
+	</bean>
+	<bean id="inventoryDAO" class="inventory.model.InventoryHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="inventoryService" class="inventory.model.InventoryService">
+		<property name="inventoryDAO" ref="inventoryDAO" />
+	</bean>
+
+	<!-- product -->
+	<bean id="productDAO" class="product.model.ProductHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="productimgDAO" class="product.model.ProductimgHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="productService" class="product.model.ProductService">
+		<property name="productDAO" ref="productDAO" />
+		<property name="productimgDAO" ref="productimgDAO" />
+		<property name="inOutLogDAO" ref="inOutLogDAO" />
+	</bean>
 
 
 </beans>

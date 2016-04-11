@@ -6,12 +6,12 @@ public interface InventoryDAO {
 
 	List<InventoryVO> selectAll();
 
-	List<InventoryVO> selectByProductId(String productId);
+	List<InventoryVO> selectByProductId(Integer productId);
 
 	InventoryVO insert(InventoryVO inventoryVO);
 
 	boolean update(InventoryVO inventoryVO);
 
-	boolean delete(String id);
+	boolean delete(Integer id);
 
 }
