@@ -3,6 +3,7 @@ package product.model;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -22,6 +23,7 @@ public class ProductHibernateDAO implements ProductDAO {
 	private final String SELECT_BY_KEY = "from ProductVO where product_name like:productName";
 	private final String SELECT_BY_CATEGORY = "from ProductVO where category_id= ?";
 	private final String SELECT_BY_PRICE_RANGE = "from ProductVO where category_id= ? and product_price >= ? and product_price <= ?" ;
+	final private String SQL_QUERY_SELECT_TOP_AMOUNT = "select * from  (select Row_Number() over (order by category_id) as RowIndex, * from product) as Subtable Where Subtable.RowIndex >= ? and Subtable.RowIndex <= ?";
 	@Override
 	public List<ProductVO> selectAll() {
 		session = sessionFactory.getCurrentSession();
@@ -124,6 +126,22 @@ public class ProductHibernateDAO implements ProductDAO {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	@Override
+	public List<ProductVO> selectByTopAmount(Integer pageNumber, Integer pageAmount, Integer counts) {
+		List<ProductVO> productVOs = null;
+		session = sessionFactory.getCurrentSession();
+		try {
+			SQLQuery sqlQuery = session.createSQLQuery(SQL_QUERY_SELECT_TOP_AMOUNT).addEntity(ProductVO.class);
+			sqlQuery.setInteger(0, (pageNumber-1)*pageAmount+1);
+			sqlQuery.setInteger(1, (pageNumber-1)*pageAmount+counts);
+			productVOs = sqlQuery.list();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return productVOs;
 	};
 
 }

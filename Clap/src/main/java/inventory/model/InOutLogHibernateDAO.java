@@ -3,11 +3,12 @@ package inventory.model;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import payment.model.PromoCodeVO;
-import payment.model.PromoVO;
+
+import product.model.ProductVO;
 
 
 public class InOutLogHibernateDAO implements InOutLogDAO {
@@ -22,6 +23,8 @@ public class InOutLogHibernateDAO implements InOutLogDAO {
 
 	private Session session;
 	final private String SELECT_ALL = "from InOutLogVO";
+	private String SQL_QUERY_SELECT_TOP_POPULAR_PART1 = "select top ";
+	private String SQL_QUERY_SELECT_TOP_POPULAR_PART2 = " * from product where pd_id in (select top 100 pd_id from (select pd_id, 1.0*sum(inoutlog_outQuantity)/(sum(inoutlog_inQuantity)+1) as popularity from inoutlog group by pd_id having pd_id in (select pd_id from product where category_id=?)) as tableA order by popularity desc )";
 	
 	@Override
 	public List<InOutLogVO> selectAll(){
@@ -78,6 +81,22 @@ public class InOutLogHibernateDAO implements InOutLogDAO {
 			e.printStackTrace();
 			return false;
 		}		
+	}
+
+	@Override
+	public List<ProductVO> selectByTopSold(Integer categoryId, int number) {
+		session = sessionFactory.getCurrentSession();
+		List<ProductVO> productVOs = null;
+		try {
+			SQLQuery query = session.createSQLQuery(SQL_QUERY_SELECT_TOP_POPULAR_PART1+number+SQL_QUERY_SELECT_TOP_POPULAR_PART2).addEntity(ProductVO.class); 
+			query.setInteger(0, categoryId);
+			productVOs = query.list();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return productVOs;
 	};
 	
 }

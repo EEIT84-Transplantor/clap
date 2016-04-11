@@ -10,6 +10,9 @@ public class ProductService {
 	private ProductimgDAO productimgDAO;
 	private InOutLogDAO inOutLogDAO;
 
+	public void setInOutLogDAO(InOutLogDAO inOutLogDAO) {
+		this.inOutLogDAO = inOutLogDAO;
+	}
 	public void setProductDAO(ProductDAO productDAO) {
 		this.productDAO = productDAO;
 	}
@@ -19,9 +22,6 @@ public class ProductService {
 	
 	public List<ProductVO>  test(){
 		return productDAO.selectAll();
-	}
-	public List<ProductVO> getProductByTopAmount(Integer pageNumber, Integer pageAmount, Integer counts){
-		return productDAO.selectByTopAmount(pageNumber, pageAmount, counts);
 	}
 	public List<ProductVO> searchProductByKeyName(String productKeyName){
 		//取得某類別含有keyname的商品
@@ -66,11 +66,14 @@ public class ProductService {
 		productimgDAO.delete(productId);
 		return productDAO.delete(productId);
 	}
-	public List<ProductVO> getPoupulars(Integer categoryId, int number){
-		//取得最暢銷的n個商品
-		inOutLogDAO
-	}
 	public List<ProductVO> getProductsByPrice(Integer categoryId,Double min,Double max){
 		return productDAO.selectByPriceRange(categoryId, min, max);
+	}
+	public List<ProductVO> getPoupulars(Integer categoryId, int number){
+		//取得最暢銷的n個商品
+		return inOutLogDAO.selectByTopSold(categoryId, number);
+	}
+	public List<ProductVO> getProductByTopAmount(Integer pageNumber, Integer pageAmount, Integer counts){
+		return productDAO.selectByTopAmount(pageNumber, pageAmount, counts);
 	}
 }
