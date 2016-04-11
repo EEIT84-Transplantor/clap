@@ -5,11 +5,11 @@ drop table productimg
 drop table inoutlog
 drop table inventory
 drop table product
-drop table category
 drop table creditcard
 drop table giftcard
 drop table promocode
 drop table promo
+drop table category
 drop table hospital 
 drop table message
 drop table member
@@ -67,18 +67,36 @@ insert into giftcard(gc_number,gc_code,gc_amount,gc_available) values('2222','gc
 insert into giftcard(gc_number,gc_code,gc_amount,gc_available) values('4444','gccode4',500,1);
 select * from giftcard
 ------------------------------------------------------------------------------------------------------------------------------------------------
+create table category (
+category_id	int,
+category_name varchar(60)
+PRIMARY KEY (category_id)
+)
+
+insert into category values(1,'Kidneys');
+insert into category values(2,'Ureters');
+insert into category values(3,'Bladder');
+insert into category values(4,'Urethra');
+insert into category values(5,'Ovaries');
+insert into category values(6,'Fallopian tubes');
+insert into category values(7,'Uterus');
+insert into category values(8,'Vagina');
+insert into category values(9,'Vulva');
+insert into category values(10,'Clitoris');
+select * from category
+------------------------------------------------------------------------------------------------------------------------------------------------
 create table promo(
 pm_code varchar(50) PRIMARY KEY,
-pd_category varchar(50) NOT NULL,
+pd_category int NOT NULL FOREIGN KEY REFERENCES category(category_id),
 pm_expire date NOT NULL,
 pm_tiltle varchar(50) NOT NULL,
 pm_discount float NOT NULL
 )
 
 
-insert into promo(pm_code,pd_category,pm_expire,pm_tiltle,pm_discount) values('111','heart','2016-5-20','50% OFF',0.5);
-insert into promo(pm_code,pd_category,pm_expire,pm_tiltle,pm_discount) values('222','lung','2016-5-20','40% OFF',0.6);
-insert into promo(pm_code,pd_category,pm_expire,pm_tiltle,pm_discount) values('333','heart','2016-5-20','30% OFF',0.7);
+insert into promo(pm_code,pd_category,pm_expire,pm_tiltle,pm_discount) values('111',1,'2016-5-20','50% OFF',0.5);
+insert into promo(pm_code,pd_category,pm_expire,pm_tiltle,pm_discount) values('222',2,'2016-5-20','40% OFF',0.6);
+insert into promo(pm_code,pd_category,pm_expire,pm_tiltle,pm_discount) values('333',3,'2016-5-20','30% OFF',0.7);
 select * from promo
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table promocode(
@@ -126,24 +144,6 @@ insert into message values('poan@gmail.com', 'lee@gmail.com', 'Hello i am leelee
 select * from message
 
 
-------------------------------------------------------------------------------------------------------------------------------------------------
-create table category (
-category_id	int,
-category_name varchar(60)
-PRIMARY KEY (category_id)
-)
-
-insert into category values(1,'Kidneys');
-insert into category values(2,'Ureters');
-insert into category values(3,'Bladder');
-insert into category values(4,'Urethra');
-insert into category values(5,'Ovaries');
-insert into category values(6,'Fallopian tubes');
-insert into category values(7,'Uterus');
-insert into category values(8,'Vagina');
-insert into category values(9,'Vulva');
-insert into category values(10,'Clitoris');
-select * from category
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table product (
 pd_Id	int,
