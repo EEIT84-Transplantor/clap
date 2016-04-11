@@ -16,11 +16,29 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionProxy;
 
+import shopping.model.CartHibernateDAO;
+import shopping.model.CartVO;
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestChangePasswordAction extends StrutsSpringTestCase {
 
 	private String changePasswordAction = "/setting/changePasswordAction.action";
+	private SessionFactory sessionFactory;
+	private Session session;
 
+	@Override
+	protected void setupBeforeInitDispatcher() throws Exception {
+		super.setupBeforeInitDispatcher();
+		sessionFactory = (SessionFactory) applicationContext.getBean("sessionFactory");
+		session = sessionFactory.getCurrentSession();
+		session.beginTransaction();
+	}
+
+	@Override
+	protected void tearDown() throws Exception {
+		session.getTransaction().commit();
+		super.tearDown();
+	}
 
 	// 測試action註冊正確
 	public void testaGetActionMapping() {
@@ -32,24 +50,21 @@ public class TestChangePasswordAction extends StrutsSpringTestCase {
 
 	// 測試取得action物件
 	public void testbGetActionProxy() throws Exception {
-		request.setParameter("email", "FD");
-		request.setParameter("password", "FD");
-		request.setParameter("newpassword", "FD");
-		request.setParameter("confirm", "FD");
+		request.setParameter("email", "poan@gmail.com");
+		request.setParameter("password", "aaa");
+		request.setParameter("newpassword", "poan");
+		request.setParameter("confirm", "poan");
 
 		ActionProxy proxy = getActionProxy(changePasswordAction);
 		assertNotNull(proxy);
-
 		ChangePasswordAction action = (ChangePasswordAction) proxy.getAction();
 		assertNotNull(action);
-
 		String result = proxy.execute();
-
 		assertEquals(Action.SUCCESS, result);
-		assertEquals("FD", action.getEmail());
+		assertEquals("poan@gmail.com", action.getEmail());
 	}
 
-	// 測試excute()方法
+	// 測試response的值
 	public void testcExecuteAction() throws ServletException, UnsupportedEncodingException {
 		String output = executeAction(changePasswordAction);
 		assertEquals("Hello", output);
