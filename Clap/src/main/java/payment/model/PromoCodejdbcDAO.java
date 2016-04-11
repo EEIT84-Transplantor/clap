@@ -157,7 +157,7 @@ public class PromoCodejdbcDAO implements PromoCodeDAO {
 			while(rs.next()){
 				temp = new PromoVO();
 				temp.setPm_code(rs.getString("pm_code"));
-				temp.setPd_category(rs.getString("pd_category"));
+				temp.setPd_category(rs.getInt("pd_category"));
 				temp.setPm_discount(rs.getDouble("pm_discount"));
 				temp.setPm_expire(rs.getDate("pm_expire"));
 				temp.setPm_tiltle(rs.getString("pm_tiltle"));
