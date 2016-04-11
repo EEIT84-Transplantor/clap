@@ -14,7 +14,7 @@ public class InventoryService {
 		return inventoryDAO.selectAll();
 	}
 	public Integer getQuantity (Integer productId){
-//		inventoryDAO.selectByProductId(productId);
+		inventoryDAO.selectByProductId(productId);
 	}
 	public List<InventoryVO> getAllInventories(Integer productId){
 		if (productId == null || productId.trim().length()==0){

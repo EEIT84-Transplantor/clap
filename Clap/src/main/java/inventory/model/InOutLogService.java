@@ -1,6 +1,9 @@
 package inventory.model;
 
+import java.security.Timestamp;
 import java.util.List;
+
+import org.springframework.transaction.support.ResourceTransactionManager;
 
 public class InOutLogService {
 	
@@ -22,15 +25,73 @@ public class InOutLogService {
 		return inOutLogDAO.selectAll();
 	}
 	public Boolean importProduct(InOutLogVO inOutLogVO){
-//		InOutLogVO result=inOutLogDAO.insert(inOutLogVO);
-//		inventoryDAO.
-//		if (result!=null){
-//			return true;
-//		}else{
-//			return false;
-//		}
+		
+		
+		try {
+			Integer product_id = inOutLogVO.getProduct_id();
+			java.sql.Timestamp expire = inOutLogVO.getExpiryDate();
+			java.sql.Timestamp manufactureDate= inOutLogVO.getManufactureDate();
+			InventoryVO inventoryVO = new InventoryVO();
+			inventoryVO.setExpiryDate(expire);
+			inventoryVO.setId(product_id);
+			inventoryVO.setManufactureDate(manufactureDate);
+			inventoryVO.setExpiryDate(inOutLogVO.getExpiryDate());
+			InOutLogVO result=inOutLogDAO.insert(inOutLogVO);
+			InventoryVO inventoryVO2 = inventoryDAO.selectByInventoryProperties(inventoryVO);
+			System.out.println(inventoryVO2);
+			if(inventoryVO2!=null){
+				Integer num = inventoryVO2.getQuantity()+inOutLogVO.getInQuantity();
+				inventoryVO2.setQuantity(num);
+				if(result!=null &&inventoryDAO.update(inventoryVO2)){
+					return true;
+				}else{
+					return false;
+				}
+				 
+			}else{
+				inventoryVO.setQuantity(inOutLogVO.getInQuantity());
+				InventoryVO inventoryVO3 = inventoryDAO.insert(inventoryVO);
+				if(inventoryVO3==null){
+					return false;
+				}else{
+					return true;
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	public Boolean exportProduct(InOutLogVO inOutLogVO){
-		
+		try {
+			Integer product_id = inOutLogVO.getProduct_id();
+			java.sql.Timestamp expire = inOutLogVO.getExpiryDate();
+			java.sql.Timestamp manufactureDate= inOutLogVO.getManufactureDate();
+			InventoryVO inventoryVO = new InventoryVO();
+			inventoryVO.setExpiryDate(expire);
+			inventoryVO.setId(product_id);
+			inventoryVO.setManufactureDate(manufactureDate);
+			inventoryVO.setExpiryDate(inOutLogVO.getExpiryDate());
+			InOutLogVO result=inOutLogDAO.insert(inOutLogVO);
+			InventoryVO inventoryVO2 = inventoryDAO.selectByInventoryProperties(inventoryVO);
+			System.out.println(inventoryVO2);
+			if(inventoryVO2!=null){
+				Integer num = inventoryVO2.getQuantity()-inOutLogVO.getOutQuantity();
+				if(num >=0){
+					inventoryVO2.setQuantity(num);
+					if(result!=null &&inventoryDAO.update(inventoryVO2)){
+						return true;
+					}
+				}
+				return false; 
+			}
+			System.out.println("cannot buy with no inventory");
+			return false;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }
