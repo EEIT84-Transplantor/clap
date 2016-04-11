@@ -30,6 +30,7 @@ slider.on('slide', function (ev) {
     var max = pricerange[1];
     document.getElementById("min_price").innerHTML="$"+min;
     document.getElementById("max_price").innerHTML="$"+max;
+    //
 });
 
 

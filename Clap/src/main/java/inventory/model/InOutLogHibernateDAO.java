@@ -97,6 +97,7 @@ public class InOutLogHibernateDAO implements InOutLogDAO {
 		}
 		
 		return productVOs;
+
 	};
 	
 }
