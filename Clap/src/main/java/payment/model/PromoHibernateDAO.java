@@ -1,5 +1,7 @@
 package payment.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -11,6 +13,9 @@ public class PromoHibernateDAO implements PromoDAO{
 	private SessionFactory sessionFactory;
 	private Session session;
 	final private String SELECT_ALL = "from PromoVO";
+	final private String SELECT_ALL_UNEXPIRED = "from PromoVO where pm_expire>?";
+	final private String SELECT_ALL_ENDING_DATE = "from PromoVO where pm_expire<?";
+	final private String SELECT_ALL_BETWEEN = "from PromoVO where pm_expire < ? and pm_expire >? ";
 
 	public PromoHibernateDAO() {
 		
@@ -31,7 +36,36 @@ public class PromoHibernateDAO implements PromoDAO{
 		List<PromoVO> result = query.list();
 		return result;
 	}
-
+	@Override
+	public List<PromoVO> selectUnexpired() {
+		session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(SELECT_ALL_UNEXPIRED);
+		Calendar currentDate = Calendar.getInstance(); //Get the current date
+		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss"); //format it as per your requirement
+		String dateNow = formatter.format(currentDate.getTime());
+		System.out.println(dateNow);
+		query.setParameter(0, dateNow);
+		List<PromoVO> result = query.list();
+		return result;
+	}
+	@Override
+	public List<PromoVO> selectByStartDate(String startDate) {
+		session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(SELECT_ALL_UNEXPIRED);
+		System.out.println(startDate);
+		query.setParameter(0, startDate);
+		List<PromoVO> result = query.list();
+		return result;
+	}
+	@Override
+	public List<PromoVO> selectByEndingDate (String endDate) {
+		session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(SELECT_ALL_ENDING_DATE);
+		System.out.println(endDate);
+		query.setParameter(0, endDate);
+		List<PromoVO> result = query.list();
+		return result;
+	}
 	@Override
 	public PromoVO selectByCode(String pm_code) {
 		session = sessionFactory.getCurrentSession();

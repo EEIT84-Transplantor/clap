@@ -12,4 +12,10 @@ public interface PromoDAO {
 	public abstract boolean update(PromoVO promoVO);
 
 	public abstract boolean delete(String pm_code);
+
+	List<PromoVO> selectUnexpired();
+
+	List<PromoVO> selectByStartDate(String startDate);
+
+	List<PromoVO> selectByEndingDate(String endDate);
 }
