@@ -14,10 +14,10 @@ public class InventoryService {
 		return inventoryDAO.selectAll();
 	}
 	public Integer getQuantity (Integer productId){
-		inventoryDAO.selectByProductId(productId);
+		return inventoryDAO.getQuantityById(productId);
 	}
 	public List<InventoryVO> getAllInventories(Integer productId){
-		if (productId == null || productId.trim().length()==0){
+		if (productId == null || productId<=0){
 			//(id為null時抓全部)
 			return inventoryDAO.selectAll();
 		}else{
