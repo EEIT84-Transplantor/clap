@@ -6,12 +6,12 @@ public interface ProductimgDAO {
 
 	List<ProductimgVO> selectAll();
 
-	ProductimgVO selectByProductId(String productId);
+	ProductimgVO selectByProductId(Integer productId);
 
 	ProductimgVO insert(ProductimgVO productimgVO);
 
 	boolean update(ProductimgVO productimgVO);
 
-	boolean delete(String id);
+	boolean delete(Integer id);
 
 }

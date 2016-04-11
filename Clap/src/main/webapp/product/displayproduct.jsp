@@ -47,7 +47,7 @@
 		<div class="row">
 			<div class="col-md-1">side-nav:sub-menu</div>
 			<div class="col-md-10">
-			<form id="insertform" action="SetProductAction.action" >
+			<form id="insertform" action="${pageContext.request.contextPath}/product/SetProductAction.action" method="POST" >
 				<table  class="table">
 					 <thead>
 			            <tr>
@@ -114,7 +114,7 @@
 		<%-- 			${pageContext.request.contextPath}/products/productImgServlet.action?id=[index.count-1] --%>
 <%-- 		                <td><img src="data:image/png;base64,${ProductimgVOs[index-1}"/></td> --%>
 		                <td><img src="../resource/images/visa.png" height="20px" width="20px"/></td> 
-		                <td>12</td> 
+		                <td>${productVO}</td> 
 <%-- 		                <td>${productVO.id}</td> --%>
 <%-- 		                <td>${productVO.name}</td> --%>
 <%-- 		                <td>${productVO.price}</td> --%>
@@ -165,21 +165,21 @@
 		$('#submitInsert').click(function(){
 			alert("hhihi");
 		});
-// 		$('tbody tr td').click(function(){
-// 			var data = table.cell(this).data();
-// 			console.log(data);
-// 			if(!$(this).is(':last-child')){
-// 				$(this).attr("contenteditable",'true');
-// 			}
+		$('tbody tr td').click(function(){
+			var data = table.cell(this).data();
+			console.log(data);
+			if(!$(this).is(':last-child')){
+				$(this).attr("contenteditable",'true');
+			}
 			
-// 		});
-// 		$('tbody tr td').blur(function(){
-// 			if(!$(this).is(':last-child')){
-// 				$(this).attr("contenteditable",'true');
-// // 				$(this).siblings(":last");	
-// 			}
+		});
+		$('tbody tr td').blur(function(){
+			if(!$(this).is(':last-child')){
+				console.log(table.row($(this).parent()).data());
+// 				$(this).siblings(":last");	
+			}
 			
-// 		});
+		});
 	$("#insertCancel").click(function(){
 			$("#insertform").css("display","none");
 		});
@@ -187,19 +187,24 @@
 		$('#submitInsert1').click( function () {
 			alert("hello");
 			var data = table.row($(this).parent().parent().children(':first')).data();
-			var dataSend="productVO.id"+data[1]+"productVO.name"+data[2]+"productVO.price"+data[3]+"productVO.description"+data[4]
-			+"productVO.rating"+data[5]+"productVO.discount"+data[6]+"productVO.category"+data[7];
-			sendPostRequestProduct("${pageContext.request.contextPath}/product/UpdateProductAction.action?", dataSend);
-			
+			console.log(data[1]);
+			if (confirm("Do you want to update this product?") == true) {
+				var data = table.row($(this).parent().parent().children(':first')).data();
+				console.log(data[1]);
+				var dataSend="productVO.id="+data[1]+"productVO.name="+data[2]+"productVO.price="+data[3]+"productVO.description="+data[4]
+				+"productVO.rating="+data[5]+"productVO.discount="+data[6]+"productVO.category="+data[7];
+				sendPostRequestProduct("${pageContext.request.contextPath}/product/UpdateProductAction.action?", dataSend);
+			}
 	    });
 		
 		$('.delete').click( function () {
-			var id = table.row($(this).parent().parent().children(':first')).data()[1];
-			console.log(id);
-			sendPostRequestProduct("${pageContext.request.contextPath}/product/RemoveProductAction.action?", "productId="+id );
-			$(this).parent().parent().addClass('selected');
-			alert("clicked");
-		
+			if (confirm("Do you want to delete this product?") == true) {
+				var id = table.row($(this).parent().parent().children(':first')).data()[1];
+				console.log(id);
+				sendPostRequestProduct("${pageContext.request.contextPath}/product/RemoveProductAction.action?", "productId="+id );
+				$(this).parent().parent().addClass('selected');
+				alert("clicked");
+			}
 	    });
 		function sendPostRequestProduct(url, data) {
 			request = new XMLHttpRequest();

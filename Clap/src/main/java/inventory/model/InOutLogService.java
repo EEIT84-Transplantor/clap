@@ -21,4 +21,16 @@ public class InOutLogService {
 	public List<InOutLogVO>  test(){
 		return inOutLogDAO.selectAll();
 	}
+	public Boolean importProduct(InOutLogVO inOutLogVO){
+//		InOutLogVO result=inOutLogDAO.insert(inOutLogVO);
+//		inventoryDAO.
+//		if (result!=null){
+//			return true;
+//		}else{
+//			return false;
+//		}
+	}
+	public Boolean exportProduct(InOutLogVO inOutLogVO){
+		
+	}
 }

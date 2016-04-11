@@ -18,10 +18,12 @@ public class InOutLogVO {
 	private String inventory_id;
 	@Column(name="pd_id")
 	private Integer product_id;
+	
 	@Column(name="inoutlog_inQuantity")
 	private Integer inQuantity;
 	@Column(name="inoutlog_outQuantity")
 	private Integer outQuantity;
+	
 	@Column(name="inoutlog_manufactureDate")
 	private Timestamp manufactureDate;
 	@Column(name="inoutlog_expiryDate")

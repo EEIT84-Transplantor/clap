@@ -60,7 +60,7 @@ public class CategoryHibernateDAO implements CategoryDAO {
 	};
 
 	@Override
-	public boolean delete(String id){
+	public boolean delete(Integer id){
 		session = sessionFactory.getCurrentSession();
 		try {
 			CategoryVO categoryVO = session.get(CategoryVO.class, id);

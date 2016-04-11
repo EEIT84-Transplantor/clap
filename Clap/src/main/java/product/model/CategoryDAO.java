@@ -10,6 +10,6 @@ public interface CategoryDAO {
 
 	boolean update(CategoryVO categoryVO);
 
-	boolean delete(String id);
+	boolean delete(Integer id);
 
 }
