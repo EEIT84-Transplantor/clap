@@ -128,21 +128,21 @@ select * from message
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table category (
-category_id	varchar(50),
-category_name	varchar(60)
+category_id	int,
+category_name varchar(60)
 PRIMARY KEY (category_id)
 )
 
-insert into category values('1','Kidneys');
-insert into category values('2','Ureters');
-insert into category values('3','Bladder');
-insert into category values('4','Urethra');
-insert into category values('5','Ovaries');
-insert into category values('6','Fallopian tubes');
-insert into category values('7','Uterus');
-insert into category values('8','Vagina');
-insert into category values('9','Vulva');
-insert into category values('10','Clitoris');
+insert into category values(1,'Kidneys');
+insert into category values(2,'Ureters');
+insert into category values(3,'Bladder');
+insert into category values(4,'Urethra');
+insert into category values(5,'Ovaries');
+insert into category values(6,'Fallopian tubes');
+insert into category values(7,'Uterus');
+insert into category values(8,'Vagina');
+insert into category values(9,'Vulva');
+insert into category values(10,'Clitoris');
 select * from category
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table product (
@@ -152,7 +152,7 @@ product_price	float,
 product_description	nvarchar(1000),
 product_rating	int,
 product_discount	float,
-category_id	varchar(50) foreign key REFERENCES category(category_id)
+category_id int foreign key REFERENCES category(category_id)
 PRIMARY KEY (pd_Id)
 )
 insert into product values(1, 'product1', 100, 'Heart1', 1, 0.9, 1);
@@ -180,6 +180,8 @@ PRIMARY KEY (inventory_id)
 )
 insert into inventory values(1, 1, 10, '2016-05-04', '2017-05-04');
 insert into inventory values(2, 2, 10, '2016-05-04', '2017-05-04');
+insert into inventory values(3, 1, 10, '2016-05-04', '2017-05-04');
+insert into inventory values(4, 2, 10, '2016-05-04', '2017-05-04');
 select * from inventory
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -197,6 +199,8 @@ PRIMARY KEY (inoutlog_id)
 )
 insert into inoutlog values(1, 1, 1, 10, 0, '2016-05-04', '2017-05-04', 'Taipei', '2016-04-04');
 insert into inoutlog values(2, 2, 1, 0, 43, '2016-05-04', '2017-05-04', 'Taipei', '2016-04-04');
+insert into inoutlog values(3, 1, 1, 10, 0, '2016-03-04', '2017-06-04', 'Taipei', '2016-07-04');
+insert into inoutlog values(4, 2, 1, 0, 43, '2016-02-04', '2017-03-04', 'Taipei', '2016-08-04');
 select * from inoutlog
 
 ------------------------------------------------------------------------------------------------------------------------------------------------

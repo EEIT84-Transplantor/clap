@@ -33,14 +33,13 @@ public class ProductimgHibernateDAO implements ProductimgDAO {
 	};
 
 	@Override
-	public ProductimgVO selectByProductId(String productId) {
+	public ProductimgVO selectByProductId(Integer productId) {
 		session = sessionFactory.getCurrentSession();
 		ProductimgVO productimgVO = null;;
 		try {
 			productimgVO = session.get(ProductimgVO.class, productId);
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return productimgVO;
@@ -75,7 +74,7 @@ public class ProductimgHibernateDAO implements ProductimgDAO {
 	};
 
 	@Override
-	public boolean delete(String id) {
+	public boolean delete(Integer id) {
 		session = sessionFactory.getCurrentSession();
 		try {
 			ProductimgVO productimgVO = session.get(ProductimgVO.class, id);

@@ -11,13 +11,13 @@ public class ProductimgVO {
 
 	@Id
 	@Column(name="pd_Id")
-	private String id;
+	private Integer id;
 	@Column(name="productimg_img")
 	private Byte[] img;
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public Byte[] getImg() {

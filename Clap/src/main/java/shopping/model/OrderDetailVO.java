@@ -65,30 +65,5 @@ public class OrderDetailVO implements Serializable {
 		this.productVO = productVO;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == this) {
-			return true;
-		}
-		if (!(obj instanceof OrderDetailVO)) {
-			return false;
-		}
-		OrderDetailVO orderDetiailVO = (OrderDetailVO) obj;
-		return new EqualsBuilder().append(id, orderDetiailVO.getId()).append(pd_id, orderDetiailVO.getPd_id())
-				.isEquals();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(id).append(pd_id).toHashCode();
-	}
-
-	// public ProductVO getProductVO() {
-	// return productVO;
-	// }
-	//
-	// public void setProductVO(ProductVO productVO) {
-	// this.productVO = productVO;
-	// }
 
 }

@@ -15,7 +15,7 @@
       rel="stylesheet">
 <link href="../resource/css/customer.css" rel="stylesheet">
 <style type="text/css">
-	input{
+	input, select{
 		background-color:black;
 	}
 	#insertform{
@@ -54,7 +54,7 @@
 		<div class="row">
 			<div class="col-md-1">side-nav:sub-menu</div>
 			<div class="col-md-10">
-			<form id="insertform" action="SetProductAction.action" >
+			<form id="insertform" action="${pageContext.request.contextPath}/promotion/SetProductAction.action" method="POST">
 				<table  class="table">
 					 <thead>
 			            <tr>
@@ -74,7 +74,6 @@
 							  <option value="Liver" >Liver</option>
 							  <option value="Kidney">Kidney</option>
 							</select>
-							<input type="text" name="categoryNames"/></td>
 		                <td><input type="text" name="promoVO.expire"/></td>
 		                <td><input type="text" name="promoVO.title"/></td>
 		                <td><input type="text" name="promoVO.discount"/></td>
@@ -113,7 +112,6 @@
 		                <td>${promoVO.expire}</td> 
 		                <td>${promoVO.title}</td> 
 		                <td>${promoVO.discount}</td> 
-		            	<td><img class="delete" src="../resource/images/delete.png" height="20px" width="20px"/>
 		            	<input id="submitInsert1" type="submit" value="add" onclick="fualert()" />
 		            	<input type="button" value="cancel"/></td>
 		       		 
@@ -163,14 +161,14 @@
 		$('#submitInsert').click(function(){
 			alert("hhihi");
 		});
-// 		$('tbody tr td').click(function(){
-// 			var data = table.cell(this).data();
-// 			console.log(data);
-// 			if(!$(this).is(':last-child')){
-// 				$(this).attr("contenteditable",'true');
-// 			}
+		$('tbody tr td').click(function(){
+			var data = table.cell(this).data();
+			console.log(data);
+			if(!$(this).is(':last-child')){
+				$(this).attr("contenteditable",'true');
+			}
 			
-// 		});
+		});
 // 		$('tbody tr td').blur(function(){
 // 			if(!$(this).is(':last-child')){
 // 				$(this).attr("contenteditable",'true');
@@ -179,32 +177,21 @@
 			
 // 		});
 
-		$('#submitInsert1').click( function () {
+	$('#submitInsert1').click( function () {
 			alert("hello");
 			var data = table.row($(this).parent().parent().children(':first')).data();
-			var dataSend="";
-			for (var i = 0 ; i <data.length;i++){
-					console.log(data[i]);
-			}
-			
+			var dataSend="promoVO.code="+data[0]+"category="+data[1]+"promoVO.expire="+data[2]+"promoVO.title="+data[3]+"promoVO.discount="+data[4];
+			sendPostRequestProduct("${pageContext.request.contextPath}/product/UpdateProductAction.action?", dataSend);
 			
 	    });
-		
-		$('.delete').click( function () {
-			var id = table.row($(this).parent().parent().children(':first')).data()[1];
-			console.log(id);
-			sendPostRequestPayment("${pageContext.request.contextPath}/product/RemoveProductAction.action?", "productId="+id );
-			$(this).parent().parent().addClass('selected');
-			alert("clicked");
-		
-	    });
-		function sendPostRequestPayment(url, data) {
+		function sendPostRequestProduct(url, data) {
 			request = new XMLHttpRequest();
 			request.onreadystatechange = doReadyStateChange;
 			request.open("POST", url, true);
 			console.log(url);
 			request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 			request.send(data);
+			console.log(url+'33');
 		};
 		function doReadyStateChange() {
 			if (request.readyState == 4) {
@@ -214,18 +201,6 @@
 					console.log("Error Code:" + request.status + ", "+ request.statusText);
 				}
 			}
-		}
-		
-		function processJSON(data) {
-			var json = JSON.parse(data);
-		    var isChanged = json[0].isChanged;
-		    var message = json[0].message;
-		    $('#message').html(message);
-		    if(isChanged){
-				table.row('.selected').remove().draw( false );
-		    }else{
-		    	$('.selected').removeAttr('class');
-		    }
 		}
 	} );
 
