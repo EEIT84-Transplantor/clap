@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+ PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+ <hibernate-mapping>
+ 	<class name="payment.model.CreditCardVO" table="creditcard">
+ 		<composite-id>
+ 			<key-property name="email" column="mb_email"/>
+ 			<key-property name="number" column="cc_number"/>
+ 		</composite-id>
+ 		<property name="goodthru" column="cc_goodthru"/>
+ 		<property name="cvv" column="cc_cvv"/>
+ 		<many-to-one name="memberVO" class="member.model.MemberVO"
+                     column="mb_email" insert="false" update="false" >
+ 		</many-to-one>
+ 	</class>
+ </hibernate-mapping>
