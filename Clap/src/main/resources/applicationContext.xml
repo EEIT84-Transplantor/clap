@@ -111,6 +111,9 @@
 	<bean id="orderDetailHibernateDAO" class="shopping.model.OrderDetailHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="returnService" class="shopping.model.ReturnService">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 	<!-- inventory -->
 	<bean id="inOutLogDAO" class="inventory.model.InOutLogHibernateDAO">
@@ -118,6 +121,7 @@
 	</bean>
 	<bean id="inOutLogService" class="inventory.model.InOutLogService">
 		<property name="inOutLogDAO" ref="inOutLogDAO" />
+		<property name="inventoryDAO" ref="inventoryDAO"/>
 	</bean>
 	<bean id="inventoryDAO" class="inventory.model.InventoryHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />

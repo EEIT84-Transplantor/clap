@@ -14,7 +14,7 @@ public class PromoVO implements Serializable {
 	@Column(name="pm_code")
 	private String pm_code;
 	@Column(name="pd_category")
-	private String pd_category;
+	private Integer pd_category;
 	@Column(name="pm_expire")
 	private java.util.Date pm_expire;
 	@Column(name="pm_tiltle")
@@ -28,10 +28,10 @@ public class PromoVO implements Serializable {
 	public void setPm_code(String pm_code) {
 		this.pm_code = pm_code;
 	}
-	public String getPd_category() {
+	public Integer getPd_category() {
 		return pd_category;
 	}
-	public void setPd_category(String pd_category) {
+	public void setPd_category(Integer pd_category) {
 		this.pd_category = pd_category;
 	}
 	public java.util.Date getPm_expire() {

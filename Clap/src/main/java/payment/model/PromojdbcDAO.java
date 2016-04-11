@@ -53,7 +53,7 @@ public class PromojdbcDAO implements PromoDAO {
 			while (rs.next()) {
 				temp = new PromoVO();
 				temp.setPm_code(rs.getString("pm_code"));
-				temp.setPd_category(rs.getString("pd_category"));
+				temp.setPd_category(rs.getInt("pd_category"));
 				temp.setPm_discount(rs.getDouble("pm_discount"));
 				temp.setPm_expire(rs.getDate("pm_expire"));
 				temp.setPm_tiltle(rs.getString("pm_tiltle"));
@@ -104,7 +104,7 @@ public class PromojdbcDAO implements PromoDAO {
 			if (rs.next()) {
 				result = new PromoVO();
 				result.setPm_code(rs.getString("pm_code"));
-				result.setPd_category(rs.getString("pd_category"));
+				result.setPd_category(rs.getInt("pd_category"));
 				result.setPm_discount(rs.getDouble("pm_discount"));
 				result.setPm_expire(rs.getDate("pm_expire"));
 				result.setPm_tiltle(rs.getString("pm_tiltle"));
@@ -148,7 +148,7 @@ public class PromojdbcDAO implements PromoDAO {
 			conn = dataSource.getConnection();
 			ps = conn.prepareStatement(INSERT);
 			ps.setString(1, promoVO.getPm_code());
-			ps.setString(2, promoVO.getPd_category());
+			ps.setInt(2, promoVO.getPd_category());
 			ps.setDate(3, new java.sql.Date(promoVO.getPm_expire().getTime()));
 			ps.setString(4, promoVO.getPm_tiltle());
 			ps.setDouble(5, promoVO.getPm_discount());
@@ -189,7 +189,7 @@ public class PromojdbcDAO implements PromoDAO {
 		try {
 			conn = dataSource.getConnection();
 			ps = conn.prepareStatement(UPDATE);
-			ps.setString(1, promoVO.getPd_category());
+			ps.setInt(1, promoVO.getPd_category());
 			ps.setDate(2, new java.sql.Date(promoVO.getPm_expire().getTime()));
 			ps.setString(3, promoVO.getPm_tiltle());
 			ps.setDouble(4, promoVO.getPm_discount());

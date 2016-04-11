@@ -1,5 +1,8 @@
 package payment.model;
 
+import java.sql.Date;
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -26,13 +29,13 @@ public class PromoService {
 	public boolean setPromo(PromoVO promoVO){
 		boolean result = false;
 		if(promoVO!=null){
-			String pd_category = promoVO.getPd_category();
+			Integer pd_category = promoVO.getPd_category();
 			String pm_code = promoVO.getPm_code();
 			Double pm_discount = promoVO.getPm_discount();
 			java.util.Date pm_expire = promoVO.getPm_expire();
 			String pm_tiltle = promoVO.getPm_tiltle();
 			
-			if(pd_category==null||pd_category.length()==0){
+			if(pd_category==null){
 				return result;
 			}
 			if(pm_code==null||pm_code.length()==0){
@@ -76,5 +79,26 @@ public class PromoService {
 			result = dao.selectByCode(pm_code);
 		}
 		return result;
+	}
+	public List<PromoVO> getAllPromos(boolean involveExpired){
+		return null;
+	}
+	public List<PromoVO> getAllPromosByStartDate(Date date){
+		return null;
+	}
+	public List<PromoVO> getAllPromosByEndDate(Date date){
+		return null;
+	}
+	public List<PromoVO> getAllPromosByBetweenDate(Date startDate,Date endDate){
+		return null;
+	}
+	public List<PromoVO> getAllPromosByCategory(String categoryId){
+		return null;
+	}
+	public List<PromoVO> getAllCategoryNames(List<PromoVO> promoVOs){
+		return null;
+	}
+	public boolean updatePromo(PromoVO promoVO){
+		return false;
 	}
 }

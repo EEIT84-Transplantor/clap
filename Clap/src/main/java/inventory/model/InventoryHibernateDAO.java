@@ -50,11 +50,17 @@ public class InventoryHibernateDAO implements InventoryDAO {
 	public InventoryVO selectByInventoryProperties(InventoryVO inventoryVO) {
 		session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(SELECT_BY_INVENTORY_PROPERTIES);
-		query.setInteger(0, inventoryVO.getId());
+		query.setInteger(0, inventoryVO.getProduct_id());
 		query.setTimestamp(1, inventoryVO.getExpiryDate());
 		query.setTimestamp(2, inventoryVO.getManufactureDate());
-		InventoryVO inventoryVOs = (InventoryVO) query.list().get(0);
-		return inventoryVOs;
+		InventoryVO inventoryVOsrc = null;
+		try {
+			inventoryVOsrc = (InventoryVO) query.list().get(0);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return inventoryVOsrc;
 	}
 	public Integer getQuantityById(Integer productId) {
 		Calendar currentDate = Calendar.getInstance(); //Get the current date
