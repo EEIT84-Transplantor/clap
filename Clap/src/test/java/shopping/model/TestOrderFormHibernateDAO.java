@@ -32,73 +32,55 @@ public class TestOrderFormHibernateDAO {
 	@Before
 	public void setUp() {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
-		sessionFactory = (SessionFactory) applicationContext.getBean("sessionFactory");
 		orderFormHibernateDAO = (OrderFormHibernateDAO) applicationContext.getBean("orderFormHibernateDAO");
 		orderFormVO = new OrderFormVO();
+		sessionFactory = (SessionFactory) applicationContext.getBean("sessionFactory");
+		session=sessionFactory.getCurrentSession();
+		session.beginTransaction();
 	}
-
+	
+	@After
+	public void tearDown() {
+		session.getTransaction().commit();
+	}
+	
 	@Test
 	public void testAInsert() {
-		session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-
 		expected = id;
 		orderFormVO.setId(id);
 		orderFormHibernateDAO.insert(orderFormVO);
 		actual = orderFormHibernateDAO.select(id).getId();
-
-		session.getTransaction().commit();
 		assertEquals(expected, actual);
 	};
 
 	@Test
 	public void testBUpdate() {
-		session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-
 		expected = mb_email;
 		orderFormVO.setId(id);
 		orderFormVO.setMb_email(mb_email);
 		orderFormHibernateDAO.update(orderFormVO);
 		actual = orderFormHibernateDAO.select(id).getMb_email();
-
-		session.getTransaction().commit();
 		assertEquals(expected, actual);
 	};
 
 	@Test
 	public void testCSelect() {
-		session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-
 		expected = id;
 		actual = orderFormHibernateDAO.select(id).getId();
-		
-		session.getTransaction().commit();
 		assertEquals(expected, actual);
 	};
 
 	@Test
 	public void testDDelete() {
-		session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-
 		Boolean expected = true;
 		Boolean actual = orderFormHibernateDAO.delete(id);
-
-		session.getTransaction().commit();
 		assertEquals(expected, actual);
 	};
 
 	@Test
 	public void testSelect2() {
-		session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-
 		expected=true;
 		actual=orderFormHibernateDAO.select().size()>10;
-		
-		session.getTransaction().commit();
 		assertEquals(expected, actual);
 	};
 

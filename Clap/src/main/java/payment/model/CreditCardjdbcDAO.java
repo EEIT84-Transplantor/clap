@@ -196,43 +196,7 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 		return result;
 	}
 
-	@Override
-	public boolean delete(String cc_number) {
-		boolean result = false;
-        PreparedStatement ps = null;
-		
-		try {
-			conn = dataSource.getConnection();
-			ps = conn.prepareStatement(DELETE);
-			ps.setString(1, cc_number);
-			
-			if(ps.executeUpdate() == 1){
-				result = true;
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally{
-			
-			if(ps!=null){
-				try {
-					ps.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			
-			if(conn!=null){
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		
-		return result;
-	}
+
 
 	@Override
 	public boolean delete(String cc_number, String mb_email) {
