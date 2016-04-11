@@ -1,7 +1,19 @@
 package payment.model;
 
 import java.io.Serializable;
+<<<<<<< HEAD
+=======
 
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
+
+<<<<<<< HEAD
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.Session;
@@ -40,8 +52,29 @@ public class CreditCardVO implements Serializable {
 		} catch (Exception e) {
 			transaction.rollback();
 		}
+=======
+import member.model.MemberVO;
+
+@Entity
+@Table(name = "creditcard")
+public class CreditCardVO implements Serializable {
+	
+	@EmbeddedId
+	private CreditCard creditCard;
+	@Column(name = "cc_goodthru")
+	private String cc_goodthru;
+	@Column(name = "cc_cvv")
+	private String cc_cvv;
+	@ManyToOne(optional=true)
+	@JoinColumn(name="mb_email",insertable=false,updatable=false)
+	private MemberVO memberVO;
+
+	public CreditCard getCreditCard() {
+		return creditCard;
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 	}
 
+<<<<<<< HEAD
 
 	// ==============================================================================================================================================
 	private String email;
@@ -52,24 +85,49 @@ public class CreditCardVO implements Serializable {
 
 	public String getEmail() {
 		return email;
+=======
+	public void setCreditCard(CreditCard creditCard) {
+		this.creditCard = creditCard;
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 	}
 
+<<<<<<< HEAD
 	public void setEmail(String email) {
 		this.email = email;
+=======
+	public String getCc_goodthru() {
+		return cc_goodthru;
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 	}
 
+<<<<<<< HEAD
 	public String getNumber() {
 		return number;
+=======
+	public void setCc_goodthru(String cc_goodthru) {
+		this.cc_goodthru = cc_goodthru;
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 	}
 
+<<<<<<< HEAD
 	public void setNumber(String number) {
 		this.number = number;
+=======
+	public String getCc_cvv() {
+		return cc_cvv;
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 	}
 
+<<<<<<< HEAD
 	public String getGoodthru() {
 		return goodthru;
+=======
+	public void setCc_cvv(String cc_cvv) {
+		this.cc_cvv = cc_cvv;
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 	}
 
+<<<<<<< HEAD
 	public void setGoodthru(String goodthru) {
 		this.goodthru = goodthru;
 	}
@@ -113,6 +171,14 @@ public class CreditCardVO implements Serializable {
 	public int hashCode() {
 
 		return new HashCodeBuilder().append(this.email).append(this.number).toHashCode();
+=======
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 	}
 
 }

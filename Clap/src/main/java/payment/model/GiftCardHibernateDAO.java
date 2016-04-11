@@ -6,8 +6,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import member.model.MemberVO;
-
 public class GiftCardHibernateDAO implements GiftCardDAO{
 
 	private SessionFactory sessionFactory;

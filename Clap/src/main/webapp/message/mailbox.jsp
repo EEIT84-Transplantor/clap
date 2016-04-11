@@ -48,7 +48,7 @@ SELECT * from message where mb_email = 'lee@gmail.com' ;
 												</label>
 											</div>
 										</th>
-										<th class="col-md-2">${row.message_sender}</th>
+										<th class="col-md-2" >${row.message_sender}</th>
 										<th class="col-md-7">${row.message_subject}</th>
 										<th class="col-md-2">${row.message_date}</th>
 									</tr>

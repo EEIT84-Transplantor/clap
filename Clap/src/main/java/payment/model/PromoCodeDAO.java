@@ -12,4 +12,8 @@ public interface PromoCodeDAO {
 	public abstract PromoCodeVO insert(PromoCode promoCode);
 
 	public abstract boolean delete(String mb_email,String pc_code);
+
+	List<PromoVO> selectPromoVOByEmail(String mb_email);
+
+	PromoCodeVO insert(String mb_email, String pc_code);
 }

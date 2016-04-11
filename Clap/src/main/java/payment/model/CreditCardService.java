@@ -17,8 +17,8 @@ public class CreditCardService {
 		CreditCardService cservice = (CreditCardService) context.getBean("creditCardService");
 		CreditCardDAO cdao = (CreditCardDAO) context.getBean("creditCardDAO");
 
-		CreditCardVO cvo = cdao.selectByCcNumber("1111222233334444");
-		System.out.println(cservice.isAvailable(cvo));
+//		CreditCardVO cvo = cdao.selectByCcNumber("1111222233334444");
+//		System.out.println(cservice.isAvailable(cvo));
 
 	}
 
@@ -86,7 +86,7 @@ public class CreditCardService {
 		if (creditCardVO != null) {
 			String cc_number = creditCardVO.getCreditCard().getCc_number();
 			if (cc_number != null && cc_number.length() != 0) {
-				CreditCardVO temp = dao.selectByCcNumber(cc_number);
+				CreditCardVO temp = dao.selectByCcNumber(creditCardVO.getCreditCard().getMb_email(),cc_number);
 				Calendar cal = null;
 				if (temp != null) {
 					// 舊卡
@@ -143,8 +143,8 @@ public class CreditCardService {
 	}
 
 	//由卡號取得卡片VO
-	public CreditCardVO getCard(String number) {
-		return dao.selectByCcNumber(number);
+	public CreditCardVO getCard(String email, String number) {
+		return dao.selectByCcNumber(email, number);
 	}
 
 }

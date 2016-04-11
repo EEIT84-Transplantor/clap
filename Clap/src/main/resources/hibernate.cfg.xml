@@ -4,6 +4,7 @@
 		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 
+<<<<<<< HEAD
 	<session-factory>
 
 		<property name="hibernate.connection.driver_class">
@@ -26,4 +27,31 @@
 		<mapping class="payment.model.PromoCodeVO" />
 		<mapping resource="payment\model\creditcardvo.hbm.xml" />
 	</session-factory>
+=======
+    <session-factory>
+    
+    <property name="hibernate.cache.use_second_level_cache">false</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    
+    <mapping class="member.model.MemberVO"/>
+    <mapping class="payment.model.GiftCardVO"/>
+    <mapping class="payment.model.PromoVO"/>
+    <mapping class="payment.model.PromoCodeVO"/>
+    <mapping class="payment.model.CreditCardVO"/>
+    <mapping class="shopping.model.OrderDetailVO"/>
+    
+    <mapping class="inventory.model.InOutLogVO"/>
+    <mapping class="inventory.model.InventoryVO"/>
+    <mapping class="product.model.CategoryVO"/>
+    <mapping class="product.model.ProductVO"/>
+    <mapping class="product.model.ProductimgVO"/>
+    
+    <mapping resource="hbm/cartvo.hbm.xml"/>
+    <mapping resource="hbm/orderformvo.hbm.xml"/>
+<!--     <mapping resource="hbm/orderdetailvo.hbm.xml"/> -->
+    
+    </session-factory>
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 </hibernate-configuration>

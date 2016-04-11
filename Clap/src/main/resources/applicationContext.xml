@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -106,4 +107,121 @@
 		<property name="promoCodeService" ref="promoCodeService"/>
 		<property name="memberService" ref="memberService"/>
 	</bean>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- interceptor -->
+	<bean id="creditCardInterceptor" class="component.interceptor.CreditCardInterceptor">
+		<property name="creditCardService" ref="creditCardService" />
+	</bean>
+	<bean id="paymentInterceptor" class="component.interceptor.PaymentManageInterceptor">
+		<property name="creditCardService" ref="creditCardService" />
+		<property name="promoCodeService" ref="promoCodeService" />
+		<property name="memberService" ref="memberService" />
+	</bean>
+
+	<!-- datasource -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="url" value="jdbc:sqlserver://localhost:1433;databaseName=clap" />
+		<property name="username" value="sa" />
+		<property name="password" value="passw0rd" />
+	</bean>
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+	</bean>
+
+	<!-- member model -->
+	<bean id="memberHibernateDAO" class="member.model.MemberHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="memberService" class="member.model.MemberService">
+		<property name="dao" ref="memberHibernateDAO" />
+		<property name="sendEmail" ref="sendEmail" />
+	</bean>
+
+	<!-- email -->
+	<bean id="sendEmail" class="component.email.SendEmail">
+		<property name="emailUtility">
+			<bean class="component.email.EmailUtility"></bean>
+		</property>
+		<property name="emailConfirm">
+			<bean class="component.email.EmailconfirmCode"></bean>
+		</property>
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="user" value="EEIT84Transplantor@gmail.com" />
+		<property name="pass" value="TransplantorEEIT84" />
+	</bean>
+
+	<!-- payment model -->
+	<bean id="creditCardHibernateDAO" class="payment.model.CreditCardHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="creditCardService" class="payment.model.CreditCardService">
+		<property name="dao" ref="creditCardHibernateDAO" />
+	</bean>
+	<bean id="giftCardHibernateDAO" class="payment.model.GiftCardHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="giftCardService" class="payment.model.GiftCardService">
+		<property name="dao" ref="giftCardHibernateDAO" />
+	</bean>
+	<bean id="promoHibernateDAO" class="payment.model.PromoHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="promoService" class="payment.model.PromoService">
+		<property name="dao" ref="promoHibernateDAO" />
+	</bean>
+	<bean id="promoCodeHibernateDAO" class="payment.model.PromoCodeHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="promoCodeService" class="payment.model.PromoCodeService">
+		<property name="dao" ref="promoCodeHibernateDAO" />
+		<property name="promoService" ref="promoService" />
+	</bean>
+	<bean id="paymentManageAction" class="payment.controller.PaymentManageAction" scope="prototype">
+		<property name="promoService" ref="promoService" />
+		<property name="giftCardService" ref="giftCardService" />
+		<property name="memberService" ref="memberService" />
+		<property name="creditCardService" ref="creditCardService" />
+		<property name="promoCodeService" ref="promoCodeService" />
+	</bean>
+
+	<!-- setting controller -->
+	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction" scope="prototype">
+		<property name="memberService" ref="memberService" />
+	</bean>
+	<bean id="changePasswordAction" class="setting.controller.ChangePasswordAction" scope="prototype">
+		<property name="memberService" ref="memberService" />
+	</bean>
+	<bean id="oneClickAction" class="setting.controller.OneClickAction" scope="prototype">
+		<property name="memberService" ref="memberService" />
+	</bean>
+	<bean id="renewVIPAction" class="setting.controller.AutoRenewVIPAction" scope="prototype">
+		<property name="memberService" ref="memberService" />
+	</bean>
+	<bean id="autoRenewVIPAction" class="setting.controller.AutoRenewVIPAction">
+		<property name="memberService" ref="memberService" />
+	</bean>
+
+	<!-- shopping model -->
+	<bean id="cartHibernateDAO" class="shopping.model.CartHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="cartService" class="shopping.model.CartService">
+		<property name="cartDAO" ref="cartHibernateDAO" />
+	</bean>
+
+	<bean id="orderFormHibernateDAO" class="shopping.model.OrderFormHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="orderDetailHibernateDAO" class="shopping.model.OrderDetailHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 </beans>

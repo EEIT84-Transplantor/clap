@@ -30,24 +30,28 @@
 						<li><a href="#gift_content" data-toggle="tab">Gift Cards</a></li>
 						<li><a href="#promo_content" data-toggle="tab">Promotions</a></li>
 					</ul>
+					
 					<div id="payment_detail">
 						<div class="tab-content" id="tabs">
 							<div class="tab-pane" id="credit_content">
 								<p>Registered credit cards</p>
 								<c:forEach var="card" varStatus="index" items="${cards}">
+								
 									<div class="payment_detail_box">
 										<div class="creditCard">
 											<div class="credit_info">
 												<p class="cc_number">${card.creditCard.cc_number}</p>
 												<p class="cc_goodthru">${card.cc_goodthru}</p>
-												<p class="cc_name">xxx</p>
-												<img src="../resource/images/master.png" width="60" />
+												<p class="cc_name">${login.name}</p>
+												
+												<img src="../resource/images/${cardType[index.count-1]}.png" width="60" />
 											</div>
 											<div class="delete_card">
 												<span class="glyphicon glyphicon-remove"></span>
 											</div>
 										</div>
 									</div>
+								
 								</c:forEach>
 
 								<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
@@ -70,7 +74,8 @@
 										</div>
 									</div>
 								</div>
-								<div style="clear: both;"></div>
+								<div style="clear: both;" id="error"></div>
+								
 							</div>
 							<div class="tab-pane" id="gift_content">
 								<p>Received gift cards</p>
@@ -84,6 +89,7 @@
 											type="button" value="use" id="useGiftCard"><br />
 									</form>
 								</div>
+								<div style="clear: both;" id="errorGitCard"></div>
 							</div>
 							<div class="tab-pane" id="promo_content">
 								<p>Received Promotions</p>
@@ -119,6 +125,7 @@
 								
 								</tbody>
 								</table>
+								<div style="clear: both;" id="errorPromo"></div>
 							</div>
 						</div>
 					</div><!-- payment_detail -->
@@ -218,10 +225,32 @@
 		function processJSON(data) {
 			var json = JSON.parse(data);
 		    var key = json[0].buttonClicked;
+		    var isError = json[0].isError;
+		    if(isError){
+		    	switch(key){
+		    	case "addCreditCard":
+		    		$('#error').css("color","rgb(255,0,0)");
+			    	$('#error').html("Error: "+json[0].errorMessage);
+			    	return;
+		    	case "deleteCreditCard":
+		    		$('#errorGitCard').css("color","rgb(255,0,0)");
+			    	$('#errorGitCard').html("Error: "+json[0].errorMessage);
+			    	return;	
+		    	case "addPromoCode":
+		    		$('#errorPromo').css("color","rgb(255,0,0)");
+			    	$('#errorPromo').html("Error: "+json[0].errorMessage);
+			    	return;	
+		    	
+		    	
+		    	
+		    	}
+		    	
+		    }
+		    $('#error').html("");
 		    var info = json[1];
 		    switch(key) {
 		    case "AddCreditCard":
-		    	  $(".payment_detail_box").last().after('<div class="payment_detail_box"><div class="creditCard"><div class="credit_info"><p class="cc_number">'+info.cc_number+'</p><p class="cc_goodthru">'+info.cc_goodthru+'</p><p class="cc_name">'+info.name+'</p><img src="../resource/images/master.png" width="60" /></div><div class="delete_card"><span class="glyphicon glyphicon-remove"></span></div></div></div>');
+		    	  $(".payment_detail_box").last().after('<div class="payment_detail_box"><div class="creditCard"><div class="credit_info"><p class="cc_number">'+info.cc_number+'</p><p class="cc_goodthru">'+info.cc_goodthru+'</p><p class="cc_name">'+info.name+'</p><img src="../resource/images/'+info.cardType+'.png" width="60" /></div><div class="delete_card"><span class="glyphicon glyphicon-remove"></span></div></div></div>');
 		    	  break;
 		    case "deleteCreditCard":
 		    	 if(info.result){

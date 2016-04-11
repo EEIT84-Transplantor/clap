@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-	version="3.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
 	<display-name>Clap</display-name>
+
+
 	<resource-ref>
 		<res-ref-name>clap/db</res-ref-name>
 		<res-type>javax.sql.DataSource</res-type>
@@ -19,10 +18,10 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 
-	
+
 	<filter>
 		<filter-name>OpenSessionViewFilter</filter-name>
-		<filter-class>hibernate.filter.OpenSessionViewFilter</filter-class>
+		<filter-class>component.filter.OpenSessionViewFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>OpenSessionViewFilter</filter-name>
@@ -30,7 +29,7 @@
 	</filter-mapping>
 	<filter>
 		<filter-name>ActoinContextFilter</filter-name>
-		<filter-class>member.filter.ActoinContextFilter</filter-class>
+		<filter-class>component.filter.ActoinContextFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>ActoinContextFilter</filter-name>
@@ -38,7 +37,7 @@
 	</filter-mapping>
 	<filter>
 		<filter-name>BctoinContextFilter</filter-name>
-		<filter-class>payment.controller.paymentFilter</filter-class>
+		<filter-class>component.filter.PaymentFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>BctoinContextFilter</filter-name>
@@ -68,7 +67,14 @@
 		<param-name>pass</param-name>
 		<param-value>TransplantorEEIT84</param-value>
 	</context-param>
+
+
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/applicationContext2.xml</param-value>
+	</context-param>
+
 </web-app>

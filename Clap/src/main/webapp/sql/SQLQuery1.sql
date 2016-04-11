@@ -1,12 +1,18 @@
 use clap 
 
+drop table cart 
+drop table productimg 
+drop table inoutlog
+drop table inventory
+drop table product
+drop table category
 drop table creditcard
 drop table giftcard
 drop table promocode
 drop table promo
-drop table Member
 drop table hospital 
 drop table message
+drop table member
 
 create table member(
 mb_email varchar(320) NOT NULL,
@@ -80,6 +86,7 @@ mb_email varchar(320) FOREIGN KEY REFERENCES Member(mb_email),
 pm_code varchar(50) FOREIGN KEY REFERENCES promo(pm_code),
 PRIMARY KEY (mb_email, pm_code)
 )
+go
 
 insert into promocode(mb_email,pm_code) values('caca@gmail.com','111');
 insert into promocode(mb_email,pm_code) values('caca@gmail.com','222');
@@ -92,9 +99,9 @@ hp_name nvarchar(50) not null,
 hp_address nvarchar(50) not null
 )
 
-insert hospital values('NTUH', '100 Renai Road');
-insert hospital values('NCKUH', '100 Renai Road');
-insert hospital values('超級醫院', '100 Renai Road');
+insert into hospital values('NTUH', '100 Renai Road');
+insert into hospital values('NCKUH', '100 Renai Road');
+insert into hospital values('超級醫院', '100 Renai Road');
 select * from hospital
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table message (
@@ -110,5 +117,99 @@ insert into message values('lee@gmail.com', 'caca@gmail.com', 'Hello i am caca',
 insert into message values('andrew@gmail.com', 'caca@gmail.com', 'Hello i am caca', 'test test', CURRENT_TIMESTAMP, 0);
 insert into message values('caca@gmail.com', 'caca@gmail.com', 'Hello i am caca', 'test test', CURRENT_TIMESTAMP, 0);
 insert into message values('poan@gmail.com', 'caca@gmail.com', 'Hello i am caca', 'test test', CURRENT_TIMESTAMP, 0);
+insert into message values('lee@gmail.com', 'lee@gmail.com', 'Hello i am leelee', 'test test', CURRENT_TIMESTAMP, 0);
+insert into message values('andrew@gmail.com', 'lee@gmail.com', 'Hello i am leelee', 'test test', CURRENT_TIMESTAMP, 0);
+insert into message values('caca@gmail.com', 'lee@gmail.com', 'Hello i am leelee', 'test test', CURRENT_TIMESTAMP, 0);
+insert into message values('poan@gmail.com', 'lee@gmail.com', 'Hello i am leelee', 'test test', CURRENT_TIMESTAMP, 0);
+
 
 select * from message
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+create table category (
+category_id	varchar(50),
+category_name	varchar(60)
+PRIMARY KEY (category_id)
+)
+
+insert into category values('1','Kidneys');
+insert into category values('2','Ureters');
+insert into category values('3','Bladder');
+insert into category values('4','Urethra');
+insert into category values('5','Ovaries');
+insert into category values('6','Fallopian tubes');
+insert into category values('7','Uterus');
+insert into category values('8','Vagina');
+insert into category values('9','Vulva');
+insert into category values('10','Clitoris');
+select * from category
+------------------------------------------------------------------------------------------------------------------------------------------------
+create table product (
+pd_Id	int,
+product_name	varchar(60),
+product_price	float,
+product_description	nvarchar(1000),
+product_rating	int,
+product_discount	float,
+category_id	varchar(50) foreign key REFERENCES category(category_id)
+PRIMARY KEY (pd_Id)
+)
+insert into product values(1, 'product1', 100, 'Heart1', 1, 0.9, 1);
+insert into product values(2, 'product1', 200, 'Heart2', 1, 0.9, 1);
+select * from product
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+create table productimg (
+pd_Id int FOREIGN KEY REFERENCES product(pd_id),
+productimg_img image
+PRIMARY KEY (pd_Id)
+)
+insert into productimg values(1, null);
+insert into productimg values(2, null);
+select * from productimg
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+create table inventory (
+inventory_id varchar(50),
+pd_id	int FOREIGN KEY REFERENCES product(pd_id),
+inventory_quantity	int,
+inventory_manufactureDate datetime,
+inventory_expiryDate datetime,
+PRIMARY KEY (inventory_id)
+)
+insert into inventory values(1, 1, 10, '2016-05-04', '2017-05-04');
+insert into inventory values(2, 2, 10, '2016-05-04', '2017-05-04');
+select * from inventory
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+create table inoutlog (
+inoutlog_id	varchar(50),
+inventory_id varchar(50) FOREIGN KEY REFERENCES inventory(inventory_Id),
+pd_id int FOREIGN KEY REFERENCES product(pd_id),
+inoutlog_inQuantity	int,
+inoutlog_outQuantity	int,
+inoutlog_manufactureDate	datetime,
+inoutlog_expiryDate	datetime,
+inoutlog_destination	nvarchar(100),
+inoutlog_date	datetime
+PRIMARY KEY (inoutlog_id)
+)
+insert into inoutlog values(1, 1, 1, 10, 0, '2016-05-04', '2017-05-04', 'Taipei', '2016-04-04');
+insert into inoutlog values(2, 2, 1, 0, 43, '2016-05-04', '2017-05-04', 'Taipei', '2016-04-04');
+select * from inoutlog
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+create table cart (
+mb_email varchar(320) FOREIGN KEY REFERENCES Member(mb_email) ,
+pd_id int FOREIGN KEY REFERENCES product(pd_id) ,
+ct_quantity int not null
+PRIMARY KEY (mb_email, pd_id)
+)
+
+insert into cart values('caca@gmail.com', 1,10);
+insert into cart values('caca@gmail.com', 2,20);
+insert into cart values('lee@gmail.com', 1,10);
+select * from cart
+
+
