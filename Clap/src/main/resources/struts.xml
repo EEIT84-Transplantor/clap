@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.multipart.maxSize" value="-1" />
+
+	<package name="setting" namespace="/setting" extends="struts-default">
+
+		<!-- interceptors -->
+		<interceptors>
+			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
+			<interceptor name="creditCardInterceptor" class="component.interceptor.CreditCardInterceptor" />
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+			<interceptor-stack name="creditCardStack">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="creditCardInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- global-results -->
+		<global-results>
+			<result name="login">/member/signuplogin.jsp</result>
+			<result name="paymentManage">/payment/paymentmanage.jsp</result>
+		</global-results>
+
+		<!-- action -->
+		<action name="changeSettingAction" class="setting.controller.ChangeSettingAction">
+			<result name="success">/setting/changesetting.jsp</result>
+			<result name="input">/setting/changesetting.jsp</result>
+			<interceptor-ref name="loginInterceptor"></interceptor-ref>
+		</action>
+		<action name="changePasswordAction" class="setting.controller.ChangePasswordAction">
+			<result name="success">/setting/passwordchange.jsp</result>
+			<result name="input">/setting/passwordchange.jsp</result>
+		</action>
+		<action name="oneClickAction" class="setting.controller.OneClickAction">
+			<result name="success">/setting/oneclick.jsp</result>
+			<result name="input">/setting/oneclick.jsp</result>
+			<interceptor-ref name="creditCardInterceptor" />
+		</action>
+		<action name="renewVIPAction" class="setting.controller.RenewVIPAction">
+			<result name="success">/setting/vip.jsp</result>
+			<result name="input">/setting/vip.jsp</result>
+			<!-- <interceptor-ref name="creditCardInterceptor" /> -->
+		</action>
+		<action name="autoRenewVIPAction" class="setting.controller.AutoRenewVIPAction">
+			<result name="success">/setting/vip.jsp</result>
+			<result name="input">/setting/vip.jsp</result>
+			<!-- <interceptor-ref name="creditCardInterceptor" /> -->
+		</action>
+
+	</package>
+	<package name="payment" namespace="/payment" extends="struts-default">
+
+		<interceptors>
+			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
+			<interceptor name="paymentManageInterceptor" class="component.interceptor.PaymentManageInterceptor" />
+
+			<interceptor-stack name="paymentManageStack">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="paymentManageInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+
+		</interceptors>
+
+		<!-- global-results -->
+		<global-results>
+			<result name="login">/member/signuplogin.jsp</result>
+			<result name="paymentManage">/payment/paymentmanage.jsp</result>
+		</global-results>
+
+		<!-- actions -->
+		<action name="managePayment" class="paymentManageAction">
+			<result name="success">/payment/paymentmanage.jsp</result>
+			<result name="input">/payment/paymentmanage.jsp</result>
+		</action>
+		<action name="*">
+			<interceptor-ref name="paymentManageStack" />
+			<result>/payment/{1}.jsp</result>
+		</action>
+
+	</package>
+	<package name="member" namespace="/member" extends="struts-default">
+
+		<!-- interceptors -->
+		<interceptors>
+			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
+			<interceptor name="creditCardInterceptor" class="component.interceptor.CreditCardInterceptor" />
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+			<interceptor-stack name="memberStack">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="creditCardInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- global-results -->
+		<global-results>
+			<result name="login">/member/signuplogin.jsp</result>
+			<result name="paymentManage">/payment/paymentmanage.jsp</result>
+		</global-results>
+
+		<!-- actions -->
+		<action name="account" class="member.controller.AccountAction">
+			<interceptor-ref name="loginStack" />
+			<result name="success">/member/account.jsp</result>
+			<result name="input">/member/account.jsp</result>
+		</action>
+		<action name="*">
+			<interceptor-ref name="loginStack" />
+			<result>/member/{1}.jsp</result>
+		</action>
+
+	</package>
+
+	<package name="test" namespace="/test" extends="struts-default">
+
+		<!-- action -->
+		<action name="testAction" class="test.TestAction">
+			<result name="success">/test/output.jsp</result>
+		</action>
+
+		<!-- unit test -->
+		<action name="createaccount" class="test.unittest.AccountAction">
+			<result>/test/output.jsp</result>
+			<result name="input">/test/input.jsp</result>
+		</action>
+
+	</package>
+
+</struts>
+
