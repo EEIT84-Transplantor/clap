@@ -1,5 +1,7 @@
 package inventory.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -18,8 +20,13 @@ public class InventoryHibernateDAO implements InventoryDAO {
 	}
 
 	private Session session;
+	private String dateNow;
+	public InventoryHibernateDAO(){
+
+	}
 	final private String SELECT_ALL = "from InventoryVO";
 	final private String SELECT_BY_PRODUCT_ID ="from InventoryVO where pd_id=?";
+	final private String FIND_QUANTITY_BY_PRODUCT_ID = "select sum(inventoryVO.quantity) from InventoryVO inventoryVO where pd_id=? and inventory_expiryDate>?";
 	@Override
 	public List<InventoryVO> selectAll() {
 		session = sessionFactory.getCurrentSession();
@@ -35,6 +42,20 @@ public class InventoryHibernateDAO implements InventoryDAO {
 		query.setParameter(0, productId);
 		List<InventoryVO> inventoryVOs = query.list();
 		return inventoryVOs;
+	};
+	@Override
+	public Integer getQuantityById(Integer productId) {
+		Calendar currentDate = Calendar.getInstance(); //Get the current date
+		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss"); //format it as per your requirement
+		dateNow = formatter.format(currentDate.getTime());
+		System.out.println(dateNow);
+		session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(FIND_QUANTITY_BY_PRODUCT_ID);
+		query.setParameter(0, productId);
+		query.setParameter(1, dateNow);
+		List<Object> inventoryVOs = query.list();
+		System.out.println(inventoryVOs.get(0));
+		return Integer.valueOf(inventoryVOs.get(0).toString());
 	};
 
 	@Override

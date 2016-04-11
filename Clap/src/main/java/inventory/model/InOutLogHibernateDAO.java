@@ -78,6 +78,12 @@ public class InOutLogHibernateDAO implements InOutLogDAO {
 			e.printStackTrace();
 			return false;
 		}		
+	}
+
+	@Override
+	public List<InOutLogVO> selectByTopSold(Integer categoryId, int number) {
+		// TODO Auto-generated method stub
+		return null;
 	};
 	
 }

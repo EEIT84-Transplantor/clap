@@ -14,4 +14,6 @@ public interface InventoryDAO {
 
 	boolean delete(Integer id);
 
+	Integer getQuantityById(Integer productId);
+
 }

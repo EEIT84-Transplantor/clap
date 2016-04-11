@@ -10,6 +10,9 @@ public class ProductService {
 	private ProductimgDAO productimgDAO;
 	private InOutLogDAO inOutLogDAO;
 
+	public void setInOutLogDAO(InOutLogDAO inOutLogDAO) {
+		this.inOutLogDAO = inOutLogDAO;
+	}
 	public void setProductDAO(ProductDAO productDAO) {
 		this.productDAO = productDAO;
 	}
