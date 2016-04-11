@@ -8,13 +8,44 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.cfg.Configuration;
 
 import com.opensymphony.xwork2.conversion.annotations.TypeConversion;
+
+import payment.model.CreditCardVO;
 
 @Entity
 @Table(name = "member")
 public class MemberVO {
+
+	// crud
+	public static void main(String[] args) {
+		Configuration config = new Configuration().configure();
+		SessionFactory sessionFactory = config.buildSessionFactory();
+		Session session = sessionFactory.getCurrentSession();
+		Transaction transaction = null;
+		MemberVO memberVO = new MemberVO();
+		memberVO.setEmail("poan0@gmail.com");
+		memberVO.setPassword("bbb".getBytes());
+
+		try {
+			transaction = session.beginTransaction();
+			// session.save(memberVO);
+			// session.update(memberVO);
+			// session.delete(memberVO);
+			memberVO = session.get(MemberVO.class, "poan@gmail.com");
+			System.out.println("hahaha:"+memberVO.toString());
+			transaction.commit();
+		} catch (Exception e) {
+			transaction.rollback();
+		}
+	}
+
+	// ==============================================================================================================================================
 
 	@Id
 	@Column(name = "mb_email")
@@ -41,7 +72,7 @@ public class MemberVO {
 	private Boolean autorenew;
 	@Column(name = "mb_expire")
 	private Date expire;
-	
+
 	public String getEmail() {
 		return email;
 	}

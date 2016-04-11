@@ -8,14 +8,24 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+<<<<<<< HEAD
+=======
 
 import shopping.model.CartVO;
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 
 
 
 public class CreditCardHibernateDAO implements CreditCardDAO{
 	
 	public static void main(String[] args) {
+<<<<<<< HEAD
+		ApplicationContext applicationContext =new ClassPathXmlApplicationContext("applicationContext.xml");
+		CreditCardHibernateDAO cardHibernateDAO = (CreditCardHibernateDAO) applicationContext.getBean("creditCardDAO");
+		CreditCardVO cardVO = cardHibernateDAO.selectByCcNumber("caca@gmail.com", "1111222233334444");
+		System.out.println(cardVO.getMemberVO());
+		
+=======
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 		CreditCardHibernateDAO cardHibernateDAO = (CreditCardHibernateDAO) applicationContext.getBean("creditCardDAO");
 		SessionFactory sessionFactory = (SessionFactory) applicationContext.getBean("sessionFactory");
@@ -24,19 +34,12 @@ public class CreditCardHibernateDAO implements CreditCardDAO{
 		CreditCardVO cardVO = cardHibernateDAO.selectByCcNumber("caca@gmail.com", "1111222233334444");
 		System.out.println(cardVO.getMemberVO().getEmail());
 		session.getTransaction().commit();
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 	}
 
 	private SessionFactory sessionFactory;
 	private Session session;
 	private static final String SELECT_BY_EMAIL = "from CreditCardVO where mb_email=?";
-
-	public CreditCardHibernateDAO() {
-		
-	}
-
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
@@ -51,9 +54,22 @@ public class CreditCardHibernateDAO implements CreditCardDAO{
 		return result;
 	}
 
+<<<<<<< HEAD
+	
+	public CreditCardVO selectByCcNumber(String mb_email,String cc_number) {
+=======
 	@Override
 	public CreditCardVO selectByCcNumber(String mb_email, String cc_number) {
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 		session = sessionFactory.getCurrentSession();
+<<<<<<< HEAD
+		CreditCardVO result =new CreditCardVO();
+		result.setEmail(mb_email);
+		result.setNumber(cc_number);
+		session.beginTransaction();
+		result = session.get(CreditCardVO.class, result);
+		session.getTransaction().commit();
+=======
 		Query query = session.createQuery(SELECT_BY_EMAIL);
 		query.setParameter(0, mb_email);
 		List<CreditCardVO> creditCardVOs = query.list();
@@ -63,18 +79,13 @@ public class CreditCardHibernateDAO implements CreditCardDAO{
 				result = vo;
 			}
 		}
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 		return result;
 	}
 
 	@Override
 	public CreditCardVO insert(CreditCardVO creditCardVO) {
 		session = sessionFactory.getCurrentSession();
-		
-//		System.out.println("哈哈哈 :"+creditCardVO.getCreditCard().getMb_email()+creditCardVO.getCreditCard().getCc_number());
-//		CreditCard temp =  new CreditCard();
-//		temp.setCc_number(creditCardVO.getCreditCard().getCc_number());
-//		temp.setMb_email(creditCardVO.getCreditCard().getMb_email());
-//		CreditCardVO result = session.get(CreditCardVO.class, temp);
 		try {
 			System.out.println("增加 :"+creditCardVO);
 			session.save(creditCardVO);
@@ -103,9 +114,15 @@ public class CreditCardHibernateDAO implements CreditCardDAO{
 	}
 
 	@Override
+<<<<<<< HEAD
+	public CreditCardVO selectByCcNumber(String cc_number) {
+		// TODO Auto-generated method stub
+		return null;
+=======
 	public boolean delete(String cc_number) {
 		// TODO Auto-generated method stub
 		return false;
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 	}
 
 }

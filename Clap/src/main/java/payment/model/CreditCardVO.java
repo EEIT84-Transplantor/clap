@@ -1,7 +1,12 @@
 package payment.model;
 
 import java.io.Serializable;
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -9,7 +14,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+<<<<<<< HEAD
 import javax.persistence.Table;
+=======
+import javax.persistence.Table;
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 
 <<<<<<< HEAD
 import org.apache.commons.lang3.builder.EqualsBuilder;
