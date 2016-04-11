@@ -33,14 +33,15 @@ public class InOutLogService {
 			java.sql.Timestamp manufactureDate= inOutLogVO.getManufactureDate();
 			InventoryVO inventoryVO = new InventoryVO();
 			inventoryVO.setExpiryDate(expire);
-			inventoryVO.setId(product_id);
 			inventoryVO.setManufactureDate(manufactureDate);
 			inventoryVO.setExpiryDate(inOutLogVO.getExpiryDate());
+			inventoryVO.setProduct_id(product_id);
 			InOutLogVO result=inOutLogDAO.insert(inOutLogVO);
 			InventoryVO inventoryVO2 = inventoryDAO.selectByInventoryProperties(inventoryVO);
 			System.out.println(inventoryVO2);
 			if(inventoryVO2!=null){
 				Integer num = inventoryVO2.getQuantity()+inOutLogVO.getInQuantity();
+				inventoryVO.setId(inventoryVO2.getId());
 				inventoryVO2.setQuantity(num);
 				if(result!=null &&inventoryDAO.update(inventoryVO2)){
 					return true;
@@ -50,6 +51,7 @@ public class InOutLogService {
 				 
 			}else{
 				inventoryVO.setQuantity(inOutLogVO.getInQuantity());
+				inventoryVO.setId(inOutLogVO.getInventory_id());
 				InventoryVO inventoryVO3 = inventoryDAO.insert(inventoryVO);
 				if(inventoryVO3==null){
 					return false;
@@ -70,17 +72,18 @@ public class InOutLogService {
 			java.sql.Timestamp manufactureDate= inOutLogVO.getManufactureDate();
 			InventoryVO inventoryVO = new InventoryVO();
 			inventoryVO.setExpiryDate(expire);
-			inventoryVO.setId(product_id);
+			inventoryVO.setProduct_id(product_id);
 			inventoryVO.setManufactureDate(manufactureDate);
 			inventoryVO.setExpiryDate(inOutLogVO.getExpiryDate());
-			InOutLogVO result=inOutLogDAO.insert(inOutLogVO);
+			boolean result=inOutLogDAO.update(inOutLogVO);
 			InventoryVO inventoryVO2 = inventoryDAO.selectByInventoryProperties(inventoryVO);
 			System.out.println(inventoryVO2);
 			if(inventoryVO2!=null){
+				System.out.println(inventoryVO2.getQuantity());
 				Integer num = inventoryVO2.getQuantity()-inOutLogVO.getOutQuantity();
 				if(num >=0){
 					inventoryVO2.setQuantity(num);
-					if(result!=null &&inventoryDAO.update(inventoryVO2)){
+					if(result &&inventoryDAO.update(inventoryVO2)){
 						return true;
 					}
 				}

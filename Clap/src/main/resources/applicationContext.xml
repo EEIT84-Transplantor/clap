@@ -118,6 +118,7 @@
 	</bean>
 	<bean id="inOutLogService" class="inventory.model.InOutLogService">
 		<property name="inOutLogDAO" ref="inOutLogDAO" />
+		<property name="inventoryDAO" ref="inventoryDAO"/>
 	</bean>
 	<bean id="inventoryDAO" class="inventory.model.InventoryHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
