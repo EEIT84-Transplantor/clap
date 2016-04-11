@@ -14,3 +14,25 @@
     </div>
   </div>
 </div>
+<div id="priceFilter">
+<p>Filter by price:</p> 
+
+<span id="min_price">$ 60 </span> <input id="p_price" type="text" class="slider" value="" data-slider-min="60" data-slider-max="700" data-slider-step="5" data-slider-value="[60,700]"/> <span id="max_price">$ 700</span>
+</div>
+
+	<script type="text/javascript" src="../resource/js/bootstrap-slider.js"></script>
+<script type="text/javascript">
+var slider = new Slider('#p_price', {});
+
+slider.on('slide', function (ev) {
+    var pricerange = $('#p_price').val().split(",");
+    var min = pricerange[0];
+    var max = pricerange[1];
+    document.getElementById("min_price").innerHTML="$"+min;
+    document.getElementById("max_price").innerHTML="$"+max;
+});
+
+
+
+</script>
+

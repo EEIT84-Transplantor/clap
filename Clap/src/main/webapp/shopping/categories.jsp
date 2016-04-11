@@ -13,11 +13,11 @@
 <link href="../resource/css/bootstrap.min.css" rel="stylesheet">
 <link href="../resource/css/customer.css" rel="stylesheet">
 <link href="../resource/css/silderbanner.css" rel="stylesheet">
+<link href="../resource/css/bootstrap-slider.css" rel="stylesheet">
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
 	<header><jsp:include page="/header.jsp" /></header>
-
 	<section id="wrap">
 		<div class="container">
 			<div class="row">
