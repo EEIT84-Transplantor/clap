@@ -1,6 +1,8 @@
 package payment.model;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -81,13 +83,23 @@ public class PromoService {
 		return result;
 	}
 	public List<PromoVO> getAllPromos(boolean involveExpired){
-		return null;
+		if(involveExpired){
+			return dao.selectAll();
+		}else{
+			return dao.selectUnexpired();
+		}
 	}
 	public List<PromoVO> getAllPromosByStartDate(Date date){
-		return null;
+		Calendar currentDate = Calendar.getInstance(); //Get the current date
+		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss"); //format it as per your requirement
+		String dateNow = formatter.format(date.getTime());
+		return dao.selectByStartDate(dateNow);
 	}
 	public List<PromoVO> getAllPromosByEndDate(Date date){
-		return null;
+		Calendar currentDate = Calendar.getInstance(); //Get the current date
+		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss"); //format it as per your requirement
+		String dateNow = formatter.format(date.getTime());
+		return dao.selectByEndingDate(dateNow);	
 	}
 	public List<PromoVO> getAllPromosByBetweenDate(Date startDate,Date endDate){
 		return null;
