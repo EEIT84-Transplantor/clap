@@ -13,7 +13,7 @@ public class InventoryVO {
 
 	@Id
 	@Column(name="inventory_id")
-	private String id;
+	private Integer id;
 	@Column(name="pd_id")
 	private Integer product_id;
 	@Column(name="inventory_quantity")
@@ -22,10 +22,10 @@ public class InventoryVO {
 	private Timestamp manufactureDate;
 	@Column(name="inventory_expiryDate")
 	private Timestamp expiryDate;
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public Integer getProduct_id() {

@@ -20,5 +20,6 @@ public interface ProductDAO {
 
 	List<ProductVO> selectByPriceRange(Integer category_id, Double min, Double max);
 
+	List<ProductVO> selectByTopAmount(Integer pageNumber, Integer pageAmount, Integer counts);
 
 }

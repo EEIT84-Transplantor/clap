@@ -29,7 +29,7 @@ public class InventoryHibernateDAO implements InventoryDAO {
 	};
 	
 	@Override
-	public List<InventoryVO> selectByProductId(String productId) {
+	public List<InventoryVO> selectByProductId(Integer productId) {
 		session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(SELECT_BY_PRODUCT_ID);
 		query.setParameter(0, productId);
@@ -62,7 +62,7 @@ public class InventoryHibernateDAO implements InventoryDAO {
 	};
 
 	@Override
-	public boolean delete(String id) {
+	public boolean delete(Integer id) {
 		session = sessionFactory.getCurrentSession();
 		InventoryVO inventoryVO = new InventoryVO();
 		inventoryVO.setId(id);
