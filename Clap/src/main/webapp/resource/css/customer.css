@@ -458,38 +458,38 @@ header {
 	padding-left: 10px;
 }
 /*-------購物車側邊選單----------*/
-#categoryMenu a.list-group-item:focus, #categoryMenu a.list-group-item:hover
+#sideMenu a.list-group-item:focus, #categoryMenu a.list-group-item:hover
 	{
 	background-color: #000;
 }
 
-#categoryMenu .list-group-item {
+#sideMenu .list-group-item {
 	background-color: #000;
 	color: #47BED9;
 	border: none;
 }
 
-#categoryMenu .list-group-item:last-child {
+#sideMenu .list-group-item:last-child {
 	border-bottom: none;
 }
 
-#categoryMenu .panel {
+#sideMenu .panel {
 	background: #999;
 	padding-bottom: 1px;
 }
 
-#categoryMenu .list-group-item:last-child, #categoryMenu .list-group-item:first-child
+#sideMenu .list-group-item:last-child, #categoryMenu .list-group-item:first-child
 	{
 	border-bottom-right-radius: 0;
 	border-bottom-left-radius: 0;
 }
 
-#categoryMenu .sub_list {
+#sideMenu .sub_list {
 	color: #999;
 	border: none;
 }
 
-#categoryMenu .collapse a:hover {
+#sideMenu .collapse a:hover {
 	background: #000;
 }
 
