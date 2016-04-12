@@ -92,6 +92,9 @@
 			<interceptor-ref name="paymentManageStack" />
 			<result>/payment/{1}.jsp</result>
 		</action>
+		<action name="prePromoteAction" class="prePromoteAction">
+			<result name="success">/payment/setpromotion.jsp</result>
+		</action>
 
 	</package>
 	<package name="member" namespace="/member" extends="struts-default">

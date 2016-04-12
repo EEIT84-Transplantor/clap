@@ -2,6 +2,7 @@ package product.model;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -19,7 +20,7 @@ public class CategoryHibernateDAO implements CategoryDAO {
 
 	private Session session;
 	final private String SELECT_ALL = "from * CategoryVO";
-
+	final private String SELECT_BY_NAME = "select category_id from CategoryVO where category_name=?";
 	@Override
 	public List<CategoryVO> selectAll(){
 		session = sessionFactory.getCurrentSession();
@@ -32,7 +33,18 @@ public class CategoryHibernateDAO implements CategoryDAO {
 		}
 		return categoryVOs;
 	};
-	
+	@Override
+	public List<CategoryVO> selectByCategoryName(String category_name) {
+		session = sessionFactory.getCurrentSession();
+		List<CategoryVO> categoryVOs = null;
+		try {
+			Query query = session.createQuery(SELECT_BY_NAME);
+			categoryVOs = query.setString(0, category_name).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return categoryVOs;
+	};
 	@Override
 	public CategoryVO selectById(Integer categoryId){
 		session = sessionFactory.getCurrentSession();

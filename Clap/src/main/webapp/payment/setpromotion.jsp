@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<% java.util.List<payment.model.PromoVO> promoVOs = (java.util.List<payment.model.PromoVO>)request.getAttribute("promoVOs"); 
+    if(promoVOs==null){
+    	response.sendRedirect(request.getContextPath()+"/payment/prePromoteAction.action");
+    }
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +46,6 @@ input, select {
 	<header>
 		<jsp:include page="/header.jsp" />
 	</header>
-	<c:set var="productVOs" value="{2000,3000,20300}" />
 	<section id="wrap">
 		<div class="container-fulid">
 			<div class="row">
@@ -126,17 +129,13 @@ input, select {
 									</tr>
 								</thead>
 								<tbody>
-									<!-- 	        <tr id="hi"> -->
-									<!-- 	            <td><input type="text"/></td>  -->
-									<!--             	<td><input id="insertConfirm" type="submit" value="add"/><input id="insertCancel" type="button" value="cancel"/></td> -->
-									<!--             </tr> -->
 									<c:forEach var="promoVO" varStatus="index" items="${promoVOs}">
 										<tr>
-											<td>${promoVO.code}</td>
+											<td>${promoVO.pm_code}</td>
 											<td>${categoryNames[index.count-1]}</td>
-											<td>${promoVO.expire}</td>
-											<td>${promoVO.title}</td>
-											<td>${promoVO.discount}</td>
+											<td>${promoVO.pm_expire}</td>
+											<td>${promoVO.pm_tiltle}</td>
+											<td>${promoVO.pm_discount}</td>
 											<td><input id="submitInsert1" type="submit" value="add" />
 												<input type="button" value="cancel" /></td>
 
@@ -151,8 +150,6 @@ input, select {
 					</div>
 				</div>
 			</div>
-		</div>
-
 		</div>
 	</section>
 
@@ -215,12 +212,10 @@ input, select {
 											function() {
 												alert("hello");
 												var data = table
-														.row(
-																$(this)
-																		.parent()
-																		.parent()
-																		.children(
-																				':first'))
+														.row($(this)
+														.parent()
+														.parent()
+														.children(':first'))
 														.data();
 												var dataSend = "promoVO.code="
 														+ data[0] + "category="
@@ -260,6 +255,6 @@ input, select {
 							}
 						});
 	</script>
-	</ body>
+	</body>
 </html>
 

@@ -18,8 +18,7 @@ public class PromoHibernateDAO implements PromoDAO{
 	final private String SELECT_ALL_ENDING_DATE = "from PromoVO where pm_expire<?";
 	final private String SELECT_ALL_BETWEEN = "from PromoVO where ? < pm_expire and pm_expire < ? ";
 	final private String SELECT_ALL_BY_CATEGORY_ID = "from PromoVO where pd_category = ? ";
-	final private String SELECT_CATEGORY_NAMES = "from PromoVO where pd_category = ? ";
-
+	final private String SELECT_BY_CATEGORY_NAMES = "from PromoVO where pd_category = ? ";
 	public PromoHibernateDAO() {
 		
 	}
