@@ -125,6 +125,13 @@
 
 	</package>
 
+	<!-- shopping -->
+	<package name="shopping" namespace="/shopping" extends="struts-default">
+		<action name="returnAction" class="shopping.controller.ReturnAction">
+			<result name="success">/shopping/return.jsp</result>
+		</action>
+	</package>
+	
 	<package name="test" namespace="/test" extends="struts-default">
 
 		<!-- action -->
@@ -139,6 +146,7 @@
 		</action>
 
 	</package>
+	
 
 </struts>
 

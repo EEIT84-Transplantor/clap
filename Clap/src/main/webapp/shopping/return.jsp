@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -13,9 +14,20 @@
 <link href="${pageContext.request.contextPath}/resource/css/customer.css" rel="stylesheet">
 <style>
 .pack{
-border: 1px solid white;
+border-radius: 25px;
+border: 2px solid white;
 padding: 20px;
 }
+.btndiv{
+position: relative;
+min-height: 80px;
+}
+.btndiv button{
+position: absolute;
+top: 15px;
+left: 0;
+}
+
 </style>
 </head>
 <body>
@@ -31,9 +43,29 @@ padding: 20px;
 					<!-- content start-->
 					<div class="row pack">
 					 
-					 <div class="col-md-4" style="background-color: red">1</div>
-					 <div class="col-md-5" style="background-color: blue">2</div>
-					 <div class="col-md-3" style="background-color: yellow">3</div>
+					 <div class="col-md-4" style="">
+					   <img class="img-rounded img-responsive" src="http://starwars.ea.com/media/cache/full/content/dam/ea/spark-www-starwars-ea/Falcon/SWGOH_Keyart_1920.jpg">
+					 </div>
+					 <div class="col-md-5" style="">
+					   <form role="form" action="<c:url value="/shopping/returnAction"/>" method="POST" >
+					  	 <div class="form-group">
+						   <s:textfield class="form-control" name="returnVO.orderform_id" type="number" label="Order Number" readonly="false" value="%{#request.returnVO.orderform_id}" />
+						 </div>
+						 <div class="form-group">
+						   <s:textfield class="form-control" name="returnVO.product_id" type="text" readonly="false" style="display:none;" value="%{#request.returnVO.product_id}"/>
+						   <s:textfield class="form-control" name="returnVO.product_name" type="text" label="Product Name" readonly="false" value="%{#request.returnVO.product_name}" />
+						 </div>
+						 <div class="form-group">
+						   <s:textfield class="form-control" name="returnVO.shipping_date" type="date" label="Shopping Date" readonly="false" value="%{#request.returnVO.shipping_date}" />
+						 </div>
+						 <div class="form-group">
+						   <s:textfield class="form-control" name="returnVO.orderDetail_quantity" type="number" label="Order Quantity" readonly="false" value="%{#request.returnVO.orderDetail_quantity}" />
+						 </div>
+					   </form>
+					 </div>
+					 <div class="col-md-3 btndiv">
+					   <button class="btn btn-success" type="button">Return</button>
+					 </div>					 
 					</div>
 
 
@@ -55,13 +87,13 @@ padding: 20px;
 	<script src="../resource/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$("form button").on("click", function() {
+			$("button.btn-success").on("click", function() {
 				console.log();
 				console.log();
 				$("form").submit();
 			});
 			$("form").submit(function(event) {
-				if ($("input").val() == "") {
+				if ("" != "") {
 					console.log("Submit error");
 					event.preventDefault();
 				} else {
