@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import inventory.model.InventoryVO;
+import product.model.ProductVO;
 
 @Entity
 @Table(name ="cart")
@@ -24,10 +24,6 @@ public class CartVO implements Serializable {
 	private Integer product_id;
 	@Column(name="ct_quantity")
 	private Integer quantity;
-	
-	@ManyToOne(optional=true)
-	@JoinColumn(name = "pd_id", insertable=false, updatable=false )
-	private InventoryVO inventoryVO;
 	
 	public CartVO() {
 	}
@@ -60,13 +56,5 @@ public class CartVO implements Serializable {
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
-	}
-
-	public InventoryVO getInventoryVO() {
-		return inventoryVO;
-	}
-
-	public void setInventoryVO(InventoryVO inventoryVO) {
-		this.inventoryVO = inventoryVO;
 	}
 }
