@@ -13,11 +13,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
 <!-- Bootstrap -->
-<link href="../resource/css/bootstrap.min.css" rel="stylesheet">
+<link href="<c:url value="/resource/css/bootstrap.min.css"/> rel="stylesheet">
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
       rel="stylesheet">
-<link href="../resource/css/customer.css" rel="stylesheet">
+<link href="<c:url value="/resource/css/customer.css"/> rel="stylesheet">
 <style type="text/css">
 	input, select{
 		background-color:black;
