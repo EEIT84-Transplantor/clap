@@ -48,9 +48,9 @@
 	</footer>
 
 	<!-- 載入js -->
-	<script src="../resource/js/jquery-1.12.2.min.js"></script>
-	<script src="../resource/js/bootstrap.min.js"></script>
-	<script src="../resource/js/loginsignup.js"></script>
+	<script src="../resource/js/jquery-1.12.2.min.js"/>"></script>
+	<script src="../resource/js/bootstrap.min.js"/>"></script>
+	<script src="../resource/js/loginsignup.js"/>"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var contextPath = "${pageContext.request.contextPath}";

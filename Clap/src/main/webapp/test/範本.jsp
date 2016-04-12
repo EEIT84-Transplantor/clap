@@ -23,9 +23,9 @@
 	</div>
 
 	<!-- 載入js -->
-	<script type="text/javascript" src="../resource/js/jquery-1.12.2.min.js"></script>
-	<script type="text/javascript" src="../resource/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../resource/js/json2.js"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/jquery-1.12.2.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
 
 </body>
 </html>

@@ -162,15 +162,15 @@ input, select {
 
 	<!-- 載入js -->
 	<script
-		src="${pageContext.request.contextPath}/resource/js/jquery-1.12.2.min.js"></script>
+		src="${pageContext.request.contextPath}/resource/js/jquery-1.12.2.min.js"/>"></script>
 	<script
-		src="${pageContext.request.contextPath}/resource/js/bootstrap.min.js"></script>
+		src="${pageContext.request.contextPath}/resource/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript"
-		src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+		src="//code.jquery.com/jquery-1.12.0.min.js"/>"></script>
 	<script type="text/javascript"
-		src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+		src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"/>"></script>
 	<script type="text/javascript"
-		src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
+		src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"/>"></script>
 
 	<script type="text/javascript">
 		$(document)

@@ -59,9 +59,9 @@
 	<footer><jsp:include page="/footer.jsp" /></footer>
 
 	<!-- 載入js -->
-	<script type="text/javascript" src="../resource/js/jquery-1.12.2.min.js"></script>
-	<script type="text/javascript" src="../resource/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../resource/js/json2.js"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/jquery-1.12.2.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
 	<script type="text/javascript">
 		var myCenter = new google.maps.LatLng(51.508742, -0.120850);

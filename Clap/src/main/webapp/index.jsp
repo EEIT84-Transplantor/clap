@@ -31,8 +31,8 @@
 	</footer>
 
 	<!-- 載入js -->
-	<script src="${pageContext.request.contextPath}/resource/js/jquery-1.12.2.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resource/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resource/js/jquery-1.12.2.min.js"/>"></script>
+	<script src="${pageContext.request.contextPath}/resource/js/bootstrap.min.js"/>"></script>
 
 </body>
 </html>
