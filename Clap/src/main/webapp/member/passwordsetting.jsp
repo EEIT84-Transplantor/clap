@@ -9,8 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
 <!-- Bootstrap -->
-<link href="<c:url value="/resource/css/bootstrap.min.css"/> rel="stylesheet">
-<link href="<c:url value="/resource/css/customer.css"/> rel="stylesheet">
+<link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
 
 </head>
 <body>
