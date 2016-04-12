@@ -3,10 +3,18 @@ package shopping.model;
 public class ReturnVO {
 
 	private Byte[] product_img;
+	private Integer product_id;
 	private String product_name;
 	private java.sql.Date shipping_date;
 	private Integer orderDetail_quantity;
 	private String orderform_id;
+	
+	public Integer getProduct_id() {
+		return product_id;
+	}
+	public void setProduct_id(Integer product_id) {
+		this.product_id = product_id;
+	}
 	public Byte[] getProduct_img() {
 		return product_img;
 	}

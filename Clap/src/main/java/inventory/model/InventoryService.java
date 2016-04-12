@@ -13,8 +13,8 @@ public class InventoryService {
 	public List<InventoryVO>  test(){
 		return inventoryDAO.selectAll();
 	}
-	public Integer getQuantity (Integer productId){
-		return inventoryDAO.getQuantityById(productId);
+	public Integer getQuantity (Integer product_Id){
+		return inventoryDAO.getQuantityById(product_Id);
 	}
 	public List<InventoryVO> getAllInventories(Integer productId){
 		if (productId == null || productId<=0){

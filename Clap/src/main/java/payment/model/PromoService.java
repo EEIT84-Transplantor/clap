@@ -2,15 +2,23 @@ package payment.model;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import product.model.CategoryDAO;
+
 public class PromoService {
 	private PromoDAO dao;
+	private CategoryDAO categoryDAO;
 	
+	public void setCategoryDAO(CategoryDAO categoryDAO) {
+		this.categoryDAO = categoryDAO;
+	}
+
 	public static void main(String[] args){
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		PromoService pservice = (PromoService)context.getBean("promoService");
@@ -93,24 +101,36 @@ public class PromoService {
 		Calendar currentDate = Calendar.getInstance(); //Get the current date
 		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss"); //format it as per your requirement
 		String dateNow = formatter.format(date.getTime());
-		return dao.selectByStartDate(dateNow);
+		return dao.selectByStartDate(date);
 	}
 	public List<PromoVO> getAllPromosByEndDate(Date date){
 		Calendar currentDate = Calendar.getInstance(); //Get the current date
 		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss"); //format it as per your requirement
 		String dateNow = formatter.format(date.getTime());
-		return dao.selectByEndingDate(dateNow);	
+		return dao.selectByEndingDate(date);	
 	}
 	public List<PromoVO> getAllPromosByBetweenDate(Date startDate,Date endDate){
-		return null;
+	
+		return dao.selectByBetweenDates(startDate,endDate);
 	}
-	public List<PromoVO> getAllPromosByCategory(String categoryId){
-		return null;
+	public List<PromoVO> getAllPromosByCategory(Integer categoryId){
+		return dao.selectByCategory(categoryId);
 	}
-	public List<PromoVO> getAllCategoryNames(List<PromoVO> promoVOs){
-		return null;
+	public List<String> getAllCategoryNames(List<PromoVO> promoVOs){
+		List<Integer> result = new ArrayList<Integer>();
+		for(PromoVO vo:promoVOs ){
+			if(!result.contains(vo.getPd_category())){
+				result.add(vo.getPd_category());
+			}
+		}
+		List<String> resultInString =new ArrayList<String>();
+		for(Integer r: result){
+			resultInString.add(categoryDAO.selectById(r).getName());
+		}
+		
+		return resultInString;
 	}
 	public boolean updatePromo(PromoVO promoVO){
-		return false;
+		return dao.update(promoVO);
 	}
 }

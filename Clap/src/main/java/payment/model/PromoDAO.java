@@ -1,5 +1,6 @@
 package payment.model;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface PromoDAO {
@@ -15,7 +16,11 @@ public interface PromoDAO {
 
 	List<PromoVO> selectUnexpired();
 
-	List<PromoVO> selectByStartDate(String startDate);
+	List<PromoVO> selectByStartDate(Date startDate);
 
-	List<PromoVO> selectByEndingDate(String endDate);
+	List<PromoVO> selectByEndingDate(Date endDate);
+
+	List<PromoVO> selectByCategory(Integer categoryId);
+
+	List<PromoVO> selectByBetweenDates(Date startDate, Date endDate);
 }

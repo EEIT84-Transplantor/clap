@@ -12,4 +12,6 @@ public interface CategoryDAO {
 
 	boolean delete(Integer id);
 
+	CategoryVO selectById(Integer categoryId);
+
 }
