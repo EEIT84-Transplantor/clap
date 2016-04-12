@@ -58,18 +58,18 @@ input, select {
 						</div>
 						<div class="col-md-11 col-sm-11">
 							<div class="row">
-								<form>
+								<form action="${pageContext.request.contextPath}/payment/prePromoteAction.action">
 									<div class="col-md-1 col-sm-1">
 										<span>Search By:</span>
 									</div>
 									<div class="col-md-3 col-sm-5">
-										Starting Date<input type="datetime" />
+										Starting Date<input type="datetime" name="expireFrom"/>
 									</div>
 									<div class="col-md-3 col-sm-4">
-										Ending Date<input type="datetime" />
+										Ending Date<input type="datetime" name="expireTo" />
 									</div>
 									<div class="col-md-3 col-sm-1">
-										Category<input type="text" />
+										Category<input type="text" name="categoryName" />
 									</div>
 									<div class="col-md-2 col-sm-1">
 										<input type="submit" value="search">
@@ -81,8 +81,13 @@ input, select {
 					</div>
 					<div class="row" id="table1">
 						<div class="col-md-12">
+							<p>${message}</p>
+						</div>
+					</div>
+					<div class="row" id="table1">
+						<div class="col-md-12">
 							<form id="insertform"
-								action="${pageContext.request.contextPath}/promotion/SetProductAction.action"
+								action="${pageContext.request.contextPath}/payment/setPromoteAction.action"
 								method="POST">
 								<table class="table">
 									<thead>
@@ -97,16 +102,16 @@ input, select {
 									</thead>
 									<tbody>
 										<tr>
-											<td><input type="text" value="" name="promoVO.code" /></td>
-											<td><select id="category">
-													<option value="Lung">Lung</option>
-													<option value="Liver">Liver</option>
-													<option value="Kidney">Kidney</option>
+											<td><input type="text" name="promoVO.pm_code" /></td>
+											<td><select name="category">
+													<option value="Lungs">Lungs</option>
+													<option value="Livers">Livers</option>
+													<option value="Kidneys">Kidneys</option>
 											</select>
-											<td><input type="text" name="promoVO.expire" /></td>
-											<td><input type="text" name="promoVO.title" /></td>
-											<td><input type="text" name="promoVO.discount" /></td>
-											<td><input id="submitInsert" type="submit" value="add" /><input
+											<td><input type="datetime" name="promoVO.pm_expire" /></td>
+											<td><input type="text" name="promoVO.pm_title" /></td>
+											<td><input type="number" name="promoVO.pm_discount" /></td>
+											<td><input type="submit" value="add" /><input
 												id="insertCancel" type="button" value="cancel" /></td>
 										</tr>
 									</tbody>
@@ -134,7 +139,7 @@ input, select {
 											<td>${promoVO.pm_code}</td>
 											<td>${categoryNames[index.count-1]}</td>
 											<td>${promoVO.pm_expire}</td>
-											<td>${promoVO.pm_tiltle}</td>
+											<td>${promoVO.pm_title}</td>
 											<td>${promoVO.pm_discount}</td>
 											<td><input id="submitInsert1" type="submit" value="add" />
 												<input type="button" value="cancel" /></td>

@@ -54,9 +54,12 @@ public class PrePromoteAction extends ActionSupport {
 			}
 		}
 		if(categoryName!=null){
+			System.out.println("hi");
 			Integer id = promoService.selectByCategoryName(categoryName);
 			if(promoVOs ==null){
+				System.out.println("hi");
 				promoVOs = promoService.getAllPromosByCategory(id);
+				System.out.println(promoVOs);
 			}else{
 				List<PromoVO> temp = new ArrayList<PromoVO>();
 				temp = promoService.getAllPromosByCategory(id);
@@ -69,11 +72,15 @@ public class PrePromoteAction extends ActionSupport {
 		}
 		if(expireFrom==null&&expireTo==null&&categoryName==null){
 			promoVOs =  promoService.getAllPromos(true);
-			categoryNames=  promoService.getAllCategoryNames(promoVOs);
 		}
+//		promoVOs =  promoService.getAllPromos(true);
+		categoryNames=  promoService.getAllCategoryNames(promoVOs);
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("promoVOs", promoVOs);
 		request.setAttribute("categoryNames", categoryNames);
+		String message = (String) request.getAttribute("message");
+		System.out.println(message);
+		request.setAttribute("message", message);
 		return "success";
 	}
 }

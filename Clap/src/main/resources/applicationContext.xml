@@ -87,7 +87,9 @@
 	<bean id="prePromoteAction" class="payment.controller.PrePromoteAction" scope="prototype">
 		<property name="promoService" ref="promoService" />
 	</bean>
-	
+	<bean id="setPromoteAction" class="payment.controller.SetPromotionAction" scope="prototype">
+		<property name="promoService" ref="promoService" />
+	</bean>
 	<!-- setting controller -->
 	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction" scope="prototype">
 		<property name="memberService" ref="memberService" />
