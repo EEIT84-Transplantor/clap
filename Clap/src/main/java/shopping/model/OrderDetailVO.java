@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import hospital.model.DoctorVO;
 import product.model.ProductVO;
 
 @Entity
@@ -21,17 +22,31 @@ import product.model.ProductVO;
 public class OrderDetailVO implements Serializable {
 
 	@Id
-	@Column(name = "od_id")
+	@Column(name = "orderdetail_id")
 	private Integer id;
 	@Id
 	@Column(name = "pd_id")
 	private Integer pd_id;
-	@Column(name = "ct_quantity")
-	private Integer ct_quantity;
+	@Column(name = "cart_quantity")
+	private Integer cart_quantity;
+	@Column(name = "doctor_id")
+	private Integer doctor_id;
+	@Column(name = "orderform_id")
+	private Integer orderform_id;
+	
+	
 	// optional 外鍵是否允許為空
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "pd_id", insertable = false, updatable = false)
 	private ProductVO productVO;
+	
+	@ManyToOne(optional = true)
+	@JoinColumn(name = "doctor_id", insertable = false, updatable = false)
+	private DoctorVO doctorVO;
+	
+	@ManyToOne(optional = true)
+	@JoinColumn(name = "orderform", insertable = false, updatable = false)
+	private OrderFormVO orderformVO;
 
 	public Integer getId() {
 		return id;
@@ -49,12 +64,28 @@ public class OrderDetailVO implements Serializable {
 		this.pd_id = pd_id;
 	}
 
-	public Integer getCt_quantity() {
-		return ct_quantity;
+	public Integer getCart_quantity() {
+		return cart_quantity;
 	}
 
-	public void setCt_quantity(Integer ct_quantity) {
-		this.ct_quantity = ct_quantity;
+	public void setCart_quantity(Integer cart_quantity) {
+		this.cart_quantity = cart_quantity;
+	}
+
+	public Integer getDoctor_id() {
+		return doctor_id;
+	}
+
+	public void setDoctor_id(Integer doctor_id) {
+		this.doctor_id = doctor_id;
+	}
+
+	public Integer getOrderform_id() {
+		return orderform_id;
+	}
+
+	public void setOrderform_id(Integer orderform_id) {
+		this.orderform_id = orderform_id;
 	}
 
 	public ProductVO getProductVO() {
@@ -65,5 +96,20 @@ public class OrderDetailVO implements Serializable {
 		this.productVO = productVO;
 	}
 
+	public DoctorVO getDoctorVO() {
+		return doctorVO;
+	}
 
+	public void setDoctorVO(DoctorVO doctorVO) {
+		this.doctorVO = doctorVO;
+	}
+
+	public OrderFormVO getOrderformVO() {
+		return orderformVO;
+	}
+
+	public void setOrderformVO(OrderFormVO orderformVO) {
+		this.orderformVO = orderformVO;
+	}
+	
 }
