@@ -52,7 +52,7 @@
 			<div class="col-md-1"></div>				
 		</div>
 		<div class="row">
-			<div class="col-md-1">side-nav:sub-menu</div>
+			<div class="col-md-2">side-nav:sub-menu2</div>
 			<div class="col-md-10">
 			<form id="insertform" action="${pageContext.request.contextPath}/promotion/SetProductAction.action" method="POST">
 				<table  class="table">
@@ -82,7 +82,7 @@
 	       			 </tbody>
 				</table>   
 	    	</form>
-    		<div class="col-md-1"></div>
+    		
    		</div>
     	</div>
     	<p id="message"></p>
