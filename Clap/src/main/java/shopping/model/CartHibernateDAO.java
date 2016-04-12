@@ -13,15 +13,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class CartHibernateDAO implements CartDAO {
 
-	public static void main(String[] args) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		CartDAO dao = (CartDAO) context.getBean("cartDAO");
-		System.out.println("haha" + dao.selectByEmail("caca@gmail.com").size());
-	}
-
 	private SessionFactory sessionFactory;
 	private Session session;
-	private Transaction transaction;
 	final private String SELECT_ALL = "from CartVO"; 
 	final private String SELECT_BY_EMAIL = "from CartVO where mb_email=?";
 	final private String DELETE_BY_EMAIL = "delete from CartVO where mb_email=?";
@@ -57,7 +50,8 @@ public class CartHibernateDAO implements CartDAO {
 		CartVO result = null;
 		session = sessionFactory.getCurrentSession();
 		try {
-			result = (CartVO)session.save(cartVO);
+			session.save(cartVO);
+			result = cartVO;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -69,11 +63,14 @@ public class CartHibernateDAO implements CartDAO {
 		CartVO result = null;
 		session = sessionFactory.getCurrentSession();
 		try {
+	
 			CartVO temp = new CartVO();
 			temp.setEmail(email);
-			temp.setId(id);
+			temp.setProduct_id(id);
 			temp.setQuantity(quantity);
-			result = (CartVO)session.save(temp);
+			
+			session.save(temp);
+			result = temp;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -98,7 +95,7 @@ public class CartHibernateDAO implements CartDAO {
 		boolean result = false;
 		CartVO temp = new CartVO();
 		temp.setEmail(email);
-		temp.setId(id);
+		temp.setProduct_id(id);
 		temp.setQuantity(quantity);
 		session = sessionFactory.getCurrentSession();
 		try {
@@ -115,7 +112,7 @@ public class CartHibernateDAO implements CartDAO {
 		boolean result = false;
 		CartVO temp = new CartVO();
 		temp.setEmail(email);
-		temp.setId(id);
+		temp.setProduct_id(id);
 		session = sessionFactory.getCurrentSession();
 		try {
 			session.delete(temp);

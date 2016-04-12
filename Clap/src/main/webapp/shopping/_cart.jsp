@@ -31,7 +31,12 @@
 								<td>價格</td>
 							</tr>
 						</thead>
-						<tbody></tbody>
+						<tbody>
+							<c:forEach var="cartVO" items="${cartVOs}">
+								<tr>${cartVO.}</tr>
+								
+							</c:forEach>
+						</tbody>
 					</table>
 				</div>
 				<div class="col-md-8"></div>

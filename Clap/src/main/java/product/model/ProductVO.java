@@ -3,6 +3,8 @@ package product.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,11 +26,21 @@ public class ProductVO {
 	private Double discount;
 	@Column(name = "category_id")
 	private String category_id;
+	@ManyToOne(optional = true)
+	@JoinColumn(name = "category_id", insertable = false, updatable = false)
+	private CategoryVO categoryVO;
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public CategoryVO getCategoryVO() {
+		return categoryVO;
+	}
+	public void setCategoryVO(CategoryVO categoryVO) {
+		this.categoryVO = categoryVO;
 	}
 	public String getName() {
 		return name;

@@ -1,13 +1,38 @@
 package shopping.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import inventory.model.InventoryService;
 import payment.model.PromoCodeService;
 import payment.model.PromoVO;
+import product.model.ProductService;
+import product.model.ProductVO;
 
 public class CartService {
 	private CartDAO cartDAO;
+	private ProductService productService;
+	private InventoryService inventoryService;
+	private PromoCodeService promoCodeService;
 	
+	public PromoCodeService getPromoCodeService() {
+		return promoCodeService;
+	}
+	public void setPromoCodeService(PromoCodeService promoCodeService) {
+		this.promoCodeService = promoCodeService;
+	}
+	public InventoryService getInventoryService() {
+		return inventoryService;
+	}
+	public void setInventoryService(InventoryService inventoryService) {
+		this.inventoryService = inventoryService;
+	}
+	public ProductService getProductService() {
+		return productService;
+	}
+	public void setProductService(ProductService productService) {
+		this.productService = productService;
+	}
 	public CartService() {
 	}
 	public CartDAO getCartDAO() {
@@ -103,7 +128,7 @@ public class CartService {
 		}
 	
 		//使用優惠券
-		PromoCodeService promoCodeService = new PromoCodeService();
+		
 		PromoVO promoVO = promoCodeService.getPromo(email, promocode);
 		Double discount = promoVO.getPm_discount();
 		
@@ -119,10 +144,19 @@ public class CartService {
 			return result;
 		}
 //		取得單品總價
-//		ProuctService pService = new pService();
-//		ProuctVO prouctVO = pService.getProductById(cartVO.getId());
-//		result = prouctVO.getPrice()*cartVO.getQuantity();
-		
+		ProductVO prouctVO = productService.getProductById(cartVO.getProduct_id());
+		result = prouctVO.getPrice()*cartVO.getQuantity();
+		return result;
+	};
+	public List<String> getCartList(CartVO cartVO){
+		List<String> result = new ArrayList<String>();
+		ProductVO productVO = productService.getProductById(cartVO.getProduct_id());
+		String p_name = productVO.getName();
+		String p_price = String.valueOf(productVO.getPrice());
+		String p_quantity = String.valueOf(inventoryService.getQuantity(cartVO.getProduct_id()));
+		result.add(p_name);
+		result.add(p_price);
+		result.add(p_quantity);
 		return result;
 	};
 }
