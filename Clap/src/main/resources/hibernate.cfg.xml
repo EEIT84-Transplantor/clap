@@ -17,6 +17,7 @@
     <mapping class="payment.model.PromoCodeVO"/>
     <mapping class="payment.model.CreditCardVO"/>
     <mapping class="shopping.model.OrderDetailVO"/>
+    <mapping class="shopping.model.OrderFormVO"/>
     
     <mapping class="inventory.model.InOutLogVO"/>
     <mapping class="inventory.model.InventoryVO"/>
@@ -29,7 +30,7 @@
     <mapping class="hospital.model.HospitalVO"/>
     <mapping class="hospital.model.DoctorVO"/>
 <!--    <mapping resource="hbm/cartvo.hbm.xml"/>-->
-    <mapping resource="hbm/orderformvo.hbm.xml"/>
+<!--     <mapping resource="hbm/orderformvo.hbm.xml"/> -->
 <!--     <mapping resource="hbm/orderdetailvo.hbm.xml"/> -->
     
     </session-factory>
