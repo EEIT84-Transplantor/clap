@@ -32,6 +32,14 @@
 	#message{
 	color:red;
 	}
+	.showimg{
+	width:15%;
+	}
+	.showimg img{
+	width:70%;
+	height:auto;
+	}
+
 </style>
 </head>
 <body>
@@ -50,7 +58,7 @@
 		<div class="row">
 			<div class="col-md-1">side-nav:sub-menu</div>
 			<div class="col-md-10">
-			<form id="insertform" action="${pageContext.request.contextPath}/product/SetProductAction.action" method="POST" >
+			<form id="insertform" action="${pageContext.request.contextPath}/product/setProductAction.action" method="POST" enctype="multipart/form-data">
 				<table  class="table">
 					 <thead>
 			            <tr>
@@ -69,17 +77,17 @@
 						<!-- ~需要一個servlet讀照片~ -->
 
 <%-- 					${pageContext.request.contextPath}/products/productImgServlet.action?id=[index.count-1] --%>
-		                <th><input type="file" value="" name="productVO.img"/></th>
+		                <th><input type="file" name="upload"/></th>
 		                <th><input type="text" name="productVO.id"/></th>
 		                <th><input type="text" name="productVO.name"/></th>
 		                <th><input type="text" name="productVO.price"/></th>
 		                <th><input type="text" name="productVO.description"/></th>
 		                <th><input type="text" name="productVO.discount"/></th>
-		                <th><select id="category">
+		                <th><select id="category" name="productVO.category_id">
 
-							  <option value="Lung">Lung</option>
-							  <option value="Liver" >Liver</option>
-							  <option value="Kidney">Kidney</option>
+							  <option value="1">Lung</option>
+							  <option value="2" >Liver</option>
+							  <option value="3">Kidney</option>
 							</select></th>
 				      	<th><input id="submitInsert" type="submit" value="add"/><input id="insertCancel" type="button" value="cancel"/></th>
 		            </tr>
@@ -114,11 +122,13 @@
 <!--             </tr> -->
         	<c:forEach var="productVO"  varStatus="index" items="${productVOs}">
 	              	<tr>
-						<!-- ~需要一個servlet讀照片~ -->
-		<%-- 			${pageContext.request.contextPath}/products/productImgServlet.action?id=[index.count-1] --%>
-		                <td><img src="data:image/png;base64,${productImgs[index.count-1]}"/></td>
-<!-- 		                <td><img src="../resource/images/visa.png" height="20px" width="20px"/></td>  -->
-<%-- 		                <td>${productVO}</td>  --%>
+		                <td class="showimg" >
+		                <c:if test="${not empty productImgs[index.count-1]}"><img class="img-responsive img-rounded" src="data:image/png;base64,${productImgs[index.count-1]}"/>
+		                </c:if>
+		                <input type="file" id="Uploadimage" name="productImg" style="display:none">
+		                
+		                </td>
+
 
 		                <td>${productVO.id}</td>
 		                <td>
@@ -209,7 +219,7 @@
 				console.log(data[1]);
 				var dataSend="productVO.id="+data[1]+"productVO.name="+data[2]+"productVO.price="+data[3]+"productVO.description="+data[4]
 				+"productVO.rating="+data[5]+"productVO.discount="+data[6]+"productVO.category="+data[7];
-				sendPostRequestProduct("${pageContext.request.contextPath}/product/UpdateProductAction.action?", dataSend);
+				sendPostRequestProduct("${pageContext.request.contextPath}/product/updateProductAction.action?", dataSend);
 			}
 	    });
 		
@@ -217,7 +227,7 @@
 			if (confirm("Do you want to delete this product?") == true) {
 				var id = table.row($(this).parent().parent().children(':first')).data()[1];
 				console.log(id);
-				sendPostRequestProduct("${pageContext.request.contextPath}/product/RemoveProductAction.action?", "productId="+id );
+				sendPostRequestProduct("${pageContext.request.contextPath}/product/removeProductAction.action?", "productId="+id );
 				$(this).parent().parent().addClass('selected');
 				alert("clicked");
 			}
@@ -252,6 +262,14 @@
 		    	$('.selected').removeAttr('class');
 		    }
 		}
+// 		$("#Uploadimage").on("click",function(){
+// 			$(this).hide();
+// 			$(this).next().show().focus();
+
+// 		});
+		$("input[type='image']").change(function(){
+			 $("input[id='Uploadimage']").click();
+		});
 		$("td>label").on("click",function(){
 			$(this).hide();
 			$(this).next().show().focus();
