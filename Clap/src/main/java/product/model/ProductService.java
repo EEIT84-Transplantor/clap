@@ -44,20 +44,20 @@ public class ProductService {
 		}
 		return false;
 	}
-	public Byte[] getProductImgById(Integer productId){
+	public ProductimgVO getProductImgById(Integer productId){
 		ProductimgVO result = productimgDAO.selectByProductId(productId);
 		if(result!=null){
-			return result.getImg();
+			return result;
 		}else{
 			return null;
 		}
 		
 	}
-	public List<Byte[]> getProductImgByList(List<ProductVO>productVOs){
-		List<Byte[]> imgList = new ArrayList<Byte[]>();
+	public List<ProductimgVO> getProductImgByList(List<ProductVO>productVOs){
+		List<ProductimgVO> imgList = new ArrayList<ProductimgVO>();
 		for(int i =0 ; i<productVOs.size();i++){
 			ProductimgVO result = productimgDAO.selectByProductId(productVOs.get(i).getId());
-			imgList.add(result.getImg());
+			imgList.add(result);
 		}
 		return imgList;
 		

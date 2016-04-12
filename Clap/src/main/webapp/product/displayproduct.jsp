@@ -101,7 +101,7 @@
 			<div class="col-md-10">
 			<table id="example" class="table">
 	        <thead>
-	            <tr>
+	           <tr>
 	                <th>Picture</th>
 	                <th>Id</th>
 	                <th>Name</th>
@@ -111,6 +111,7 @@
 	                <th>Discount</th>
 	                <th>Category</th>
 	            	<th></th>
+	            	
 	            </tr>
 	        </thead>
 	        <tbody>
@@ -127,8 +128,11 @@
 <!-- 		                <td><img src="../resource/images/visa.png" height="20px" width="20px"/></td>  -->
 <%-- 		                <td>${productVO}</td>  --%>
 
-		                <td>${productVO.id}</td>
-		                <td>${productVO.name}</td>
+		                <td><label>${productVO.id}</label></td>
+		                <td><div class="form-group">
+		                	<label>${productVO.name}</label>
+					    	<input type="text" class="form-control" name="productVO.id" value="${productVO.name}" style="display:none">
+ 							 </div></td>
 		                <td>${productVO.price}</td>
 		                <td>${productVO.description}</td>
 		                <td>${productVO.rating}</td>
@@ -248,6 +252,17 @@
 		    	$('.selected').removeAttr('class');
 		    }
 		}
+		$("td label").on("click",function(){
+			$(this).hide();
+			$(this).next().show().focus();
+		});
+		
+		$("td input").on("change",function(){
+			$(this).prev().html($(this).val());
+		}).on("blur",function(){
+			$(this).hide();
+			$(this).prev().show();
+		});
 	} );
 
 	</script>

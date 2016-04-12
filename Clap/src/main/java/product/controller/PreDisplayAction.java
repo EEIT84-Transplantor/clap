@@ -12,6 +12,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import freemarker.template.utility.Execute;
 import product.model.ProductService;
 import product.model.ProductVO;
+import product.model.ProductimgVO;
 
 public class PreDisplayAction extends ActionSupport {
 	private Integer pageNumber;
@@ -33,10 +34,16 @@ public class PreDisplayAction extends ActionSupport {
 			 productList = productService.getProductByTopAmount(pageNumber, 20, 10);
 
 		}
-		List<Byte[]> productImgs=new ArrayList<Byte[]>();
-		for(ProductVO vo:productList){
-			productImgs.add(productService.getProductImgById(vo.getId()));
-			System.out.println(productService.getProductImgById(vo.getId()));
+		List<ProductimgVO> imgVOList = productService.getProductImgByList(productList);
+		List<String> productImgs=new ArrayList<String>();
+		
+		System.out.println(imgVOList);
+
+		for(ProductimgVO imgVO:imgVOList){
+			productImgs.add(imgVO.getImg64());
+			System.out.println(imgVO.getImg64().length());
+			System.out.println(imgVO.getImg().length);
+
 		}
 		
 		System.out.println(productList);

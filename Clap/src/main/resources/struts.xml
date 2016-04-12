@@ -27,7 +27,7 @@
 			<interceptor-stack name="categoriesStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="creditCardInterceptor" />
-				<interceptor-ref name="categoriesStack" />
+<!-- 				<interceptor-ref name="categoriesStack" /> -->
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
