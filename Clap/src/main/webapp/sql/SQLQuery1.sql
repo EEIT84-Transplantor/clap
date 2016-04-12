@@ -1,6 +1,8 @@
 use clap 
-
 drop table cart 
+drop table orderdetail
+drop table orderform
+drop table doctor 
 drop table productimg 
 drop table inoutlog
 drop table inventory
@@ -112,15 +114,26 @@ insert into promocode(mb_email,pm_code) values('lee@gmail.com','333');
 select * from promocode
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table hospital(
-hp_id int primary key identity,
-hp_name nvarchar(50) not null,
-hp_address nvarchar(50) not null
+hospital_id int primary key identity,
+hospital_name nvarchar(50) not null,
+hospital_address nvarchar(50) not null
 )
 
 insert into hospital values('NTUH', '100 Renai Road');
 insert into hospital values('NCKUH', '100 Renai Road');
 insert into hospital values('超級醫院', '100 Renai Road');
 select * from hospital
+------------------------------------------------------------------------------------------------------------------------------------------------
+create table doctor(
+doctor_id int primary key identity,
+doctor_name nvarchar(50) not null
+)
+
+insert into doctor values('Dr. Wu');
+insert into doctor values('Dr. Ma');
+insert into doctor values('Dr. Ca');
+select * from doctor
+
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table message (
 message_Id int primary key identity,
@@ -146,7 +159,7 @@ select * from message
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table product (
-pd_Id	int,
+pd_Id int,
 product_name	varchar(60),
 product_price	float,
 product_description	nvarchar(1000),
@@ -207,7 +220,7 @@ select * from inoutlog
 create table cart (
 mb_email varchar(320) FOREIGN KEY REFERENCES Member(mb_email) ,
 pd_id int FOREIGN KEY REFERENCES product(pd_id) ,
-ct_quantity int not null
+ct_quantity int not null,
 PRIMARY KEY (mb_email, pd_id)
 )
 
@@ -216,4 +229,32 @@ insert into cart values('caca@gmail.com', 2,20);
 insert into cart values('lee@gmail.com', 1,10);
 select * from cart
 
+------------------------------------------------------------------------------------------------------------------------------------------------
+create table orderform(
+orderform_id int,
+mb_email varchar(320) FOREIGN KEY REFERENCES Member(mb_email),
+orderform_time date not null,
+orderform_total float not null,
+orderform_status tinyint not null,
+hospital_id int FOREIGN KEY REFERENCES hospital(hospital_id),
+PRIMARY KEY(orderform_id)
+)
 
+insert into orderform values(1,'caca@gmail.com','3000-12-11 20:45:11',10000,2,1);
+insert into orderform values(2,'caca@gmail.com','3000-10-13 20:41:11',500,4,2);
+insert into orderform values(3,'lee@gmail.com','3100-10-13 20:41:11',700,1,1);
+select * from orderform
+------------------------------------------------------------------------------------------------------------------------------------------------
+create table orderdetail(
+orderdetail_id int,
+orderform_id int FOREIGN KEY REFERENCES orderform(orderform_id),
+product_id int FOREIGN KEY REFERENCES product(pd_Id),
+cart_quantity int,
+orderdetail_time datetime,
+doctor_id int FOREIGN KEY REFERENCES doctor(doctor_id),
+PRIMARY KEY(orderdetail_id)
+)
+
+insert into orderdetail values(1,1,1,10,CURRENT_TIMESTAMP,1);
+insert into orderdetail values(2,2,2,20,CURRENT_TIMESTAMP,2);
+select * from orderdetail

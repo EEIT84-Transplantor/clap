@@ -16,6 +16,7 @@ import product.model.ProductVO;
 @Table(name ="cart")
 @IdClass(CartPK.class)
 public class CartVO implements Serializable {
+	
 	@Id
 	@Column(name="mb_email")
 	private String email;
@@ -24,7 +25,7 @@ public class CartVO implements Serializable {
 	private Integer product_id;
 	@Column(name="ct_quantity")
 	private Integer quantity;
-	
+
 	public CartVO() {
 	}
 

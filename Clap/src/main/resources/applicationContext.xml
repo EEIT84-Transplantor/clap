@@ -50,11 +50,11 @@
 	</bean>
 
 	<!-- payment model -->
-	<bean id="creditCardHibernateDAO" class="payment.model.CreditCardHibernateDAO">
+	<bean id="creditCardDAO" class="payment.model.CreditCardHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="creditCardService" class="payment.model.CreditCardService">
-		<property name="dao" ref="creditCardHibernateDAO" />
+		<property name="dao" ref="creditCardDAO" />
 	</bean>
 	<bean id="giftCardHibernateDAO" class="payment.model.GiftCardHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
@@ -164,5 +164,13 @@
 	</bean>
 	<bean id="removeProductAction" class="product.controller.RemoveProductAction">
 		<property name="productService" ref="productService" />
+	</bean>
+
+    <!-- hospital -->
+	<bean id="hospitalDAO" class="hospital.model.HospitalHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="hospitalService" class="hospital.model.HospitalService">
+		<property name="hospitalDAO" ref="hospitalDAO" />
 	</bean>
 </beans>

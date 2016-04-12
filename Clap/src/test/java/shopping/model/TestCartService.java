@@ -99,28 +99,28 @@ public class TestCartService extends TestCase{
 //	}
 
 	
-	@Test
-	public void testgetTotalAmount(){
-		transaction=session.beginTransaction();
-		Double actual = cartService.getTotalAmount(cartVO);
-		Double expected = 400.0;
-		assertEquals(expected, actual);
-		transaction.commit();
-	}
-	
-	@Test
-	public void testgetTotalAmount1(){
-		transaction=session.beginTransaction();
-		Double actual = cartService.getTotalAmount(cartVO.getEmail(), "333", 500.0);
-		Double expected = 350.0;
-		assertEquals(expected, actual);
-		transaction.commit();
-	}
+//	@Test
+//	public void testgetTotalAmount(){
+//		transaction=session.beginTransaction();
+//		Double actual = cartService.getTotalAmount(cartVO);
+//		Double expected = 400.0;
+//		assertEquals(expected, actual);
+//		transaction.commit();
+//	}
+//	
+//	@Test
+//	public void testgetTotalAmount1(){
+//		transaction=session.beginTransaction();
+//		Double actual = cartService.getTotalAmount(cartVO.getEmail(), "333", 500.0);
+//		Double expected = 350.0;
+//		assertEquals(expected, actual);
+//		transaction.commit();
+//	}
 	
 	@Test
 	public void testgetCartList(){
 		transaction=session.beginTransaction();
-		String actual = cartService.getCartList(cartVO).get(0);
+		String actual = cartService.getCartList("caca@gmail.com").get(0).get("name");
 		String expected = "product1";
 		assertEquals(expected, actual);
 		transaction.commit();

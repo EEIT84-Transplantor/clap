@@ -26,6 +26,7 @@
     
     <mapping class="shopping.model.CartVO"/>
     
+    <mapping class="hospital.model.HospitalVO"/>
     
 <!--    <mapping resource="hbm/cartvo.hbm.xml"/>-->
     <mapping resource="hbm/orderformvo.hbm.xml"/>
