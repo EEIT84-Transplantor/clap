@@ -231,30 +231,28 @@ select * from cart
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table orderform(
-orderform_id int,
+orderform_id int primary key identity,
 mb_email varchar(320) FOREIGN KEY REFERENCES Member(mb_email),
 orderform_time date not null,
 orderform_total float not null,
 orderform_status tinyint not null,
-hospital_id int FOREIGN KEY REFERENCES hospital(hospital_id),
-PRIMARY KEY(orderform_id)
+hospital_id int FOREIGN KEY REFERENCES hospital(hospital_id)
 )
 
-insert into orderform values(1,'caca@gmail.com','3000-12-11 20:45:11',10000,2,1);
-insert into orderform values(2,'caca@gmail.com','3000-10-13 20:41:11',500,4,2);
-insert into orderform values(3,'lee@gmail.com','3100-10-13 20:41:11',700,1,1);
+insert into orderform values('caca@gmail.com','3000-12-11 20:45:11',10000,2,1);
+insert into orderform values('caca@gmail.com','3000-10-13 20:41:11',500,4,2);
+insert into orderform values('lee@gmail.com','3100-10-13 20:41:11',700,1,1);
 select * from orderform
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table orderdetail(
-orderdetail_id int,
+orderdetail_id int primary key identity,
 orderform_id int FOREIGN KEY REFERENCES orderform(orderform_id),
 product_id int FOREIGN KEY REFERENCES product(pd_Id),
 cart_quantity int,
 orderdetail_time datetime,
-doctor_id int FOREIGN KEY REFERENCES doctor(doctor_id),
-PRIMARY KEY(orderdetail_id)
+doctor_id int FOREIGN KEY REFERENCES doctor(doctor_id)
 )
 
-insert into orderdetail values(1,1,1,10,CURRENT_TIMESTAMP,1);
-insert into orderdetail values(2,2,2,20,CURRENT_TIMESTAMP,2);
+insert into orderdetail values(1,1,10,CURRENT_TIMESTAMP,1);
+insert into orderdetail values(2,2,20,CURRENT_TIMESTAMP,2);
 select * from orderdetail

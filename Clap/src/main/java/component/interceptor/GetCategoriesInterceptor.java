@@ -23,7 +23,8 @@ public class GetCategoriesInterceptor extends AbstractInterceptor{
 
 	@Override
 	public String intercept(ActionInvocation arg0) throws Exception {
-		// TODO Auto-generated method stub
+		System.out.println("這裡阿~~~~~~~~~~~~~~~~~~~"+cartService.getCartList("caca@gmail.com").size());
+		
 		return null;
 	}
 

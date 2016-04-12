@@ -10,8 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
 <!-- Bootstrap -->
-<link href="${pageContext.request.contextPath}/resource/css/bootstrap.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resource/css/customer.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resource/css/bootstrap.min.css"/>" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resource/css/customer.css"/>" rel="stylesheet">
 <style>
 .pack{
 border-radius: 25px;
@@ -83,8 +83,8 @@ left: 0;
 	</footer>
 
 	<!-- 載入js -->
-	<script src="../resource/js/jquery-1.12.2.min.js"></script>
-	<script src="../resource/js/bootstrap.min.js"></script>
+	<script src="../resource/js/jquery-1.12.2.min.js"/>"></script>
+	<script src="../resource/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("button.btn-success").on("click", function() {

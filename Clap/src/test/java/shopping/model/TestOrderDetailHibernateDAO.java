@@ -72,7 +72,7 @@ public class TestOrderDetailHibernateDAO {
 		expected=true;
 		orderDetailVO.setId(id);
 		orderDetailVO.setPd_id(pd_id);
-		orderDetailVO.setCt_quantity(ct_quantity);
+		orderDetailVO.setCart_quantity(ct_quantity);
 		actual=orderDetailHibernateDAO.update(orderDetailVO);
 		
 		session.getTransaction().commit();

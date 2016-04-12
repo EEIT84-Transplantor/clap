@@ -1,3 +1,4 @@
+<%@page import="member.model.MemberVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
@@ -14,9 +15,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
 <!-- Bootstrap -->
-<link href="../resource/css/bootstrap.min.css" rel="stylesheet">
-<!-- <link href="../resource/css/customer.css" rel="stylesheet"> -->
-<!-- <link href="../resource/css/silderbanner.css" rel="stylesheet"> -->
+<link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
+<%-- <link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet"> --%>
+<%-- <link href="<c:url value="/resource/css/silderbanner.css"/>" rel="stylesheet"> --%>
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
@@ -42,6 +43,9 @@
 		cartList.add(name2);
 		cartList.add(name3);
 		pageContext.setAttribute("cartList", cartList);
+		MemberVO memberVO = new MemberVO();
+		memberVO.setAmount(3000.0);
+		pageContext.setAttribute("login", memberVO);
 	%>
 
 	<header><jsp:include page="/header.jsp" /></header>
@@ -82,6 +86,8 @@
 						</tbody>
 					</table>
 				</div>
+			</div>
+			<div class="row">
 				<div class="col-md-8"></div>
 				<div class="col-md-4">
 					<table class="table">
@@ -96,18 +102,18 @@
 							<td>10000</td>
 						</tr>
 						<tr>
-							<td>禮物卡</td>
-							<td></td>
-							<td>-1000</td>
-						</tr>
-						<tr>
 							<td>prome</td>
 							<td><select class="form-control">
 									<option>A</option>
 									<option>B</option>
 									<option>C</option>
 								</select></td>
-							<td>-2000</td>
+							<td>0.8</td>
+						</tr>
+						<tr>
+							<td>禮物卡</td>
+							<td></td>
+							<td>${login.amount}</td>
 						</tr>
 						<tr>
 							<td>總價</td>
@@ -116,6 +122,8 @@
 						</tr>
 					</table>
 				</div>
+			</div>
+			<div class="row">
 				<div class="col-md-10"></div>
 				<div class="col-md-2">
 					<input type="button" class="btn btn-default btn-block" value="結帳">
@@ -127,9 +135,9 @@
 	<footer><jsp:include page="/footer.jsp" /></footer>
 
 	<!-- 載入js -->
-	<script type="text/javascript" src="../resource/js/jquery-1.12.2.min.js"></script>
-	<script type="text/javascript" src="../resource/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../resource/js/json2.js"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/jquery-1.12.2.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
 	<script type="text/javascript">
 		var trs;
 
@@ -144,25 +152,20 @@
 
 				$("select:eq(" + i + ")").change(function(event) {
 					var total;
-					alert("change");
 					getTotal();
 				})
 			}
 		})
 
 		function getTotal() {
-			alert("getTotal");
 			trs = $("tbody:first tr").size();
-			alert(trs);
-			var total;
+			var total = 0;
 			for (var i = 0; i < trs; i++) {
-				alert("for");
-				var price = $("tr:eq("+2*i+1+")").text();
-// 				var quantity = 
-				alert(price);
-				total += price * quantity;
-				// 				alert(total);
+				var price = $("select:eq(" + i + ")").parent().next().text();
+				var quantity = $("select:eq(" + i + ")").val();
+				total = price * quantity + total;
 			}
+			$("table:eq(1) tr:eq(1) td:eq(2)").text(total);
 			return total;
 		}
 	</script>

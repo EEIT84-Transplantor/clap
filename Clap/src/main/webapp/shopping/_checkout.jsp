@@ -10,10 +10,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
 <!-- Bootstrap -->
-<link href="../resource/css/bootstrap.min.css" rel="stylesheet">
-<link href="../resource/css/silderbanner.css" rel="stylesheet">
-<link href="../resource/css/customer.css" rel="stylesheet">
-<link href="<c:url value="/resource/css/shopping.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/bootstrap.min.css"/>"" rel="stylesheet">
+<link href="<c:url value="/resource/css/silderbanner.css"/>"" rel="stylesheet">
+<link href="<c:url value="/resource/css/customer.css"/>"" rel="stylesheet">
+<link href="<c:url value="/resource/css/shopping.css"/>"" rel="stylesheet">
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
@@ -81,9 +81,9 @@
 	</div>
 	<footer><jsp:include page="/footer.jsp" /></footer>
 	<!-- 載入js -->
-	<script type="text/javascript" src="../resource/js/jquery-1.12.2.min.js"></script>
-	<script type="text/javascript" src="../resource/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../resource/js/json2.js"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/jquery-1.12.2.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
 
 </body>
 </html>

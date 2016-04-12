@@ -14,7 +14,6 @@
 		<interceptors>
 			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
 			<interceptor name="creditCardInterceptor" class="component.interceptor.CreditCardInterceptor" />
-			<interceptor name="getCategoriesInterceptor" class="component.interceptor.GetCategoriesInterceptor" />
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="defaultStack" />
@@ -22,12 +21,6 @@
 			<interceptor-stack name="creditCardStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="creditCardInterceptor" />
-				<interceptor-ref name="defaultStack" />
-			</interceptor-stack>
-			<interceptor-stack name="categoriesStack">
-				<interceptor-ref name="loginInterceptor" />
-				<interceptor-ref name="creditCardInterceptor" />
-<!-- 				<interceptor-ref name="categoriesStack" /> -->
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>

@@ -13,11 +13,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
 <!-- Bootstrap -->
-<link href="../resource/css/bootstrap.min.css" rel="stylesheet">
+<link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
       rel="stylesheet">
-<link href="../resource/css/customer.css" rel="stylesheet">
+<link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
 <style type="text/css">
 	input, select{
 		background-color:black;
@@ -170,11 +170,11 @@
 	</footer>
 
 	<!-- 載入js -->
-	<script src="${pageContext.request.contextPath}/resource/js/jquery-1.12.2.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resource/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resource/js/jquery-1.12.2.min.js"/>"></script>
+	<script src="${pageContext.request.contextPath}/resource/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"/>"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"/>"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"/>"></script>
 	
 	<script type="text/javascript">
 	
