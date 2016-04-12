@@ -1,13 +1,19 @@
 package shopping.model;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.junit.Before;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import junit.framework.TestCase;
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestCartHibernateDAO extends TestCase{
 	
 	private CartHibernateDAO cartHibernateDAO;
@@ -16,7 +22,7 @@ public class TestCartHibernateDAO extends TestCase{
 	private Session session;
 	private Transaction transaction;
 	
-	@Override
+	@Before
 	protected void setUp() throws Exception {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		cartHibernateDAO = (CartHibernateDAO) context.getBean("cartDAO");
@@ -25,86 +31,91 @@ public class TestCartHibernateDAO extends TestCase{
 		
 		cartVO=new CartVO();
 		cartVO.setEmail("lee@gmail.com");
-		cartVO.setId(1);
+		cartVO.setProduct_id(2);
 		cartVO.setQuantity(5);
 	}
+    @Test
+	public void testaSelectByEmail() {
+		transaction=session.beginTransaction();
+		int expected=2;
+		List<CartVO> ss = cartHibernateDAO.selectByEmail("caca@gmail.com");
+		int actual= ss.size();
+		int x = ss.get(0).getInventoryVO().getQuantity();
+		assertEquals(expected, actual);
+		assertEquals(10, x);
+		transaction.commit();
+	}
+    @Test
+	public void testbInsert() {
+		transaction=session.beginTransaction();
+		int temp = 7;
+		int actual = cartHibernateDAO.insert("lee@gmail.com",2,temp).getQuantity();
+		int expected = temp;
+		assertEquals(expected, actual);
+		
+		transaction.commit();
+	}
+    @Test
+	public void testcUpdate() {
+		transaction=session.beginTransaction();
+		boolean actual = cartHibernateDAO.update(cartVO);
+		boolean expected = true;
+		
+		assertEquals(expected, actual);
+		
 
-	@Override
-	protected void tearDown() throws Exception {
-		cartHibernateDAO=null;
+		transaction.commit();
 	}
-	
-	public void testSelectByEmail() {
-//		transaction=session.beginTransaction();
-//		int expected=2;
-//		int actual= cartHibernateDAO.selectByEmail("caca@gmail.com").size();
-//		
-//		assertEquals(expected, actual);
-//		transaction.commit();
+    @Test
+	public void testdDelete() {
+		transaction=session.beginTransaction();
+		boolean actual = cartHibernateDAO.delete("lee@gmail.com");
+		boolean expected = true;
+		assertEquals(expected, actual);
+		transaction.commit();
 	}
-	
-	public void testInsert() {
-//		transaction=session.beginTransaction();
-//		int temp = 7;
-//		int actual = cartHibernateDAO.insert("lee@gmail.com",2,temp).getQuantity();
-//		int expected = temp;
-//		assertEquals(expected, actual);
-//		transaction.commit();
+    @Test
+	public void testeInsert1() {
+		transaction=session.beginTransaction();
+		int temp = 3;
+		cartVO.setEmail("lee@gmail.com");
+		cartVO.setProduct_id(1);
+		cartVO.setQuantity(temp);
+		int actual = cartHibernateDAO.insert(cartVO).getQuantity();
+		int expected = temp;
+		assertEquals(expected, actual);
+		transaction.commit();
 	}
-	public void testInsert1() {
-//		transaction=session.beginTransaction();
-//		int temp = 3;
-//		cartVO.setEmail("lee@gmail.com");
-//		cartVO.setId(2);
-//		cartVO.setQuantity(temp);
-//		int actual = cartHibernateDAO.insert(cartVO).getQuantity();
-//		int expected = temp;
-//		assertEquals(expected, actual);
-//		transaction.commit();
+    @Test
+	public void testfUpdate1() {
+		transaction=session.beginTransaction();
+		cartVO.setEmail("caca@gmail.com");
+		cartVO.setProduct_id(1);
+		cartVO.setQuantity(5);
+		boolean actual = cartHibernateDAO.update(cartVO);
+		boolean expected = true;
+		assertEquals(expected, actual);
+		transaction.commit();
 	}
-	public void testUpdate() {
-//		transaction=session.beginTransaction();
-//		boolean actual = cartHibernateDAO.update(cartVO);
-//		boolean expected = true;
-//		assertEquals(expected, actual);
-//		transaction.commit();
-	}
-	public void testUpdate1() {
-//		transaction=session.beginTransaction();
-//		cartVO.setEmail("caca@gmail.com");
-//		cartVO.setId(2);
-//		cartVO.setQuantity(3);
-//		boolean actual = cartHibernateDAO.update(cartVO);
-//		boolean expected = true;
-//		assertEquals(expected, actual);
-//		transaction.commit();
-	}
-    public void testselectAll() {
-//    	transaction=session.beginTransaction();
-//		int actual = cartHibernateDAO.selectAll().size();
-//		int expected = 3;
-//		assertEquals(expected, actual);
-//		transaction.commit();
-	}
-	
-	public void testDelete() {
-//		transaction=session.beginTransaction();
-//		boolean actual = cartHibernateDAO.delete("lee@gmail.com");
-//		boolean expected = true;
-//		assertEquals(expected, actual);
-//		transaction.commit();
-	}
+
+    @Test
 	public void testDelete1() {
-//		cartVO=new CartVO();
-//		cartVO.setEmail("lee@gmail.com");
-//		cartVO.setId(1);
-//		transaction=session.beginTransaction();
-//		boolean actual = cartHibernateDAO.delete(cartVO.getEmail(),cartVO.getId());
-//		boolean expected = true;
-//		assertEquals(expected, actual);
-//		transaction.commit();
+		cartVO=new CartVO();
+		cartVO.setEmail("lee@gmail.com");
+		cartVO.setProduct_id(1);
+		transaction=session.beginTransaction();
+		boolean actual = cartHibernateDAO.delete(cartVO.getEmail(),cartVO.getProduct_id());
+		boolean expected = true;
+		assertEquals(expected, actual);
+		transaction.commit();
 	}
 	
-
-	
+    @Test
+    public void testgselectAll() {
+    	transaction=session.beginTransaction();
+		int actual = cartHibernateDAO.selectAll().size();
+		int expected = 3;
+		assertEquals(expected, actual);
+		transaction.commit();
+	}
 }

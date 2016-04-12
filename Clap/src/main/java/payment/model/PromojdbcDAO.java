@@ -261,4 +261,22 @@ public class PromojdbcDAO implements PromoDAO {
 		return result;
 	}
 
+	@Override
+	public List<PromoVO> selectUnexpired() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PromoVO> selectByStartDate(String startDate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PromoVO> selectByEndingDate(String endDate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

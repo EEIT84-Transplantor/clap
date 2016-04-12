@@ -98,11 +98,11 @@
 	</bean>
 
 	<!-- shopping model -->
-	<bean id="cartHibernateDAO" class="shopping.model.CartHibernateDAO">
+	<bean id="cartDAO" class="shopping.model.CartHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="cartService" class="shopping.model.CartService">
-		<property name="cartDAO" ref="cartHibernateDAO" />
+		<property name="cartDAO" ref="cartDAO" />
 	</bean>
 
 	<bean id="orderFormHibernateDAO" class="shopping.model.OrderFormHibernateDAO">

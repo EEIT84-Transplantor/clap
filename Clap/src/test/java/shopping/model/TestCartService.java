@@ -3,11 +3,15 @@ package shopping.model;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.junit.Before;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import junit.framework.TestCase;
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestCartService extends TestCase{
     
 	private CartService cartService;
@@ -16,7 +20,7 @@ public class TestCartService extends TestCase{
 	private Session session;
 	private Transaction transaction;
 	
-	@Override
+	@Before
 	protected void setUp() throws Exception {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		cartService = (CartService) context.getBean("cartService");
@@ -24,80 +28,81 @@ public class TestCartService extends TestCase{
 		session=sessionFactory.getCurrentSession();
 		
 		cartVO=new CartVO();
-		cartVO.setEmail("caca@gmail.com");
-		cartVO.setId(3);
+		cartVO.setEmail("lee@gmail.com");
+		cartVO.setProduct_id(2);
 		cartVO.setQuantity(4);
 	}
+	@Test
+	public void testagetCart(){
+		transaction=session.beginTransaction();
+		int actual = cartService.getCart("lee@gmail.com").size();
+		int expected = 1;
+		assertEquals(expected, actual);
+		transaction.commit();
+	}
+	@Test
+	public void testbsetCart(){
+		transaction=session.beginTransaction();
+		boolean actual = cartService.setCart(cartVO);
+		boolean expected = true;
+		assertEquals(expected, actual);
+		transaction.commit();
+	}
+	@Test
+	public void testcupdateCart1(){
+		transaction=session.beginTransaction();
+		boolean actual = cartService.updateCart("lee@gmail.com",1,9);
+		boolean expected = true;
+		assertEquals(expected, actual);
+		transaction.commit();
+	}
+	
+	@Test
+	public void testdcremoveCart(){
+		transaction=session.beginTransaction();
+		boolean actual = cartService.removeCart("lee@gmail.com",1);
+		boolean expected = true;
+		assertEquals(expected, actual);
+		transaction.commit();
+	}
+	
+	@Test
+	public void testesetCart1(){
+		transaction=session.beginTransaction();
+		boolean actual = cartService.setCart("poan@gmail.com",1,5);
+		boolean expected = true;
+		assertEquals(expected, actual);
+		transaction.commit();
+	}
 
-	@Override
-	protected void tearDown() throws Exception {
-		cartService = null;
+	@Test
+	public void testfupdateCart(){
+		transaction=session.beginTransaction();
+		cartVO=new CartVO();
+		cartVO.setEmail("lee@gmail.com");
+		cartVO.setProduct_id(1);
+		cartVO.setQuantity(4);
+		boolean actual = cartService.updateCart(cartVO);
+		boolean expected = true;
+		assertEquals(expected, actual);
+		transaction.commit();
 	}
 	
-	public void testgetCart(){
-//		transaction=session.beginTransaction();
-//		int actual = cartService.getCart("lee@gmail.com").size();
-//		int expected = 2;
-//		assertEquals(expected, actual);
-//		transaction.commit();
-	}
-	
-	public void testsetCart(){
-//		transaction=session.beginTransaction();
-//		boolean actual = cartService.setCart(cartVO);
-//		boolean expected = true;
-//		assertEquals(expected, actual);
-//		transaction.commit();
-	}
-	
-	public void testsetCart1(){
-//		transaction=session.beginTransaction();
-//		boolean actual = cartService.setCart("lee@gmail.com",3,5);
-//		boolean expected = true;
-//		assertEquals(expected, actual);
-//		transaction.commit();
+	@Test
+	public void testgremoveCart1(){
+		transaction=session.beginTransaction();
+		boolean actual = cartService.removeCart("lee@gmail.com");
+		boolean expected = true;
+		assertEquals(expected, actual);
+		transaction.commit();
 	}
 
-	public void testremoveCart(){
-//		transaction=session.beginTransaction();
-//		boolean actual = cartService.removeCart("lee@gmail.com",3);
-//		boolean expected = true;
-//		assertEquals(expected, actual);
-//		transaction.commit();
-	}
-
-	public void testremoveCart1(){
-//		transaction=session.beginTransaction();
-//		boolean actual = cartService.removeCart("lee@gmail.com");
-//		boolean expected = true;
-//		assertEquals(expected, actual);
-//		transaction.commit();
-	}
 	
-	public void testupdateCart(){
-//		transaction=session.beginTransaction();
-//		cartVO=new CartVO();
-//		cartVO.setEmail("lee@gmail.com");
-//		cartVO.setId(3);
-//		cartVO.setQuantity(4);
-//		boolean actual = cartService.updateCart(cartVO);
-//		boolean expected = true;
-//		assertEquals(expected, actual);
-//		transaction.commit();
-	}
-	
-	public void testupdateCart1(){
-//		transaction=session.beginTransaction();
-//		boolean actual = cartService.updateCart("lee@gmail.com",2,9);
-//		boolean expected = true;
-//		assertEquals(expected, actual);
-//		transaction.commit();
-	}
-	
+	@Test
 	public void getTotalAmount(){
 		//等產品好再測
 	}
-	
+	@Test
 	public void getTotalAmount1(){
 		//等產品好再測
 	}

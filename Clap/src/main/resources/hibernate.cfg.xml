@@ -24,7 +24,10 @@
     <mapping class="product.model.ProductVO"/>
     <mapping class="product.model.ProductimgVO"/>
     
-    <mapping resource="hbm/cartvo.hbm.xml"/>
+    <mapping class="shopping.model.CartVO"/>
+    
+    
+<!--    <mapping resource="hbm/cartvo.hbm.xml"/>-->
     <mapping resource="hbm/orderformvo.hbm.xml"/>
 <!--     <mapping resource="hbm/orderdetailvo.hbm.xml"/> -->
     
