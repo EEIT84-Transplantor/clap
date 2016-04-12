@@ -139,6 +139,15 @@
 		</action>
 
 	</package>
+	<package name="product" namespace="/product" extends="struts-default">
+
+		<!-- action -->
+		<action name="preDisplayAction" class="preDisplayActionStruts">
+			<result name="success">/product/displayproduct.jsp</result>
+		</action>
+
+
+	</package>
 
 </struts>
 

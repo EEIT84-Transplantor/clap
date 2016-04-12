@@ -147,5 +147,7 @@
 	<bean id="categoryDAO" class="product.model.CategoryHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-
+	<bean id="preDisplayActionStruts" class="product.controller.PreDisplayAction">
+		<property name="productService" ref="productService" />
+	</bean>
 </beans>
