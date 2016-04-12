@@ -50,7 +50,7 @@
 		<div class="row">
 			<div class="col-md-1">side-nav:sub-menu</div>
 			<div class="col-md-10">
-			<form id="insertform" action="${pageContext.request.contextPath}/product/SetProductAction.action" method="POST" >
+			<form id="insertform" action="${pageContext.request.contextPath}/product/setProductAction.action" method="POST" enctype="multipart/form-data">
 				<table  class="table">
 					 <thead>
 			            <tr>
@@ -69,17 +69,17 @@
 						<!-- ~需要一個servlet讀照片~ -->
 
 <%-- 					${pageContext.request.contextPath}/products/productImgServlet.action?id=[index.count-1] --%>
-		                <th><input type="file" value="" name="productVO.img"/></th>
+		                <th><input type="file" name="upload"/></th>
 		                <th><input type="text" name="productVO.id"/></th>
 		                <th><input type="text" name="productVO.name"/></th>
 		                <th><input type="text" name="productVO.price"/></th>
 		                <th><input type="text" name="productVO.description"/></th>
 		                <th><input type="text" name="productVO.discount"/></th>
-		                <th><select id="category">
+		                <th><select id="category" name="productVO.category_id">
 
-							  <option value="Lung">Lung</option>
-							  <option value="Liver" >Liver</option>
-							  <option value="Kidney">Kidney</option>
+							  <option value="1">Lung</option>
+							  <option value="2" >Liver</option>
+							  <option value="3">Kidney</option>
 							</select></th>
 				      	<th><input id="submitInsert" type="submit" value="add"/><input id="insertCancel" type="button" value="cancel"/></th>
 		            </tr>
