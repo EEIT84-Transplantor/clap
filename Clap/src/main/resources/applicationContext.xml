@@ -64,6 +64,8 @@
 	</bean>
 	<bean id="promoService" class="payment.model.PromoService">
 		<property name="dao" ref="promoHibernateDAO" />
+		<property name="categoryDAO" ref="categoryDAO" />
+		
 	</bean>
 	<bean id="promoCodeHibernateDAO" class="payment.model.PromoCodeHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
@@ -142,6 +144,8 @@
 		<property name="productimgDAO" ref="productimgDAO" />
 		<property name="inOutLogDAO" ref="inOutLogDAO" />
 	</bean>
-
+	<bean id="categoryDAO" class="product.model.CategoryHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 </beans>

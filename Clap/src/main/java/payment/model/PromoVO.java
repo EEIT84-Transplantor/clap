@@ -52,4 +52,10 @@ public class PromoVO implements Serializable {
 	public void setPm_discount(Double pm_discount) {
 		this.pm_discount = pm_discount;
 	}
+	@Override
+	public String toString() {
+		return "PromoVO [pm_code=" + pm_code + ", pd_category=" + pd_category + ", pm_expire=" + pm_expire
+				+ ", pm_tiltle=" + pm_tiltle + ", pm_discount=" + pm_discount + "]";
+	}
+	
 }

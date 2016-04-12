@@ -1,5 +1,6 @@
 package payment.model;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -15,7 +16,9 @@ public class PromoHibernateDAO implements PromoDAO{
 	final private String SELECT_ALL = "from PromoVO";
 	final private String SELECT_ALL_UNEXPIRED = "from PromoVO where pm_expire>?";
 	final private String SELECT_ALL_ENDING_DATE = "from PromoVO where pm_expire<?";
-	final private String SELECT_ALL_BETWEEN = "from PromoVO where pm_expire < ? and pm_expire >? ";
+	final private String SELECT_ALL_BETWEEN = "from PromoVO where ? < pm_expire and pm_expire < ? ";
+	final private String SELECT_ALL_BY_CATEGORY_ID = "from PromoVO where pd_category = ? ";
+	final private String SELECT_CATEGORY_NAMES = "from PromoVO where pd_category = ? ";
 
 	public PromoHibernateDAO() {
 		
@@ -41,31 +44,49 @@ public class PromoHibernateDAO implements PromoDAO{
 		session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(SELECT_ALL_UNEXPIRED);
 		Calendar currentDate = Calendar.getInstance(); //Get the current date
-		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss"); //format it as per your requirement
-		String dateNow = formatter.format(currentDate.getTime());
-		System.out.println(dateNow);
-		query.setParameter(0, dateNow);
+		query.setDate(0, new Date(currentDate.getTimeInMillis()));
 		List<PromoVO> result = query.list();
 		return result;
 	}
 	@Override
-	public List<PromoVO> selectByStartDate(String startDate) {
+	public List<PromoVO> selectByStartDate(Date startDate) {
 		session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(SELECT_ALL_UNEXPIRED);
 		System.out.println(startDate);
-		query.setParameter(0, startDate);
+		query.setDate(0, startDate);
 		List<PromoVO> result = query.list();
 		return result;
 	}
 	@Override
-	public List<PromoVO> selectByEndingDate (String endDate) {
+	public List<PromoVO> selectByEndingDate (Date endDate) {
 		session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(SELECT_ALL_ENDING_DATE);
 		System.out.println(endDate);
-		query.setParameter(0, endDate);
+		query.setDate(0, endDate);
 		List<PromoVO> result = query.list();
 		return result;
 	}
+	
+	@Override
+	public List<PromoVO> selectByBetweenDates (Date startDate, Date endDate) {
+		session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(SELECT_ALL_BETWEEN);
+		System.out.println(endDate);
+		query.setDate(0, startDate);
+		query.setDate(1, endDate);
+		List<PromoVO> result = query.list();
+		return result;
+	}
+	
+	@Override
+	public List<PromoVO> selectByCategory (Integer categoryId) {
+		session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(SELECT_ALL_BY_CATEGORY_ID);
+		query.setInteger(0, categoryId);
+		List<PromoVO> result = query.list();
+		return result;
+	}
+	
 	@Override
 	public PromoVO selectByCode(String pm_code) {
 		session = sessionFactory.getCurrentSession();

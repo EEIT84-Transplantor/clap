@@ -18,8 +18,8 @@ public class CategoryHibernateDAO implements CategoryDAO {
 	}
 
 	private Session session;
-	final private String SELECT_ALL = "from CategoryVO";
-	
+	final private String SELECT_ALL = "from * CategoryVO";
+
 	@Override
 	public List<CategoryVO> selectAll(){
 		session = sessionFactory.getCurrentSession();
@@ -31,6 +31,20 @@ public class CategoryHibernateDAO implements CategoryDAO {
 			e.printStackTrace();
 		}
 		return categoryVOs;
+	};
+	
+	@Override
+	public CategoryVO selectById(Integer categoryId){
+		session = sessionFactory.getCurrentSession();
+		CategoryVO categoryVO=null;
+		try {
+			categoryVO = session.get(CategoryVO.class,categoryId);
+			return categoryVO;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return categoryVO;
+		}
+		
 	};
 
 	@Override
