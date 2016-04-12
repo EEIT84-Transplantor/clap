@@ -14,9 +14,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
 <!-- Bootstrap -->
-<link href="../resource/css/bootstrap.min.css" rel="stylesheet">
-<!-- <link href="../resource/css/customer.css" rel="stylesheet"> -->
-<!-- <link href="../resource/css/silderbanner.css" rel="stylesheet"> -->
+<link href="<c:url value="/resource/css/bootstrap.min.css"/> rel="stylesheet">
+<!-- <link href="<c:url value="/resource/css/customer.css"/> rel="stylesheet"> -->
+<!-- <link href="<c:url value="/resource/css/silderbanner.css"/> rel="stylesheet"> -->
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
@@ -82,6 +82,8 @@
 						</tbody>
 					</table>
 				</div>
+			</div>
+			<div class="row">
 				<div class="col-md-8"></div>
 				<div class="col-md-4">
 					<table class="table">
@@ -116,6 +118,8 @@
 						</tr>
 					</table>
 				</div>
+			</div>
+			<div class="row">
 				<div class="col-md-10"></div>
 				<div class="col-md-2">
 					<input type="button" class="btn btn-default btn-block" value="結帳">
@@ -127,9 +131,9 @@
 	<footer><jsp:include page="/footer.jsp" /></footer>
 
 	<!-- 載入js -->
-	<script type="text/javascript" src="../resource/js/jquery-1.12.2.min.js"></script>
-	<script type="text/javascript" src="../resource/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../resource/js/json2.js"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/jquery-1.12.2.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
 	<script type="text/javascript">
 		var trs;
 
@@ -157,8 +161,8 @@
 			var total;
 			for (var i = 0; i < trs; i++) {
 				alert("for");
-				var price = $("tr:eq("+2*i+1+")").text();
-// 				var quantity = 
+				var price = $("tr:eq(" + 2 * i + 1 + ")").text();
+				// 				var quantity = 
 				alert(price);
 				total += price * quantity;
 				// 				alert(total);
