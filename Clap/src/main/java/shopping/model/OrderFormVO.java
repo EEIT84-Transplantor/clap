@@ -16,7 +16,7 @@ public class OrderFormVO {
     @Column(name="orderform_id")
 	private Integer id;
     @Column(name="mb_email")
-	private String member_email;
+	private String mb_email;
     @Column(name="orderform_time")
 	private Timestamp time;
     @Column(name="orderform_total")
@@ -31,11 +31,12 @@ public class OrderFormVO {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getMember_email() {
-		return member_email;
+	
+	public String getMb_email() {
+		return mb_email;
 	}
-	public void setMember_email(String member_email) {
-		this.member_email = member_email;
+	public void setMb_email(String mb_email) {
+		this.mb_email = mb_email;
 	}
 	public Timestamp getTime() {
 		return time;

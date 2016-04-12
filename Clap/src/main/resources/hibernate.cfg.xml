@@ -25,11 +25,14 @@
     <mapping class="product.model.ProductimgVO"/>
     
     <mapping class="shopping.model.CartVO"/>
-    
+     <mapping class="shopping.model.OrderFormVO"/>
+      <mapping class="shopping.model.OrderDetailVO"/>
     <mapping class="hospital.model.HospitalVO"/>
     <mapping class="hospital.model.DoctorVO"/>
+    
+    
 <!--    <mapping resource="hbm/cartvo.hbm.xml"/>-->
-    <mapping resource="hbm/orderformvo.hbm.xml"/>
+<!--     <mapping resource="hbm/orderformvo.hbm.xml"/> -->
 <!--     <mapping resource="hbm/orderdetailvo.hbm.xml"/> -->
     
     </session-factory>
