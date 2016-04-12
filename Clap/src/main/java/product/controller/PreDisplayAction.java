@@ -34,16 +34,20 @@ public class PreDisplayAction extends ActionSupport {
 			 productList = productService.getProductByTopAmount(pageNumber, 20, 10);
 
 		}
-		List<ProductimgVO> imgVOList = productService.getProductImgByList(productList);
-		List<String> productImgs=new ArrayList<String>();
 		
-		System.out.println(imgVOList);
+		List<String> productImgs = new ArrayList<String>();;
+		try {
+			List<ProductimgVO> imgVOList = productService.getProductImgByList(productList);
+			System.out.println(imgVOList);
 
-		for(ProductimgVO imgVO:imgVOList){
-			productImgs.add(imgVO.getImg64());
-			System.out.println(imgVO.getImg64().length());
-			System.out.println(imgVO.getImg().length);
+			for(ProductimgVO imgVO:imgVOList){
+				productImgs.add(imgVO.getImg64());
+				System.out.println(imgVO.getImg64().length());
+				System.out.println(imgVO.getImg().length);
 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		System.out.println(productList);

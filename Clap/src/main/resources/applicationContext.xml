@@ -156,4 +156,13 @@
 	<bean id="preDisplayActionStruts" class="product.controller.PreDisplayAction">
 		<property name="productService" ref="productService" />
 	</bean>
+	<bean id="updateProductAction" class="product.controller.UpdateProductAction">
+		<property name="productService" ref="productService" />
+	</bean>
+	<bean id="setProductAction" class="product.controller.SetProductAction">
+		<property name="productService" ref="productService" />
+	</bean>
+	<bean id="removeProductAction" class="product.controller.RemoveProductAction">
+		<property name="productService" ref="productService" />
+	</bean>
 </beans>

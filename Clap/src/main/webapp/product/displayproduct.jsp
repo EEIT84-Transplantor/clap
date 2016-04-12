@@ -1,17 +1,5 @@
-<%@page import="java.io.Console"%>
-<%@page import="product.model.ProductVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    <% System.out.println("h1");
-    java.util.List<product.model.ProductVO> productVOs = (java.util.List<product.model.ProductVO>)request.getAttribute("productVOs"); 
-    if(productVOs==null){
-   	 System.out.println(request.getContextPath()+"/product/preDisplayAction.action");
-
-    	response.sendRedirect(request.getContextPath()+"/product/preDisplayAction.action");
-    	 System.out.println("hhi"+productVOs);
-    }
-    System.out.println(productVOs);
-    %>
 
 <!DOCTYPE html>
 <html>
@@ -46,6 +34,7 @@
     <header>
 	 <jsp:include page="/header.jsp" />
 	</header>
+<c:set var="productVOs" value="{2000,3000,20300}"/>
 	<section id="wrap">
 		<div class="container-fulid">
 		<div class="row">
@@ -75,7 +64,7 @@
 			        <tbody>
 	              	<tr>
 						<!-- ~需要一個servlet讀照片~ -->
-<%-- 					${pageContext.request.contextPath}/products/productImgServlet.action?id=[index.count-1] --%>
+		<%-- 			${pageContext.request.contextPath}/products/productImgServlet.action?id=[index.count-1] --%>
 		                <td><input type="file" value="" name="productVO.img"/></td>
 		                <td><input type="text" name="productVO.id"/></td>
 		                <td><input type="text" name="productVO.name"/></td>
@@ -101,17 +90,16 @@
 			<div class="col-md-10">
 			<table id="example" class="table">
 	        <thead>
-	           <tr>
+	            <tr>
 	                <th>Picture</th>
 	                <th>Id</th>
-	                <th>Name</th>
-	                <th>Price</th>
-	                <th>Description</th>
-	                <th>Rating</th>
-	                <th>Discount</th>
-	                <th>Category</th>
+<!-- 	                <th>Name</th> -->
+<!-- 	                <th>Price</th> -->
+<!-- 	                <th>Description</th> -->
+<!-- 	                <th>Rating</th> -->
+<!-- 	                <th>Discount</th> -->
+<!-- 	                <th>Category</th> -->
 	            	<th></th>
-	            	
 	            </tr>
 	        </thead>
 	        <tbody>
@@ -124,20 +112,16 @@
 		          
 						<!-- ~需要一個servlet讀照片~ -->
 		<%-- 			${pageContext.request.contextPath}/products/productImgServlet.action?id=[index.count-1] --%>
-		                <td><img src="data:image/png;base64,${productImgs[index.count-1]}"/></td>
-<!-- 		                <td><img src="../resource/images/visa.png" height="20px" width="20px"/></td>  -->
-<%-- 		                <td>${productVO}</td>  --%>
-
-		                <td><label>${productVO.id}</label></td>
-		                <td><div class="form-group">
-		                	<label>${productVO.name}</label>
-					    	<input type="text" class="form-control" name="productVO.id" value="${productVO.name}" style="display:none">
- 							 </div></td>
-		                <td>${productVO.price}</td>
-		                <td>${productVO.description}</td>
-		                <td>${productVO.rating}</td>
-		                <td>${productVO.discount}</td>
-		                <td>${productVO.categoryVO.name}</td>
+<%-- 		                <td><img src="data:image/png;base64,${ProductimgVOs[index-1}"/></td> --%>
+		                <td><img src="../resource/images/visa.png" height="20px" width="20px"/></td> 
+		                <td>${productVO}</td> 
+<%-- 		                <td>${productVO.id}</td> --%>
+<%-- 		                <td>${productVO.name}</td> --%>
+<%-- 		                <td>${productVO.price}</td> --%>
+<%-- 		                <td>${productVO.description}</td> --%>
+<%-- 		                <td>${productVO.rating}</td> --%>
+<%-- 		                <td>${productVO.discount}</td> --%>
+<%-- 		                <td>${productVO.category}</td> --%>
 		            	<td><img class="delete" src="../resource/images/delete.png" height="20px" width="20px"/>
 		            	<input id="submitInsert1" type="submit" value="add"/>
 		            	<input id="insertCancel" type="button" value="cancel"/></td>
@@ -252,17 +236,6 @@
 		    	$('.selected').removeAttr('class');
 		    }
 		}
-		$("td label").on("click",function(){
-			$(this).hide();
-			$(this).next().show().focus();
-		});
-		
-		$("td input").on("change",function(){
-			$(this).prev().html($(this).val());
-		}).on("blur",function(){
-			$(this).hide();
-			$(this).prev().show();
-		});
 	} );
 
 	</script>

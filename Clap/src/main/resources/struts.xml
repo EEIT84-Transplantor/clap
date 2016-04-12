@@ -158,7 +158,21 @@
 		<action name="preDisplayAction" class="preDisplayActionStruts">
 			<result name="success">/product/displayproduct.jsp</result>
 		</action>
-
+		<action name="updateProductAction" class="updateProductAction">
+			<result type="stream">
+      		  <param name="contentType">text/html</param>
+      		  <param name="inputName">inputStream</param>
+  		  </result>
+		</action>
+		<action name="setProductAction" class="setProductAction">
+			<result name="success">/product/displayproduct.jsp</result>
+		</action>
+		<action name="removeProductAction" class="removeProductAction">
+			<result type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
 
 	</package>
 
