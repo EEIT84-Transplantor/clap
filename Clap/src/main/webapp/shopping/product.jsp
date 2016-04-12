@@ -10,9 +10,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
 <!-- Bootstrap -->
-<link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
-<link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
-<link href="<c:url value="/resource/css/bootstrap-slider.css"/>" rel="stylesheet">
+<link href="<c:url value='/resource/css/bootstrap.min.css'/>" rel="stylesheet">
+<link href="<c:url value='/resource/css/customer.css'/>" rel="stylesheet">
+<link href="<c:url value='/resource/css/bootstrap-slider.css'/>" rel="stylesheet">
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
@@ -21,8 +21,8 @@
 	<section id="wrap">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3"><jsp:include page="/sidenav.jsp" /></div>
-				<div class="col-md-9">
+				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
+				<div class="col-md-10">
 					<div class="row">
 						<div class="col-md-8">
 							<h2>PRODUCT</h2>
