@@ -114,11 +114,12 @@
 <!--             </tr> -->
         	<c:forEach var="productVO"  varStatus="index" items="${productVOs}">
 	              	<tr>
-						<!-- ~需要一個servlet讀照片~ -->
-		<%-- 			${pageContext.request.contextPath}/products/productImgServlet.action?id=[index.count-1] --%>
-		                <td><img src="data:image/png;base64,${productImgs[index.count-1]}"/></td>
-<!-- 		                <td><img src="../resource/images/visa.png" height="20px" width="20px"/></td>  -->
-<%-- 		                <td>${productVO}</td>  --%>
+		                <td>
+		                <input type="image" src="data:image/png;base64,${productImgs[index.count-1]}"/>
+		                <input type="file" id="Uploadimage" name="productImg" style="display:none">
+		                
+		                </td>
+
 
 		                <td>${productVO.id}</td>
 		                <td>
@@ -252,6 +253,14 @@
 		    	$('.selected').removeAttr('class');
 		    }
 		}
+// 		$("#Uploadimage").on("click",function(){
+// 			$(this).hide();
+// 			$(this).next().show().focus();
+
+// 		});
+		$("input[type='image']").change(function(){
+			 $("input[id='Uploadimage']").click();
+		});
 		$("td>label").on("click",function(){
 			$(this).hide();
 			$(this).next().show().focus();
