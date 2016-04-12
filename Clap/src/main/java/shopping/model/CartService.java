@@ -1,13 +1,40 @@
 package shopping.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import inventory.model.InventoryService;
 import payment.model.PromoCodeService;
 import payment.model.PromoVO;
+import product.model.ProductService;
+import product.model.ProductVO;
 
 public class CartService {
 	private CartDAO cartDAO;
+	private ProductService productService;
+	private InventoryService inventoryService;
+	private PromoCodeService promoCodeService;
 	
+	public PromoCodeService getPromoCodeService() {
+		return promoCodeService;
+	}
+	public void setPromoCodeService(PromoCodeService promoCodeService) {
+		this.promoCodeService = promoCodeService;
+	}
+	public InventoryService getInventoryService() {
+		return inventoryService;
+	}
+	public void setInventoryService(InventoryService inventoryService) {
+		this.inventoryService = inventoryService;
+	}
+	public ProductService getProductService() {
+		return productService;
+	}
+	public void setProductService(ProductService productService) {
+		this.productService = productService;
+	}
 	public CartService() {
 	}
 	public CartDAO getCartDAO() {
@@ -103,7 +130,7 @@ public class CartService {
 		}
 	
 		//使用優惠券
-		PromoCodeService promoCodeService = new PromoCodeService();
+		
 		PromoVO promoVO = promoCodeService.getPromo(email, promocode);
 		Double discount = promoVO.getPm_discount();
 		
@@ -119,9 +146,25 @@ public class CartService {
 			return result;
 		}
 //		取得單品總價
-//		ProuctService pService = new pService();
-//		ProuctVO prouctVO = pService.getProductById(cartVO.getId());
-//		result = prouctVO.getPrice()*cartVO.getQuantity();
+		ProductVO prouctVO = productService.getProductById(cartVO.getProduct_id());
+		result = prouctVO.getPrice()*cartVO.getQuantity();
+		return result;
+	};
+	public List<Map<String,String>> getCartList(String email){
+		
+		List<Map<String,String>> result = new ArrayList<>(); 
+		List<CartVO> cartVOs = getCart(email);
+		ProductVO productVO = null;
+		
+		for(CartVO cartVO:cartVOs){
+			productVO = productService.getProductById(cartVO.getProduct_id());
+			Map<String,String> temp = new HashMap<>(); 
+			temp.put("name", productVO.getName());
+			temp.put("price", productVO.getPrice().toString());
+			temp.put("quantity", String.valueOf(cartVO.getQuantity()));
+			temp.put("stock", String.valueOf(inventoryService.getQuantity(cartVO.getProduct_id())));
+			result.add(temp);
+		}
 		
 		return result;
 	};

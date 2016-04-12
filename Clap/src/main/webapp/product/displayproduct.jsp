@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<% java.util.List<product.model.ProductVO> productVOs = (java.util.List<product.model.ProductVO>)request.getAttribute("productVOs"); 
+    if(productVOs==null){
+    	response.sendRedirect(request.getContextPath()+"/product/preDisplayAction.action");
+    }
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +38,6 @@
     <header>
 	 <jsp:include page="/header.jsp" />
 	</header>
-<c:set var="productVOs" value="{2000,3000,20300}"/>
 	<section id="wrap">
 		<div class="container-fulid">
 		<div class="row">
@@ -64,19 +67,21 @@
 			        <tbody>
 	              	<tr>
 						<!-- ~需要一個servlet讀照片~ -->
-		<%-- 			${pageContext.request.contextPath}/products/productImgServlet.action?id=[index.count-1] --%>
-		                <td><input type="file" value="" name="productVO.img"/></td>
-		                <td><input type="text" name="productVO.id"/></td>
-		                <td><input type="text" name="productVO.name"/></td>
-		                <td><input type="text" name="productVO.price"/></td>
-		                <td><input type="text" name="productVO.description"/></td>
-		                <td><input type="text" name="productVO.discount"/></td>
-		                <td><select id="category">
+
+<%-- 					${pageContext.request.contextPath}/products/productImgServlet.action?id=[index.count-1] --%>
+		                <th><input type="file" value="" name="productVO.img"/></th>
+		                <th><input type="text" name="productVO.id"/></th>
+		                <th><input type="text" name="productVO.name"/></th>
+		                <th><input type="text" name="productVO.price"/></th>
+		                <th><input type="text" name="productVO.description"/></th>
+		                <th><input type="text" name="productVO.discount"/></th>
+		                <th><select id="category">
+
 							  <option value="Lung">Lung</option>
 							  <option value="Liver" >Liver</option>
 							  <option value="Kidney">Kidney</option>
-							</select></td>
-				      	<td><input id="submitInsert" type="submit" value="add"/><input id="insertCancel" type="button" value="cancel"/></td>
+							</select></th>
+				      	<th><input id="submitInsert" type="submit" value="add"/><input id="insertCancel" type="button" value="cancel"/></th>
 		            </tr>
 	       			 </tbody>
 				</table>   
@@ -93,12 +98,12 @@
 	            <tr>
 	                <th>Picture</th>
 	                <th>Id</th>
-<!-- 	                <th>Name</th> -->
-<!-- 	                <th>Price</th> -->
-<!-- 	                <th>Description</th> -->
-<!-- 	                <th>Rating</th> -->
-<!-- 	                <th>Discount</th> -->
-<!-- 	                <th>Category</th> -->
+	                <th>Name</th>
+	                <th>Price</th>
+	                <th>Description</th>
+	                <th>Rating</th>
+	                <th>Discount</th>
+	                <th>Category</th>
 	            	<th></th>
 	            </tr>
 	        </thead>
@@ -109,26 +114,37 @@
 <!--             </tr> -->
         	<c:forEach var="productVO"  varStatus="index" items="${productVOs}">
 	              	<tr>
-		          
 						<!-- ~需要一個servlet讀照片~ -->
 		<%-- 			${pageContext.request.contextPath}/products/productImgServlet.action?id=[index.count-1] --%>
-<%-- 		                <td><img src="data:image/png;base64,${ProductimgVOs[index-1}"/></td> --%>
-		                <td><img src="../resource/images/visa.png" height="20px" width="20px"/></td> 
-		                <td>${productVO}</td> 
-<%-- 		                <td>${productVO.id}</td> --%>
-<%-- 		                <td>${productVO.name}</td> --%>
-<%-- 		                <td>${productVO.price}</td> --%>
-<%-- 		                <td>${productVO.description}</td> --%>
-<%-- 		                <td>${productVO.rating}</td> --%>
-<%-- 		                <td>${productVO.discount}</td> --%>
-<%-- 		                <td>${productVO.category}</td> --%>
+		                <td><img src="data:image/png;base64,${productImgs[index.count-1]}"/></td>
+<!-- 		                <td><img src="../resource/images/visa.png" height="20px" width="20px"/></td>  -->
+<%-- 		                <td>${productVO}</td>  --%>
+
+		                <td>${productVO.id}</td>
+		                <td>
+		              		<label>${productVO.name}</label>
+					    	<input type="text" class="form-control" name="productVO.name" value="${productVO.name}" style="display:none">
+ 							</td>
+		                <td><label>${productVO.price}</label>
+					    	<input type="number" class="form-control" name="productVO.price" value="${productVO.price}" style="display:none">
+		                </td>
+		                <td><label>${productVO.description}</label>
+					    	<input type="text" class="form-control" name="productVO.description" value="${productVO.description}" style="display:none">
+		                </td>
+		                <td>${productVO.rating}
+					    </td>
+		                <td><label>${productVO.discount}</label>
+					    	<input type="number" class="form-control" name="productVO.discount" value="${productVO.discount}" style="display:none">
+					    	</td>
+		                <td><label>${productVO.categoryVO.name}</label>
+					    	<input type="text" class="form-control" name="productVO.categoryVO.name" value="${productVO.categoryVO.name}" style="display:none">
+					    </td>
 		            	<td><img class="delete" src="../resource/images/delete.png" height="20px" width="20px"/>
-		            	<input id="submitInsert1" type="submit" value="add"/>
+		            	<input id="submitInsert1" type="button" value="update"/>
 		            	<input id="insertCancel" type="button" value="cancel"/></td>
 		       		 
 		            </tr>
-	              	
-	            
+
 	       		</c:forEach>
 	        </tbody>
 	    </table>
@@ -168,9 +184,9 @@
 		$('tbody tr td').click(function(){
 			var data = table.cell(this).data();
 			console.log(data);
-			if(!$(this).is(':last-child')){
-				$(this).attr("contenteditable",'true');
-			}
+// 			if(!$(this).is(':last-child')){
+// 				$(this).attr("contenteditable",'true');
+// 			}
 			
 		});
 		$('tbody tr td').blur(function(){
@@ -236,6 +252,17 @@
 		    	$('.selected').removeAttr('class');
 		    }
 		}
+		$("td>label").on("click",function(){
+			$(this).hide();
+			$(this).next().show().focus();
+		});
+		
+		$("td>input").on("change",function(){
+			$(this).prev().html($(this).val());
+		}).on("blur",function(){
+			$(this).hide();
+			$(this).prev().show();
+		});
 	} );
 
 	</script>

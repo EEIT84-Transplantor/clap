@@ -1,5 +1,7 @@
 package shopping.model;
 
+import java.util.Arrays;
+
 public class ReturnVO {
 
 	private Byte[] product_img;
@@ -7,7 +9,7 @@ public class ReturnVO {
 	private String product_name;
 	private java.sql.Date shipping_date;
 	private Integer orderDetail_quantity;
-	private String orderform_id;
+	private Integer orderform_id;
 	
 	public Integer getProduct_id() {
 		return product_id;
@@ -39,11 +41,17 @@ public class ReturnVO {
 	public void setOrderDetail_quantity(Integer orderDetail_quantity) {
 		this.orderDetail_quantity = orderDetail_quantity;
 	}
-	public String getOrderform_id() {
+	public Integer getOrderform_id() {
 		return orderform_id;
 	}
-	public void setOrderform_id(String orderform_id) {
+	public void setOrderform_id(Integer orderform_id) {
 		this.orderform_id = orderform_id;
+	}
+	@Override
+	public String toString() {
+		return "ReturnVO [product_img=" + Arrays.toString(product_img) + ", product_id=" + product_id
+				+ ", product_name=" + product_name + ", shipping_date=" + shipping_date + ", orderDetail_quantity="
+				+ orderDetail_quantity + ", orderform_id=" + orderform_id + "]";
 	}
 
 	

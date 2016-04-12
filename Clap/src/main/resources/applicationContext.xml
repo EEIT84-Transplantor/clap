@@ -10,6 +10,9 @@
 		<property name="promoCodeService" ref="promoCodeService" />
 		<property name="memberService" ref="memberService" />
 	</bean>
+	<bean id="getCategoriesInterceptor" class="component.interceptor.GetCategoriesInterceptor">
+	   <property name="cartService" ref="cartService"/>
+	</bean>
 
 	<!-- datasource -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -105,6 +108,9 @@
 	</bean>
 	<bean id="cartService" class="shopping.model.CartService">
 		<property name="cartDAO" ref="cartDAO" />
+		<property name="productService" ref="productService" />
+		<property name="inventoryService" ref="inventoryService" />
+		<property name="promoCodeService" ref="promoCodeService" />
 	</bean>
 
 	<bean id="orderFormHibernateDAO" class="shopping.model.OrderFormHibernateDAO">
@@ -147,5 +153,24 @@
 	<bean id="categoryDAO" class="product.model.CategoryHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="preDisplayActionStruts" class="product.controller.PreDisplayAction">
+		<property name="productService" ref="productService" />
+	</bean>
+	<bean id="updateProductAction" class="product.controller.UpdateProductAction">
+		<property name="productService" ref="productService" />
+	</bean>
+	<bean id="setProductAction" class="product.controller.SetProductAction">
+		<property name="productService" ref="productService" />
+	</bean>
+	<bean id="removeProductAction" class="product.controller.RemoveProductAction">
+		<property name="productService" ref="productService" />
+	</bean>
 
+    <!-- hospital -->
+	<bean id="hospitalDAO" class="hospital.model.HospitalHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="hospitalService" class="hospital.model.HospitalService">
+		<property name="hospitalDAO" ref="hospitalDAO" />
+	</bean>
 </beans>

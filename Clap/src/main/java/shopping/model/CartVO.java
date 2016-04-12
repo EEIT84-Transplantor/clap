@@ -25,6 +25,10 @@ public class CartVO implements Serializable {
 	private Integer product_id;
 	@Column(name="ct_quantity")
 	private Integer quantity;
+<<<<<<< HEAD
+=======
+	
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 	public CartVO() {
 	}
 

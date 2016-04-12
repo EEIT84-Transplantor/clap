@@ -14,6 +14,7 @@
 		<interceptors>
 			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
 			<interceptor name="creditCardInterceptor" class="component.interceptor.CreditCardInterceptor" />
+			<interceptor name="getCategoriesInterceptor" class="component.interceptor.GetCategoriesInterceptor" />
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="defaultStack" />
@@ -21,6 +22,12 @@
 			<interceptor-stack name="creditCardStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="creditCardInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+			<interceptor-stack name="categoriesStack">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="creditCardInterceptor" />
+<!-- 				<interceptor-ref name="categoriesStack" /> -->
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
@@ -122,6 +129,14 @@
 		</action>
 
 	</package>
+	
+	<!-- shopping -->
+	<package name="shopping" namespace="/shopping" extends="struts-default">
+		<action name="returnAction" class="shopping.controller.ReturnAction">
+			<result name="success">/shopping/return.jsp</result>
+		</action>
+	</package>
+	
 	<package name="test" namespace="/test" extends="struts-default">
 
 		<!-- action -->
@@ -136,6 +151,31 @@
 		</action>
 
 	</package>
+
+	<package name="product" namespace="/product" extends="struts-default">
+
+		<!-- action -->
+		<action name="preDisplayAction" class="preDisplayActionStruts">
+			<result name="success">/product/displayproduct.jsp</result>
+		</action>
+		<action name="updateProductAction" class="updateProductAction">
+			<result type="stream">
+      		  <param name="contentType">text/html</param>
+      		  <param name="inputName">inputStream</param>
+  		  </result>
+		</action>
+		<action name="setProductAction" class="setProductAction">
+			<result name="success">/product/displayproduct.jsp</result>
+		</action>
+		<action name="removeProductAction" class="removeProductAction">
+			<result type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+	</package>
+
 
 </struts>
 

@@ -40,9 +40,8 @@ public class TestCartHibernateDAO extends TestCase{
 		int expected=2;
 		List<CartVO> ss = cartHibernateDAO.selectByEmail("caca@gmail.com");
 		int actual= ss.size();
-		int x = ss.get(0).getInventoryVO().getQuantity();
+		
 		assertEquals(expected, actual);
-		assertEquals(10, x);
 		transaction.commit();
 	}
     @Test
