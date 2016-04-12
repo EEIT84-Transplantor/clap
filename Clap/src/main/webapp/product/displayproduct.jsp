@@ -50,7 +50,7 @@
 		<div class="row">
 			<div class="col-md-1">side-nav:sub-menu</div>
 			<div class="col-md-10">
-			<form id="insertform" action="${pageContext.request.contextPath}/product/SetProductAction.action" method="POST" >
+			<form id="insertform" action="${pageContext.request.contextPath}/product/setProductAction.action" method="POST" >
 				<table  class="table">
 					 <thead>
 			            <tr>
@@ -209,7 +209,7 @@
 				console.log(data[1]);
 				var dataSend="productVO.id="+data[1]+"productVO.name="+data[2]+"productVO.price="+data[3]+"productVO.description="+data[4]
 				+"productVO.rating="+data[5]+"productVO.discount="+data[6]+"productVO.category="+data[7];
-				sendPostRequestProduct("${pageContext.request.contextPath}/product/UpdateProductAction.action?", dataSend);
+				sendPostRequestProduct("${pageContext.request.contextPath}/product/updateProductAction.action?", dataSend);
 			}
 	    });
 		
@@ -217,7 +217,7 @@
 			if (confirm("Do you want to delete this product?") == true) {
 				var id = table.row($(this).parent().parent().children(':first')).data()[1];
 				console.log(id);
-				sendPostRequestProduct("${pageContext.request.contextPath}/product/RemoveProductAction.action?", "productId="+id );
+				sendPostRequestProduct("${pageContext.request.contextPath}/product/removeProductAction.action?", "productId="+id );
 				$(this).parent().parent().addClass('selected');
 				alert("clicked");
 			}
