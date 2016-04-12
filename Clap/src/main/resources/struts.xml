@@ -70,13 +70,11 @@
 		<interceptors>
 			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
 			<interceptor name="paymentManageInterceptor" class="component.interceptor.PaymentManageInterceptor" />
-
 			<interceptor-stack name="paymentManageStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="paymentManageInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
-
 		</interceptors>
 
 		<!-- global-results -->
@@ -131,7 +129,6 @@
 		</action>
 
 	</package>
-
 	<package name="test" namespace="/test" extends="struts-default">
 
 		<!-- action -->
