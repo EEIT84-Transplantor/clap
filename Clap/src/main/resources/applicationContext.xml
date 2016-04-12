@@ -153,5 +153,15 @@
 	<bean id="categoryDAO" class="product.model.CategoryHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	
+	<!-- hospital -->
+	<bean id="hospitalDAO" class="hospital.model.HospitalHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="hospitalService" class="hospital.model.HospitalService">
+		<property name="hospitalDAO" ref="hospitalDAO" />
+	</bean>
+
 
 </beans>

@@ -1,7 +1,9 @@
 package shopping.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import inventory.model.InventoryService;
 import payment.model.PromoCodeService;
@@ -148,15 +150,22 @@ public class CartService {
 		result = prouctVO.getPrice()*cartVO.getQuantity();
 		return result;
 	};
-	public List<String> getCartList(CartVO cartVO){
-		List<String> result = new ArrayList<String>();
-		ProductVO productVO = productService.getProductById(cartVO.getProduct_id());
-		String p_name = productVO.getName();
-		String p_price = String.valueOf(productVO.getPrice());
-		String p_quantity = String.valueOf(inventoryService.getQuantity(cartVO.getProduct_id()));
-		result.add(p_name);
-		result.add(p_price);
-		result.add(p_quantity);
+	public List<Map<String,String>> getCartList(String email){
+		
+		List<Map<String,String>> result = new ArrayList<>(); 
+		List<CartVO> cartVOs = getCart(email);
+		ProductVO productVO = null;
+		
+		for(CartVO cartVO:cartVOs){
+			productVO = productService.getProductById(cartVO.getProduct_id());
+			Map<String,String> temp = new HashMap<>(); 
+			temp.put("name", productVO.getName());
+			temp.put("price", productVO.getPrice().toString());
+			temp.put("quantity", String.valueOf(cartVO.getQuantity()));
+			temp.put("stock", String.valueOf(inventoryService.getQuantity(cartVO.getProduct_id())));
+			result.add(temp);
+		}
+		
 		return result;
 	};
 }
