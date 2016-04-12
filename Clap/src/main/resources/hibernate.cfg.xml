@@ -17,6 +17,7 @@
     <mapping class="payment.model.PromoCodeVO"/>
     <mapping class="payment.model.CreditCardVO"/>
     <mapping class="shopping.model.OrderDetailVO"/>
+    <mapping class="shopping.model.OrderFormVO"/>
     
     <mapping class="inventory.model.InOutLogVO"/>
     <mapping class="inventory.model.InventoryVO"/>
