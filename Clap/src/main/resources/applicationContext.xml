@@ -173,4 +173,10 @@
 	<bean id="hospitalService" class="hospital.model.HospitalService">
 		<property name="hospitalDAO" ref="hospitalDAO" />
 	</bean>
+	<bean id="doctorDAO" class="hospital.model.DoctorHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="doctorService" class="hospital.model.DoctorService">
+		<property name="doctorDAO" ref="doctorDAO" />
+	</bean>
 </beans>
