@@ -91,14 +91,14 @@ create table promo(
 pm_code varchar(50) PRIMARY KEY,
 pd_category int NOT NULL FOREIGN KEY REFERENCES category(category_id),
 pm_expire date NOT NULL,
-pm_tiltle varchar(50) NOT NULL,
+pm_title varchar(50) NOT NULL,
 pm_discount float NOT NULL
 )
 
 
-insert into promo(pm_code,pd_category,pm_expire,pm_tiltle,pm_discount) values('111',1,'2016-5-20','50% OFF',0.5);
-insert into promo(pm_code,pd_category,pm_expire,pm_tiltle,pm_discount) values('222',2,'2016-5-20','40% OFF',0.6);
-insert into promo(pm_code,pd_category,pm_expire,pm_tiltle,pm_discount) values('333',3,'2016-5-20','30% OFF',0.7);
+insert into promo(pm_code,pd_category,pm_expire,pm_title,pm_discount) values('111',1,'2016-5-20','50% OFF',0.5);
+insert into promo(pm_code,pd_category,pm_expire,pm_title,pm_discount) values('222',2,'2016-5-20','40% OFF',0.6);
+insert into promo(pm_code,pd_category,pm_expire,pm_title,pm_discount) values('333',3,'2016-5-20','30% OFF',0.7);
 select * from promo
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table promocode(

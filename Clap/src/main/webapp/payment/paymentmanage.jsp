@@ -108,7 +108,7 @@
 										<td>${promo.pm_code}</td>
 										    <td>${promo.pm_expire}</td>
 										    
-										    <td>${promo.pm_tiltle}</td>
+										    <td>${promo.pm_title}</td>
 										     
 											<td><a href="#" class="delete_promo"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
 										</tr>

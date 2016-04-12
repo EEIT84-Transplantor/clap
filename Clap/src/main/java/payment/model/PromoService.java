@@ -43,7 +43,7 @@ public class PromoService {
 			String pm_code = promoVO.getPm_code();
 			Double pm_discount = promoVO.getPm_discount();
 			java.util.Date pm_expire = promoVO.getPm_expire();
-			String pm_tiltle = promoVO.getPm_tiltle();
+			String pm_title = promoVO.getPm_title();
 			
 			if(pd_category==null){
 				return result;
@@ -58,7 +58,7 @@ public class PromoService {
 			if(pm_expire==null||pm_expire.getTime()<System.currentTimeMillis()){
 				return result;
 			}
-			if(pm_tiltle==null||pm_tiltle.length()==0){
+			if(pm_title==null||pm_title.length()==0){
 				return result;
 			}
 			if(dao.insert(promoVO)!=null){

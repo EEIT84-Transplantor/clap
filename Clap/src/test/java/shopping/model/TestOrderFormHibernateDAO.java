@@ -57,9 +57,9 @@ public class TestOrderFormHibernateDAO {
 	public void testBUpdate() {
 		expected = mb_email;
 		orderFormVO.setId(id);
-		orderFormVO.setMember_email(mb_email);
+		orderFormVO.setMb_email(mb_email);
 		orderFormHibernateDAO.update(orderFormVO);
-		actual = orderFormHibernateDAO.select(id).getMember_email();
+		actual = orderFormHibernateDAO.select(id).getMb_email();
 		assertEquals(expected, actual);
 	};
 

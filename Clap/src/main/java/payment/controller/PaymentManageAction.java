@@ -266,7 +266,7 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 					PromoVO promoDetailVO = promoService.getPromoDetail(promoCodeVO.getPromoCode().getPm_code());
 					promoDetails=new JSONObject();
 					System.out.println(promoDetailVO);
-					promoDetails.put("pm_title", promoDetailVO.getPm_tiltle());
+					promoDetails.put("pm_title", promoDetailVO.getPm_title());
 					promoDetails.put("pm_expire", promoDetailVO.getPm_expire());
 					promoDetails.put("pm_code", promoDetailVO.getPm_code());
 					promoDetails.put("pd_category", promoDetailVO.getPd_category());

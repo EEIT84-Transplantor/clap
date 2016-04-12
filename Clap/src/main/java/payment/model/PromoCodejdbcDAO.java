@@ -32,7 +32,7 @@ public class PromoCodejdbcDAO implements PromoCodeDAO {
     private Connection conn = null;
     private static final String SELECT_ALL = "select * from promocode";
 	private static final String SELECT_BY_EMAIL = "select * from promocode where mb_email=?";
-	private static final String SELECT_BY_CODE = "select pm_code,pd_category,pm_discount,pm_expire,pm_tiltle from promocode join promo on(pm_code=pc_code) where mb_email=?";
+	private static final String SELECT_BY_CODE = "select pm_code,pd_category,pm_discount,pm_expire,pm_title from promocode join promo on(pm_code=pc_code) where mb_email=?";
 	private static final String INSERT = "insert into promocode(mb_email,pc_code) values(?,?)";
 	private static final String DELETE = "delete from promocode where mb_email=? and pc_code=?";
 
@@ -160,7 +160,7 @@ public class PromoCodejdbcDAO implements PromoCodeDAO {
 				temp.setPd_category(rs.getInt("pd_category"));
 				temp.setPm_discount(rs.getDouble("pm_discount"));
 				temp.setPm_expire(rs.getDate("pm_expire"));
-				temp.setPm_tiltle(rs.getString("pm_tiltle"));
+				temp.setPm_title(rs.getString("pm_title"));
 				
 				result.add(temp);
 			}

@@ -12,7 +12,7 @@ public class PromoCodeService {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		PromoCodeService pservice = (PromoCodeService)context.getBean("promoCodeService");
 		
-		System.out.println(pservice.getPromo("caca@gmail.com","111").getPm_tiltle());
+		System.out.println(pservice.getPromo("caca@gmail.com","111").getPm_title());
 	
 	}
 	

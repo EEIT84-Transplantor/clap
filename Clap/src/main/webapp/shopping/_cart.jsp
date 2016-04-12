@@ -1,3 +1,4 @@
+<%@page import="payment.model.PromoVO"%>
 <%@page import="member.model.MemberVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Map"%>
@@ -42,10 +43,23 @@
 		cartList.add(name1);
 		cartList.add(name2);
 		cartList.add(name3);
-		pageContext.setAttribute("cartList", cartList);
+
 		MemberVO memberVO = new MemberVO();
 		memberVO.setAmount(3000.0);
+
+		PromoVO promoVO1 = new PromoVO();
+		promoVO1.setPm_title("大特價");
+		promoVO1.setPm_discount(0.5);
+		PromoVO promoVO2 = new PromoVO();
+		promoVO2.setPm_title("小特價");
+		promoVO2.setPm_discount(0.8);
+		ArrayList<PromoVO> promoList = new ArrayList<>();
+		promoList.add(promoVO1);
+		promoList.add(promoVO2);
+
 		pageContext.setAttribute("login", memberVO);
+		pageContext.setAttribute("cartList", cartList);
+		pageContext.setAttribute("promoList", promoList);
 	%>
 
 	<header><jsp:include page="/header.jsp" /></header>
@@ -93,32 +107,28 @@
 					<table class="table">
 						<tr>
 							<td>商品數</td>
-							<td></td>
 							<td>${fn:length(cartList)}</td>
 						</tr>
 						<tr>
-							<td>原價</td>
-							<td></td>
-							<td>10000</td>
+							<td>total</td>
+							<td id="total">10000</td>
 						</tr>
 						<tr>
 							<td>prome</td>
 							<td><select class="form-control">
-									<option>A</option>
-									<option>B</option>
-									<option>C</option>
+									<option value="1" selected> </option>
+									<c:forEach var="promoVO" items="${promoList}">
+										<option value="${promoVO.pm_discount}">${promoVO.pm_title}</option>
+									</c:forEach>
 								</select></td>
-							<td>0.8</td>
 						</tr>
 						<tr>
 							<td>禮物卡</td>
-							<td></td>
-							<td>${login.amount}</td>
+							<td id="amount">${login.amount}</td>
 						</tr>
 						<tr>
-							<td>總價</td>
-							<td></td>
-							<td>7000</td>
+							<td>reduced</td>
+							<td id="reduced">7000</td>
 						</tr>
 					</table>
 				</div>
@@ -142,31 +152,47 @@
 		var trs;
 
 		$(function() {
+			getTotal();
+
 			//刪除商品 修改數量
 			trs = $("tbody:first tr").size();
 			for (var i = 0; i < trs; i++) {
 
 				$("input:eq(" + i + ")").click(function(event) {
 					$(event.target).parent().parent().remove();
+					getTotal();
 				});
 
-				$("select:eq(" + i + ")").change(function(event) {
-					var total;
+				$("select:eq(" + i + ")").change(function() {
 					getTotal();
 				})
 			}
+
+			//選擇promo
+
+			for (var i = 0; i < $("select:last option").length - 1; i++) {
+				$("select:last").change(function() {
+					getTotal();
+				})
+			}
+
 		})
 
 		function getTotal() {
 			trs = $("tbody:first tr").size();
 			var total = 0;
+			var amount = $("#amount").text();
+			var promo = $("select:last option:selected").val();
 			for (var i = 0; i < trs; i++) {
 				var price = $("select:eq(" + i + ")").parent().next().text();
 				var quantity = $("select:eq(" + i + ")").val();
 				total = price * quantity + total;
 			}
-			$("table:eq(1) tr:eq(1) td:eq(2)").text(total);
-			return total;
+			var reduced = total * promo - amount;
+			$("#total").text(total);
+			$("#reduced").text(reduced)
+
+
 		}
 	</script>
 
