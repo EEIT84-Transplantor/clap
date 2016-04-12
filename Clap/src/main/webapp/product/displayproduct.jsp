@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<% java.util.List<product.model.ProductVO> productVOs = (java.util.List<product.model.ProductVO>)request.getAttribute("productVOs"); 
+    if(productVOs==null){
+    	response.sendRedirect(request.getContextPath()+"/product/preDisplayAction.action");
+    }
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +38,6 @@
     <header>
 	 <jsp:include page="/header.jsp" />
 	</header>
-<c:set var="productVOs" value="{2000,3000,20300}"/>
 	<section id="wrap">
 		<div class="container-fulid">
 		<div class="row">
@@ -95,12 +98,12 @@
 	            <tr>
 	                <th>Picture</th>
 	                <th>Id</th>
-<!-- 	                <th>Name</th> -->
-<!-- 	                <th>Price</th> -->
-<!-- 	                <th>Description</th> -->
-<!-- 	                <th>Rating</th> -->
-<!-- 	                <th>Discount</th> -->
-<!-- 	                <th>Category</th> -->
+	                <th>Name</th>
+	                <th>Price</th>
+	                <th>Description</th>
+	                <th>Rating</th>
+	                <th>Discount</th>
+	                <th>Category</th>
 	            	<th></th>
 	            </tr>
 	        </thead>
@@ -111,7 +114,6 @@
 <!--             </tr> -->
         	<c:forEach var="productVO"  varStatus="index" items="${productVOs}">
 	              	<tr>
-		          
 						<!-- ~需要一個servlet讀照片~ -->
 		<%-- 			${pageContext.request.contextPath}/products/productImgServlet.action?id=[index.count-1] --%>
 		                <td><img src="data:image/png;base64,${productImgs[index.count-1]}"/></td>
@@ -142,8 +144,7 @@
 		            	<input id="insertCancel" type="button" value="cancel"/></td>
 		       		 
 		            </tr>
-	              	
-	            
+
 	       		</c:forEach>
 	        </tbody>
 	    </table>
