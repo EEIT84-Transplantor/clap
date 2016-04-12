@@ -133,4 +133,7 @@ public class PromoService {
 	public boolean updatePromo(PromoVO promoVO){
 		return dao.update(promoVO);
 	}
+	public Integer selectByCategoryName(String category_name){
+		return categoryDAO.selectByCategoryName(category_name).get(0).getId();
+	}
 }

@@ -14,4 +14,6 @@ public interface CategoryDAO {
 
 	CategoryVO selectById(Integer categoryId);
 
+	List<CategoryVO> selectByCategoryName(String category_name);
+
 }

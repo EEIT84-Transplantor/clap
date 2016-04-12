@@ -25,7 +25,7 @@ public class ProductVO {
 	@Column(name = "product_discount")
 	private Double discount;
 	@Column(name = "category_id")
-	private String category_id;
+	private Integer category_id;
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "category_id", insertable = false, updatable = false)
 	private CategoryVO categoryVO;
@@ -72,10 +72,10 @@ public class ProductVO {
 	public void setDiscount(Double discount) {
 		this.discount = discount;
 	}
-	public String getCategory_id() {
+	public Integer getCategory_id() {
 		return category_id;
 	}
-	public void setCategory_id(String category_id) {
+	public void setCategory_id(Integer category_id) {
 		this.category_id = category_id;
 	}
 	@Override
