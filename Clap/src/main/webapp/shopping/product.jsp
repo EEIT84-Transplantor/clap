@@ -10,8 +10,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
 <!-- Bootstrap -->
-<link href="<c:url value="/resource/css/bootstrap.min.css"/> rel="stylesheet">
-<link href="<c:url value="/resource/css/customer.css"/> rel="stylesheet">
+<link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/bootstrap-slider.css"/>" rel="stylesheet">
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
@@ -105,7 +106,7 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
 	<script type="text/javascript">
-		$('#star').raty('score');
+// 		$('#star').raty('score');
 	</script>
 </body>
 </html>
