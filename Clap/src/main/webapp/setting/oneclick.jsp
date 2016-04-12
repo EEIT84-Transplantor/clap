@@ -83,7 +83,7 @@ SELECT * from creditcard;
 						<td><input type="text" style="color: black;" value="${login.phone}" name="phone"></td>
 						<td><select style="color: black;" name="id">
 								<c:forEach var="row" items="${result.rows}">
-									<option value="${row.hp_id}">${row.hp_name}</option>
+									<option value="${row.hospital_id}">${row.hospital_name}</option>
 								</c:forEach>
 						</select></td>
 						<td><select style="color: black;" name="number">

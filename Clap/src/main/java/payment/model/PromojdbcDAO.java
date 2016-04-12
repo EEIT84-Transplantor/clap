@@ -1,6 +1,7 @@
 package payment.model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -259,6 +260,37 @@ public class PromojdbcDAO implements PromoDAO {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public List<PromoVO> selectUnexpired() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<PromoVO> selectByStartDate(Date startDate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PromoVO> selectByEndingDate(Date endDate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PromoVO> selectByCategory(Integer categoryId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PromoVO> selectByBetweenDates(Date startDate, Date endDate) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
