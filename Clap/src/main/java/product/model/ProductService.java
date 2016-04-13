@@ -43,7 +43,12 @@ public class ProductService {
 		if(max ==null || max<0){
 			max = 10000000000000000000.0;
 		}
-		
+		if(key==null){
+			
+		}
+		if(categoryId==null){
+			productDAO.
+		}
 		
 		
 		

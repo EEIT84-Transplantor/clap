@@ -26,4 +26,6 @@ public interface ProductDAO {
 
 	List<ProductVO> selectByOnlyPriceRange(Double min, Double max);
 
+	List<ProductVO> selectByPriceRange2(Double min, Double max, String key);
+
 }
