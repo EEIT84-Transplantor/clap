@@ -150,7 +150,8 @@
 		$(function() {
 
 			var setCreditCardAction = "<c:url value='/shopping/setCreditCardAction.action'/>";
-			var setCreditCardAction = "<c:url value='/shopping/checkOutAction.action'/>";
+			var checkOutAction = "<c:url value='/shopping/checkOutAction.action'/>";
+			var cc_number;
 
 			//listener 新增卡片表格
 			$("#addNewCardForm").click(function() {
@@ -165,12 +166,14 @@
 
 			//listener 選擇付款信用卡
 			selectCardListener(".creditCard");
-			
+
 			//listener 付款
 			ajax(checkOutAction,cc_number);
 
+			
 			//測試新增卡片回傳的結果
 			$("#true").click(function() {
+				console.log("132");
 				$("#hidden").prev().clone().prependTo("#cardTable");
 				$(".number:first").text(creditCardVO.creditCardPK.cc_number);
 				$(".goodthru:first").text(creditCardVO.cc_goodthru);
