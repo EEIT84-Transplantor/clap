@@ -25,9 +25,6 @@ input, select {
 	background-color: black;
 }
 
-#table1 {
-	margin: 20px;
-}
 
 #insertform {
 	display: none;
@@ -73,10 +70,16 @@ input, select {
 										Ending Date<input type="datetime" name="expireTo" />
 									</div>
 									<div class="col-md-3 col-sm-1">
-										Category<input type="text" name="categoryName" />
+										Category<br/>
+										<select name="categoryName">
+											<option value="All">All</option>
+											<c:forEach var="categoryVO" varStatus="index" items="${categoryVOs}">
+												<option value="${categoryVO.name}">${categoryVO.name}</option>
+											</c:forEach>
+										</select>
 									</div>
 									<div class="col-md-2 col-sm-1">
-										<input type="submit" value="search">
+										<br><input type="submit" value="search">
 									</div>
 
 								</form>
@@ -84,8 +87,8 @@ input, select {
 						</div>
 					</div>
 				
-					<div class="row" id="table1">
-						<div class="col-md-12">
+					<div class="row" >
+						<div class="col-md-12" id="message">
 							<p>${message}</p>
 						</div>
 					</div>
@@ -195,7 +198,6 @@ input, select {
 		$(document)
 				.ready(
 						function() {
-							var table = $('#example').DataTable();
 
 							$("#add").click(function() {
 								$("#insertform").css("display", "table-row");
@@ -224,15 +226,6 @@ input, select {
 							$('.update')
 									.click(
 											function() {
-												alert("hello");
-												var data = table
-														.row($(this)
-														.parent()
-														.parent()
-														.children(':first'))
-														.data();
-												
-												alert("haha");
 												
 												var dataSend = "promoVO.pm_code="
 														+ $(this).parent().parent().children().eq(0).children().text()
@@ -245,7 +238,6 @@ input, select {
 														+ "&promoVO.pm_discount="
 														+ $(this).parent().parent().children().eq(4).children().text();
 												
-												console.log(data);
 												console.log(dataSend);
 // 												sendPostRequestProduct(
 // 														"${pageContext.request.contextPath}/payment/setPromoteAction.action?",
@@ -255,42 +247,11 @@ input, select {
 													   type: "POST",
 													   url: "${pageContext.request.contextPath}/payment/setPromoteAction.action",
 													   data: dataSend
-// 													   success: function(msg){
-// 													     alert('wow'+msg);
-// 													   }
 												});
 											
 											
 											});
-							function sendPostRequestProduct(url, data) {
-								request = new XMLHttpRequest();
-								request.onreadystatechange = doReadyStateChange;
-								request.open("POST", url, true);
-								console.log(url);
-								request.setRequestHeader("Content-Type",
-										"application/x-www-form-urlencoded");
-								request.send(data);
-								console.log(url + '33');
-							}
-							;
-							function doReadyStateChange() {
-								if (request.readyState == 4) {
-									if (request.status == 200) {
-										processJSON(request.responseText);
-									} else {
-										console.log("Error Code:"
-												+ request.status + ", "
-												+ request.statusText);
-									}
-								}
-							}
-							function processJSON(data) {
-								var json = JSON.parse(data);
-							    var isChanged = json[0].isChanged;
-							    var message = json[0].message;
-							    $('#message').html(message);
-							  
-							}
+						
 						});
 	</script>
 	</body>
