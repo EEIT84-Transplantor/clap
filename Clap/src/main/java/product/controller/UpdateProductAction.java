@@ -21,7 +21,7 @@ public class UpdateProductAction extends ActionSupport {
     public String execute() throws Exception {
     	String JSONstr = "";
     	
-    	
+    	JSONstr = "123";
     	
         inputStream = new ByteArrayInputStream(JSONstr.getBytes("UTF-8"));
         return "success";

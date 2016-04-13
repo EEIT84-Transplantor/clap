@@ -87,9 +87,11 @@
 		</action>
 		<action name="prePromoteAction" class="prePromoteAction">
 			<result name="success">/payment/setpromotion.jsp</result>
+			<result name="input">/payment/setpromotion.jsp</result>
 		</action>
 		<action name="setPromoteAction" class="setPromoteAction">
 			<result name="success">/payment/setpromotion.jsp</result>
+			<result name="input">/payment/setpromotion.jsp</result>
 		</action>
 
 	</package>
