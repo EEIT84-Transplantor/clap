@@ -81,7 +81,7 @@
 							<c:forEach var="row" items="${cartList}">
 								<tr>
 									<td>${row.name}</td>
-									<td><select>
+									<td><select class="form-control">
 											<c:forEach var="i" begin="1" end="${row.stock<10?row.stock:10}">
 												<c:choose>
 													<c:when test="${row.quantity==i}">
