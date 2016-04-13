@@ -96,7 +96,7 @@ public class ProductHibernateDAO implements ProductDAO {
 			session.save(productVO);
 			return productVO; 
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			return null;
 		}
 		
@@ -105,6 +105,7 @@ public class ProductHibernateDAO implements ProductDAO {
 	@Override
 	public boolean update(ProductVO productVO) {
 		session = sessionFactory.getCurrentSession();
+		session.clear();
 		try {
 			session.update(productVO);
 			return true;

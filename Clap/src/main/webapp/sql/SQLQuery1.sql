@@ -184,7 +184,7 @@ select * from productimg
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table inventory (
-inventory_id varchar(50),
+inventory_id int,
 pd_id	int FOREIGN KEY REFERENCES product(pd_id),
 inventory_quantity	int,
 inventory_manufactureDate datetime,
