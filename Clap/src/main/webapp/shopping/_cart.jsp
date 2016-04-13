@@ -172,7 +172,7 @@
 			}
 			//listener 結帳
 			$("#checkOut").on("click", function() {
-				var url = "<c:url value='shopping/checkOutAction.action'>";
+				var url = "<c:url value='shopping/checkOutAction.action'/>";
 				var productArray = [];
 				var promoCode = {};
 				$("tbody:first tr").each(function(){
