@@ -43,6 +43,8 @@ public class SetPromotionAction extends ActionSupport{
 	public String execute(){
 		System.out.println("insertttt");
 		promoVO.setPd_category(categoryService.selectByCategoryName(category));
+		System.out.println("hiiiiiiiiiiiiiiiiiiiiiiiiiiii"+promoVO.getPm_title());
+		System.out.println("insert"+promoVO.getPd_category()+promoVO.getPm_code()+promoVO.getPm_discount()+promoVO.getPm_title());
 		boolean result = promoService.setPromo(promoVO);
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("isChanged", result);

@@ -19,7 +19,7 @@ public class CategoryHibernateDAO implements CategoryDAO {
 	}
 
 	private Session session;
-	final private String SELECT_ALL = "from * CategoryVO";
+	final private String SELECT_ALL = "from CategoryVO";
 	final private String SELECT_BY_NAME = "from CategoryVO where category_name=?";
 	@Override
 	public List<CategoryVO> selectAll(){
