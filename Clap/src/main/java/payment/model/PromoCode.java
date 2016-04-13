@@ -49,11 +49,11 @@ public class PromoCode implements Serializable {
 			return true;
 		}
 
-		if (!(obj instanceof CreditCard)) {
+		if (!(obj instanceof CreditCardPK)) {
 			return false;
 		}
 
-		CreditCard user = (CreditCard) obj;
+		CreditCardPK user = (CreditCardPK) obj;
 		return new EqualsBuilder().append(this.pm_code, user.getCc_number()).append(this.mb_email, user.getMb_email())
 				.isEquals();
 	}

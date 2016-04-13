@@ -63,6 +63,8 @@ public class CategoryHibernateDAO implements CategoryDAO {
 	public CategoryVO insert(CategoryVO categoryVO){
 		session = sessionFactory.getCurrentSession();
 		try {
+			CategoryVO categoryVO2 = new CategoryVO();
+			categoryVO2.setName(categoryVO.getName());
 			session.save(categoryVO);
 			return categoryVO;
 		} catch (Exception e) {

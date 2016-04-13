@@ -57,7 +57,7 @@ public class UpdateProductAction extends ActionSupport {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	
+
     	String message = isChanged?"Updated":"Failed to update";
     	JSONObject jsonObject = new JSONObject();
     	jsonObject.put("isChanged", isChanged);

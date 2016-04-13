@@ -70,28 +70,29 @@ insert into giftcard(gc_number,gc_code,gc_amount,gc_available) values('4444','gc
 select * from giftcard
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table category (
-category_id	int,
+category_id	int identity,
 category_name varchar(60)
 PRIMARY KEY (category_id)
 )
 
-insert into category values(1,'Kidneys');
-insert into category values(2,'Ureters');
-insert into category values(3,'Bladder');
-insert into category values(4,'Urethra');
-insert into category values(5,'Ovaries');
-insert into category values(6,'Fallopian tubes');
-insert into category values(7,'Uterus');
-insert into category values(8,'Vagina');
-insert into category values(9,'Vulva');
-insert into category values(10,'Clitoris');
+insert into category values('Kidneys');
+insert into category values('Ureters');
+insert into category values('Bladder');
+insert into category values('Uterus');
+insert into category values('Vulva');
+insert into category values('Clitoris');
+insert into category values('Lungs');
+insert into category values('Clitoris');
+insert into category values('Livers');
+insert into category values('Heart');
+insert into category values('Feet');
 select * from category
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table promo(
 pm_code varchar(50) PRIMARY KEY,
 pd_category int NOT NULL FOREIGN KEY REFERENCES category(category_id),
 pm_expire date NOT NULL,
-pm_title varchar(50) NOT NULL,
+pm_title varchar(200) NOT NULL,
 pm_discount float NOT NULL
 )
 
@@ -159,7 +160,7 @@ select * from message
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table product (
-pd_Id int,
+pd_Id int ,
 product_name	varchar(60),
 product_price	float,
 product_description	nvarchar(1000),
@@ -168,8 +169,14 @@ product_discount	float,
 category_id int foreign key REFERENCES category(category_id)
 PRIMARY KEY (pd_Id)
 )
-insert into product values(1, 'product1', 100, 'Heart1', 1, 0.9, 1);
-insert into product values(2, 'product1', 200, 'Heart2', 1, 0.9, 1);
+insert into product values(1,'product1', 100, 'Heart1', 5, 0.9, 10);
+insert into product values(2, 'product2', 200, 'Heart2', 1, 0.4, 10);
+insert into product values(3, 'product3', 1000, 'Heart3', 2, 0.2, 10);
+insert into product values(4,'product4', 2000, 'Heart4', 1, 0.7, 10);
+insert into product values(5,'product5', 10000, 'Heart5', 4, 0.9, 10);
+insert into product values(6, 'product6', 20000, 'Heart6', 2, 0.1, 10);
+insert into product values(7, 'product7', 100000, 'Heart7', 1, 0.7, 10);
+insert into product values(8, 'product8', 2000000, 'Heart8', 3, 0.4, 10);
 select * from product
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -184,23 +191,23 @@ select * from productimg
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table inventory (
-inventory_id int,
+inventory_id int identity,
 pd_id	int FOREIGN KEY REFERENCES product(pd_id),
 inventory_quantity	int,
 inventory_manufactureDate datetime,
 inventory_expiryDate datetime,
 PRIMARY KEY (inventory_id)
 )
-insert into inventory values(1, 1, 10, '2016-05-04', '2017-05-04');
-insert into inventory values(2, 2, 10, '2016-05-04', '2017-05-04');
-insert into inventory values(3, 1, 10, '2016-05-04', '2017-05-04');
-insert into inventory values(4, 2, 10, '2016-05-04', '2017-05-04');
+insert into inventory values( 1, 10, '2016-05-04', '2017-05-04');
+insert into inventory values( 2, 10, '2016-05-04', '2017-05-04');
+insert into inventory values( 1, 10, '2016-05-04', '2017-05-04');
+insert into inventory values( 2, 10, '2016-05-04', '2017-05-04');
 select * from inventory
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table inoutlog (
-inoutlog_id	varchar(50),
-inventory_id varchar(50) FOREIGN KEY REFERENCES inventory(inventory_Id),
+inoutlog_id	int identity,
+inventory_id int FOREIGN KEY REFERENCES inventory(inventory_Id),
 pd_id int FOREIGN KEY REFERENCES product(pd_id),
 inoutlog_inQuantity	int,
 inoutlog_outQuantity	int,
@@ -210,10 +217,10 @@ inoutlog_destination	nvarchar(100),
 inoutlog_date	datetime
 PRIMARY KEY (inoutlog_id)
 )
-insert into inoutlog values(1, 1, 1, 10, 0, '2016-05-04', '2017-05-04', 'Taipei', '2016-04-04');
-insert into inoutlog values(2, 2, 1, 0, 43, '2016-05-04', '2017-05-04', 'Taipei', '2016-04-04');
-insert into inoutlog values(3, 1, 1, 10, 0, '2016-03-04', '2017-06-04', 'Taipei', '2016-07-04');
-insert into inoutlog values(4, 2, 1, 0, 43, '2016-02-04', '2017-03-04', 'Taipei', '2016-08-04');
+insert into inoutlog values( 1, 1, 10, 0, '2016-05-04', '2017-05-04', 'Taipei', '2016-04-04');
+insert into inoutlog values( 2, 1, 0, 43, '2016-05-04', '2017-05-04', 'Taipei', '2016-04-04');
+insert into inoutlog values( 1, 1, 10, 0, '2016-03-04', '2017-06-04', 'Taipei', '2016-07-04');
+insert into inoutlog values( 2, 1, 0, 43, '2016-02-04', '2017-03-04', 'Taipei', '2016-08-04');
 select * from inoutlog
 
 ------------------------------------------------------------------------------------------------------------------------------------------------

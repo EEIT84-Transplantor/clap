@@ -41,17 +41,17 @@ public class PrePromoteAction extends ActionSupport {
 		this.categoryName = categoryName;
 	}
 	
+	
+	
+
 	public String execute(){
 		System.out.println("hellollololololol preAction");
 		List<PromoVO> promoVOs = null;
-		List<String> categoryNames=  null;
 		if(expireFrom!=null){
 			promoVOs = promoService.getAllPromosByStartDate(expireFrom);
 		}
 		List<CategoryVO> categoryVOs = categoryService.getAllCategory();
-		for(CategoryVO v:categoryVOs){
-			System.out.println(v.getName());
-		}
+		
 		
 		if(expireTo!=null){
 			if(promoVOs ==null){
@@ -59,14 +59,17 @@ public class PrePromoteAction extends ActionSupport {
 			}else{
 				List<PromoVO> temp = new ArrayList<PromoVO>();
 				temp = promoService.getAllPromosByEndDate(expireTo);
+				List<PromoVO> temp2 = new ArrayList<PromoVO>();
 				for(PromoVO vo:promoVOs){
-					if(!temp.contains(vo)){
-						promoVOs.remove(vo);
+					if(temp.contains(vo)){
+						temp2.add(vo);
 					}
 				}
+				promoVOs=temp2;
 			}
 		}
-		if(categoryName!=null){
+		System.out.println(categoryName);
+		if(categoryName!=null &&!categoryName.equalsIgnoreCase("All")){
 			System.out.println("hi");
 			Integer id = categoryService.selectByCategoryName(categoryName);
 			if(promoVOs ==null){
@@ -83,15 +86,16 @@ public class PrePromoteAction extends ActionSupport {
 				}
 			}
 		}
-		if(expireFrom==null&&expireTo==null&&categoryName==null){
+		if(expireFrom==null&&expireTo==null&&categoryName==null||expireFrom==null&&expireTo==null&&categoryName.equalsIgnoreCase("All")){
 			promoVOs =  promoService.getAllPromos(true);
 		}
 //		promoVOs =  promoService.getAllPromos(true);
-		categoryNames=  promoService.getAllCategoryNames(promoVOs);
+
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("promoVOs", promoVOs);
-		request.setAttribute("categoryNames", categoryNames);
-		String message = (String) request.getAttribute("message");
+
+		String message = (String) request.getSession().getAttribute("message");
+		request.getSession().removeAttribute("message");
 		System.out.println(message);
 		request.setAttribute("message", message);
 		request.setAttribute("categoryVOs", categoryVOs);
