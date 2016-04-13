@@ -12,14 +12,21 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import payment.model.PromoService;
 import payment.model.PromoVO;
+import product.model.CategoryService;
 
 public class PrePromoteAction extends ActionSupport {
 	private Date expireFrom;
 	private Date expireTo;
 	private String categoryName;
 	private PromoService promoService;
+	private CategoryService categoryService;
 	
-	
+	public CategoryService getCategoryService() {
+		return categoryService;
+	}
+	public void setCategoryService(CategoryService categoryService) {
+		this.categoryService = categoryService;
+	}
 	public void setPromoService(PromoService promoService) {
 		this.promoService = promoService;
 	}
@@ -55,7 +62,7 @@ public class PrePromoteAction extends ActionSupport {
 		}
 		if(categoryName!=null){
 			System.out.println("hi");
-			Integer id = promoService.selectByCategoryName(categoryName);
+			Integer id = categoryService.selectByCategoryName(categoryName);
 			if(promoVOs ==null){
 				System.out.println("hi");
 				promoVOs = promoService.getAllPromosByCategory(id);

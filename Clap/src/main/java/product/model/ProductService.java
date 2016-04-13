@@ -61,8 +61,7 @@ public class ProductService {
 			ProductimgVO result = productimgDAO.selectByProductId(productVOs.get(i).getId());
 			imgList.add(result);
 		}
-		return imgList;
-		
+		return imgList;	
 	}
 	public boolean removeProduct(Integer productId){
 		productimgDAO.delete(productId);
@@ -78,4 +77,6 @@ public class ProductService {
 	public List<ProductVO> getProductByTopAmount(Integer pageNumber, Integer pageAmount, Integer counts){
 		return productDAO.selectByTopAmount(pageNumber, pageAmount, counts);
 	}
+	
+
 }
