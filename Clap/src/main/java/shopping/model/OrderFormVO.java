@@ -32,6 +32,7 @@ public class OrderFormVO {
     @ManyToOne
     @JoinColumn(name="hospital_id",insertable=false,updatable=false)
 	private HospitalVO hospitalVO;
+    
 	public Integer getId() {
 		return id;
 	}
