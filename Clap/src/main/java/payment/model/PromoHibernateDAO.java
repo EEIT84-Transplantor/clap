@@ -98,7 +98,7 @@ public class PromoHibernateDAO implements PromoDAO{
         session = sessionFactory.getCurrentSession();
 		
 		try {
-			session.saveOrUpdate(promoVO);
+			session.save(promoVO);
 			return promoVO;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -111,7 +111,13 @@ public class PromoHibernateDAO implements PromoDAO{
         session = sessionFactory.getCurrentSession();
 		
 		try {
-			session.update(promoVO);
+			PromoVO temp = session.get(PromoVO.class, promoVO.getPm_code());
+			temp.setPm_title(promoVO.getPm_title());
+			temp.setPd_category(promoVO.getPd_category());
+			temp.setPm_discount(promoVO.getPm_discount());
+			temp.setPm_expire(promoVO.getPm_expire());
+			temp.setPm_code(promoVO.getPm_code());
+//			session.update(temp);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

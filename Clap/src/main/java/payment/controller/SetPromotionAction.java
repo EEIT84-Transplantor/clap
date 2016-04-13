@@ -45,7 +45,16 @@ public class SetPromotionAction extends ActionSupport{
 		promoVO.setPd_category(categoryService.selectByCategoryName(category));
 		System.out.println("hiiiiiiiiiiiiiiiiiiiiiiiiiiii"+promoVO.getPm_title());
 		System.out.println("insert"+promoVO.getPd_category()+promoVO.getPm_code()+promoVO.getPm_discount()+promoVO.getPm_title());
-		boolean result = promoService.setPromo(promoVO);
+		boolean result = false;
+		if (!promoService.isAvailable(promoVO.getPm_code())){
+			System.out.println("save");
+			result = promoService.setPromo(promoVO);
+		}else{
+			result = promoService.updatePromo(promoVO);
+			System.out.println("update");
+		}
+		
+		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("isChanged", result);
 		if(result){

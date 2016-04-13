@@ -50,7 +50,7 @@ input, select {
 		<jsp:include page="/header.jsp" />
 	</header>
 	<section id="wrap">
-		<div class="container-fulid">
+		<div class="container">
 			<div class="row">
 				<div class="col-md-2">side-nav:sub-menu</div>
 				<div class="col-md-10">
@@ -161,7 +161,7 @@ input, select {
 												<label>${promoVO.pm_discount}</label>
 						    					<input type="text" class="form-control" name="promoVO.pm_discount" value="${promoVO.pm_discount}" style="display:none">
 						    				</td>
-											<td><input id="submitInsert1" type="button" value="update" />
+											<td><input class="update" type="button" value="update" />
 												<input type="button" value="cancel"  onclick="window.location.reload()" /></td>
 
 										</tr>
@@ -221,7 +221,7 @@ input, select {
 								$(this).prev().show();
 							});
 
-							$('#submitInsert1')
+							$('.update')
 									.click(
 											function() {
 												alert("hello");
@@ -231,15 +231,21 @@ input, select {
 														.parent()
 														.children(':first'))
 														.data();
+												
+												alert("haha");
+												
 												var dataSend = "promoVO.pm_code="
-														+ data[0].substring(data[0].indexOf("<label>")+7,data[0].indexOf("</label>")) + "&category="
-														+ data[1].substring(data[1].indexOf("<label>")+7,data[1].indexOf("</label>"))
+														+ $(this).parent().parent().children().eq(0).children().text()
+														+ "&category="
+														+ $(this).parent().parent().children().eq(1).children().text()
 														+ "&promoVO.pm_expire="
-														+ data[2].substring(data[2].indexOf("<label>")+7,data[2].indexOf("</label>"))
+														+ $(this).parent().parent().children().eq(2).children().text()
 														+ "&promoVO.pm_title="
-														+ encodeURI(data[3].substring(data[3].indexOf("<label>")+7,data[3].indexOf("</label>")))
+														+ encodeURI($(this).parent().parent().children().eq(3).children().text())
 														+ "&promoVO.pm_discount="
-														+ data[4].substring(data[4].indexOf("<label>")+7,data[4].indexOf("</label>"));
+														+ $(this).parent().parent().children().eq(4).children().text();
+												
+												console.log(data);
 												console.log(dataSend);
 // 												sendPostRequestProduct(
 // 														"${pageContext.request.contextPath}/payment/setPromoteAction.action?",
@@ -248,10 +254,10 @@ input, select {
 												$.ajax({
 													   type: "POST",
 													   url: "${pageContext.request.contextPath}/payment/setPromoteAction.action",
-													   data: dataSend,
-													   success: function(msg){
-													     alert('wow'+msg);
-													   }
+													   data: dataSend
+// 													   success: function(msg){
+// 													     alert('wow'+msg);
+// 													   }
 												});
 											
 											
