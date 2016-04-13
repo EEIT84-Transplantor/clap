@@ -55,15 +55,41 @@ public class ProductService {
 	}
 	
 	public boolean setOrUpdateProduct(ProductVO productVO, Byte[] productImg){
-		ProductimgVO productimgVO= new ProductimgVO();
-		productimgVO.setId(productVO.getId());
-		productimgVO.setImg(productImg);
-		ProductVO result1= productDAO.insert(productVO);
-		ProductimgVO result2 = productimgDAO.insert(productimgVO);
-		if (result1!= null &&result2!=null){
-			return true;
+		ProductVO dbVO = productDAO.selectByProductId(productVO.getId());
+		ProductimgVO productimgVO = productimgDAO.selectByProductId(productVO.getId());
+
+		try {
+			if(dbVO == null && productimgVO == null){
+				productimgVO = new ProductimgVO();
+				productimgVO.setId(productVO.getId());
+				productimgVO.setImg(productImg);
+				productDAO.insert(productVO);
+				productimgDAO.insert(productimgVO);
+				return true;
+			}else if(dbVO != null && productimgVO == null){
+				dbVO.setName(productVO.getName());
+				dbVO.setPrice(productVO.getPrice());
+				dbVO.setDescription(productVO.getDescription());
+				dbVO.setDiscount(productVO.getDiscount());
+				dbVO.setCategory_id(productVO.getCategory_id());
+				productimgVO = new ProductimgVO();
+				productimgVO.setId(productVO.getId());
+				productimgVO.setImg(productImg);
+				productimgDAO.insert(productimgVO);
+				return true;
+			}else{
+				dbVO.setName(productVO.getName());
+				dbVO.setPrice(productVO.getPrice());
+				dbVO.setDescription(productVO.getDescription());
+				dbVO.setDiscount(productVO.getDiscount());
+				dbVO.setCategory_id(productVO.getCategory_id());
+				productimgVO.setId(productVO.getId());
+				productimgVO.setImg(productImg);
+				return true;
+			}
+		} catch (Exception e) {
+			return false;
 		}
-		return false;
 	}
 	public ProductimgVO getProductImgById(Integer productId){
 		ProductimgVO result = productimgDAO.selectByProductId(productId);
