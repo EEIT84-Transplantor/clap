@@ -1,5 +1,7 @@
 package payment.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
@@ -9,6 +11,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import payment.model.PromoService;
 import payment.model.PromoVO;
 import product.model.CategoryService;
+import product.model.CategoryVO;
 
 public class SetPromotionAction extends ActionSupport{
 	private PromoService promoService;
@@ -39,6 +42,7 @@ public class SetPromotionAction extends ActionSupport{
 	public void setCategory(String category) {
 		this.category = category;
 	}
+
 	
 	public String execute(){
 		System.out.println("insertttt");
@@ -58,11 +62,18 @@ public class SetPromotionAction extends ActionSupport{
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("isChanged", result);
 		if(result){
-			request.setAttribute("message", "Promotion Code Added Successfully");
+			System.out.println("successsss");
+			request.setAttribute("message", "Update Successfully");
 		}else{
-			request.setAttribute("message", "The information you entered is wrong, please try again");
+			System.out.println("unsuccesssss");
+			request.setAttribute("message", "The information you entered was wrong, please try again");
 		}
-		request.removeAttribute("promoVOs");
+		System.out.println("yayayayay");
+		List<PromoVO> promoVOs = promoService.getAllPromos(true);
+		List<CategoryVO> categoryVOs = categoryService.getAllCategory();
+		request.setAttribute("promoVOs", promoVOs);
+		request.setAttribute("categoryVOs", categoryVOs);
+//		request.removeAttribute("promoVOs");
 		return SUCCESS;
 	}
 	

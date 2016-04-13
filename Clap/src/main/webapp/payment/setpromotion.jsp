@@ -2,7 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <% java.util.List<payment.model.PromoVO> promoVOs = (java.util.List<payment.model.PromoVO>)request.getAttribute("promoVOs"); 
-    if(promoVOs==null){
+	String message =(String) request.getAttribute("message");
+	System.out.println("ggg"+message);
+	request.setAttribute("message",message);
+	if(promoVOs==null){
     	response.sendRedirect(request.getContextPath()+"/payment/prePromoteAction.action");
     }
     %>
@@ -198,7 +201,7 @@ input, select {
 		$(document)
 				.ready(
 						function() {
-
+							 var table = $('#example').DataTable();
 							$("#add").click(function() {
 								$("#insertform").css("display", "table-row");
 

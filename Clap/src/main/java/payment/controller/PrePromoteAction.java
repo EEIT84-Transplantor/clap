@@ -41,6 +41,8 @@ public class PrePromoteAction extends ActionSupport {
 		this.categoryName = categoryName;
 	}
 	
+	
+
 	public String execute(){
 		System.out.println("hellollololololol preAction");
 		List<PromoVO> promoVOs = null;
@@ -49,9 +51,7 @@ public class PrePromoteAction extends ActionSupport {
 			promoVOs = promoService.getAllPromosByStartDate(expireFrom);
 		}
 		List<CategoryVO> categoryVOs = categoryService.getAllCategory();
-		for(CategoryVO v:categoryVOs){
-			System.out.println(v.getName());
-		}
+		
 		
 		if(expireTo!=null){
 			if(promoVOs ==null){
