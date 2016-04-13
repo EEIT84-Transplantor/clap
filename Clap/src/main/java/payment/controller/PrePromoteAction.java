@@ -13,6 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import payment.model.PromoService;
 import payment.model.PromoVO;
 import product.model.CategoryService;
+import product.model.CategoryVO;
 
 public class PrePromoteAction extends ActionSupport {
 	private Date expireFrom;
@@ -47,6 +48,11 @@ public class PrePromoteAction extends ActionSupport {
 		if(expireFrom!=null){
 			promoVOs = promoService.getAllPromosByStartDate(expireFrom);
 		}
+		List<CategoryVO> categoryVOs = categoryService.getAllCategory();
+		for(CategoryVO v:categoryVOs){
+			System.out.println(v.getName());
+		}
+		
 		if(expireTo!=null){
 			if(promoVOs ==null){
 				promoVOs = promoService.getAllPromosByEndDate(expireTo);
@@ -88,6 +94,7 @@ public class PrePromoteAction extends ActionSupport {
 		String message = (String) request.getAttribute("message");
 		System.out.println(message);
 		request.setAttribute("message", message);
+		request.setAttribute("categoryVOs", categoryVOs);
 		return "success";
 	}
 }

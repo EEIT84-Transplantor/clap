@@ -98,7 +98,7 @@ public class PromoHibernateDAO implements PromoDAO{
         session = sessionFactory.getCurrentSession();
 		
 		try {
-			session.save(promoVO);
+			session.saveOrUpdate(promoVO);
 			return promoVO;
 		} catch (Exception e) {
 			e.printStackTrace();
