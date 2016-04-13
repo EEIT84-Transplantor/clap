@@ -134,19 +134,5 @@ public class PromoService {
 	public boolean updatePromo(PromoVO promoVO){
 		return dao.update(promoVO);
 	}
-	public Integer selectByCategoryName(String category_name){
-		Integer id = categoryDAO.selectByCategoryName(category_name).get(0).getId();
-		if(id!=null){
-			return id;
-		}else{
-			return null;
-		}
-	}
 	
-	public CategoryVO addNewCategory(Integer id, String category_name){
-		CategoryVO categoryVO = new CategoryVO();
-		categoryVO.setId(id);
-		categoryVO.setName(category_name);
-		return categoryDAO.insert(categoryVO);	
-	}
 }

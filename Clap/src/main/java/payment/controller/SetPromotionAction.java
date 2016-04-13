@@ -8,11 +8,19 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import payment.model.PromoService;
 import payment.model.PromoVO;
+import product.model.CategoryService;
 
 public class SetPromotionAction extends ActionSupport{
 	private PromoService promoService;
 	private PromoVO promoVO;
 	private String category;
+	private CategoryService categoryService;
+	public CategoryService getCategoryService() {
+		return categoryService;
+	}
+	public void setCategoryService(CategoryService categoryService) {
+		this.categoryService = categoryService;
+	}
 	public PromoService getPromoService() {
 		return promoService;
 	}
@@ -34,7 +42,7 @@ public class SetPromotionAction extends ActionSupport{
 	
 	public String execute(){
 		System.out.println("insertttt");
-		promoVO.setPd_category(promoService.selectByCategoryName(category));
+		promoVO.setPd_category(categoryService.selectByCategoryName(category));
 		boolean result = promoService.setPromo(promoVO);
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("isChanged", result);

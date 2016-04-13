@@ -137,7 +137,7 @@ input, select {
 									<c:forEach var="promoVO" varStatus="index" items="${promoVOs}">
 										<tr>
 											<td>${promoVO.pm_code}</td>
-											<td>${categoryNames[index.count-1]}</td>
+											<td>${promoVO.categoryVO.name}</td>
 											<td>${promoVO.pm_expire}</td>
 											<td>${promoVO.pm_title}</td>
 											<td>${promoVO.pm_discount}</td>
@@ -187,6 +187,7 @@ input, select {
 
 							$("#insertCancel").click(function() {
 								$("#insertform").css("display", "none");
+								window.location.reload()
 								// 			$('input[name="promoVO.code"]').html('');
 								// 			$('input[name="categoryNames"]').html('');
 								// 			$('input[name="promoVO.expire"]').html('');
