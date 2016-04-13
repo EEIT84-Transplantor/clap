@@ -145,6 +145,9 @@
                   <param name="inputName">inputStream</param>
              </result>
 		</action>
+		<action name="categories" class="shopping.controller.CategoriesAction">
+			<result name="success" >/shopping/categories.jsp</result>
+		</action>
 	</package>
 	
 	<package name="test" namespace="/test" extends="struts-default">

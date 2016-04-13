@@ -118,7 +118,8 @@
 					<c:forEach items="${allCategoryProduct}" var="CategoryProducts">
 						<div class="row">
 							<div class="col-md-9">
-								<h3 class="b_color">${CategoryProducts.key}</h3>
+								
+								<h3 ><a class="b_color" href="${pageContext.request.contextPath}/shopping/categories.action?organ=${CategoryProducts.key}">${CategoryProducts.key}</a></h3>
 							</div>
 							<div class="col-md-3">
 								<!-- Controls -->
@@ -135,10 +136,15 @@
 						<div id="category-silder" class="carousel slide hidden-xs">
 							<!-- Wrapper for slides -->
 							<div class="carousel-inner">
-								<div class="item active">
-									<c:forEach items="${CategoryProducts.value}" var="product"
-										varStatus="p_count">
+								
+									<c:forEach items="${CategoryProducts.value}" var="product" varStatus="p_count">
 										<c:if test="${p_count.count % 4 == 1}">
+										<c:if test="${p_count.count == 1}">
+										<div class="item active">
+										</c:if>
+										<c:if test="${p_count.count != 1}">
+										<div class="item">
+										</c:if>
 											<div class="row">
 										</c:if>
 										<div class="col-sm-3">
@@ -173,12 +179,12 @@
 											</div>
 										</div>
 
-										<c:if
-											test="${p_count.count % 4 == 0||p_count.count == fn:length(values)}">
-								</div>
+										<c:if test="${p_count.count % 4 == 0||p_count.count == fn:length(values)}">
+								  </div>
+								    </div>
 								</c:if>
 					</c:forEach>
-				</div>
+				
 			</div>
 		</div>
 		</c:forEach>
@@ -227,6 +233,7 @@
     function doReadyStateChange() {
 		if (request.readyState == 4) {
 			if (request.status == 200) {
+				
                 $(".cart_anchor").text(request.responseText);
                 
 			} else {
