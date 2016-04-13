@@ -149,39 +149,25 @@
 		//ready
 		$(function() {
 
+			var setCreditCardAction = "<c:url value='/shopping/setCreditCardAction.action'/>";
+			var setCreditCardAction = "<c:url value='/shopping/checkOutAction.action'/>";
+
 			//listener 新增卡片表格
 			$("#addNewCardForm").click(function() {
-				console.log($("div:hidden"));
 				$("div:hidden").show();
 			})
 
 			//listener 新增卡片
 			$("#addCreditCard").click(function() {
-
-				var mb_email = "${login.email}";
-				var cc_number = $(".number:last").val();
-				var creditCardPK = {
-					"mb_email" : mb_email,
-					"cc_number" : cc_number
-				};
-				var cc_goodthru = $(".goodthru:last").val();
-				var cc_cvv = $(".cvv:last").val();
-				creditCardVO = {
-					"creditCardPK" : creditCardPK,
-					"cc_goodthru" : cc_goodthru,
-					"cc_cvv" : cc_cvv
-				};
-				var url = "<c:url value='/shopping/setCreditCardAction.action'/>";
-				console.log(url);
-				console.log(creditCardVO);
-
-				var result = ajax(url, creditCardVO);
-				setNewCard(result);
-
+				var result = ajax(setCreditCardAction, setNewCardVO());
+				// setNewCard(result);
 			})
 
 			//listener 選擇付款信用卡
 			selectCardListener(".creditCard");
+			
+			//listener 付款
+			ajax(checkOutAction,cc_number);
 
 			//測試新增卡片回傳的結果
 			$("#true").click(function() {
@@ -193,7 +179,6 @@
 				selectCardListener(".creditCard:first");
 				$("#hidden").toggle();
 			})
-
 			$("#false").click(function() {
 				$("#false").text("信用卡資料錯誤");
 			})
@@ -203,7 +188,7 @@
 		//listener 選擇付款信用卡
 		function selectCardListener(creditCard) {
 			$(creditCard).click(function() {
-				$(creditCard).css("border-style", "");
+				$(".creditCard").css("border-style", "");
 				$(this).css("border-color", "red").css("border-style", "solid");
 				cc_number = $(this).contents().find("label.number").text();
 			});
@@ -220,20 +205,39 @@
 			})
 			return result;
 		}
-		
-		function setNewCard(result){
+
+		//在畫面產生新卡片
+		function setNewCard(result) {
 			if (result == true) {
 				//產生新卡片
 				$("#hidden").prev().clone().prependTo("#cardTable");
 				$(".number:first").text(creditCardVO.creditCardPK.cc_number);
 				$(".goodthru:first").text(creditCardVO.cc_goodthru);
 				$(".cvv:first").text(creditCardVO.cc_cvv);
-
+				$(".creditCard:first").css("border-style", "");
+				selectCardListener(".creditCard:first");
 				//隱藏清空新卡片表格
 				$("#hidden").toggle();
 			} else {
 				$("#false").text("信用卡資料錯誤");
 			}
+		}
+
+		//取得新卡片資訊 製作成creditCardVO
+		function setNewCardVO() {
+			var mb_email = "${login.email}";
+			var cc_number = $(".number:last").val();
+			var creditCardPK = {
+				"mb_email" : mb_email,
+				"cc_number" : cc_number
+			};
+			var cc_goodthru = $(".goodthru:last").val();
+			var cc_cvv = $(".cvv:last").val();
+			return creditCardVO = {
+				"creditCardPK" : creditCardPK,
+				"cc_goodthru" : cc_goodthru,
+				"cc_cvv" : cc_cvv
+			};
 		}
 	</script>
 
