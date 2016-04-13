@@ -496,3 +496,12 @@ header {
 .p_discribe {
 	margin-top: 15px;
 }
+/*-------飛入購物車--------------*/
+.cart_anchor{ 
+    float:right; 
+    vertical-align:top; 
+    background: url("../images/box.png") no-repeat center center / 100% auto;
+    width: 30px;
+    height: 30px; 
+    margin-bottom: 50px;
+}

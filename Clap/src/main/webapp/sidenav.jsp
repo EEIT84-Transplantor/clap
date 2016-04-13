@@ -3,13 +3,9 @@
   <div class="list-group panel">
     <a href="#side_Purchase" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Purchase</a>
    <div class="collapse" id="side_Purchase">
-      <a href="" class="list-group-item sub_list">Subitem 1</a>
-      <a href="" class="list-group-item sub_list">Subitem 2</a>
-      <a href="" class="list-group-item sub_list">Subitem 3</a>
       
-      
-      <c:forEach begin="1" end="5" step="1" varStatus="ss">
-      s
+      <c:forEach items="${categoriesList}" var="cList">
+      <a href="xxx?ordin=${cList.name}" class="list-group-item sub_list">${cList.name}</a>
       </c:forEach>
     </div>
     <a href="#side_About" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">About us</a>
