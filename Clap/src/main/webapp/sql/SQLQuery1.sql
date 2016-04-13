@@ -168,8 +168,14 @@ product_discount	float,
 category_id int foreign key REFERENCES category(category_id)
 PRIMARY KEY (pd_Id)
 )
-insert into product values(1, 'product1', 100, 'Heart1', 1, 0.9, 1);
-insert into product values(2, 'product1', 200, 'Heart2', 1, 0.9, 1);
+insert into product values(1, 'product1', 100, 'Heart1', 5, 0.9, 10);
+insert into product values(2, 'product2', 200, 'Heart2', 1, 0.4, 10);
+insert into product values(3, 'product3', 1000, 'Heart3', 2, 0.2, 10);
+insert into product values(4, 'product4', 2000, 'Heart4', 1, 0.7, 10);
+insert into product values(5, 'product5', 10000, 'Heart5', 4, 0.9, 10);
+insert into product values(6, 'product6', 20000, 'Heart6', 2, 0.1, 10);
+insert into product values(7, 'product7', 100000, 'Heart7', 1, 0.7, 10);
+insert into product values(8, 'product8', 2000000, 'Heart8', 3, 0.4, 10);
 select * from product
 
 ------------------------------------------------------------------------------------------------------------------------------------------------

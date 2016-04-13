@@ -2,7 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <% java.util.List<payment.model.PromoVO> promoVOs = (java.util.List<payment.model.PromoVO>)request.getAttribute("promoVOs"); 
-    if(promoVOs==null){
+	String message =(String) request.getAttribute("message");
+	System.out.println("ggg"+message);
+	request.setAttribute("message",message);
+	if(promoVOs==null){
     	response.sendRedirect(request.getContextPath()+"/payment/prePromoteAction.action");
     }
     %>
@@ -25,9 +28,6 @@ input, select {
 	background-color: black;
 }
 
-#table1 {
-	margin: 20px;
-}
 
 #insertform {
 	display: none;
@@ -50,7 +50,7 @@ input, select {
 		<jsp:include page="/header.jsp" />
 	</header>
 	<section id="wrap">
-		<div class="container-fulid">
+		<div class="container">
 			<div class="row">
 				<div class="col-md-2">side-nav:sub-menu</div>
 				<div class="col-md-10">
@@ -73,10 +73,16 @@ input, select {
 										Ending Date<input type="datetime" name="expireTo" />
 									</div>
 									<div class="col-md-3 col-sm-1">
-										Category<input type="text" name="categoryName" />
+										Category<br/>
+										<select name="categoryName">
+											<option value="All">All</option>
+											<c:forEach var="categoryVO" varStatus="index" items="${categoryVOs}">
+												<option value="${categoryVO.name}">${categoryVO.name}</option>
+											</c:forEach>
+										</select>
 									</div>
 									<div class="col-md-2 col-sm-1">
-										<input type="submit" value="search">
+										<br><input type="submit" value="search">
 									</div>
 
 								</form>
@@ -84,8 +90,8 @@ input, select {
 						</div>
 					</div>
 				
-					<div class="row" id="table1">
-						<div class="col-md-12">
+					<div class="row" >
+						<div class="col-md-12" id="message">
 							<p>${message}</p>
 						</div>
 					</div>
@@ -161,7 +167,7 @@ input, select {
 												<label>${promoVO.pm_discount}</label>
 						    					<input type="text" class="form-control" name="promoVO.pm_discount" value="${promoVO.pm_discount}" style="display:none">
 						    				</td>
-											<td><input id="submitInsert1" type="button" value="update" />
+											<td><input class="update" type="button" value="update" />
 												<input type="button" value="cancel"  onclick="window.location.reload()" /></td>
 
 										</tr>
@@ -195,8 +201,7 @@ input, select {
 		$(document)
 				.ready(
 						function() {
-							var table = $('#example').DataTable();
-
+							 var table = $('#example').DataTable();
 							$("#add").click(function() {
 								$("#insertform").css("display", "table-row");
 
@@ -221,25 +226,21 @@ input, select {
 								$(this).prev().show();
 							});
 
-							$('#submitInsert1')
+							$('.update')
 									.click(
 											function() {
-												alert("hello");
-												var data = table
-														.row($(this)
-														.parent()
-														.parent()
-														.children(':first'))
-														.data();
+												
 												var dataSend = "promoVO.pm_code="
-														+ data[0].substring(data[0].indexOf("<label>")+7,data[0].indexOf("</label>")) + "&category="
-														+ data[1].substring(data[1].indexOf("<label>")+7,data[1].indexOf("</label>"))
+														+ $(this).parent().parent().children().eq(0).children().text()
+														+ "&category="
+														+ $(this).parent().parent().children().eq(1).children().text()
 														+ "&promoVO.pm_expire="
-														+ data[2].substring(data[2].indexOf("<label>")+7,data[2].indexOf("</label>"))
+														+ $(this).parent().parent().children().eq(2).children().text()
 														+ "&promoVO.pm_title="
-														+ encodeURI(data[3].substring(data[3].indexOf("<label>")+7,data[3].indexOf("</label>")))
+														+ encodeURI($(this).parent().parent().children().eq(3).children().text())
 														+ "&promoVO.pm_discount="
-														+ data[4].substring(data[4].indexOf("<label>")+7,data[4].indexOf("</label>"));
+														+ $(this).parent().parent().children().eq(4).children().text();
+												
 												console.log(dataSend);
 // 												sendPostRequestProduct(
 // 														"${pageContext.request.contextPath}/payment/setPromoteAction.action?",
@@ -248,43 +249,12 @@ input, select {
 												$.ajax({
 													   type: "POST",
 													   url: "${pageContext.request.contextPath}/payment/setPromoteAction.action",
-													   data: dataSend,
-													   success: function(msg){
-													     alert('wow'+msg);
-													   }
+													   data: dataSend
 												});
 											
 											
 											});
-							function sendPostRequestProduct(url, data) {
-								request = new XMLHttpRequest();
-								request.onreadystatechange = doReadyStateChange;
-								request.open("POST", url, true);
-								console.log(url);
-								request.setRequestHeader("Content-Type",
-										"application/x-www-form-urlencoded");
-								request.send(data);
-								console.log(url + '33');
-							}
-							;
-							function doReadyStateChange() {
-								if (request.readyState == 4) {
-									if (request.status == 200) {
-										processJSON(request.responseText);
-									} else {
-										console.log("Error Code:"
-												+ request.status + ", "
-												+ request.statusText);
-									}
-								}
-							}
-							function processJSON(data) {
-								var json = JSON.parse(data);
-							    var isChanged = json[0].isChanged;
-							    var message = json[0].message;
-							    $('#message').html(message);
-							  
-							}
+						
 						});
 	</script>
 	</body>
