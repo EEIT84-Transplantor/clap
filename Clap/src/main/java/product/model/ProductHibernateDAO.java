@@ -22,7 +22,10 @@ public class ProductHibernateDAO implements ProductDAO {
 	final private String SELECT_ALL = "from ProductVO";
 	private final String SELECT_BY_KEY = "from ProductVO where product_name like:productName";
 	private final String SELECT_BY_CATEGORY = "from ProductVO where category_id= ?";
+	private final String SELECT_BY_ONLY_PRICE_RANGE = "from ProductVO where product_price >= ? and product_price <= ?" ;
 	private final String SELECT_BY_PRICE_RANGE = "from ProductVO where category_id= ? and product_price >= ? and product_price <= ?" ;
+	private final String SELECT_BY_KEY_PRICE = "from ProductVO where category_id= ? and product_price >= ? and product_price <= ? and product_name like:productName"  ;
+	private final String SELECT_BY_KEY_PRICE2 = "from ProductVO where product_price >= ? and product_price <= ? and product_name like:productName" ;
 	final private String SQL_QUERY_SELECT_TOP_AMOUNT = "select * from  (select Row_Number() over (order by category_id) as RowIndex, * from product) as Subtable Where Subtable.RowIndex >= ? and Subtable.RowIndex <= ?";
 	@Override
 	public List<ProductVO> selectAll() {
@@ -35,6 +38,24 @@ public class ProductHibernateDAO implements ProductDAO {
 		}
 		return productVOs;
 	};
+	@Override
+	public List<ProductVO> searchProductByKeyPrice(Integer categoryId, Double min, Double max, String key) {
+		session = sessionFactory.getCurrentSession();
+		List<ProductVO> productVOs = null;
+		try {
+			Query query = session.createQuery(SELECT_BY_KEY_PRICE);
+			query.setInteger(0,categoryId);
+			query.setDouble(1,min);
+			query.setDouble(2, max);
+			query.setString("productName","%"+key+ "%");
+			productVOs = query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return productVOs;
+	};
+	
+	
 	@Override
 	public List<ProductVO> selectByKey(String productName) {
 		session = sessionFactory.getCurrentSession();
@@ -61,6 +82,20 @@ public class ProductHibernateDAO implements ProductDAO {
 		return productVOs;
 	};
 	@Override
+	public List<ProductVO> selectByOnlyPriceRange(Double min, Double max) {
+		session = sessionFactory.getCurrentSession();
+		List<ProductVO> productVOs = null;
+		try {
+			Query query = session.createQuery(SELECT_BY_ONLY_PRICE_RANGE);
+			query.setDouble(0,min);
+			query.setDouble(1, max);
+			productVOs = query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return productVOs;
+	};
+	@Override
 	public List<ProductVO> selectByPriceRange(Integer categoryId, Double min, Double max) {
 		session = sessionFactory.getCurrentSession();
 		List<ProductVO> productVOs = null;
@@ -76,7 +111,23 @@ public class ProductHibernateDAO implements ProductDAO {
 		return productVOs;
 	};
 		
-	
+	@Override
+	public List<ProductVO> selectByPriceRange2(Double min, Double max,String key) {
+		session = sessionFactory.getCurrentSession();
+		List<ProductVO> productVOs = null;
+		try {
+			Query query = session.createQuery(SELECT_BY_KEY_PRICE2);
+			query.setDouble(1,min);
+			query.setDouble(2, max);
+			query.setString("productName","%"+key+ "%");
+
+			productVOs = query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return productVOs;
+	};
+		
 	@Override
 	public ProductVO selectByProductId(Integer productId) {
 		session = sessionFactory.getCurrentSession();
@@ -96,7 +147,7 @@ public class ProductHibernateDAO implements ProductDAO {
 			session.save(productVO);
 			return productVO; 
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			return null;
 		}
 		
@@ -105,6 +156,7 @@ public class ProductHibernateDAO implements ProductDAO {
 	@Override
 	public boolean update(ProductVO productVO) {
 		session = sessionFactory.getCurrentSession();
+		session.clear();
 		try {
 			session.update(productVO);
 			return true;

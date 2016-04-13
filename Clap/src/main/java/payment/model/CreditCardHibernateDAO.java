@@ -34,7 +34,7 @@ public class CreditCardHibernateDAO implements CreditCardDAO{
 		session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
 		
-		CreditCard creditCard =new CreditCard();
+		CreditCardPK creditCard =new CreditCardPK();
 		creditCard.setMb_email(mb_email);
 		creditCard.setCc_number(cc_number);
 		CreditCardVO result = session.get(CreditCardVO.class, creditCard);
@@ -61,7 +61,7 @@ public class CreditCardHibernateDAO implements CreditCardDAO{
 	public boolean delete(String cc_number,String mb_email) {
 		session = sessionFactory.getCurrentSession();
 		try {
-			CreditCard temp = new CreditCard();
+			CreditCardPK temp = new CreditCardPK();
 			temp.setCc_number(cc_number);
 			temp.setMb_email(mb_email);
 			CreditCardVO cardVO = (CreditCardVO)session.get(CreditCardVO.class, temp);

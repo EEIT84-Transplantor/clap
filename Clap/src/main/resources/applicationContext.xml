@@ -86,8 +86,12 @@
 	</bean>
 	<bean id="prePromoteAction" class="payment.controller.PrePromoteAction" scope="prototype">
 		<property name="promoService" ref="promoService" />
+		<property name="categoryService" ref="categoryService" />
 	</bean>
-	
+	<bean id="setPromoteAction" class="payment.controller.SetPromotionAction" scope="prototype">
+		<property name="promoService" ref="promoService" />
+		<property name="categoryService" ref="categoryService" />
+	</bean>
 	<!-- setting controller -->
 	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction" scope="prototype">
 		<property name="memberService" ref="memberService" />
@@ -156,8 +160,12 @@
 	<bean id="categoryDAO" class="product.model.CategoryHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="categoryService" class="product.model.CategoryService">
+		<property name="categoryDAO" ref="categoryDAO" />
+	</bean>
 	<bean id="preDisplayActionStruts" class="product.controller.PreDisplayAction">
 		<property name="productService" ref="productService" />
+		<property name="categoryService" ref="categoryService" />
 	</bean>
 	<bean id="updateProductAction" class="product.controller.UpdateProductAction">
 		<property name="productService" ref="productService" />

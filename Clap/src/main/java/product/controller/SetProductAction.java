@@ -56,6 +56,12 @@ public class SetProductAction {
 			for(int index=0; index<arrb.length; index++){
 				arrB[index] = arrb[index];
 			}
+			if(productVO.getDiscount()>1||productVO.getDiscount()<0||productVO.getPrice()<0){
+				request.removeAttribute("productVOs");
+				request.setAttribute("isChanged", false);
+				request.setAttribute("message", "invalid price or discount");
+				return "success";
+			}
 			isChanged = productService.setOrUpdateProduct(productVO, arrB);
 		} catch (Exception e) {
 		}

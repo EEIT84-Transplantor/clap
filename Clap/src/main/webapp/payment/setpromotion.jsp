@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% java.util.List<payment.model.PromoVO> promoVOs = (java.util.List<payment.model.PromoVO>)request.getAttribute("promoVOs"); 
-    if(promoVOs==null){
-    	response.sendRedirect(request.getContextPath()+"/payment/prePromoteAction.action");
-    }
-    %>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+
+<%
+	java.util.List<payment.model.PromoVO> promoVOs = (java.util.List<payment.model.PromoVO>) request
+			.getAttribute("promoVOs");
+	String message = (String) request.getAttribute("message");
+	System.out.println("ggg" + message);
+	request.setAttribute("message", message);
+	if (promoVOs == null) {
+		response.sendRedirect(request.getContextPath() + "/payment/prePromoteAction.action");
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,10 +32,6 @@ input, select {
 	background-color: black;
 }
 
-#table1 {
-	margin: 20px;
-}
-
 #insertform {
 	display: none;
 }
@@ -39,6 +42,17 @@ input, select {
 
 #message {
 	color: red;
+	font-size: 18px;
+}
+
+.title {
+	width: 80px;
+	word-break: break-all;
+	padding: 0;
+	margin: 0;
+}
+.row{
+margin:10px 0;
 }
 </style>
 </head>
@@ -47,31 +61,44 @@ input, select {
 		<jsp:include page="/header.jsp" />
 	</header>
 	<section id="wrap">
-		<div class="container-fulid">
+		<div class="container">
 			<div class="row">
 				<div class="col-md-2">side-nav:sub-menu</div>
 				<div class="col-md-10">
 					<div class="row">
-
-						<div class="col-md-1 col-sm-1">
+						<div class="col-md-2">
 							<input type="button" value="Add New Item" id="add" />
 						</div>
-						<div class="col-md-11 col-sm-11">
+						<div class="col-md-10" id="message">
+							<p>${message}</p>
+							<s:fielderror name="promoVO.pm_discount" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-sm-12">
 							<div class="row">
-								<form>
+								<form
+									action="${pageContext.request.contextPath}/payment/prePromoteAction.action">
 									<div class="col-md-1 col-sm-1">
 										<span>Search By:</span>
 									</div>
 									<div class="col-md-3 col-sm-5">
-										Starting Date<input type="datetime" />
+										Starting Date<input type="datetime" name="expireFrom" />
 									</div>
 									<div class="col-md-3 col-sm-4">
-										Ending Date<input type="datetime" />
+										Ending Date<input type="datetime" name="expireTo" />
 									</div>
 									<div class="col-md-3 col-sm-1">
-										Category<input type="text" />
+										Category<br /> <select name="categoryName">
+											<option value="All">All</option>
+											<c:forEach var="categoryVO" varStatus="index"
+												items="${categoryVOs}">
+												<option value="${categoryVO.name}">${categoryVO.name}</option>
+											</c:forEach>
+										</select>
 									</div>
 									<div class="col-md-2 col-sm-1">
+										<br>
 										<input type="submit" value="search">
 									</div>
 
@@ -79,10 +106,12 @@ input, select {
 							</div>
 						</div>
 					</div>
-					<div class="row" id="table1">
+
+
+					<div class="row" id="insertform">
 						<div class="col-md-12">
-							<form id="insertform"
-								action="${pageContext.request.contextPath}/promotion/SetProductAction.action"
+							<form
+								action="${pageContext.request.contextPath}/payment/setPromoteAction.action"
 								method="POST">
 								<table class="table">
 									<thead>
@@ -97,24 +126,24 @@ input, select {
 									</thead>
 									<tbody>
 										<tr>
-											<td><input type="text" value="" name="promoVO.code" /></td>
-											<td><select id="category">
-													<option value="Lung">Lung</option>
-													<option value="Liver">Liver</option>
-													<option value="Kidney">Kidney</option>
-											</select>
-											<td><input type="text" name="promoVO.expire" /></td>
-											<td><input type="text" name="promoVO.title" /></td>
-											<td><input type="text" name="promoVO.discount" /></td>
-											<td><input id="submitInsert" type="submit" value="add" /><input
-												id="insertCancel" type="button" value="cancel" /></td>
+											<td><input type="text" name="promoVO.pm_code" /></td>
+											<td><select name="category">
+													<c:forEach var="categoryVO" varStatus="index"
+														items="${categoryVOs}">
+														<option value="${categoryVO.name}">${categoryVO.name}</option>
+													</c:forEach>
+											</select></td>
+											<td><input type="datetime" name="promoVO.pm_expire" /></td>
+											<td><input type="text" name="promoVO.pm_title" /></td>
+											<td><input type="text" name="promoVO.pm_discount" /></td>
+											<td><input type="submit" value="add" /> <input
+												id="insertCancel" type="reset" value="cancel" /></td>
 										</tr>
 									</tbody>
 								</table>
 							</form>
 						</div>
 					</div>
-					<p id="message"></p>
 					<div class="row">
 						<div class="col-md-12">
 							<table id="example" class="table">
@@ -131,22 +160,34 @@ input, select {
 								<tbody>
 									<c:forEach var="promoVO" varStatus="index" items="${promoVOs}">
 										<tr>
-											<td>${promoVO.pm_code}</td>
-											<td>${categoryNames[index.count-1]}</td>
-											<td>${promoVO.pm_expire}</td>
-											<td>${promoVO.pm_tiltle}</td>
-											<td>${promoVO.pm_discount}</td>
-											<td><input id="submitInsert1" type="submit" value="add" />
-												<input type="button" value="cancel" /></td>
+											<td><label>${promoVO.pm_code}</label> <input type="text"
+												class="form-control" name="promoVO.pm_code"
+												value="${promoVO.pm_code}" style="display: none"></td>
+											<td><label>${promoVO.categoryVO.name}</label> <input
+												type="text" class="form-control" name="category"
+												value="${promoVO.categoryVO.name}" style="display: none">
+											</td>
+											<td><label>${promoVO.pm_expire}</label> <input
+												type="text" class="form-control" name="promoVO.pm_expire"
+												value="${promoVO.pm_expire}" style="display: none">
+
+											</td>
+											<td class="title"><label>${promoVO.pm_title}</label> <input
+												type="text" class="form-control" name="promoVO.pm_title"
+												value="${promoVO.pm_title}" style="display: none"></td>
+											<td><label>${promoVO.pm_discount}</label> <input
+												type="text" class="form-control" name="promoVO.pm_discount"
+												value="${promoVO.pm_discount}" style="display: none">
+											</td>
+											<td><input class="update" type="button" value="update" />
+												<input type="button" value="cancel"
+												onclick="window.location.reload()" /></td>
 
 										</tr>
-
-
 									</c:forEach>
 								</tbody>
 							</table>
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -170,11 +211,20 @@ input, select {
 		src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
 
 	<script type="text/javascript">
+		$("#example td>label").on("click", function() {
+			$(this).hide();
+			$(this).next().show().focus();
+		});
+		$("#example td>input[type=text]").on("change", function() {
+			$(this).prev().html($(this).val());
+		}).on("blur", function() {
+			$(this).hide();
+			$(this).prev().show();
+		});
 		$(document)
 				.ready(
 						function() {
 							var table = $('#example').DataTable();
-
 							$("#add").click(function() {
 								$("#insertform").css("display", "table-row");
 
@@ -182,79 +232,68 @@ input, select {
 
 							$("#insertCancel").click(function() {
 								$("#insertform").css("display", "none");
-								// 			$('input[name="promoVO.code"]').html('');
-								// 			$('input[name="categoryNames"]').html('');
-								// 			$('input[name="promoVO.expire"]').html('');
-								// 			$('input[name="promoVO.title"]').html('');
-								// 			$('input[name="promoVO.discount"]').html('');
+								$("#insertform input[type=text]").val = "";
 							});
-							$('#submitInsert').click(function() {
-								alert("hhihi");
-							});
-							$('tbody tr td').click(function() {
-								var data = table.cell(this).data();
-								console.log(data);
-								if (!$(this).is(':last-child')) {
-									$(this).attr("contenteditable", 'true');
-								}
 
-							});
-							// 		$('tbody tr td').blur(function(){
-							// 			if(!$(this).is(':last-child')){
-							// 				$(this).attr("contenteditable",'true');
-							// // 				$(this).siblings(":last");	
-							// 			}
+							$("#message").fadeOut(10000);
 
-							// 		});
-
-							$('#submitInsert1')
+							$('.update')
 									.click(
 											function() {
-												alert("hello");
-												var data = table
-														.row($(this)
-														.parent()
-														.parent()
-														.children(':first'))
-														.data();
-												var dataSend = "promoVO.code="
-														+ data[0] + "category="
-														+ data[1]
-														+ "promoVO.expire="
-														+ data[2]
-														+ "promoVO.title="
-														+ data[3]
-														+ "promoVO.discount="
-														+ data[4];
-												sendPostRequestProduct(
-														"${pageContext.request.contextPath}/product/UpdateProductAction.action?",
-														dataSend);
+
+												var dataSend = "promoVO.pm_code="
+														+ $(this).parent()
+																.parent()
+																.children().eq(
+																		0)
+																.children()
+																.text()
+														+ "&category="
+														+ $(this).parent()
+																.parent()
+																.children().eq(
+																		1)
+																.children()
+																.text()
+														+ "&promoVO.pm_expire="
+														+ $(this).parent()
+																.parent()
+																.children().eq(
+																		2)
+																.children()
+																.text()
+														+ "&promoVO.pm_title="
+														+ encodeURI($(this)
+																.parent()
+																.parent()
+																.children().eq(
+																		3)
+																.children()
+																.text())
+														+ "&promoVO.pm_discount="
+														+ $(this).parent()
+																.parent()
+																.children().eq(
+																		4)
+																.children()
+																.text();
+
+												console.log(dataSend);
+												// 												sendPostRequestProduct(
+												// 														"${pageContext.request.contextPath}/payment/setPromoteAction.action?",
+												// 														dataSend);
+
+												$
+														.ajax({
+															type : "POST",
+															url : "${pageContext.request.contextPath}/payment/setPromoteAction.action",
+															data : dataSend
+														});
 
 											});
-							function sendPostRequestProduct(url, data) {
-								request = new XMLHttpRequest();
-								request.onreadystatechange = doReadyStateChange;
-								request.open("POST", url, true);
-								console.log(url);
-								request.setRequestHeader("Content-Type",
-										"application/x-www-form-urlencoded");
-								request.send(data);
-								console.log(url + '33');
-							}
-							;
-							function doReadyStateChange() {
-								if (request.readyState == 4) {
-									if (request.status == 200) {
-										processJSON(request.responseText);
-									} else {
-										console.log("Error Code:"
-												+ request.status + ", "
-												+ request.statusText);
-									}
-								}
-							}
+
 						});
 	</script>
-	</body>
+</body>
 </html>
 

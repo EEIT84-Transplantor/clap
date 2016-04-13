@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import product.model.CategoryDAO;
+import product.model.CategoryVO;
 
 public class PromoService {
 	private PromoDAO dao;
@@ -44,7 +45,7 @@ public class PromoService {
 			Double pm_discount = promoVO.getPm_discount();
 			java.util.Date pm_expire = promoVO.getPm_expire();
 			String pm_title = promoVO.getPm_title();
-			
+			System.out.println(pd_category+pm_code+pm_discount+pm_expire+pm_title);
 			if(pd_category==null){
 				return result;
 			}
@@ -63,6 +64,7 @@ public class PromoService {
 			}
 			if(dao.insert(promoVO)!=null){
 				result = true;
+				System.out.println("insert insert insert in service");
 			}
 		}
 		return result;
@@ -119,9 +121,8 @@ public class PromoService {
 	public List<String> getAllCategoryNames(List<PromoVO> promoVOs){
 		List<Integer> result = new ArrayList<Integer>();
 		for(PromoVO vo:promoVOs ){
-			if(!result.contains(vo.getPd_category())){
-				result.add(vo.getPd_category());
-			}
+			result.add(vo.getPd_category());
+			
 		}
 		List<String> resultInString =new ArrayList<String>();
 		for(Integer r: result){
@@ -133,7 +134,5 @@ public class PromoService {
 	public boolean updatePromo(PromoVO promoVO){
 		return dao.update(promoVO);
 	}
-	public Integer selectByCategoryName(String category_name){
-		return categoryDAO.selectByCategoryName(category_name).get(0).getId();
-	}
+	
 }

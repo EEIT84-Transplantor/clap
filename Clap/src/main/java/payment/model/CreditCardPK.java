@@ -9,7 +9,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 @Embeddable
-public class CreditCard implements Serializable {
+public class CreditCardPK implements Serializable {
 	@Column(name = "mb_email")
 	private String mb_email;
 	@Column(name = "cc_number")
@@ -37,11 +37,11 @@ public class CreditCard implements Serializable {
 			return true;
 		}
 
-		if (!(obj instanceof CreditCard)) {
+		if (!(obj instanceof CreditCardPK)) {
 			return false;
 		}
 
-		CreditCard user = (CreditCard) obj;
+		CreditCardPK user = (CreditCardPK) obj;
 		return new EqualsBuilder().append(this.cc_number, user.getCc_number()).append(this.mb_email, user.getMb_email())
 				.isEquals();
 	}

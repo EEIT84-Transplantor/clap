@@ -81,7 +81,7 @@ public class LoginServlet extends HttpServlet {
 				String visa = "^4[0-9]{12}(?:[0-9]{3})?$";
 				String master = "^5[1-5][0-9]{14}$";
 				String jcb="^(?:2131|1800|35\\d{3})\\d{11}$";
-				String cardNum =cardIt.getCreditCard().getCc_number();
+				String cardNum =cardIt.getCreditCardPK().getCc_number();
 				if(Pattern.matches(visa,cardNum)){
 					 cardType.add("visa");
 			    }else if(Pattern.matches(master,cardNum)){

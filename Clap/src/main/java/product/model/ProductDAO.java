@@ -22,4 +22,10 @@ public interface ProductDAO {
 
 	List<ProductVO> selectByTopAmount(Integer pageNumber, Integer pageAmount, Integer counts);
 
+	List<ProductVO> searchProductByKeyPrice(Integer categoryId, Double min, Double max, String key);
+
+	List<ProductVO> selectByOnlyPriceRange(Double min, Double max);
+
+	List<ProductVO> selectByPriceRange2(Double min, Double max, String key);
+
 }
