@@ -19,7 +19,7 @@ import member.model.MemberVO;
 public class CreditCardVO implements Serializable {
 
 	@EmbeddedId
-	private CreditCard creditCard;
+	private CreditCardPK creditCardPK;
 	@Column(name = "cc_goodthru")
 	private String cc_goodthru;
 	@Column(name = "cc_cvv")
@@ -28,12 +28,12 @@ public class CreditCardVO implements Serializable {
 	@JoinColumn(name = "mb_email", insertable = false, updatable = false)
 	private MemberVO memberVO;
 
-	public CreditCard getCreditCard() {
-		return creditCard;
+	public CreditCardPK getCreditCardPK() {
+		return creditCardPK;
 	}
 
-	public void setCreditCard(CreditCard creditCard) {
-		this.creditCard = creditCard;
+	public void setCreditCardPK(CreditCardPK creditCardPK) {
+		this.creditCardPK = creditCardPK;
 	}
 
 	public String getCc_goodthru() {
@@ -70,13 +70,13 @@ public class CreditCardVO implements Serializable {
 		}
 
 		CreditCardVO cardVO = (CreditCardVO) obj;
-		return new EqualsBuilder().append(creditCard.getMb_email(), cardVO.getCreditCard().getMb_email()).append(creditCard.getCc_number(), cardVO.getCreditCard().getCc_number()).isEquals();
+		return new EqualsBuilder().append(creditCardPK.getMb_email(), cardVO.getCreditCardPK().getMb_email()).append(creditCardPK.getCc_number(), cardVO.getCreditCardPK().getCc_number()).isEquals();
 
 	}
 
 	public int hashCode() {
 
-		return new HashCodeBuilder().append(creditCard.getMb_email()).append(creditCard.getCc_number()).toHashCode();
+		return new HashCodeBuilder().append(creditCardPK.getMb_email()).append(creditCardPK.getCc_number()).toHashCode();
 
 	}
 

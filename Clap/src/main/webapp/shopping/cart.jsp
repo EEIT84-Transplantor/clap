@@ -114,8 +114,8 @@
 							<td id="total">10000</td>
 						</tr>
 						<tr>
-							<td>prome</td>
-							<td><select class="form-control">
+							<td>promo</td>
+							<td><select id="promoTitle" class="form-control">
 									<option value="1" selected></option>
 									<c:forEach var="promoVO" items="${promoList}">
 										<option value="${promoVO.pm_discount}">${promoVO.pm_title}</option>
@@ -172,9 +172,9 @@
 			}
 			//listener 結帳
 			$("#checkOut").on("click", function() {
-				var url = "<c:url value='shopping/checkOutAction.action'/>";
+				var url = "<c:url value='/shopping/checkOutAction.action'/>";
 				var productArray = [];
-				var promoCode = {};
+				var promoTitle = $("#promoTitle").val();
 				$("tbody:first tr").each(function(){
 					var productName = $(this).children().eq(0).text();
 					var quantity = $(this).children().eq(1).children().val();
@@ -183,8 +183,10 @@
 				
 				$.ajax({
 					url : url,
-					data : {"productArray":productArray,"promoCode":promoCode},
+					data : {"productArray":productArray,"promoTitle":promoTitle},
 				})
+				console.log(url);
+				console.log({"productArray":productArray,"promoTitle":promoTitle});
 			})
 		})
 

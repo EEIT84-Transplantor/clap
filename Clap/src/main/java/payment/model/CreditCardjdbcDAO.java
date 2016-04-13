@@ -25,12 +25,12 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 			System.out.print(list.get(0).getCc_cvv());
 			
 			CreditCardVO vo = new CreditCardVO();
-			CreditCard creditCard = new CreditCard();
+			CreditCardPK creditCard = new CreditCardPK();
 			creditCard.setCc_number("caca@gmail.com");
 			creditCard.setCc_number("111111111111111");
 			vo.setCc_goodthru("10/18");
 			vo.setCc_cvv("333");
-			vo.setCreditCard(creditCard);
+			vo.setCreditCardPK(creditCard);
            // System.out.println(cdao.insert(vo).getCc_cvv());
            // System.out.println(cdao.delete(vo.getCc_number()));
             
@@ -63,10 +63,10 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 			rs =ps.executeQuery();
 			while(rs.next()){
 			CreditCardVO temp = new CreditCardVO();
-			CreditCard creditCard = new CreditCard();
+			CreditCardPK creditCard = new CreditCardPK();
 			creditCard.setCc_number(rs.getString("cc_number"));
 			creditCard.setMb_email(rs.getString("mb_email"));
-			temp.setCreditCard(creditCard);
+			temp.setCreditCardPK(creditCard);
 			temp.setCc_goodthru(rs.getString("cc_goodrhru"));
 			temp.setCc_cvv(rs.getString("cc_cvv"));
 			
@@ -116,10 +116,10 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 			rs =ps.executeQuery();
 			if(rs.next()){
 			result = new CreditCardVO();
-			CreditCard creditCard = new CreditCard();
+			CreditCardPK creditCard = new CreditCardPK();
 			creditCard.setCc_number(rs.getString("cc_number"));
 			creditCard.setMb_email(rs.getString("mb_email"));
-			result.setCreditCard(creditCard);
+			result.setCreditCardPK(creditCard);
 			result.setCc_goodthru(rs.getString("cc_goodrhru"));
 			result.setCc_cvv(rs.getString("cc_cvv"));
 			}
@@ -163,8 +163,8 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 		try {
 			conn = dataSource.getConnection();
 			ps = conn.prepareStatement(INSERT);
-			ps.setString(1, creditCardVO.getCreditCard().getMb_email());
-			ps.setString(2, creditCardVO.getCreditCard().getCc_number());
+			ps.setString(1, creditCardVO.getCreditCardPK().getMb_email());
+			ps.setString(2, creditCardVO.getCreditCardPK().getCc_number());
 			ps.setString(3, creditCardVO.getCc_goodthru());
 			ps.setString(4, creditCardVO.getCc_cvv());
 			

@@ -32,7 +32,7 @@ import com.opensymphony.xwork2.ValidationAware;
 
 import member.model.MemberService;
 import member.model.MemberVO;
-import payment.model.CreditCard;
+import payment.model.CreditCardPK;
 import payment.model.CreditCardDAO;
 import payment.model.CreditCardService;
 import payment.model.CreditCardVO;
@@ -125,13 +125,13 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		String email = memberVO.getEmail();
 		if(buttonClicked.equalsIgnoreCase("AddCreditCard")){
 	    	 System.out.println("button");
-	    	 if(creditCardVO.getCreditCard().getCc_number()==null||!checkCreditCard(creditCardVO.getCreditCard().getCc_number())){
+	    	 if(creditCardVO.getCreditCardPK().getCc_number()==null||!checkCreditCardPK(creditCardVO.getCreditCardPK().getCc_number())){
 	    		 errorMessage= "Credit Card Number is not valid";
 	    		
 	    	 }
-	    	 System.out.println(email+creditCardVO.getCreditCard().getCc_number() );
-	    	 System.out.println(creditCardService.getCard(  email,   creditCardVO.getCreditCard().getCc_number()  ));
-    		 if(creditCardService.getCard(  email,   creditCardVO.getCreditCard().getCc_number()  ) != null){
+	    	 System.out.println(email+creditCardVO.getCreditCardPK().getCc_number() );
+	    	 System.out.println(creditCardService.getCard(  email,   creditCardVO.getCreditCardPK().getCc_number()  ));
+    		 if(creditCardService.getCard(  email,   creditCardVO.getCreditCardPK().getCc_number()  ) != null){
 	    		 errorMessage= "Credit Card Number already exists";
 	    	 }
 	    	 
@@ -156,7 +156,7 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 	     }
 		
 	}
-	private Boolean checkCreditCard(String cardNum){
+	private Boolean checkCreditCardPK(String cardNum){
 		String visa = "^4[0-9]{12}(?:[0-9]{3})?$";
 		String master = "^5[1-5][0-9]{14}$";
 		String americanExpress="^3[47][0-9]{13}$";
@@ -219,17 +219,17 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		
 		if(buttonClicked.equalsIgnoreCase("AddCreditCard")){
 //			creditCard.setMb_email(email);
-//			creditCardVO.setCreditCard(creditCard);
+//			creditCardVO.setCreditCardPK(creditCard);
 
-			creditCardVO.getCreditCard().setMb_email(email);
+			creditCardVO.getCreditCardPK().setMb_email(email);
 
-			System.out.println("jsssssi"+creditCardVO.getCreditCard().getCc_number()+creditCardVO.getCreditCard().getMb_email()+creditCardVO.getCc_cvv());
+			System.out.println("jsssssi"+creditCardVO.getCreditCardPK().getCc_number()+creditCardVO.getCreditCardPK().getMb_email()+creditCardVO.getCc_cvv());
 
 			CreditCardVO resultVO = creditCardService.setCard(creditCardVO);
 			JSONObject result = new JSONObject();
-			String cardType = this.checkCreditCardType(resultVO.getCreditCard().getCc_number());
+			String cardType = this.checkCreditCardType(resultVO.getCreditCardPK().getCc_number());
 			System.out.println("ji"+resultVO);
-			result.put("cc_number", resultVO.getCreditCard().getCc_number());
+			result.put("cc_number", resultVO.getCreditCardPK().getCc_number());
 			result.put("cc_goodthru", resultVO.getCc_goodthru());
 			result.put("name", name);
 			result.put("cardType", cardType);
@@ -284,10 +284,10 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		
 		}else if(buttonClicked.equalsIgnoreCase("deleteCreditCard")){
 			//removeCard should be able to take in email as param
-			Boolean resultBoolean = creditCardService.removeCard(creditCardVO.getCreditCard().getCc_number(),email);
+			Boolean resultBoolean = creditCardService.removeCard(creditCardVO.getCreditCardPK().getCc_number(),email);
 			JSONObject result = new JSONObject();
 			result.put("result", resultBoolean);
-			result.put("cc_number",creditCardVO.getCreditCard().getCc_number());
+			result.put("cc_number",creditCardVO.getCreditCardPK().getCc_number());
 			res.put(result);
 		}else if(buttonClicked.equalsIgnoreCase("deletePromotion")){
 			Boolean resultBoolean= false;
