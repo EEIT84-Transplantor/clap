@@ -116,7 +116,7 @@
 						<tr>
 							<td>prome</td>
 							<td><select class="form-control">
-									<option value="1" selected> </option>
+									<option value="1" selected></option>
 									<c:forEach var="promoVO" items="${promoList}">
 										<option value="${promoVO.pm_discount}">${promoVO.pm_title}</option>
 									</c:forEach>
@@ -136,7 +136,7 @@
 			<div class="row">
 				<div class="col-md-10"></div>
 				<div class="col-md-2">
-					<input type="button" class="btn btn-default btn-block" value="結帳">
+					<input type="button" id="checkOut" class="btn btn-default btn-block" value="結帳">
 				</div>
 			</div>
 		</div>
@@ -149,35 +149,46 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
 	<script type="text/javascript">
-		var trs;
+		var trs=$("tbody:first tr").size();
 
 		$(function() {
 			getTotal();
 
-			//刪除商品 修改數量
-			trs = $("tbody:first tr").size();
+			//listener 刪除商品 修改數量 
 			for (var i = 0; i < trs; i++) {
-
 				$("input:eq(" + i + ")").click(function(event) {
 					$(event.target).parent().parent().remove();
 					getTotal();
 				});
-
 				$("select:eq(" + i + ")").change(function() {
 					getTotal();
 				})
 			}
-
-			//選擇promo
-
+			//listener 選擇promo 
 			for (var i = 0; i < $("select:last option").length - 1; i++) {
 				$("select:last").change(function() {
 					getTotal();
 				})
 			}
-
+			//listener 結帳
+			$("#checkOut").on("click", function() {
+				var url = "<c:url value='shopping/checkOutAction.action'>";
+				var productArray = [];
+				var promoCode = {};
+				$("tbody:first tr").each(function(){
+					var productName = $(this).children().eq(0).text();
+					var quantity = $(this).children().eq(1).children().val();
+					productArray.push({"prodcutName":productName,"quantity":quantity});
+				});
+				
+				$.ajax({
+					url : url,
+					data : {"productArray":productArray,"promoCode":promoCode},
+				})
+			})
 		})
 
+		//更新價格
 		function getTotal() {
 			trs = $("tbody:first tr").size();
 			var total = 0;
@@ -191,12 +202,8 @@
 			var reduced = total * promo - amount;
 			$("#total").text(total);
 			$("#reduced").text(reduced)
-
-
 		}
 	</script>
-
-
 </body>
 </html>
 
