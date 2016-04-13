@@ -63,9 +63,14 @@
 		<interceptors>
 			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
 			<interceptor name="paymentManageInterceptor" class="component.interceptor.PaymentManageInterceptor" />
+			<interceptor name="promoManageInterceptor" class="component.interceptor.PromoInterceptor" />
 			<interceptor-stack name="paymentManageStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="paymentManageInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+			<interceptor-stack name="promoManageInterceptorStack">
+				<interceptor-ref name="promoManageInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
@@ -85,12 +90,15 @@
 			<interceptor-ref name="paymentManageStack" />
 			<result>/payment/{1}.jsp</result>
 		</action>
+		
 		<action name="prePromoteAction" class="prePromoteAction">
+<!-- 			<interceptor-ref name="promoManageInterceptorStack" /> -->
 			<result name="success">/payment/setpromotion.jsp</result>
 			<result name="input">/payment/setpromotion.jsp</result>
 		</action>
-		<action name="setPromoteAction" class="setPromoteAction">
-			<result name="success">/payment/setpromotion.jsp</result>
+		<action name="setPromoteAction"  class="setPromoteAction" >
+<!-- 			<interceptor-ref name="promoManageInterceptorStack" /> -->
+			<result type="redirect" name="success">/payment/setpromotion.jsp</result>
 			<result name="input">/payment/setpromotion.jsp</result>
 		</action>
 

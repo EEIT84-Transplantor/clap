@@ -35,6 +35,20 @@ public class ProductService {
 		System.out.println(productId);
 		return productDAO.selectByProductId(productId);
 	}
+	
+	public List<ProductVO> searchProduct(Integer categoryId, Double min, Double max, String key){
+		if (min ==null || min<0){
+			min = 0.0;
+		}
+		if(max ==null || max<0){
+			max = 10000000000000000000.0;
+		}
+		
+		
+		
+		
+	}
+	
 	public boolean setOrUpdateProduct(ProductVO productVO, Byte[] productImg){
 		ProductimgVO productimgVO= new ProductimgVO();
 		productimgVO.setId(productVO.getId());
