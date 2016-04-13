@@ -10,6 +10,7 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import freemarker.template.utility.Execute;
+import product.model.CategoryService;
 import product.model.ProductService;
 import product.model.ProductVO;
 import product.model.ProductimgVO;
@@ -17,7 +18,12 @@ import product.model.ProductimgVO;
 public class PreDisplayAction extends ActionSupport {
 	private Integer pageNumber;
 	private ProductService productService;
+	private CategoryService categoryService;
+	
 
+	public void setCategoryService(CategoryService categoryService) {
+		this.categoryService = categoryService;
+	}
 	public void setPageNumber(Integer pageNumber) {
 		this.pageNumber = pageNumber;
 	}
@@ -56,6 +62,8 @@ public class PreDisplayAction extends ActionSupport {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("productVOs", productList);
 		request.setAttribute("productImgs", productImgs);
+		request.setAttribute("categoryVOs", categoryService.getAllCategory());
+		
 		return SUCCESS;
 	}
 	
