@@ -208,7 +208,7 @@
 
 		//在畫面產生新卡片
 		function setNewCard(result) {
-			if (result == true) {
+			if (result) {
 				//產生新卡片
 				$("#hidden").prev().clone().prependTo("#cardTable");
 				$(".number:first").text(creditCardVO.creditCardPK.cc_number);

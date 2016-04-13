@@ -7,7 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.ManyToAny;
+
+import hospital.model.HospitalVO;
 @Entity
 @Table(name="orderform")
 public class OrderFormVO {
@@ -23,8 +29,9 @@ public class OrderFormVO {
 	private Integer total;
     @Column(name="orderform_status")
 	private Byte status;
-    @Column(name="hospital_id")
-	private Byte hospital_id;
+    @ManyToOne
+    @JoinColumn(name="hospital_id",insertable=false,updatable=false)
+	private HospitalVO hospitalVO;
 	public Integer getId() {
 		return id;
 	}
@@ -56,10 +63,11 @@ public class OrderFormVO {
 	public void setStatus(Byte status) {
 		this.status = status;
 	}
-	public Byte getHospital_id() {
-		return hospital_id;
+	public HospitalVO getHospitalVO() {
+		return hospitalVO;
 	}
-	public void setHospital_id(Byte hospital_id) {
-		this.hospital_id = hospital_id;
+	public void setHospitalVO(HospitalVO hospitalVO) {
+		this.hospitalVO = hospitalVO;
 	}
+
 }
