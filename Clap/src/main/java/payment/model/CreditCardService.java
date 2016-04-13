@@ -47,9 +47,9 @@ public class CreditCardService {
 		if (creditCardVO != null) {
 			String cc_cvv = creditCardVO.getCc_cvv();
 			String cc_goodrhru = creditCardVO.getCc_goodthru();
-			String cc_number = creditCardVO.getCreditCard().getCc_number();
+			String cc_number = creditCardVO.getCreditCardPK().getCc_number();
 
-			String mb_email = creditCardVO.getCreditCard().getMb_email();
+			String mb_email = creditCardVO.getCreditCardPK().getMb_email();
 
 			if (cc_cvv == null || cc_cvv.length() == 0) {
 				return result;
@@ -84,9 +84,9 @@ public class CreditCardService {
 	public boolean isAvailable(CreditCardVO creditCardVO) {
 		boolean result = false;
 		if (creditCardVO != null) {
-			String cc_number = creditCardVO.getCreditCard().getCc_number();
+			String cc_number = creditCardVO.getCreditCardPK().getCc_number();
 			if (cc_number != null && cc_number.length() != 0) {
-				CreditCardVO temp = dao.selectByCcNumber(creditCardVO.getCreditCard().getMb_email(),cc_number);
+				CreditCardVO temp = dao.selectByCcNumber(creditCardVO.getCreditCardPK().getMb_email(),cc_number);
 				Calendar cal = null;
 				if (temp != null) {
 					// 舊卡
@@ -108,7 +108,7 @@ public class CreditCardService {
 					// 新卡
 
 					// 卡號
-					if (temp.getCreditCard().getCc_number() == null || temp.getCreditCard().getCc_number().length() != 16) {
+					if (temp.getCreditCardPK().getCc_number() == null || temp.getCreditCardPK().getCc_number().length() != 16) {
 						return result;
 					}
 
