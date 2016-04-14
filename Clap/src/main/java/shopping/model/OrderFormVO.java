@@ -1,5 +1,6 @@
 package shopping.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -11,12 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ManyToAny;
-
 import hospital.model.HospitalVO;
 @Entity
 @Table(name="orderform")
-public class OrderFormVO {
+public class OrderFormVO implements Serializable  {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="orderform_id")

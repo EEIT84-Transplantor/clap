@@ -1,8 +1,9 @@
 package shopping.model;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class ReturnVO {
+public class ReturnVO implements Serializable  {
 
 	private Byte[] product_img;
 	private Integer product_id;
