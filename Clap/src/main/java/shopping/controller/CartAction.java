@@ -22,8 +22,16 @@ public class CartAction extends ActionSupport implements ServletRequestAware {
 	private CartService cartService;
 	private PromoCodeService promoCodeService;
 
+	public CartService getCartService() {
+		return cartService;
+	}
+
 	public void setCartService(CartService cartService) {
 		this.cartService = cartService;
+	}
+
+	public PromoCodeService getPromoCodeService() {
+		return promoCodeService;
 	}
 
 	public void setPromoCodeService(PromoCodeService promoCodeService) {

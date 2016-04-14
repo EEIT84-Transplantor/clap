@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	<!-- interceptor -->
 	<bean id="creditCardInterceptor" class="component.interceptor.CreditCardInterceptor">
 		<property name="creditCardService" ref="creditCardService" />
@@ -11,13 +13,16 @@
 	</bean>
 
 	<!-- datasource -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-		<property name="url" value="jdbc:sqlserver://localhost:1433;databaseName=clap" />
+		<property name="url"
+			value="jdbc:sqlserver://localhost:1433;databaseName=clap" />
 		<property name="username" value="sa" />
 		<property name="password" value="passw0rd" />
 	</bean>
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
 	</bean>
@@ -72,33 +77,40 @@
 		<property name="dao" ref="promoCodeHibernateDAO" />
 		<property name="promoService" ref="promoService" />
 	</bean>
-	<bean id="paymentManageAction" class="payment.controller.PaymentManageAction" scope="prototype">
+	<bean id="paymentManageAction" class="payment.controller.PaymentManageAction"
+		scope="prototype">
 		<property name="promoService" ref="promoService" />
 		<property name="giftCardService" ref="giftCardService" />
 		<property name="memberService" ref="memberService" />
 		<property name="creditCardService" ref="creditCardService" />
 		<property name="promoCodeService" ref="promoCodeService" />
 	</bean>
-	<bean id="prePromoteAction" class="payment.controller.PrePromoteAction" scope="prototype">
+	<bean id="prePromoteAction" class="payment.controller.PrePromoteAction"
+		scope="prototype">
 		<property name="promoService" ref="promoService" />
 		<property name="categoryService" ref="categoryService" />
 	</bean>
-	<bean id="setPromoteAction" class="payment.controller.SetPromotionAction" scope="prototype">
+	<bean id="setPromoteAction" class="payment.controller.SetPromotionAction"
+		scope="prototype">
 		<property name="promoService" ref="promoService" />
 		<property name="categoryService" ref="categoryService" />
 	</bean>
 
 	<!-- setting controller -->
-	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction" scope="prototype">
+	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction"
+		scope="prototype">
 		<property name="memberService" ref="memberService" />
 	</bean>
-	<bean id="changePasswordAction" class="setting.controller.ChangePasswordAction" scope="prototype">
+	<bean id="changePasswordAction" class="setting.controller.ChangePasswordAction"
+		scope="prototype">
 		<property name="memberService" ref="memberService" />
 	</bean>
-	<bean id="oneClickAction" class="setting.controller.OneClickAction" scope="prototype">
+	<bean id="oneClickAction" class="setting.controller.OneClickAction"
+		scope="prototype">
 		<property name="memberService" ref="memberService" />
 	</bean>
-	<bean id="renewVIPAction" class="setting.controller.AutoRenewVIPAction" scope="prototype">
+	<bean id="renewVIPAction" class="setting.controller.AutoRenewVIPAction"
+		scope="prototype">
 		<property name="memberService" ref="memberService" />
 	</bean>
 	<bean id="autoRenewVIPAction" class="setting.controller.AutoRenewVIPAction">
@@ -192,21 +204,20 @@
 		<property name="promoCodeService" ref="promoCodeService" />
 	</bean>
 	<bean id="setCreditCardAction" class="shopping.controller.SetCreditCardAction">
-		<property name="doctorDAO" ref="doctorDAO" />
 	</bean>
 	<bean id="orderFormAction" class="shopping.controller.OrderFormAction">
-		<property name="doctorDAO" ref="doctorDAO" />
+
 	</bean>
 	<bean id="orderDetailAction" class="shopping.controller.OrderDetailAction">
-		<property name="doctorDAO" ref="doctorDAO" />
+
 	</bean>
 	<bean id="checkOutAction" class="shopping.controller.CheckOutAction">
-		<property name="doctorDAO" ref="doctorDAO" />
+
 	</bean>
 	<bean id="doCheckOutAction" class="shopping.controller.DoCheckOutAction">
-		<property name="doctorDAO" ref="doctorDAO" />
+
 	</bean>
 	<bean id="deleteOrderAction" class="shopping.controller.DeleteOrderAction">
-		<property name="doctorDAO" ref="doctorDAO" />
+
 	</bean>
 </beans>

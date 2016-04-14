@@ -1,6 +1,7 @@
-package shopping.model;
+package shopping.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 
@@ -15,12 +16,15 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionProxy;
 
 import member.model.MemberVO;
+import payment.model.PromoVO;
 import setting.controller.ChangePasswordAction;
+import shopping.model.CartVO;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestCartAction extends StrutsSpringTestCase {
 
-	private String changePasswordAction = "/shopping/cartAction.action";
+	private String nameSpace = "/shopping";
+	private String actionName = "cartAction";
 	private SessionFactory sessionFactory;
 	private Session session;
 
@@ -40,21 +44,20 @@ public class TestCartAction extends StrutsSpringTestCase {
 
 	// 測試action註冊正確
 	public void testaGetActionMapping() {
-		ActionMapping mapping = getActionMapping(changePasswordAction);
+		ActionMapping mapping = getActionMapping(nameSpace +"/"+ actionName);
 		assertNotNull(mapping);
-		assertEquals("/setting", mapping.getNamespace());
-		assertEquals("changePasswordAction", mapping.getName());
+		assertEquals(nameSpace, mapping.getNamespace());
+		assertEquals(actionName, mapping.getName());
 	}
 
 	// 測試取得action物件
 	public void testbGetActionProxy() throws Exception {
 		MemberVO memberVO = new MemberVO();
-		memberVO.setEmail("poan@gmail.com");
+		memberVO.setEmail("caca@gmail.com");
 		request.getSession().setAttribute("login", memberVO);
-		
-		ActionProxy proxy = getActionProxy(changePasswordAction);
+		ActionProxy proxy = getActionProxy(nameSpace +"/"+ actionName);
 		assertNotNull(proxy);
-		ChangePasswordAction action = (ChangePasswordAction) proxy.getAction();
+		CartAction action = (CartAction) proxy.getAction();
 		assertNotNull(action);
 		String result = proxy.execute();
 		assertEquals(Action.SUCCESS, result);
@@ -62,12 +65,10 @@ public class TestCartAction extends StrutsSpringTestCase {
 
 	// 測試excute()後產生的值
 	public void testdGetValueFromStack() throws ServletException, UnsupportedEncodingException {
-		request.setParameter("email", "FD");
-		executeAction(changePasswordAction);
-		
-		
-		String name = (String) findValueAfterExecute("email");
-		assertEquals("FD", name);
+		executeAction(actionName);
+		List<CartVO> cartList = (List<CartVO>) findValueAfterExecute("cartList");
+		List<PromoVO> promoList = (List<PromoVO>) findValueAfterExecute("promoList");
+		assertEquals(true, cartList.size() > 0 && promoList.size() > 0);
 	}
 
 }
