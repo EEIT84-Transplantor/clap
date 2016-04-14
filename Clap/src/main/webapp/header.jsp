@@ -46,7 +46,7 @@
 					<div class="row">
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="#" class="cart_anchor">${totalCart}</a></li>
-							<li><a href="${pageContext.request.contextPath}/shopping/shopping.jsp">Purchase</a></li>
+							<li><a href="${pageContext.request.contextPath}/shopping/shopping.action">Purchase</a></li>
 							<li class="active"><a href="#">About</a></li>
 							<li><a href="#">Simulator</a></li>
 							<li><a href="#">Appointment</a></li>
