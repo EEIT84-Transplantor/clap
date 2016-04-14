@@ -14,7 +14,7 @@
 					</button>
 
 
-					<a class="navbar-brand" href="${pageContext.request.contextPath}/"> <img class="hidden-xs"
+					<a class="navbar-brand" href="${pageContext.request.contextPath}/shopping/shopping.jsp"> <img class="hidden-xs"
 						src="${pageContext.request.contextPath}/resource/images/logo.png"> <img class="visible-xs"
 						src="${pageContext.request.contextPath}/resource/images/logo-s.png">
 					</a>
@@ -45,8 +45,8 @@
 
 					<div class="row">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="" class="cart_anchor"></a></li>
-							<li><a href="<c:url value="/shopping/shopping.jsp"/>">Purchase</a></li>
+							<li><a href="#" class="cart_anchor">${totalCart}</a></li>
+							<li><a href="${pageContext.request.contextPath}/shopping/shopping.jsp">Purchase</a></li>
 							<li class="active"><a href="#">About</a></li>
 							<li><a href="#">Simulator</a></li>
 							<li><a href="#">Appointment</a></li>

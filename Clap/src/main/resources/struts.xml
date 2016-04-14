@@ -166,7 +166,9 @@
                   <param name="searchinputName">inputStream</param>
              </result>
              <result name="search">/shopping/searchproduct.jsp</result>
-        
+		</action>
+		<action name="oneClickBuy" class="shopping.controller.OneClickBuyAction">
+			<result name="success">/hospital/appointment.jsp</result>
 		</action>
 		<action name="cartAction" class="shopping.controller.CartAction">
 			<result name="success">/shopping/cart.jsp</result>

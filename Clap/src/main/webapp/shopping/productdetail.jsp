@@ -80,7 +80,7 @@
 									</button>
 								</div>
 								<div class="col-md-12">
-					         	<button type="button" class="btn btn-success" style="width:100%;">One Click Buy</button>
+					         	<button type="button" class="btn btn-success" style="width:100%;"><a onclick="oneclick(${product.id});">One Click Buy</a></button>
 					           </div>
 							</div>
 							
@@ -108,6 +108,7 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/codex-fly.js"/>"></script>
 	<script type="text/javascript">
+	
 	var quantity;
     function changeCart(id) {
     	var url = "${pageContext.request.contextPath}/shopping/setCart.action?";
@@ -133,16 +134,21 @@
     //飛入購物車
     $(document).ready(function(){
         $('.add-to-cart').on('click',function(){
-            //Scroll to top if cart icon is hidden on top
             $('html, body').animate({
                 'scrollTop' : $(".cart_anchor").position().top
             });
-            //Select item image and pass to the function
             var itemImg = $(this).parent().parent().parent().parent().parent().find('img').eq(0);
            
             flyToElement($(itemImg), $('.cart_anchor'));
         });
     });
+    
+    function oneclick(id){
+		 var quantity = $("#sel1").val();
+		 var url = "${pageContext.request.contextPath}/shopping/oneClickBuy.action?cartVO.product_id="+id+"&cartVO.quantity="+quantity;
+		 alert(url);
+		window.location.href = url;
+    }
 
     </script>
 </body>

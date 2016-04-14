@@ -4,8 +4,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <%
-	java.util.List<payment.model.PromoVO> promoVOs = (java.util.List<payment.model.PromoVO>) request
-			.getAttribute("promoVOs");
+	java.util.List<payment.model.PromoVO> promoVOs = (java.util.List<payment.model.PromoVO>) request.getAttribute("promoVOs");
 	String message = (String) request.getAttribute("message");
 	System.out.println("ggg" + message);
 	request.setAttribute("message", message);
@@ -63,7 +62,9 @@ margin:10px 0;
 	<section id="wrap">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-2">side-nav:sub-menu</div>
+				<div class="col-md-2">
+					<jsp:include page="/sidenav.jsp" />
+				</div>
 				<div class="col-md-10">
 					<div class="row">
 						<div class="col-md-2">
