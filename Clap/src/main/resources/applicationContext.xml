@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
 	<!-- interceptor -->
 	<bean id="creditCardInterceptor" class="component.interceptor.CreditCardInterceptor">
 		<property name="creditCardService" ref="creditCardService" />
@@ -11,7 +10,7 @@
 		<property name="memberService" ref="memberService" />
 	</bean>
 	<bean id="getCategoriesInterceptor" class="component.interceptor.GetCategoriesInterceptor">
-	   <property name="cartService" ref="cartService"/>
+		<property name="cartService" ref="cartService" />
 	</bean>
 
 	<!-- datasource -->
@@ -68,7 +67,6 @@
 	<bean id="promoService" class="payment.model.PromoService">
 		<property name="dao" ref="promoHibernateDAO" />
 		<property name="categoryDAO" ref="categoryDAO" />
-		
 	</bean>
 	<bean id="promoCodeHibernateDAO" class="payment.model.PromoCodeHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
@@ -92,6 +90,7 @@
 		<property name="promoService" ref="promoService" />
 		<property name="categoryService" ref="categoryService" />
 	</bean>
+
 	<!-- setting controller -->
 	<bean id="changeSettingAction" class="setting.controller.ChangeSettingAction" scope="prototype">
 		<property name="memberService" ref="memberService" />
@@ -119,7 +118,6 @@
 		<property name="inventoryService" ref="inventoryService" />
 		<property name="promoCodeService" ref="promoCodeService" />
 	</bean>
-
 	<bean id="orderFormHibernateDAO" class="shopping.model.OrderFormHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -136,7 +134,7 @@
 	</bean>
 	<bean id="inOutLogService" class="inventory.model.InOutLogService">
 		<property name="inOutLogDAO" ref="inOutLogDAO" />
-		<property name="inventoryDAO" ref="inventoryDAO"/>
+		<property name="inventoryDAO" ref="inventoryDAO" />
 	</bean>
 	<bean id="inventoryDAO" class="inventory.model.InventoryHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
@@ -177,7 +175,7 @@
 		<property name="productService" ref="productService" />
 	</bean>
 
-    <!-- hospital -->
+	<!-- hospital -->
 	<bean id="hospitalDAO" class="hospital.model.HospitalHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -188,6 +186,30 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="doctorService" class="hospital.model.DoctorService">
+		<property name="doctorDAO" ref="doctorDAO" />
+	</bean>
+
+	<!-- shopping controller -->
+	<bean id="cartAction" class="shopping.controller.CartAction">
+		<property name="cartService" ref="cartService" />
+		<property name="promoCodeService" ref="promoCodeService" />
+	</bean>
+	<bean id="setCreditCardAction" class="shopping.controller.SetCreditCardAction">
+		<property name="doctorDAO" ref="doctorDAO" />
+	</bean>
+	<bean id="orderFormAction" class="shopping.controller.OrderFormAction">
+		<property name="doctorDAO" ref="doctorDAO" />
+	</bean>
+	<bean id="orderDetailAction" class="shopping.controller.OrderDetailAction">
+		<property name="doctorDAO" ref="doctorDAO" />
+	</bean>
+	<bean id="checkOutAction" class="shopping.controller.CheckOutAction">
+		<property name="doctorDAO" ref="doctorDAO" />
+	</bean>
+	<bean id="doCheckOutAction" class="shopping.controller.DoCheckOutAction">
+		<property name="doctorDAO" ref="doctorDAO" />
+	</bean>
+	<bean id="deleteOrderAction" class="shopping.controller.DeleteOrderAction">
 		<property name="doctorDAO" ref="doctorDAO" />
 	</bean>
 </beans>
