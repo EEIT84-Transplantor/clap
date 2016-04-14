@@ -146,15 +146,15 @@ word-wrap:break-word;
 											  
 											</td>
 											<td>${productVO.id}</td>
-											<td class="col-md-2">
+											<td class="col-md-1">
 											  <label>${productVO.name}</label> 
 											  <input type="text" class="form-control" name="productVO.name" value="${productVO.name}" style="display:none; width:100%;">
 											</td>
-											<td class="col-md-2">
+											<td class="col-md-1">
 											  <label>${productVO.price}</label> 
 											  <input type="number" min="0" class="form-control" name="productVO.price" value="${productVO.price}" style="display: none">
 											</td>
-											<td class="col-md-2">
+											<td class="col-md-4">
 											  <label>${productVO.description}</label> 
 											  <input type="text" class="form-control" name="productVO.description" value="${productVO.description}" style="display: none">
 											</td>
@@ -321,6 +321,7 @@ word-wrap:break-word;
 		
 		dataObj.productimg64 = uploadFiles64['img'+dataObj['productVO.id']];
 		
+		console.log(dataObj['productVO.id']+" "+dataObj['productVO.name']+" "+dataObj['productVO.description']);
 		//var data = table.row($(this).parent().parent().children(':first')).data();
 		//console.log(data[1]);		
 		if (confirm("Do you want to update this product?") == true) {
