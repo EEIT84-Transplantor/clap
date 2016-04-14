@@ -75,7 +75,6 @@ public class SearchProductAction extends ActionSupport implements ServletRequest
 	@Override
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
-		
 	}
 
 }
