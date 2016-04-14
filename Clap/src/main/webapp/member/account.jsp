@@ -22,17 +22,32 @@
 		<div class="container">
 			<div class="row">
 			<div class="center-block" style="width:60%;">
-			<form role="form">
+			
+				<div class="row">
+				<div class="col-md-1"></div>
+				<button type="button" class="btn btn-primary btn-lg col-md-4">Payment Manage</button>
+				<div class="col-md-2"></div>
+				<button type="button" class="btn btn-default btn-lg col-md-4">Change Password</button>
+				<div class="col-md-1"></div>
+				</div>
+				<br>
+				<div class="row">
+				<div class="col-md-1"></div>
+				<button type="button" class="btn btn-default btn-lg col-md-4">Change Setting</button>
+				<div class="col-md-2"></div>
+				<button type="button" class="btn btn-primary btn-lg col-md-4">Set Oneclick Shopping</button>
+				<div class="col-md-1"></div>
+				</div>
+				<br>
+				<div class="row">
+				<div class="col-md-1"></div>
+				<button type="button" class="btn btn-primary btn-lg col-md-4">Activate VIP</button>
+				<div class="col-md-2"></div>
+				<button type="button" class="btn btn-default btn-lg col-md-4">Mail Box</button>
+				<div class="col-md-1"></div>
+				</div>
 				
-				<button type="button" class="btn btn-primary btn-lg ">Payment Manage</button>
-				<button type="button" class="btn btn-default btn-lg ">Change Password</button>
-				<button type="button" class="btn btn-primary btn-lg ">Change Setting</button>
-				<button type="button" class="btn btn-default btn-lg ">Set Oneclick Shopping</button>
-				<button type="button" class="btn btn-primary btn-lg ">Activate VIP</button>
-				<button type="button" class="btn btn-primary btn-lg ">Mail Box</button>
-				
-				
-			</form>
+			
 			</div>
 			</div>
 		</div>
@@ -58,27 +73,27 @@
 			
 			
 			//onclick paymentmanage button
-			$("form button").eq(0).on("click", function() {
+			$("button").eq(0).on("click", function() {
 				location.href = paymentmanageUrl;
 			});
 			//onclick passwordchange button
-			$("form button").eq(1).on("click", function() {
+			$("button").eq(1).on("click", function() {
 				location.href = passwordchangeUrl;
 			});
 			//onclick changesetting button
-			$("form button").eq(2).on("click", function() {
+			$("button").eq(2).on("click", function() {
 				location.href = changesettingUrl;
 			});
 			//onclick Oneclick button
-			$("form button").eq(3).on("click", function() {
+			$("button").eq(3).on("click", function() {
 				location.href = oneclickUrl;
 			});
 			//onclick VIP button
-			$("form button").eq(4).on("click", function() {
+			$("button").eq(4).on("click", function() {
 				location.href = vipUrl;
 			});
 			//onclick mailbox button
-			$("form button").eq(5).on("click", function() {
+			$("button").eq(5).on("click", function() {
 				location.href = mailUrl;
 			});
 		});
