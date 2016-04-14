@@ -28,8 +28,8 @@
     </div>
      <a href="#side_Account" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Account</a>
     <div class="collapse" id="side_Account">
-      <a href="" class="list-group-item sub_list">Setting</a>
-      <a href="" class="list-group-item sub_list">Payment</a>
+      <a href="${pageContext.request.contextPath}/member/account.jsp" class="list-group-item sub_list">Setting</a>
+      <a href="${pageContext.request.contextPath}/payment/paymentmanage.action" class="list-group-item sub_list">Payment</a>
     </div>
   </div>
 </div>
