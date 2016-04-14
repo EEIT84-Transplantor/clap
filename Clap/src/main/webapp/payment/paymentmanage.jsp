@@ -40,7 +40,7 @@
 									<div class="payment_detail_box">
 										<div class="creditCard">
 											<div class="credit_info">
-												<p class="cc_number">${card.creditCard.cc_number}</p>
+												<p class="cc_number">${card.creditCardPK.cc_number}</p>
 												<p class="cc_goodthru">${card.cc_goodthru}</p>
 												<p class="cc_name">${login.name}</p>
 												
@@ -65,7 +65,7 @@
 											<div class="addCard">
 												<strong>NEW CARD </strong>
 												<form id="addCreditForm">
-													Number :<input type="text" name="creditCardVO.creditCard.cc_number" value="6011226470739645" /> <br /> 
+													Number :<input type="text" name="creditCardVO.creditCardPK.cc_number" value="6011226470739645" /> <br /> 
 													Good thru :<input type="text" name="creditCardVO.cc_goodthru" value="11/22" /><br /> 
 													CVV :<input type="text" name="creditCardVO.cc_cvv" value="333" /> <br /> 
 													<input type="button" value="add" id="addCreditCard"><br />
@@ -215,32 +215,36 @@
 		function doReadyStateChange() {
 			if (request.readyState == 4) {
 				if (request.status == 200) {
+					alert("4/200");
                     processJSON(request.responseText);
 				} else {
 					console.log("Error Code:" + request.status + ", "+ request.statusText);
+					processJSON(request.responseText);
 				}
 			}
 		}
 		
 		function processJSON(data) {
+			alert("hee");
 			var json = JSON.parse(data);
 		    var key = json[0].buttonClicked;
 		    var isError = json[0].isError;
+		    console.log(isError);
 		    if(isError){
+		    	alert("hi");
 		    	switch(key){
-		    	case "addCreditCard":
+		    	case "AddCreditCard":
 		    		$('#error').css("color","rgb(255,0,0)");
 			    	$('#error').html("Error: "+json[0].errorMessage);
 			    	return;
-		    	case "deleteCreditCard":
+		    	case "DeleteCreditCard":
 		    		$('#errorGitCard').css("color","rgb(255,0,0)");
 			    	$('#errorGitCard').html("Error: "+json[0].errorMessage);
 			    	return;	
-		    	case "addPromoCode":
+		    	case "AddPromoCode":
 		    		$('#errorPromo').css("color","rgb(255,0,0)");
 			    	$('#errorPromo').html("Error: "+json[0].errorMessage);
 			    	return;	
-		    	
 		    	
 		    	
 		    	}
@@ -260,7 +264,7 @@
 		        break;
 		    case "UseGiftCard": 
 		    	 if(info.result!=0){ 
-		    		 $("#totalAmount").text("Total amount "+info.total);
+		    		 $("#totalAmount").text("Total amount "+info.amount);
 		    	 }else{
 		    		 $("#totalAmount").text("Can't use this card");
 		    	 }

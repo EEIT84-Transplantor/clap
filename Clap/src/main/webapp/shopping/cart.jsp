@@ -22,7 +22,6 @@
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
-
 	<%
 		Map<String, Object> name1 = new HashMap<>();
 		name1.put("name", "abc");
@@ -61,7 +60,6 @@
 		pageContext.setAttribute("cartList", cartList);
 		pageContext.setAttribute("promoList", promoList);
 	%>
-
 	<header><jsp:include page="/header.jsp" /></header>
 
 	<section id="wrap">
@@ -149,7 +147,7 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
 	<script type="text/javascript">
-		var trs=$("tbody:first tr").size();
+		var trs = $("tbody:first tr").size();
 
 		$(function() {
 			getTotal();
@@ -175,18 +173,27 @@
 				var url = "<c:url value='/shopping/checkOutAction.action'/>";
 				var productArray = [];
 				var promoTitle = $("#promoTitle").val();
-				$("tbody:first tr").each(function(){
+				$("tbody:first tr").each(function() {
 					var productName = $(this).children().eq(0).text();
 					var quantity = $(this).children().eq(1).children().val();
-					productArray.push({"prodcutName":productName,"quantity":quantity});
+					productArray.push(JSON.stringify({
+						"prodcutName" : productName,
+						"quantity" : quantity
+					}));
 				});
-				
+
 				$.ajax({
 					url : url,
-					data : {"productArray":productArray,"promoTitle":promoTitle},
+					data : {
+						"productArray" : productArray,
+						"promoTitle" : promoTitle
+					},
 				})
-				console.log(url);
-				console.log({"productArray":productArray,"promoTitle":promoTitle});
+				// 				console.log(url);
+				// 				console.log({
+				// 					"productArray" : productArray,
+				// 					"promoTitle" : promoTitle
+				// 				});
 			})
 		})
 

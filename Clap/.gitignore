@@ -1,4 +1,11 @@
+<<<<<<< HEAD
+/target/
+/.settings/
+/.classpath
+/.project
+=======
 /.settings/
 /.classpath
 /.project
 /target/
+>>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git

@@ -146,15 +146,15 @@ word-wrap:break-word;
 											  
 											</td>
 											<td>${productVO.id}</td>
-											<td class="col-md-2">
+											<td class="col-md-1">
 											  <label>${productVO.name}</label> 
 											  <input type="text" class="form-control" name="productVO.name" value="${productVO.name}" style="display:none; width:100%;">
 											</td>
-											<td class="col-md-2">
+											<td class="col-md-1">
 											  <label>${productVO.price}</label> 
 											  <input type="number" min="0" class="form-control" name="productVO.price" value="${productVO.price}" style="display: none">
 											</td>
-											<td class="col-md-2">
+											<td class="col-md-4">
 											  <label>${productVO.description}</label> 
 											  <input type="text" class="form-control" name="productVO.description" value="${productVO.description}" style="display: none">
 											</td>
@@ -192,6 +192,8 @@ word-wrap:break-word;
 	</footer>
 	<div id="ajaxBox" style="display:none;">
 	</div>
+	<img id="imgBox" class="imgBox" style="display:none;"/>
+	
 	<!-- 載入js -->
 	<script src="${pageContext.request.contextPath}/resource/js/jquery-1.12.2.min.js" /></script>
 	<script src="${pageContext.request.contextPath}/resource/js/bootstrap.min.js" /></script>
@@ -240,7 +242,30 @@ word-wrap:break-word;
 	$("td.showimg>input").on("change",function(){
 		loadImageFileAsURL($(this).attr("id"));
 		});
-
+	$("td.showimg img").on("mouseover",function(){
+		$(this).css("opacity", "0.6");		
+		var srcToMove = $(this).attr("src");
+		
+		var position =$(this).offset();
+		var bottomPosition = position.top - 5;
+		var widthFixed = $(window).width() * 0.1;
+		var leftPosition = position.left - 10 - widthFixed;
+		
+								
+		$("#imgBox").attr("src", srcToMove).css("background-color","white").css("color","black")
+		.css("border","2px solid silver").css("border-radius","20px")
+		.css("position","absolute").css("top", bottomPosition)
+		.css("left", leftPosition).css("width", widthFixed).fadeIn();
+		
+// 		"data:image/png;base64,";
+	}).on("mouseout", function(){
+		$("#imgBox").hide();
+		$(this).css("opacity", "1");		
+	}).on("blur", function(){
+		$("#imgBox").hide();
+		$(this).css("opacity", "1");		
+	});
+	
 	$("td>input").on("change", function() {
 		if($(this).attr("name")=="productVO.price"){
 			if($(this).val()<0){
@@ -256,22 +281,116 @@ word-wrap:break-word;
 		$(this).hide();
 		$(this).prev().show();
 	});
+	
+	
+	$('#submitInsert').on("click", function() {
+		alert("add product");
+	});
+	
+	$("button.cancelUpdate").on("click", function(){
+		
+		location.reload();
+	});
+	var updateJQobj;
+	
+	$('button.sendUpdate').on("click", function() {
+		updateJQobj = $(this);
+		var dataObj = {
+				"productVO.id":"id", 
+				"productVO.name":"name","productVO.price":"100",
+				"productVO.description":"xxx",
+				"productVO.discount":"1", 
+				"productVO.category_id":"2"
+		};
+		
+		var index=1;
+		for(var key in dataObj) {
+			if(index == 1){
+				dataObj[key] = $(this).parent().parent().children().eq(1).text();
+			}else if(index!=5 && index!=7){
+				dataObj[key] = $(this).parent().parent().children().eq(index).children().text();
+			}else if (index==7){
+				dataObj[key] = $(this).parent().parent().children().eq(index).children().eq(1).val();			
+			}else{
+				dataObj[key] = $(this).parent().parent().children().eq(6).children().text();
+				index++;
+			}
+			index++;
+//				alert(dataObj[key]);
+		}
+		
+		dataObj.productimg64 = uploadFiles64['img'+dataObj['productVO.id']];
+		
+		console.log(dataObj['productVO.id']+" "+dataObj['productVO.name']+" "+dataObj['productVO.description']);
+		//var data = table.row($(this).parent().parent().children(':first')).data();
+		//console.log(data[1]);		
+		if (confirm("Do you want to update this product?") == true) {
+			$.ajax({
+				method: "POST",
+				  url: "${pageContext.request.contextPath}/product/updateProductAction.action",
+				  data:dataObj
+			}).done(function(msg){
+				var jsonObj = JSON.parse(msg);
+					
+				var position =updateJQobj.offset();
+				var topPosition = position.top - 35;
+				var leftPosition = position.left - 10;
+										
+				$("#ajaxBox").css("background-color","white").css("color","black")
+				.css("padding","10px").css("padding-top","5px").css("padding-bottom","5px")
+				.css("border","1px solid black").css("border-radius","20px")
+				.css("position","absolute").css("top", topPosition)
+				.css("left", leftPosition).css("box-shadow", "0px 0px 3px silver")
+				.css("width","auto").html(jsonObj.message).fadeIn();
+				setTimeout(function(){$("#ajaxBox").fadeOut(); location.reload();}, 500);
+			});
+		}
+	});
+
+	var removeJQobj;
+	$('img.delete', 'tbody tr:nth-child(2n)').css("opacity","0.6").hover(function(){
+		removeJQobj = $(this);
+		removeJQobj.css("opacity","1");
+		
+	},function(){
+		removeJQobj.css("opacity","0.6");
+	});
+	$('img.delete', 'tbody tr:nth-child(2n+1)').css("opacity","0.6").hover(function(){
+		removeJQobj = $(this);
+		removeJQobj.css("opacity","1");
+		
+	},function(){
+		removeJQobj.css("opacity","0.6");
+	});
+	
+	$('.delete').click(function() {
+		removeJQobj = $(this);
+		if (confirm("Do you want to delete this product?") == true) {
+			var dataObj = {productId: removeJQobj.parent().parent().children().eq(1).text()};
+			$.ajax({
+				method: "POST",
+				  url: "${pageContext.request.contextPath}/product/removeProductAction.action",
+				  data: dataObj
+			}).done(function(msg){
+				location.reload();
+			});
+
+		}
+	});
 		$(document).ready(function() {
 			var table = $('#example').DataTable();
 
-			$("#add").click(function() {
+			$("#add").on("click", function() {
 
 				$("table.table-condensedalot tr>th:first-child").css("max-width","13em").css("width","auto");
 				$("table.table-condensedalot tr>th>input:first-child").css("max-width","13em").css("width","auto");
 				$("#insertform").show();
 			});
-			
 			$("td.showimg>input").css("width", "100%");
 			
-			$('#submitInsert').click(function() {
-				alert("add product");
-			});
-			$('tbody tr td').click(function() {
+			
+			
+			$('tbody tr td').on("click", function() {
 				var data = table.cell(this).data();
 				//console.log(data);
 				// 			if(!$(this).is(':last-child')){
@@ -286,102 +405,11 @@ word-wrap:break-word;
 				}
 
 			});
-			$("#insertCancel").click(function() {
+			$("#insertCancel").on("click", function() {
 				$("#insertform").css("display", "none");
 			});
-			
 
 			
-
-			
-			$("button.cancelUpdate").click(function(){
-				
-				location.reload();
-			});
-			var updateJQobj;
-			$('button.sendUpdate').click(function() {
-				updateJQobj = $(this);
-				var dataObj = {
-						"productVO.id":"id", 
-						"productVO.name":"name","productVO.price":"100",
-						"productVO.description":"xxx",
-						"productVO.discount":"1", 
-						"productVO.category_id":"2"
-				};
-				
-				var index=1;
-				for(var key in dataObj) {
-					if(index == 1){
-						dataObj[key] = $(this).parent().parent().children().eq(1).text();
-					}else if(index!=5 && index!=7){
-						dataObj[key] = $(this).parent().parent().children().eq(index).children().text();
-					}else if (index==7){
-						dataObj[key] = $(this).parent().parent().children().eq(index).children().eq(1).val();			
-					}else{
-						dataObj[key] = $(this).parent().parent().children().eq(6).children().text();
-						index++;
-					}
-					index++;
-// 					alert(dataObj[key]);
-				}
-				
-				dataObj.productimg64 = uploadFiles64['img'+dataObj['productVO.id']];
-				//var data = table.row($(this).parent().parent().children(':first')).data();
-				//console.log(data[1]);
-				uploadFiles64['img'+dataObj['productVO.id']]
-				if (confirm("Do you want to update this product?") == true) {
-					$.ajax({
-						method: "POST",
-						  url: "${pageContext.request.contextPath}/product/updateProductAction.action",
-						  data:dataObj
-					}).done(function(msg){
-						var jsonObj = JSON.parse(msg);
-							
-						var position =updateJQobj.offset();
-						var topPosition = position.top - 35;
-						var leftPosition = position.left - 10;
-												
-						$("#ajaxBox").css("background-color","white").css("color","black")
-						.css("padding","10px").css("padding-top","5px").css("padding-bottom","5px")
-						.css("border","1px solid black").css("border-radius","20px")
-						.css("position","absolute").css("top", topPosition)
-						.css("left", leftPosition).css("box-shadow", "0px 0px 3px silver")
-						.css("width","auto").html(jsonObj.message).fadeIn();
-						setTimeout(function(){$("#ajaxBox").fadeOut(); location.reload();}, 500);
-					});
-				}
-			});
-
-			var removeJQobj;
-			$('img.delete', 'tbody tr:nth-child(2n)').css("opacity","0.6").hover(function(){
-				removeJQobj = $(this);
-				removeJQobj.css("opacity","1");
-				
-			},function(){
-				removeJQobj.css("opacity","0.6");
-			});
-			$('img.delete', 'tbody tr:nth-child(2n+1)').css("opacity","0.6").hover(function(){
-				removeJQobj = $(this);
-				removeJQobj.css("opacity","1");
-				
-			},function(){
-				removeJQobj.css("opacity","0.6");
-			});
-			
-			$('.delete').click(function() {
-				removeJQobj = $(this);
-				if (confirm("Do you want to delete this product?") == true) {
-					var dataObj = {productId: removeJQobj.parent().parent().children().eq(1).text()};
-					$.ajax({
-						method: "POST",
-						  url: "${pageContext.request.contextPath}/product/removeProductAction.action",
-						  data: dataObj
-					}).done(function(msg){
-						location.reload();
-					});
-
-				}
-			});
 			function sendPostRequestProduct(url, data) {
 				request = new XMLHttpRequest();
 				request.onreadystatechange = doReadyStateChange;
