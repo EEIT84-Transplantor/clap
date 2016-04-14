@@ -154,7 +154,6 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 	    		 errorMessage="Gift Card is not valid";
 	    	 }
 	     }
-		
 	}
 	private Boolean checkCreditCardPK(String cardNum){
 		String visa = "^4[0-9]{12}(?:[0-9]{3})?$";
@@ -176,6 +175,7 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 	
 	
 	public String execute(){
+		System.out.println(errorMessage);
 		System.out.println("execute");
 		HttpServletRequest request = ServletActionContext.getRequest();
 		RequestDispatcher rd= request.getRequestDispatcher("/payment/manage.controller");
@@ -195,9 +195,9 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 			JSONObject buttonClickedJson = new JSONObject();
 			buttonClickedJson.put("isError", true);
 			buttonClickedJson.put("errorMessage", errorMessage);
+			buttonClickedJson.put("buttonClicked", buttonClicked);
 			res.put(buttonClickedJson);
 			request.setAttribute("results", res);
-			
 			try {
 				rd.forward(request, response);
 			} catch (ServletException e) {
