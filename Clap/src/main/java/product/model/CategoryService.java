@@ -19,13 +19,14 @@ public class CategoryService {
 	
 	public CategoryVO addNewCategory(Integer id, String category_name){
 		CategoryVO categoryVO = new CategoryVO();
-		categoryVO.setId(id);
 		categoryVO.setName(category_name);
 		return categoryDAO.insert(categoryVO);	
 	}
 	public Integer selectByCategoryName(String category_name){
 		List<CategoryVO>list = categoryDAO.selectByCategoryName(category_name);
-		if(list!=null){
+		System.out.println(list.size());
+		if(list!=null&&list.size()!=0){
+			System.out.println("here"+list.get(0).getId());
 			return list.get(0).getId();
 		}else{
 			return null;

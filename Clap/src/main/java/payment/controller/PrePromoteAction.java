@@ -42,11 +42,11 @@ public class PrePromoteAction extends ActionSupport {
 	}
 	
 	
+	
 
 	public String execute(){
 		System.out.println("hellollololololol preAction");
 		List<PromoVO> promoVOs = null;
-		List<String> categoryNames=  null;
 		if(expireFrom!=null){
 			promoVOs = promoService.getAllPromosByStartDate(expireFrom);
 		}
@@ -94,7 +94,8 @@ public class PrePromoteAction extends ActionSupport {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("promoVOs", promoVOs);
 
-		String message = (String) request.getAttribute("message");
+		String message = (String) request.getSession().getAttribute("message");
+		request.getSession().removeAttribute("message");
 		System.out.println(message);
 		request.setAttribute("message", message);
 		request.setAttribute("categoryVOs", categoryVOs);

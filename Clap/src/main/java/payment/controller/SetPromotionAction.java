@@ -2,6 +2,7 @@ package payment.controller;
 
 import java.util.List;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
@@ -43,8 +44,27 @@ public class SetPromotionAction extends ActionSupport{
 		this.category = category;
 	}
 
-	
+
 	public String execute(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String message="";
+		if(promoVO.getPm_discount()==null||promoVO.getPm_discount()>1||promoVO.getPm_discount()<0){
+			message+="Discount is not Valid<br>";
+		}
+		if(promoVO.getPm_code()==null){
+			message+="Promo Code is not Valid<br>";
+		}
+		if(promoVO.getPm_title()==null||promoVO.getPm_title().length()==0){
+			message+="Promo Code is not Valid<br>";
+		}
+		if(promoVO.getPm_expire()==null){
+			message+="Expireation is not Valid<br>";
+		}
+		if(!message.equals("")){
+			request.getSession().setAttribute("message", message);
+			return INPUT;
+		}
+		
 		System.out.println("insertttt");
 		promoVO.setPd_category(categoryService.selectByCategoryName(category));
 		System.out.println("hiiiiiiiiiiiiiiiiiiiiiiiiiiii"+promoVO.getPm_title());
@@ -59,21 +79,20 @@ public class SetPromotionAction extends ActionSupport{
 		}
 		
 		
-		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("isChanged", result);
 		if(result){
 			System.out.println("successsss");
-			request.setAttribute("message", "Update Successfully");
+			request.getSession().setAttribute("message", "Update Successfully");
 		}else{
 			System.out.println("unsuccesssss");
-			request.setAttribute("message", "The information you entered was wrong, please try again");
+			request.getSession().setAttribute("message", "The information you entered was wrong, please try again");
 		}
 		System.out.println("yayayayay");
-		List<PromoVO> promoVOs = promoService.getAllPromos(true);
-		List<CategoryVO> categoryVOs = categoryService.getAllCategory();
-		request.setAttribute("promoVOs", promoVOs);
-		request.setAttribute("categoryVOs", categoryVOs);
-//		request.removeAttribute("promoVOs");
+//		List<PromoVO> promoVOs = promoService.getAllPromos(true);
+//		List<CategoryVO> categoryVOs = categoryService.getAllCategory();
+//		request.setAttribute("promoVOs", promoVOs);
+//		request.setAttribute("categoryVOs", categoryVOs);
+		request.removeAttribute("promoVOs");
 		return SUCCESS;
 	}
 	

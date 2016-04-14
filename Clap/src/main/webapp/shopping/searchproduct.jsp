@@ -42,7 +42,10 @@
 					<!--  內容可以寫這裡  -->
 
 					<div class="row">
-						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+					
+					
+					<c:forEach var="product" items="${products}">
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px;">
 							<div class="hovereffect">
 								<img class="img-responsive" src="../resource/images/orgins/brain.jpg" alt="">
 								<div class="overlay">
@@ -54,42 +57,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-							<div class="hovereffect">
-								<img class="img-responsive" src="../resource/images/orgins/brain.jpg" alt="">
-								<div class="overlay">
-									<h2>Brain two</h2>
-									<p>
-									<span>$159.99</span>
-									<a class="info" href="#">ADD TO CART</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-							<div class="hovereffect">
-								<img class="img-responsive" src="../resource/images/orgins/brain.jpg" alt="">
-								<div class="overlay">
-									<h2>Brain three</h2>
-									<p>
-									<span>$159.99</span>
-									<a class="info" href="#">ADD TO CART</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-							<div class="hovereffect">
-								<img class="img-responsive" src="../resource/images/orgins/brain.jpg" alt="">
-								<div class="overlay">
-									<h2>Brain four</h2>
-									<p>
-									<span>$159.99</span>
-									<a class="info" href="#">ADD TO CART</a>
-									</p>
-								</div>
-							</div>
-						</div>
+
+		   		</c:forEach>
 
 
 
