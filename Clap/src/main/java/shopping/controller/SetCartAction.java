@@ -74,6 +74,7 @@ public class SetCartAction extends ActionSupport implements ServletRequestAware{
 		}
 		
 		inputStream = new ByteArrayInputStream(totalCart.toString().getBytes("UTF-8"));
+		System.out.println(inputStream);
 		return SUCCESS;
 	}
 

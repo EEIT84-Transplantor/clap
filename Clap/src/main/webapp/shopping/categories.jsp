@@ -19,7 +19,7 @@
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
-	<header><jsp:include page="/header.jsp" /></header>
+	<header><jsp:include page="/header.jsp" /></header>${haha}
 	<section id="wrap">
 		<div class="container">
 			<div class="row">
@@ -41,12 +41,11 @@
 						</div>
 					</div>
 					<!--  內容可以寫這裡  -->
+					<div class="row" style="margin-bottom: 15px;" id="searchProduct">
 					<c:forEach items="${productlist}" var="product" varStatus="p_count">
-						<c:if test="${p_count.count%4==1}">
-							<div class="row" style="margin-bottom: 15px;">
-						</c:if>
-
-						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+						
+	
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px;">
 							<div class="hovereffect">
 								<img class="img-responsive" src="<c:url value="/resource/images/orgins/brain.jpg"/>" alt="">
 								<div class="overlay">
@@ -58,11 +57,11 @@
 								</div>
 							</div>
 						</div>
-						<c:if test="${p_count.count%4==0||p_count.count ==fn:length(values)}">
-				</div>
-				</c:if>
+						
+				
+				
 				</c:forEach>
-
+</div>
 			</div>
 			<!-- efw -->
 		</div>
@@ -81,32 +80,56 @@
 	<script type="text/javascript" src="<c:url value='/resource/js/json2.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/resource/js/bootstrap-slider.js'/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/codex-fly.js"/>"></script>
-	
+
 	<script type="text/javascript">
+	
+	//ajax
+	function ajax(url, data) {
+		var result;
+		$.ajax({
+			url : url,
+			data : data,
+		}).done(function(msg) {
+		    getproduct(msg);
+		})
+		
+	}
+	function getproduct(msg){
+		var productArray = JSON.parse(msg);
+		$("#searchProduct").text("");
+		for(var index in productArray){
+			$("#searchProduct").append('<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px;"><div class="hovereffect"><img class="img-responsive" src="<c:url value="/resource/images/orgins/brain.jpg"/>" alt=""><div class="overlay"><h2>'+productArray[index].name+'</h2><p><span>$'+productArray[index].price+'</span> <a class="info add-to-cart" href="javascript:void(0);" onclick="changeCart('+productArray[index].id+');">ADD TO CART</a></p></div></div></div>');
+		}
+	};
+	
 //搜尋
 var keyword;
 
 $("#srch-term").next().find('button').on("click",function(){
 	keyword = $("#srch-term").val();
-	
-	
+	 var url = "<%=request.getContextPath()%>/shopping/searchProduct.action";
+	var data = {"categoryname":categoryname,"keyword":keyword};
+	ajax(url, data)
 });
 
-
+var categoryname = $("h2").eq(0).text();
+var min;
+var max;
 
 var slider = new Slider('#p_price', {});
 slider.on('slide', function (ev) {
+	
     var pricerange = $('#p_price').val().split(",");
-    var min = pricerange[0];
-    var max = pricerange[1];
+    min = pricerange[0];
+    max = pricerange[1];
     document.getElementById("min_price").innerHTML="$"+min;
     document.getElementById("max_price").innerHTML="$"+max;
-    
-    
+    var url = "<%=request.getContextPath()%>/shopping/searchProduct.action";
+	var data = {"categoryname":categoryname,"min":min,"max":max};
+
+	var result = ajax(url, data);
+	
 });
-
-
-
 
 </script>
 	<script type="text/javascript">
@@ -116,7 +139,6 @@ slider.on('slide', function (ev) {
     	request = new XMLHttpRequest();
 		request.onreadystatechange = doReadyStateChange;
 		request.open("POST", url, true);
-		console.log(url);
 		request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 		request.send(data);
 	}
@@ -124,7 +146,6 @@ slider.on('slide', function (ev) {
     function doReadyStateChange() {
 		if (request.readyState == 4) {
 			if (request.status == 200) {
-				
                 $(".cart_anchor").text(request.responseText);
                 
 			} else {
@@ -135,7 +156,7 @@ slider.on('slide', function (ev) {
     
     //飛入購物車
     $(document).ready(function(){
-        $('.add-to-cart').on('click',function(){
+        $('#searchProduct').on('click','.add-to-cart',function(){
             //Scroll to top if cart icon is hidden on top
             $('html, body').animate({
                 'scrollTop' : $(".cart_anchor").position().top

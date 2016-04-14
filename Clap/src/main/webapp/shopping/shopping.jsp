@@ -151,7 +151,7 @@
 											<div class="col-item">
 												<div class="photo">
 													<img src="../resource/images/orgins/brain.png"
-														class="img-responsive" alt="a" />
+														class="img-responsive" alt="" />
 												</div>
 												<div class="info">
 													<div class="row">

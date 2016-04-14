@@ -16,7 +16,7 @@ public class CategoriesAction extends ActionSupport implements ServletRequestAwa
 	private HttpServletRequest request;
 	private CategoryService categoryService;
 	private ProductService productService;
-	
+	private String organ;
 	public CategoriesAction() {
 	}
 	
@@ -29,9 +29,12 @@ public class CategoriesAction extends ActionSupport implements ServletRequestAwa
 	}
 	
 	
+	public void setOrgan(String organ) {
+		this.organ = organ;
+	}
+
 	@Override
 	public String execute() throws Exception {
-		String organ = (String)request.getParameter("organ");
 		if(organ==null){
 			organ = categoryService.getAllCategory().get(0).getName();
 		}
