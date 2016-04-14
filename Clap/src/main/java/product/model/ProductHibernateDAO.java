@@ -22,18 +22,13 @@ public class ProductHibernateDAO implements ProductDAO {
 	final private String SELECT_ALL = "from ProductVO";
 	private final String SELECT_BY_KEY = "from ProductVO where product_name like:productName";
 	private final String SELECT_BY_CATEGORY = "from ProductVO where category_id= ?";
-<<<<<<< HEAD
-	private final String SELECT_BY_ONLY_PRICE_RANGE = "from ProductVO where product_price >= ? and product_price <= ?";
-	private final String SELECT_BY_PRICE_RANGE = "from ProductVO where category_id= ? and product_price >= ? and product_price <= ?";
-	private final String SELECT_BY_KEY_PRICE = "from ProductVO where category_id= ? and product_price >= ? and product_price <= ? and product_name like:productName";
-	private final String SELECT_BY_KEY_PRICE2 = "from ProductVO where product_price >= ? and product_price <= ? and product_name like:productName";
-=======
+
 	private final String SELECT_BY_ONLY_PRICE_RANGE = "from ProductVO where product_price >= ? and product_price <= ?" ;
 	private final String SELECT_BY_PRICE_RANGE = "from ProductVO where category_id= ? and product_price >= ? and product_price <= ?" ;
 	private final String SELECT_BY_KEY_PRICE = "from ProductVO where category_id= ? and product_price >= ? and product_price <= ? and product_name like:productName"  ;
 	private final String SELECT_BY_KEY_PRICE2 = "from ProductVO where product_price >= ? and product_price <= ? and product_name like:productName" ;
 	private final String SELECT_ID_BY_NAME = "from ProductVO where product_price >= ? and product_price <= ? and product_name like:productName" ;
->>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
+
 	final private String SQL_QUERY_SELECT_TOP_AMOUNT = "select * from  (select Row_Number() over (order by category_id) as RowIndex, * from product) as Subtable Where Subtable.RowIndex >= ? and Subtable.RowIndex <= ?";
 
 	@Override
