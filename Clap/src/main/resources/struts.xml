@@ -154,6 +154,10 @@
                   <param name="inputName">inputStream</param>
              </result>
 		</action>
+		<action name="productDetial" class="shopping.controller.ProductDetailAction">
+			<result>/shopping/productdetail.jsp</result>
+			<result name="input">/index.jsp</result>
+		</action>
 		<action name="categories" class="shopping.controller.CategoriesAction">
 			<result name="success">/shopping/categories.jsp</result>
 		</action>

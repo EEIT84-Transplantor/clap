@@ -65,8 +65,7 @@
 					<div class="container">
 						<div class="carousel-caption">
 							<h2>See more future.</h2>
-							<p>That's one small step for CLAP, one giant leap for
-								mankind.</p>
+							<p>That's one small step for CLAP, one giant leap for mankind.</p>
 						</div>
 					</div>
 				</div>
@@ -148,11 +147,10 @@
 													<div class="separator clear-left">
 														<p class="btn-add">
 															<i class="fa fa-shopping-cart"></i><a href="javascript:void(0);"
-																onclick="changeCart(${product.id});" class="hidden-sm add-to-cart">Add
-																to cart</a>
+																onclick="changeCart(${product.id});" class="hidden-sm add-to-cart">Add to cart</a>
 														</p>
 														<p class="btn-details">
-															<i class="fa fa-list"></i><a href="#" class="hidden-sm">More
+															<i class="fa fa-list"></i><a href="${pageContext.request.contextPath}/shopping/productDetial.action?productVO.id=${product.id}" class="hidden-sm">More
 																details</a>
 														</p>
 													</div>
@@ -173,16 +171,9 @@
 		</div>
 		</div>
 		</div>
-
 		<!-- 分類推薦 -->
-
-
-
-
-
 		</div>
 		<!-- row -->
-
 		</div>
 		<!-- container -->
 		</div>
@@ -203,7 +194,7 @@
 	<script type="text/javascript">
     function changeCart(id) {
     	var url = "${pageContext.request.contextPath}/shopping/setCart.action?";
-    	var data  = "productVO.id="+id;
+    	var data  = "cartVO.product_id="+id;
     	request = new XMLHttpRequest();
 		request.onreadystatechange = doReadyStateChange;
 		request.open("POST", url, true);

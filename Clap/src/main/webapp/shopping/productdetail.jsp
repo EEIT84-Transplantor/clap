@@ -28,14 +28,19 @@
 							<h2>PRODUCT</h2>
 						</div>
 						<div class="col-md-4">
+							<form action="${pageContext.request.contextPath}/shopping/searchProduct.action">
 							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+							
+								<input type="text" class="form-control" placeholder="Search"
+									name="keyword" id="srch-term">
 								<div class="input-group-btn">
-									<button class="btn btn-default" type="submit">
+									<button class="btn btn-default" type="submit" id="search_btn">
 										<i class="glyphicon glyphicon-search"></i>
 									</button>
 								</div>
+							
 							</div>
+							</form>
 						</div>
 					</div>
 					<!-- 商品明細 -->
@@ -43,57 +48,53 @@
 						<div class="col-md-4">
 							<img src="../resource/images/orgins/brain.png" class="img-responsive">
 						</div>
-						<div class="col-md-8">
-							<h3>productname</h3>
-							<p>price : 99.9</p>
-
+						<div class="col-md-5">
+							<h3>${product.name}</h3>
+							<p>price : ${product.price}</p>
+							<p>rating : 
+							
+							<c:forEach begin="1" end="${product.rating}" step="1">
+							<span class="glyphicon glyphicon-star" aria-hidden="true" style="color:yellow;"></span>
+							</c:forEach>
+							</p>
+							<p>${product.description}</p>
+							<!-- 商品描述 -->
+						</div>
+						<div class="col-md-3" style="border:1px #fff solid; padding:25px;">
 							<div class="row">
-								<div class="col-md-4">
+								<div class="col-md-6">
 
-									<div id="1" class="input-group input-group-option quantity-wrapper">
+									<div class="form-group">
+										<select class="form-control" id="sel1">
+											<c:forEach step="1" begin="1" end="${quantity>0?10:quantity}" varStatus="q_count">
+												<option>${q_count.count}</option>
+											</c:forEach>
 
-										<span class="input-group-addon input-group-addon-remove quantity-remove btn"> <span class="glyphicon glyphicon-minus"></span>
-										</span> <input id="1inp" type="text" value="6" name="option[]" class="form-control quantity-count" placeholder="1"> <span
-											class="input-group-addon input-group-addon-remove quantity-add btn"> <span class="glyphicon glyphicon-plus"></span>
-										</span>
-
+										</select>
 									</div>
 								</div>
 
-								<div class="col-md-4">
-									<button type="button" class="btn btn-primary">Add to cart</button>
+								<div class="col-md-6">
+									<button type="button" class="btn btn-primary" style="width:100%;">
+										<a href="javascript:void(0);" onclick="changeCart(${product.id});" class="add-to-cart">Add to cart</a>
+									</button>
 								</div>
-
-								<div class="col-md-4">
-
-									<button type="button" class="btn btn-success">One Click Buy</button>
-								</div>
-
-
-
+								<div class="col-md-12">
+					         	<button type="button" class="btn btn-success" style="width:100%;">One Click Buy</button>
+					           </div>
 							</div>
-							<!-- 商品描述 -->
-					<div class="row">
-						<div class="col-md-12 p_discribe" >
-							<p>心臟是一種在人類和其他動物都有的肌造器官，它的功用是推動循環系統中血管的血液[1]。血液提供身體氧氣以及養分，同時也協助身體移除代謝廢棄物[2]。心臟位於胸部縱隔腔的中間部位[3] 。
-								人類、其他哺乳類、鳥類的心臟可分為四個腔室：左右心房（上半部）、左右心室（下半部）心臟是一種在人類和其他動物都有的肌造器官，它的功用是推動循環系統中血管的血液[1]。血液提供身體氧氣以及養分，同時也協助身體移除代謝廢棄物[2]。心臟位於胸部縱隔腔的中間部位[3] 。
-								人類、其他哺乳類、鳥類的心臟可分為四個腔室：左右心房（上半部）、左右心室（下半部）心臟是一種在人類和其他動物都有的肌造器官，它的功用是推動循環系統中血管的血液[1]。血液提供身體氧氣以及養分，同時也協助身體移除代謝廢棄物[2]。心臟位於胸部縱隔腔的中間部位[3] 。
-								人類、其他哺乳類、鳥類的心臟可分為四個腔室：左右心房（上半部）、左右心室（下半部）。
-								</p>
+							
 						</div>
 					</div>
-						</div>
-
-
-					</div>
-					<!-- 結束商品明細 -->
-
-					
-
 				</div>
-				<!-- 結束商品描述 -->
+				<!-- 結束商品明細 -->
+
+
+
 			</div>
-			<!-- row -->
+			<!-- 結束商品描述 -->
+		</div>
+		<!-- row -->
 		</div>
 		<!-- container -->
 	</section>
@@ -105,8 +106,44 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery-1.12.2.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/codex-fly.js"/>"></script>
 	<script type="text/javascript">
-// 		$('#star').raty('score');
-	</script>
+	var quantity;
+    function changeCart(id) {
+    	var url = "${pageContext.request.contextPath}/shopping/setCart.action?";
+        var quantity = $("#sel1").val();
+    	var data  = "cartVO.product_id="+id+"&cartVO.quantity="+quantity;
+    	request = new XMLHttpRequest();
+		request.onreadystatechange = doReadyStateChange;
+		request.open("POST", url, true);
+		request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		request.send(data);
+	}
+    
+    function doReadyStateChange() {
+		if (request.readyState == 4) {
+			if (request.status == 200) {
+                $(".cart_anchor").text(request.responseText);
+			} else {
+				console.log("Error Code:" + request.status + ", "+ request.statusText);
+			}
+		}
+	}
+    
+    //飛入購物車
+    $(document).ready(function(){
+        $('.add-to-cart').on('click',function(){
+            //Scroll to top if cart icon is hidden on top
+            $('html, body').animate({
+                'scrollTop' : $(".cart_anchor").position().top
+            });
+            //Select item image and pass to the function
+            var itemImg = $(this).parent().parent().parent().parent().parent().find('img').eq(0);
+           
+            flyToElement($(itemImg), $('.cart_anchor'));
+        });
+    });
+
+    </script>
 </body>
 </html>

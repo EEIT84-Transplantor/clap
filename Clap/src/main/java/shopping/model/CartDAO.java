@@ -11,9 +11,9 @@ public interface CartDAO {
 	
 	public abstract CartVO insert(String email, Integer id , Integer quantity);
 
-	public abstract boolean update(CartVO cartVO);
+	public abstract CartVO update(CartVO cartVO);
 
-	public abstract boolean update(String email, Integer id , Integer quantity);
+	public abstract CartVO update(String email, Integer id , Integer quantity);
 
 	public abstract boolean delete(String email, Integer id);
 	

@@ -78,12 +78,12 @@ public class CartHibernateDAO implements CartDAO {
 	}
 
 	@Override
-	public boolean update(CartVO cartVO) {
-		boolean result = false;
+	public CartVO update(CartVO cartVO) {
+		CartVO result = null;
 		session = sessionFactory.getCurrentSession();
 		try {
-			session.update(cartVO);
-			result = true;
+			session.saveOrUpdate(cartVO);
+			result = cartVO;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -91,16 +91,16 @@ public class CartHibernateDAO implements CartDAO {
 	}
 
 	@Override
-	public boolean update(String email, Integer id, Integer quantity) {
-		boolean result = false;
+	public CartVO update(String email, Integer id, Integer quantity) {
+		CartVO result = null;
 		CartVO temp = new CartVO();
 		temp.setEmail(email);
 		temp.setProduct_id(id);
 		temp.setQuantity(quantity);
 		session = sessionFactory.getCurrentSession();
 		try {
-			session.update(temp);
-			result = true;
+			session.saveOrUpdate(temp);
+			result = temp;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

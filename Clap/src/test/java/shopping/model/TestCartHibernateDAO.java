@@ -54,17 +54,17 @@ public class TestCartHibernateDAO extends TestCase{
 		
 		transaction.commit();
 	}
-    @Test
-	public void testcUpdate() {
-		transaction=session.beginTransaction();
-		boolean actual = cartHibernateDAO.update(cartVO);
-		boolean expected = true;
-		
-		assertEquals(expected, actual);
-		
-
-		transaction.commit();
-	}
+//    @Test
+//	public void testcUpdate() {
+//		transaction=session.beginTransaction();
+//		boolean actual = cartHibernateDAO.update(cartVO);
+//		boolean expected = true;
+//		
+//		assertEquals(expected, actual);
+//		
+//
+//		transaction.commit();
+//	}
     @Test
 	public void testdDelete() {
 		transaction=session.beginTransaction();
@@ -85,17 +85,17 @@ public class TestCartHibernateDAO extends TestCase{
 		assertEquals(expected, actual);
 		transaction.commit();
 	}
-    @Test
-	public void testfUpdate1() {
-		transaction=session.beginTransaction();
-		cartVO.setEmail("caca@gmail.com");
-		cartVO.setProduct_id(1);
-		cartVO.setQuantity(5);
-		boolean actual = cartHibernateDAO.update(cartVO);
-		boolean expected = true;
-		assertEquals(expected, actual);
-		transaction.commit();
-	}
+//    @Test
+//	public void testfUpdate1() {
+//		transaction=session.beginTransaction();
+//		cartVO.setEmail("caca@gmail.com");
+//		cartVO.setProduct_id(1);
+//		cartVO.setQuantity(5);
+//		boolean actual = cartHibernateDAO.update(cartVO);
+//		boolean expected = true;
+//		assertEquals(expected, actual);
+//		transaction.commit();
+//	}
 
     @Test
 	public void testDelete1() {
