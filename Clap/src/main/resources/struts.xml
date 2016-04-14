@@ -70,7 +70,7 @@
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 			<interceptor-stack name="promoManageInterceptorStack">
-				<interceptor-ref name="promoManageInterceptor" />
+<!-- 				<interceptor-ref name="promoManageInterceptor" /> -->
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
@@ -144,25 +144,42 @@
 		<action name="returnAction" class="shopping.controller.ReturnAction">
 			<result name="success">/shopping/return.jsp</result>
 		</action>
+		<action name="cartAction" class="shopping.controller.CartAction">
+			<result name="success">/shopping/cart.jsp</result>
+		</action>
+		<action name="setCreditCardAction" class="shopping.controller.SetCreditCardAction">
+			<result name="success">/shopping/checkout.jsp</result>
+		</action>
+		<action name="orderFormAction" class="shopping.controller.OrderFormAction">
+			<result name="success">/shopping/return.jsp</result>
+		</action>
+		<action name="orderDetailAction" class="shopping.controller.OrderDetailAction">
+			<result name="success">/shopping/ordertdetail.jsp</result>
+		</action>
+		<action name="checkOutAction" class="shopping.controller.CheckOutAction">
+			<result name="success">/shopping/checkout.jsp.jsp</result>
+		</action>
+		<action name="doCheckOutAction" class="shopping.controller.DoCheckOutAction">
+			<result name="success">/shopping/appointment.jsp</result>
+		</action>
+		<action name="deleteOrderAction" class="shopping.controller.DeleteOrderAction">
+			<result name="success">/shopping/orderform.jsp</result>
+		</action>
 	</package>
 	
 	<package name="test" namespace="/test" extends="struts-default">
-
 		<!-- action -->
 		<action name="testAction" class="test.TestAction">
 			<result name="success">/test/output.jsp</result>
 		</action>
-
 		<!-- unit test -->
 		<action name="createaccount" class="test.unittest.AccountAction">
 			<result>/test/output.jsp</result>
 			<result name="input">/test/input.jsp</result>
 		</action>
-
 	</package>
 
 	<package name="product" namespace="/product" extends="struts-default">
-
 		<!-- action -->
 		<action name="preDisplayAction" class="preDisplayActionStruts">
 			<result name="success">/product/displayproduct.jsp</result>
@@ -182,7 +199,6 @@
 				<param name="inputName">inputStream</param>
 			</result>
 		</action>
-
 	</package>
 
 
