@@ -49,8 +49,6 @@ public class UpdateProductAction extends ActionSupport {
     	for(int index=0;index<imgbyte.length;index++){
     		imgByte[index] = imgbyte[index];
     	}
-    	System.out.println("$$$$$$$$$$  base64 to byte: "+imgbyte.length);
-    	System.out.println("$$$$$$$$$$  base64 to byte: "+imgByte.length);
     	boolean isChanged = false;
     	try {
 			isChanged = productService.setOrUpdateProduct(productVO, imgByte);
