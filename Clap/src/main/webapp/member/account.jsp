@@ -43,17 +43,17 @@
 	</footer>
 
 	<!-- 載入js -->
-	<script src="../resource/js/jquery-1.12.2.min.js"/>"></script>
-	<script src="../resource/js/bootstrap.min.js"/>"></script>
-	<script src="../resource/js/loginsignup.js"/>"></script>
+	<script src="../resource/js/jquery-1.12.2.min.js"/></script>
+	<script src="../resource/js/bootstrap.min.js"/></script>
+	<script src="../resource/js/loginsignup.js"/></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var contextPath = "${pageContext.request.contextPath}";
 			var paymentmanageUrl = contextPath + "/payment/paymentmanage.jsp";
-			var passwordchangeUrl = contextPath + "/setting/passwordchange.action";
-			var changesettingUrl = contextPath + "/setting/changesetting.action";
-			var oneclickUrl = contextPath + "/setting/oneclick.action";
-			var vipUrl = contextPath + "/setting/vip.action";
+			var passwordchangeUrl = contextPath + "/setting/passwordchange.jsp";
+			var changesettingUrl = contextPath + "/setting/changesetting.jsp";
+			var oneclickUrl = contextPath + "/setting/oneclick.jsp";
+			var vipUrl = contextPath + "/setting/vip.jsp";
 			var mailUrl = contextPath + "/message/mailbox.jsp";
 			
 			

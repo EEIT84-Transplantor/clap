@@ -61,7 +61,7 @@ SELECT * from creditcard;
 				<input type="text" name="email" value="${login.email}" style="display:none;">
 			</form>
 			<form role="form">
-				<button class="btn btn-default" type="button"">Delete messages</button>
+				<button class="btn btn-default" type="button">Delete messages</button>
 			</form>
 
 
@@ -74,9 +74,9 @@ SELECT * from creditcard;
 	</footer>
 
 	<!-- 載入js -->
-	<script src="../resource/js/jquery-1.12.2.min.js"/>"></script>
-	<script src="../resource/js/bootstrap.min.js"/>"></script>
-	<script src="../resource/js/loginsignup.js"/>"></script>
+	<script src="../resource/js/jquery-1.12.2.min.js"/></script>
+	<script src="../resource/js/bootstrap.min.js"/></script>
+	<script src="../resource/js/loginsignup.js"/></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var submitBtn = $("form > button");

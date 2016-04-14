@@ -21,16 +21,16 @@
 
 	<section id="wrap">
 		<div class="container">
-		
+	
 			<form role="form" action="<c:url value="/setting/changeSettingAction"/>" method="POST" enctype="multipart/form-data">
 				<div class="form-group">
-					<s:textfield class="form-control" name="email" type="email" label="Email" readonly="true" value="poan@gmail.com" />
+					<s:textfield class="form-control" name="email" type="text" label="Email" readonly="true" value="%{#session.login.email}" />
 				</div>
 				<div class="form-group">
-					<s:textfield class="form-control" name="name" label="Name" />
+					<s:textfield class="form-control" name="name" type="text" label="Name" value="%{#session.login.name}"/>
 				</div>
 				<div class="form-group">
-					<s:textfield class="form-control" name="phone" type="text" label="Phone" errorPosition="bottom"/>
+					<s:textfield class="form-control" name="phone" type="text" label="Phone" value="%{#session.login.phone}" errorPosition="bottom"/>
 				</div>
 				<div class="form-group">
 					<s:file class="form-control" name="photo" label="Photo" errorPosition="bottom"/>
@@ -45,15 +45,15 @@
 	</footer>
 
 	<!-- 載入js -->
-	<script src="../resource/js/jquery-1.12.2.min.js"/>"></script>
-	<script src="../resource/js/bootstrap.min.js"/>"></script>
-	<script src="../resource/js/loginsignup.js"/>"></script>
+	<script src="../resource/js/jquery-1.12.2.min.js"/></script>
+	<script src="../resource/js/bootstrap.min.js"/></script>
+	<script src="../resource/js/loginsignup.js"/></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			
 			//onclick submit button
 			$("form button").on("click", function() {
-				$("form").submit();
+				$(this).parent().submit();
 			});
 			
 			//errorMessage color red

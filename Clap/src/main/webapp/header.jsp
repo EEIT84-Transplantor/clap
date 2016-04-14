@@ -45,13 +45,13 @@
 
 					<div class="row">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="#" class="cart_anchor"></a></li>
-							<li><a href="#">Purchase</a></li>
+							<li><a href="" class="cart_anchor"></a></li>
+							<li><a href="<c:url value="/shopping/shopping.jsp"/>">Purchase</a></li>
 							<li class="active"><a href="#">About</a></li>
 							<li><a href="#">Simulator</a></li>
 							<li><a href="#">Appointment</a></li>
 							<li><a href="#">Contact</a></li>
-							<li><a href="${pageContext.request.contextPath}/member/account.action">Account</a></li>
+							<li><a href="<c:url value="/member/account.jsp"/>">Account</a></li>
 						</ul>
 					</div>
 

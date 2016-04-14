@@ -51,7 +51,7 @@
 								<div class="overlay">
 									<h2>${product.name}</h2>
 									<p>
-										<span>$${product.price}</span> <a class="info add-to-cart" href="javascript:void(0);" onclick="changeCart(${product.id});">ADD TO
+										<span>${product.price}</span> <a class="info add-to-cart" href="javascript:void(0);" onclick="changeCart(${product.id});">ADD TO
 											CART</a>
 									</p>
 								</div>
