@@ -51,7 +51,7 @@
 							<li><a href="#">Simulator</a></li>
 							<li><a href="#">Appointment</a></li>
 							<li><a href="#">Contact</a></li>
-							<li><a href="${pageContext.request.contextPath}/member/account.action">Account</a></li>
+							<li><a href="<c:url value="/member/account.jsp"/>">Account</a></li>
 						</ul>
 					</div>
 

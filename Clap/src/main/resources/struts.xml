@@ -35,7 +35,6 @@
 		<action name="changeSettingAction" class="setting.controller.ChangeSettingAction">
 			<result name="success">/setting/changesetting.jsp</result>
 			<result name="input">/setting/changesetting.jsp</result>
-			<interceptor-ref name="loginInterceptor"></interceptor-ref>
 		</action>
 		<action name="changePasswordAction" class="setting.controller.ChangePasswordAction">
 			<result name="success">/setting/passwordchange.jsp</result>
