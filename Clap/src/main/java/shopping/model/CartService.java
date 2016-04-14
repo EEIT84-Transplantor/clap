@@ -102,7 +102,7 @@ public class CartService {
 		if(productid==null||quantity==null){
 			return result;
 		}
-		CartVO temp = cartDAO.insert(email, productid, quantity);
+		CartVO temp = cartDAO.update(email, productid, quantity);
 		if(temp!=null){
 			result = true;
 		}
@@ -114,7 +114,7 @@ public class CartService {
 			return result;
 		}
 		
-		CartVO temp = cartDAO.insert(cartVO);
+		CartVO temp = cartDAO.update(cartVO);
 		
 		if(temp!=null){
 			result = true;

@@ -138,7 +138,7 @@ slider.on('slide', function (ev) {
 	<script type="text/javascript">
     function changeCart(id) {
     	var url = "${pageContext.request.contextPath}/shopping/setCart.action?";
-    	var data  = "productVO.id="+id;
+    	var data  = "cartVO.product_id="+id;
     	request = new XMLHttpRequest();
 		request.onreadystatechange = doReadyStateChange;
 		request.open("POST", url, true);

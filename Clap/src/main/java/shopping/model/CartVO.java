@@ -13,18 +13,21 @@ import javax.persistence.Table;
 import product.model.ProductVO;
 
 @Entity
-@Table(name ="cart")
+@Table(name = "cart")
 @IdClass(CartPK.class)
 public class CartVO implements Serializable {
-	
+
 	@Id
-	@Column(name="mb_email")
+	@Column(name = "mb_email")
 	private String email;
 	@Id
-	@Column(name="pd_id")
+	@Column(name = "pd_id")
 	private Integer product_id;
-	@Column(name="ct_quantity")
+	@Column(name = "ct_quantity")
 	private Integer quantity;
+	@ManyToOne
+	@JoinColumn(name = "pd_id", insertable = false, updatable = false)
+	private ProductVO productVO;
 
 	public CartVO() {
 	}
@@ -58,4 +61,13 @@ public class CartVO implements Serializable {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
+
+	public ProductVO getProductVO() {
+		return productVO;
+	}
+
+	public void setProductVO(ProductVO productVO) {
+		this.productVO = productVO;
+	}
+
 }
