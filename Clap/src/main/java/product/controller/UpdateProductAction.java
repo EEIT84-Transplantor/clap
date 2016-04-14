@@ -43,12 +43,14 @@ public class UpdateProductAction extends ActionSupport {
 
 	public String execute() throws Exception {
     	String JSONstr = "";
-    	productimg64 = productimg64.substring(productimg64.indexOf(",")+1);
+    	productimg64 = productimg64.substring(productimg64.indexOf(",")+1); 
     	byte[] imgbyte = Base64.getDecoder().decode(productimg64);
     	Byte[] imgByte = new Byte[imgbyte.length];
     	for(int index=0;index<imgbyte.length;index++){
     		imgByte[index] = imgbyte[index];
     	}
+    	System.out.println("$$$$$$$$$$  base64 to byte: "+imgbyte.length);
+    	System.out.println("$$$$$$$$$$  base64 to byte: "+imgByte.length);
     	boolean isChanged = false;
     	try {
 			isChanged = productService.setOrUpdateProduct(productVO, imgByte);
