@@ -27,7 +27,6 @@ public class CartAction extends ActionSupport implements ServletRequestAware {
 	private HttpSession session;
 	private CartService cartService;
 	private PromoCodeService promoCodeService;
-<<<<<<< HEAD
 	private InventoryService inventoryService;
 
 	public InventoryService getInventoryService() {
@@ -37,8 +36,7 @@ public class CartAction extends ActionSupport implements ServletRequestAware {
 	public void setInventoryService(InventoryService inventoryService) {
 		this.inventoryService = inventoryService;
 	}
-=======
->>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
+
 
 	public CartService getCartService() {
 		return cartService;
