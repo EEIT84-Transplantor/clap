@@ -43,15 +43,15 @@ public class ProductService {
 		if(max ==null || max<0){
 			max = 10000000000000000000.0;
 		}
-		if(key==null){
-			
+		if(key==null&&categoryId!=null){
+			return productDAO.selectByPriceRange(categoryId,min,max);
+		}else if(categoryId==null&&key!=null){
+			return productDAO.selectByPriceRange2(min, max, key);
+		}else if(key!=null&&categoryId!=null){
+			return productDAO.searchProductByKeyPrice(categoryId, min, max, key);
+		}else{
+			return productDAO.selectAll();
 		}
-		if(categoryId==null){
-			productDAO.
-		}
-		
-		
-		
 	}
 	
 	public boolean setOrUpdateProduct(ProductVO productVO, Byte[] productImg){

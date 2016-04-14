@@ -117,10 +117,9 @@ public class ProductHibernateDAO implements ProductDAO {
 		List<ProductVO> productVOs = null;
 		try {
 			Query query = session.createQuery(SELECT_BY_KEY_PRICE2);
-			query.setDouble(1,min);
-			query.setDouble(2, max);
+			query.setDouble(0,min);
+			query.setDouble(1, max);
 			query.setString("productName","%"+key+ "%");
-
 			productVOs = query.list();
 		} catch (Exception e) {
 			e.printStackTrace();
