@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page import="java.util.Map"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
-<!-- Bootstrap --><link href="<c:url value="/resource/css/bootstrap-slider.css"/>" rel="stylesheet">
+<!-- Bootstrap -->
+<link href="<c:url value="/resource/css/bootstrap-slider.css"/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/silderbanner.css"/>" rel="stylesheet">
@@ -21,11 +23,11 @@
 	<section id="wrap">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
+				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /><jsp:include page="/priceFilter.jsp" /></div>
 				<div class="col-md-10">
 					<div class="row">
 						<div class="col-md-8">
-							<h2>HEART</h2>
+							<h2>${organ}</h2>
 						</div>
 						<div class="col-md-4">
 							<div class="input-group">
@@ -39,62 +41,33 @@
 						</div>
 					</div>
 					<!--  內容可以寫這裡  -->
-
-					<div class="row">
-						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+					<div class="row" style="margin-bottom: 15px;" id="searchProduct">
+					<c:forEach items="${productlist}" var="product" varStatus="p_count">
+						
+	
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px;">
 							<div class="hovereffect">
-								<img class="img-responsive" src="../resource/images/orgins/brain.jpg" alt="">
+								<img class="img-responsive" src="<c:url value="/resource/images/orgins/brain.jpg"/>" alt="">
 								<div class="overlay">
-									<h2>Brain one</h2>
+									<h2>${product.name}</h2>
 									<p>
-									<span>$159.99</span>
-									<a class="info" href="#">ADD TO CART</a>
+										<span>$${product.price}</span> <a class="info add-to-cart" href="javascript:void(0);" onclick="changeCart(${product.id});">ADD TO
+											CART</a>
 									</p>
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-							<div class="hovereffect">
-								<img class="img-responsive" src="../resource/images/orgins/brain.jpg" alt="">
-								<div class="overlay">
-									<h2>Brain two</h2>
-									<p>
-									<span>$159.99</span>
-									<a class="info" href="#">ADD TO CART</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-							<div class="hovereffect">
-								<img class="img-responsive" src="../resource/images/orgins/brain.jpg" alt="">
-								<div class="overlay">
-									<h2>Brain three</h2>
-									<p>
-									<span>$159.99</span>
-									<a class="info" href="#">ADD TO CART</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-							<div class="hovereffect">
-								<img class="img-responsive" src="../resource/images/orgins/brain.jpg" alt="">
-								<div class="overlay">
-									<h2>Brain four</h2>
-									<p>
-									<span>$159.99</span>
-									<a class="info" href="#">ADD TO CART</a>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- efw -->
-				</div>
-				<!-- row -->
+						
+				
+				
+				</c:forEach>
+</div>
 			</div>
-			<!-- container -->
+			<!-- efw -->
+		</div>
+		<!-- row -->
+		</div>
+		<!-- container -->
 		</div>
 		<!-- wrap -->
 	</section>
@@ -105,6 +78,98 @@
 	<script type="text/javascript" src="<c:url value='/resource/js/jquery-1.12.2.min.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/resource/js/bootstrap.min.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/resource/js/json2.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/resource/js/bootstrap-slider.js'/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/codex-fly.js"/>"></script>
 
+	<script type="text/javascript">
+	
+	//ajax
+	function ajax(url, data) {
+		var result;
+		$.ajax({
+			url : url,
+			data : data,
+		}).done(function(msg) {
+		    getproduct(msg);
+		})
+		
+	}
+	function getproduct(msg){
+		var productArray = JSON.parse(msg);
+		$("#searchProduct").text("");
+		for(var index in productArray){
+			$("#searchProduct").append('<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px;"><div class="hovereffect"><img class="img-responsive" src="<c:url value="/resource/images/orgins/brain.jpg"/>" alt=""><div class="overlay"><h2>'+productArray[index].name+'</h2><p><span>$'+productArray[index].price+'</span> <a class="info add-to-cart" href="javascript:void(0);" onclick="changeCart('+productArray[index].id+');">ADD TO CART</a></p></div></div></div>');
+		}
+	};
+	
+//搜尋
+var keyword;
+
+$("#srch-term").next().find('button').on("click",function(){
+	keyword = $("#srch-term").val();
+	 var url = "<%=request.getContextPath()%>/shopping/searchProduct.action";
+	var data = {"categoryname":categoryname,"keyword":keyword};
+	ajax(url, data)
+});
+
+var categoryname = $("h2").eq(0).text();
+var min;
+var max;
+
+var slider = new Slider('#p_price', {});
+slider.on('slide', function (ev) {
+	
+    var pricerange = $('#p_price').val().split(",");
+    min = pricerange[0];
+    max = pricerange[1];
+    document.getElementById("min_price").innerHTML="$"+min;
+    document.getElementById("max_price").innerHTML="$"+max;
+    var url = "<%=request.getContextPath()%>/shopping/searchProduct.action";
+	var data = {"categoryname":categoryname,"min":min,"max":max,"keyword":keyword};
+
+	var result = ajax(url, data);
+});
+
+</script>
+	<script type="text/javascript">
+    function changeCart(id) {
+    	var url = "${pageContext.request.contextPath}/shopping/setCart.action?";
+    	var data  = "productVO.id="+id;
+    	request = new XMLHttpRequest();
+		request.onreadystatechange = doReadyStateChange;
+		request.open("POST", url, true);
+		request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		request.send(data);
+	}
+    
+    function doReadyStateChange() {
+		if (request.readyState == 4) {
+			if (request.status == 200) {
+                $(".cart_anchor").text(request.responseText);
+                
+			} else {
+				console.log("Error Code:" + request.status + ", "+ request.statusText);
+			}
+		}
+	}
+    
+    //飛入購物車
+    $(document).ready(function(){
+        $('#searchProduct').on('click','.add-to-cart',function(){
+            //Scroll to top if cart icon is hidden on top
+            $('html, body').animate({
+                'scrollTop' : $(".cart_anchor").position().top
+            });
+            //Select item image and pass to the function
+            var itemImg = $(this).parent().parent().parent().find('img').eq(0);
+            flyToElement($(itemImg), $('.cart_anchor'));
+        });
+    });
+    
+    
+  
+    
+    
+    </script>
 </body>
 </html>

@@ -35,14 +35,17 @@
 									src="${pageContext.request.contextPath}/resource/images/usa_flag.png"><span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="#">English</a></li>
-
 									<li><a href="#">Chinese</a></li>
 								</ul></li>
 						</ul>
 					</div>
+					
+					
+
+
 					<div class="row">
 						<ul class="nav navbar-nav navbar-right">
-							<li><img src="${pageContext.request.contextPath}/resource/images/box.png"></li>
+							<li><a href="#" class="cart_anchor"></a></li>
 							<li><a href="#">Purchase</a></li>
 							<li class="active"><a href="#">About</a></li>
 							<li><a href="#">Simulator</a></li>

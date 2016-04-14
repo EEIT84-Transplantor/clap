@@ -1,17 +1,21 @@
 package inventory.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "inoutlog")
-public class InOutLogVO {
+public class InOutLogVO implements Serializable  {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="inoutlog_id")
 	private Integer id;
 	@Column(name="inventory_id")

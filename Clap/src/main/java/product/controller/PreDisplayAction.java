@@ -34,10 +34,10 @@ public class PreDisplayAction extends ActionSupport {
 	public String execute(){
 		List<ProductVO> productList=null;
 		if (pageNumber==null||pageNumber<=0){
-			 productList = productService.getProductByTopAmount(1, 20, 10);
+			 productList = productService.getProductByTopAmount(1, 20, 200);
 
 		}else{
-			 productList = productService.getProductByTopAmount(pageNumber, 20, 10);
+			 productList = productService.getProductByTopAmount(pageNumber, 20, 200);
 
 		}
 		
