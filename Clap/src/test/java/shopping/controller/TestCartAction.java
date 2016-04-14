@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.StrutsSpringTestCase;
 import org.apache.struts2.dispatcher.mapper.ActionMapping;
@@ -11,6 +12,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
+import org.springframework.mock.web.MockHttpServletRequest;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionProxy;
@@ -61,14 +63,6 @@ public class TestCartAction extends StrutsSpringTestCase {
 		assertNotNull(action);
 		String result = proxy.execute();
 		assertEquals(Action.SUCCESS, result);
+		
 	}
-
-	// 測試excute()後產生的值
-	public void testdGetValueFromStack() throws ServletException, UnsupportedEncodingException {
-		executeAction(actionName);
-		List<CartVO> cartList = (List<CartVO>) findValueAfterExecute("cartList");
-		List<PromoVO> promoList = (List<PromoVO>) findValueAfterExecute("promoList");
-		assertEquals(true, cartList.size() > 0 && promoList.size() > 0);
-	}
-
 }
