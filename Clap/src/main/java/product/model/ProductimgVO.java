@@ -1,5 +1,6 @@
 package product.model;
 
+import java.io.Serializable;
 import java.util.Base64;
 
 import javax.persistence.Column;
@@ -10,7 +11,7 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "productimg")
-public class ProductimgVO {
+public class ProductimgVO implements Serializable {
 
 	@Id
 	@Column(name="pd_Id")

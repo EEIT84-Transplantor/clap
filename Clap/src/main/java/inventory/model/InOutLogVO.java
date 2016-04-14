@@ -1,5 +1,6 @@
 package inventory.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -11,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "inoutlog")
-public class InOutLogVO {
+public class InOutLogVO implements Serializable  {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
