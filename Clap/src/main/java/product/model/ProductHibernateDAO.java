@@ -26,6 +26,7 @@ public class ProductHibernateDAO implements ProductDAO {
 	private final String SELECT_BY_PRICE_RANGE = "from ProductVO where category_id= ? and product_price >= ? and product_price <= ?" ;
 	private final String SELECT_BY_KEY_PRICE = "from ProductVO where category_id= ? and product_price >= ? and product_price <= ? and product_name like:productName"  ;
 	private final String SELECT_BY_KEY_PRICE2 = "from ProductVO where product_price >= ? and product_price <= ? and product_name like:productName" ;
+	private final String SELECT_ID_BY_NAME = "from ProductVO where product_price >= ? and product_price <= ? and product_name like:productName" ;
 	final private String SQL_QUERY_SELECT_TOP_AMOUNT = "select * from  (select Row_Number() over (order by category_id) as RowIndex, * from product) as Subtable Where Subtable.RowIndex >= ? and Subtable.RowIndex <= ?";
 	@Override
 	public List<ProductVO> selectAll() {
