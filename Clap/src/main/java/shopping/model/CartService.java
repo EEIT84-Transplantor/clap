@@ -167,5 +167,6 @@ public class CartService {
 		}
 		
 		return result;
-	};
+	}
+
 }
