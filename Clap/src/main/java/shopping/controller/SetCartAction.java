@@ -85,10 +85,10 @@ public class SetCartAction extends ActionSupport implements ServletRequestAware{
 			}
 			for(Integer integer :tempCart.keySet()){
 				totalCart += tempCart.get(integer);
+				session.setAttribute("totalCart", totalCart);
 			}
 		}
 		inputStream = new ByteArrayInputStream(totalCart.toString().getBytes("UTF-8"));
-	
 		return SUCCESS;
 	}
 
