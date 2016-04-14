@@ -11,9 +11,6 @@
 		<property name="promoCodeService" ref="promoCodeService" />
 		<property name="memberService" ref="memberService" />
 	</bean>
-	<bean id="getCategoriesInterceptor" class="component.interceptor.GetCategoriesInterceptor">
-		<property name="cartService" ref="cartService" />
-	</bean>
 
 	<!-- datasource -->
 	<bean id="dataSource"

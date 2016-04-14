@@ -160,7 +160,7 @@ select * from message
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table product (
-pd_Id int ,
+pd_Id int identity ,
 product_name	varchar(60),
 product_price	float,
 product_description	nvarchar(1000),
@@ -169,14 +169,14 @@ product_discount	float,
 category_id int foreign key REFERENCES category(category_id)
 PRIMARY KEY (pd_Id)
 )
-insert into product values(1,'product1', 100, 'Heart1', 5, 0.9, 10);
-insert into product values(2, 'product2', 200, 'Heart2', 1, 0.4, 10);
-insert into product values(3, 'product3', 1000, 'Heart3', 2, 0.2, 10);
-insert into product values(4,'product4', 2000, 'Heart4', 1, 0.7, 10);
-insert into product values(5,'product5', 10000, 'Heart5', 4, 0.9, 10);
-insert into product values(6, 'product6', 20000, 'Heart6', 2, 0.1, 10);
-insert into product values(7, 'product7', 100000, 'Heart7', 1, 0.7, 10);
-insert into product values(8, 'product8', 2000000, 'Heart8', 3, 0.4, 10);
+insert into product values('product1', 100, 'Heart1', 5, 0.9, 10);
+insert into product values( 'product2', 200, 'Heart2', 1, 0.4, 10);
+insert into product values( 'product3', 1000, 'Heart3', 2, 0.2, 10);
+insert into product values('product4', 2000, 'Heart4', 1, 0.7, 10);
+insert into product values('product5', 10000, 'Heart5', 4, 0.9, 10);
+insert into product values('product6', 20000, 'Heart6', 2, 0.1, 10);
+insert into product values( 'product7', 100000, 'Heart7', 1, 0.7, 10);
+insert into product values( 'product8', 2000000, 'Heart8', 3, 0.4, 10);
 select * from product
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -257,7 +257,8 @@ orderform_id int FOREIGN KEY REFERENCES orderform(orderform_id),
 product_id int FOREIGN KEY REFERENCES product(pd_Id),
 cart_quantity int,
 orderdetail_time datetime,
-doctor_id int FOREIGN KEY REFERENCES doctor(doctor_id)
+doctor_id int FOREIGN KEY REFERENCES doctor(doctor_id), 
+surgery_time timestamp
 )
 
 insert into orderdetail values(1,1,10,CURRENT_TIMESTAMP,1);

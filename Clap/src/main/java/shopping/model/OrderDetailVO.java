@@ -1,9 +1,12 @@
 package shopping.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
@@ -20,8 +23,8 @@ import product.model.ProductVO;
 @IdClass(OrderDetailPK.class)
 @Table(name = "orderdetail")
 public class OrderDetailVO implements Serializable {
-
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "orderdetail_id")
 	private Integer id;
 	@Id
@@ -33,8 +36,17 @@ public class OrderDetailVO implements Serializable {
 	private Integer doctor_id;
 	@Column(name = "orderform_id")
 	private Integer orderform_id;
+	@Column(name="surgery_time")
+	private Date surgery_time;
 	
-	
+	public Date getSurgery_time() {
+		return surgery_time;
+	}
+
+	public void setSurgery_time(Date surgery_time) {
+		this.surgery_time = surgery_time;
+	}
+
 	// optional 外鍵是否允許為空
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "pd_id", insertable = false, updatable = false)
@@ -45,7 +57,7 @@ public class OrderDetailVO implements Serializable {
 	private DoctorVO doctorVO;
 	
 	@ManyToOne(optional = true)
-	@JoinColumn(name = "orderform", insertable = false, updatable = false)
+	@JoinColumn(name = "orderform_id", insertable = false, updatable = false)
 	private OrderFormVO orderformVO;
 
 	public Integer getId() {
