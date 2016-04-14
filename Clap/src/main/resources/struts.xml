@@ -155,7 +155,7 @@
              </result>
 		</action>
 		<action name="categories" class="shopping.controller.CategoriesAction">
-			<result name="success" >/shopping/categories.jsp</result>
+			<result name="success">/shopping/categories.jsp</result>
 		</action>
 		<action name="searchProduct" class="shopping.controller.SearchProductAction">
 			<result type="stream">

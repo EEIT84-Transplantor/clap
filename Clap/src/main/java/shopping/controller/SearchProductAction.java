@@ -26,11 +26,16 @@ public class SearchProductAction extends ActionSupport implements ServletRequest
     private Double min;
     private Double max;
     private String keyword;
+    private String page;
     private InputStream inputStream;
     public InputStream getInputStream() {
         return inputStream;
     }
  
+	public void setPage(String page) {
+		this.page = page;
+	}
+
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
@@ -65,13 +70,10 @@ public class SearchProductAction extends ActionSupport implements ServletRequest
   			objectArray.put(object);
   		}
   		
-       if(categoryId!=null){
+       if(categoryId!=null||page!=null){
     	   inputStream = new ByteArrayInputStream(objectArray.toString().getBytes("UTF-8"));
-    	   System.out.println("這裡");
-    	   
       		return SUCCESS; 
 		}else{
-			 System.out.println("麼麼");
 			request.setAttribute("products", temp);
 			return "search";  
 		}
