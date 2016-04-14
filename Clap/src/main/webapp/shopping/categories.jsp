@@ -51,8 +51,11 @@
 								<div class="overlay">
 									<h2>${product.name}</h2>
 									<p>
-										<span>${product.price}</span> <a class="info add-to-cart" href="javascript:void(0);" onclick="changeCart(${product.id});">ADD TO
-											CART</a>
+										<span>$${product.price}</span>
+									
+										<a class="info add-to-cart" href="javascript:void(0);" onclick="changeCart(${product.id});">ADD TO CART</a>
+										<a class="info" style="background:green;" href="${pageContext.request.contextPath}/shopping/productDetial.action?productVO.id=${product.id}">MORE</a>
+
 									</p>
 								</div>
 							</div>
@@ -98,7 +101,7 @@
 		var productArray = JSON.parse(msg);
 		$("#searchProduct").text("");
 		for(var index in productArray){
-			$("#searchProduct").append('<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px;"><div class="hovereffect"><img class="img-responsive" src="<c:url value="/resource/images/orgins/brain.jpg"/>" alt=""><div class="overlay"><h2>'+productArray[index].name+'</h2><p><span>$'+productArray[index].price+'</span> <a class="info add-to-cart" href="javascript:void(0);" onclick="changeCart('+productArray[index].id+');">ADD TO CART</a></p></div></div></div>');
+			$("#searchProduct").append('<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px;"><div class="hovereffect"><img class="img-responsive" src="<c:url value="/resource/images/orgins/brain.jpg"/>" alt=""><div class="overlay"><h2>'+productArray[index].name+'</h2><p><span>$'+productArray[index].price+'</span> <a class="info add-to-cart" href="javascript:void(0);" onclick="changeCart('+productArray[index].id+');">ADD TO CART</a><a class="info" style="background:green;" href="${pageContext.request.contextPath}/shopping/productDetial.action?productVO.id='+productArray[index].id+'">MORE</a></p></div></div></div>');
 		}
 	};
 	
