@@ -27,6 +27,7 @@
 					<div class="row">
 						<div class="col-md-8">
 							<h2>SEARCH RESULT</h2>
+							
 						</div>
 						<div class="col-md-4">
 							<div class="input-group">
@@ -43,7 +44,9 @@
 
 					<div class="row">
 					
-					
+					<c:if test="${empty products[0]}">
+							sorry,we can't find any product.
+					</c:if>
 					<c:forEach var="product" items="${products}">
 						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px;">
 							<div class="hovereffect">

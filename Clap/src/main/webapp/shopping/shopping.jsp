@@ -30,15 +30,19 @@
 				<nav class="navbar navbar-static-top shoppingbar">
 					<div class="container">
 						<div class="navbar-header">
+						<form action="${pageContext.request.contextPath}/shopping/searchProduct.action">
 							<div class="input-group">
+							
 								<input type="text" class="form-control" placeholder="Search"
-									name="srch-term" id="srch-term">
+									name="keyword" id="srch-term">
 								<div class="input-group-btn">
-									<button class="btn btn-default" type="submit">
+									<button class="btn btn-default" type="submit" id="search_btn">
 										<i class="glyphicon glyphicon-search"></i>
 									</button>
 								</div>
+							
 							</div>
+							</form>
 						</div>
 
 					</div>
@@ -89,28 +93,6 @@
 			</a>
 		</div>
 		<!-- /.carousel -->
-
-
-
-		<%-- 		<c:forEach items="${allCategoryProduct}" var="CategoryProducts"> --%>
-		<%--                  ${CategoryProducts.key} :==:<br> --%>
-
-
-
-		<%-- 			<c:forEach items="${CategoryProducts.value}" var="product"> --%>
-		<%--                  ${product}<br> --%>
-		<%-- 			</c:forEach> --%>
-
-
-
-
-		<%-- 		</c:forEach> --%>
-
-
-
-
-
-
 		<!-- 分類推薦 -->
 		<div class="container">
 			<div class="row">
@@ -254,6 +236,7 @@
             flyToElement($(itemImg), $('.cart_anchor'));
         });
     });
+
     </script>
 
 </body>

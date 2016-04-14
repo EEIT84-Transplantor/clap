@@ -19,7 +19,7 @@
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
-	<header><jsp:include page="/header.jsp" /></header>${haha}
+	<header><jsp:include page="/header.jsp" /></header>
 	<section id="wrap">
 		<div class="container">
 			<div class="row">
@@ -125,10 +125,9 @@ slider.on('slide', function (ev) {
     document.getElementById("min_price").innerHTML="$"+min;
     document.getElementById("max_price").innerHTML="$"+max;
     var url = "<%=request.getContextPath()%>/shopping/searchProduct.action";
-	var data = {"categoryname":categoryname,"min":min,"max":max};
+	var data = {"categoryname":categoryname,"min":min,"max":max,"keyword":keyword};
 
 	var result = ajax(url, data);
-	
 });
 
 </script>

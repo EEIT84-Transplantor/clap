@@ -64,10 +64,14 @@ public class SearchProductAction extends ActionSupport implements ServletRequest
   			object.put("id", productVO.getId());
   			objectArray.put(object);
   		}
-  		inputStream = new ByteArrayInputStream(objectArray.toString().getBytes("UTF-8"));
+  		
        if(categoryId!=null){
+    	   inputStream = new ByteArrayInputStream(objectArray.toString().getBytes("UTF-8"));
+    	   System.out.println("這裡");
+    	   
       		return SUCCESS; 
 		}else{
+			 System.out.println("麼麼");
 			request.setAttribute("products", temp);
 			return "search";  
 		}
