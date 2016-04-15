@@ -63,12 +63,14 @@
 			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
 			<interceptor name="paymentManageInterceptor" class="component.interceptor.PaymentManageInterceptor" />
 			<interceptor name="promoManageInterceptor" class="component.interceptor.PromoInterceptor" />
+			<interceptor name="AdminInterceptor" class="component.interceptor.AdminInterceptor" />
 			<interceptor-stack name="paymentManageStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="paymentManageInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 			<interceptor-stack name="promoManageInterceptorStack">
+				<interceptor-ref name="AdminInterceptor"/>
 				<!-- <interceptor-ref name="promoManageInterceptor" /> -->
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
@@ -76,8 +78,9 @@
 
 		<!-- global-results -->
 		<global-results>
-			<result name="login">/member/signuplogin.jsp</result>
-			<result name="paymentManage">/payment/paymentmanage.jsp</result>
+			<result name="login" type="redirect">/member/signuplogin.jsp</result>
+			<result name="display">/product/displayproduct.jsp</result>
+			<result name="index" type="redirect">/index.jsp</result>
 		</global-results>
 
 		<!-- actions -->
@@ -99,6 +102,7 @@
 			<!-- <interceptor-ref name="promoManageInterceptorStack" /> -->
 			<result type="redirect" name="success">/payment/setpromotion.jsp</result>
 			<result name="input">/payment/setpromotion.jsp</result>
+			<interceptor-ref name="promoManageInterceptorStack" />
 		</action>
 
 	</package>
@@ -212,6 +216,28 @@
 	</package>
 
 	<package name="product" namespace="/product" extends="struts-default">
+		<interceptors>
+			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
+			<interceptor name="AdminInterceptor" class="component.interceptor.AdminInterceptor" />
+			<interceptor-stack name="adminInterceptorStack">
+				<interceptor-ref name="loginInterceptor"/>
+				<interceptor-ref name="AdminInterceptor"/>
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- global-results -->
+		<global-results>
+			<result name="login" type="redirect">/member/signuplogin.jsp</result>
+			<result name="display">/product/displayproduct.jsp</result>
+			<result name="index" type="redirect">/index.jsp</result>
+		</global-results>
+		
+		<action name="*">
+			<interceptor-ref name="adminInterceptorStack" />
+			<result>/product/{1}.jsp</result>
+		</action>
+	
 		<!-- action -->
 		<action name="preDisplayAction" class="preDisplayActionStruts">
 			<result name="success">/product/displayproduct.jsp</result>

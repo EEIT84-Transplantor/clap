@@ -77,22 +77,27 @@ public class LoginServlet extends HttpServlet {
 			
 			List<CreditCardVO> payment = creditCardService.getCards(email);
  			List<String> cardType = new ArrayList<>();
-			for(CreditCardVO cardIt:payment){
-				String visa = "^4[0-9]{12}(?:[0-9]{3})?$";
-				String master = "^5[1-5][0-9]{14}$";
-				String jcb="^(?:2131|1800|35\\d{3})\\d{11}$";
-				String cardNum =cardIt.getCreditCardPK().getCc_number();
-				if(Pattern.matches(visa,cardNum)){
-					 cardType.add("visa");
-			    }else if(Pattern.matches(master,cardNum)){
-			    	cardType.add("master");
-			    }else if(Pattern.matches(jcb,cardNum)){
-			    	cardType.add("JCB");
-			    } else{
-			    	cardType.add("master");	
-			    }	
- 			}
+			if(payment!=null){
+	 			for(CreditCardVO cardIt:payment){
+					String visa = "^4[0-9]{12}(?:[0-9]{3})?$";
+					String master = "^5[1-5][0-9]{14}$";
+					String jcb="^(?:2131|1800|35\\d{3})\\d{11}$";
+					String cardNum =cardIt.getCreditCardPK().getCc_number();
+					if(Pattern.matches(visa,cardNum)){
+						 cardType.add("visa");
+				    }else if(Pattern.matches(master,cardNum)){
+				    	cardType.add("master");
+				    }else if(Pattern.matches(jcb,cardNum)){
+				    	cardType.add("JCB");
+				    } else{
+				    	cardType.add("master");	
+				    }	
+	 			}
+				}
  			Double amount = memberVO.getAmount();
+ 			if(amount==null){
+ 				amount = 0.0;
+ 			}
  			
  			List<PromoVO>promoCodes=promoCodeService.getPromos(email);
  			session.setAttribute("cards",payment);
