@@ -173,8 +173,7 @@
              <result name="search">/shopping/searchproduct.jsp</result>
 		</action>
 		<action name="oneClickBuy" class="shopping.controller.OneClickBuyAction">
-			<result name="success">/hospital/appointment.jsp</result>
-
+			<result name="success">/shopping/doCheckOutAction.action</result>
 		</action>
 		<action name="cartAction" class="shopping.controller.CartAction">
 			<result name="success">/shopping/cart.jsp</result>
@@ -195,12 +194,12 @@
 			<result name="success">/shopping/checkout.jsp.jsp</result>
 		</action>
 		<action name="doCheckOutAction" class="shopping.controller.DoCheckOutAction">
+			<result name="input">/shopping/cartAction.action</result>
 			<result name="success">/shopping/appointment.jsp</result>
 		</action>
 		<action name="deleteOrderAction" class="shopping.controller.DeleteOrderAction">
 			<result type="stream"></result>
 		</action>
-
 	</package>
 
 	<package name="test" namespace="/test" extends="struts-default">
@@ -212,6 +211,9 @@
 		<action name="createaccount" class="test.unittest.AccountAction">
 			<result>/test/output.jsp</result>
 			<result name="input">/test/input.jsp</result>
+		</action>
+		<action name="test" class="component.Test">
+			<result>/test/塗鴉牆.jsp</result>
 		</action>
 	</package>
 

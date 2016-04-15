@@ -2,6 +2,7 @@ package shopping.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,42 +21,40 @@ import hospital.model.DoctorVO;
 import product.model.ProductVO;
 
 @Entity
-@IdClass(OrderDetailPK.class)
 @Table(name = "orderdetail")
 public class OrderDetailVO implements Serializable {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "orderdetail_id")
 	private Integer id;
-	@Id
-	@Column(name = "pd_id")
-	private Integer pd_id;
+	@Column(name = "product_id")
+	private Integer product_id;
 	@Column(name = "cart_quantity")
 	private Integer cart_quantity;
 	@Column(name = "doctor_id")
 	private Integer doctor_id;
 	@Column(name = "orderform_id")
 	private Integer orderform_id;
-	@Column(name="surgery_time")
-	private Date surgery_time;
-	
-	public Date getSurgery_time() {
+	@Column(name = "surgery_time")
+	private Timestamp surgery_time;
+
+	public Timestamp getSurgery_time() {
 		return surgery_time;
 	}
 
-	public void setSurgery_time(Date surgery_time) {
+	public void setSurgery_time(Timestamp surgery_time) {
 		this.surgery_time = surgery_time;
 	}
 
 	// optional 外鍵是否允許為空
 	@ManyToOne(optional = true)
-	@JoinColumn(name = "pd_id", insertable = false, updatable = false)
+	@JoinColumn(name = "product_id", insertable = false, updatable = false)
 	private ProductVO productVO;
-	
+
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "doctor_id", insertable = false, updatable = false)
 	private DoctorVO doctorVO;
-	
+
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "orderform_id", insertable = false, updatable = false)
 	private OrderFormVO orderformVO;
@@ -68,12 +67,12 @@ public class OrderDetailVO implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getPd_id() {
-		return pd_id;
+	public Integer getProduct_id() {
+		return product_id;
 	}
 
-	public void setPd_id(Integer pd_id) {
-		this.pd_id = pd_id;
+	public void setProduct_id(Integer product_id) {
+		this.product_id = product_id;
 	}
 
 	public Integer getCart_quantity() {
@@ -123,5 +122,5 @@ public class OrderDetailVO implements Serializable {
 	public void setOrderformVO(OrderFormVO orderformVO) {
 		this.orderformVO = orderformVO;
 	}
-	
+
 }

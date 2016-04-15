@@ -8,6 +8,7 @@ import javax.persistence.Column;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -25,8 +26,8 @@ public class TestOrderDetailHibernateDAO {
 
 	private OrderDetailHibernateDAO orderDetailHibernateDAO;
 	private OrderDetailVO orderDetailVO;
-	private Integer id=23876;
-	private Integer pd_id=2;
+	private Integer id=2;
+	private Integer Product_id=2;
 	private Integer ct_quantity=null;
 
 	@Before
@@ -35,85 +36,89 @@ public class TestOrderDetailHibernateDAO {
 		sessionFactory = (SessionFactory) applicationContext.getBean("sessionFactory");
 		orderDetailHibernateDAO = (OrderDetailHibernateDAO) applicationContext.getBean("orderDetailHibernateDAO");
 		orderDetailVO = new OrderDetailVO();
-	}
-
-	@Test
-	public void ainsert() {
+		
 		session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
-		
-		expected=true;
-		orderDetailVO.setId(id);
-		orderDetailVO.setPd_id(pd_id);
-		actual=orderDetailHibernateDAO.insert(orderDetailVO);
-		
-		session.getTransaction().commit();
-		assertEquals(expected, actual);
-	}
-
-	@Test
-	public void bselect() {
-		session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		
-		expected=id;
-		System.out.println(orderDetailHibernateDAO.select(id, pd_id));
-		actual=orderDetailHibernateDAO.select(id, pd_id).getId();
-
-		session.getTransaction().commit();
-		assertEquals(expected, actual);
-	}
-
-	@Test
-	public void cupdate() {
-		session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-
-		expected=true;
-		orderDetailVO.setId(id);
-		orderDetailVO.setPd_id(pd_id);
-		orderDetailVO.setCart_quantity(ct_quantity);
-		actual=orderDetailHibernateDAO.update(orderDetailVO);
-		
-		session.getTransaction().commit();
-		assertEquals(expected, actual);
-	}
-
-	@Test
-	public void delete() {
-		session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		
-		expected=true;
-		actual=orderDetailHibernateDAO.delete(id, pd_id);
-
-		session.getTransaction().commit();
-		assertEquals(expected, actual);
-	}
-
-	@Test
-	public void eselect2() {
-		session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		
-		expected=true;
-		actual=orderDetailHibernateDAO.select().size()>10;
-		System.out.println(orderDetailHibernateDAO.select().size());
-
-		session.getTransaction().commit();
-		assertEquals(expected, actual);
 	}
 	
+	@After
+	public void tearDown(){
+		session.getTransaction().commit();
+	}
+
 //	@Test
-//	public void manytoone() {
+//	public void ainsert() {
+//		expected=true;
+//		orderDetailVO.setId(id);
+//		orderDetailVO.setProduct_id(Product_id);
+//		actual=orderDetailHibernateDAO.insert(orderDetailVO);
+//		assertEquals(expected, actual);
+//	}
+//
+//	@Test
+//	public void bselect() {
 //		session = sessionFactory.getCurrentSession();
-//		session.beginTransaction();
-//		
-//		expected="product1";
-//		actual=orderDetailHibernateDAO.select(id, pd_id).getProductVO().getName();
-//		
-//		session.getTransaction().commit();
+//		expected=id;
+//		System.out.println(orderDetailHibernateDAO.select(id, Product_id));
+//		actual=orderDetailHibernateDAO.select(id, Product_id).getId();
+//		assertEquals(expected, actual);
+//	}
+//
+//	@Test
+//	public void cupdate() {
+//		session = sessionFactory.getCurrentSession();
+//		expected=true;
+//		orderDetailVO.setId(id);
+//		orderDetailVO.setProduct_id(Product_id);
+//		orderDetailVO.setCart_quantity(ct_quantity);
+//		actual=orderDetailHibernateDAO.update(orderDetailVO);
+//		assertEquals(expected, actual);
+//	}
+//
+//	@Test
+//	public void delete() {
+//		session = sessionFactory.getCurrentSession();
+//		expected=true;
+//		actual=orderDetailHibernateDAO.delete(id, Product_id);
 //		assertEquals(expected, actual);
 //	}
 
+//	@Test
+//	public void eselect2() {
+//		session = sessionFactory.getCurrentSession();
+//		expected=true;
+//		actual=orderDetailHibernateDAO.select().size()>10;
+//		System.out.println(orderDetailHibernateDAO.select().size());
+//		assertEquals(expected, actual);
+//	}
+//	
+//	@Test
+//	public void testSelectById(){
+//		expected=1;
+//		actual=orderDetailHibernateDAO.select(1).size();
+//		assertEquals(expected, actual);
+//	}
+	
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

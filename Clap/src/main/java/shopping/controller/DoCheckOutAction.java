@@ -1,5 +1,6 @@
 package shopping.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,9 +12,13 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import inventory.model.InOutLogService;
+import inventory.model.InventoryDAO;
+import inventory.model.InventoryService;
 import member.model.MemberService;
 import member.model.MemberVO;
 import payment.model.CreditCardService;
+import product.model.ProductService;
 import shopping.model.CartService;
 import shopping.model.CartVO;
 import shopping.model.OrderDetailService;
@@ -27,6 +32,18 @@ public class DoCheckOutAction extends ActionSupport implements ServletRequestAwa
 	private MemberService memberService;
 	private HttpSession session;
 	private HttpServletRequest request;
+	private ProductService productService;
+	private InOutLogService  inOutLogService;
+	private InventoryService inventoryService;
+
+
+	public InOutLogService getInOutLogService() {
+		return inOutLogService;
+	}
+
+	public void setInOutLogService(InOutLogService inOutLogService) {
+		this.inOutLogService = inOutLogService;
+	}
 
 	public MemberService getMemberService() {
 		return memberService;
@@ -64,11 +81,8 @@ public class DoCheckOutAction extends ActionSupport implements ServletRequestAwa
 	public String execute() throws Exception {
 
 		// 計算購物金
-		Double total = (Double) session.getAttribute("total");
+		Integer total = (Integer) session.getAttribute("total");
 		MemberVO memberVO = (MemberVO) session.getAttribute("login");
-		System.out.println(total);
-		System.out.println(memberVO);
-
 		String email = memberVO.getEmail();
 		Double amount = memberService.getAmount(email);
 		if (total > amount) {
@@ -82,11 +96,25 @@ public class DoCheckOutAction extends ActionSupport implements ServletRequestAwa
 		
 		 // 新增訂單明細 清空購物車
 		 List<CartVO> cardList = cartService.getCart(email);
-		 for (CartVO cardVO : cardList) {
+		 Map<String, String> errors = new HashMap<String, String>();
+		for (CartVO cardVO : cardList) {
 		 orderDetailService.setOrderDetail(orderform_id,cardVO);
-		 }
+		 if(!inventoryService.saleQuantity(cardVO.getProductVO(),cardVO.getQuantity())){ 
+			request.setAttribute(cardVO.getProductVO().getName()+"error", "sorry, we don't have enough "+cardVO.getProductVO().getName());
+			return "input";
+		    }
+		}
+		
 		 cartService.removeCart(email);
 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
 		return super.execute();
 	}
 

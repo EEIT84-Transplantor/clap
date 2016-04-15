@@ -218,11 +218,12 @@ inoutlog_destination	nvarchar(100),
 inoutlog_date	datetime
 PRIMARY KEY (inoutlog_id)
 )
-insert into inoutlog values( 1, 1, 10, 0, '2016-05-04', '2017-05-04', 'Taipei', '2016-04-04');
-insert into inoutlog values( 2, 1, 0, 43, '2016-05-04', '2017-05-04', 'Taipei', '2016-04-04');
-insert into inoutlog values( 1, 1, 10, 0, '2016-03-04', '2017-06-04', 'Taipei', '2016-07-04');
-insert into inoutlog values( 2, 1, 0, 43, '2016-02-04', '2017-03-04', 'Taipei', '2016-08-04');
-select * from inoutlog
+insert into inoutlog values( 1, 1, 43, 0, '2016-05-04', '2017-05-04', 'Taipei', '2016-04-04');
+insert into inoutlog values( 2, 1, 0, 10, '2016-05-04', '2017-05-04', 'Taipei', '2016-04-04');
+insert into inoutlog values( 2, 1, 0, 10, '2016-05-04', '2017-05-04', 'Taipei', '2016-08-04');
+insert into inoutlog values( 1, 1, 43, 0, '2016-06-04', '2017-06-04', 'Taipei', '2016-07-04');
+
+select * from inoutlog order by inoutlog_expiryDate asc
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table cart (
