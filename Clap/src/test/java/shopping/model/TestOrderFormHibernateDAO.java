@@ -15,6 +15,8 @@ import org.junit.runners.MethodSorters;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import component.email.EmailconfirmCode;
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestOrderFormHibernateDAO {
 
@@ -49,30 +51,30 @@ public class TestOrderFormHibernateDAO {
 		session.getTransaction().commit();
 	}
 	
-	@Test
-	public void testAInsert() {
-		expected = mb_email;
-		orderFormHibernateDAO.insert(orderFormVO);
-		actual = orderFormHibernateDAO.select(id).getMb_email();
-		assertEquals(expected, actual);
-	};
-
-	@Test
-	public void testBUpdate() {
-		expected = "lee@gmail.com";
-		orderFormVO.setId(id);
-		orderFormVO.setMb_email("lee@gmail.com");
-		System.out.println(orderFormHibernateDAO.update(orderFormVO));
-		actual = orderFormHibernateDAO.select(id).getMb_email();
-		assertEquals(expected, actual);
-	};
-
-	@Test
-	public void testCSelect() {
-		expected = id;
-		actual = orderFormHibernateDAO.select(id).getId();
-		assertEquals(expected, actual);
-	};
+//	@Test
+//	public void testAInsert() {
+//		expected = mb_email;
+//		orderFormHibernateDAO.insert(orderFormVO);
+//		actual = orderFormHibernateDAO.select(id).getMb_email();
+//		assertEquals(expected, actual);
+//	};
+//
+//	@Test
+//	public void testBUpdate() {
+//		expected = "lee@gmail.com";
+//		orderFormVO.setId(id);
+//		orderFormVO.setMb_email("lee@gmail.com");
+//		System.out.println(orderFormHibernateDAO.update(orderFormVO));
+//		actual = orderFormHibernateDAO.select(id).getMb_email();
+//		assertEquals(expected, actual);
+//	};
+//
+//	@Test
+//	public void testCSelect() {
+//		expected = id;
+//		actual = orderFormHibernateDAO.select(id).getId();
+//		assertEquals(expected, actual);
+//	};
 
 //	@Test
 //	public void testDDelete() {
@@ -80,20 +82,44 @@ public class TestOrderFormHibernateDAO {
 //		Boolean actual = orderFormHibernateDAO.delete(id);
 //		assertEquals(expected, actual);
 //	};
-
-	@Test
-	public void testSelect2() {
-		expected=true;
-		actual=orderFormHibernateDAO.select().size()>10;
-		assertEquals(expected, actual);
-	};
+//
+//	@Test
+//	public void testSelect2() {
+//		expected=true;
+//		actual=orderFormHibernateDAO.select().size()>10;
+//		assertEquals(expected, actual);
+//	};
+//	
+//	@Test
+//	public void testManyToOne(){
+//		
+//		expected="NCKUH";
+//		actual=orderFormHibernateDAO.select(2).getHospitalVO().getName();
+//		assertEquals(expected, actual);
+//	}
 	
 	@Test
-	public void testManyToOne(){
-		
-		expected="NCKUH";
-		actual=orderFormHibernateDAO.select(2).getHospitalVO().getName();
+	public void testSelectByEmail(){
+		expected = 8;
+		actual=orderFormHibernateDAO.select(mb_email).size();
 		assertEquals(expected, actual);
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

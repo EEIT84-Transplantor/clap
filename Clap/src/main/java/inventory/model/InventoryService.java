@@ -2,6 +2,8 @@ package inventory.model;
 
 import java.util.List;
 
+import product.model.ProductVO;
+
 public class InventoryService {
 	
 	private InventoryDAO inventoryDAO;
@@ -24,6 +26,9 @@ public class InventoryService {
 			return inventoryDAO.selectByProductId(productId);
 		}
 	}
-	
-	
+
+	public boolean saleQuantity(ProductVO productVO, Integer quantity) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

@@ -1,5 +1,6 @@
 package shopping.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.filefilter.OrFileFilter;
@@ -32,8 +33,7 @@ public class OrderFormHibernateDAO implements OrderFormDAO {
 	public Boolean delete(Integer id) {
 		try {
 			session = sessionFactory.getCurrentSession();
-			OrderFormVO orderFormVO = new OrderFormVO();
-			orderFormVO.setId(id);
+			OrderFormVO orderFormVO = select(id);
 			session.delete(orderFormVO);
 			return true;
 		} catch (Exception e) {
@@ -78,5 +78,29 @@ public class OrderFormHibernateDAO implements OrderFormDAO {
 			return null;
 		}
 	}
-
+	
+	//選取某會員所有的orderform
+	public List<OrderFormVO> select(String email) {
+		try {
+			session = sessionFactory.getCurrentSession();
+			Query query = session.createQuery("from OrderFormVO where mb_email=?");
+			query.setParameter(0, email);
+			List<OrderFormVO> orderList = query.list();
+			return orderList;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}	
 }
+
+
+
+
+
+
+
+
+
+
+

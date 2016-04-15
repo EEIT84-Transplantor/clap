@@ -109,7 +109,7 @@
 					<table class="table">
 						<tr>
 							<td>商品數</td>
-							<td>${fn:length(cartList)}</td>
+							<td>${fn:length(cartList)} ${error}</td>
 						</tr>
 						<tr>
 							<td>total</td>

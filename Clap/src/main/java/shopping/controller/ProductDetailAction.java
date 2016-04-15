@@ -1,5 +1,8 @@
 package shopping.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
@@ -41,8 +44,10 @@ public class ProductDetailAction extends ActionSupport implements ServletRequest
 		}
 		Integer quantity = inventoryService.getQuantity(productVO.getId());
 		productVO = productService.getProductById(productVO.getId());
+		List<ProductVO> popular = productService.getPoupulars(productVO.getCategory_id(), 8);
 		request.setAttribute("product", productVO);
 		request.setAttribute("quantity", quantity);
+		request.setAttribute("popular", popular);
 		return SUCCESS;
 	}
 	

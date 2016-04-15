@@ -1,6 +1,7 @@
 package shopping.model;
 
 import java.util.List;
+import java.util.Queue;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -28,14 +29,13 @@ public class OrderDetailHibernateDAO implements OrderDetailDAO {
 	}
 
 	@Override
-	public Boolean delete(Integer id, Integer pd_id) {
+	public Boolean delete(Integer id, Integer product_id) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			OrderDetailPK orderDetailPK = new OrderDetailPK();
-			orderDetailPK.setId(id);
-			orderDetailPK.setPd_id(pd_id);
-			orderDetailVO = session.get(OrderDetailVO.class, orderDetailPK);
-			session.delete(orderDetailVO);
+			Query query = session.createQuery("delete from orderdetail where orderform_id = ? , product_id = ?");
+			query.setParameter(0, id);
+			query.setParameter(1, product_id);
+			query.executeUpdate();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,18 +69,30 @@ public class OrderDetailHibernateDAO implements OrderDetailDAO {
 	}
 
 	@Override
-	public OrderDetailVO select(Integer id, Integer pd_id) {
+	public OrderDetailVO select(Integer id, Integer product_id) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			OrderDetailPK orderDetailPK = new OrderDetailPK();
-			orderDetailPK.setId(id);
-			orderDetailPK.setPd_id(pd_id);
-			OrderDetailVO orderDetailVO = session.get(OrderDetailVO.class, orderDetailPK);
-			return orderDetailVO;
+			Query query = session.createQuery("from orderdetail where orderform_id = ? , product_id = ?");
+			query.setParameter(0, id);
+			query.setParameter(1, product_id);
+			return (OrderDetailVO) query.list().get(0);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 
+	public List<OrderDetailVO> select(Integer orderId){
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			Query query = session.createQuery("from OrderDetailVO where id=?");
+			query.setParameter(0, orderId);
+			List<OrderDetailVO> list = query.list();
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 }

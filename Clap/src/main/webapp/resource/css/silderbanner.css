@@ -19,6 +19,7 @@
 #category-silder .item{
 	height:auto;
 	background:none;
+	padding:0 5px;
 }
 
 #category-silder .col-item{
@@ -89,7 +90,6 @@ body {
 
 /* Carousel base class */
 .carousel {
-  height: 450px;
   margin-bottom: 20px;
 }
 /* Since positioning the image, we need to help out the caption */

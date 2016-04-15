@@ -43,7 +43,7 @@ public class OrderDetailAction extends ActionSupport implements ServletRequestAw
 	@Override
 	public String execute() throws Exception {
 		// 取得orderDetail
-		List<OrderDetailVO> orderList = orderDetailService.getOrderDetailList(orderId);
+		List<OrderDetailVO> orderList = orderDetailService.getOrderDetailList(Integer.parseInt(orderId));
 		request.setAttribute("orderList", orderList);
 		return super.execute();
 	}
