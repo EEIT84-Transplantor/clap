@@ -21,14 +21,12 @@ import hospital.model.DoctorVO;
 import product.model.ProductVO;
 
 @Entity
-@IdClass(OrderDetailPK.class)
 @Table(name = "orderdetail")
 public class OrderDetailVO implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "orderdetail_id")
 	private Integer id;
-	@Id
 	@Column(name = "product_id")
 	private Integer product_id;
 	@Column(name = "cart_quantity")

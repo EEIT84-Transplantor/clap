@@ -63,7 +63,7 @@ public class TestOrderDetailService extends TestCase {
 
 	@Test
 	public void testbSetOrderDetail() {
-		expected = 3;
+		expected = 1;
 		CartVO cartVO = new CartVO();
 		cartVO.setEmail("andrew@gmail.com");
 		cartVO.setProduct_id(5);
