@@ -208,6 +208,9 @@
 			<result>/test/output.jsp</result>
 			<result name="input">/test/input.jsp</result>
 		</action>
+		<action name="test" class="component.Test">
+			<result>/test/塗鴉牆.jsp</result>
+		</action>
 	</package>
 
 	<package name="product" namespace="/product" extends="struts-default">
