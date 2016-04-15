@@ -26,7 +26,7 @@ public class ProductHibernateDAO implements ProductDAO {
 	private final String SELECT_BY_PRICE_RANGE = "from ProductVO where category_id= ? and product_price >= ? and product_price <= ?" ;
 	private final String SELECT_BY_KEY_PRICE = "from ProductVO where category_id= ? and product_price >= ? and product_price <= ? and product_name like:productName"  ;
 	private final String SELECT_BY_KEY_PRICE2 = "from ProductVO where product_price >= ? and product_price <= ? and product_name like:productName" ;
-	private final String SELECT_ID_BY_NAME = "from ProductVO where product_price >= ? and product_price <= ? and product_name like:productName" ;
+	private final String SELECT_ID_BY_NAME = "from ProductVO where product_name = ?" ;
 	final private String SQL_QUERY_SELECT_TOP_AMOUNT = "select * from  (select Row_Number() over (order by category_id) as RowIndex, * from product) as Subtable Where Subtable.RowIndex >= ? and Subtable.RowIndex <= ?";
 	@Override
 	public List<ProductVO> selectAll() {
@@ -139,7 +139,23 @@ public class ProductHibernateDAO implements ProductDAO {
 		}
 		return productVO;
 	};
-
+	@Override
+	public Integer getProductIdByName(String productName) {
+		session = sessionFactory.getCurrentSession();
+		List<ProductVO> productVOs = null;
+		try {
+			Query query = session.createQuery(SELECT_ID_BY_NAME);
+			query.setString(0,productName);
+			productVOs = query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		if(productVOs!=null&&productVOs.size()!=0){
+			return productVOs.get(0).getId();
+		}
+		return null;
+	};
 	@Override
 	public ProductVO insert(ProductVO productVO) {
 		session = sessionFactory.getCurrentSession();

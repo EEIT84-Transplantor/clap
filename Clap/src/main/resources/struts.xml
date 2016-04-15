@@ -225,8 +225,11 @@
 				<param name="inputName">inputStream</param>
 			</result>
 		</action>
+			<action name="inOutAction" class="inOutAction">
+			<result name="success">/product/inventory.jsp</result>
+			<result name="input">/product/inventory.jsp</result>
+		</action>
 	</package>
-
 
 </struts>
 

@@ -74,7 +74,6 @@ public class InOutLogService {
 			inventoryVO.setExpiryDate(expire);
 			inventoryVO.setProduct_id(product_id);
 			inventoryVO.setManufactureDate(manufactureDate);
-			inventoryVO.setExpiryDate(inOutLogVO.getExpiryDate());
 			boolean result=inOutLogDAO.update(inOutLogVO);
 			InventoryVO inventoryVO2 = inventoryDAO.selectByInventoryProperties(inventoryVO);
 			System.out.println(inventoryVO2);

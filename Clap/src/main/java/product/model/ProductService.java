@@ -122,6 +122,8 @@ public class ProductService {
 	public List<ProductVO> getProductByTopAmount(Integer pageNumber, Integer pageAmount, Integer counts){
 		return productDAO.selectByTopAmount(pageNumber, pageAmount, counts);
 	}
-	
+	public Integer getIdByProductName(String productName){
+		return productDAO.getProductIdByName(productName);
+	}
 
 }
