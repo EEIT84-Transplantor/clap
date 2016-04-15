@@ -72,7 +72,10 @@ public class MemberVO {
 	private Boolean autorenew;
 	@Column(name = "mb_expire")
 	private Date expire;
-
+	@Column(name = "mb_type")
+	private Integer type;
+	
+	
 	public String getEmail() {
 		return email;
 	}
@@ -179,6 +182,14 @@ public class MemberVO {
 	public MemberVO setExpire(Date expire) {
 		this.expire = expire;
 		return this;
+	}
+
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
 	}
 
 	@Override

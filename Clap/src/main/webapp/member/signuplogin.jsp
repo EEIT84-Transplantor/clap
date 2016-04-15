@@ -79,6 +79,12 @@
 	<script src="../resource/js/bootstrap.min.js"/></script>
 	<script src="../resource/js/loginsignup.js"/></script>
 	<script type="text/javascript">
+	function checkEnter(e){
+		 e = e || event;
+		 var txtArea = /textarea/i.test((e.target || e.srcElement).tagName);
+		 return txtArea || (e.keyCode || e.which || e.charCode || 0) !== 13;
+		}
+		document.querySelector('form').onkeypress = checkEnter;
 		$(document).ready(function() {
 			//隱藏項目
 			$("#btn_group").hide();
@@ -91,6 +97,8 @@
 				sendPostRequestEmail("emailexist.servlet", $("input[name='email']").val());
 			});
 			$("#emailcheck_btn").click(function() {
+				document.querySelector('form').onkeypress = function(){
+				};
 				sendPostRequestEmail("emailexist.servlet", $("input[name='email']").val());
 			});
 			$("#forgotPassword_new").click(function() {

@@ -28,18 +28,19 @@ hp_id int,
 cc_number char(16),
 mb_autorenew bit,
 mb_expire date,
-gc_amount float
+gc_amount float, 
+mb_type int
 primary key(mb_email))
 
 
 insert into Member values
-('caca@gmail.com',CONVERT(VARBINARY, 'caca'), 'caca', '0912345678', null , null, 0, null, null, 0, '2016-05-04', 0);
+('caca@gmail.com',CONVERT(VARBINARY, 'caca'), 'caca', '0912345678', null , null, 0, null, null, 0, '2016-05-04', 0,1);
 insert into Member values
-('andrew@gmail.com',CONVERT(VARBINARY, 'andrew'), 'andrew', '0912345678', null , null, 0, null, null, 0, '2016-06-04', 0);
+('andrew@gmail.com',CONVERT(VARBINARY, 'andrew'), 'andrew', '0912345678', null , null, 0, null, null, 0, '2016-06-04', 0,2);
 insert into Member values
-('lee@gmail.com',CONVERT(VARBINARY, 'lee'), 'lee', '0912345678', null , null, 0, null, null, 0, '2016-07-04', 0);
+('lee@gmail.com',CONVERT(VARBINARY, 'lee'), 'lee', '0912345678', null , null, 0, null, null, 0, '2016-07-04', 0,1);
 insert into Member values
-('poan@gmail.com',CONVERT(VARBINARY, 'poan'), 'poan', '0912345678', null , null, 0, null, null, 0, '2016-08-04', 0);
+('poan@gmail.com',CONVERT(VARBINARY, 'poan'), 'poan', '0912345678', null , null, 0, null, null, 0, '2016-08-04', 0,2);
 select*from Member
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table creditcard(

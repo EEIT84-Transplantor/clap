@@ -32,8 +32,8 @@
 						<ul>
 							<li><a href="#">brain</a></li>
 							<li><a href="#">Eye ball</a></li>
-							<li><a href="${pageContext.request.contextPath}/product/displayproduct.jsp">Product Manage</a></li>
-							<li><a href="${pageContext.request.contextPath}/payment/setpromotion.jsp">Settings</a></li>
+							<li><a href="${pageContext.request.contextPath}/product/displayproduct.action">Product Manage</a></li>
+							<li><a href="${pageContext.request.contextPath}/payment/setpromotion.action">Settings</a></li>
 						</ul>
 					</div>
 
