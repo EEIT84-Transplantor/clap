@@ -506,3 +506,8 @@ header {
     height: 30px; 
     margin-bottom: 50px;
 }
+/*----------*/
+.popularimg:hover{
+	-webkit-filter: contrast(200%); /* Chrome, Safari, Opera */
+    filter: contrast(200%);
+}

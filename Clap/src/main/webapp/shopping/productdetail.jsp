@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page import="java.util.Map"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,10 +87,89 @@
 							
 						</div>
 					</div>
-				</div>
+				
 				<!-- 結束商品明細 -->
 
 
+
+
+
+
+
+			<div class="row" style="border-top:1px #fff solid; padding-top:20px; margin-top:40px;">
+				<div class="col-md-12">
+						<div class="row">
+							<div class="col-md-9">
+								<h3>Popular</h3>
+							</div>
+							<div class="col-md-3">
+								<!-- Controls -->
+								<div class="controls pull-right hidden-xs">
+									<a class="left fa fa-chevron-left btn btn-success"
+										href="#category-silder" data-slide="prev"><span
+										class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a>
+									<a class="right fa fa-chevron-right btn btn-success"
+										href="#category-silder" data-slide="next"><span
+										class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
+								</div>
+							</div>
+						</div>
+						<div id="category-silder" class="carousel slide hidden-xs">
+							<!-- Wrapper for slides -->
+							<div class="carousel-inner">
+								<c:forEach items="${popular}" var="product" varStatus="p_count">
+										<c:if test="${p_count.count % 6 == 1}">
+										<c:if test="${p_count.count == 1}">
+										<div class="item active">
+										</c:if>
+										<c:if test="${p_count.count != 1}">
+										<div class="item">
+										</c:if>
+											<div class="row">
+										</c:if>
+										<div class="col-sm-2">
+											<div class="col-item">
+												<div class="photo">
+													<a href="${pageContext.request.contextPath}/shopping/productDetial.action?productVO.id=${product.id}"><img src="../resource/images/orgins/brain.png"
+														class="img-responsive popularimg"  /></a>
+												</div>
+									
+											</div>
+										</div>
+
+										<c:if test="${p_count.count % 6 == 0||p_count.count == fn:length(values)}">
+								  </div>
+								    </div>
+								</c:if>
+					</c:forEach>
+				
+			</div>
+		
+	
+		</div>
+		</div>
+		
+		<!-- 分類推薦 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
 
 			</div>
 			<!-- 結束商品描述 -->
@@ -146,7 +226,6 @@
     function oneclick(id){
 		 var quantity = $("#sel1").val();
 		 var url = "${pageContext.request.contextPath}/shopping/oneClickBuy.action?cartVO.product_id="+id+"&cartVO.quantity="+quantity;
-		 alert(url);
 		window.location.href = url;
     }
 

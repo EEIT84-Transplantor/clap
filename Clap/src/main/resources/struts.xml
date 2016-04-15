@@ -169,8 +169,7 @@
              <result name="search">/shopping/searchproduct.jsp</result>
 		</action>
 		<action name="oneClickBuy" class="shopping.controller.OneClickBuyAction">
-			<result name="success">/hospital/appointment.jsp</result>
-
+			<result name="success">/shopping/doCheckOutAction.action</result>
 		</action>
 		<action name="cartAction" class="shopping.controller.CartAction">
 			<result name="success">/shopping/cart.jsp</result>
@@ -196,7 +195,6 @@
 		<action name="deleteOrderAction" class="shopping.controller.DeleteOrderAction">
 			<result type="stream"></result>
 		</action>
-
 	</package>
 
 	<package name="test" namespace="/test" extends="struts-default">

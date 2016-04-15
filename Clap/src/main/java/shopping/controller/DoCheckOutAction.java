@@ -66,9 +66,6 @@ public class DoCheckOutAction extends ActionSupport implements ServletRequestAwa
 		// 計算購物金
 		Double total = (Double) session.getAttribute("total");
 		MemberVO memberVO = (MemberVO) session.getAttribute("login");
-		System.out.println(total);
-		System.out.println(memberVO);
-
 		String email = memberVO.getEmail();
 		Double amount = memberService.getAmount(email);
 		if (total > amount) {
