@@ -156,6 +156,7 @@
 	</bean>
 	<bean id="inventoryService" class="inventory.model.InventoryService">
 		<property name="inventoryDAO" ref="inventoryDAO" />
+		<property name="inOutLogDAO" ref="inOutLogDAO" />
 	</bean>
 	<bean id="inOutAction" class="inventory.controller.InOutAction">
 		<property name="inOutLogService" ref="inOutLogService" />
