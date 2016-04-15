@@ -13,30 +13,30 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public class OrderDetailPK implements Serializable {
 
 	private Integer id;
-	private Integer pd_id;
+	private Integer product_id;
 
 	public OrderDetailPK() {
 	}
 
-	public OrderDetailPK(Integer id, Integer pd_id) {
+	public OrderDetailPK(Integer id, Integer product_id) {
 		this.id = id;
-		this.pd_id = pd_id;
+		this.product_id = product_id;
 	}
 
 	public Integer getId() {
 		return id;
 	}
 
-	public Integer getPd_id() {
-		return pd_id;
+	public Integer getProduct_id() {
+		return product_id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public void setPd_id(Integer pd_id) {
-		this.pd_id = pd_id;
+	public void setProduct_id(Integer product_id) {
+		this.product_id = product_id;
 	}
 
 	@Override
@@ -48,13 +48,13 @@ public class OrderDetailPK implements Serializable {
 			return false;
 		}
 		OrderDetailPK orderDetiailPK = (OrderDetailPK) obj;
-		return new EqualsBuilder().append(id, orderDetiailPK.getId()).append(pd_id, orderDetiailPK.getPd_id())
+		return new EqualsBuilder().append(id, orderDetiailPK.getId()).append(product_id, orderDetiailPK.getProduct_id())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(id).append(pd_id).toHashCode();
+		return new HashCodeBuilder().append(id).append(product_id).toHashCode();
 	}
 
 }

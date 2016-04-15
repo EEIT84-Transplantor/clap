@@ -28,12 +28,12 @@ public class OrderDetailHibernateDAO implements OrderDetailDAO {
 	}
 
 	@Override
-	public Boolean delete(Integer id, Integer pd_id) {
+	public Boolean delete(Integer id, Integer Product_id) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			OrderDetailPK orderDetailPK = new OrderDetailPK();
 			orderDetailPK.setId(id);
-			orderDetailPK.setPd_id(pd_id);
+			orderDetailPK.setProduct_id(Product_id);
 			orderDetailVO = session.get(OrderDetailVO.class, orderDetailPK);
 			session.delete(orderDetailVO);
 			return true;
@@ -69,12 +69,12 @@ public class OrderDetailHibernateDAO implements OrderDetailDAO {
 	}
 
 	@Override
-	public OrderDetailVO select(Integer id, Integer pd_id) {
+	public OrderDetailVO select(Integer id, Integer Product_id) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			OrderDetailPK orderDetailPK = new OrderDetailPK();
 			orderDetailPK.setId(id);
-			orderDetailPK.setPd_id(pd_id);
+			orderDetailPK.setProduct_id(Product_id);
 			OrderDetailVO orderDetailVO = session.get(OrderDetailVO.class, orderDetailPK);
 			return orderDetailVO;
 		} catch (Exception e) {
@@ -83,4 +83,17 @@ public class OrderDetailHibernateDAO implements OrderDetailDAO {
 		}
 	}
 
+	public List<OrderDetailVO> select(Integer orderId){
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			Query query = session.createQuery("from OrderDetailVO where id=?");
+			query.setParameter(0, orderId);
+			List<OrderDetailVO> list = query.list();
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 }

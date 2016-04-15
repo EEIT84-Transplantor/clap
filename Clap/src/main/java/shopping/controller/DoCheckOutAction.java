@@ -64,7 +64,7 @@ public class DoCheckOutAction extends ActionSupport implements ServletRequestAwa
 	public String execute() throws Exception {
 
 		// 計算購物金
-		Double total = (Double) session.getAttribute("total");
+		Integer total = (Integer) session.getAttribute("total");
 		MemberVO memberVO = (MemberVO) session.getAttribute("login");
 		System.out.println(total);
 		System.out.println(memberVO);
