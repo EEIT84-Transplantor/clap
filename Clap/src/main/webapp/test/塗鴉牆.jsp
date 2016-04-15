@@ -21,33 +21,25 @@
 </head>
 <body>
 
-<!-- 	<table class="table"> -->
-<%-- 		<c:set var="theads" value="${['商品數','原價','禮物卡','prome','總價']}" scope="page" /> --%>
-<%-- 		<c:forEach var="thead" items="${theads}"> --%>
-<!-- 			<tr> -->
-<%-- 				<td>${thead}</td> --%>
-<!-- 				<td></td> -->
-<!-- 				<td></td> -->
-<!-- 			</tr> -->
-<%-- 		</c:forEach> --%>
-<!-- 	</table> -->
-
-	<%
-		Map table = new HashMap();
-		table.put("aaa", "abc");
-		table.put("bbb", "bbb");
-		table.put("ccc", "cccc");
-		pageContext.setAttribute("table", table);
-	%>
-
-	${table}
-	
-	<select>
-		<c:forEach var="i" begin="1" end="5">
-			<option>${i}</option>
-		</c:forEach>
-	
 	</select>
+	<script type="text/javascript" src="<c:url value="/resource/js/jquery-1.12.2.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
+	<script type="text/javascript">
+		$(function() {
+
+			var dogs = {
+				"dog1.name" : "may",
+				"dog2.name" : "day",	
+			};
+			$.ajax({
+				url : "<c:url value='/test/test.action'/>",
+				data : dogs,
+			})
+			console.log(dogs);
+
+		})
+	</script>
 
 </body>
 </html>

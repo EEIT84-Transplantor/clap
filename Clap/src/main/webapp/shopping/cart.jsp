@@ -22,7 +22,7 @@
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
-	<!--% 
+	<% 
 		Map<String, Object> name1 = new HashMap<>();
 		name1.put("id", 111);
 		name1.put("name", "abc");
@@ -62,7 +62,7 @@
 		pageContext.setAttribute("login", memberVO);
 		pageContext.setAttribute("cartList", cartList);
 		pageContext.setAttribute("promoList", promoList);
-	%-->
+	%>
 	<header><jsp:include page="/header.jsp" /></header>
 
 	<section id="wrap">
@@ -94,7 +94,11 @@
 													</c:otherwise>
 												</c:choose>
 											</c:forEach>
-										</select></td>
+										</select>
+										
+											
+											
+										</td>
 									<td>${row.price}</td>
 									<td><input type="button" value="刪除" /></td>
 								</tr>
@@ -109,7 +113,7 @@
 					<table class="table">
 						<tr>
 							<td>商品數</td>
-							<td>${fn:length(cartList)} ${error}</td>
+							<td>${fn:length(cartList)} <br />${error}</td>
 						</tr>
 						<tr>
 							<td>total</td>
