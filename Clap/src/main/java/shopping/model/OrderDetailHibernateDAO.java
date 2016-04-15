@@ -32,7 +32,7 @@ public class OrderDetailHibernateDAO implements OrderDetailDAO {
 	public Boolean delete(Integer id, Integer product_id) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			Query query = session.createQuery("delete from orderdetail where orderform_id = ? , product_id = ?");
+			Query query = session.createQuery("delete from OrderDetailVO where id = ? and product_id = ?");
 			query.setParameter(0, id);
 			query.setParameter(1, product_id);
 			query.executeUpdate();
@@ -72,7 +72,7 @@ public class OrderDetailHibernateDAO implements OrderDetailDAO {
 	public OrderDetailVO select(Integer id, Integer product_id) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			Query query = session.createQuery("from orderdetail where orderform_id = ? , product_id = ?");
+			Query query = session.createQuery("from OrderDetailVO where id = ? and product_id = ?");
 			query.setParameter(0, id);
 			query.setParameter(1, product_id);
 			return (OrderDetailVO) query.list().get(0);
