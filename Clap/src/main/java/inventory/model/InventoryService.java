@@ -24,4 +24,6 @@ public class InventoryService {
 			return inventoryDAO.selectByProductId(productId);
 		}
 	}
+	
+	
 }
