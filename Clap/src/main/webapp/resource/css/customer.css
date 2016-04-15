@@ -503,8 +503,7 @@ header {
     vertical-align:top; 
     background: url("../images/box.png") no-repeat center center / 100% auto;
     width: 30px;
-    height: 30px; 
-    margin-bottom: 50px;
+    height: 30px;
 }
 /*----------*/
 .popularimg:hover{
