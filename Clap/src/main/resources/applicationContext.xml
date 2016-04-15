@@ -85,12 +85,12 @@
 		<property name="creditCardService" ref="creditCardService" />
 		<property name="promoCodeService" ref="promoCodeService" />
 	</bean>
-	<bean id="prePromoteAction" class="payment.controller.PrePromoteAction"
+	<bean id="prePromoteAction" class="paymentmanage.controller.PrePromoteAction"
 		scope="prototype">
 		<property name="promoService" ref="promoService" />
 		<property name="categoryService" ref="categoryService" />
 	</bean>
-	<bean id="setPromoteAction" class="payment.controller.SetPromotionAction"
+	<bean id="setPromoteAction" class="paymentmanage.controller.SetPromotionAction"
 		scope="prototype">
 		<property name="promoService" ref="promoService" />
 		<property name="categoryService" ref="categoryService" />

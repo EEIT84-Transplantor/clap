@@ -9,7 +9,7 @@
 	System.out.println("ggg" + message);
 	request.setAttribute("message", message);
 	if (promoVOs == null) {
-		response.sendRedirect(request.getContextPath() + "/payment/prePromoteAction.action");
+		response.sendRedirect(request.getContextPath() + "/paymentmanage/prePromoteAction.action");
 	}
 %>
 <!DOCTYPE html>
@@ -79,7 +79,7 @@ margin:10px 0;
 						<div class="col-md-12 col-sm-12">
 							<div class="row">
 								<form
-									action="${pageContext.request.contextPath}/payment/prePromoteAction.action">
+									action="${pageContext.request.contextPath}/paymentmanage/prePromoteAction.action">
 									<div class="col-md-1 col-sm-1">
 										<span>Search By:</span>
 									</div>
@@ -112,7 +112,7 @@ margin:10px 0;
 					<div class="row" id="insertform">
 						<div class="col-md-12">
 							<form
-								action="${pageContext.request.contextPath}/payment/setPromoteAction.action"
+								action="${pageContext.request.contextPath}/paymentmanage/setPromoteAction.action"
 								method="POST">
 								<table class="table">
 									<thead>
@@ -287,7 +287,7 @@ margin:10px 0;
 												$
 														.ajax({
 															type : "POST",
-															url : "${pageContext.request.contextPath}/payment/setPromoteAction.action",
+															url : "${pageContext.request.contextPath}/paymentmanage/setPromoteAction.action",
 															data : dataSend
 														});
 

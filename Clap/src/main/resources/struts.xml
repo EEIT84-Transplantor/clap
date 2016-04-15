@@ -57,6 +57,7 @@
 		</action>
 
 	</package>
+
 	<package name="payment" namespace="/payment" extends="struts-default">
 
 		<interceptors>
@@ -79,7 +80,6 @@
 		<!-- global-results -->
 		<global-results>
 			<result name="login" type="redirect">/member/signuplogin.jsp</result>
-			<result name="display">/product/displayproduct.jsp</result>
 			<result name="index" type="redirect">/index.jsp</result>
 		</global-results>
 
@@ -92,20 +92,42 @@
 			<interceptor-ref name="paymentManageStack" />
 			<result>/payment/{1}.jsp</result>
 		</action>
+	</package>
+	<package name="paymentmanage" namespace="/paymentmanage" extends="struts-default">
 
+		<interceptors>
+			<interceptor name="AdminInterceptor" class="component.interceptor.AdminInterceptor" />
+			<interceptor-stack name="promoManageInterceptorStack">
+				<interceptor-ref name="AdminInterceptor"/>
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- global-results -->
+		<global-results>
+			<result name="login" type="redirect">/member/signuplogin.jsp</result>
+			<result name="display">/paymentmanage/setpromotion.jsp</result>
+			<result name="index" type="redirect">/index.jsp</result>
+		</global-results>
+
+		<action name="*">
+			<interceptor-ref name="promoManageInterceptorStack" />
+			<result>/paymentmanage/{1}.jsp</result>
+		</action>
 		<action name="prePromoteAction" class="prePromoteAction">
 			<!-- <interceptor-ref name="promoManageInterceptorStack" /> -->
-			<result name="success">/payment/setpromotion.jsp</result>
-			<result name="input">/payment/setpromotion.jsp</result>
+			<result name="success">/paymentmanage/setpromotion.jsp</result>
+			<result name="input">/paymentmanage/setpromotion.jsp</result>
 		</action>
 		<action name="setPromoteAction" class="setPromoteAction">
+			<interceptor-ref name="AdminInterceptor" />
 			<!-- <interceptor-ref name="promoManageInterceptorStack" /> -->
-			<result type="redirect" name="success">/payment/setpromotion.jsp</result>
-			<result name="input">/payment/setpromotion.jsp</result>
-			<interceptor-ref name="promoManageInterceptorStack" />
+			<result type="redirect" name="success">/paymentmanage/setpromotion.jsp</result>
+			<result name="input">/paymentmanage/setpromotion.jsp</result>
 		</action>
 
 	</package>
+	
 	<package name="member" namespace="/member" extends="struts-default">
 
 		<!-- interceptors -->

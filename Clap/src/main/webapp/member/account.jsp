@@ -73,27 +73,27 @@
 			
 			
 			//onclick paymentmanage button
-			$("button").eq(0).on("click", function() {
+			$("button").eq(1).on("click", function() {
 				location.href = paymentmanageUrl;
 			});
 			//onclick passwordchange button
-			$("button").eq(1).on("click", function() {
+			$("button").eq(2).on("click", function() {
 				location.href = passwordchangeUrl;
 			});
 			//onclick changesetting button
-			$("button").eq(2).on("click", function() {
+			$("button").eq(3).on("click", function() {
 				location.href = changesettingUrl;
 			});
 			//onclick Oneclick button
-			$("button").eq(3).on("click", function() {
+			$("button").eq(4).on("click", function() {
 				location.href = oneclickUrl;
 			});
 			//onclick VIP button
-			$("button").eq(4).on("click", function() {
+			$("button").eq(5).on("click", function() {
 				location.href = vipUrl;
 			});
 			//onclick mailbox button
-			$("button").eq(5).on("click", function() {
+			$("button").eq(6).on("click", function() {
 				location.href = mailUrl;
 			});
 		});
