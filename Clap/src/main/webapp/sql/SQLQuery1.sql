@@ -258,7 +258,7 @@ product_id int FOREIGN KEY REFERENCES product(pd_Id),
 cart_quantity int,
 orderdetail_time datetime,
 doctor_id int FOREIGN KEY REFERENCES doctor(doctor_id), 
-surgery_time timestamp 
+surgery_time datetime 
 )
 
 insert into orderdetail(orderform_id, product_id, cart_quantity, orderdetail_time, doctor_id) values(1,1,10,'2020-01-01',1);
