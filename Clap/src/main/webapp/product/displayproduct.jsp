@@ -90,17 +90,17 @@ word-wrap:break-word;
 										</thead>
 										<tbody>
 											<tr>
-												<th><input type="file" name="upload" /></th>
-												<th><input class="form-control col-md-1" type="text" name="productVO.name" /></th>
-												<th><input class="form-control col-md-1" type="number" min="0" name="productVO.price" /></th>
-												<th><input class="form-control col-md-1" type="text" name="productVO.description" /></th>
-												<th><input class="form-control col-md-1" type="number" min="0" max="1" name="productVO.discount" /></th>
-												<th><select id="category" name="productVO.category_id">
+												<th><input id="newitemPic" type="file" name="upload" required="required"/></th>
+												<th><input class="form-control col-md-1" type="text" name="productVO.name" required="required"/></th>
+												<th><input class="form-control col-md-1" type="number" min="0" name="productVO.price" required="required"/></th>
+												<th><input class="form-control col-md-1" type="text" name="productVO.description" required="required"/></th>
+												<th><input class="form-control col-md-1" type="number" min="0" max="1" name="productVO.discount" required="required"/></th>
+												<th><select id="category" name="productVO.category_id" required="required">
 													<c:forEach items="${categoryVOs}" var="row">
 														<option value="${row.id}">${row.name}</option>														
 													</c:forEach>
 												</select></th>
-												<th><input id="submitInsert" type="submit" value="add" /> <input id="insertCancel" type="button" value="cancel" /></th>
+												<th><input id="submitInsert" type="button" value="add" /> <input id="insertCancel" type="button" value="cancel" /></th>
 											</tr>
 										</tbody>
 									</table>
@@ -282,10 +282,6 @@ word-wrap:break-word;
 	});
 	
 	
-	$('#submitInsert').on("click", function() {
-		alert("add product");
-	});
-	
 	$("button.cancelUpdate").on("click", function(){
 		
 		location.reload();
@@ -385,6 +381,20 @@ word-wrap:break-word;
 				$("table.table-condensedalot tr>th>input:first-child").css("max-width","13em").css("width","auto");
 				$("#insertform").show();
 			});
+			
+			$("#submitInsert").on("click", function(){
+				if(confirm("Add a new product?")){
+					if($("#submitInsert").attr("name")!="true"){
+						alert("Picture is required.");
+					}else{
+						$("form").eq(0).submit();
+					}
+				}
+			});
+			$("#newitemPic").on("change", function(){
+				$("#submitInsert").attr("name", "true");
+			});
+			
 			$("td.showimg>input").css("width", "100%");
 			
 			

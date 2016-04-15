@@ -60,7 +60,9 @@ public class ProductService {
 			if(dbVO == null && productimgVO == null){
 				productimgVO = new ProductimgVO();
 				productimgVO.setId(productDAO.insert(productVO).getId());
+				if(productImg.length>0){
 				productimgVO.setImg(productImg);
+				}
 				productimgDAO.insert(productimgVO);
 				return true;
 			}else if(dbVO != null && productimgVO == null){
@@ -71,7 +73,9 @@ public class ProductService {
 				dbVO.setCategory_id(productVO.getCategory_id());
 				productimgVO = new ProductimgVO();
 				productimgVO.setId(productVO.getId());
+				if(productImg.length>0){
 				productimgVO.setImg(productImg);
+				}
 				productimgDAO.insert(productimgVO);
 				return true;
 			}else{
@@ -80,8 +84,9 @@ public class ProductService {
 				dbVO.setDescription(productVO.getDescription());
 				dbVO.setDiscount(productVO.getDiscount());
 				dbVO.setCategory_id(productVO.getCategory_id());
-				productimgVO.setId(productVO.getId());
-				productimgVO.setImg(productImg);
+				if(productImg.length>0){
+					productimgVO.setImg(productImg);
+				}
 				return true;
 			}
 		} catch (Exception e) {
