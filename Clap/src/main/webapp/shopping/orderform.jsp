@@ -70,11 +70,9 @@
 								<td>${orderVO.time}</td>
 								<td>${orderVO.total}</td>
 								<td>${orderVO.status}</td>
-								<td>
-									<c:if test="${orderVO.status==1}">
+								<td><c:if test="${orderVO.status==1}">
 										<input type="button" value="刪除" class="delete" />
-									</c:if>
-								</td>
+									</c:if></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -96,22 +94,22 @@
 
 			//listener 刪除
 			$(".delete").click(function() {
+				var button = $(this);
 				var orderId = $(this).parent().siblings().eq(0).text();
-				var result = ajax(deleteOrderAction, orderId);
+				var result;
+				$.ajax({
+					url : deleteOrderAction,
+					data : {
+						"orderId" : orderId
+					},
+				}).done(function(result) {
+					console.log(result);
+					if (result == "true") {
+						$(button).parent().parent().remove();
+					}
+				})
 			})
 		})
-
-		//ajax
-		function ajax(url, data) {
-			var result;
-			$.ajax({
-				url : url,
-				data : data,
-			}).done(function(msg) {
-				result = msg;
-			})
-			return result;
-		}
 	</script>
 </body>
 </html>

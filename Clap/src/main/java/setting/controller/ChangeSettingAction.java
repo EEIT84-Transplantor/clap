@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.regex.Pattern;
 
+import org.apache.struts2.ServletActionContext;
 import org.json.JSONObject;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -67,6 +68,10 @@ public class ChangeSettingAction extends ActionSupport {
 
 	@Override
 	public void validate() {
+		//get email from session
+		MemberVO VOforEmail = (MemberVO)ServletActionContext.getRequest().getSession().getAttribute("login");
+		email = VOforEmail.getEmail();
+		
 		// 手機格式是否正確
 		if (phone.trim().length()!=0&&!Pattern.matches("^09[0-9]{8}$", phone)) {
 				super.addFieldError("phone",getText("phone.type"));

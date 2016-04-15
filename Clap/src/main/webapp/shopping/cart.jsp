@@ -22,18 +22,21 @@
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
-	<%
+	<!--% 
 		Map<String, Object> name1 = new HashMap<>();
+		name1.put("id", 111);
 		name1.put("name", "abc");
 		name1.put("quantity", 2);
 		name1.put("price", 1000);
 		name1.put("stock", 5);
 		Map<String, Object> name2 = new HashMap<>();
+		name2.put("id", 222);
 		name2.put("name", "abc");
 		name2.put("quantity", 5);
 		name2.put("price", 2000);
 		name2.put("stock", 10);
 		Map<String, Object> name3 = new HashMap<>();
+		name3.put("id", 333);
 		name3.put("name", "abc");
 		name3.put("quantity", 10);
 		name3.put("price", 3000);
@@ -59,7 +62,7 @@
 		pageContext.setAttribute("login", memberVO);
 		pageContext.setAttribute("cartList", cartList);
 		pageContext.setAttribute("promoList", promoList);
-	%>
+	%-->
 	<header><jsp:include page="/header.jsp" /></header>
 
 	<section id="wrap">
@@ -78,6 +81,7 @@
 						<tbody>
 							<c:forEach var="row" items="${cartList}">
 								<tr>
+									<td hidden="true">${row.id}</td>
 									<td>${row.name}</td>
 									<td><select>
 											<c:forEach var="i" begin="1" end="${row.stock<10?row.stock:10}">
@@ -152,6 +156,8 @@
 		$(function() {
 			getTotal();
 
+			
+			
 			//listener 刪除商品 修改數量 
 			for (var i = 0; i < trs; i++) {
 				$("input:eq(" + i + ")").click(function(event) {
@@ -174,10 +180,10 @@
 				var productArray = [];
 				var promoTitle = $("#promoTitle").val();
 				$("tbody:first tr").each(function() {
-					var productName = $(this).children().eq(0).text();
-					var quantity = $(this).children().eq(1).children().val();
+					var productId = $(this).children().eq(0).text();
+					var quantity = $(this).children().eq(2).children().val();
 					productArray.push(JSON.stringify({
-						"prodcutName" : productName,
+						"productId" : productId,
 						"quantity" : quantity
 					}));
 				});
@@ -188,12 +194,16 @@
 						"productArray" : productArray,
 						"promoTitle" : promoTitle
 					},
+				}).done(function(){
+					window.location.href = "<c:url value='/shopping/checkout.jsp'/>";
 				})
-				// 				console.log(url);
-				// 				console.log({
-				// 					"productArray" : productArray,
-				// 					"promoTitle" : promoTitle
-				// 				});
+				
+				//測試程式
+				console.log(url);
+				console.log({
+					"productArray" : productArray,
+					"promoTitle" : promoTitle
+				});
 			})
 		})
 
@@ -208,9 +218,11 @@
 				var quantity = $("select:eq(" + i + ")").val();
 				total = price * quantity + total;
 			}
+			amount=total*promo>amout?amount:total*promo;
 			var reduced = total * promo - amount;
 			$("#total").text(total);
-			$("#reduced").text(reduced)
+			$("#reduced").text(reduced);
+			$("#amount").test(amount);
 		}
 	</script>
 </body>

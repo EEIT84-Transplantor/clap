@@ -5,6 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@ page import="java.util.Map"%>
 <!DOCTYPE html>
 <html>
@@ -60,6 +61,7 @@
 		pageContext.setAttribute("login", memberVO);
 	%>
 
+
 	<header><jsp:include page="/header.jsp" /></header>
 	<div class="container">
 		<div id="cardTable" class="row">
@@ -87,7 +89,7 @@
 			</c:forEach>
 
 			<!-- 新卡片表格 -->
-			<div class="col-md-3" hidden id="hidden">
+			<div class="col-md-3" hidden=true id="hidden">
 				<div class="newcard">
 					<form id="addCreditForm">
 						<table>
@@ -139,6 +141,7 @@
 				<input type="button" class="btn btn-default btn-block" value="付款">
 			</div>
 		</div>
+
 	</div>
 	<footer><jsp:include page="/footer.jsp" /></footer>
 	<!-- 載入js -->
@@ -160,17 +163,16 @@
 
 			//listener 新增卡片
 			$("#addCreditCard").click(function() {
-				var result = ajax(setCreditCardAction, setNewCardVO());
-				// setNewCard(result);
+				ajax(setCreditCardAction, setNewCardVO());
+				console.log(132);
 			})
 
 			//listener 選擇付款信用卡
 			selectCardListener(".creditCard");
 
 			//listener 付款
-			ajax(checkOutAction,cc_number);
+			ajax(checkOutAction, cc_number);
 
-			
 			//測試新增卡片回傳的結果
 			$("#true").click(function() {
 				console.log("132");
@@ -203,10 +205,10 @@
 			$.ajax({
 				url : url,
 				data : data,
-			}).done(function(msg) {
-				result = msg;
+				dataType : "json"
+			}).done(function(result) {
+				setNewCard(result);
 			})
-			return result;
 		}
 
 		//在畫面產生新卡片
@@ -214,9 +216,9 @@
 			if (result) {
 				//產生新卡片
 				$("#hidden").prev().clone().prependTo("#cardTable");
-				$(".number:first").text(creditCardVO.creditCardPK.cc_number);
-				$(".goodthru:first").text(creditCardVO.cc_goodthru);
-				$(".cvv:first").text(creditCardVO.cc_cvv);
+				$(".number:first").text(cardvo.cc_number);
+				$(".goodthru:first").text(cardvo.cc_goodthru);
+				$(".cvv:first").text(cardvo.cc_cvv);
 				$(".creditCard:first").css("border-style", "");
 				selectCardListener(".creditCard:first");
 				//隱藏清空新卡片表格
@@ -228,20 +230,14 @@
 
 		//取得新卡片資訊 製作成creditCardVO
 		function setNewCardVO() {
-			var mb_email = "${login.email}";
-			var cc_number = $(".number:last").val();
-			var creditCardPK = {
-				"mb_email" : mb_email,
-				"cc_number" : cc_number
-			};
-			var cc_goodthru = $(".goodthru:last").val();
-			var cc_cvv = $(".cvv:last").val();
-			return creditCardVO = {
-				"creditCardPK" : creditCardPK,
-				"cc_goodthru" : cc_goodthru,
-				"cc_cvv" : cc_cvv
-			};
-		}
+			cardvo = {
+				"mb_email" : "${login.email}",
+				"cc_number" : $(".number:last").val(),
+				"cc_goodthru" : $(".goodthru:last").val(),
+				"cc_cvv" : $(".cvv:last").val()
+			}
+			return cardvo;
+		};
 	</script>
 
 

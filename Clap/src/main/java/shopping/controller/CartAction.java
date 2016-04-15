@@ -88,6 +88,7 @@ public class CartAction extends ActionSupport implements ServletRequestAware {
 			for (CartVO cartVO : cartVOs) {
 				Map<String, Object> map = new HashMap<String, Object>();
 				ProductVO productVO = cartVO.getProductVO();
+				map.put("id", productVO.getId());
 				map.put("name", productVO.getName());
 				map.put("quantity", cartVO.getQuantity());
 				map.put("price", productVO.getPrice());

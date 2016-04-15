@@ -26,7 +26,7 @@
 			<form role="form" action="<c:url value="/setting/changePasswordAction"/>" method="POST" >
 
 				<div class="form-group">
-					<s:textfield class="form-control" name="email" type="email" label="Email" readonly="true" value="poan@gmail.com" />
+					<s:textfield class="form-control" name="email" type="email" label="Email" readonly="true" value="%{#session.login.email}" />
 
 				</div>
 
@@ -53,9 +53,9 @@
 	</footer>
 
 	<!-- 載入js -->
-	<script src="../resource/js/jquery-1.12.2.min.js"/>"></script>
-	<script src="../resource/js/bootstrap.min.js"/>"></script>
-	<script src="../resource/js/loginsignup.js"/>"></script>
+	<script src="../resource/js/jquery-1.12.2.min.js"/></script>
+	<script src="../resource/js/bootstrap.min.js"/></script>
+	<script src="../resource/js/loginsignup.js"/></script>
 
 	<script type="text/javascript">
 		$(document).ready(function() {

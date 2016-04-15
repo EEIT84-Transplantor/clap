@@ -31,8 +31,6 @@ public class ProductService {
 		return productDAO.selectByCategory(categoryId);
 	}
 	public ProductVO getProductById(Integer productId){
-		System.out.println(productDAO);
-		System.out.println(productId);
 		return productDAO.selectByProductId(productId);
 	}
 	

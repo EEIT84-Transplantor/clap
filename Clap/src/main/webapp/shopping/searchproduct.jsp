@@ -57,6 +57,8 @@
 									<p>
 										<span>$${product.price}</span> <a class="info add-to-cart" href="javascript:void(0);" onclick="changeCart(${product.id});">ADD TO
 											CART</a>
+											<a class="info" style="background:green;" href="${pageContext.request.contextPath}/shopping/productDetial.action?productVO.id=${product.id}">MORE</a>
+									
 									</p>
 								</div>
 							</div>

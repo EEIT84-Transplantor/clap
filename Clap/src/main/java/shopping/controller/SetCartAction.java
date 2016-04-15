@@ -47,12 +47,13 @@ public class SetCartAction extends ActionSupport implements ServletRequestAware{
 	
 		Integer quantity = cartVO.getQuantity();
 		if(quantity==null||quantity==0){
-			cartVO.setQuantity(1);
+			quantity = 1;
 		}
 		
 		if(member!=null){
 			//會員
 			cartVO.setEmail(member.getEmail());
+			cartVO.setQuantity(quantity);
 			cartService.updateCart(cartVO);
 			temp = cartService.getCart(member.getEmail());
 			
@@ -66,23 +67,28 @@ public class SetCartAction extends ActionSupport implements ServletRequestAware{
 				try {
 					
 					tempCart = (Map<Integer,Integer>) session.getAttribute("tempCart");
-					tempCart.put(cartVO.getProduct_id(), cartVO.getQuantity());
 					
+					if(tempCart.get(cartVO.getProduct_id())!=null){
+						Integer temps = quantity+tempCart.get(cartVO.getProduct_id());
+						tempCart.put(cartVO.getProduct_id(), temps);
+					}else{
+						
+						tempCart.put(cartVO.getProduct_id(), quantity);
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}else{
 				tempCart = new HashMap<Integer, Integer>();
 				session.setAttribute("tempCart", tempCart);
-				tempCart.put(cartVO.getProduct_id(), cartVO.getQuantity());
+				tempCart.put(cartVO.getProduct_id(), quantity);
 			}
 			for(Integer integer :tempCart.keySet()){
 				totalCart += tempCart.get(integer);
+				session.setAttribute("totalCart", totalCart);
 			}
 		}
-		System.out.println(totalCart);
 		inputStream = new ByteArrayInputStream(totalCart.toString().getBytes("UTF-8"));
-	
 		return SUCCESS;
 	}
 

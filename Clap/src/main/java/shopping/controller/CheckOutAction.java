@@ -1,10 +1,8 @@
 package shopping.controller;
 
-import java.io.StringReader;
+import java.io.InputStream;
+import java.util.List;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,7 +11,10 @@ import org.json.JSONObject;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import member.model.MemberVO;
 import payment.model.CreditCardService;
+import payment.model.CreditCardVO;
+import product.model.ProductService;
 import shopping.model.OrderFormService;
 
 public class CheckOutAction extends ActionSupport implements ServletRequestAware {
@@ -24,6 +25,15 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 	private OrderFormService orderFormService;
 	private String productArray;
 	private String promoTitle;
+	private ProductService productService;
+
+	public ProductService getProductService() {
+		return productService;
+	}
+
+	public void setProductService(ProductService productService) {
+		this.productService = productService;
+	}
 
 	public CreditCardService getCreditCardService() {
 		return creditCardService;
@@ -66,23 +76,33 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 	@Override
 	public String execute() throws Exception {
 		
+		JSONObject product;
+		Double price;
+		Integer quantity;
+		Double total = 0.0;
 		
+		//算出total
 		String[] productArray = request.getParameterValues("productArray[]");
-		System.out.println(productArray[0]);
-		System.out.println(productArray[1]);
-		System.out.println(productArray[2]);
+		for (String productStr : productArray) {
+			product = new JSONObject(productStr);
+			Integer prodcutId = Integer.parseInt((String) product.get("productId"));
+			price = productService.getProductById(prodcutId).getPrice();
+			quantity = Integer.parseInt(product.get("quantity").toString());
+			total += price * quantity;
+		}
+		total*=Integer.parseInt(promoTitle);
 		
-		JSONObject object = new JSONObject("{"+productArray+"}");
-		System.out.println(object);
-		System.out.println(promoTitle);
-
-		// MemberVO memberVO = (MemberVO) session.getAttribute("login");
-		// List<CreditCardVO> creditCardList =
-		// creditCardService.getCards(memberVO.getEmail());
-		//
-		// request.setAttribute("creditCardList", creditCardList);
-		// request.setAttribute("total", total);
+		//取出creditCardList
+//		MemberVO memberVO = (MemberVO) session.getAttribute("login");
+		MemberVO memberVO = new MemberVO();
+		memberVO.setEmail("lee@gmail.com");
+		List<CreditCardVO> creditCardList = creditCardService.getCards(memberVO.getEmail());
+		
+		session.setAttribute("creditCardList", creditCardList);
+		session.setAttribute("total", total);
+		
 		return super.execute();
+		
 	}
 
 }
