@@ -1,5 +1,6 @@
 package shopping.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -95,10 +96,11 @@ public class DoCheckOutAction extends ActionSupport implements ServletRequestAwa
 		
 		 // 新增訂單明細 清空購物車
 		 List<CartVO> cardList = cartService.getCart(email);
+		 Map<String, String> errors = new HashMap<String, String>();
 		for (CartVO cardVO : cardList) {
 		 orderDetailService.setOrderDetail(orderform_id,cardVO);
 		 if(!inventoryService.saleQuantity(cardVO.getProductVO(),cardVO.getQuantity())){ 
-			request.setAttribute("error", "sorry, we don't have enough stock!");
+			request.setAttribute(cardVO.getProductVO().getName()+"error", "sorry, we don't have enough "+cardVO.getProductVO().getName());
 			return "input";
 		    }
 		}
