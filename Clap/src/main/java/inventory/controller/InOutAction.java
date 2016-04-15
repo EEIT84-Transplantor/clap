@@ -108,13 +108,13 @@ public class InOutAction extends ActionSupport {
 	}
 	@Override
 	public String execute(){
-		Long d= Calendar.getInstance().getTimeInMillis();
+		
 		System.out.println(expiryDate+""+manufactureDate);
 		try{
 		    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		    Date parsedDate = dateFormat.parse(expiryDate);
 		    Date parsedDate2 = dateFormat.parse(manufactureDate);
-		    Date parsedDate3 =dateFormat.parse(new Date(d).toString());
+		    Date parsedDate3 =dateFormat.parse(Calendar.getInstance().get(Calendar.YEAR)+"/"+(Calendar.getInstance().get(Calendar.MONTH)+1)+"/"+Calendar.getInstance().get(Calendar.DATE));
 		    Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
 		    Timestamp timestamp2 = new java.sql.Timestamp(parsedDate2.getTime());
 		    Timestamp timestamp3 = new java.sql.Timestamp(parsedDate3.getTime());
@@ -144,7 +144,7 @@ public class InOutAction extends ActionSupport {
 		if (result){
 			request.setAttribute("Message", "Input Successfully");
 		}else{
-			request.setAttribute("Message", "Input Unsuccessfully, Please Try Again");
+			request.setAttribute("error", "Input Unsuccessfully, Please Try Again");
 		}
 		
 		return SUCCESS;

@@ -11,8 +11,21 @@
 <!-- Bootstrap -->
 <link href="${pageContext.request.contextPath}/resource/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resource/css/customer.css" rel="stylesheet">
+<style type="text/css">
+#message{
+	color:green;
+	font-size:14px;
+	margin:3px;
+}
+#error{
+	color:red;
+	font-size:14px;
+	margin:3px;
+}
 
+</style>
 </head>
+
 <body>
     <header>
 	 <jsp:include page="/header.jsp" />
@@ -30,23 +43,21 @@
                             <div class="col-lg-2">
                              
                             </div>
-                            	<div class="col-lg-1">
-                            		
-                            		${Message}
-                            	</div>
+                           
                                 <div class="col-lg-5">
-       
+       								<p id="message">${Message}</p>
+       								<p id="error">${error}</p>
                                     <form role="form" action="${pageContext.request.contextPath}/product/inOutAction.action">
                                         <s:fielderror/>
                                         <div class="form-group">
                                             <label>Please Enter Product Name or Product Id</label><br>
                                             <label>Product Name</label>
-                                            <input class="form-control" name="productName">
+                                            <input class="form-control" name="productName" value="${productName}">
                                            
                                         </div>
                                         <div class="form-group">
                                             <label>Product Id</label>
-                                            <input class="form-control" name="inOutLogVO.product_id">
+                                            <input class="form-control" name="inOutLogVO.product_id"  value="${inOutLogVO.product_id}">
                                         </div>
                         				 <div class="form-group">
                                             <label>Import or Export</label><br>
@@ -59,20 +70,20 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Quantity</label>
-                                            <input class="form-control" name="quantity">
+                                            <input class="form-control" name="quantity" value="${quantity}">
                                            
                                         </div>
                                         <div class="form-group">
                                             <label>Manufacture Date</label>
-                                            <input class="form-control" name="manufactureDate">
+                                            <input class="form-control" name="manufactureDate" value="${manufactureDate}">
                                         </div>
                                         <div class="form-group">
                                             <label>Expiration Date</label>
-                                            <input class="form-control" name="expiryDate">
+                                            <input class="form-control" name="expiryDate" value="${expiryDate}">
                                         </div>
                                         <div class="form-group">
                                             <label>Destination</label>
-                                            <input class="form-control" name="inOutLogVO.destination">
+                                            <input class="form-control" name="inOutLogVO.destination" value="${inOutLogVO.destination}">
                                         </div>
                                       
                                         

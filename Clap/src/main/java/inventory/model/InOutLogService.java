@@ -36,10 +36,12 @@ public class InOutLogService {
 			inventoryVO.setManufactureDate(manufactureDate);
 			inventoryVO.setExpiryDate(inOutLogVO.getExpiryDate());
 			inventoryVO.setProduct_id(product_id);
-			InOutLogVO result=inOutLogDAO.insert(inOutLogVO);
 			InventoryVO inventoryVO2 = inventoryDAO.selectByInventoryProperties(inventoryVO);
+			
 			System.out.println(inventoryVO2);
 			if(inventoryVO2!=null){
+				inOutLogVO.setInventory_id(inventoryVO2.getId());
+				InOutLogVO result=inOutLogDAO.insert(inOutLogVO);
 				Integer num = inventoryVO2.getQuantity()+inOutLogVO.getInQuantity();
 //				inventoryVO.setId(inventoryVO2.getId());
 				inventoryVO2.setQuantity(num);
@@ -52,6 +54,9 @@ public class InOutLogService {
 			}else{
 				inventoryVO.setQuantity(inOutLogVO.getInQuantity());
 				InventoryVO inventoryVO3 = inventoryDAO.insert(inventoryVO);
+				InventoryVO inventoryVOTemp = inventoryDAO.selectByInventoryProperties(inventoryVO3);
+				inOutLogVO.setInventory_id(inventoryVOTemp.getId());
+				
 				if(inventoryVO3==null){
 					return false;
 				}else{
