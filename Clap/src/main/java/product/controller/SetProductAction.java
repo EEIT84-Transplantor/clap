@@ -64,6 +64,7 @@ public class SetProductAction {
 			}
 			isChanged = productService.setOrUpdateProduct(productVO, arrB);
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		String message = isChanged?"Successfully done.":"Action failed.";

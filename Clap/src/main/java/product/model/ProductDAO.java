@@ -28,4 +28,6 @@ public interface ProductDAO {
 
 	List<ProductVO> selectByPriceRange2(Double min, Double max, String key);
 
+	Integer getProductIdByName(String productName);
+
 }
