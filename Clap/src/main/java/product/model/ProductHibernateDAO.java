@@ -163,7 +163,7 @@ public class ProductHibernateDAO implements ProductDAO {
 	public ProductVO insert(ProductVO productVO) {
 		session = sessionFactory.getCurrentSession();
 		try {
-			session.save(productVO);
+			productVO.setId((Integer)session.save(productVO));;
 			return productVO;
 		} catch (Exception e) {
 			// e.printStackTrace();

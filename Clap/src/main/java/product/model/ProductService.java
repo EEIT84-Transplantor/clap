@@ -59,9 +59,8 @@ public class ProductService {
 		try {
 			if(dbVO == null && productimgVO == null){
 				productimgVO = new ProductimgVO();
-				productimgVO.setId(productVO.getId());
+				productimgVO.setId(productDAO.insert(productVO).getId());
 				productimgVO.setImg(productImg);
-				productDAO.insert(productVO);
 				productimgDAO.insert(productimgVO);
 				return true;
 			}else if(dbVO != null && productimgVO == null){
@@ -86,6 +85,8 @@ public class ProductService {
 				return true;
 			}
 		} catch (Exception e) {
+			System.out.println("=====     insert failed     =====");
+			e.printStackTrace();
 			return false;
 		}
 	}

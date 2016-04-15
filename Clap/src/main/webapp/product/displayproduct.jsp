@@ -79,7 +79,7 @@ word-wrap:break-word;
 										<thead>
 											<tr>
 												<th>Picture</th>
-												<th>Id</th>
+												
 												<th>Name</th>
 												<th>Price</th>
 												<th>Description</th>
@@ -91,7 +91,6 @@ word-wrap:break-word;
 										<tbody>
 											<tr>
 												<th><input type="file" name="upload" /></th>
-												<th><input class="form-control col-md-1" type="text" name="productVO.id" /></th>
 												<th><input class="form-control col-md-1" type="text" name="productVO.name" /></th>
 												<th><input class="form-control col-md-1" type="number" min="0" name="productVO.price" /></th>
 												<th><input class="form-control col-md-1" type="text" name="productVO.description" /></th>

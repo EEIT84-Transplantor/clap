@@ -1,6 +1,7 @@
 package inventory.controller;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -24,8 +25,8 @@ public class InOutAction extends ActionSupport {
 	private Integer quantity;
 	private String inOut;
 	private String productName;
-	private Date manufactureDate;
-	private Date expiryDate;
+	private String manufactureDate;
+	private String expiryDate;
 	public Integer getQuantity() {
 		return quantity;
 	}
@@ -93,10 +94,36 @@ public class InOutAction extends ActionSupport {
 //		}
 	}
 	
+	public String getManufactureDate() {
+		return manufactureDate;
+	}
+	public void setManufactureDate(String manufactureDate) {
+		this.manufactureDate = manufactureDate;
+	}
+	public String getExpiryDate() {
+		return expiryDate;
+	}
+	public void setExpiryDate(String expiryDate) {
+		this.expiryDate = expiryDate;
+	}
 	@Override
 	public String execute(){
-		inOutLogVO.setExpiryDate((Timestamp) expiryDate);
-		inOutLogVO.setManufactureDate((Timestamp) manufactureDate);
+		Long d= Calendar.getInstance().getTimeInMillis();
+		System.out.println(expiryDate+""+manufactureDate);
+		try{
+		    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		    Date parsedDate = dateFormat.parse(expiryDate);
+		    Date parsedDate2 = dateFormat.parse(manufactureDate);
+		    Date parsedDate3 =dateFormat.parse(new Date(d).toString());
+		    Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+		    Timestamp timestamp2 = new java.sql.Timestamp(parsedDate2.getTime());
+		    Timestamp timestamp3 = new java.sql.Timestamp(parsedDate3.getTime());
+		    inOutLogVO.setExpiryDate(timestamp);
+			inOutLogVO.setManufactureDate(timestamp2);
+			inOutLogVO.setDate(timestamp3);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		Boolean result = false;
 		System.out.println(inOutLogVO.getManufactureDate()+"   "+inOutLogVO.getExpiryDate());
 		if (inOutLogVO.getProduct_id()==null && productName!=null){
