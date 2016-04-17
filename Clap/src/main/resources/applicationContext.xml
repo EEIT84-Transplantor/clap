@@ -170,6 +170,9 @@
 	<bean id="showInventory" class="inventory.controller.ShowInventory">
 		<property name="inventoryService" ref="inventoryService"/>
 	</bean>
+	<bean id="downloadInventoryExcel" class="inventory.controller.DownloadInventoryExcel">
+		<property name="inventoryService" ref="inventoryService"/>
+	</bean>
 	<!-- product -->
 	<bean id="productDAO" class="product.model.ProductHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />

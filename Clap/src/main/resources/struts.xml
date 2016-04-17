@@ -290,6 +290,9 @@
 		<action name="showInventory" class="showInventory">
 			<result name="success">/product/showInventory.jsp</result>
 		</action>
+		<action name="downloadInventoryExcel" class="downloadInventoryExcel">
+			<result name="success">/product/showInventory.jsp</result>
+		</action>
 	</package>
 
 

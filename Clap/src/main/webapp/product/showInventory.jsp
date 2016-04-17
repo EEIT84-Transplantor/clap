@@ -3,15 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<%
-	java.util.List<payment.model.PromoVO> promoVOs = (java.util.List<payment.model.PromoVO>) request.getAttribute("promoVOs");
-	String message = (String) request.getAttribute("message");
-	System.out.println("ggg" + message);
-	request.setAttribute("message", message);
-	if (promoVOs == null) {
-		response.sendRedirect(request.getContextPath() + "/paymentmanage/prePromoteAction.action");
-	}
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,6 +55,13 @@ margin:10px 0;
 			<div class="row">
 				<div class="col-md-2">
 					<jsp:include page="/sidenav.jsp" />
+				</div>
+				<div class="col-md-10">
+					<div class="row">
+						<div class="col-md-12">
+							<a href="${pageContext.request.contextPath}/product/downloadInventoryExcel.action">Export as Excel</a>
+						</div>			
+					</div>
 				</div>
 				<div class="col-md-10">
 					<div class="row">
