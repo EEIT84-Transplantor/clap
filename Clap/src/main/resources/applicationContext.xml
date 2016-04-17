@@ -134,7 +134,10 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="returnService" class="shopping.model.ReturnService">
-		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="orderFormService" ref="orderFormService" />
+		<property name="productService" ref="productService" />
+		<property name="orderDetailService" ref="orderDetailService" />
+		<property name="inOutLogService" ref="inOutLogService" />
 	</bean>
 	<bean id="orderFormService" class="shopping.model.OrderFormService">
 		<property name="orderFormHibernateDAO" ref="orderFormHibernateDAO" />
