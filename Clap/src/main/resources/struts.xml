@@ -287,6 +287,9 @@
 			<result name="success">/product/inventory.jsp</result>
 			<result name="input">/product/inventory.jsp</result>
 		</action>
+		<action name="showInventory" class="showInventory">
+			<result name="success">/product/showInventory.jsp</result>
+		</action>
 	</package>
 
 

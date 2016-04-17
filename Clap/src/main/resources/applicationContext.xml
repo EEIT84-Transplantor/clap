@@ -167,6 +167,9 @@
 		<property name="inventoryService" ref="inventoryService" />
 		<property name="productService" ref="productService" />
 	</bean>
+	<bean id="showInventory" class="inventory.controller.ShowInventory">
+		<property name="inventoryService" ref="inventoryService"/>
+	</bean>
 	<!-- product -->
 	<bean id="productDAO" class="product.model.ProductHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />

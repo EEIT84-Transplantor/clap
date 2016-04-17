@@ -47,6 +47,8 @@ public class CreditCardHibernateDAO implements CreditCardDAO{
 	public CreditCardVO insert(CreditCardVO creditCardVO) {
 		session = sessionFactory.getCurrentSession();
 		try {
+			System.out.println(session);
+			
 			System.out.println("增加 :"+creditCardVO);
 			session.save(creditCardVO);
 			System.out.println("增加2 :"+creditCardVO);
