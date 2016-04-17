@@ -28,6 +28,11 @@ function doReadyStateChange() {
 				$("#btn_group").hide();
 				$("#password_group").show();
 				$("#password_area").html('<div class="row" id="password_group"><div class="row"><label class="col-md-3">Password : </label><input type="text" name="password" class="col-md-9"></div><div class="row"><input type="submit" value="Login" class="btn col-md-12"></div><div class="row"><span>need more help?</span><a href="#" id="forgotPassword">forgot password</a></div></div>');
+				$('#password_group>div>label').next().keypress(function(e) {
+					if(e.which == 13) {
+				    	$('form').submit();    	
+			    	}
+				});
 			}else{
 				$("#info_text").html("This email is not in our system.<br /> Already a member? Please check your email again<br /> Not a member yet? -> Sign up");
 				$("#btn_group").show();

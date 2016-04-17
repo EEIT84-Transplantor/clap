@@ -27,6 +27,7 @@ public class InOutLogHibernateDAO implements InOutLogDAO {
 	private String SQL_QUERY_SELECT_TOP_POPULAR_PART1 = "select top ";
 	private String SQL_QUERY_SELECT_TOP_POPULAR_PART2 = " * from product where pd_id in (select top 100 pd_id from (select pd_id, 1.0*sum(inoutlog_outQuantity)/(sum(inoutlog_inQuantity)+1) as popularity from inoutlog group by pd_id having pd_id in (select pd_id from product where category_id=?)) as tableA order by popularity desc )";
 	final private String SELECT_BY_PRODUCT_ID="from InOutLogVO where expiryDate>? and pd_id=? order by expiryDate asc";
+	final private String SELECT_BY_ORDERDETAIL_ID="from InOutLogVO where orderdetail_id=? order by expiryDate asc";
 	
 	@Override
 	public List<InOutLogVO> selectAll(){
@@ -45,6 +46,20 @@ public class InOutLogHibernateDAO implements InOutLogDAO {
 			Query query = session.createQuery(SELECT_BY_PRODUCT_ID);
 			query.setParameter(0, new Timestamp(System.currentTimeMillis()));
 			query.setParameter(1, productId);
+			inOutLogVOs = query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return inOutLogVOs;
+	};
+	
+	@Override
+	public List<InOutLogVO> selectByOrderDetailId(Integer OrderDetailId){		
+		session = sessionFactory.getCurrentSession();
+		List<InOutLogVO> inOutLogVOs = null;
+		try {
+			Query query = session.createQuery(SELECT_BY_ORDERDETAIL_ID);
+			query.setParameter(0, OrderDetailId);
 			inOutLogVOs = query.list();
 		} catch (Exception e) {
 			e.printStackTrace();

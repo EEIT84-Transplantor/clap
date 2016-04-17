@@ -10,8 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
 <!-- Bootstrap -->
-<link href="${pageContext.request.contextPath}/resource/css/bootstrap.min.css"/>" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resource/css/customer.css"/>" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resource/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resource/css/customer.css" rel="stylesheet">
 <style>
 .pack{
 border-radius: 25px;
@@ -38,28 +38,30 @@ left: 0;
 	<section id="wrap">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-2">side-nav:sub-menu</div>
+				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
 				<div class="col-md-9">
 					<!-- content start-->
+					<c:if test="${empty returnVOs}">Nothing to return</c:if>
+					<c:forEach var="returnVO" items="${returnVOs}" varStatus="count">
 					<div class="row pack">
 					 
 					 <div class="col-md-4" style="">
-					   <img class="img-rounded img-responsive" src="http://starwars.ea.com/media/cache/full/content/dam/ea/spark-www-starwars-ea/Falcon/SWGOH_Keyart_1920.jpg">
+					   <img class="img-rounded img-responsive" src="data:image/png;base64,${returnVO.product_img64}">
 					 </div>
 					 <div class="col-md-5" style="">
 					   <form role="form" action="<c:url value="/shopping/returnAction"/>" method="POST" >
 					  	 <div class="form-group">
-						   <s:textfield class="form-control" name="returnVO.orderform_id" type="number" label="Order Number" readonly="false" value="%{#request.returnVO.orderform_id}" />
+						   <s:textfield class="form-control" name="returnVO.orderform_id" type="text" label="Order Number" readonly="true" value="%{#attr.returnVO.orderform_id}" />
 						 </div>
 						 <div class="form-group">
-						   <s:textfield class="form-control" name="returnVO.product_id" type="text" readonly="false" style="display:none;" value="%{#request.returnVO.product_id}"/>
-						   <s:textfield class="form-control" name="returnVO.product_name" type="text" label="Product Name" readonly="false" value="%{#request.returnVO.product_name}" />
+						   <s:textfield class="form-control" name="returnVO.product_id" type="text" readonly="true" style="display:none;" value="%{#attr.returnVO.product_id}"/>
+						   <s:textfield class="form-control" name="returnVO.product_name" type="text" label="Product Name" readonly="true" value="%{#attr.returnVO.product_name}" />
 						 </div>
 						 <div class="form-group">
-						   <s:textfield class="form-control" name="returnVO.shipping_date" type="date" label="Shopping Date" readonly="false" value="%{#request.returnVO.shipping_date}" />
+						   <s:textfield class="form-control" name="returnVO.shipping_date" type="date" label="Shopping Date" readonly="true" value="%{#attr.returnVO.shipping_date}" />
 						 </div>
 						 <div class="form-group">
-						   <s:textfield class="form-control" name="returnVO.orderDetail_quantity" type="number" label="Order Quantity" readonly="false" value="%{#request.returnVO.orderDetail_quantity}" />
+						   <s:textfield class="form-control" name="returnVO.orderDetail_quantity" index="${count.index}" type="number" readonly="true" label="Order Quantity"  value="%{#attr.returnVO.orderDetail_quantity}" />
 						 </div>
 					   </form>
 					 </div>
@@ -67,7 +69,7 @@ left: 0;
 					   <button class="btn btn-success" type="button">Return</button>
 					 </div>					 
 					</div>
-
+					</c:forEach>
 
 
 
@@ -83,14 +85,27 @@ left: 0;
 	</footer>
 
 	<!-- 載入js -->
-	<script src="../resource/js/jquery-1.12.2.min.js"/>"></script>
-	<script src="../resource/js/bootstrap.min.js"/>"></script>
+	<script src="../resource/js/jquery-1.12.2.min.js"/></script>
+	<script src="../resource/js/bootstrap.min.js"/></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
+			var returnCount = parseInt("${returnCount}");
+			var maxList = [];
+			for(var index=0;index<returnCount;index++){
+				maxList.push($('input[index='+index+']').val());
+			}
+			$('input[name="returnVO.orderDetail_quantity"]').on("change", function(){
+				var indexNumber = $(this).attr("index");
+				if($(this).val()> maxList[indexNumber]){
+					$(this).val(maxList[indexNumber]);
+				};
+
+				
+			});
 			$("button.btn-success").on("click", function() {
 				console.log();
 				console.log();
-				$("form").submit();
+				$(this).parent().prev().children().eq(0).submit();
 			});
 			$("form").submit(function(event) {
 				if ("" != "") {

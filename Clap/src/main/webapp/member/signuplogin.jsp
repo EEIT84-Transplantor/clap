@@ -31,7 +31,7 @@
 
 						<div class="row">
 							<label class="col-md-3">E-mail : </label>
-							<input type="text" name="email" value="${param.email}" class="col-md-9">${requestScope.error.email}</div>
+							<input type="email" name="email" value="${param.email}" class="col-md-9">${requestScope.error.email}</div>
 						<div class="row" id="info_text">
 							<p class="col-md-12"></p>
 						</div>
@@ -91,13 +91,28 @@
 
 			//宣告變數
 			var request = null;
-
+			var re = /^\w{1,20}@{1}\w{1,20}\.{1}\w{2,10}\.{0,1}\w{0,10}\.{0,1}\w{0,10}$/;
 			//註冊按鈕監聽器
+			$('input[name="email"]').keypress(function(e) {
+			    if(e.which == 13) {
+			    	if(!re.test($('input[name="email"]').val())){
+			    		$('#info_text p').html('wrong format');
+			    	}else{
+			    		$('#info_text p').html('');
+			    		sendPostRequestEmail("emailexist.servlet", $("input[name='email']").val());
+			    	}			    	
+		    	}
+			});
+			$('#password_group>div>label').next().keypress(function(e) {
+				if(e.which == 13) {
+			    	$('form').submit();    	
+		    	}
+			});
 			$("#emailcheck_btn_new").click(function() {
 				sendPostRequestEmail("emailexist.servlet", $("input[name='email']").val());
 			});
 			$("#emailcheck_btn").click(function() {
-				document.querySelector('form').onkeypress = function(){
+				document.querySelector('form').onkeypress = function(){					
 				};
 				sendPostRequestEmail("emailexist.servlet", $("input[name='email']").val());
 			});

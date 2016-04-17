@@ -167,9 +167,11 @@
 	<!-- shopping -->
 	<package name="shopping" namespace="/shopping" extends="struts-default">
 		<action name="returnAction" class="shopping.controller.ReturnAction">
+			<result name="success" type="chain">preReturnAction</result>
+		</action>
+		<action name="preReturnAction" class="shopping.controller.PreReturnAction">
 			<result name="success">/shopping/return.jsp</result>
 		</action>
-
 		<action name="shopping" class="shopping.controller.ShoppingAction">
 			<result name="success">/shopping/shopping.jsp</result>
 		</action>

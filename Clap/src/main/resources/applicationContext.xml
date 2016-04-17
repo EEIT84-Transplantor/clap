@@ -138,6 +138,7 @@
 		<property name="productService" ref="productService" />
 		<property name="orderDetailService" ref="orderDetailService" />
 		<property name="inOutLogService" ref="inOutLogService" />
+		<property name="inOutLogDAO" ref="inOutLogDAO" />
 	</bean>
 	<bean id="orderFormService" class="shopping.model.OrderFormService">
 		<property name="orderFormHibernateDAO" ref="orderFormHibernateDAO" />
@@ -239,4 +240,11 @@
 	<bean id="deleteOrderAction" class="shopping.controller.DeleteOrderAction">
 		<property name="orderFormService" ref="orderFormService" />
 	</bean>
+		<bean id="preReturnAction" class="shopping.controller.PreReturnAction">
+		<property name="returnService" ref="returnService" />
+	</bean>
+	<bean id="returnAction" class="shopping.controller.ReturnAction">
+		<property name="returnService" ref="returnService" />
+	</bean>
+	
 </beans>
