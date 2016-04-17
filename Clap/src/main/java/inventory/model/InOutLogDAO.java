@@ -10,6 +10,8 @@ public interface InOutLogDAO {
 
 	List<InOutLogVO> selectByProductId(Integer productId);
 	
+	List<InOutLogVO> selectByOrderDetailId(Integer OrderDetailId);
+	
 	List<ProductVO> selectByTopSold(Integer categoryId, int number);
 
 	InOutLogVO insert(InOutLogVO inOutLogVO);

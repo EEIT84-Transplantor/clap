@@ -1,10 +1,10 @@
 use clap 
 drop table cart 
+drop table inoutlog
 drop table orderdetail
 drop table orderform
 drop table doctor 
 drop table productimg 
-drop table inoutlog
 drop table inventory
 drop table product
 drop table creditcard
@@ -206,26 +206,6 @@ insert into inventory values( 2, 10, '2016-05-04', '2017-05-04');
 select * from inventory
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
-create table inoutlog (
-inoutlog_id	int identity,
-inventory_id int FOREIGN KEY REFERENCES inventory(inventory_Id),
-pd_id int FOREIGN KEY REFERENCES product(pd_id),
-inoutlog_inQuantity	int,
-inoutlog_outQuantity	int,
-inoutlog_manufactureDate	datetime,
-inoutlog_expiryDate	datetime,
-inoutlog_destination	nvarchar(100),
-inoutlog_date	datetime
-PRIMARY KEY (inoutlog_id)
-)
-insert into inoutlog values( 1, 1, 43, 0, '2016-05-04', '2017-05-04', 'Taipei', '2016-04-04');
-insert into inoutlog values( 2, 1, 0, 10, '2016-05-04', '2017-05-04', 'Taipei', '2016-04-04');
-insert into inoutlog values( 2, 1, 0, 10, '2016-05-04', '2017-05-04', 'Taipei', '2016-08-04');
-insert into inoutlog values( 1, 1, 43, 0, '2016-06-04', '2017-06-04', 'Taipei', '2016-07-04');
-
-select * from inoutlog order by inoutlog_expiryDate asc
-
-------------------------------------------------------------------------------------------------------------------------------------------------
 create table cart (
 mb_email varchar(320) FOREIGN KEY REFERENCES Member(mb_email) ,
 pd_id int FOREIGN KEY REFERENCES product(pd_id) ,
@@ -260,9 +240,31 @@ product_id int FOREIGN KEY REFERENCES product(pd_Id),
 cart_quantity int,
 orderdetail_time datetime,
 doctor_id int FOREIGN KEY REFERENCES doctor(doctor_id), 
-surgery_time timestamp 
+surgery_time datetime 
 )
 
-insert into orderdetail(orderform_id, product_id, cart_quantity, orderdetail_time, doctor_id) values(1,1,10,'2020-01-01',1);
-insert into orderdetail(orderform_id, product_id, cart_quantity, orderdetail_time, doctor_id) values(2,2,20,'2020-01-01',2);
+insert into orderdetail(orderform_id, product_id, cart_quantity, orderdetail_time, doctor_id, surgery_time) values(1,1,10,'2020-01-01',1 , CURRENT_TIMESTAMP);
+insert into orderdetail(orderform_id, product_id, cart_quantity, orderdetail_time, doctor_id, surgery_time) values(2,2,20,'2020-01-01',2 , CURRENT_TIMESTAMP);
 select * from orderdetail
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+create table inoutlog (
+inoutlog_id	int identity,
+inventory_id int FOREIGN KEY REFERENCES inventory(inventory_Id),
+pd_id int FOREIGN KEY REFERENCES product(pd_id),
+orderdetail_id int FOREIGN KEY REFERENCES orderdetail(orderdetail_id),
+inoutlog_inQuantity	int,
+inoutlog_outQuantity	int,
+inoutlog_manufactureDate	datetime,
+inoutlog_expiryDate	datetime,
+inoutlog_destination	nvarchar(100),
+inoutlog_date	datetime
+PRIMARY KEY (inoutlog_id)
+)
+insert into inoutlog values( 1, 2, null, 43, 0, '2016-05-04', '2017-05-04', 'Taipei', '2016-04-04');
+insert into inoutlog values( 2, 2, 2, 0, 10, '2016-05-04', '2017-05-04', 'Taipei', '2016-04-04');
+insert into inoutlog values( 2, 1, 1, 0, 10, '2016-05-04', '2017-05-04', 'Taipei', '2016-08-04');
+insert into inoutlog values( 1, 1, null, 43, 0, '2016-06-04', '2017-06-04', 'Taipei', '2016-07-04');
+
+select * from inoutlog order by inoutlog_expiryDate asc
+

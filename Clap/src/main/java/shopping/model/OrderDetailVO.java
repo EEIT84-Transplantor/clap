@@ -31,6 +31,10 @@ public class OrderDetailVO implements Serializable {
 	private Integer product_id;
 	@Column(name = "cart_quantity")
 	private Integer cart_quantity;
+	
+	@Column(name = "orderdetail_time")
+	private Timestamp time;
+	
 	@Column(name = "doctor_id")
 	private Integer doctor_id;
 	@Column(name = "orderform_id")

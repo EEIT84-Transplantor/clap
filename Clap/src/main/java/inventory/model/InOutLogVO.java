@@ -27,7 +27,8 @@ public class InOutLogVO implements Serializable  {
 	private Integer inQuantity;
 	@Column(name="inoutlog_outQuantity")
 	private Integer outQuantity;
-	
+	@Column(name="orderdetail_id")
+	private Integer orderdetail_id;
 	@Column(name="inoutlog_manufactureDate")
 	private Timestamp manufactureDate;
 	@Column(name="inoutlog_expiryDate")
@@ -89,6 +90,13 @@ public class InOutLogVO implements Serializable  {
 	}
 	public void setDate(Timestamp date) {
 		this.date = date;
+	}
+	
+	public Integer getOrderdetail_id() {
+		return orderdetail_id;
+	}
+	public void setOrderdetail_id(Integer orderdetail_id) {
+		this.orderdetail_id = orderdetail_id;
 	}
 	@Override
 	public String toString() {

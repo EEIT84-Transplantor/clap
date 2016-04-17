@@ -11,7 +11,14 @@ public class ReturnVO implements Serializable  {
 	private java.sql.Date shipping_date;
 	private Integer orderDetail_quantity;
 	private Integer orderform_id;
+	private String product_img64;
 	
+	public String getProduct_img64() {
+		return product_img64;
+	}
+	public void setProduct_img64(String product_img64) {
+		this.product_img64 = product_img64;
+	}
 	public Integer getProduct_id() {
 		return product_id;
 	}
