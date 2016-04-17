@@ -1,5 +1,5 @@
 body, html {
-	background: #000;
+	background: #062128;
 	color: #fff;
 }
 
@@ -177,10 +177,6 @@ label {
 /*---------------------------*/
 @CHARSET "UTF-8";
 
-body, html {
-	background: #000;
-	color: #fff;
-}
 
 .navbar-default {
 	background-color: #000;
@@ -198,7 +194,7 @@ body, html {
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover,
 	.navbar-default .navbar-nav>.active>a:focus {
 	color: #47BED9;
-	background-color: #000;
+	background-color: #062128;
 }
 
 .nav-pills>li>a {
