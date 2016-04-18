@@ -177,10 +177,23 @@
 
 	<!-- shopping -->
 	<package name="shopping" namespace="/shopping" extends="struts-default">
+		<interceptors>
+			<interceptor name="loginInterceptor"
+				class="component.interceptor.LoginInterceptor" />
+			<interceptor-stack name="returnStack">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+				<!-- global-results -->
+		<global-results>
+			<result type="redirect" name="login">/member/signuplogin.jsp</result>
+		</global-results>
 		<action name="returnAction" class="shopping.controller.ReturnAction">
 			<result name="success" type="chain">preReturnAction</result>
 		</action>
 		<action name="preReturnAction" class="shopping.controller.PreReturnAction">
+			<interceptor-ref name="returnStack"></interceptor-ref>
 			<result name="success">/shopping/return.jsp</result>
 		</action>
 		<action name="shopping" class="shopping.controller.ShoppingAction">

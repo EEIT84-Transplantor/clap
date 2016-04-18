@@ -31,11 +31,11 @@
 									<h3>persional setting</h3>
 									<div class="s_inpnut">
 										<label>height : </label>
-										<input type="text" name="height"/ >
+										<input type="text" name="height">
 									</div>
 									<div class="s_inpnut">
 										<label>weight : </label>
-										<input type="text" name="weight"/ >
+										<input type="text" name="weight">
 									</div>
 								</div>
 								<div class="sub_setting">
