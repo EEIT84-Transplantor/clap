@@ -35,10 +35,15 @@ public class ShowProductsAction extends ActionSupport implements ServletRequestA
 	}
 	
 	public String execute(){
-		Integer categoryId = categoryService.selectByCategoryName(category);
-		
-		List<ProductVO> productVOs = productService.searchProductByCategory(categoryId);
-		
+		List<ProductVO> productVOs = null;
+		if(category==null){
+			productVOs = productService.searchProductByCategory(1);
+		}else{
+			Integer categoryId = categoryService.selectByCategoryName(category);
+			productVOs = productService.searchProductByCategory(categoryId);
+		}		
+		request.setAttribute("productVOs", productVOs);
+	
 		return SUCCESS;
 	}
 	@Override

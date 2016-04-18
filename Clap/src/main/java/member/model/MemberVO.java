@@ -52,7 +52,7 @@ public class MemberVO {
 	private String email;
 	@Column(name = "mb_password")
 	private byte[] password;
-	@Column(name = "gc_amount")
+	@Column(name = "mb_amount")
 	private Double amount;
 	@Column(name = "mb_name")
 	private String name;
@@ -64,7 +64,7 @@ public class MemberVO {
 	private byte[] photo;
 	@Column(name = "mb_oneclick")
 	private Boolean oneclick;
-	@Column(name = "hp_id")
+	@Column(name = "hospital_id")
 	private Integer id;
 	@Column(name = "cc_number")
 	private String number;

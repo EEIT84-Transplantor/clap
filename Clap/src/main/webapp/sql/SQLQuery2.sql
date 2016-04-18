@@ -49,7 +49,7 @@ PRIMARY KEY(mb_email))
 create table creditcard(
 mb_email varchar(320) REFERENCES member(mb_email),
 cc_number char(16) ,
-cc_goodrhru char(5) ,
+cc_goodthru char(5) ,
 cc_cvv char(3) ,
 PRIMARY KEY(mb_email,cc_number))
 
@@ -145,8 +145,8 @@ product_description nvarchar(1000) ,
 product_rating tinyint ,
 product_discount float ,
 category_id int REFERENCES category(category_id),
-product_value1 varchar(50) ,
-product_value2 varchar(50) ,
+product_value1 int ,
+product_value2 int ,
 PRIMARY KEY(product_id))
 
 
@@ -358,8 +358,8 @@ insert into hospital(hospital_id,hospital_name,hospital_address) values('97','馬
 insert into hospital(hospital_id,hospital_name,hospital_address) values('98','國軍花蓮總醫院附設民眾診療服務處','花蓮縣新城鄉嘉里路163號');
 insert into hospital(hospital_id,hospital_name,hospital_address) values('99','佛教慈濟醫療財團法人花蓮慈濟醫院','花蓮縣花蓮市中央路三段707號');
 insert into hospital(hospital_id,hospital_name,hospital_address) values('100','臺灣基督教門諾會醫療財團法人門諾醫院','花蓮縣花蓮市民權路44號');
-insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('bennett108@gmail.com',0x65,'bennett108','0948974024',null,null,'FALSE','FALSE',null,null,null,null);
-insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('kitty110@gmail.com',0x65,'berg110','0963048960',null,null,'FALSE','FALSE','2017-7-24T00:00:00','1115',null,null);
+insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number,mb_type) values('caca@gmail.com',0x65,'bennett108','0948974024',null,null,'FALSE','FALSE',null,null,null,null,2);
+insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number,mb_type) values('andrew@gmail.com',0x65,'berg110','0963048960',null,null,'FALSE','FALSE','2017-7-24T00:00:00','1115',null,null,2);
 insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('berg110@gmail.com',0x65,'berg110','0920210716',null,null,'FALSE','FALSE',null,'18036',null,null);
 insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('bert115@gmail.com',0x65,'bert115','0930712587',null,null,'FALSE','TRUE',null,'9474',null,'5084985331731357');
 insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('blithe132@gmail.com',0x65,'blithe132','0987056339',null,null,'FALSE','FALSE',null,null,null,null);
