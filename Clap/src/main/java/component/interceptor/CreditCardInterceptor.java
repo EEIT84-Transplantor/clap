@@ -23,6 +23,10 @@ public class CreditCardInterceptor extends AbstractInterceptor {
 
 	CreditCardService creditCardService;
 
+	public CreditCardInterceptor() {
+		super();
+	}
+
 	public void setCreditCardService(CreditCardService creditCardService) {
 		this.creditCardService = creditCardService;
 	}
@@ -40,7 +44,7 @@ public class CreditCardInterceptor extends AbstractInterceptor {
 			session.put("uri", request.getRequestURI());
 			return "paymentManage";
 		}
-		CreditCardVO creditCardVO = creditCardService.getCard(memberVO.getNumber(), memberVO.getEmail());
+		CreditCardVO creditCardVO = creditCardService.getCard(memberVO.getEmail(), memberVO.getNumber());
 		if (creditCardService.isAvailable(creditCardVO)) {
 			// 卡片無效 儲存上一個頁面 導入paymentManage.jsp
 			session.put("uri", request.getRequestURI());

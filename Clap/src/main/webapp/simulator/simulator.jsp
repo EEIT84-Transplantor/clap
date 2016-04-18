@@ -23,19 +23,18 @@
 	<section id="top-wrap">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="container" id="s_wrap">
+			<div id="s_wrap">
+				<div class="container" id="fullPage">
 					<div class="row">
 						<div class="col-md-2">
 							<div id="s_setting">
 								<div class="sub_setting">
 									<h3>persional setting</h3>
 									<div class="s_inpnut">
-										<label>height : </label>
-										<input type="text" name="height"/ >
+										<label>height : </label> <input type="text" name="height">
 									</div>
 									<div class="s_inpnut">
-										<label>weight : </label>
-										<input type="text" name="weight"/ >
+										<label>weight : </label> <input type="text" name="weight">
 									</div>
 								</div>
 								<div class="sub_setting">
@@ -188,8 +187,8 @@
 												<div class="col-md-1">
 													<!-- Controls -->
 													<div class="controls pull-right hidden-xs">
-														<a class="left fa fa-chevron-left btn" href="#sim_silder" data-slide="prev"><span
-															class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a> 
+														<a class="left fa fa-chevron-left btn" href="#sim_silder" data-slide="prev"><span class="glyphicon glyphicon-menu-left"
+															aria-hidden="true"></span></a>
 													</div>
 												</div>
 												<div class="col-md-10">
@@ -219,34 +218,38 @@
 													</div>
 													</c:if>
 													</c:forEach>
-													</div>
-													</div></div></div>
 												</div>
-												<div class="col-md-1">
-													<!-- Controls -->
-													<div class="controls pull-right hidden-xs">
-														<a class="right fa fa-chevron-right btn" href="#sim_silder" data-slide="next"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
-													</div>
-												</div>
-											
+											</div>
 										</div>
-										<!-- ********************* -->
 									</div>
 								</div>
-							</div>
-							<div id="s_organs_r">
-								<div class="s_btn">
-									<a>ADD TO CART</a>
+								<div class="col-md-1">
+									<!-- Controls -->
+									<div class="controls pull-right hidden-xs">
+										<a class="right fa fa-chevron-right btn" href="#sim_silder" data-slide="next"><span class="glyphicon glyphicon-menu-right"
+											aria-hidden="true"></span></a>
+									</div>
 								</div>
-								<div class="s_btn">
-									<a>ONE CLICK BUY</a>
-								</div>
+
 							</div>
-							<div class="clear"></div>
+							<!-- ********************* -->
 						</div>
 					</div>
 				</div>
+				<div id="s_organs_r">
+					<div class="s_btn">
+						<a>ADD TO CART</a>
+					</div>
+					<div class="s_btn">
+						<a>ONE CLICK BUY</a>
+					</div>
+				</div>
+				<div class="clear"></div>
 			</div>
+			</div>
+		</div>
+		</div>
+		</div>
 		</div>
 	</section>
 	<footer style="margin-top: -15px;"><jsp:include page="/footer.jsp" /></footer>
@@ -254,6 +257,8 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery-1.12.2.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/jquery.color-2.1.2.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/jquery-ui.min.js"/>"></script>
 	<script type="text/javascript">
 		$(".factor_item").on("click", function() {
 			var src = $(this).find('img').attr('src');
@@ -272,9 +277,30 @@
 			case "4":
 				bg_img = "none";
 			}
-			$("#s_wrap").fadeTo('slow', 0.1, function() {
-				$(this).css("background-image", "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)");
-			}).fadeTo('slow', 1);
+			
+// 			$("#s_wrap").fadeTo('slow', 0.1, function() {
+// 				$(this).css("background-image", "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)");
+// 			}).fadeTo('slow', 1);
+			 $('#fullPage').animate(
+					 {backgroundColor: 'rgb(0,0,0)'}, 600, function(){
+						 $('#s_wrap').css('backgroundImage', "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)");
+					 }).animate({backgroundColor: 'rgba(0,0,0,0.1)'}, 600);
+			
+//         $('#s_wrap').css('backgroundImage', function () {
+//             $('#fullPage').animate(
+//             		{backgroundColor: 'rgb(0,0,0)'}, 1000, function(){
+//             			setTimeout(function(){$('#fullPage').animate({backgroundColor: 'transparent'}, 1000);},3000);
+//             });
+//             return "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)";
+// 			 });
 		});
+		$(document).ready(function(){
+			$(".carousel").carousel("pause");
+			
+			$("#sim_silder img").draggable();
+			$("#people").droppable();
+			
+		});
+		
 	</script>
 </html>

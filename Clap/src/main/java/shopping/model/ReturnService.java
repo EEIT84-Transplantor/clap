@@ -97,7 +97,6 @@ public class ReturnService {
 		return returnVOs;
 	}
 	public boolean returnProduct(ReturnVO returnVO) {
-		orderFormService.removeOrder(returnVO.getOrderform_id());
 		List<OrderDetailVO> orderDetailVOs = orderDetailService.getOrderDetailList(returnVO.getOrderform_id());
 		InOutLogVO inOutLogVO = null;
 		List<InOutLogVO> inOutLogVOs = new ArrayList<InOutLogVO>();
@@ -119,6 +118,7 @@ public class ReturnService {
 			inOutLogDAO.insert(inOutLogVO);
 			}
 		}
+		orderFormService.removeOrder(returnVO.getOrderform_id());
 		System.out.println("return");
 		return false;
 	}

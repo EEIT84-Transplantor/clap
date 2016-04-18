@@ -99,7 +99,7 @@ public class DoCheckOutAction extends ActionSupport implements ServletRequestAwa
 		 Map<String, String> errors = new HashMap<String, String>();
 		for (CartVO cardVO : cardList) {
 		 orderDetailService.setOrderDetail(orderform_id,cardVO);
-		 if(!inventoryService.saleQuantity(cardVO.getProductVO(),cardVO.getQuantity())){ 
+		 if(!inventoryService.saleQuantity(cardVO.getProductVO(),cardVO.getQuantity(),null)){ 
 			request.setAttribute(cardVO.getProductVO().getName()+"error", "sorry, we don't have enough "+cardVO.getProductVO().getName());
 			return "input";
 		    }
