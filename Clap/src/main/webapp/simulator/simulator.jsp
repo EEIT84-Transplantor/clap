@@ -40,13 +40,13 @@
 								<div class="sub_setting">
 									<h3>living habit</h3>
 									<div class="setting_item">
-										<img src="<c:url value="/resource/images/simulator/smoke.png"/>"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+										<img src="<c:url value="/resource/images/simulator/smoke.png"/>"><div id="setting1"></div>
 									</div>
 									<div class="setting_item">
-										<img src="<c:url value="/resource/images/simulator/wine.png"/>"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+										<img src="<c:url value="/resource/images/simulator/wine.png"/>"><div id="setting2"></div>
 									</div>
 									<div class="setting_item">
-										<img src="<c:url value="/resource/images/simulator/sport.png"/>"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+										<img src="<c:url value="/resource/images/simulator/sport.png"/>"><div id="setting3"></div>
 									</div>
 								</div>
 								<div class="sub_setting">
@@ -297,24 +297,141 @@
 			$(".carousel").carousel("pause");
 			$("#sim_silder img").draggable();
 			$("#people").droppable();
+			$(".draggable").draggable({ helper: 'clone',cursor: "crosshair", revert: "invalid",appendTo: 'body'});
+			
+			$("#people").droppable({ accept: ".draggable", 
+		           drop: function(event, ui) {
+		              $(this).removeClass("border").removeClass("over");
+		              var dropped = ui.draggable;
+		              var droppedOn = $(this);
+		              $(dropped).detach().css({top: 0,left: 0}).appendTo(droppedOn);
+		             
+		             $("#haha").html('<img src="'+$(dropped).attr("src")+'" class="disable_img" >');
+		              
+		          }
+		    });
+			
+			//setting of smoking, alcohol, and sport
+			var clicksetting1 = true, clicksetting2 = true, clicksetting3 = true; 
+			$("#setting1").on("mousemove", function(event){
+				var selectedBar = $(this);
+				if(clicksetting1){
+				drawBar(selectedBar);
+				}
+			}).on("click", function(){
+				clicksetting1 = false;
+			}).on("mouseout", function(){
+				var selectedBar = $(this);
+				if(clicksetting1){
+				cleanBar(selectedBar);
+				}
+			});
+			
+			$("#setting2").on("mousemove", function(){
+				var selectedBar = $(this);
+				if(clicksetting2){
+				drawBar(selectedBar);
+				}
+			}).on("click", function(){
+				clicksetting2 = false;
+			}).on("mouseout", function(){
+				var selectedBar = $(this);
+				if(clicksetting2){
+				cleanBar(selectedBar);
+				}
+			});
+			
+			$("#setting3").on("mousemove", function(){
+				var selectedBar = $(this);
+				if(clicksetting3){
+				drawBar(selectedBar);
+				}
+			}).on("click", function(){
+				clicksetting3 = false;
+			}).on("mouseout", function(){
+				var selectedBar = $(this);
+				if(clicksetting3){
+				cleanBar(selectedBar);
+				}
+			});
+			
+			function drawBar(selectedBar){
+				var offset = selectedBar.offset();
+				var width = selectedBar.width();
+				var percent = (event.pageX - offset.left) / width;
+				percent = 100 * percent;
+				selectedBar.css({
+				"background": "-webkit-linear-gradient(left, #C13F2E "+ percent +"%, rgba(0,0,0,0) "+ percent +"%)",
+			    "background":  "  -moz-linear-gradient(left, #C13F2E "+ percent +"%, rgba(0,0,0,0) "+ percent +"%)",
+			    "background":  "   -ms-linear-gradient(left, #C13F2E "+ percent +"%,rgba(0,0,0,0) "+ percent +"%)",
+			    "background":  "    -o-linear-gradient(left, #C13F2E "+ percent +"%,rgba(0,0,0,0) "+ percent +"%)",
+			    "background":   "      linear-gradient(to right, #C13F2E "+ percent +"%,rgba(0,0,0,0) "+ percent +"%)"
+				});
+			}
+			function cleanBar(selectedBar){
+				selectedBar.css({
+				"background": "-webkit-linear-gradient(left, #C13F2E 0%, rgba(0,0,0,0) 0%)",
+			    "background":  "  -moz-linear-gradient(left, #C13F2E 0%, rgba(0,0,0,0) 0%)",
+			    "background":  "   -ms-linear-gradient(left, #C13F2E 0%, rgba(0,0,0,0) 0%)",
+			    "background":  "    -o-linear-gradient(left, #C13F2E 0%, rgba(0,0,0,0) 0%)",
+			    "background":   "      linear-gradient(to right, #C13F2E 0%, rgba(0,0,0,0) 0%)"
+				});
+			}
+			// reset setting
+			var fixedTop = 0;
+			$('div[class="reset_btn s_btn"').on("click",function(){
+				cleanBar($("#setting1"));
+				cleanBar($("#setting2"));
+				cleanBar($("#setting3"));
+				clicksetting1 = true, clicksetting2 = true, clicksetting3 = true; 				
+			}).on("mousedown",function(){
+				var top = fixedTop + 3;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});
+			})
+			.on("mouseup",function(){
+				var top = fixedTop + 1;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});
+			}).on("mouseover", function(){
+			
+				var offset = $(this).position();
+				fixedTop = offset.top;
+				var top = fixedTop + 1;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});
+			}).on("mouseout", function(){
+				var top = fixedTop;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});
+			});
+			
 		});
 		
 		
 		
 		
-		$(".draggable").draggable({ helper: 'clone',cursor: "crosshair", revert: "invalid",appendTo: 'body'});
 		
-		$("#people").droppable({ accept: ".draggable", 
-	           drop: function(event, ui) {
-	              $(this).removeClass("border").removeClass("over");
-	              var dropped = ui.draggable;
-	              var droppedOn = $(this);
-	              $(dropped).detach().css({top: 0,left: 0}).appendTo(droppedOn);
-	             
-	             $("#haha").html('<img src="'+$(dropped).attr("src")+'" class="disable_img" >');
-	              
-	          }
-	    });
 		
 		
 		
