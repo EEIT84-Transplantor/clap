@@ -12,8 +12,10 @@
 
 		<!-- interceptors -->
 		<interceptors>
-			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
-			<interceptor name="creditCardInterceptor" class="component.interceptor.CreditCardInterceptor" />
+			<interceptor name="loginInterceptor"
+				class="component.interceptor.LoginInterceptor" />
+			<interceptor name="creditCardInterceptor"
+				class="component.interceptor.CreditCardInterceptor" />
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="defaultStack" />
@@ -61,17 +63,21 @@
 	<package name="payment" namespace="/payment" extends="struts-default">
 
 		<interceptors>
-			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
-			<interceptor name="paymentManageInterceptor" class="component.interceptor.PaymentManageInterceptor" />
-			<interceptor name="promoManageInterceptor" class="component.interceptor.PromoInterceptor" />
-			<interceptor name="AdminInterceptor" class="component.interceptor.AdminInterceptor" />
+			<interceptor name="loginInterceptor"
+				class="component.interceptor.LoginInterceptor" />
+			<interceptor name="paymentManageInterceptor"
+				class="component.interceptor.PaymentManageInterceptor" />
+			<interceptor name="promoManageInterceptor"
+				class="component.interceptor.PromoInterceptor" />
+			<interceptor name="AdminInterceptor"
+				class="component.interceptor.AdminInterceptor" />
 			<interceptor-stack name="paymentManageStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="paymentManageInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 			<interceptor-stack name="promoManageInterceptorStack">
-				<interceptor-ref name="AdminInterceptor"/>
+				<interceptor-ref name="AdminInterceptor" />
 				<!-- <interceptor-ref name="promoManageInterceptor" /> -->
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
@@ -93,12 +99,14 @@
 			<result>/payment/{1}.jsp</result>
 		</action>
 	</package>
-	<package name="paymentmanage" namespace="/paymentmanage" extends="struts-default">
+	<package name="paymentmanage" namespace="/paymentmanage"
+		extends="struts-default">
 
 		<interceptors>
-			<interceptor name="AdminInterceptor" class="component.interceptor.AdminInterceptor" />
+			<interceptor name="AdminInterceptor"
+				class="component.interceptor.AdminInterceptor" />
 			<interceptor-stack name="promoManageInterceptorStack">
-				<interceptor-ref name="AdminInterceptor"/>
+				<interceptor-ref name="AdminInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
@@ -122,18 +130,21 @@
 		<action name="setPromoteAction" class="setPromoteAction">
 			<interceptor-ref name="AdminInterceptor" />
 			<!-- <interceptor-ref name="promoManageInterceptorStack" /> -->
-			<result type="redirect" name="success">/paymentmanage/setpromotion.jsp</result>
+			<result type="redirect" name="success">/paymentmanage/setpromotion.jsp
+			</result>
 			<result name="input">/paymentmanage/setpromotion.jsp</result>
 		</action>
 
 	</package>
-	
+
 	<package name="member" namespace="/member" extends="struts-default">
 
 		<!-- interceptors -->
 		<interceptors>
-			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
-			<interceptor name="creditCardInterceptor" class="component.interceptor.CreditCardInterceptor" />
+			<interceptor name="loginInterceptor"
+				class="component.interceptor.LoginInterceptor" />
+			<interceptor name="creditCardInterceptor"
+				class="component.interceptor.CreditCardInterceptor" />
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="defaultStack" />
@@ -191,10 +202,10 @@
 		<action name="searchProduct" class="shopping.controller.SearchProductAction">
 			<result type="stream">
 
-                  <param name="contentType">text/html</param>
-                  <param name="searchinputName">inputStream</param>
-             </result>
-             <result name="search">/shopping/searchproduct.jsp</result>
+				<param name="contentType">text/html</param>
+				<param name="searchinputName">inputStream</param>
+			</result>
+			<result name="search">/shopping/searchproduct.jsp</result>
 		</action>
 		<action name="oneClickBuy" class="shopping.controller.OneClickBuyAction">
 			<result name="success">/shopping/doCheckOutAction.action</result>
@@ -243,11 +254,13 @@
 
 	<package name="product" namespace="/product" extends="struts-default">
 		<interceptors>
-			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
-			<interceptor name="AdminInterceptor" class="component.interceptor.AdminInterceptor" />
+			<interceptor name="loginInterceptor"
+				class="component.interceptor.LoginInterceptor" />
+			<interceptor name="AdminInterceptor"
+				class="component.interceptor.AdminInterceptor" />
 			<interceptor-stack name="adminInterceptorStack">
-				<interceptor-ref name="loginInterceptor"/>
-				<interceptor-ref name="AdminInterceptor"/>
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="AdminInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
@@ -258,12 +271,12 @@
 			<result name="display">/product/displayproduct.jsp</result>
 			<result name="index" type="redirect">/index.jsp</result>
 		</global-results>
-		
+
 		<action name="*">
 			<interceptor-ref name="adminInterceptorStack" />
 			<result>/product/{1}.jsp</result>
 		</action>
-	
+
 		<!-- action -->
 		<action name="preDisplayAction" class="preDisplayActionStruts">
 			<result name="success">/product/displayproduct.jsp</result>
@@ -283,7 +296,7 @@
 				<param name="inputName">inputStream</param>
 			</result>
 		</action>
-			<action name="inOutAction" class="inOutAction">
+		<action name="inOutAction" class="inOutAction">
 			<result name="success">/product/inventory.jsp</result>
 			<result name="input">/product/inventory.jsp</result>
 		</action>
@@ -291,10 +304,14 @@
 			<result name="success">/product/showInventory.jsp</result>
 		</action>
 		<action name="downloadInventoryExcel" class="downloadInventoryExcel">
-			<result name="success">/product/showInventory.jsp</result>
+<!-- 			<result name="success">/product/showInventory.jsp</result> -->
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">excelStream</param>
+				<param name="contentDisposition">attachment;filename="hello.xls"</param>
+				<param name="bufferSize">1024</param>
+			</result>
 		</action>
 	</package>
-
-
 </struts>
 

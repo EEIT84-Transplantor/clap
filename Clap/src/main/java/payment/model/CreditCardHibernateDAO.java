@@ -32,20 +32,21 @@ public class CreditCardHibernateDAO implements CreditCardDAO{
 	@Override
 	public CreditCardVO selectByCcNumber(String mb_email, String cc_number) {
 		session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
+		
 		
 		CreditCardPK creditCard =new CreditCardPK();
 		creditCard.setMb_email(mb_email);
 		creditCard.setCc_number(cc_number);
 		CreditCardVO result = session.get(CreditCardVO.class, creditCard);
 		
-		session.getTransaction().commit();
+		
 		return result;
 	}
 
 	@Override
 	public CreditCardVO insert(CreditCardVO creditCardVO) {
 		session = sessionFactory.getCurrentSession();
+		
 		try {
 			System.out.println(session);
 			

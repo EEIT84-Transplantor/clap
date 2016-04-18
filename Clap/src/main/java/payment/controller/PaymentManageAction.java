@@ -119,42 +119,42 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 		this.promoCodeVO = promoCodeVO;
 	}
 
-//	public void validate(){
-//		HttpServletRequest request = ServletActionContext.getRequest();
-//		MemberVO memberVO = (MemberVO) request.getSession().getAttribute("login");
-//		String email = memberVO.getEmail();
-//		if(buttonClicked.equalsIgnoreCase("AddCreditCard")){
-//	    	 System.out.println("button");
-//	    	 if(creditCardVO.getCreditCardPK().getCc_number()==null||!checkCreditCardPK(creditCardVO.getCreditCardPK().getCc_number())){
-//	    		 errorMessage= "Credit Card Number is not valid";
-//	    		
-//	    	 }
-//	    	 System.out.println(email+creditCardVO.getCreditCardPK().getCc_number() );
-//	    	 System.out.println(creditCardService.getCard(  email,   creditCardVO.getCreditCardPK().getCc_number()  ));
-//    		 if(creditCardService.getCard(  email,   creditCardVO.getCreditCardPK().getCc_number()  ) != null){
-//	    		 errorMessage= "Credit Card Number already exists";
-//	    	 }
-//	    	 
-//	    	 if(creditCardVO.getCc_cvv()==null||!Pattern.matches("\\d{3}", creditCardVO.getCc_cvv())){
-//	    		 errorMessage="CVV is not valid";
-//	    	 }
-//	    	 String goodThru = creditCardVO.getCc_goodthru();
-//	    	 if(goodThru==null||!Pattern.matches("^(0[1-9]|1[0-2])/([0-9]{2})$", goodThru)||Integer.parseInt(goodThru.substring(3))+2000<Calendar.getInstance().get(Calendar.YEAR)||
-//	    			 Integer.parseInt(goodThru.substring(3))+2000==Calendar.getInstance().get(Calendar.YEAR) &&Integer.parseInt(goodThru.substring(0,2))<Calendar.getInstance().get(Calendar.MONTH)+1){
-//	    		 errorMessage="GoodThru is not valid";
-//	    	 }
-//	    	 
-//	     }else if(buttonClicked.equalsIgnoreCase("AddPromoCode")){
-//	    	 if(promoCodeVO.getPromoCode().getPm_code()==null||!promoService.isAvailable(promoCodeVO.getPromoCode().getPm_code())){
-//	    		 errorMessage= "Promo Code is not valid";
-//	    	 }
-//	     }else if(buttonClicked.equalsIgnoreCase("UseGiftCard")){
-//	    	 System.out.println("4");
-//	    	 if(giftCardVO.getGc_number()==null||giftCardVO.getGc_code()==null){
-//	    		 errorMessage="Gift Card is not valid";
-//	    	 }
-//	     }
-//	}
+	public void validate(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		MemberVO memberVO = (MemberVO) request.getSession().getAttribute("login");
+		String email = memberVO.getEmail();
+		if(buttonClicked.equalsIgnoreCase("AddCreditCard")){
+	    	 System.out.println("button");
+	    	 if(creditCardVO.getCreditCardPK().getCc_number()==null||!checkCreditCardPK(creditCardVO.getCreditCardPK().getCc_number())){
+	    		 errorMessage= "Credit Card Number is not valid";
+	    		
+	    	 }
+	    	 System.out.println(email+creditCardVO.getCreditCardPK().getCc_number() );
+	    	 System.out.println(creditCardService.getCard(  email,   creditCardVO.getCreditCardPK().getCc_number()  ));
+    		 if(creditCardService.getCard(email,creditCardVO.getCreditCardPK().getCc_number()  ) != null){
+	    		 errorMessage= "Credit Card Number already exists";
+	    	 }
+	    	 
+	    	 if(creditCardVO.getCc_cvv()==null||!Pattern.matches("\\d{3}", creditCardVO.getCc_cvv())){
+	    		 errorMessage="CVV is not valid";
+	    	 }
+	    	 String goodThru = creditCardVO.getCc_goodthru();
+	    	 if(goodThru==null||!Pattern.matches("^(0[1-9]|1[0-2])/([0-9]{2})$", goodThru)||Integer.parseInt(goodThru.substring(3))+2000<Calendar.getInstance().get(Calendar.YEAR)||
+	    			 Integer.parseInt(goodThru.substring(3))+2000==Calendar.getInstance().get(Calendar.YEAR) &&Integer.parseInt(goodThru.substring(0,2))<Calendar.getInstance().get(Calendar.MONTH)+1){
+	    		 errorMessage="GoodThru is not valid";
+	    	 }
+	    	 
+	     }else if(buttonClicked.equalsIgnoreCase("AddPromoCode")){
+	    	 if(promoCodeVO.getPromoCode().getPm_code()==null||!promoService.isAvailable(promoCodeVO.getPromoCode().getPm_code())){
+	    		 errorMessage= "Promo Code is not valid";
+	    	 }
+	     }else if(buttonClicked.equalsIgnoreCase("UseGiftCard")){
+	    	 System.out.println("4");
+	    	 if(giftCardVO.getGc_number()==null||giftCardVO.getGc_code()==null){
+	    		 errorMessage="Gift Card is not valid";
+	    	 }
+	     }
+	}
 	private Boolean checkCreditCardPK(String cardNum){
 		String visa = "^4[0-9]{12}(?:[0-9]{3})?$";
 		String master = "^5[1-5][0-9]{14}$";
