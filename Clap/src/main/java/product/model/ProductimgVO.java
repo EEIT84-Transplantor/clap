@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 public class ProductimgVO implements Serializable {
 
 	@Id
-	@Column(name="pd_Id")
+	@Column(name="product_id")
 	private Integer id;
 	@Column(name="productimg_img")
 	private Byte[] img;

@@ -71,13 +71,21 @@
 							</div>
 						</div>
 						<div class="col-md-3">
-							<div id="people"></div>
+							<div id="people">
+<!-- 							<div id="drop" class="o_heart"></div> -->
+<!-- 							<div id="drop" class="Lung"></div> -->
+<!-- 							<div id="drop" class="Liver"></div> -->
+<!-- 							<div id="drop" class="Kidney"></div> -->
+<!-- 							<div id="drop" class="Stomach"></div> -->
+<!-- 							<div id="drop" class="Cornea"></div> -->
+<!-- 							<div id="drop" class="Intestine"></div> -->
+							</div>
 						</div>
 						<div class="col-md-7">
 							<h2>USER NAME</h2>
 							<p>texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</p>
 							<div class="row" id="s_graphic">
-								<div class="col-md-6">
+								<div class="col-md-6 col-sm-12">
 									<img src="<c:url value="/resource/images/simulator/o_1.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
@@ -90,59 +98,59 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-6 col-sm-12">
 									<img src="<c:url value="/resource/images/simulator/o_2.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #409371; width: 200px;"
+											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #005D61; width: 250px;"
+											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-6 col-sm-12">
 									<img src="<c:url value="/resource/images/simulator/o_3.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #F2EA77; width: 200px;"
+											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #EBBE6B; width: 250px;"
+											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-6 col-sm-12">
 									<img src="<c:url value="/resource/images/simulator/o_4.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #829F2A; width: 200px;"
+											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #B2C301; width: 250px;"
+											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-6 col-sm-12">
 									<img src="<c:url value="/resource/images/simulator/o_5.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #C66D16; width: 200px;"
+											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #E05A41; width: 250px;"
+											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-6 col-sm-12">
 									<img src="<c:url value="/resource/images/simulator/o_6.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
@@ -155,15 +163,15 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-6 col-sm-12">
 									<img src="<c:url value="/resource/images/simulator/o_7.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #9A71AF; width: 200px;"
+											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #9B4495; width: 250px;"
+											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 									</div>
@@ -208,8 +216,8 @@
 																</c:if>
 																<div class="col-sm-2">
 																	<div class="col-item">
-																		<div class="photo">
-																			<img src="<c:url value="/resource/images/simulator/temp.png"/>">
+																		<div class="photo" id="haha">
+																			<img src="<c:url value="/resource/images/simulator/temp.png"/>" class="draggable" >
 																		</div>
 																	</div>
 																</div>
@@ -278,29 +286,44 @@
 				bg_img = "none";
 			}
 			
-// 			$("#s_wrap").fadeTo('slow', 0.1, function() {
-// 				$(this).css("background-image", "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)");
-// 			}).fadeTo('slow', 1);
 			 $('#fullPage').animate(
 					 {backgroundColor: 'rgb(0,0,0)'}, 600, function(){
 						 $('#s_wrap').css('backgroundImage', "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)");
 					 }).animate({backgroundColor: 'rgba(0,0,0,0.1)'}, 600);
-			
-//         $('#s_wrap').css('backgroundImage', function () {
-//             $('#fullPage').animate(
-//             		{backgroundColor: 'rgb(0,0,0)'}, 1000, function(){
-//             			setTimeout(function(){$('#fullPage').animate({backgroundColor: 'transparent'}, 1000);},3000);
-//             });
-//             return "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)";
-// 			 });
+
 		});
+		
 		$(document).ready(function(){
 			$(".carousel").carousel("pause");
-			
 			$("#sim_silder img").draggable();
 			$("#people").droppable();
-			
 		});
+		
+		
+		
+		
+		$(".draggable").draggable({ helper: 'clone',cursor: "crosshair", revert: "invalid",appendTo: 'body'});
+		
+		$("#people").droppable({ accept: ".draggable", 
+	           drop: function(event, ui) {
+	              $(this).removeClass("border").removeClass("over");
+	              var dropped = ui.draggable;
+	              var droppedOn = $(this);
+	              $(dropped).detach().css({top: 0,left: 0}).appendTo(droppedOn);
+	             
+	             $("#haha").html('<img src="'+$(dropped).attr("src")+'" class="disable_img" >');
+	              
+	          }
+	    });
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	</script>
 </html>

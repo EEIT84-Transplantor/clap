@@ -33,7 +33,7 @@ public class TestOrderDetailService extends TestCase {
 	private Integer cart_quantity;
 	private Integer doctor_id;
 	private Integer orderform_id=3;
-	private Timestamp surgery_time;
+	private Timestamp orderdetail_surgerytime;
 	
 	@Before
 	protected void setUp() throws Exception {

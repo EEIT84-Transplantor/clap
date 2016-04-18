@@ -25,9 +25,9 @@ public class InventoryHibernateDAO implements InventoryDAO {
 
 	}
 	final private String SELECT_ALL = "from InventoryVO";
-	final private String SELECT_BY_PRODUCT_ID ="from InventoryVO where pd_id=?";
-	final private String FIND_QUANTITY_BY_PRODUCT_ID = "select sum(inventoryVO.quantity) from InventoryVO inventoryVO where pd_id=? and inventory_expiryDate>?";
-	final private String SELECT_BY_INVENTORY_PROPERTIES ="from InventoryVO where pd_id=? and inventory_expiryDate=? and  inventory_manufactureDate=?";
+	final private String SELECT_BY_PRODUCT_ID ="from InventoryVO where product_id=?";
+	final private String FIND_QUANTITY_BY_PRODUCT_ID = "select sum(inventoryVO.quantity) from InventoryVO inventoryVO where product_id=? and inventory_expiryDate>?";
+	final private String SELECT_BY_INVENTORY_PROPERTIES ="from InventoryVO where product_id=? and inventory_expiryDate=? and  inventory_manufactureDate=?";
 	
 	@Override
 	public List<InventoryVO> selectAll() {

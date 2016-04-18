@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,37 +32,30 @@ public class OrderDetailVO implements Serializable {
 	private Integer product_id;
 	@Column(name = "cart_quantity")
 	private Integer cart_quantity;
-	
-	@Column(name = "orderdetail_time")
-	private Timestamp time;
-	
 	@Column(name = "doctor_id")
 	private Integer doctor_id;
 	@Column(name = "orderform_id")
 	private Integer orderform_id;
-	@Column(name = "surgery_time")
-	private Timestamp surgery_time;
-
-	public Timestamp getSurgery_time() {
-		return surgery_time;
-	}
-
-	public void setSurgery_time(Timestamp surgery_time) {
-		this.surgery_time = surgery_time;
-	}
-
+	@Column(name = "orderdetail_surgerytime")
+	private Timestamp orderdetail_surgerytime;
 	// optional 外鍵是否允許為空
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "product_id", insertable = false, updatable = false)
 	private ProductVO productVO;
-
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "doctor_id", insertable = false, updatable = false)
 	private DoctorVO doctorVO;
-
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "orderform_id", insertable = false, updatable = false)
 	private OrderFormVO orderformVO;
+
+	public Timestamp getOrderdetail_surgerytime() {
+		return orderdetail_surgerytime;
+	}
+
+	public void setOrderdetail_surgerytime(Timestamp orderdetail_surgerytime) {
+		this.orderdetail_surgerytime = orderdetail_surgerytime;
+	}
 
 	public Integer getId() {
 		return id;
