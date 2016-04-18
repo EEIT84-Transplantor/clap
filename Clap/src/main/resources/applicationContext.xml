@@ -258,6 +258,9 @@
 	<bean id="returnAction" class="shopping.controller.ReturnAction">
 		<property name="returnService" ref="returnService" />
 	</bean>
+	<bean id="doAppointmentAction" class="shopping.controller.DoAppointmentAction">
+<!-- 		<property name="returnService" ref="returnService" /> -->
+	</bean>
 	
 	<!-- simulator-->
 	<bean id="bodySimulatorAction" class="simulator.controller.BodySimulatorAction">
