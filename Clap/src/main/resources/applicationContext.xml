@@ -173,6 +173,12 @@
 	<bean id="downloadInventoryExcel" class="inventory.controller.DownloadInventoryExcel">
 		<property name="inventoryService" ref="inventoryService"/>
 	</bean>
+	<bean id="showInOutLog" class="inventory.controller.ShowInOutLog">
+		<property name="inOutLogService" ref="inOutLogService"/>
+	</bean>
+	<bean id="downloadInOutLogExcel" class="inventory.controller.DownloadInOutLogExcel">
+		<property name="inOutLogService" ref="inOutLogService"/>
+	</bean>
 	<!-- product -->
 	<bean id="productDAO" class="product.model.ProductHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />

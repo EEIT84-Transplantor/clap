@@ -316,12 +316,26 @@
 		<action name="showInventory" class="showInventory">
 			<result name="success">/product/showInventory.jsp</result>
 		</action>
+		<action name="showInOutLog" class="showInOutLog">
+			<result name="success">/product/showinoutlog.jsp</result>
+		</action>
+
 		<action name="downloadInventoryExcel" class="downloadInventoryExcel">
 <!-- 			<result name="success">/product/showInventory.jsp</result> -->
 			<result name="success" type="stream">
 				<param name="contentType">application/vnd.ms-excel</param>
 				<param name="inputName">excelStream</param>
-				<param name="contentDisposition">attachment;filename="hello.xls"</param>
+				<param name="contentDisposition">attachment;filename="inventory.xls"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="downloadInOutLogExcel" class="downloadInOutLogExcel">
+<!-- 			<result name="success">/product/showInventory.jsp</result> -->
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">excelStream</param>
+				<param name="contentDisposition">attachment;filename="inoutlog.xls"</param>
 				<param name="bufferSize">1024</param>
 			</result>
 		</action>

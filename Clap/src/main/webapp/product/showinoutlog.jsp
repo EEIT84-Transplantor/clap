@@ -59,7 +59,7 @@ margin:10px 0;
 				<div class="col-md-10">
 					<div class="row">
 						<div class="col-md-12">
-							<a href="${pageContext.request.contextPath}/product/downloadInventoryExcel.action">Export as Excel</a>
+							<a href="${pageContext.request.contextPath}/product/downloadInOutLogExcel.action">Export as Excel</a>
 						</div>			
 					</div>
 				</div>
@@ -69,23 +69,38 @@ margin:10px 0;
 							<table id="example" class="table">
 								<thead>
 									<tr>
+										<th>In Out Log ID</th>
 										<th>Inventory ID</th>
 										<th>Product ID</th>
-										<th>Quantity</th>
+										<th>In Quantity</th>
+										<th>Out Quantity</th>
+										<th>Order Detail ID</th>
 										<th>Manufacture Date</th>
-										<th>Expire Date</th>
+										<th>Expiration Date</th>
+										<th>Destination</th>
+										<th>Date</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="inventoryVO" varStatus="index" items="${inventoryVOs}">
+									<c:forEach var="inOutLogVO" varStatus="index" items="${inOutLogVOs}">
 										<tr>
-											<td><label>${inventoryVO.id}</label></td>
-											<td><label>${inventoryVO.product_id}</label>
+											<td><label>${inOutLogVO.id}</label></td>
+											<td><label>${inOutLogVO.inventory_id}</label>
 											</td>
-											<td><label>${inventoryVO.quantity}</label> 
+											<td><label>${inOutLogVO.product_id}</label> 
 											</td>
-											<td><label>${inventoryVO.manufactureDate}</label> </td>
-											<td><label>${inventoryVO.expiryDate}</label>
+											<td><label>${inOutLogVO.inQuantity}</label></td>
+											<td><label>${inOutLogVO.outQuantity}</label>
+											</td>
+											<td><label>${inOutLogVO.orderdetail_id}</label>
+											</td>
+												<td><label>${inOutLogVO.manufactureDate}</label>
+											</td>
+												<td><label>${inOutLogVO.expiryDate}</label>
+											</td>
+												<td><label>${inOutLogVO.destination}</label>
+											</td>
+											<td><label>${inOutLogVO.date}</label>
 											</td>
 										</tr>
 									</c:forEach>
