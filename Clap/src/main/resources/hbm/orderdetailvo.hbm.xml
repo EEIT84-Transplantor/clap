@@ -6,7 +6,7 @@
 	<class name="shopping.model.OrderDetailVO" table="orderdetail">
 		<composite-id>
 			<key-property name="id" column="od_id"/>
-			<key-property name="pd_id" column="pd_id"/>
+			<key-property name="product_id" column="product_id"/>
 		</composite-id>
 		<property name="ct_quantity" column="ct_quantity"/>
 	</class>

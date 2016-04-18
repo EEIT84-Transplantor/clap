@@ -21,12 +21,12 @@ public class CartVO implements Serializable {
 	@Column(name = "mb_email")
 	private String email;
 	@Id
-	@Column(name = "pd_id")
+	@Column(name = "product_id")
 	private Integer product_id;
 	@Column(name = "ct_quantity")
 	private Integer quantity;
 	@ManyToOne
-	@JoinColumn(name = "pd_id", insertable = false, updatable = false)
+	@JoinColumn(name = "product_id", insertable = false, updatable = false)
 	private ProductVO productVO;
 
 	public CartVO() {

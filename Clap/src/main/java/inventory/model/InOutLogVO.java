@@ -20,7 +20,7 @@ public class InOutLogVO implements Serializable  {
 	private Integer id;
 	@Column(name="inventory_id")
 	private Integer inventory_id;
-	@Column(name="pd_id")
+	@Column(name="product_id")
 	private Integer product_id;
 	
 	@Column(name="inoutlog_inQuantity")

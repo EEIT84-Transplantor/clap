@@ -2,7 +2,9 @@ package shopping.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.JoinColumnOrFormula;
 
 import hospital.model.HospitalVO;
 @Entity
@@ -31,6 +36,9 @@ public class OrderFormVO implements Serializable  {
     @ManyToOne
     @JoinColumn(name="hospital_id",insertable=false,updatable=false)
 	private HospitalVO hospitalVO;
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="orderform_id")
+    private Set<OrderDetailVO> orderDetailVOs;
     
 	public Integer getId() {
 		return id;
