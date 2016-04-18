@@ -85,7 +85,7 @@
 							<h2>USER NAME</h2>
 							<p>texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</p>
 							<div class="row" id="s_graphic">
-								<div class="col-md-6">
+								<div class="col-md-6 col-sm-12">
 									<img src="<c:url value="/resource/images/simulator/o_1.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
@@ -98,59 +98,59 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-6 col-sm-12">
 									<img src="<c:url value="/resource/images/simulator/o_2.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #409371; width: 200px;"
+											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #005D61; width: 250px;"
+											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-6 col-sm-12">
 									<img src="<c:url value="/resource/images/simulator/o_3.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #F2EA77; width: 200px;"
+											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #EBBE6B; width: 250px;"
+											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-6 col-sm-12">
 									<img src="<c:url value="/resource/images/simulator/o_4.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #829F2A; width: 200px;"
+											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #B2C301; width: 250px;"
+											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-6 col-sm-12">
 									<img src="<c:url value="/resource/images/simulator/o_5.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #C66D16; width: 200px;"
+											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #E05A41; width: 250px;"
+											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-6 col-sm-12">
 									<img src="<c:url value="/resource/images/simulator/o_6.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
@@ -163,15 +163,15 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-6 col-sm-12">
 									<img src="<c:url value="/resource/images/simulator/o_7.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #9A71AF; width: 200px;"
+											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #9B4495; width: 250px;"
+											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 									</div>

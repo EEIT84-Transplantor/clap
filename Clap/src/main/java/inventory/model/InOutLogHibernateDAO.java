@@ -25,8 +25,8 @@ public class InOutLogHibernateDAO implements InOutLogDAO {
 	private Session session;
 	final private String SELECT_ALL = "from InOutLogVO";
 	private String SQL_QUERY_SELECT_TOP_POPULAR_PART1 = "select top ";
-	private String SQL_QUERY_SELECT_TOP_POPULAR_PART2 = " * from product where pd_id in (select top 100 pd_id from (select pd_id, 1.0*sum(inoutlog_outQuantity)/(sum(inoutlog_inQuantity)+1) as popularity from inoutlog group by pd_id having pd_id in (select pd_id from product where category_id=?)) as tableA order by popularity desc )";
-	final private String SELECT_BY_PRODUCT_ID="from InOutLogVO where expiryDate>? and pd_id=? order by expiryDate asc";
+	private String SQL_QUERY_SELECT_TOP_POPULAR_PART2 = " * from product where product_id in (select top 100 product_id from (select product_id, 1.0*sum(inoutlog_outQuantity)/(sum(inoutlog_inQuantity)+1) as popularity from inoutlog group by product_id having product_id in (select product_id from product where category_id=?)) as tableA order by popularity desc )";
+	final private String SELECT_BY_PRODUCT_ID="from InOutLogVO where expiryDate>? and product_id=? order by expiryDate asc";
 	final private String SELECT_BY_ORDERDETAIL_ID="from InOutLogVO where orderdetail_id=? order by expiryDate asc";
 	
 	@Override

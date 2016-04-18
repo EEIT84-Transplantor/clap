@@ -161,14 +161,14 @@ select * from message
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table product (
-pd_Id int identity ,
+product_id int identity ,
 product_name	varchar(60),
 product_price	float,
 product_description	nvarchar(1000),
 product_rating	int,
 product_discount	float,
 category_id int foreign key REFERENCES category(category_id)
-PRIMARY KEY (pd_Id)
+PRIMARY KEY (product_id)
 )
 insert into product values('product1', 100, 'Heart1', 5, 0.9, 10);
 insert into product values( 'product2', 200, 'Heart2', 1, 0.4, 10);
@@ -182,9 +182,9 @@ select * from product
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table productimg (
-pd_Id int FOREIGN KEY REFERENCES product(pd_id),
+product_id int FOREIGN KEY REFERENCES product(product_id),
 productimg_img image
-PRIMARY KEY (pd_Id)
+PRIMARY KEY (product_id)
 )
 insert into productimg values(1, null);
 insert into productimg values(2, null);
@@ -193,7 +193,7 @@ select * from productimg
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table inventory (
 inventory_id int identity,
-pd_id	int FOREIGN KEY REFERENCES product(pd_id),
+product_id	int FOREIGN KEY REFERENCES product(product_id),
 inventory_quantity	int,
 inventory_manufactureDate datetime,
 inventory_expiryDate datetime,
@@ -208,9 +208,9 @@ select * from inventory
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table cart (
 mb_email varchar(320) FOREIGN KEY REFERENCES Member(mb_email) ,
-pd_id int FOREIGN KEY REFERENCES product(pd_id) ,
+product_id int FOREIGN KEY REFERENCES product(product_id) ,
 ct_quantity int not null,
-PRIMARY KEY (mb_email, pd_id)
+PRIMARY KEY (mb_email, product_id)
 )
 
 insert into cart values('caca@gmail.com', 1,10);
@@ -236,22 +236,22 @@ select * from orderform
 create table orderdetail(
 orderdetail_id int primary key identity,
 orderform_id int FOREIGN KEY REFERENCES orderform(orderform_id),
-product_id int FOREIGN KEY REFERENCES product(pd_Id),
+product_id int FOREIGN KEY REFERENCES product(product_id),
 cart_quantity int,
 orderdetail_time datetime,
 doctor_id int FOREIGN KEY REFERENCES doctor(doctor_id), 
-surgery_time datetime 
+orderdetail_surgerytime datetime 
 )
 
-insert into orderdetail(orderform_id, product_id, cart_quantity, orderdetail_time, doctor_id, surgery_time) values(1,1,10,'2020-01-01',1 , CURRENT_TIMESTAMP);
-insert into orderdetail(orderform_id, product_id, cart_quantity, orderdetail_time, doctor_id, surgery_time) values(2,2,20,'2020-01-01',2 , CURRENT_TIMESTAMP);
+insert into orderdetail(orderform_id, product_id, cart_quantity, orderdetail_time, doctor_id, orderdetail_surgerytime) values(1,1,10,'2020-01-01',1 , CURRENT_TIMESTAMP);
+insert into orderdetail(orderform_id, product_id, cart_quantity, orderdetail_time, doctor_id, orderdetail_surgerytime) values(2,2,20,'2020-01-01',2 , CURRENT_TIMESTAMP);
 select * from orderdetail
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 create table inoutlog (
 inoutlog_id	int identity,
 inventory_id int FOREIGN KEY REFERENCES inventory(inventory_Id),
-pd_id int FOREIGN KEY REFERENCES product(pd_id),
+product_id int FOREIGN KEY REFERENCES product(product_id),
 orderdetail_id int FOREIGN KEY REFERENCES orderdetail(orderdetail_id),
 inoutlog_inQuantity	int,
 inoutlog_outQuantity	int,

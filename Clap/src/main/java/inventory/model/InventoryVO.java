@@ -18,7 +18,7 @@ public class InventoryVO implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="inventory_id")
 	private Integer id;
-	@Column(name="pd_id")
+	@Column(name="product_id")
 	private Integer product_id;
 	@Column(name="inventory_quantity")
 	private Integer  quantity;

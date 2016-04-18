@@ -76,12 +76,12 @@ public class TestOrderFormHibernateDAO {
 //		assertEquals(expected, actual);
 //	};
 
-//	@Test
-//	public void testDDelete() {
-//		Boolean expected = true;
-//		Boolean actual = orderFormHibernateDAO.delete(id);
-//		assertEquals(expected, actual);
-//	};
+	@Test
+	public void testDDelete() {
+		Boolean expected = true;
+		Boolean actual = orderFormHibernateDAO.delete(id);
+		assertEquals(expected, actual);
+	};
 //
 //	@Test
 //	public void testSelect2() {
@@ -97,13 +97,13 @@ public class TestOrderFormHibernateDAO {
 //		actual=orderFormHibernateDAO.select(2).getHospitalVO().getName();
 //		assertEquals(expected, actual);
 //	}
-	
-	@Test
-	public void testSelectByEmail(){
-		expected = 8;
-		actual=orderFormHibernateDAO.select(mb_email).size();
-		assertEquals(expected, actual);
-	}
+//	
+//	@Test
+//	public void testSelectByEmail(){
+//		expected = 8;
+//		actual=orderFormHibernateDAO.select(mb_email).size();
+//		assertEquals(expected, actual);
+//	}
 
 }
 
