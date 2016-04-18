@@ -167,17 +167,19 @@ product_price	float,
 product_description	nvarchar(1000),
 product_rating	int,
 product_discount	float,
+special_value1 float,
+special_value2 float,
 category_id int foreign key REFERENCES category(category_id)
 PRIMARY KEY (product_id)
 )
-insert into product values('product1', 100, 'Heart1', 5, 0.9, 10);
-insert into product values( 'product2', 200, 'Heart2', 1, 0.4, 10);
-insert into product values( 'product3', 1000, 'Heart3', 2, 0.2, 10);
-insert into product values('product4', 2000, 'Heart4', 1, 0.7, 10);
-insert into product values('product5', 10000, 'Heart5', 4, 0.9, 10);
-insert into product values('product6', 20000, 'Heart6', 2, 0.1, 10);
-insert into product values( 'product7', 100000, 'Heart7', 1, 0.7, 10);
-insert into product values( 'product8', 2000000, 'Heart8', 3, 0.4, 10);
+insert into product values('product1', 100, 'Heart1', 5, 0.9,0.9,0.8, 10);
+insert into product values( 'product2', 200, 'Heart2', 1, 0.4,0.9,0.3, 10);
+insert into product values( 'product3', 1000, 'Heart3', 2, 0.2, 0.2,0.6, 10);
+insert into product values('product4', 2000, 'Heart4', 1, 0.7, 0.5,0.6, 10);
+insert into product values('product5', 10000, 'Heart5', 4, 0.9, ,0.4,0.5, 10);
+insert into product values('product6', 20000, 'Heart6', 2, 0.1, 0.8,0.6, 10);
+insert into product values( 'product7', 100000, 'Heart7', 1, 0.7, 0.9,0.4, 10);
+insert into product values( 'product8', 2000000, 'Heart8', 3, 0.4,1.2,1.8, 10);
 select * from product
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
