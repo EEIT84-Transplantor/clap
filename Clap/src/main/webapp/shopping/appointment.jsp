@@ -97,10 +97,10 @@
 					<tbody>
 						<c:forEach var="orderVO" items="${orderList}">
 							<tr>
-								<td hidden="true">${orderVO.id}</td>
-								<td >${orderVO.productVO.name}</td>
-								<td><input type="date" class="date"></td>
-								<td><select>
+								<td class="id" hidden="true">${orderVO.id}</td>
+								<td>${orderVO.productVO.name}</td>
+								<td><input type="date" class="time"></td>
+								<td><select class="doctor">
 										<c:forEach var="doctor" items="${doctorList.rows}">
 											<option>${doctor.doctor_name}</option>
 										</c:forEach>
@@ -115,13 +115,13 @@
 		<div class="row">
 			<div class="col-md-9">
 				<label>Choose Hospital:</label>
-				<select class="hospital form-control">
+				<select class="hospital form-control" id="hospital">
 					<c:forEach var="hospital" items="${hospitalList.rows}">
-						<option value="${hospital.hospital_address}">${hospital.hospital_name}</option>
+						<option value="${hospital.hospital_address}" label="${hospital.hospital_name}">${hospital.hospital_id}</option>
 					</c:forEach>
 				</select>
 			</div>
-			<div class="col-md-3" style="height:100%;">
+			<div class="col-md-3" style="height: 100%;">
 				<input type="button" value="submit" id="submit" class="btn btn-default" height="100%">
 			</div>
 		</div>
@@ -141,6 +141,7 @@
 	<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap" async defer></script>
 	<script type="text/javascript">
 		$(function() {
+
 			//顯示醫院地圖
 			$(".hospital").change(function() {
 				geocodeAddress(geocoder, map, $(this).val());
@@ -148,14 +149,26 @@
 
 			//日期限制
 			var now = new Date().toISOString().substring(0, 10);
-			$(".date").attr("min", now).attr("value", now);
+			$(".time").attr("min", now).attr("value", now);
 
 			//送出資料ajax
-			var url
+ 			var orderList = new Object();
+			for (var i = 0; i < $(".id").size(); i++) {
+				var data = {
+					id : $(".id").eq(i).text(),
+					time : $(".time").eq(i).val(),
+					doctor : $(".doctor").eq(i).val(),
+				}
+				orderList[i]=data;
+			}
+			var url = "<c:url value='/shopping/doAppointmentAction.action'/>";
 			$("#submit").click(function() {
 				$.ajax({
 					url : url,
-					data : data,
+					data : {
+						"orderList":orderList,
+						"hospital" : $("#hospital option:selected").text(),
+					},
 				}).done(function() {
 
 				})

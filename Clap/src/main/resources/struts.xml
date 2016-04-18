@@ -248,6 +248,10 @@
 		<action name="deleteOrderAction" class="shopping.controller.DeleteOrderAction">
 			<result type="stream"></result>
 		</action>
+		<action name="doAppointmentAction" class="shopping.controller.DoAppointmentAction">
+			<result type="stream"></result>
+		</action>
+		
 	</package>
 
 	<package name="test" namespace="/test" extends="struts-default">
