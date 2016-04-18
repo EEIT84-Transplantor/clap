@@ -264,15 +264,15 @@
 		
 	</bean>
 	
-	<bean id="showProductsAction" class="shopping.controller.ShowProductsAction">
+	<bean id="showProductsAction" class="simulator.controller.ShowProductsAction">
 		<property name="productService" ref="productService" />
 		<property name="categoryService" ref="categoryService" />
 	</bean>
 	
-	<bean id="savePackAction" class="shopping.controller.SavePackAction">
+	<bean id="savePackAction" class="simulator.controller.SavePackAction">
 	</bean>
 	
-	<bean id="enviromentSimulatorAction" class="shopping.controller.EnviromentSimulatorAction">
+	<bean id="enviromentSimulatorAction" class="simulator.controller.EnviromentSimulatorAction">
 	</bean>
 	
 	
