@@ -21,9 +21,10 @@ public class InOutLogService {
 	}
 	
 	
-	public List<InOutLogVO>  test(){
+	public List<InOutLogVO>  getAll(){
 		return inOutLogDAO.selectAll();
 	}
+	
 	public Boolean importProduct(InOutLogVO inOutLogVO){
 		
 		
