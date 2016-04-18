@@ -89,37 +89,40 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<td>order detail id</td>
-							<td>hospital</td>
-							<td>appointment time</td>
-							<td>doctor</td>
-							<td>product</td>
-							<td>quantity</td>
-							<td>price</td>
+							<td><label>product</label></td>
+							<td><label>appointment time</label></td>
+							<td><label>doctor</label></td>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="orderVO" items="${orderList}">
 							<tr>
-								<td>${orderVO.id}</td>
-								<td><select class="hospital">
-										<c:forEach var="hospital" items="${hospitalList.rows}">
-											<option value="${hospital.hospital_address}">${hospital.hospital_name}</option>
-										</c:forEach>
-									</select></td>
+								<td hidden="true">${orderVO.id}</td>
+								<td >${orderVO.productVO.name}</td>
 								<td><input type="date" class="date"></td>
 								<td><select>
 										<c:forEach var="doctor" items="${doctorList.rows}">
 											<option>${doctor.doctor_name}</option>
 										</c:forEach>
 									</select></td>
-								<td>${orderVO.productVO.name}</td>
-								<td>${orderVO.cart_quantity}</td>
-								<td>${orderVO.productVO.price}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-9">
+				<label>Choose Hospital:</label>
+				<select class="hospital form-control">
+					<c:forEach var="hospital" items="${hospitalList.rows}">
+						<option value="${hospital.hospital_address}">${hospital.hospital_name}</option>
+					</c:forEach>
+				</select>
+			</div>
+			<div class="col-md-3" style="height:100%;">
+				<input type="button" value="submit" id="submit" class="btn btn-default" height="100%">
 			</div>
 		</div>
 		<div class="row">
@@ -138,12 +141,25 @@
 	<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap" async defer></script>
 	<script type="text/javascript">
 		$(function() {
-			var now = new Date().toISOString().substring(0, 10);
+			//顯示醫院地圖
 			$(".hospital").change(function() {
 				geocodeAddress(geocoder, map, $(this).val());
 			})
+
+			//日期限制
+			var now = new Date().toISOString().substring(0, 10);
 			$(".date").attr("min", now).attr("value", now);
 
+			//送出資料ajax
+			var url
+			$("#submit").click(function() {
+				$.ajax({
+					url : url,
+					data : data,
+				}).done(function() {
+
+				})
+			})
 		})
 
 		function initMap() {
@@ -174,6 +190,5 @@
 			});
 		}
 	</script>
-
 </body>
 </html>
