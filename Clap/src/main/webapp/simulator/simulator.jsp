@@ -258,6 +258,7 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery.color-2.1.2.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/jquery-ui.min.js"/>"></script>
 	<script type="text/javascript">
 		$(".factor_item").on("click", function() {
 			var src = $(this).find('img').attr('src');
@@ -293,5 +294,13 @@
 //             return "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)";
 // 			 });
 		});
+		$(document).ready(function(){
+			$(".carousel").carousel("pause");
+			
+			$("#sim_silder img").draggable();
+			$("#people").droppable();
+			
+		});
+		
 	</script>
 </html>
