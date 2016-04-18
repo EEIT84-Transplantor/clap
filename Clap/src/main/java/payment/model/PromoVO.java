@@ -21,7 +21,7 @@ public class PromoVO implements Serializable {
 	@Column(name="pd_category")
 	private Integer pd_category;
 	@ManyToOne(optional = true)
-	@JoinColumn(name = "pd_category", insertable = false, updatable = false)
+	@JoinColumn(name = "category_id", insertable = false, updatable = false)
 	private CategoryVO categoryVO;
 	@Column(name="pm_expire")
 	private java.util.Date pm_expire;

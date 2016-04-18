@@ -49,7 +49,7 @@ PRIMARY KEY(mb_email))
 create table creditcard(
 mb_email varchar(320) REFERENCES member(mb_email),
 cc_number char(16) ,
-cc_goodrhru char(5) ,
+cc_goodthru char(5) ,
 cc_cvv char(3) ,
 PRIMARY KEY(mb_email,cc_number))
 
@@ -96,6 +96,7 @@ pm_code int ,
 pm_expire date ,
 pm_tiltle varchar(50) ,
 pm_discount float ,
+category_id int REFERENCES category(category_id),
 PRIMARY KEY(pm_code))
 
 
@@ -144,8 +145,8 @@ product_description nvarchar(1000) ,
 product_rating tinyint ,
 product_discount float ,
 category_id int REFERENCES category(category_id),
-product_value1 varchar(50) ,
-product_value2 varchar(50) ,
+product_value1 int ,
+product_value2 int ,
 PRIMARY KEY(product_id))
 
 
@@ -357,8 +358,8 @@ insert into hospital(hospital_id,hospital_name,hospital_address) values('97','馬
 insert into hospital(hospital_id,hospital_name,hospital_address) values('98','國軍花蓮總醫院附設民眾診療服務處','花蓮縣新城鄉嘉里路163號');
 insert into hospital(hospital_id,hospital_name,hospital_address) values('99','佛教慈濟醫療財團法人花蓮慈濟醫院','花蓮縣花蓮市中央路三段707號');
 insert into hospital(hospital_id,hospital_name,hospital_address) values('100','臺灣基督教門諾會醫療財團法人門諾醫院','花蓮縣花蓮市民權路44號');
-insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('bennett108@gmail.com',0x65,'bennett108','0948974024',null,null,'FALSE','FALSE',null,null,null,null);
-insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('kitty110@gmail.com',0x65,'berg110','0963048960',null,null,'FALSE','FALSE','2017-7-24T00:00:00','1115',null,null);
+insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number,mb_type) values('caca@gmail.com',0x65,'bennett108','0948974024',null,null,'FALSE','FALSE',null,null,null,null,2);
+insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number,mb_type) values('andrew@gmail.com',0x65,'berg110','0963048960',null,null,'FALSE','FALSE','2017-7-24T00:00:00','1115',null,null,2);
 insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('berg110@gmail.com',0x65,'berg110','0920210716',null,null,'FALSE','FALSE',null,'18036',null,null);
 insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('bert115@gmail.com',0x65,'bert115','0930712587',null,null,'FALSE','TRUE',null,'9474',null,'5084985331731357');
 insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('blithe132@gmail.com',0x65,'blithe132','0987056339',null,null,'FALSE','FALSE',null,null,null,null);
@@ -557,12 +558,6 @@ insert into message(msg_id ,mb_email,msg_sender,msg_subject,msg_content,msg_date
 insert into message(msg_id ,mb_email,msg_sender,msg_subject,msg_content,msg_date,msg_deleted) values(98,'jacqueline425@gmail.com','admin@gmail.com','玩遊戲送$50萬圓夢金，帶你免費去ClubMed馬爾地夫','親愛的會員大家好：為了提供給所有會員更優質購物品質,我們將於 2016/05/10 進行網路設備的更新與升級為力求快速地完成這個動作，屆時全站會進入停機狀態，執行完畢且測試無誤後會盡速開放服務，感謝各位會員的支持與配合！','2016-4-4',0);
 insert into message(msg_id ,mb_email,msg_sender,msg_subject,msg_content,msg_date,msg_deleted) values(99,'spring768@gmail.com','admin@gmail.com','玩遊戲送$50萬圓夢金，帶你免費去ClubMed馬爾地夫','親愛的會員大家好：為了提供給所有會員更優質購物品質,我們將於 2016/05/10 進行網路設備的更新與升級為力求快速地完成這個動作，屆時全站會進入停機狀態，執行完畢且測試無誤後會盡速開放服務，感謝各位會員的支持與配合！','2016-4-4',0);
 insert into message(msg_id ,mb_email,msg_sender,msg_subject,msg_content,msg_date,msg_deleted) values(100,'hedy384@gmail.com','admin@gmail.com','玩遊戲送$50萬圓夢金，帶你免費去ClubMed馬爾地夫','親愛的會員大家好：為了提供給所有會員更優質購物品質,我們將於 2016/05/10 進行網路設備的更新與升級為力求快速地完成這個動作，屆時全站會進入停機狀態，執行完畢且測試無誤後會盡速開放服務，感謝各位會員的支持與配合！','2016-4-4',0);
-insert into promo(pm_code,pm_expire,pm_tiltle,pm_discount) values('99999999','2016-9-1','[促銷]指定商品結帳9折, 館長推薦','0.9');
-insert into promo(pm_code,pm_expire,pm_tiltle,pm_discount) values('88888888','2016-8-1','【會員特典】最後2天!!精選Top 30 激殺品任你挑 8折起','0.8');
-insert into promo(pm_code,pm_expire,pm_tiltle,pm_discount) values('77777777','2016-7-1','歡慶2016限時促銷方案全館7折!','0.7');
-insert into promo(pm_code,pm_expire,pm_tiltle,pm_discount) values('66666666','2016-6-1','Happy Mother DAY 特別的愛給 特別的禮 6折promo code','0.6');
-insert into promo(pm_code,pm_expire,pm_tiltle,pm_discount) values('55555555','2016-5-1','限時101小時優惠全面5折起','0.5');
-insert into promo(pm_code,pm_expire,pm_tiltle,pm_discount) values('44444444','2016-4-1','網購年終促銷！買樣商品4折優惠','0.4');
 insert into category(category_id,category_name,category_specialty,category_value1,category_specialty_plus,category_value2) values('1','Heart','Rhythm','100','EF','100');
 insert into category(category_id,category_name,category_specialty,category_value1,category_specialty_plus,category_value2) values('2','Lung','FVC','100','RR','100');
 insert into category(category_id,category_name,category_specialty,category_value1,category_specialty_plus,category_value2) values('3','Liver','GOT','100','GPT','100');
@@ -570,6 +565,12 @@ insert into category(category_id,category_name,category_specialty,category_value
 insert into category(category_id,category_name,category_specialty,category_value1,category_specialty_plus,category_value2) values('5','Pancreas','null','100','null','100');
 insert into category(category_id,category_name,category_specialty,category_value1,category_specialty_plus,category_value2) values('6','Cornea','Sight','100','null','100');
 insert into category(category_id,category_name,category_specialty,category_value1,category_specialty_plus,category_value2) values('7','Blood','RBC','100','null','100');
+insert into promo(pm_code,pm_expire,pm_tiltle,pm_discount,category_id) values('99999999','2016-9-1','[促銷]指定商品結帳9折, 館長推薦','0.9','1');
+insert into promo(pm_code,pm_expire,pm_tiltle,pm_discount,category_id) values('88888888','2016-8-1','【會員特典】最後2天!!精選Top 30 激殺品任你挑 8折起','0.8','2');
+insert into promo(pm_code,pm_expire,pm_tiltle,pm_discount,category_id) values('77777777','2016-7-1','歡慶2016限時促銷方案全館7折!','0.7','3');
+insert into promo(pm_code,pm_expire,pm_tiltle,pm_discount,category_id) values('66666666','2016-6-1','Happy Mother DAY 特別的愛給 特別的禮 6折promo code','0.6','4');
+insert into promo(pm_code,pm_expire,pm_tiltle,pm_discount,category_id) values('55555555','2016-5-1','限時101小時優惠全面5折起','0.5','5');
+insert into promo(pm_code,pm_expire,pm_tiltle,pm_discount,category_id) values('44444444','2016-4-1','網購年終促銷！買樣商品4折優惠','0.4','6');
 insert into giftcard(gc_number,gc_code,gc_amount,gc_available) values('94929433','9','9000','FALSE');
 insert into giftcard(gc_number,gc_code,gc_amount,gc_available) values('60169447','6','6000','TRUE');
 insert into giftcard(gc_number,gc_code,gc_amount,gc_available) values('48391165','4','4000','FALSE');
