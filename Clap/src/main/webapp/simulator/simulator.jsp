@@ -71,7 +71,15 @@
 							</div>
 						</div>
 						<div class="col-md-3">
-							<div id="people"></div>
+							<div id="people">
+<!-- 							<div id="drop" class="o_heart"></div> -->
+<!-- 							<div id="drop" class="Lung"></div> -->
+<!-- 							<div id="drop" class="Liver"></div> -->
+<!-- 							<div id="drop" class="Kidney"></div> -->
+<!-- 							<div id="drop" class="Stomach"></div> -->
+<!-- 							<div id="drop" class="Cornea"></div> -->
+<!-- 							<div id="drop" class="Intestine"></div> -->
+							</div>
 						</div>
 						<div class="col-md-7">
 							<h2>USER NAME</h2>
@@ -208,8 +216,8 @@
 																</c:if>
 																<div class="col-sm-2">
 																	<div class="col-item">
-																		<div class="photo">
-																			<img src="<c:url value="/resource/images/simulator/temp.png"/>">
+																		<div class="photo" id="haha">
+																			<img src="<c:url value="/resource/images/simulator/temp.png"/>" class="draggable" >
 																		</div>
 																	</div>
 																</div>
@@ -278,29 +286,44 @@
 				bg_img = "none";
 			}
 			
-// 			$("#s_wrap").fadeTo('slow', 0.1, function() {
-// 				$(this).css("background-image", "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)");
-// 			}).fadeTo('slow', 1);
 			 $('#fullPage').animate(
 					 {backgroundColor: 'rgb(0,0,0)'}, 600, function(){
 						 $('#s_wrap').css('backgroundImage', "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)");
 					 }).animate({backgroundColor: 'rgba(0,0,0,0.1)'}, 600);
-			
-//         $('#s_wrap').css('backgroundImage', function () {
-//             $('#fullPage').animate(
-//             		{backgroundColor: 'rgb(0,0,0)'}, 1000, function(){
-//             			setTimeout(function(){$('#fullPage').animate({backgroundColor: 'transparent'}, 1000);},3000);
-//             });
-//             return "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)";
-// 			 });
+
 		});
+		
 		$(document).ready(function(){
 			$(".carousel").carousel("pause");
-			
 			$("#sim_silder img").draggable();
 			$("#people").droppable();
-			
 		});
+		
+		
+		
+		
+		$(".draggable").draggable({ helper: 'clone',cursor: "crosshair", revert: "invalid",appendTo: 'body'});
+		
+		$("#people").droppable({ accept: ".draggable", 
+	           drop: function(event, ui) {
+	              $(this).removeClass("border").removeClass("over");
+	              var dropped = ui.draggable;
+	              var droppedOn = $(this);
+	              $(dropped).detach().css({top: 0,left: 0}).appendTo(droppedOn);
+	             
+	             $("#haha").html('<img src="'+$(dropped).attr("src")+'" class="disable_img" >');
+	              
+	          }
+	    });
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	</script>
 </html>
