@@ -23,8 +23,8 @@
 	<section id="top-wrap">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="container" id="s_wrap">
-				 <div id="fullPage">
+			<div id="s_wrap">
+				<div class="container" id="fullPage">
 					<div class="row">
 						<div class="col-md-2">
 							<div id="s_setting">
@@ -257,6 +257,7 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery-1.12.2.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/jquery.color-2.1.2.min.js"/>"></script>
 	<script type="text/javascript">
 		$(".factor_item").on("click", function() {
 			var src = $(this).find('img').attr('src');
@@ -279,21 +280,18 @@
 // 			$("#s_wrap").fadeTo('slow', 0.1, function() {
 // 				$(this).css("background-image", "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)");
 // 			}).fadeTo('slow', 1);
+			 $('#fullPage').animate(
+					 {backgroundColor: 'rgb(0,0,0)'}, 600, function(){
+						 $('#s_wrap').css('backgroundImage', "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)");
+					 }).animate({backgroundColor: 'rgba(0,0,0,0.1)'}, 600);
 			
-        $('#s_wrap').css('backgroundImage', function () {
-        	
-            $('#fullPage').animate({
-                backgroundColor: 'rgb(0,0,0)'
-            }, 1000, function () {
-                setTimeout(function () {
-                    $('#fullPage').animate({
-                        backgroundColor: 'transparent'
-                    }, 1000);
-                },3000);
-            });
-            
-            return "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)";
-			 });
+//         $('#s_wrap').css('backgroundImage', function () {
+//             $('#fullPage').animate(
+//             		{backgroundColor: 'rgb(0,0,0)'}, 1000, function(){
+//             			setTimeout(function(){$('#fullPage').animate({backgroundColor: 'transparent'}, 1000);},3000);
+//             });
+//             return "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)";
+// 			 });
 		});
 	</script>
 </html>
