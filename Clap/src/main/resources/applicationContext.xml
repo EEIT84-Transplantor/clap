@@ -259,4 +259,21 @@
 		<property name="returnService" ref="returnService" />
 	</bean>
 	
+	<!-- simulator-->
+	<bean id="bodySimulatorAction" class="simulator.controller.BodySimulatorAction">
+		
+	</bean>
+	
+	<bean id="showProductsAction" class="shopping.controller.ShowProductsAction">
+		<property name="productService" ref="productService" />
+		<property name="categoryService" ref="categoryService" />
+	</bean>
+	
+	<bean id="savePackAction" class="shopping.controller.SavePackAction">
+	</bean>
+	
+	<bean id="enviromentSimulatorAction" class="shopping.controller.EnviromentSimulatorAction">
+	</bean>
+	
+	
 </beans>
