@@ -31,7 +31,8 @@
 		<mapping class="hospital.model.HospitalVO" />
 		<mapping class="hospital.model.DoctorVO" />
 
-
+		<mapping class="simulator.model.EnvironmentVO" />
+		
 		<!-- <mapping resource="hbm/cartvo.hbm.xml"/> -->
 		<!-- <mapping resource="hbm/orderformvo.hbm.xml"/> -->
 		<!-- <mapping resource="hbm/orderdetailvo.hbm.xml"/> -->

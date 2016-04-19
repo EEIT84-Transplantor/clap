@@ -76,7 +76,7 @@ public class InventoryService {
 						newInOutLogVO.setInventory_id(inOutLogVO.getInventory_id());
 						newInOutLogVO.setProduct_id(inOutLogVO.getProduct_id());
 						newInOutLogVO.setInQuantity(0);
-						newInOutLogVO.setOrderdetail_id(inOutLogVO.getOrderdetail_id());
+//						newInOutLogVO.setOrderdetail_id(inOutLogVO.getOrderdetail_id());
 						newInOutLogVO.setOutQuantity(soldQuantity);
 						newInOutLogVO.setManufactureDate(inOutLogVO.getManufactureDate());
 						newInOutLogVO.setExpiryDate(inOutLogVO.getExpiryDate());
@@ -91,7 +91,7 @@ public class InventoryService {
 						newInOutLogVO.setInventory_id(inOutLogVO.getInventory_id());
 						newInOutLogVO.setProduct_id(inOutLogVO.getProduct_id());
 						newInOutLogVO.setInQuantity(0);
-						newInOutLogVO.setOrderdetail_id(inOutLogVO.getOrderdetail_id());
+//						newInOutLogVO.setOrderdetail_id(inOutLogVO.getOrderdetail_id());
 						newInOutLogVO.setOutQuantity(quantityList.get(pointer));
 						newInOutLogVO.setManufactureDate(inOutLogVO.getManufactureDate());
 						newInOutLogVO.setExpiryDate(inOutLogVO.getExpiryDate());
