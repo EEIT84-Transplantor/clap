@@ -19,7 +19,7 @@ public class OrderFormService {
 	}
 
 	// 新增訂單 回傳訂單編號
-	public Integer setOrderForm(Integer total, String mb_email) {
+	public Integer setOrderForm(Double total, String mb_email) {
 		OrderFormVO orderFormVO = new OrderFormVO();
 		orderFormVO.setMb_email(mb_email);
 		orderFormVO.setStatus((byte) 1);

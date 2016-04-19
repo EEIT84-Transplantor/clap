@@ -83,7 +83,7 @@ public class SetCreditCardAction extends ActionSupport implements ServletRequest
 		creditCardVO.setCc_goodthru(cc_goodthru);
 		creditCardVO.setCc_cvv(cc_cvv);
 
-//		String result = String.valueOf(creditCardService.isAvailable(creditCardVO));
+		creditCardService.setCard(creditCardVO);
 		inputStream = new ByteArrayInputStream("true".getBytes("UTF-8"));
 		return super.execute();
 	}

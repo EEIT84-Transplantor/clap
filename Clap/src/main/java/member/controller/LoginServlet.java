@@ -69,9 +69,8 @@ public class LoginServlet extends HttpServlet {
 		
 		if ((memberVO=memberService.login(email, password.getBytes()))!=null) {
 			//放會員資料及付款資料 進session
-			
-			System.out.println("memeberVO"+memberVO);
 			session = request.getSession();
+			System.out.println("初始化login");
 			session.setAttribute("login",memberVO);
 			String uri = (String) session.getAttribute("uri");
 			

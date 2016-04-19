@@ -23,7 +23,7 @@
 </head>
 <body>
 
-	<%
+	<!--%
 		ArrayList<CreditCardVO> creditCardList = new ArrayList<>();
 		CreditCardVO card1 = new CreditCardVO();
 		CreditCardPK card1PK = new CreditCardPK();
@@ -59,7 +59,7 @@
 		pageContext.setAttribute("creditCardList", creditCardList);
 		pageContext.setAttribute("total", "413413");
 		pageContext.setAttribute("login", memberVO);
-	%>
+	%-->
 
 
 	<header><jsp:include page="/header.jsp" /></header>
@@ -128,7 +128,9 @@
 
 		</div>
 		<div class="row">
-			<div class="col-md-6"></div>
+			<div class="col-md-6">
+				<span id="error"></span>
+			</div>
 			<div class="col-md-4">
 				<table class="htable" id="test">
 					<tr>
@@ -138,7 +140,7 @@
 				</table>
 			</div>
 			<div class="col-md-2">
-				<input type="button" class="btn btn-default btn-block" value="付款">
+				<input type="button" class="btn btn-default btn-block" value="付款" id="submit">
 			</div>
 		</div>
 
@@ -153,8 +155,7 @@
 		$(function() {
 
 			var setCreditCardAction = "<c:url value='/shopping/setCreditCardAction.action'/>";
-			var checkOutAction = "<c:url value='/shopping/checkOutAction.action'/>";
-			var cc_number;
+			var doCheckOutAction = "<c:url value='/shopping/doCheckOutAction.action'/>";
 
 			//listener 新增卡片表格
 			$("#addNewCardForm").click(function() {
@@ -164,18 +165,28 @@
 			//listener 新增卡片
 			$("#addCreditCard").click(function() {
 				ajax(setCreditCardAction, setNewCardVO());
-				console.log(132);
 			})
 
 			//listener 選擇付款信用卡
 			selectCardListener(".creditCard");
 
 			//listener 付款
-			ajax(checkOutAction, cc_number);
+			$("#submit").click(function() {
+				if ("cc_number" in window) {
+					$.ajax({
+						url : doCheckOutAction,
+						data : cc_number,
+						dataType : "json"
+					}).done(function(result) {
+						document.location.href="<c:url value='/shopping/doCheckOutAction.action'/>";
+					})
+				} else {
+					$("#error").text("請先選擇信用卡在結帳")
+				}
+			})
 
 			//測試新增卡片回傳的結果
 			$("#true").click(function() {
-				console.log("132");
 				$("#hidden").prev().clone().prependTo("#cardTable");
 				$(".number:first").text(creditCardVO.creditCardPK.cc_number);
 				$(".goodthru:first").text(creditCardVO.cc_goodthru);
@@ -196,6 +207,7 @@
 				$(".creditCard").css("border-style", "");
 				$(this).css("border-color", "red").css("border-style", "solid");
 				cc_number = $(this).contents().find("label.number").text();
+				console.log(cc_number);
 			});
 		}
 

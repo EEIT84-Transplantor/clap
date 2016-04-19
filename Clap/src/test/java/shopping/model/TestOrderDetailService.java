@@ -30,7 +30,7 @@ public class TestOrderDetailService extends TestCase {
 	private Object actual;
 
 	private Integer product_id;
-	private Integer cart_quantity;
+	private Integer ct_quantity;
 	private Integer doctor_id;
 	private Integer orderform_id=3;
 	private Timestamp orderdetail_surgerytime;

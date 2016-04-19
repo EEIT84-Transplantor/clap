@@ -43,7 +43,7 @@
 		orderDetailVO1.put("id", 111);
 		orderDetailVO1.put("orderFormVO", orderFormVO1);
 		orderDetailVO1.put("productVO", productVO1);
-		orderDetailVO1.put("cart_quantity", 1);
+		orderDetailVO1.put("ct_quantity", 1);
 		orderDetailVO1.put("doctorVO", doctorVO1);
 		orderDetailVO1.put("time", new Timestamp(new java.util.Date().getTime()));
 
@@ -63,7 +63,7 @@
 		orderDetailVO2.put("id", 222);
 		orderDetailVO2.put("orderFormVO", orderFormVO2);
 		orderDetailVO2.put("productVO", productVO2);
-		orderDetailVO2.put("cart_quantity", 2);
+		orderDetailVO2.put("ct_quantity", 2);
 		orderDetailVO2.put("doctorVO", doctorVO2);
 		orderDetailVO2.put("time", new Timestamp(new java.util.Date().getTime()));
 
@@ -98,7 +98,7 @@
 								<td>${orderVO.time}</td>
 								<td>${orderVO.doctorVO.name}</td>
 								<td>${orderVO.productVO.name}</td>
-								<td>${orderVO.cart_quantity}</td>
+								<td>${orderVO.ct_quantity}</td>
 								<td>${orderVO.productVO.price}</td>
 							</tr>
 						</c:forEach>
