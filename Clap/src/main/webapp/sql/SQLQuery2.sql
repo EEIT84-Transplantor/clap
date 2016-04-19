@@ -1301,7 +1301,6 @@ insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetai
 insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('97','23','1','8','2016-8-16 00:00:00');
 insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('99','55','1','72','2016-6-26 00:00:00');
 insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('99','72','1','39','2016-5-14 00:00:00');
->>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 insert into inventory(inventory_id,product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('1','11','23','2016-2-16 00:00:00','2016-5-16 00:00:00');
 insert into inventory(inventory_id,product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('2','12','52','2016-2-2 00:00:00','2016-5-2 00:00:00');
 insert into inventory(inventory_id,product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('3','13','79','2016-4-12 00:00:00','2016-7-12 00:00:00');
