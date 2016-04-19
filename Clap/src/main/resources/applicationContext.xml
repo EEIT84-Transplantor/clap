@@ -263,21 +263,31 @@
 	</bean>
 	
 	<!-- simulator-->
+	<bean id="environmentDAO" class="simulator.model.EnvironmentHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="simulatorService" class="simulator.model.SimulatorService">
+		<property name="environmentDAO" ref="environmentDAO"/>
+	</bean>
 	<bean id="bodySimulatorAction" class="simulator.controller.BodySimulatorAction">
 		<property name="productService" ref="productService" />
 		<property name="categoryService" ref="categoryService" />
+		<property name="simulatorService" ref="simulatorService" />
 	</bean>
 	
-	<bean id="showProductsAction" class="simulator.controller.ShowProductsAction">
-		<property name="productService" ref="productService" />
-		<property name="categoryService" ref="categoryService" />
-	</bean>
+<!-- 	<bean id="showProductsAction" class="simulator.controller.ShowProductsAction"> -->
+<!-- 		<property name="productService" ref="productService" /> -->
+<!-- 		<property name="categoryService" ref="categoryService" /> -->
+<!-- 		<property name="simulatorService" ref="simulatorService" /> -->
+<!-- 	</bean> -->
 	
 	<bean id="savePackAction" class="simulator.controller.SavePackAction">
 	</bean>
-	
-	<bean id="enviromentSimulatorAction" class="simulator.controller.EnviromentSimulatorAction">
+	<bean id="getPackAction" class="simulator.controller.GetSavedPack">
 	</bean>
+<!-- 	<bean id="enviromentSimulatorAction" class="simulator.controller.EnviromentSimulatorAction"> -->
+<!-- 		<property name="simulatorService" ref="simulatorService" /> -->
+<!-- 	</bean> -->
 	
 	
 </beans>
