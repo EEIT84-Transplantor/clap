@@ -21,9 +21,10 @@ public class ShowProductsAction extends ActionSupport implements ServletRequestA
 	private InputStream inputStream;
 	private HttpServletRequest request;
 	
-	public InputStream getInputStream() {
-		return inputStream;
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
 	}
+
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
 	}

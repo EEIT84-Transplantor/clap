@@ -264,7 +264,8 @@
 	
 	<!-- simulator-->
 	<bean id="bodySimulatorAction" class="simulator.controller.BodySimulatorAction">
-		
+		<property name="productService" ref="productService" />
+		<property name="categoryService" ref="categoryService" />
 	</bean>
 	
 	<bean id="showProductsAction" class="simulator.controller.ShowProductsAction">

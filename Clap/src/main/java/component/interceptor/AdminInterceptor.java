@@ -29,7 +29,7 @@ public class AdminInterceptor  extends AbstractInterceptor {
 			session.put("uri", request.getRequestURI());
 			System.out.println(request.getRequestURI());
 			return "login";
-		} else if(memberVO.getType()!=2){
+		} else if(memberVO.getType()==null||memberVO.getType()!=2){
 			
 			return "index";
 			

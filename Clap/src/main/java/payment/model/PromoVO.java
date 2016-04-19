@@ -18,14 +18,14 @@ public class PromoVO implements Serializable {
 	@Id
 	@Column(name="pm_code")
 	private String pm_code;
-	@Column(name="pd_category")
+	@Column(name="category_id")
 	private Integer pd_category;
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "category_id", insertable = false, updatable = false)
 	private CategoryVO categoryVO;
 	@Column(name="pm_expire")
 	private java.util.Date pm_expire;
-	@Column(name="pm_title")
+	@Column(name="pm_tiltle")
 	private String pm_title;
 	@Column(name="pm_discount")
 	private Double pm_discount;

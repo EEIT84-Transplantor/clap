@@ -14,7 +14,7 @@ public class PromoCode implements Serializable {
 	
 	@Column(name = "mb_email")
 	private String mb_email;
-	@Column(name = "pm_code")
+	@Column(name = "pc_code")
 	private String pm_code;
 
 	public String getMb_email() {

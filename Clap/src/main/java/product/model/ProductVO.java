@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "product")
@@ -35,23 +36,39 @@ public class ProductVO implements Serializable  {
 	@JoinColumn(name = "category_id", insertable = false, updatable = false)
 	private CategoryVO categoryVO;
 	@Column(name = "product_value1")
-	private Integer value1;
+	private Double value1;
 	@Column(name = "product_value2")
-	private Integer value2;
+	private Double value2;
+	@Transient
+	private Double finalValue1;
+	@Transient
+	private Double finalValue2;
 	
 	
-	
-	public Integer getValue1() {
+
+	public Double getValue1() {
 		return value1;
 	}
-	public void setValue1(Integer value1) {
+	public void setValue1(Double value1) {
 		this.value1 = value1;
 	}
-	public Integer getValue2() {
+	public Double getValue2() {
 		return value2;
 	}
-	public void setValue2(Integer value2) {
+	public void setValue2(Double value2) {
 		this.value2 = value2;
+	}
+	public Double getFinalValue1() {
+		return finalValue1;
+	}
+	public void setFinalValue1(Double finalValue1) {
+		this.finalValue1 = finalValue1;
+	}
+	public Double getFinalValue2() {
+		return finalValue2;
+	}
+	public void setFinalValue2(Double finalValue2) {
+		this.finalValue2 = finalValue2;
 	}
 	public Integer getId() {
 		return id;

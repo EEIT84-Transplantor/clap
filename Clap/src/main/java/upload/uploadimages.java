@@ -27,11 +27,14 @@ public class uploadimages extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 	
-		String filePath = "E:/upload";
+		String filePath =getServletContext().getRealPath("/")+"resource/images/products";
+		
 		File file = new File(filePath);
+		
 		if(!file.exists())
 
 		{
+			
 			file.mkdir();
 		}
 		for(File img:file.listFiles()){
@@ -46,24 +49,17 @@ public class uploadimages extends HttpServlet{
 				for(int i = 0;i<imgtemp.length;i++){
 					imgbyte[i] = imgtemp[i];
 				}
-				
 				ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 				ProductService productService = (ProductService)context.getBean("productService");
-				ProductVO productVO = productService.getProductById(Integer.parseInt(img.getName().split("\\.")[0]));
-				productService.setOrUpdateProduct(productVO, imgbyte);
+				int id = Integer.parseInt(img.getName().split("\\.")[0]);
 				
+				ProductVO productVO = productService.getProductById(id);
+				if(productVO!=null){
+				boolean a = productService.setOrUpdateProduct(productVO, imgbyte);
+				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-	
 		}
-		
-		
-		
-		
-		
-		
 	}
 }

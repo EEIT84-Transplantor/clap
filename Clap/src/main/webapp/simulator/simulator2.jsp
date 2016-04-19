@@ -29,29 +29,28 @@
 						<div class="col-md-2">
 							<div id="s_setting">
 								<div class="sub_setting">
-									<h3>Personal Info</h3>
+									<h3>persional setting</h3>
 									<div class="s_inpnut">
-										<label>Height: </label> <input type="number" min="50" max="300" name="height">
+										<label>height : </label> <input type="text" name="height">
 									</div>
 									<div class="s_inpnut">
-										<label>Weight:</label><input type="number" min="10" max="300" name="weight">
+										<label>weight : </label> <input type="text" name="weight">
 									</div>
 								</div>
 								<div class="sub_setting">
-
-									<h3>Daily Behaviors</h3>
+									<h3>living habit</h3>
 									<div class="setting_item">
-										<img src="<c:url value="/resource/images/simulator/smoke.png"/>"><div id="setting1"></div>
+										<img src="<c:url value="/resource/images/simulator/smoke.png"/>"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
 									</div>
 									<div class="setting_item">
-										<img src="<c:url value="/resource/images/simulator/wine.png"/>"><div id="setting2"></div>
+										<img src="<c:url value="/resource/images/simulator/wine.png"/>"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
 									</div>
 									<div class="setting_item">
-										<img src="<c:url value="/resource/images/simulator/sport.png"/>"><div id="setting3"></div>
+										<img src="<c:url value="/resource/images/simulator/sport.png"/>"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
 									</div>
 								</div>
 								<div class="sub_setting">
-									<h3>Environmental Setting</h3>
+									<h3>envirnmental factor</h3>
 									<div class="factor_item">
 										<img src="<c:url value="/resource/images/simulator/factor_1.png"/>">
 									</div>
@@ -66,27 +65,19 @@
 									</div>
 									<div class="clear"></div>
 								</div>
-								<button class="reset_btn s_btn2 tosave">SAVE</button>
-								<button class="reset_btn s_btn2 toreset">RESET</button>
-								<div class="sub_setting">To add</div>
+								<div class="reset_btn s_btn">
+									<a>RESET</a>
+								</div>
 							</div>
 						</div>
 						<div class="col-md-3">
-							<div id="people">
-<!-- 							<div id="drop" class="o_heart"></div> -->
-<!-- 							<div id="drop" class="Lung"></div> -->
-<!-- 							<div id="drop" class="Liver"></div> -->
-<!-- 							<div id="drop" class="Kidney"></div> -->
-<!-- 							<div id="drop" class="Stomach"></div> -->
-<!-- 							<div id="drop" class="Cornea"></div> -->
-<!-- 							<div id="drop" class="Intestine"></div> -->
-							</div>
+							<div id="people"></div>
 						</div>
 						<div class="col-md-7">
 							<h2>USER NAME</h2>
-							<p>Description Description Description Description Description </p>
+							<p>texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</p>
 							<div class="row" id="s_graphic">
-								<div class="col-md-6 col-sm-12">
+								<div class="col-md-6">
 									<img src="<c:url value="/resource/images/simulator/o_1.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
@@ -99,59 +90,59 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6 col-sm-12">
+								<div class="col-md-6">
 									<img src="<c:url value="/resource/images/simulator/o_2.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
+											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #409371; width: 200px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
+											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #005D61; width: 250px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6 col-sm-12">
+								<div class="col-md-6">
 									<img src="<c:url value="/resource/images/simulator/o_3.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
+											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #F2EA77; width: 200px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
+											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #EBBE6B; width: 250px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6 col-sm-12">
+								<div class="col-md-6">
 									<img src="<c:url value="/resource/images/simulator/o_4.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
+											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #829F2A; width: 200px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
+											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #B2C301; width: 250px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6 col-sm-12">
+								<div class="col-md-6">
 									<img src="<c:url value="/resource/images/simulator/o_5.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
+											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #C66D16; width: 200px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
+											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #E05A41; width: 250px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6 col-sm-12">
+								<div class="col-md-6">
 									<img src="<c:url value="/resource/images/simulator/o_6.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
@@ -164,15 +155,15 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6 col-sm-12">
+								<div class="col-md-6">
 									<img src="<c:url value="/resource/images/simulator/o_7.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
+											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #9A71AF; width: 200px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
+											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #9B4495; width: 250px;"
 												class="o_new"></span><strong>80%</strong>
 										</div>
 									</div>
@@ -217,8 +208,8 @@
 																</c:if>
 																<div class="col-sm-2">
 																	<div class="col-item">
-																		<div class="photo" id="haha">
-																			<img src="<c:url value="/resource/images/simulator/temp.png"/>" class="draggable" >
+																		<div class="photo">
+																			<img src="<c:url value="/resource/images/simulator/temp.png"/>">
 																		</div>
 																	</div>
 																</div>
@@ -261,6 +252,12 @@
 		</div>
 		</div>
 	</section>
+	<div id="wrapper">
+	
+
+<div id="origin" class="fbox">
+</div>
+</div>
 	<footer style="margin-top: -15px;"><jsp:include page="/footer.jsp" /></footer>
 	<!-- 載入js -->
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery-1.12.2.min.js"/>"></script>
@@ -269,6 +266,25 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery.color-2.1.2.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery-ui.min.js"/>"></script>
 	<script type="text/javascript">
+	var heartBeat, heartBeat2;	
+	$("#sim_silder img").on("mouseover", function(event) {
+			var dragSrc = $(this).attr("src");
+			$("#origin").html("<div id='abc'><img class='img-responsive draggable'></div>");
+			$("#abc img").attr("src", dragSrc).css("position","absolute").css("top", $(this).offset().top)
+			.css("left", $(this).offset().left).show().draggable({ cursor: "crosshair", revert: "invalid"})
+			.on("mouseout", function(){
+				$("#abc img").fadeOut();
+			});
+			
+			setTimeout(function(){ heartBeat = setInterval(function(){ $("#abc img").fadeOut(); }, 1000);	}, 500);
+			heartBeat2 = setInterval(function(){ $("#abc img").show(); }, 1000);			
+			
+		}).on("mouseout", function(){
+			$("#abc img").fadeOut();
+			clearInterval(heartBeat);
+			clearInterval(heartBeat2);		
+		});
+	
 		$(".factor_item").on("click", function() {
 			var src = $(this).find('img').attr('src');
 			var bg_img;
@@ -287,162 +303,208 @@
 				bg_img = "none";
 			}
 			
+// 			$("#s_wrap").fadeTo('slow', 0.1, function() {
+// 				$(this).css("background-image", "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)");
+// 			}).fadeTo('slow', 1);
 			 $('#fullPage').animate(
 					 {backgroundColor: 'rgb(0,0,0)'}, 600, function(){
 						 $('#s_wrap').css('backgroundImage', "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)");
 					 }).animate({backgroundColor: 'rgba(0,0,0,0.1)'}, 600);
-
+			
+//         $('#s_wrap').css('backgroundImage', function () {
+//             $('#fullPage').animate(
+//             		{backgroundColor: 'rgb(0,0,0)'}, 1000, function(){
+//             			setTimeout(function(){$('#fullPage').animate({backgroundColor: 'transparent'}, 1000);},3000);
+//             });
+//             return "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)";
+// 			 });
 		});
-		
 		$(document).ready(function(){
 			$(".carousel").carousel("pause");
-			$("#sim_silder img").draggable();
-			$("#people").droppable();
-			$(".draggable").draggable({ helper: 'clone',cursor: "crosshair", revert: "invalid",appendTo: 'body'});
 			
-			$("#people").droppable({ accept: ".draggable", 
-		           drop: function(event, ui) {
-		              $(this).removeClass("border").removeClass("over");
-		              var dropped = ui.draggable;
-		              var droppedOn = $(this);
-		              $(dropped).detach().css({top: 0,left: 0}).appendTo(droppedOn);
-		             
-		             $("#haha").html('<img src="'+$(dropped).attr("src")+'" class="disable_img" >');
-		              
-		          }
-		    });
-			
-			//setting of smoking, alcohol, and sport
-			var clicksetting1 = true, clicksetting2 = true, clicksetting3 = true; 
-			$("#setting1").on("mousemove", function(event){
-				var selectedBar = $(this);
-				if(clicksetting1){
-				drawBar(selectedBar);
-				}
-			}).on("click", function(){
-				clicksetting1 = false;
+			var clickFlag = false;
+			$("span", "div.setting_item").on("mouseover", function(){
+				var selectedSpan = $(this);
+				fillBar(selectedSpan);
+
 			}).on("mouseout", function(){
-				var selectedBar = $(this);
-				if(clicksetting1){
-				cleanBar(selectedBar);
+				if(clickFlag){}else{
+				var selectedSpan = $(this);
+				removeBar(selectedSpan);
 				}
+				clickFlag = false;
+			}).on("click", function(){
+				var selectedSpan = $(this);
+				removeBar(selectedSpan);
+				fillBar(selectedSpan);
+				clickFlag = true;
 			});
 			
-			$("#setting2").on("mousemove", function(){
-				var selectedBar = $(this);
-				if(clicksetting2){
-				drawBar(selectedBar);
-				}
-			}).on("click", function(){
-				clicksetting2 = false;
-			}).on("mouseout", function(){
-				var selectedBar = $(this);
-				if(clicksetting2){
-				cleanBar(selectedBar);
-				}
-			});
-			
-			$("#setting3").on("mousemove", function(){
-				var selectedBar = $(this);
-				if(clicksetting3){
-				drawBar(selectedBar);
-				}
-			}).on("click", function(){
-				clicksetting3 = false;
-			}).on("mouseout", function(){
-				var selectedBar = $(this);
-				if(clicksetting3){
-				cleanBar(selectedBar);
-				}
-			});
-			
-			function drawBar(selectedBar){
-				var offset = selectedBar.offset();
-				var width = selectedBar.width();
-				var percent = (event.pageX - offset.left) / width;
-				percent = 100 * percent;
-				selectedBar.css({
-				"background": "-webkit-linear-gradient(left, #C13F2E "+ percent +"%, rgba(0,0,0,0) "+ percent +"%)",
-			    "background":  "  -moz-linear-gradient(left, #C13F2E "+ percent +"%, rgba(0,0,0,0) "+ percent +"%)",
-			    "background":  "   -ms-linear-gradient(left, #C13F2E "+ percent +"%,rgba(0,0,0,0) "+ percent +"%)",
-			    "background":  "    -o-linear-gradient(left, #C13F2E "+ percent +"%,rgba(0,0,0,0) "+ percent +"%)",
-			    "background":   "      linear-gradient(to right, #C13F2E "+ percent +"%,rgba(0,0,0,0) "+ percent +"%)"
-				});
+			function removeBar(selectedSpan){
+				var indexBar = selectedSpan.index();
+				for(var index = indexBar;index>0; index--){
+		   			selectedSpan.parent().children().eq(index).css({
+					"border":"2px #3F4849 solid",
+					"background":"rgba(0,0,0,0)"
+				    });
+		   		}
 			}
-			function cleanBar(selectedBar){
-				selectedBar.css({
-				"background": "-webkit-linear-gradient(left, #C13F2E 0%, rgba(0,0,0,0) 0%)",
-			    "background":  "  -moz-linear-gradient(left, #C13F2E 0%, rgba(0,0,0,0) 0%)",
-			    "background":  "   -ms-linear-gradient(left, #C13F2E 0%, rgba(0,0,0,0) 0%)",
-			    "background":  "    -o-linear-gradient(left, #C13F2E 0%, rgba(0,0,0,0) 0%)",
-			    "background":   "      linear-gradient(to right, #C13F2E 0%, rgba(0,0,0,0) 0%)"
-				});
+			function fillBar(selectedSpan){
+				var indexBar = selectedSpan.index();
+			   	for(var index = 1;index<=indexBar; index++){
+			   		selectedSpan.parent().children().eq(index).css({
+						"border":"2px #C13F2E solid",
+						"background":"#C13F2E"
+					    });;
+			   	}
 			}
-			//set reset
-			$('button[class="reset_btn s_btn2 toreset"').on("click",function(){
+			// reset/save setting
+			var fixedTop = 0, fixedTop2 = 0, fixedLeft=0, fixedLeft2=0;
+			$('div[class="reset_btn s_btn"').eq(0).on("click",function(){
 				cleanBar($("#setting1"));
 				cleanBar($("#setting2"));
 				cleanBar($("#setting3"));
 				clicksetting1 = true, clicksetting2 = true, clicksetting3 = true; 				
+			}).on("mousedown",function(){
+				var top = fixedTop + 3;
+				var left = fixedLeft;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"left":left+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});
 			})
-			//set save			
-			$('button[class="reset_btn s_btn2 tosave"').on("click",function(){
-				var factors = new Object();
-				var tempAttr = $("#setting1").css("background");
-				var index = tempAttr.indexOf('%)',0);
-				tempAttr = tempAttr.substring(0, index);
-				tempAttr = tempAttr.substring(tempAttr.lastIndexOf(')')+1);
-				var temp = parseInt(tempAttr); 
-				if(index == -1){
-				factors.smoking = 0;
-				}else{
-				factors.smoking = temp;
-				}
-				var tempAttr = $("#setting2").css("background");
-				var index = tempAttr.indexOf('%)',0);
-				tempAttr = tempAttr.substring(0, index);
-				tempAttr = tempAttr.substring(tempAttr.lastIndexOf(')')+1);
-				var temp = parseInt(tempAttr); 
-				if(index == -1){
-				factors.drinking = 0;
-				}else{
-				factors.drinking = temp;
-				}
-				var tempAttr = $("#setting3").css("background");
-				var index = tempAttr.indexOf('%)',0);
-				tempAttr = tempAttr.substring(0, index);
-				tempAttr = tempAttr.substring(tempAttr.lastIndexOf(')')+1);
-				var temp = parseInt(tempAttr); 
-				if(index == -1){
-				factors.exercising = 0;
-				}else{
-				factors.exercising = temp;
-				}
-				var weight = $("input[name='weight']").val();
-				var height = $("input[name='height']").val();
-				weight = (weight == "")?60:(weight > 300)?300:(weight < 10)?10:weight;
-				height = (height == "")?175:(height > 300)?300:(height < 50)?50:height;
-				$("input[name='height']").val(height);
-				$("input[name='weight']").val(weight);
-				factors.weight = weight;
-				factors.height = height;	
+			.on("mouseup",function(){
+				var top = fixedTop + 1;
+				var left = fixedLeft;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"left":left+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});
+			}).on("mouseover", function(){
+				//fix the next element position
+				var nextElement = $(this).next();
+				var offset2 = nextElement.position();
+				fixedTop2 = offset2.top;
+				fixedLeft2 = offset2.left;
+				var top2 = fixedTop2;
+				var left2 = fixedLeft2;
+				var width2 = nextElement.width();
+				var height2 = nextElement.height();
+				nextElement.css({"position":"absolute",
+					"top":top2+"px",
+					"left":left2+"px",
+					"width":width2+"px",
+					"height":height2+"px"
+				});
+				//fix first element position
+				var offset = $(this).position();
+				fixedTop = offset.top;
+				fixedLeft = offset.left;
+				var top = fixedTop + 1;
+				var left = fixedLeft;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"left":left+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});		
+			}).on("mouseout", function(){
+				var top = fixedTop;
+				var left = fixedLeft;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"left":left+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});
+			});
+			$('div[class="reset_btn s_btn"').eq(1).on("click",function(){
+				cleanBar($("#setting1"));
+				cleanBar($("#setting2"));
+				cleanBar($("#setting3"));
+				clicksetting1 = true, clicksetting2 = true, clicksetting3 = true; 				
+			}).on("mousedown",function(){
+				var top = fixedTop2 + 3;
+				var left = fixedLeft2;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"left":left+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});
 			})
+			.on("mouseup",function(){
+				var top = fixedTop2 + 1;
+				var left = fixedLeft2;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"left":left+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});
+			}).on("mouseover", function(){
 			
+				var offset = $(this).position();
+				fixedTop2 = offset.top;
+				fixedLeft2 = offset.left;
+				var top = fixedTop2 + 1;
+				var left = fixedLeft2;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"left":left+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});
+			}).on("mouseout", function(){
+				var top = fixedTop2;
+				var left = fixedLeft2;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"left":left+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});
+			});
 		});
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		var x , y;
+		$("#people").droppable({ accept: ".draggable", 
+		            drop: function(event, ui) {
+		            console.log("drop");
+		            $(this).removeClass("border").removeClass("over");
+		            var dropped = ui.draggable;
+		            var droppedOn = $(this);
+		            $(dropped).detach().css({top:'25%',left: '48%'}).appendTo(droppedOn);      
+		            }, 
+		             over: function(event, elem) {
+		                  $(this).addClass("over");
+		                  console.log("over");
+		            }
+		                ,
+		            out: function(event, elem) {
+		            $(this).removeClass("over");
+		            }
+		            });
+		$("#drop").sortable();
 		
 	</script>
 </html>
