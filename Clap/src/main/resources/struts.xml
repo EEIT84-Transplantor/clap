@@ -239,7 +239,7 @@
 			<result name="success">/shopping/ordertdetail.jsp</result>
 		</action>
 		<action name="checkOutAction" class="shopping.controller.CheckOutAction">
-			<result name="success">/shopping/checkout.jsp.jsp</result>
+			<result name="success">/shopping/checkout.jsp</result>
 		</action>
 		<action name="doCheckOutAction" class="shopping.controller.DoCheckOutAction">
 			<result name="input">/shopping/cartAction.action</result>

@@ -30,8 +30,8 @@ public class OrderDetailVO implements Serializable {
 	private Integer id;
 	@Column(name = "product_id")
 	private Integer product_id;
-	@Column(name = "cart_quantity")
-	private Integer cart_quantity;
+	@Column(name = "ct_quantity")
+	private Integer ct_quantity;
 	@Column(name = "doctor_id")
 	private Integer doctor_id;
 	@Column(name = "orderform_id")
@@ -74,11 +74,11 @@ public class OrderDetailVO implements Serializable {
 	}
 
 	public Integer getCart_quantity() {
-		return cart_quantity;
+		return ct_quantity;
 	}
 
-	public void setCart_quantity(Integer cart_quantity) {
-		this.cart_quantity = cart_quantity;
+	public void setCart_quantity(Integer ct_quantity) {
+		this.ct_quantity = ct_quantity;
 	}
 
 	public Integer getDoctor_id() {
