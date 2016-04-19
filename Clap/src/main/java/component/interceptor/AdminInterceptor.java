@@ -24,12 +24,12 @@ public class AdminInterceptor  extends AbstractInterceptor {
 		MemberVO memberVO = (MemberVO) session.get("login");
 		System.out.println(memberVO);
 		System.out.println("AdminInterceptor");
-		if (memberVO==null||memberVO.getType()==null) {
+		if (memberVO==null) {
 			//沒找到 儲存上一個頁面  導入login.jsp
 			session.put("uri", request.getRequestURI());
 			System.out.println(request.getRequestURI());
 			return "login";
-		} else if(memberVO.getType()!=2){
+		} else if(memberVO.getType()==null||memberVO.getType()!=2){
 			
 			return "index";
 			
