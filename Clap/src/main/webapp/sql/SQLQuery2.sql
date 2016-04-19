@@ -254,6 +254,26 @@ inoutlog_destination nvarchar(100) ,
 inoutlog_date datetime ,
 PRIMARY KEY(inoutlog_id))
 
+
+create table environment(
+env_id int,
+env_condition varchar(50),
+heart float,
+lung float,	
+liver float,	
+kidney float,	
+stomach	 float, 
+intestine float,	
+blood float
+)
+insert into environment(env_id,	env_condition,heart,lung,liver,kidney,stomach,intestine,blood)values(1	,	'smoking',	0.7	,	0.7	,	0.7	,	0.7	,	0.7	,	0.6	,	0.7)
+insert into environment(env_id,	env_condition,heart,lung,liver,kidney,stomach,intestine,blood)values(2	,	'bmi'	,	0.8	,	0.8	,	0.7	,	0.6	,	0.8	,	0.7	,	0.8)
+insert into environment(env_id,	env_condition,heart,lung,liver,kidney,stomach,intestine,blood)values(3	,	'drinking'	,	0.9	,	0.9	,	0.8	,	0.7	,	0.7	,	0.8	,	1)
+insert into environment(env_id,	env_condition,heart,lung,liver,kidney,stomach,intestine,blood)values(4	,	'exercising'	,	0.8	,	0.8	,	0.8	,	0.88	,	0.7	,	0.87	,	0.9)
+insert into environment(env_id,	env_condition,heart,lung,liver,kidney,stomach,intestine,blood)values(5	,	'industrial'	,	0.93	,	0.8	,	0.8	,	0.8	,	0.8	,	0.8	,	0.8)
+insert into environment(env_id,	env_condition,heart,lung,liver,kidney,stomach,intestine,blood)values(6	,	'forest'	,	0.99	,	0.99	,	0.99	,	0.99	,	0.99	,	0.99	,	0.99)
+insert into environment(env_id,	env_condition,heart,lung,liver,kidney,stomach,intestine,blood)values(7	,	'city'	,	0.8	,	0.7	,	0.8	,	0.8	,	0.8	,	0.8	,	0.8)
+
 insert into hospital(hospital_id,hospital_name,hospital_address) values('1','��߶����j�Ǫ��]��|','�y�����y�����s����152��');
 insert into hospital(hospital_id,hospital_name,hospital_address) values('2','�]�Ϊk�H�ѥD���F��|ù�F�t����|','�y����ù�F�����n��160��');
 insert into hospital(hospital_id,hospital_name,hospital_address) values('3','�]�Ϊk�Hù�\����|ù�F�շR��|','�y����ù�F��n����81�B83���B���e�n��61�B63��');
