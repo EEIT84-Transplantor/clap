@@ -29,16 +29,16 @@
 						<div class="col-md-2">
 							<div id="s_setting">
 								<div class="sub_setting">
-									<h3>persional setting</h3>
+									<h3>Personal Info</h3>
 									<div class="s_inpnut">
-										<label>height : </label> <input type="text" name="height">
+										<label>Height: </label> <input type="number" min="50" max="300" name="height">
 									</div>
 									<div class="s_inpnut">
-										<label>weight : </label> <input type="text" name="weight">
+										<label>Weight:</label><input type="number" min="10" max="300" name="weight">
 									</div>
 								</div>
 								<div class="sub_setting">
-									<h3>living habit</h3>
+									<h3>Daily Behaviors</h3>
 									<div class="setting_item">
 										<img src="<c:url value="/resource/images/simulator/smoke.png"/>"><div id="setting1"></div>
 									</div>
@@ -50,7 +50,7 @@
 									</div>
 								</div>
 								<div class="sub_setting">
-									<h3>envirnmental factor</h3>
+									<h3>Environmental Setting</h3>
 									<div class="factor_item">
 										<img src="<c:url value="/resource/images/simulator/factor_1.png"/>">
 									</div>
@@ -65,9 +65,9 @@
 									</div>
 									<div class="clear"></div>
 								</div>
-								<div class="reset_btn s_btn">
-									<a>RESET</a>
-								</div>
+								<button class="reset_btn s_btn2 tosave">SAVE</button>
+								<button class="reset_btn s_btn2 toreset">RESET</button>
+								<div class="sub_setting">To add</div>
 							</div>
 						</div>
 						<div class="col-md-3">
@@ -377,54 +377,55 @@
 			    "background":   "      linear-gradient(to right, #C13F2E 0%, rgba(0,0,0,0) 0%)"
 				});
 			}
-			// reset setting
-			var fixedTop = 0;
-			$('div[class="reset_btn s_btn"').on("click",function(){
+			//set reset
+			$('button[class="reset_btn s_btn2 toreset"').on("click",function(){
 				cleanBar($("#setting1"));
 				cleanBar($("#setting2"));
 				cleanBar($("#setting3"));
 				clicksetting1 = true, clicksetting2 = true, clicksetting3 = true; 				
-			}).on("mousedown",function(){
-				var top = fixedTop + 3;
-				var width = $(this).width();
-				var height = $(this).height();
-				$(this).css({"position":"absolute",
-					"top":top+"px",
-					"width":width+"px",
-					"height":height+"px"
-				});
 			})
-			.on("mouseup",function(){
-				var top = fixedTop + 1;
-				var width = $(this).width();
-				var height = $(this).height();
-				$(this).css({"position":"absolute",
-					"top":top+"px",
-					"width":width+"px",
-					"height":height+"px"
-				});
-			}).on("mouseover", function(){
-			
-				var offset = $(this).position();
-				fixedTop = offset.top;
-				var top = fixedTop + 1;
-				var width = $(this).width();
-				var height = $(this).height();
-				$(this).css({"position":"absolute",
-					"top":top+"px",
-					"width":width+"px",
-					"height":height+"px"
-				});
-			}).on("mouseout", function(){
-				var top = fixedTop;
-				var width = $(this).width();
-				var height = $(this).height();
-				$(this).css({"position":"absolute",
-					"top":top+"px",
-					"width":width+"px",
-					"height":height+"px"
-				});
-			});
+			//set save			
+			$('button[class="reset_btn s_btn2 tosave"').on("click",function(){
+				var factors = new Object();
+				var tempAttr = $("#setting1").css("background");
+				var index = tempAttr.indexOf('%)',0);
+				tempAttr = tempAttr.substring(0, index);
+				tempAttr = tempAttr.substring(tempAttr.lastIndexOf(')')+1);
+				var temp = parseInt(tempAttr); 
+				if(index == -1){
+				factors.smoking = 0;
+				}else{
+				factors.smoking = temp;
+				}
+				var tempAttr = $("#setting2").css("background");
+				var index = tempAttr.indexOf('%)',0);
+				tempAttr = tempAttr.substring(0, index);
+				tempAttr = tempAttr.substring(tempAttr.lastIndexOf(')')+1);
+				var temp = parseInt(tempAttr); 
+				if(index == -1){
+				factors.drinking = 0;
+				}else{
+				factors.drinking = temp;
+				}
+				var tempAttr = $("#setting3").css("background");
+				var index = tempAttr.indexOf('%)',0);
+				tempAttr = tempAttr.substring(0, index);
+				tempAttr = tempAttr.substring(tempAttr.lastIndexOf(')')+1);
+				var temp = parseInt(tempAttr); 
+				if(index == -1){
+				factors.exercising = 0;
+				}else{
+				factors.exercising = temp;
+				}
+				var weight = $("input[name='weight']").val();
+				var height = $("input[name='height']").val();
+				weight = (weight == "")?60:(weight > 300)?300:(weight < 10)?10:weight;
+				height = (height == "")?175:(height > 300)?300:(height < 50)?50:height;
+				$("input[name='height']").val(height);
+				$("input[name='weight']").val(weight);
+				factors.weight = weight;
+				factors.height = height;	
+			})
 			
 		});
 		
