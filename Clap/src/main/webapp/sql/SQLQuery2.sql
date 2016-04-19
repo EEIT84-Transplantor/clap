@@ -145,8 +145,8 @@ product_description nvarchar(1000) ,
 product_rating tinyint ,
 product_discount float ,
 category_id int REFERENCES category(category_id),
-product_value1 int ,
-product_value2 int ,
+product_value1 float ,
+product_value2 float ,
 PRIMARY KEY(product_id))
 
 
@@ -358,9 +358,9 @@ insert into hospital(hospital_id,hospital_name,hospital_address) values('97','馬
 insert into hospital(hospital_id,hospital_name,hospital_address) values('98','國軍花蓮總醫院附設民眾診療服務處','花蓮縣新城鄉嘉里路163號');
 insert into hospital(hospital_id,hospital_name,hospital_address) values('99','佛教慈濟醫療財團法人花蓮慈濟醫院','花蓮縣花蓮市中央路三段707號');
 insert into hospital(hospital_id,hospital_name,hospital_address) values('100','臺灣基督教門諾會醫療財團法人門諾醫院','花蓮縣花蓮市民權路44號');
-insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number,mb_type) values('caca@gmail.com',0x65,'bennett108','0948974024',null,null,'FALSE','FALSE',null,null,null,null,2);
-insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number,mb_type) values('andrew@gmail.com',0x65,'berg110','0963048960',null,null,'FALSE','FALSE','2017-7-24T00:00:00','1115',null,null,2);
-insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('berg110@gmail.com',0x65,'berg110','0920210716',null,null,'FALSE','FALSE',null,'18036',null,null);
+insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('bennett108@gmail.com',0x65,'bennett108','0948974024',null,null,'FALSE','FALSE',null,null,null,null);
+insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('berg110@gmail.com',0x65,'berg110','0963048960',null,null,'FALSE','FALSE','2017-7-24T00:00:00','1115',null,null);
+insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('lee@gmail.com',0x65,'lee','0920210716',null,null,'FALSE','FALSE',null,'18036',null,null);
 insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('bert115@gmail.com',0x65,'bert115','0930712587',null,null,'FALSE','TRUE',null,'9474',null,'5084985331731357');
 insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('blithe132@gmail.com',0x65,'blithe132','0987056339',null,null,'FALSE','FALSE',null,null,null,null);
 insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('bowen138@gmail.com',0x65,'bowen138','0945220919',null,null,'TRUE','TRUE',null,null,96,'3909354589276890');
@@ -457,9 +457,7 @@ insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo
 insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('willie860@gmail.com',0x65,'willie860','0940959134',null,null,'TRUE','FALSE',null,'12168',78,'3750401746364973');
 insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('wordsworth866@gmail.com',0x65,'wordsworth866','0957471702',null,null,'FALSE','FALSE',null,null,null,null);
 insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('zebulon883@gmail.com',0x65,'zebulon883','0917724645',null,null,'FALSE','FALSE',null,null,null,null);
-insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('pabla672@gmail.com',0x65,'pabla672','0985852981',null,null,'FALSE','FALSE',null,null,null,null);
-insert into message(msg_id ,mb_email,msg_sender,msg_subject,msg_content,msg_date,msg_deleted) values(1,'patrick665@gmail.com','admin@gmail.com','[公告] 2016/05/05 凌晨 4:00 ~ 6:00 停機公告','親愛的會員大家好：為了提供給所有會員更優質的網路服務品質,我們將於 2016/05/05 進行網路設備的更新與升級為力求快速地完成這個動作，屆時全站會進入停機狀態，執行完畢且測試無誤後會盡速開放服務，感謝各位會員的支持與配合！','2016-4-4',0);
-insert into message(msg_id ,mb_email,msg_sender,msg_subject,msg_content,msg_date,msg_deleted) values(2,'jay433@gmail.com','admin@gmail.com','[公告] 2016/05/05 凌晨 4:00 ~ 6:00 停機公告','親愛的會員大家好：為了提供給所有會員更優質的網路服務品質,我們將於 2016/05/05 進行網路設備的更新與升級為力求快速地完成這個動作，屆時全站會進入停機狀態，執行完畢且測試無誤後會盡速開放服務，感謝各位會員的支持與配合！','2016-4-4',0);
+insert into member(mb_email,mb_password,mb_name,mb_phone,mb_contenttype,mb_photo,mb_oneclick,mb_autorenew,mb_expire,mb_amount,hospital_id,cc_number) values('pabla672@gmail.com',0x65,'pabla672','0985852981',null,null,'FALSE','FALSE',null,null,null,null);insert into message(msg_id ,mb_email,msg_sender,msg_subject,msg_content,msg_date,msg_deleted) values(2,'jay433@gmail.com','admin@gmail.com','[公告] 2016/05/05 凌晨 4:00 ~ 6:00 停機公告','親愛的會員大家好：為了提供給所有會員更優質的網路服務品質,我們將於 2016/05/05 進行網路設備的更新與升級為力求快速地完成這個動作，屆時全站會進入停機狀態，執行完畢且測試無誤後會盡速開放服務，感謝各位會員的支持與配合！','2016-4-4',0);
 insert into message(msg_id ,mb_email,msg_sender,msg_subject,msg_content,msg_date,msg_deleted) values(3,'timothy798@gmail.com','admin@gmail.com','[公告] 2016/05/05 凌晨 4:00 ~ 6:00 停機公告','親愛的會員大家好：為了提供給所有會員更優質的網路服務品質,我們將於 2016/05/05 進行網路設備的更新與升級為力求快速地完成這個動作，屆時全站會進入停機狀態，執行完畢且測試無誤後會盡速開放服務，感謝各位會員的支持與配合！','2016-4-4',0);
 insert into message(msg_id ,mb_email,msg_sender,msg_subject,msg_content,msg_date,msg_deleted) values(4,'sigrid761@gmail.com','admin@gmail.com','[公告] 2016/05/05 凌晨 4:00 ~ 6:00 停機公告','親愛的會員大家好：為了提供給所有會員更優質的網路服務品質,我們將於 2016/05/05 進行網路設備的更新與升級為力求快速地完成這個動作，屆時全站會進入停機狀態，執行完畢且測試無誤後會盡速開放服務，感謝各位會員的支持與配合！','2016-4-4',0);
 insert into message(msg_id ,mb_email,msg_sender,msg_subject,msg_content,msg_date,msg_deleted) values(5,'darnell227@gmail.com','admin@gmail.com','[公告] 2016/05/05 凌晨 4:00 ~ 6:00 停機公告','親愛的會員大家好：為了提供給所有會員更優質的網路服務品質,我們將於 2016/05/05 進行網路設備的更新與升級為力求快速地完成這個動作，屆時全站會進入停機狀態，執行完畢且測試無誤後會盡速開放服務，感謝各位會員的支持與配合！','2016-4-4',0);
@@ -700,9 +698,9 @@ insert into promocode(mb_email,pc_code) values('drew257@gmail.com','88888888');
 insert into promocode(mb_email,pc_code) values('webster853@gmail.com','77777777');
 insert into promocode(mb_email,pc_code) values('berg110@gmail.com','66666666');
 insert into promocode(mb_email,pc_code) values('mandy544@gmail.com','55555555');
-insert into promocode(mb_email,pc_code) values('elroy288@gmail.com','44444444');
+insert into promocode(mb_email,pc_code) values('elroy288@gmail.com','55555555');
 insert into promocode(mb_email,pc_code) values('bennett108@gmail.com','99999999');
-insert into promocode(mb_email,pc_code) values('zebulon883@gmail.com','88888888');
+insert into promocode(mb_email,pc_code) values('timothy798@gmail.com','88888888');
 insert into promocode(mb_email,pc_code) values('kerwin484@gmail.com','77777777');
 insert into promocode(mb_email,pc_code) values('lauren498@gmail.com','66666666');
 insert into promocode(mb_email,pc_code) values('otto655@gmail.com','55555555');
@@ -712,7 +710,7 @@ insert into promocode(mb_email,pc_code) values('george343@gmail.com','88888888')
 insert into promocode(mb_email,pc_code) values('gilbert347@gmail.com','77777777');
 insert into promocode(mb_email,pc_code) values('laura496@gmail.com','66666666');
 insert into promocode(mb_email,pc_code) values('harold374@gmail.com','55555555');
-insert into promocode(mb_email,pc_code) values('elroy288@gmail.com','55555555');
+insert into promocode(mb_email,pc_code) values('elroy288@gmail.com','44444444');
 insert into promocode(mb_email,pc_code) values('webb852@gmail.com','99999999');
 insert into promocode(mb_email,pc_code) values('oliver645@gmail.com','88888888');
 insert into promocode(mb_email,pc_code) values('kevin485@gmail.com','77777777');
@@ -725,7 +723,7 @@ insert into promocode(mb_email,pc_code) values('drew257@gmail.com','77777777');
 insert into promocode(mb_email,pc_code) values('webster853@gmail.com','66666666');
 insert into promocode(mb_email,pc_code) values('berg110@gmail.com','55555555');
 insert into promocode(mb_email,pc_code) values('mandy544@gmail.com','44444444');
-insert into promocode(mb_email,pc_code) values('elroy288@gmail.com','99999999');
+insert into promocode(mb_email,pc_code) values('elroy288@gmail.com','88888888');
 insert into promocode(mb_email,pc_code) values('bennett108@gmail.com','88888888');
 insert into promocode(mb_email,pc_code) values('zebulon883@gmail.com','77777777');
 insert into promocode(mb_email,pc_code) values('kerwin484@gmail.com','66666666');
@@ -737,7 +735,7 @@ insert into promocode(mb_email,pc_code) values('george343@gmail.com','77777777')
 insert into promocode(mb_email,pc_code) values('gilbert347@gmail.com','66666666');
 insert into promocode(mb_email,pc_code) values('laura496@gmail.com','55555555');
 insert into promocode(mb_email,pc_code) values('harold374@gmail.com','44444444');
-insert into promocode(mb_email,pc_code) values('elroy288@gmail.com','88888888');
+insert into promocode(mb_email,pc_code) values('elroy288@gmail.com','99999999');
 insert into promocode(mb_email,pc_code) values('webb852@gmail.com','88888888');
 insert into promocode(mb_email,pc_code) values('oliver645@gmail.com','77777777');
 insert into promocode(mb_email,pc_code) values('kevin485@gmail.com','66666666');
