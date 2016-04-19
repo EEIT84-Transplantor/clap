@@ -29,16 +29,16 @@
 						<div class="col-md-2">
 							<div id="s_setting">
 								<div class="sub_setting">
-									<h3>persional setting</h3>
+									<h3>Personal Setting</h3>
 									<div class="s_inpnut">
-										<label>height : </label> <input type="text" name="height">
+										<label>Height:  </label> <input type="text" name="height">
 									</div>
 									<div class="s_inpnut">
-										<label>weight : </label> <input type="text" name="weight">
+										<label>Weight: </label><input type="text" name="weight">
 									</div>
 								</div>
 								<div class="sub_setting">
-									<h3>living habit</h3>
+									<h3>Living Factors</h3>
 									<div class="setting_item">
 										<img src="<c:url value="/resource/images/simulator/smoke.png"/>"><div id="setting1"></div>
 									</div>
@@ -50,7 +50,7 @@
 									</div>
 								</div>
 								<div class="sub_setting">
-									<h3>envirnmental factor</h3>
+									<h3>Environmental Factor</h3>
 									<div class="factor_item">
 										<img src="<c:url value="/resource/images/simulator/factor_1.png"/>">
 									</div>
@@ -83,7 +83,7 @@
 						</div>
 						<div class="col-md-7">
 							<h2>USER NAME</h2>
-							<p>texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</p>
+							<p>Description Description Description Description Description </p>
 							<div class="row" id="s_graphic">
 								<div class="col-md-6 col-sm-12">
 									<img src="<c:url value="/resource/images/simulator/o_1.png"/>">
