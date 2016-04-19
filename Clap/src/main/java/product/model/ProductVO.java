@@ -17,7 +17,6 @@ import javax.persistence.Transient;
 public class ProductVO implements Serializable  {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "product_id")
 	private Integer id;
 	@Column(name = "product_name")
