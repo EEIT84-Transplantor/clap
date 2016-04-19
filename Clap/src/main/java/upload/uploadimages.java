@@ -27,46 +27,39 @@ public class uploadimages extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 	
-		String filePath = "http://localhost:8080/Clap/resource/images/products";
+		String filePath =getServletContext().getRealPath("/")+"resource/images/products";
 		
 		File file = new File(filePath);
-		System.out.println("這"+filePath);
-		System.out.println("這"+file.listFiles().length);
+		
 		if(!file.exists())
 
 		{
+			
 			file.mkdir();
 		}
-//		for(File img:file.listFiles()){
-//			
-//			FileInputStream fis;
-//			try {
-//				fis = new FileInputStream(filePath+"/"+img.getName());
-//				byte[]  imgtemp = new byte[(int)img.length()];
-//				InputStream is  = new BufferedInputStream(fis);
-//	            Byte[] imgbyte = new Byte[imgtemp.length];
-//				is.read(imgtemp);
-//				for(int i = 0;i<imgtemp.length;i++){
-//					imgbyte[i] = imgtemp[i];
-//				}
-//				
-//				ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
-//				ProductService productService = (ProductService)context.getBean("productService");
-//				ProductVO productVO = productService.getProductById(Integer.parseInt(img.getName().split("\\.")[0]));
-//				productService.setOrUpdateProduct(productVO, imgbyte);
-//				
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			
-//	
-//		}
-		
-		
-		
-		
-		
-		
+		for(File img:file.listFiles()){
+			
+			FileInputStream fis;
+			try {
+				fis = new FileInputStream(filePath+"/"+img.getName());
+				byte[]  imgtemp = new byte[(int)img.length()];
+				InputStream is  = new BufferedInputStream(fis);
+	            Byte[] imgbyte = new Byte[imgtemp.length];
+				is.read(imgtemp);
+				for(int i = 0;i<imgtemp.length;i++){
+					imgbyte[i] = imgtemp[i];
+				}
+				ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+				ProductService productService = (ProductService)context.getBean("productService");
+				int id = Integer.parseInt(img.getName().split("\\.")[0]);
+				
+				ProductVO productVO = productService.getProductById(id);
+				if(productVO!=null){
+				boolean a = productService.setOrUpdateProduct(productVO, imgbyte);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
