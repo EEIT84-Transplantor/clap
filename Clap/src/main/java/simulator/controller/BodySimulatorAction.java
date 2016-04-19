@@ -18,6 +18,20 @@ public class BodySimulatorAction extends ActionSupport{
 	private CategoryService categoryService;
 	private ProductVO productVO;
 	private ProductVO productVOPre;
+	private Double weight;
+	private Double height;
+	public Double getWeight() {
+		return weight;
+	}
+	public void setWeight(Double weight) {
+		this.weight = weight;
+	}
+	public Double getHeight() {
+		return height;
+	}
+	public void setHeight(Double height) {
+		this.height = height;
+	}
 	public void setCategoryService(CategoryService categoryService) {
 		this.categoryService = categoryService;
 	}
@@ -35,11 +49,12 @@ public class BodySimulatorAction extends ActionSupport{
 		this.productVOPre = productVOPre;
 	}
 	public String execute(){
-		Double endurance = productService.getProductEndurance(productVO.getId());
-		Double skill = productService.getProductSkill(productVO.getId());
-		JSONObject object = new JSONObject();
-		object.put("endurance", endurance);
-		object.put("skill", skill);
+//		Double endurance = productService.getProductEndurance(productVO.getId());
+//		Double skill = productService.getProductSkill(productVO.getId());
+//		JSONObject object = new JSONObject();
+//		object.put("endurance", endurance);
+//		object.put("skill", skill);
+		
 		
 		return SUCCESS;
 	}

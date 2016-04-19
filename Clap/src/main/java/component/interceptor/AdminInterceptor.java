@@ -24,7 +24,7 @@ public class AdminInterceptor  extends AbstractInterceptor {
 		MemberVO memberVO = (MemberVO) session.get("login");
 		System.out.println(memberVO);
 		System.out.println("AdminInterceptor");
-		if (memberVO==null) {
+		if (memberVO==null||memberVO.getType()==null) {
 			//沒找到 儲存上一個頁面  導入login.jsp
 			session.put("uri", request.getRequestURI());
 			System.out.println(request.getRequestURI());
