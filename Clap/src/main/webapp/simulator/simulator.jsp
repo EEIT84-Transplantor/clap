@@ -245,19 +245,7 @@
 												</div>
 											</div>
 										</div>
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
+
 									</div>
 								</div>
 								<div class="col-md-1">
@@ -533,8 +521,9 @@
 				
 			});
 			
-			function setEnvironmentBG(tempEnvIndex){
+			function setEnvironmentBG(tempEnvIndex, ajaxDataObj){
 				var bg_img;
+				sendEnvAjax(ajaxDataObj);
 				switch (tempEnvIndex) {
 				case 1:
 					bg_img = "s_bg_1.png";
@@ -564,7 +553,7 @@
 				drawBarToPercent($("#setting3"), savedObjectToBack.exercising);
 				$("input[name='weight']").val(savedObjectToBack.weight);
 				$("input[name='height']").val(savedObjectToBack.height);
-				setEnvironmentBG(savedObjectToBack.env_id);
+				setEnvironmentBG(savedObjectToBack.env_id, savedObjectToBack);
 			}
 			
 			//Ajax send to Env Action 

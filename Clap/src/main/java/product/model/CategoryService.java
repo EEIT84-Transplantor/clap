@@ -62,8 +62,6 @@ public class CategoryService {
 		for(CategoryVO categoryVO:categoryVOs){
 			
 			//放產品
-			System.out.println("i 喔喔"+productService);
-			System.out.println("i 喔546喔"+categoryVO.getId());
 			List<ProductVO> temp = productService.searchProductByCategory(categoryVO.getId());
 			List<ProductVO> productVOs = new ArrayList<>();
 			//改變產品數據
@@ -138,7 +136,6 @@ public class CategoryService {
 			simulatorVO.setProductimgVOs(productimgVOs);
 			simulatorVO.setProductVOs(productVOs);
 			result.add(simulatorVO);
-			System.out.println("ㄚㄚㄚ"+simulatorVO.toString());
 		}
 		return null;
 	}
