@@ -24,7 +24,7 @@
 							<li><a href="#">brain</a></li>
 							<li><a href="#">Eye ball</a></li>
 							<li><a href="#">Ventricle</a></li>
-							<li><a href="#">Wind pipe</a></li>
+							<li><a href="${pageContext.request.contextPath}/hahaha.ha">##Upload Image##</a></li>
 						</ul>
 					</div>
 					<div class="col-md-4">

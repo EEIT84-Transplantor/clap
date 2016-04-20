@@ -281,40 +281,43 @@
 			});
 		});
 		
-		var environmentIndex = 0;
-		$(".factor_item").on("click", function() {
-			var src = $(this).find('img').attr('src');
-			var bg_img;
-
-			switch (src.substr(39, 1)) {
-			case "1":
-				bg_img = "s_bg_1.png";
-				environmentIndex = 1;
-				break;
-			case "2":
-				bg_img = "s_bg_2.png";
-				environmentIndex = 2;
-				break;
-			case "3":
-				bg_img = "s_bg_3.png";
-				environmentIndex = 3;
-				break;
-			case "4":
-				bg_img = "none";
-				environmentIndex = 0;
-			}
-			
-			 $('#fullPage').animate(
-					 {backgroundColor: 'rgb(0,0,0)'}, 600, function(){
-						 $('#s_wrap').css('backgroundImage', "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)");
-					 }).animate({backgroundColor: 'rgba(0,0,0,0.1)'}, 600);
-			 
-		});
 		
-
 		
 		$(document).ready(function(){
-			initSaveObject();			
+			var environmentIndex = 0;
+			//set onclick to change env background
+			function initChangeBackClick(){
+			$(".factor_item").on("click", function() {
+				var src = $(this).find('img').attr('src');
+				var bg_img;
+
+				switch (src.substr(39, 1)) {
+				case "1":
+					bg_img = "s_bg_1.png";
+					environmentIndex = 1;
+					break;
+				case "2":
+					bg_img = "s_bg_2.png";
+					environmentIndex = 2;
+					break;
+				case "3":
+					bg_img = "s_bg_3.png";
+					environmentIndex = 3;
+					break;
+				case "4":
+					bg_img = "none";
+					environmentIndex = 0;
+				}
+				sendEnvAjax(createFactors());
+				 $('#fullPage').animate(
+						 {backgroundColor: 'rgb(0,0,0)'}, 600, function(){
+							 $('#s_wrap').css('backgroundImage', "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)");
+						 }).animate({backgroundColor: 'rgba(0,0,0,0.1)'}, 600);
+				 
+			});
+			}
+			initSaveObject();		
+			initChangeBackClick();
 			$(".carousel").carousel("pause");
 			$("#sim_silder img").draggable();
 			$("#people").droppable();
@@ -416,8 +419,9 @@
 				$("input[name='height']").val("");
 				clicksetting1 = true, clicksetting2 = true, clicksetting3 = true; 					
 			})
-			//set save			
-			$('button[class="reset_btn s_btn2 tosave"').on("click",function(){
+			
+			//create factors
+			function createFactors(){
 				var factors = new Object();
 				var tempAttr = $("#setting1").css("background");
 				var index = tempAttr.indexOf('%)',0);
@@ -458,6 +462,13 @@
 				factors.weight = weight;
 				factors.height = height;
 				factors.env_id = environmentIndex;
+				return factors;
+			}
+			
+			
+			//set save			
+			$('button[class="reset_btn s_btn2 tosave"').on("click",function(){
+				var factors = createFactors();
 				var index = 1;
 				for(var savedObjKey in saveContainer){
 					var containerLength = Object.keys(saveContainer).length;
@@ -532,19 +543,23 @@
 				setEnvironmentBG(savedObjectToBack.env_id);
 			}
 			
+			//Ajax send to Env Action 
+			function sendEnvAjax(sentDataObj){
+				
+				printObject(sentDataObj);
+							$.ajax({
+							url:"${pageContext.request.contextPath}/simulator/bodySimulatorAction",
+							data:sentDataObj
+							}).done(function(msg){
+								console.log(msg);
+								});
+			}
+			
 		});
 		
 		
 		
-		//Ajax send to Env Action 
-		function sendEnvAjax(sentDataObj){
-						$.ajax({
-						url:"${pageContext.request.contextPath}/simulator/bodySimulatorAction",
-						data:sentDataObj
-						}).done(function(msg){
-							alert(msg);
-							});
-		}
+
 		
 		
 		function initSaveObject(){
