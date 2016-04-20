@@ -15,7 +15,7 @@
 							<li><a href="${pageContext.request.contextPath}/shopping/shopping.action">Clap Store</a></li>
 							<li><a href="${pageContext.request.contextPath}/shopping/shopping.action">Organs</a></li>
 							<li><a href="#">Gift Card</a></li>
-							<li><a href="#">Shipping Detail</a></li>
+							<li><a href="${pageContext.request.contextPath}/simulator/simulatorAction.action">Simulator</a></li>
 						</ul>
 					</div>
 					<div class="col-md-2">
