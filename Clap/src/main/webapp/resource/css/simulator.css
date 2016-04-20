@@ -1,7 +1,9 @@
-.carousel .item {
-  height:840px;
-  background-color: #777;
+
+html{
+	display:none;
+	background:silver;
 }
+
 .container {
 	width:100%;
 	padding:0 100px;
@@ -131,6 +133,32 @@ input{
 	border-radius: 3px;
 	text-align: center;
 }
+.toclear{
+	
+	margin-top: 5px;
+	width:91%;
+	height:8%;
+	padding:10px 10px;
+	border:1px #2995B6 solid;
+	background-color:rgba(42,150,182,0.7);
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	text-align: center;
+}
+.savingslot{
+	width:91%;
+	height:8%;
+	padding:10px 10px;
+	border:1px #2995B6 solid;
+	background-color:rgba(42,150,182,0.7);
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	text-align: center;
+	margin-top: 5px;
+	opacity:0.5;
+}
 
 .s_btn a:hover{
 	
@@ -214,7 +242,8 @@ a:hover{
 	float:left;
 }
 #s_organs_r {
-	padding-top:55px;
+	padding-top:80px;
+	padding-left:10px;
 }
 #s_organs_r .s_btn a{
 	padding:10px;
