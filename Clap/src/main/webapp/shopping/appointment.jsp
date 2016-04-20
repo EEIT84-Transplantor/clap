@@ -22,6 +22,7 @@
 <link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
 <%-- <link href="<c:url value="/resource/css/silderbanner.css"/>" rel="stylesheet"> --%>
 <%-- <link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet"> --%>
+<link href="<c:url value="/resource/css/avgrund.css"/>" rel="stylesheet">
 
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
@@ -77,12 +78,12 @@
 		pageContext.setAttribute("orderList", orderList);
 		pageContext.setAttribute("orderform_id", orderform_id);
 	%-->
-<%-- 	<sql:query dataSource="clap/db" var="hospitalList"> --%>
-<!-- 		select top(10) * from hospital  -->
-<%-- 	</sql:query> --%>
-<%-- 	<sql:query dataSource="clap/db" var="doctorList"> --%>
-<!-- 		select top(10) * from doctor  -->
-<%-- 	</sql:query> --%>
+	<%-- 	<sql:query dataSource="clap/db" var="hospitalList"> --%>
+	<!-- 		select top(10) * from hospital  -->
+	<%-- 	</sql:query> --%>
+	<%-- 	<sql:query dataSource="clap/db" var="doctorList"> --%>
+	<!-- 		select top(10) * from doctor  -->
+	<%-- 	</sql:query> --%>
 
 
 	<header><jsp:include page="/header.jsp" /></header>
@@ -141,10 +142,11 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery-1.12.2.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/jquery.avgrund.js"/>"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap" async defer></script>
 	<script type="text/javascript">
 		$(function() {
-			
+
 			//顯示醫院地圖
 			$(".hospital").change(function() {
 				geocodeAddress(geocoder, map, $(this).val());
@@ -155,28 +157,29 @@
 			$(".time").attr("min", now).attr("value", now);
 
 			//送出資料ajax
- 			var orderList = [];
+			var orderList = [];
 			for (var i = 0; i < $(".id").size(); i++) {
 				var data = {
 					id : $(".id").eq(i).text(),
 					time : $(".time").eq(i).val(),
 					doctor : $(".doctor").eq(i).val(),
 				}
-				orderList[i]=JSON.stringify(data);
+				orderList[i] = JSON.stringify(data);
 			}
 			var url = "<c:url value='/shopping/doAppointmentAction.action'/>";
 			$("#submit").click(function() {
 				$.ajax({
 					url : url,
 					data : {
-						"orderList": orderList,
+						"orderList" : orderList,
 						"hospital" : $("#hospital option:selected").text(),
-						"orderform_id":"${orderform_id}"
+						"orderform_id" : "${orderform_id}"
 					},
 				}).done(function() {
-					document.location.href="<c:url value='/shopping/finish.jsp'/>";
+					finish();
 				})
 			})
+
 		})
 
 		function initMap() {
@@ -205,6 +208,21 @@
 					alert('Geocode was not successful for the following reason: ' + status);
 				}
 			});
+		}
+
+		function finish() {
+			//顯示彈出式窗
+			$('#submit').avgrund({
+				width : 380, // max is 640px
+				height : 280, // max is 350px
+				openOnEvent : false, // set to 'false' to init on load
+				template : '購買完成 五秒後回首頁' // or function (elem) { }, or $('.content')
+			});
+			
+			//導回首頁
+			setTimeout(function() {
+				window.location.href = "<c:url value='/index.jsp'/>";
+			}, 5000);
 		}
 	</script>
 </body>
