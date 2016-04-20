@@ -184,7 +184,7 @@ a:hover{
 }
 .graphic_detail{
 	position:relative;
-	margin-bottom:9px;
+	margin-bottom:3px;
 }
 .graphic_detail span{
 	position:absolute;
@@ -198,12 +198,22 @@ a:hover{
 	z-index: 5;
 	background:#818181;
 	padding-left:10px;
+	font-size: 
 }
 .o_new{
 	z-index: 3;
 	-webkit-border-radius: 0 50px 50px 0;
 	-moz-border-radius: 0 50px 50px 0;
 	border-radius: 0 50px 50px 0;
+}
+.opacityDiv{
+	
+  background: rgba(255, 255, 255, 0.6); /* For browsers that do not support gradients */
+  background: -webkit-radial-gradient((rgba(255, 255, 255, 0.1), (rgba(255, 255, 255, 0.3), (rgba(255, 255, 255, 0.1)); /* Safari 5.1 to 6.0 */
+  background: -o-radial-gradient((rgba(255, 255, 255, 0.1), (rgba(255, 255, 255, 0.3), (rgba(255, 255, 255, 0.1)); /* For Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient((rgba(255, 255, 255, 0.1), (rgba(255, 255, 255, 0.3), (rgba(255, 255, 255, 0.1)); /* For Firefox 3.6 to 15 */
+  background: radial-gradient(yellow, red, blue); /* Standard syntax */
+
 }
 #s_organs .nav-tabs{
 	width:700px;

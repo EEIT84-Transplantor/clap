@@ -39,7 +39,6 @@ public class SimulatorAction extends ActionSupport implements ServletRequestAwar
 		List<ProductVO> productVOs = null;
 		
 		for(CategoryVO categoryVO:categoryService.getAllCategory()){
-			
 			productVOs = productService.searchProductByCategory(categoryVO.getId());
 			List<ProductimgVO> productimgVOs = new ArrayList<ProductimgVO>();
 			for(ProductVO productVO:productVOs){
