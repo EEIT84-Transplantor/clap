@@ -368,7 +368,9 @@
 				<param name="inputName">inputStream</param>
 			</result>
 		</action>
-
+		<action name="oneclickPackAction" class="oneclickPackAction">
+			<result type="stream"></result>
+		</action>
 	</package>
 
 </struts>
