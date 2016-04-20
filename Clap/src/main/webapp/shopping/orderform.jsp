@@ -21,7 +21,7 @@
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
-	<%
+	<!--%
 		OrderFormVO orderFormVO1 = new OrderFormVO();
 		orderFormVO1.setId(1111);
 		orderFormVO1.setTime(new Timestamp(Calendar.getInstance().getTimeInMillis()));
@@ -46,7 +46,7 @@
 		orderList.add(orderFormVO3);
 
 		pageContext.setAttribute("orderList", orderList);
-	%>
+	%-->
 
 	<header><jsp:include page="/header.jsp" /></header>
 

@@ -3,7 +3,7 @@
 					<div class="col-md-2">
 						<h4>About Us</h4>
 						<ul>
-							<li><a href="#">Clap Info</a></li>
+							<li><a href="#">Clap Concept</a></li>
 							<li><a href="#">Founders</a></li>
 							<li><a href="#">Investors</a></li>
 							<li><a href="#">Job Opportunity</a></li>
@@ -21,16 +21,16 @@
 					<div class="col-md-2">
 						<h4>Account</h4>
 						<ul>
-							<li><a href="#">Account</a></li>
-							<li><a href="#">View Body</a></li>
+							<li><a href='${pageContext.request.contextPath}/member/account.jsp'>Account</a></li>
+							<li><a href='${pageContext.request.contextPath}/shopping/cartAction.action'>View Cart</a></li>
 							<li><a href="#">Order Status</a></li>
-							<li><a href="${pageContext.request.contextPath}/hahaha.ha">Manage Payment</a></li>
+							<li><a href='${pageContext.request.contextPath}/payment/paymentmanage.jsp'>Manage Payment</a></li>
 						</ul>
 					</div>
 					<div class="col-md-4">
 						<h4>OPTION</h4>
 						<ul>
-							<li><a href="${pageContext.request.contextPath}/simulator/simulator.jsp">Simulator</a></li>
+							<li><a href="${pageContext.request.contextPath}/hahaha.ha">~Get Pictures~</a></li>
 							<li><a href="${pageContext.request.contextPath}/shopping/preReturnAction.action">Return Page</a></li>
 							<li><a href="${pageContext.request.contextPath}/product/displayproduct.action">Product Manage</a></li>
 							<li><a href="${pageContext.request.contextPath}/paymentmanage/setpromotion.action">Settings</a></li>
