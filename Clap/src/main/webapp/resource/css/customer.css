@@ -506,3 +506,6 @@ header {
 	-webkit-filter: contrast(200%); /* Chrome, Safari, Opera */
     filter: contrast(200%);
 }
+input, select, textarea{
+	color:#000;
+}

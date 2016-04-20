@@ -85,7 +85,7 @@
 <!-- 							<div id="drop" class="Intestine"></div> -->
 							</div>
 						</div>
-						<div class="col-md-7">
+						<div class="col-md-7 opacityDiv" >
 							<h2>USER NAME</h2>
 							<p>Description Description Description Description Description </p>
 							<div class="row" id="s_graphic">
@@ -186,10 +186,10 @@
 									<ul class="nav nav-tabs">
 									<c:forEach var="simulatorVO" items="${simulatorVOs}" varStatus="c_count">
 									    <c:if test="${c_count.count==1}">
-									       <li class="active"><a data-toggle="tab" href="#${simulatorVO.categoryVO.id}">${simulatorVO.categoryVO.name}</a></li>
+									       <li class="active"><a data-toggle="tab" href="#${simulatorVO.categoryVO.name}">${simulatorVO.categoryVO.name}</a></li>
 									    </c:if>
 									    <c:if test="${c_count.count!=1}">
-									       <li><a data-toggle="tab" href="#${simulatorVO.categoryVO.id}">${simulatorVO.categoryVO.name}</a></li>
+									       <li><a data-toggle="tab" href="#${simulatorVO.categoryVO.name}">${simulatorVO.categoryVO.name}</a></li>
 									    </c:if>
 									</c:forEach>
 									</ul>
@@ -203,25 +203,30 @@
 									
 									
 									
-									<c:forEach var="simulatorVO" items="${simulatorVOs}" varStatus="c_count">
-									
+									   <c:forEach var="simulatorVO" items="${simulatorVOs}" varStatus="c_count">
+									   <c:if test="${c_count.count==1}">
 										<div id="${simulatorVO.categoryVO.name}" class="tab-pane fade in active">
+									   </c:if>
+										<c:if test="${c_count.count!=1}">
+										<div id="${simulatorVO.categoryVO.name}" class="tab-pane fade">
+										</c:if>
+										
 											<!-- ****************************** -->
 											<div class="row">
 												<div class="col-md-1">
 													<!-- Controls -->
 													<div class="controls pull-right hidden-xs">
-														<a class="left fa fa-chevron-left btn" href="#sim_silder" data-slide="prev"><span class="glyphicon glyphicon-menu-left"
+														<a class="left fa fa-chevron-left btn" href="#sim_silder${simulatorVO.categoryVO.id}" data-slide="prev"><span class="glyphicon glyphicon-menu-left"
 															aria-hidden="true"></span></a>
 													</div>
 												</div>
 												<div class="col-md-10">
-													<div id="sim_silder" class="carousel slide hidden-xs">
+													<div id="sim_silder${simulatorVO.categoryVO.id}" class="carousel slide hidden-xs">
 														<!-- Wrapper for slides -->
 														<div class="carousel-inner">
 															<c:forEach items="${simulatorVO.productVOs}" var="product" varStatus="p_count">
 															
-																<c:if test="${p_count.count % 6 == 1}">
+																<c:if test="${p_count.count % 4 == 1}">
 																	<c:if test="${p_count.count == 1}">
 																		<div class="item active">
 																	</c:if>
@@ -233,11 +238,11 @@
 																<div class="col-sm-2">
 																	<div class="col-item">
 																		<div class="photo" id="haha">
-																			<img src="<c:url value="data:image/png;base64,${simulatorVO.productimgVOs[p_count.count].img64}"/>" class="draggable" >
+																			<img src="<c:url value="data:image/png;base64,${simulatorVO.productimgVOs[p_count.count-1].img64}"/>" class="draggable" >
 																		</div>
 																	</div>
 																</div>
-																<c:if test="${p_count.count % 6 == 0||p_count.count == fn:length(values)}">
+																<c:if test="${p_count.count % 4 == 0||p_count.count == fn:length(values)}">
 														</div>
 													</div>
 													</c:if>
@@ -251,13 +256,13 @@
 								<div class="col-md-1">
 									<!-- Controls -->
 									<div class="controls pull-right hidden-xs">
-										<a class="right fa fa-chevron-right btn" href="#sim_silder" data-slide="next"><span class="glyphicon glyphicon-menu-right"
+										<a class="right fa fa-chevron-right btn" href="#sim_silder${simulatorVO.categoryVO.id}" data-slide="next"><span class="glyphicon glyphicon-menu-right"
 											aria-hidden="true"></span></a>
 									</div>
-								</div>
+								</div></div>
 							</div></c:forEach>
 							<!-- ********************* -->
-						</div>
+						
 					</div>
 				</div>
 				<div id="s_organs_r">

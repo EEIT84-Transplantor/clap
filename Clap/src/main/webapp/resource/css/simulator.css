@@ -184,7 +184,7 @@ a:hover{
 }
 .graphic_detail{
 	position:relative;
-	margin-bottom:9px;
+	margin-bottom:3px;
 }
 .graphic_detail span{
 	position:absolute;
@@ -198,6 +198,7 @@ a:hover{
 	z-index: 5;
 	background:#818181;
 	padding-left:10px;
+	font-size: 
 }
 .o_new{
 	z-index: 3;
@@ -205,6 +206,7 @@ a:hover{
 	-moz-border-radius: 0 50px 50px 0;
 	border-radius: 0 50px 50px 0;
 }
+
 #s_organs .nav-tabs{
 	width:700px;
 }
@@ -255,9 +257,14 @@ a:hover{
 	height:80px;
 	background:none;
 }
+.col-item .photo{
+	width:90px;
+	width:90px;
+	background-size:container;
+}
 .col-item .photo img {
      margin: 10px auto; 
-     width: auto; 
+/*      width: auto;  */
 }
 .col-item {
     border: none;
@@ -272,4 +279,11 @@ a:hover{
 }
 .btn{
 	padding:0;
+}
+.opacityDiv{
+background: -moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%, rgba(125,185,232,0) 100%); /* FF3.6-15 */
+background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(125,185,232,0) 100%); /* Chrome10-25,Safari5.1-6 */
+background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 0%,rgba(125,185,232,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#007db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
 }
