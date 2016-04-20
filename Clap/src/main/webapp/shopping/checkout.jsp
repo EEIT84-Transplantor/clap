@@ -177,7 +177,7 @@
 						url : doCheckOutAction,
 						data : {"cc_number":cc_number}
 					}).done(function(result) {
-						window.location.href = "<c:url value='/shopping/appointment.jsp'/>";
+						window.location.href = "<c:url value='/shopping/appointmentAction.action'/>";
 					});
 				} else {
 					$("#error").text("請先選擇信用卡在結帳")
