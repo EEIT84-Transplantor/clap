@@ -213,6 +213,15 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery.color-2.1.2.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery-ui.min.js"/>"></script>
 	<script type="text/javascript">
+	
+		//get all products JSON String
+		JSON.parse(${simulatorVOsJSON});
+		//get all products when init
+// 		function initGetProducts(){
+// 			alert(JsonString.length);
+// 			var jsonarray = JSON.parse(JsonString);			
+// 		}
+// 		initGetProducts();
 		//set open background color animation to dark
 		$("body").hide();
 		$("html").show().animate({backgroundColor: '#031014'}, 200, "linear", function(){
@@ -223,8 +232,9 @@
 		});
 		
 		
-		
+		//======  DOCUMENT READY  ======= 
 		$(document).ready(function(){
+			
 			var environmentIndex = 0;
 			//set onclick to change env background
 			function initChangeBackClick(){
@@ -594,11 +604,7 @@
 			}			
 		}
 		
-		//get all products when init
-		function initGetProducts(JsonString){
-			var jsonarray = JSON.parse(JsonString);
-			
-		}
+
 		
 		
 	</script>
