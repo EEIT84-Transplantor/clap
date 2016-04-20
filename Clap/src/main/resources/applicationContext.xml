@@ -269,8 +269,6 @@
 		<property name="doctorService" ref="doctorService" />
 		<property name="orderDetailService" ref="orderDetailService" />
 	</bean>
-
-	<!-- simulator -->
 	
 	<!-- simulator-->
 	<bean id="simulatorService" class="simulator.model.SimulatorService">
@@ -281,7 +279,6 @@
 	<bean id="bodySimulatorAction" class="simulator.controller.BodySimulatorAction">
 		<property name="productService" ref="productService" />
 		<property name="categoryService" ref="categoryService" />
-		<property name="simulatorService" ref="simulatorService" />
 	</bean>
 
 	<!-- <bean id="showProductsAction" class="simulator.controller.ShowProductsAction"> -->
