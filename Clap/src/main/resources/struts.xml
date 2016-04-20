@@ -99,6 +99,7 @@
 			<result>/payment/{1}.jsp</result>
 		</action>
 	</package>
+
 	<package name="paymentmanage" namespace="/paymentmanage"
 		extends="struts-default">
 
@@ -175,7 +176,6 @@
 
 	</package>
 
-	<!-- shopping -->
 	<package name="shopping" namespace="/shopping" extends="struts-default">
 		<interceptors>
 			<interceptor name="loginInterceptor"
@@ -185,7 +185,6 @@
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
-		<!-- global-results -->
 		<global-results>
 			<result type="redirect" name="login">/member/signuplogin.jsp</result>
 		</global-results>
@@ -250,7 +249,9 @@
 		<action name="doAppointmentAction" class="shopping.controller.DoAppointmentAction">
 			<result type="stream"></result>
 		</action>
-
+		<action name="appointmentAction" class="shopping.controller.AppointmentAction">
+			<result>/shopping/appointment.jsp</result>
+		</action>
 	</package>
 
 	<package name="test" namespace="/test" extends="struts-default">

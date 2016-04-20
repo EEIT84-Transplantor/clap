@@ -27,7 +27,7 @@
 </head>
 <body>
 
-	<%
+	<!-- %
 		HospitalVO hospitalVO1 = new HospitalVO();
 		hospitalVO1.setId(11);
 		hospitalVO1.setName("臺大醫院");
@@ -76,13 +76,13 @@
 		
 		pageContext.setAttribute("orderList", orderList);
 		pageContext.setAttribute("orderFormId", orderFormId);
-	%>
-	<sql:query dataSource="clap/db" var="hospitalList">
-		select top(10) * from hospital 
-	</sql:query>
-	<sql:query dataSource="clap/db" var="doctorList">
-		select top(10) * from doctor 
-	</sql:query>
+	%-->
+<%-- 	<sql:query dataSource="clap/db" var="hospitalList"> --%>
+<!-- 		select top(10) * from hospital  -->
+<%-- 	</sql:query> --%>
+<%-- 	<sql:query dataSource="clap/db" var="doctorList"> --%>
+<!-- 		select top(10) * from doctor  -->
+<%-- 	</sql:query> --%>
 
 
 	<header><jsp:include page="/header.jsp" /></header>
