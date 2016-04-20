@@ -184,16 +184,14 @@
 							<div id="s_organs">
 								<div id="s_organs_l">
 									<ul class="nav nav-tabs">
-										<li class="active"><a data-toggle="tab" href="#organ1">organ1</a></li>
-										<li><a data-toggle="tab" href="#organ2">organ2</a></li>
-										<li><a data-toggle="tab" href="#organ3">organ3</a></li>
-										<li><a data-toggle="tab" href="#organ4">organ4</a></li>
-										<li><a data-toggle="tab" href="#organ5">organ5</a></li>
-										<li><a data-toggle="tab" href="#organ6">organ6</a></li>
-										<li><a data-toggle="tab" href="#organ7">organ7</a></li>
+									<c:forEach var="simulatorVO" items="${simulatorVOs}">
+										<li class="active"><a data-toggle="tab" href="#${simulatorVO.categoryVO.name}">${simulatorVO.categoryVO.name}</a></li>
+									</c:forEach>
+										
 									</ul>
 									<div class="tab-content">
-										<div id="organ1" class="tab-pane fade in active">
+									<c:forEach var="simulatorVO" items="${simulatorVOs}">
+										<div id="${simulatorVO.categoryVO.name}" class="tab-pane fade in active">
 											<!-- ****************************** -->
 											<div class="row">
 												<div class="col-md-1">
@@ -233,6 +231,7 @@
 												</div>
 											</div>
 										</div>
+										</c:forEach>
 									</div>
 								</div>
 								<div class="col-md-1">
@@ -509,8 +508,9 @@
 				
 			});
 			
-			function setEnvironmentBG(tempEnvIndex){
+			function setEnvironmentBG(tempEnvIndex, ajaxDataObj){
 				var bg_img;
+				sendEnvAjax(ajaxDataObj);
 				switch (tempEnvIndex) {
 				case 1:
 					bg_img = "s_bg_1.png";
@@ -540,7 +540,7 @@
 				drawBarToPercent($("#setting3"), savedObjectToBack.exercising);
 				$("input[name='weight']").val(savedObjectToBack.weight);
 				$("input[name='height']").val(savedObjectToBack.height);
-				setEnvironmentBG(savedObjectToBack.env_id);
+				setEnvironmentBG(savedObjectToBack.env_id, savedObjectToBack);
 			}
 			
 			//Ajax send to Env Action 
