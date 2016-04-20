@@ -17,6 +17,7 @@ import inventory.model.InventoryService;
 import member.model.MemberVO;
 import payment.model.PromoCodeService;
 import payment.model.PromoVO;
+import product.model.ProductService;
 import product.model.ProductVO;
 import shopping.model.CartService;
 import shopping.model.CartVO;
@@ -28,6 +29,15 @@ public class CartAction extends ActionSupport implements ServletRequestAware {
 	private CartService cartService;
 	private PromoCodeService promoCodeService;
 	private InventoryService inventoryService;
+	private ProductService productService;
+
+	public ProductService getProductService() {
+		return productService;
+	}
+
+	public void setProductService(ProductService productService) {
+		this.productService = productService;
+	}
 
 	public InventoryService getInventoryService() {
 		return inventoryService;
@@ -98,7 +108,26 @@ public class CartAction extends ActionSupport implements ServletRequestAware {
 			promoList = promoCodeService.getPromos(memberVO.getEmail());
 			request.setAttribute("cartList", cartList);
 			request.setAttribute("promoList", promoList);
-		} 
+		} else {
+			HashMap<Integer, Integer> temp = (HashMap<Integer, Integer>)request.getSession().getAttribute("tempCart");
+			
+			
+			for(Integer i:temp.keySet()){
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				ProductVO productVO = productService.getProductById(i);
+				map.put("id", productVO.getId());
+				map.put("name", productVO.getName());
+				map.put("quantity", temp.get(i));
+				map.put("price", productVO.getPrice());
+				map.put("stock", inventoryService.getQuantity(productVO.getId()));
+				cartList.add(map);
+				
+			}
+			
+			request.setAttribute("cartList", cartList);
+			
+		}
 		return SUCCESS;
 	}
 
