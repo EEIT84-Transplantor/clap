@@ -14,14 +14,12 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import product.model.CategoryService;
 import product.model.ProductService;
-import simulator.model.SimulatorService;
 import simulator.model.SimulatorVO;
 
 public class BodySimulatorAction extends ActionSupport {
 	private InputStream inputStream;
 	private ProductService productService;
 	private CategoryService categoryService;
-	private SimulatorService simulatorService;
 	private Double weight;
 	private Double height;
 	private Integer smoking;
@@ -74,10 +72,6 @@ public class BodySimulatorAction extends ActionSupport {
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
 	}
-	public void setSimulatorService(SimulatorService simulatorService) {
-		this.simulatorService = simulatorService;
-	}
-	
 
 	public String execute(){
 //		Double endurance = productService.getProductEndurance(productVO.getId());
@@ -90,7 +84,10 @@ public class BodySimulatorAction extends ActionSupport {
 		if(weight!=null&&weight>0&&height==null&&height>0){
 			bmi = weight/(Math.pow(height/100,2.0));
 		}
-		List<SimulatorVO>simulatorVOs =simulatorService.calculate(env_id,bmi,smoking,drinking,exercising);
+		//categoryService 的calculate還沒做~
+		List<SimulatorVO>simulatorVOs =categoryService.calculate(env_id,bmi,smoking,drinking,exercising);
+		
+		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("simulatorVOs", simulatorVOs);
 		return SUCCESS;
