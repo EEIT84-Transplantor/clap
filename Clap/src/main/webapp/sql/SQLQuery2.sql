@@ -29,8 +29,6 @@ PRIMARY KEY(hospital_id))
 
 
 
-
-
 create table member(
 mb_email varchar(320) ,
 mb_password varbinary(30) ,
@@ -747,8 +745,13 @@ insert into promocode(mb_email,pc_code) values('reginald706@gmail.com','77777777
 insert into product (product_id,product_name,product_price,product_description,product_rating,product_discount,category_id,product_value1,product_value2) values('11','P11','10000','description','1','0.53','1','1','1.1');
 insert into product (product_id,product_name,product_price,product_description,product_rating,product_discount,category_id,product_value1,product_value2) values('12','P12','20000','description','4','0.54','1','1.1','1.1');
 insert into product (product_id,product_name,product_price,product_description,product_rating,product_discount,category_id,product_value1,product_value2) values('13','P13','30000','description','3','0.63','1','1.2','1.1');
-insert into product (product_id,product_name,product_price,product_description,product_rating,product_discount,category_id,product_value1,product_value2) values('14','P14','40000','description','2','0.61','1','1.2','1.1');
+insert into product (product_id,product_name,product_price,product_description,product_rating,product_discount,category_id,product_value1,product_value2) values('14','P14','40000','description','2','0.61','1','1.3','1.1');
 insert into product (product_id,product_name,product_price,product_description,product_rating,product_discount,category_id,product_value1,product_value2) values('15','P15','50000','description','3','0.81','1','1.2','1.2');
+insert into product (product_id,product_name,product_price,product_description,product_rating,product_discount,category_id,product_value1,product_value2) values('16','P16','10000','description','1','0.53','1','1','1.1');
+insert into product (product_id,product_name,product_price,product_description,product_rating,product_discount,category_id,product_value1,product_value2) values('17','P17','20000','description','4','0.54','1','1.1','1.1');
+insert into product (product_id,product_name,product_price,product_description,product_rating,product_discount,category_id,product_value1,product_value2) values('18','P18','30000','description','3','0.63','1','1.7','1.1');
+insert into product (product_id,product_name,product_price,product_description,product_rating,product_discount,category_id,product_value1,product_value2) values('19','P19','40000','description','2','0.61','1','1.2','1.1');
+insert into product (product_id,product_name,product_price,product_description,product_rating,product_discount,category_id,product_value1,product_value2) values('110','P110','50000','description','3','0.81','1','1.2','1.2');
 insert into product (product_id,product_name,product_price,product_description,product_rating,product_discount,category_id,product_value1,product_value2) values('21','P21','10000','description','2','0.74','2','1.3','1.3');
 insert into product (product_id,product_name,product_price,product_description,product_rating,product_discount,category_id,product_value1,product_value2) values('22','P22','20000','description','4','0.88','2','1.3','1.3');
 insert into product (product_id,product_name,product_price,product_description,product_rating,product_discount,category_id,product_value1,product_value2) values('23','P23','30000','description','5','0.71','2','1.4','1.4');
@@ -784,6 +787,11 @@ insert into productimg (product_id,productimg_img) values('12','null');
 insert into productimg (product_id,productimg_img) values('13','null');
 insert into productimg (product_id,productimg_img) values('14','null');
 insert into productimg (product_id,productimg_img) values('15','null');
+insert into productimg (product_id,productimg_img) values('16','null');
+insert into productimg (product_id,productimg_img) values('17','null');
+insert into productimg (product_id,productimg_img) values('18','null');
+insert into productimg (product_id,productimg_img) values('19','null');
+insert into productimg (product_id,productimg_img) values('110','null');
 insert into productimg (product_id,productimg_img) values('21','null');
 insert into productimg (product_id,productimg_img) values('22','null');
 insert into productimg (product_id,productimg_img) values('23','null');
@@ -1254,6 +1262,16 @@ insert into inventory(inventory_id,product_id,inventory_quantity,inventory_manuf
 insert into inventory(inventory_id,product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('68','73','95','2016-2-4 00:00:00','2016-5-4 00:00:00');
 insert into inventory(inventory_id,product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('69','74','12','2016-5-12 00:00:00','2016-8-12 00:00:00');
 insert into inventory(inventory_id,product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('70','75','100','2016-3-11 00:00:00','2016-6-11 00:00:00');
+insert into inventory(inventory_id,product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('71','16','23','2016-2-16 00:00:00','2016-5-16 00:00:00');
+insert into inventory(inventory_id,product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('72','17','52','2016-2-2 00:00:00','2016-5-2 00:00:00');
+insert into inventory(inventory_id,product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('73','18','79','2016-4-12 00:00:00','2016-7-12 00:00:00');
+insert into inventory(inventory_id,product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('74','19','85','2016-5-18 00:00:00','2016-8-18 00:00:00');
+insert into inventory(inventory_id,product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('75','110','69','2016-4-10 00:00:00','2016-7-10 00:00:00');
+insert into inventory(inventory_id,product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('76','16','23','2016-2-16 00:00:00','2016-5-16 00:00:00');
+insert into inventory(inventory_id,product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('77','17','52','2016-2-2 00:00:00','2016-5-2 00:00:00');
+insert into inventory(inventory_id,product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('78','18','79','2016-4-12 00:00:00','2016-7-12 00:00:00');
+insert into inventory(inventory_id,product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('79','19','85','2016-5-18 00:00:00','2016-8-18 00:00:00');
+insert into inventory(inventory_id,product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('80','110','69','2016-4-10 00:00:00','2016-7-10 00:00:00');
 insert into inoutlog(inoutlog_id,inventory_id,product_id,inoutlog_inQuantity,inoutlog_outQuantity,inoutlog_manufactureDate,inoutlog_expiryDate,inoutlog_destination,inoutlog_date) values('1','51','41','0','32','2016-4-4 00:00:00','2016-7-4 00:00:00','台北市立萬芳醫院－委託財團法人私立臺北醫學大學辦理 ','2016-5-4 00:00:00');
 insert into inoutlog(inoutlog_id,inventory_id,product_id,inoutlog_inQuantity,inoutlog_outQuantity,inoutlog_manufactureDate,inoutlog_expiryDate,inoutlog_destination,inoutlog_date) values('2','60','55','0','48','2016-4-15 00:00:00','2016-7-15 00:00:00','國軍高雄總醫院附設民眾診療服務處','2016-5-15 00:00:00');
 insert into inoutlog(inoutlog_id,inventory_id,product_id,inoutlog_inQuantity,inoutlog_outQuantity,inoutlog_manufactureDate,inoutlog_expiryDate,inoutlog_destination,inoutlog_date) values('3','59','54','0','83','2016-3-19 00:00:00','2016-6-19 00:00:00','台灣基督長老教會新樓醫療財團法人麻豆新樓醫院','2016-4-19 00:00:00');
@@ -1354,4 +1372,8 @@ insert into inoutlog(inoutlog_id,inventory_id,product_id,inoutlog_inQuantity,ino
 insert into inoutlog(inoutlog_id,inventory_id,product_id,inoutlog_inQuantity,inoutlog_outQuantity,inoutlog_manufactureDate,inoutlog_expiryDate,inoutlog_destination,inoutlog_date) values('98','10','25','11','0','2016-3-8 00:00:00','2016-6-8 00:00:00','null','2016-4-8 00:00:00');
 insert into inoutlog(inoutlog_id,inventory_id,product_id,inoutlog_inQuantity,inoutlog_outQuantity,inoutlog_manufactureDate,inoutlog_expiryDate,inoutlog_destination,inoutlog_date) values('99','41','21','66','0','2016-3-22 00:00:00','2016-6-22 00:00:00','null','2016-4-22 00:00:00');
 insert into inoutlog(inoutlog_id,inventory_id,product_id,inoutlog_inQuantity,inoutlog_outQuantity,inoutlog_manufactureDate,inoutlog_expiryDate,inoutlog_destination,inoutlog_date) values('100','31','71','51','0','2016-3-19 00:00:00','2016-6-19 00:00:00','null','2016-4-19 00:00:00');
-
+insert into inoutlog(inoutlog_id,inventory_id,product_id,inoutlog_inQuantity,inoutlog_outQuantity,inoutlog_manufactureDate,inoutlog_expiryDate,inoutlog_destination,inoutlog_date) values('101','76','16','51','0','2016-3-19 00:00:00','2016-6-19 00:00:00','null','2016-4-19 00:00:00');
+insert into inoutlog(inoutlog_id,inventory_id,product_id,inoutlog_inQuantity,inoutlog_outQuantity,inoutlog_manufactureDate,inoutlog_expiryDate,inoutlog_destination,inoutlog_date) values('102','77','17','51','0','2016-3-19 00:00:00','2016-6-19 00:00:00','null','2016-4-19 00:00:00');
+insert into inoutlog(inoutlog_id,inventory_id,product_id,inoutlog_inQuantity,inoutlog_outQuantity,inoutlog_manufactureDate,inoutlog_expiryDate,inoutlog_destination,inoutlog_date) values('103','78','18','51','0','2016-3-19 00:00:00','2016-6-19 00:00:00','null','2016-4-19 00:00:00');
+insert into inoutlog(inoutlog_id,inventory_id,product_id,inoutlog_inQuantity,inoutlog_outQuantity,inoutlog_manufactureDate,inoutlog_expiryDate,inoutlog_destination,inoutlog_date) values('104','79','19','51','0','2016-3-19 00:00:00','2016-6-19 00:00:00','null','2016-4-19 00:00:00');
+insert into inoutlog(inoutlog_id,inventory_id,product_id,inoutlog_inQuantity,inoutlog_outQuantity,inoutlog_manufactureDate,inoutlog_expiryDate,inoutlog_destination,inoutlog_date) values('105','80','110','51','0','2016-3-19 00:00:00','2016-6-19 00:00:00','null','2016-4-19 00:00:00');

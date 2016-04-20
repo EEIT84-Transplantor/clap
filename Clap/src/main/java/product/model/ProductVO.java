@@ -40,7 +40,6 @@ public class ProductVO implements Serializable  {
 	private Integer value2;
 	
 	
-	
 	public Integer getValue1() {
 		return value1;
 	}

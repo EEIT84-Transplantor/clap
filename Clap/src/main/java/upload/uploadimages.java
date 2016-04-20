@@ -57,6 +57,8 @@ public class uploadimages extends HttpServlet{
 				if(productVO!=null){
 				boolean a = productService.setOrUpdateProduct(productVO, imgbyte);
 				}
+				
+				resp.getWriter().write("ok!");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

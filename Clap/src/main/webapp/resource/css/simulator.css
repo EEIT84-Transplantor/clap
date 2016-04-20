@@ -1,3 +1,7 @@
+.carousel .item {
+  height:840px;
+  background-color: #777;
+}
 .container {
 	width:100%;
 	padding:0 100px;
