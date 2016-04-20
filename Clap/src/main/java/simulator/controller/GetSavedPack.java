@@ -37,21 +37,21 @@ public class GetSavedPack extends ActionSupport {
 		Map<String, Number> map;
 		List<Integer> productIds;
 		if (selected==1){
-			map=(Map<String, Number>) session.getAttribute("conditions1");
+//			map=(Map<String, Number>) session.getAttribute("conditions1");
 			productIds=(List<Integer>) session.getAttribute("savePack1");
 		}else if(selected==2){
-			map=(Map<String, Number>) session.getAttribute("conditions2");
+//			map=(Map<String, Number>) session.getAttribute("conditions2");
 			productIds=(List<Integer>) session.getAttribute("savePack2");
 		}else{
-			map=(Map<String, Number>) session.getAttribute("conditions3");
+//			map=(Map<String, Number>) session.getAttribute("conditions3");
 			productIds=(List<Integer>) session.getAttribute("savePack3");
 		}
-		request.setAttribute("height", map.get("height"));
-		request.setAttribute("weight", map.get("weight"));
-		request.setAttribute("smoking", map.get("smoking"));
-		request.setAttribute("drinking", map.get("drinking"));
-		request.setAttribute("exercising", map.get("exercising"));
-		request.setAttribute("env_id", map.get("env_id"));
+//		request.setAttribute("height", map.get("height"));
+//		request.setAttribute("weight", map.get("weight"));
+//		request.setAttribute("smoking", map.get("smoking"));
+//		request.setAttribute("drinking", map.get("drinking"));
+//		request.setAttribute("exercising", map.get("exercising"));
+//		request.setAttribute("env_id", map.get("env_id"));
 		request.setAttribute("productIds", productIds);
 		return SUCCESS;
 	}

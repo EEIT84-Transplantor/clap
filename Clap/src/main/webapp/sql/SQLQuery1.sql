@@ -72,22 +72,17 @@ msg_deleted bit ,
 PRIMARY KEY(msg_id ))
 
 
-
-
-
-
 create table category(
 category_id int ,
 category_name varchar(50) ,
-category_specialty varchar(50) ,
-category_value1 float ,
-category_specialty_plus varchar(50) ,
-category_value2 float ,
+smoking float ,
+bmi float ,
+drinking float ,
+exercising float ,
+industrial float ,
+forest float ,
+city float ,
 PRIMARY KEY(category_id))
-
-
-
-
 
 
 
@@ -215,7 +210,7 @@ create table orderdetail(
 orderdetail_id int  identity ,
 orderform_id int REFERENCES orderform(orderform_id),
 product_id int REFERENCES product(product_id),
-cart_quantity tinyint ,
+ct_quantity tinyint ,
 doctor_id int REFERENCES doctor(doctor_id),
 orderdetail_surgerytime datetime ,
 PRIMARY KEY(orderdetail_id))
@@ -657,13 +652,14 @@ insert into message(msg_id ,mb_email,msg_sender,msg_subject,msg_content,msg_date
 insert into message(msg_id ,mb_email,msg_sender,msg_subject,msg_content,msg_date,msg_deleted) values(98,'jacqueline425@gmail.com','admin@gmail.com','玩遊戲送$50萬圓夢金，帶你免費去ClubMed馬爾地夫','親愛的會員大家好：為了提供給所有會員更優質購物品質,我們將於 2016/05/10 進行網路設備的更新與升級為力求快速地完成這個動作，屆時全站會進入停機狀態，執行完畢且測試無誤後會盡速開放服務，感謝各位會員的支持與配合！','2016-4-4',0);
 insert into message(msg_id ,mb_email,msg_sender,msg_subject,msg_content,msg_date,msg_deleted) values(99,'spring768@gmail.com','admin@gmail.com','玩遊戲送$50萬圓夢金，帶你免費去ClubMed馬爾地夫','親愛的會員大家好：為了提供給所有會員更優質購物品質,我們將於 2016/05/10 進行網路設備的更新與升級為力求快速地完成這個動作，屆時全站會進入停機狀態，執行完畢且測試無誤後會盡速開放服務，感謝各位會員的支持與配合！','2016-4-4',0);
 insert into message(msg_id ,mb_email,msg_sender,msg_subject,msg_content,msg_date,msg_deleted) values(100,'hedy384@gmail.com','admin@gmail.com','玩遊戲送$50萬圓夢金，帶你免費去ClubMed馬爾地夫','親愛的會員大家好：為了提供給所有會員更優質購物品質,我們將於 2016/05/10 進行網路設備的更新與升級為力求快速地完成這個動作，屆時全站會進入停機狀態，執行完畢且測試無誤後會盡速開放服務，感謝各位會員的支持與配合！','2016-4-4',0);
-insert into category(category_id,category_name,category_specialty,category_value1,category_specialty_plus,category_value2) values('1','Heart','Rhythm','100','EF','100');
-insert into category(category_id,category_name,category_specialty,category_value1,category_specialty_plus,category_value2) values('2','Lung','FVC','100','RR','100');
-insert into category(category_id,category_name,category_specialty,category_value1,category_specialty_plus,category_value2) values('3','Liver','GOT','100','GPT','100');
-insert into category(category_id,category_name,category_specialty,category_value1,category_specialty_plus,category_value2) values('4','Kidney','GFR','100','null','100');
-insert into category(category_id,category_name,category_specialty,category_value1,category_specialty_plus,category_value2) values('5','Stomach','null','100','null','100');
-insert into category(category_id,category_name,category_specialty,category_value1,category_specialty_plus,category_value2) values('6','Cornea','Sight','100','null','100');
-insert into category(category_id,category_name,category_specialty,category_value1,category_specialty_plus,category_value2) values('7','Intestine','RBC','100','null','100');
+insert into category(category_id,category_name,smoking,bmi,drinking,exercising,industrial,forest,city) values('1','heart','0.7','0.8','0.9','0.8','0.93','0.99','0.8');
+insert into category(category_id,category_name,smoking,bmi,drinking,exercising,industrial,forest,city) values('2','lung','0.7','0.8','0.9','0.8','0.8','0.99','0.7');
+insert into category(category_id,category_name,smoking,bmi,drinking,exercising,industrial,forest,city) values('3','liver','0.7','0.7','0.8','0.8','0.8','0.99','0.8');
+insert into category(category_id,category_name,smoking,bmi,drinking,exercising,industrial,forest,city) values('4','kidney','0.7','0.6','0.7','0.88','0.8','0.99','0.8');
+insert into category(category_id,category_name,smoking,bmi,drinking,exercising,industrial,forest,city) values('5','stomach','0.7','0.8','0.7','0.7','0.8','0.99','0.8');
+insert into category(category_id,category_name,smoking,bmi,drinking,exercising,industrial,forest,city) values('6','intestine','0.6','0.7','0.8','0.87','0.8','0.99','0.8');
+insert into category(category_id,category_name,smoking,bmi,drinking,exercising,industrial,forest,city) values('7','blood','0.7','0.8','1','0.9','0.8','0.99','0.8');
+
 insert into promo(pm_code,pm_expire,pm_tiltle,pm_discount,category_id) values('99999999','2016-9-1','[促銷]指定商品結帳9折, 館長推薦','0.9','1');
 insert into promo(pm_code,pm_expire,pm_tiltle,pm_discount,category_id) values('88888888','2016-8-1','【會員特典】最後2天!!精選Top 30 激殺品任你挑 8折起','0.8','2');
 insert into promo(pm_code,pm_expire,pm_tiltle,pm_discount,category_id) values('77777777','2016-7-1','歡慶2016限時促銷方案全館7折!','0.7','3');
@@ -1223,107 +1219,106 @@ insert into doctor(doctor_id,doctor_name) values('97','何俊賢');
 insert into doctor(doctor_id,doctor_name) values('98','吳燦亮');
 insert into doctor(doctor_id,doctor_name) values('99','張玉屏');
 insert into doctor(doctor_id,doctor_name) values('100','林正祺');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('2','53','1','16','2015-3-3 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('3','44','1','9','2015-8-5 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('3','32','1','68','2016-3-17 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('5','15','1','95','2015-8-8 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('5','73','1','49','2016-10-2 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('5','45','1','43','2015-8-11 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('7','73','1','6','2015-8-27 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('9','42','1','70','2015-8-19 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('10','42','1','1','2015-12-23 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('11','41','1','88','2016-4-18 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('13','64','1','100','2015-7-4 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('14','63','1','29','2016-12-18 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('15','35','1','9','2015-2-26 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('19','11','1','34','2016-7-23 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('19','35','1','56','2016-8-17 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('20','73','1','21','2015-9-22 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('20','75','1','77','2016-7-16 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('21','61','1','83','2015-4-19 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('21','61','1','9','2015-5-19 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('22','11','1','43','2016-5-19 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('22','35','1','48','2015-2-19 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('23','24','1','90','2015-6-26 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('23','23','1','90','2016-10-27 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('24','23','1','90','2015-3-5 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('25','54','1','12','2015-11-24 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('28','33','1','46','2015-9-4 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('31','42','1','63','2015-8-27 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('32','13','1','46','2015-2-27 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('32','12','1','67','2016-5-7 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('33','55','1','39','2015-9-22 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('33','52','1','63','2016-8-3 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('33','15','1','96','2015-8-11 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('33','44','1','15','2015-6-3 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('34','24','1','76','2016-9-6 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('34','45','1','62','2016-12-8 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('35','35','1','4','2016-2-11 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('37','65','1','23','2016-10-12 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('37','75','1','88','2016-6-17 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('38','22','1','12','2015-5-12 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('40','12','1','95','2015-8-22 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('41','11','1','95','2016-9-9 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('41','53','1','97','2016-12-21 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('42','31','1','65','2016-10-2 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('42','63','1','80','2016-5-26 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('43','55','1','99','2016-2-7 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('43','33','1','86','2016-6-10 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('43','65','1','95','2016-2-2 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('45','42','1','61','2015-10-4 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('45','44','1','9','2016-10-3 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('45','62','1','5','2015-10-10 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('48','73','1','32','2015-3-17 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('52','34','1','84','2015-9-25 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('54','22','1','69','2015-8-9 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('55','52','1','92','2015-3-16 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('55','72','1','29','2016-4-1 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('56','54','1','23','2015-9-2 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('57','21','1','67','2015-3-17 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('57','13','1','41','2016-10-26 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('58','63','1','53','2016-6-2 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('58','24','1','6','2016-5-6 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('62','11','1','53','2016-2-21 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('63','35','1','64','2016-7-23 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('63','52','1','22','2016-8-24 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('64','23','1','72','2015-11-10 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('65','61','1','47','2016-6-3 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('65','33','1','18','2016-4-17 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('66','32','1','99','2016-5-16 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('69','54','1','51','2015-1-27 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('69','44','1','96','2015-2-1 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('70','14','1','64','2016-6-23 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('70','22','1','38','2015-2-12 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('70','63','1','65','2015-10-28 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('72','31','1','84','2015-5-11 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('74','45','1','89','2015-7-19 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('74','13','1','10','2016-1-20 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('75','45','1','6','2016-4-13 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('75','45','1','12','2015-2-12 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('75','74','1','19','2015-7-7 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('77','33','1','34','2016-10-27 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('78','65','1','26','2015-4-22 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('80','62','1','59','2016-11-27 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('80','32','1','40','2015-11-26 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('80','44','1','98','2016-4-9 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('81','33','1','67','2016-10-4 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('81','73','1','42','2015-7-12 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('82','74','1','92','2016-6-19 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('82','24','1','52','2016-3-17 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('86','25','1','63','2015-4-1 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('86','15','1','16','2015-1-4 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('88','14','1','43','2015-3-10 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('88','41','1','56','2016-8-8 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('90','34','1','49','2016-10-2 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('90','33','1','69','2015-10-14 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('92','52','1','67','2015-10-22 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('93','52','1','65','2016-4-20 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('93','63','1','54','2015-8-11 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('97','44','1','54','2016-3-4 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('97','23','1','8','2016-8-16 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('99','55','1','72','2016-6-26 00:00:00');
-insert into orderdetail(orderform_id,product_id,cart_quantity,doctor_id,orderdetail_surgerytime) values('99','72','1','39','2016-5-14 00:00:00');
-insert into inventory(product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('11','23','2016-2-16 00:00:00','2016-5-16 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('2','53','1','16','2015-3-3 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('3','44','1','9','2015-8-5 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('3','32','1','68','2016-3-17 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('5','15','1','95','2015-8-8 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('5','73','1','49','2016-10-2 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('5','45','1','43','2015-8-11 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('7','73','1','6','2015-8-27 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('9','42','1','70','2015-8-19 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('10','42','1','1','2015-12-23 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('11','41','1','88','2016-4-18 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('13','64','1','100','2015-7-4 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('14','63','1','29','2016-12-18 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('15','35','1','9','2015-2-26 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('19','11','1','34','2016-7-23 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('19','35','1','56','2016-8-17 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('20','73','1','21','2015-9-22 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('20','75','1','77','2016-7-16 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('21','61','1','83','2015-4-19 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('21','61','1','9','2015-5-19 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('22','11','1','43','2016-5-19 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('22','35','1','48','2015-2-19 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('23','24','1','90','2015-6-26 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('23','23','1','90','2016-10-27 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('24','23','1','90','2015-3-5 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('25','54','1','12','2015-11-24 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('28','33','1','46','2015-9-4 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('31','42','1','63','2015-8-27 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('32','13','1','46','2015-2-27 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('32','12','1','67','2016-5-7 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('33','55','1','39','2015-9-22 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('33','52','1','63','2016-8-3 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('33','15','1','96','2015-8-11 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('33','44','1','15','2015-6-3 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('34','24','1','76','2016-9-6 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('34','45','1','62','2016-12-8 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('35','35','1','4','2016-2-11 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('37','65','1','23','2016-10-12 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('37','75','1','88','2016-6-17 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('38','22','1','12','2015-5-12 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('40','12','1','95','2015-8-22 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('41','11','1','95','2016-9-9 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('41','53','1','97','2016-12-21 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('42','31','1','65','2016-10-2 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('42','63','1','80','2016-5-26 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('43','55','1','99','2016-2-7 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('43','33','1','86','2016-6-10 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('43','65','1','95','2016-2-2 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('45','42','1','61','2015-10-4 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('45','44','1','9','2016-10-3 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('45','62','1','5','2015-10-10 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('48','73','1','32','2015-3-17 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('52','34','1','84','2015-9-25 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('54','22','1','69','2015-8-9 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('55','52','1','92','2015-3-16 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('55','72','1','29','2016-4-1 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('56','54','1','23','2015-9-2 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('57','21','1','67','2015-3-17 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('57','13','1','41','2016-10-26 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('58','63','1','53','2016-6-2 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('58','24','1','6','2016-5-6 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('62','11','1','53','2016-2-21 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('63','35','1','64','2016-7-23 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('63','52','1','22','2016-8-24 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('64','23','1','72','2015-11-10 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('65','61','1','47','2016-6-3 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('65','33','1','18','2016-4-17 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('66','32','1','99','2016-5-16 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('69','54','1','51','2015-1-27 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('69','44','1','96','2015-2-1 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('70','14','1','64','2016-6-23 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('70','22','1','38','2015-2-12 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('70','63','1','65','2015-10-28 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('72','31','1','84','2015-5-11 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('74','45','1','89','2015-7-19 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('74','13','1','10','2016-1-20 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('75','45','1','6','2016-4-13 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('75','45','1','12','2015-2-12 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('75','74','1','19','2015-7-7 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('77','33','1','34','2016-10-27 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('78','65','1','26','2015-4-22 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('80','62','1','59','2016-11-27 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('80','32','1','40','2015-11-26 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('80','44','1','98','2016-4-9 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('81','33','1','67','2016-10-4 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('81','73','1','42','2015-7-12 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('82','74','1','92','2016-6-19 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('82','24','1','52','2016-3-17 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('86','25','1','63','2015-4-1 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('86','15','1','16','2015-1-4 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('88','14','1','43','2015-3-10 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('88','41','1','56','2016-8-8 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('90','34','1','49','2016-10-2 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('90','33','1','69','2015-10-14 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('92','52','1','67','2015-10-22 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('93','52','1','65','2016-4-20 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('93','63','1','54','2015-8-11 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('97','44','1','54','2016-3-4 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('97','23','1','8','2016-8-16 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('99','55','1','72','2016-6-26 00:00:00');
+insert into orderdetail(orderform_id,product_id,ct_quantity,doctor_id,orderdetail_surgerytime) values('99','72','1','39','2016-5-14 00:00:00');insert into inventory(product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('11','23','2016-2-16 00:00:00','2016-5-16 00:00:00');
 insert into inventory(product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('12','52','2016-2-2 00:00:00','2016-5-2 00:00:00');
 insert into inventory(product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('13','79','2016-4-12 00:00:00','2016-7-12 00:00:00');
 insert into inventory(product_id,inventory_quantity,inventory_manufactureDate,inventory_expiryDate) values('14','85','2016-5-18 00:00:00','2016-8-18 00:00:00');

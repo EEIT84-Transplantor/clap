@@ -271,11 +271,12 @@
 	</bean>
 
 	<!-- simulator -->
-	<bean id="environmentDAO" class="simulator.model.EnvironmentHibernateDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
+	<!-- simulator-->
 	<bean id="simulatorService" class="simulator.model.SimulatorService">
 		<property name="environmentDAO" ref="environmentDAO" />
+		<property name="categoryDAO" ref="categoryDAO" />
+		<property name="categoryDAO" ref="categoryDAO" />
 	</bean>
 	<bean id="bodySimulatorAction" class="simulator.controller.BodySimulatorAction">
 		<property name="productService" ref="productService" />
