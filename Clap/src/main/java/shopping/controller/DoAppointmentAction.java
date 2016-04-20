@@ -33,14 +33,54 @@ public class DoAppointmentAction extends ActionSupport implements ServletRequest
 
 	private ArrayList<JSONObject> orderList;
 	private String hospital;
-	private String orderFormId;
+	private String orderform_id;
 
-	public String getOrderFromId() {
-		return orderFormId;
+	@Override
+	public String execute() throws Exception {
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+		System.out.println(hospital);
+		System.out.println(orderform_id);
+		System.out.println(orderList.toString());
+		System.out.println("DoAppointmentAction 1");
+		// 修改 orderform
+		OrderFormVO orderFormVO = orderFormService.getOrderById(Integer.parseInt(orderform_id));
+		HospitalVO hospitalVO = new HospitalVO();
+		hospitalVO.setId(Integer.parseInt(hospital));
+		orderFormVO.setHospitalVO(hospitalVO);
+		orderFormService.updateOrderForm(orderFormVO);
+
+		System.out.println("DoAppointmentAction 2");
+		// 修改 orderdetail inventory
+		OrderDetailVO orderDetailVO;
+		Integer orderDetailId;
+		Date time;
+		for (JSONObject order : orderList) {
+			System.out.println(1);
+			time = simpleDateFormat.parse((String) orderList.get(0).get("time"));
+			System.out.println(2);
+			orderDetailId = Integer.parseInt((String) order.get("id"));
+			System.out.println(3);
+			orderDetailVO = orderDetailService.getOrderDetailById(orderDetailId);
+			System.out.println(4);
+			orderDetailVO.setDoctor_id( Integer.parseInt((String) order.get("doctor")));
+			System.out.println(5);
+			orderDetailVO.setOrderdetail_surgerytime(new Timestamp(time.getTime()));
+			System.out.println(6);
+			inventoryService.saleQuantity(orderDetailVO.getProductVO(), orderDetailVO.getCart_quantity(), hospital);
+			System.out.println(7);
+		}
+
+		return super.execute();
 	}
 
-	public void setOrderFromId(String orderFromId) {
-		this.orderFormId = orderFromId;
+	public String getOrderform_id() {
+		return orderform_id;
+	}
+
+	public void setOrderform_id(String orderform_id) {
+		this.orderform_id = orderform_id;
 	}
 
 	public InventoryService getInventoryService() {
@@ -91,42 +131,12 @@ public class DoAppointmentAction extends ActionSupport implements ServletRequest
 
 	@Override
 	public void setParameters(Map<String, String[]> arg0) {
-//		String[] orderListStr = arg0.get("orderList[]");
-//		orderList = new ArrayList<>();
-//		for (String orderStr : orderListStr) {
-//			JSONObject order = new JSONObject(orderStr);
-//			orderList.add(order);
-//		}
-	}
-
-	@Override
-	public String execute() throws Exception {
-
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-		// 修改 orderform
-		OrderFormVO orderFormVO = orderFormService.getOrderById(Integer.parseInt(orderFormId));
-		HospitalVO hospitalVO = new HospitalVO();
-		hospitalVO.setId(Integer.parseInt(hospital));
-		orderFormVO.setHospitalVO(hospitalVO);
-		orderFormService.updateOrderForm(orderFormVO);
-
-		// 修改 orderdetail inventory
-		OrderDetailVO orderDetailVO = new OrderDetailVO();
-		Integer orderDetailId;
-		for (JSONObject order : orderList) {
-			Date time = simpleDateFormat.parse((String) orderList.get(0).get("time"));
-			orderDetailId = (Integer) order.get("id");
-			orderDetailVO.setId(orderDetailId);
-			orderDetailVO.setDoctor_id((Integer) order.get("doctor"));
-			orderDetailVO.setOrderdetail_surgerytime(new Timestamp(time.getTime()));
-			orderDetailService.updateOrderDetail(orderDetailVO);
-
-			orderDetailVO = orderDetailService.getOrderDetailById(orderDetailId);
-			inventoryService.saleQuantity(orderDetailVO.getProductVO(),orderDetailVO.getCart_quantity(), hospital);
+		String[] orderListStr = arg0.get("orderList[]");
+		orderList = new ArrayList<>();
+		for (String orderStr : orderListStr) {
+			JSONObject order = new JSONObject(orderStr);
+			orderList.add(order);
 		}
-
-		return super.execute();
 	}
 
 }

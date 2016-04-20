@@ -215,7 +215,6 @@
 		function doReadyStateChange() {
 			if (request.readyState == 4) {
 				if (request.status == 200) {
-					alert("4/200");
                     processJSON(request.responseText);
 				} else {
 					console.log("Error Code:" + request.status + ", "+ request.statusText);
@@ -225,7 +224,6 @@
 		}
 		
 		function processJSON(data) {
-			alert("hee");
 			var json = JSON.parse(data);
 		    var key = json[0].buttonClicked;
 		    var isError = json[0].isError;

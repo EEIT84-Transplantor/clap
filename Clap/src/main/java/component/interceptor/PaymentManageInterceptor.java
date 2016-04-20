@@ -38,25 +38,31 @@ public class PaymentManageInterceptor extends AbstractInterceptor {
 			@Override
 			public void beforeResult(ActionInvocation invocation, String resultCode) {
 				String email = mVo.getEmail();
+				System.out.println(creditCardService);
 				List<CreditCardVO> payment = creditCardService.getCards(email);
 
 				Double amount = mVo.getAmount();
 				List<String> cardType = new ArrayList<>();
-				for (CreditCardVO cardIt : payment) {
-					String visa = "^4[0-9]{12}(?:[0-9]{3})?$";
-					String master = "^5[1-5][0-9]{14}$";
-					String jcb = "^(?:2131|1800|35\\d{3})\\d{11}$";
-					String cardNum = cardIt.getCreditCardPK().getCc_number();
-					if (Pattern.matches(visa, cardNum)) {
-						cardType.add("visa");
-					} else if (Pattern.matches(master, cardNum)) {
-						cardType.add("master");
-					} else if (Pattern.matches(jcb, cardNum)) {
-						cardType.add("JCB");
-					} else {
-						cardType.add("master");
+				System.out.println(payment);
+				if(payment!=null){
+					for (CreditCardVO cardIt : payment) {
+						System.out.println("hi");
+						String visa = "^4[0-9]{12}(?:[0-9]{3})?$";
+						String master = "^5[1-5][0-9]{14}$";
+						String jcb = "^(?:2131|1800|35\\d{3})\\d{11}$";
+						String cardNum = cardIt.getCreditCardPK().getCc_number();
+						if (Pattern.matches(visa, cardNum)) {
+							cardType.add("visa");
+						} else if (Pattern.matches(master, cardNum)) {
+							cardType.add("master");
+						} else if (Pattern.matches(jcb, cardNum)) {
+							cardType.add("JCB");
+						} else {
+							cardType.add("master");
+						}
 					}
 				}
+				
 				List<PromoVO> promoCodes = promoCodeService.getPromos(email);
 				session.put("cards", payment);
 				session.put("amount", amount);

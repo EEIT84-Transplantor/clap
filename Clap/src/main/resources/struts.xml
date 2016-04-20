@@ -57,7 +57,6 @@
 			<result name="input">/setting/vip.jsp</result>
 			<!-- <interceptor-ref name="creditCardInterceptor" /> -->
 		</action>
-
 	</package>
 
 	<package name="payment" namespace="/payment" extends="struts-default">
@@ -129,10 +128,8 @@
 			<result name="input">/paymentmanage/setpromotion.jsp</result>
 		</action>
 		<action name="setPromoteAction" class="setPromoteAction">
-			<interceptor-ref name="AdminInterceptor" />
 			<!-- <interceptor-ref name="promoManageInterceptorStack" /> -->
-			<result type="redirect" name="success">/paymentmanage/setpromotion.jsp
-			</result>
+			<result name="success">/paymentmanage/setpromotion.jsp</result>
 			<result name="input">/paymentmanage/setpromotion.jsp</result>
 		</action>
 

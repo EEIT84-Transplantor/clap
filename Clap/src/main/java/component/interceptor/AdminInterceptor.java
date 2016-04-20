@@ -22,6 +22,7 @@ public class AdminInterceptor  extends AbstractInterceptor {
 		Map<String, Object> session = applicationContext.getSession();
 		HttpServletRequest request = ServletActionContext.getRequest();
 		MemberVO memberVO = (MemberVO) session.get("login");
+		System.out.println(request.getAttribute("promoVO"));
 		System.out.println(memberVO);
 		System.out.println("AdminInterceptor");
 		if (memberVO==null) {
