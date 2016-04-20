@@ -6,8 +6,8 @@ public interface EnvironmentDAO {
 
 	public List<EnvironmentVO> selectAll();
 
-	public List<EnvironmentVO> selectByCondition(String condition);
+	public EnvironmentVO selectByCondition(String condition);
 
-	public List<EnvironmentVO> selectById(Integer id);
+	public EnvironmentVO selectById(Integer id);
 
 }

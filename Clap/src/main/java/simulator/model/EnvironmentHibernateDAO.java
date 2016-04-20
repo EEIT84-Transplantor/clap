@@ -35,7 +35,7 @@ public class EnvironmentHibernateDAO implements EnvironmentDAO{
 	};
 	
 	@Override
-	public List<EnvironmentVO> selectByCondition(String condition){
+	public EnvironmentVO selectByCondition(String condition){
 		session = sessionFactory.getCurrentSession();
 		List<EnvironmentVO> environmentVOs = null;
 		try {
@@ -46,11 +46,15 @@ public class EnvironmentHibernateDAO implements EnvironmentDAO{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return environmentVOs;
+		if (environmentVOs!=null){
+			return environmentVOs.get(0);
+		}else{
+			return null;
+		}
 	};
 	
 	@Override
-	public List<EnvironmentVO> selectById(Integer id){
+	public EnvironmentVO selectById(Integer id){
 		session = sessionFactory.getCurrentSession();
 		List<EnvironmentVO> environmentVOs = null;
 		try {
@@ -61,6 +65,11 @@ public class EnvironmentHibernateDAO implements EnvironmentDAO{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return environmentVOs;
+		if (environmentVOs!=null){
+			return environmentVOs.get(0);
+		}else{
+			return null;
+		}
+		
 	};
 }
