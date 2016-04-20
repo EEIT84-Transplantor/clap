@@ -66,11 +66,14 @@
 									</div>
 									<div class="clear"></div>
 								</div>
-								<button class="reset_btn s_btn2 tosave">SAVE</button>
+								<button class="reset_btn s_btn2 tosave"><span class="glyphicon glyphicon-save" aria-hidden="true"></span></button>
 								<button class="reset_btn s_btn2 toreset">RESET</button>
-								<div class="sub_setting">To add</div>
+								<div class="sub_setting savingslot" id="saveSlot1">1st  <span class="" aria-hidden="true"></span></div>
+								<div class="sub_setting savingslot" id="saveSlot2">2nd  <span class="" aria-hidden="true"></span></div>
+								<div class="sub_setting savingslot" id="saveSlot3">3rd  <span class="" aria-hidden="true"></span></div>
+								<button class="toclear">Clear Saves</button>
 							</div>
-						</div>
+						</div>					
 						<div class="col-md-3">
 							<div id="people">
 <!-- 							<div id="drop" class="o_heart"></div> -->
@@ -269,32 +272,52 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery.color-2.1.2.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery-ui.min.js"/>"></script>
 	<script type="text/javascript">
-		$(".factor_item").on("click", function() {
-			var src = $(this).find('img').attr('src');
-			var bg_img;
-
-			switch (src.substr(39, 1)) {
-			case "1":
-				bg_img = "s_bg_1.png";
-				break;
-			case "2":
-				bg_img = "s_bg_2.png";
-				break;
-			case "3":
-				bg_img = "s_bg_3.png";
-				break;
-			case "4":
-				bg_img = "none";
-			}
-			
-			 $('#fullPage').animate(
-					 {backgroundColor: 'rgb(0,0,0)'}, 600, function(){
-						 $('#s_wrap').css('backgroundImage', "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)");
-					 }).animate({backgroundColor: 'rgba(0,0,0,0.1)'}, 600);
-
+		//set open background color animation to dark
+		$("body").hide();
+		$("html").show().animate({backgroundColor: '#031014'}, 200, "linear", function(){
+			$("html").animate({backgroundColor: '#062128'}, 300,"linear");
+			$(document).ready(function(){
+				$("body").fadeIn(400);
+			});
 		});
 		
+		
+		
 		$(document).ready(function(){
+			var environmentIndex = 0;
+			//set onclick to change env background
+			function initChangeBackClick(){
+			$(".factor_item").on("click", function() {
+				var src = $(this).find('img').attr('src');
+				var bg_img;
+
+				switch (src.substr(39, 1)) {
+				case "1":
+					bg_img = "s_bg_1.png";
+					environmentIndex = 1;
+					break;
+				case "2":
+					bg_img = "s_bg_2.png";
+					environmentIndex = 2;
+					break;
+				case "3":
+					bg_img = "s_bg_3.png";
+					environmentIndex = 3;
+					break;
+				case "4":
+					bg_img = "none";
+					environmentIndex = 0;
+				}
+				sendEnvAjax(createFactors());
+				 $('#fullPage').animate(
+						 {backgroundColor: 'rgb(0,0,0)'}, 600, function(){
+							 $('#s_wrap').css('backgroundImage', "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)");
+						 }).animate({backgroundColor: 'rgba(0,0,0,0.1)'}, 600);
+				 
+			});
+			}
+			initSaveObject();		
+			initChangeBackClick();
 			$(".carousel").carousel("pause");
 			$("#sim_silder img").draggable();
 			$("#people").droppable();
@@ -369,6 +392,15 @@
 			    "background":   "      linear-gradient(to right, #C13F2E "+ percent +"%,rgba(0,0,0,0) "+ percent +"%)"
 				});
 			}
+			function drawBarToPercent(selectedBar, percent){
+				selectedBar.css({
+				"background": "-webkit-linear-gradient(left, #C13F2E "+ percent +"%, rgba(0,0,0,0) "+ percent +"%)",
+			    "background":  "  -moz-linear-gradient(left, #C13F2E "+ percent +"%, rgba(0,0,0,0) "+ percent +"%)",
+			    "background":  "   -ms-linear-gradient(left, #C13F2E "+ percent +"%,rgba(0,0,0,0) "+ percent +"%)",
+			    "background":  "    -o-linear-gradient(left, #C13F2E "+ percent +"%,rgba(0,0,0,0) "+ percent +"%)",
+			    "background":   "      linear-gradient(to right, #C13F2E "+ percent +"%,rgba(0,0,0,0) "+ percent +"%)"
+				});
+			}
 			function cleanBar(selectedBar){
 				selectedBar.css({
 				"background": "-webkit-linear-gradient(left, #C13F2E 0%, rgba(0,0,0,0) 0%)",
@@ -383,10 +415,13 @@
 				cleanBar($("#setting1"));
 				cleanBar($("#setting2"));
 				cleanBar($("#setting3"));
-				clicksetting1 = true, clicksetting2 = true, clicksetting3 = true; 				
+				$("input[name='weight']").val("");
+				$("input[name='height']").val("");
+				clicksetting1 = true, clicksetting2 = true, clicksetting3 = true; 					
 			})
-			//set save			
-			$('button[class="reset_btn s_btn2 tosave"').on("click",function(){
+			
+			//create factors
+			function createFactors(){
 				var factors = new Object();
 				var tempAttr = $("#setting1").css("background");
 				var index = tempAttr.indexOf('%)',0);
@@ -425,23 +460,135 @@
 				$("input[name='height']").val(height);
 				$("input[name='weight']").val(weight);
 				factors.weight = weight;
-				factors.height = height;	
-			})
+				factors.height = height;
+				factors.env_id = environmentIndex;
+				return factors;
+			}
+			
+			
+			//set save			
+			$('button[class="reset_btn s_btn2 tosave"').on("click",function(){
+				var factors = createFactors();
+				var index = 1;
+				for(var savedObjKey in saveContainer){
+					var containerLength = Object.keys(saveContainer).length;
+					var savedObj = saveContainer[savedObjKey];
+					if (savedObj.saved == false){
+						setSaveObject(factors, savedObj);
+						savedObj.saved = true;
+						$("#saveSlot"+index+" span").attr("class", "glyphicon glyphicon-open");
+						//set save slot icon
+						$("#saveSlot"+index).on("mouseover", function(){$("#saveSlot"+index+" span").attr("class", "glyphicon glyphicon-hand-up");}).on("mouseout", function(){$("#saveSlot"+index+" span").attr("class", "glyphicon glyphicon-open");});
+						//set retrieval from save slot
+						$("#saveSlot"+index).css("opacity", "1").on("click", function(){
+							var tempObj = saveContainer["save"+index];
+							regenerateFromSave(tempObj);
+							});
+						break;
+					}
+					if(index == containerLength){
+						alert("no more to save");
+					}
+					index++;
+				}
+				$("button.toclear").on("click", function(){
+					initSaveObject();
+					for(var index = 1;index<=3;index++ ){
+					$("#saveSlot"+index+" span").attr("class", "");
+					//clear save slot icon
+					$("#saveSlot"+index).css("opacity", "0.5").off("mouseover")
+					.off("mouseout")
+					.off("click");
+					}
+				})
+				
+				for(var savedObjKey in saveContainer){
+					var savedObj = saveContainer[savedObjKey];
+					printObject(savedObj);
+				}
+				
+			});
+			
+			function setEnvironmentBG(tempEnvIndex){
+				var bg_img;
+				switch (tempEnvIndex) {
+				case 1:
+					bg_img = "s_bg_1.png";
+					environmentIndex = 1;
+					break;
+				case 2:
+					bg_img = "s_bg_2.png";
+					environmentIndex = 2;
+					
+					break;
+				case 3:
+					bg_img = "s_bg_3.png";
+					environmentIndex = 3;
+					break;
+				case 0:
+					bg_img = "none";
+					environmentIndex = 0;
+				}
+				 $('#fullPage').animate(
+						 {backgroundColor: 'rgb(0,0,0)'}, 600, function(){
+							 $('#s_wrap').css('backgroundImage', "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)");
+						 }).animate({backgroundColor: 'rgba(0,0,0,0.1)'}, 600);
+			}
+			function regenerateFromSave(savedObjectToBack){
+				drawBarToPercent($("#setting1"), savedObjectToBack.smoking);
+				drawBarToPercent($("#setting2"), savedObjectToBack.drinking);
+				drawBarToPercent($("#setting3"), savedObjectToBack.exercising);
+				$("input[name='weight']").val(savedObjectToBack.weight);
+				$("input[name='height']").val(savedObjectToBack.height);
+				setEnvironmentBG(savedObjectToBack.env_id);
+			}
+			
+			//Ajax send to Env Action 
+			function sendEnvAjax(sentDataObj){
+				
+				printObject(sentDataObj);
+							$.ajax({
+							url:"${pageContext.request.contextPath}/simulator/bodySimulatorAction",
+							data:sentDataObj
+							}).done(function(msg){
+								console.log(msg);
+								});
+			}
 			
 		});
 		
 		
 		
+
 		
 		
+		function initSaveObject(){
+			saveObject1 = new Object(), saveObject2 = new Object(), saveObject3 = new Object();
+			saveContainer = new Object;
+			saveObject1.saved = false;
+			saveObject2.saved = false;
+			saveObject3.saved = false;
+			saveContainer.save1 = saveObject1;
+			saveContainer.save2 = saveObject2;
+			saveContainer.save3 = saveObject3;
+			$("#saveSlot1 span").attr("class", "");
+			$("#saveSlot2 span").attr("class", "");
+			$("#saveSlot3 span").attr("class", "");
+		}
 		
+		function setSaveObject(sourceObj, targetObject){
+			for(var key in sourceObj){
+				targetObject[key] = sourceObj[key];
+			}			
+		}
 		
+
 		
-		
-		
-		
-		
-		
+		function printObject(printedObj){
+			for(var key in printedObj){
+				console.log("["+key+"]: "+printedObj[key]);
+			}			
+		}
 		
 		
 	</script>

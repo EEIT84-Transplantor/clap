@@ -196,6 +196,7 @@
 	</bean>
 	<bean id="categoryService" class="product.model.CategoryService">
 		<property name="categoryDAO" ref="categoryDAO" />
+		<property name="productService" ref="productService" />
 	</bean>
 	<bean id="preDisplayActionStruts" class="product.controller.PreDisplayAction">
 		<property name="productService" ref="productService" />
