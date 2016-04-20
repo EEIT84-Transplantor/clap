@@ -8,15 +8,16 @@
       <a href="${pageContext.request.contextPath}/shopping/categories.action?organ=${cList.name}" class="list-group-item sub_list">${cList.name}</a>
       </c:forEach>
     </div>
-    <a href="#side_About" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">About us</a>
+    <a href="#side_About" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Inventory</a>
     <div class="collapse" id="side_About">
       <a href="${pageContext.request.contextPath}/product/showInventory.action" class="list-group-item sub_list">Inventory</a>
       <a href="${pageContext.request.contextPath}/product/preDisplayAction.action" class="list-group-item sub_list">Product</a>
+      <a href="${pageContext.request.contextPath}/product/showInOutLog.action" class="list-group-item sub_list">In Out Log</a>
     </div>
-     <a href="#side_Simulator" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Simulator</a>
+     <a href="#side_Simulator" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Promotion</a>
     <div class="collapse" id="side_Simulator">
       <a href="${pageContext.request.contextPath}/paymentmanage/prePromoteAction.action" class="list-group-item sub_list">Promotion</a>
-      <a href="${pageContext.request.contextPath}/product/showInOutLog.action" class="list-group-item sub_list">In Out Log</a>
+     
     </div>
      <a href="#side_Appointment" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Appointment</a>
     <div class="collapse" id="side_Appointment">

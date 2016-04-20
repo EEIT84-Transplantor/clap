@@ -241,7 +241,7 @@ margin:10px 0;
 							$('.update')
 									.click(
 											function() {
-
+												
 												var dataSend = "promoVO.pm_code="
 														+ $(this).parent()
 																.parent()

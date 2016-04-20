@@ -47,6 +47,7 @@ public class SetPromotionAction extends ActionSupport{
 
 	public String execute(){
 		HttpServletRequest request = ServletActionContext.getRequest();
+		System.out.println("hihi"+promoVO+category);
 		String message="";
 		if(promoVO.getPm_discount()==null||promoVO.getPm_discount()>1||promoVO.getPm_discount()<0){
 			message+="Discount is not Valid<br>";
