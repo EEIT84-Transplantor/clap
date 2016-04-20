@@ -15,10 +15,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
 <!-- Bootstrap -->
-<link href="<c:url value="/resource/css/bootstrap.min.css"/>" " rel="stylesheet">
-<link href="<c:url value="/resource/css/silderbanner.css"/>" " rel="stylesheet">
-<link href="<c:url value="/resource/css/customer.css"/>" " rel="stylesheet">
-<link href="<c:url value="/resource/css/shopping.css"/>" " rel="stylesheet">
+<link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/silderbanner.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/shopping.css"/>" rel="stylesheet">
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
@@ -175,11 +175,10 @@
 				if ("cc_number" in window) {
 					$.ajax({
 						url : doCheckOutAction,
-						data : cc_number,
-						dataType : "json"
+						data : {"cc_number":cc_number}
 					}).done(function(result) {
-						document.location.href="<c:url value='/shopping/doCheckOutAction.action'/>";
-					})
+						window.location.href = "<c:url value='/shopping/appointment.jsp'/>";
+					});
 				} else {
 					$("#error").text("請先選擇信用卡在結帳")
 				}

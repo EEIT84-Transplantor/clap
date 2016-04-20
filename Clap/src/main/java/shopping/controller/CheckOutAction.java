@@ -26,6 +26,35 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 	private String promoTitle;
 	private ProductService productService;
 
+	@Override
+	public String execute() throws Exception {
+
+		JSONObject product;
+		Double price;
+		Integer quantity;
+		Double total = 0.0;
+		
+		//算出total
+		String[] productArray = request.getParameterValues("productArray[]");
+		for (String productStr : productArray) {
+			product = new JSONObject(productStr);
+			Integer prodcutId = Integer.parseInt((String) product.get("productId"));
+			price = productService.getProductById(prodcutId).getPrice();
+			quantity = Integer.parseInt(product.get("quantity").toString());
+			total += price * quantity;
+		}
+		total*=Integer.parseInt(promoTitle);
+		
+		//取出creditCardList
+		MemberVO memberVO = (MemberVO) session.getAttribute("login");
+		List<CreditCardVO> creditCardList = creditCardService.getCards(memberVO.getEmail());
+
+		session.setAttribute("creditCardList", creditCardList);
+		session.setAttribute("total", total);
+		return super.execute();
+		
+	}
+	
 	public ProductService getProductService() {
 		return productService;
 	}
@@ -72,34 +101,6 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 		this.productArray = productArray;
 	}
 
-	@Override
-	public String execute() throws Exception {
-
-		JSONObject product;
-		Double price;
-		Integer quantity;
-		Double total = 0.0;
-		
-		//算出total
-		String[] productArray = request.getParameterValues("productArray[]");
-		for (String productStr : productArray) {
-			product = new JSONObject(productStr);
-			Integer prodcutId = Integer.parseInt((String) product.get("productId"));
-			price = productService.getProductById(prodcutId).getPrice();
-			quantity = Integer.parseInt(product.get("quantity").toString());
-			total += price * quantity;
-		}
-		total*=Integer.parseInt(promoTitle);
-		
-		//取出creditCardList
-		MemberVO memberVO = (MemberVO) session.getAttribute("login");
-		List<CreditCardVO> creditCardList = creditCardService.getCards(memberVO.getEmail());
-
-		session.setAttribute("creditCardList", creditCardList);
-		session.setAttribute("total", total);
-		
-		return super.execute();
-		
-	}
+	
 
 }
