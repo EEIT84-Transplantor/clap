@@ -17,7 +17,6 @@ import javax.persistence.Transient;
 public class ProductVO implements Serializable  {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "product_id")
 	private Integer id;
 	@Column(name = "product_name")
@@ -36,9 +35,9 @@ public class ProductVO implements Serializable  {
 	@JoinColumn(name = "category_id", insertable = false, updatable = false)
 	private CategoryVO categoryVO;
 	@Column(name = "product_value1")
-	private Double value1;
+	private Double endurance;
 	@Column(name = "product_value2")
-	private Double value2;
+	private Double skill;
 	@Transient
 	private Double finalValue1;
 	@Transient
@@ -46,17 +45,17 @@ public class ProductVO implements Serializable  {
 	
 	
 
-	public Double getValue1() {
-		return value1;
+	public Double getEndurance() {
+		return endurance;
 	}
-	public void setValue1(Double value1) {
-		this.value1 = value1;
+	public void setEndurance(Double endurance) {
+		this.endurance = endurance;
 	}
-	public Double getValue2() {
-		return value2;
+	public Double getSkill() {
+		return skill;
 	}
-	public void setValue2(Double value2) {
-		this.value2 = value2;
+	public void setSkill(Double skill) {
+		this.skill = skill;
 	}
 	public Double getFinalValue1() {
 		return finalValue1;

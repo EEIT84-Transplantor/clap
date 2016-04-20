@@ -222,12 +222,13 @@
 				var quantity = $("select:eq(" + i + ")").val();
 				total = price * quantity + total;
 			}
-			amount=total*promo>amout?amount:total*promo;
+			amount=total*promo>amount?amount:total*promo;
 			var reduced = total * promo - amount;
 			$("#total").text(total);
 			$("#reduced").text(reduced);
-			$("#amount").test(amount);
+			$("#amount").text(amount);
 		}
+		
 	</script>
 </body>
 </html>

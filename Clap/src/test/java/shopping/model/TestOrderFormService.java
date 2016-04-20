@@ -32,7 +32,7 @@ public class TestOrderFormService extends TestCase {
 	private Integer id = 36;
 	private String mb_email = "lee@gmail.com";
 	private Timestamp time;
-	private Integer total = 9999;
+	private Double	total = 9999.0;
 	private Byte status;
 
 	@Before

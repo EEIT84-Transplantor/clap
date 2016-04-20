@@ -358,6 +358,133 @@
 					    });;
 			   	}
 			}
+			// reset/save setting
+			var fixedTop = 0, fixedTop2 = 0, fixedLeft=0, fixedLeft2=0;
+			$('div[class="reset_btn s_btn"').eq(0).on("click",function(){
+				cleanBar($("#setting1"));
+				cleanBar($("#setting2"));
+				cleanBar($("#setting3"));
+				clicksetting1 = true, clicksetting2 = true, clicksetting3 = true; 				
+			}).on("mousedown",function(){
+				var top = fixedTop + 3;
+				var left = fixedLeft;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"left":left+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});
+			})
+			.on("mouseup",function(){
+				var top = fixedTop + 1;
+				var left = fixedLeft;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"left":left+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});
+			}).on("mouseover", function(){
+				//fix the next element position
+				var nextElement = $(this).next();
+				var offset2 = nextElement.position();
+				fixedTop2 = offset2.top;
+				fixedLeft2 = offset2.left;
+				var top2 = fixedTop2;
+				var left2 = fixedLeft2;
+				var width2 = nextElement.width();
+				var height2 = nextElement.height();
+				nextElement.css({"position":"absolute",
+					"top":top2+"px",
+					"left":left2+"px",
+					"width":width2+"px",
+					"height":height2+"px"
+				});
+				//fix first element position
+				var offset = $(this).position();
+				fixedTop = offset.top;
+				fixedLeft = offset.left;
+				var top = fixedTop + 1;
+				var left = fixedLeft;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"left":left+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});		
+			}).on("mouseout", function(){
+				var top = fixedTop;
+				var left = fixedLeft;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"left":left+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});
+			});
+			$('div[class="reset_btn s_btn"').eq(1).on("click",function(){
+				cleanBar($("#setting1"));
+				cleanBar($("#setting2"));
+				cleanBar($("#setting3"));
+				clicksetting1 = true, clicksetting2 = true, clicksetting3 = true; 				
+			}).on("mousedown",function(){
+				var top = fixedTop2 + 3;
+				var left = fixedLeft2;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"left":left+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});
+			})
+			.on("mouseup",function(){
+				var top = fixedTop2 + 1;
+				var left = fixedLeft2;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"left":left+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});
+			}).on("mouseover", function(){
+			
+				var offset = $(this).position();
+				fixedTop2 = offset.top;
+				fixedLeft2 = offset.left;
+				var top = fixedTop2 + 1;
+				var left = fixedLeft2;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"left":left+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});
+			}).on("mouseout", function(){
+				var top = fixedTop2;
+				var left = fixedLeft2;
+				var width = $(this).width();
+				var height = $(this).height();
+				$(this).css({"position":"absolute",
+					"top":top+"px",
+					"left":left+"px",
+					"width":width+"px",
+					"height":height+"px"
+				});
+			});
 		});
 		var x , y;
 		$("#people").droppable({ accept: ".draggable", 

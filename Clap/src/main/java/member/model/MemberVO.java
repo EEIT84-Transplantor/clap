@@ -1,5 +1,6 @@
 package member.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Arrays;
 
@@ -20,7 +21,7 @@ import payment.model.CreditCardVO;
 
 @Entity
 @Table(name = "member")
-public class MemberVO {
+public class MemberVO implements Serializable{
 
 	// crud
 	public static void main(String[] args) {

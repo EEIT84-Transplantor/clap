@@ -1,6 +1,5 @@
 package shopping.controller;
 
-import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -75,7 +74,7 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 
 	@Override
 	public String execute() throws Exception {
-		
+
 		JSONObject product;
 		Double price;
 		Integer quantity;
@@ -93,11 +92,9 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 		total*=Integer.parseInt(promoTitle);
 		
 		//取出creditCardList
-//		MemberVO memberVO = (MemberVO) session.getAttribute("login");
-		MemberVO memberVO = new MemberVO();
-		memberVO.setEmail("lee@gmail.com");
+		MemberVO memberVO = (MemberVO) session.getAttribute("login");
 		List<CreditCardVO> creditCardList = creditCardService.getCards(memberVO.getEmail());
-		
+
 		session.setAttribute("creditCardList", creditCardList);
 		session.setAttribute("total", total);
 		

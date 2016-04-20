@@ -81,6 +81,7 @@ public class CreditCardService {
 		return result;
 	}
 
+	//好像有問題
 	public boolean isAvailable(CreditCardVO creditCardVO) {
 		boolean result = false;
 		if (creditCardVO != null) {
