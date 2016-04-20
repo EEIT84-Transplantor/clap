@@ -184,13 +184,26 @@
 							<div id="s_organs">
 								<div id="s_organs_l">
 									<ul class="nav nav-tabs">
-									<c:forEach var="simulatorVO" items="${simulatorVOs}">
-										<li class="active"><a data-toggle="tab" href="#${simulatorVO.categoryVO.name}">${simulatorVO.categoryVO.name}</a></li>
+									<c:forEach var="simulatorVO" items="${simulatorVOs}" varStatus="c_count">
+									    <c:if test="${c_count.count==1}">
+									       <li class="active"><a data-toggle="tab" href="#${simulatorVO.categoryVO.id}">${simulatorVO.categoryVO.name}</a></li>
+									    </c:if>
+									    <c:if test="${c_count.count!=1}">
+									       <li><a data-toggle="tab" href="#${simulatorVO.categoryVO.id}">${simulatorVO.categoryVO.name}</a></li>
+									    </c:if>
 									</c:forEach>
-										
 									</ul>
 									<div class="tab-content">
-									<c:forEach var="simulatorVO" items="${simulatorVOs}">
+									
+									
+									
+									
+									
+									
+									
+									
+									<c:forEach var="simulatorVO" items="${simulatorVOs}" varStatus="c_count">
+									
 										<div id="${simulatorVO.categoryVO.name}" class="tab-pane fade in active">
 											<!-- ****************************** -->
 											<div class="row">
@@ -205,8 +218,8 @@
 													<div id="sim_silder" class="carousel slide hidden-xs">
 														<!-- Wrapper for slides -->
 														<div class="carousel-inner">
-															<%-- 								<c:forEach items="${popular}" var="product" varStatus="p_count"> --%>
-															<c:forEach begin="1" end="8" step="1" varStatus="p_count">
+														<c:forEach items="${simulatorVO.productVOs}" var="product" varStatus="p_count">
+															
 																<c:if test="${p_count.count % 6 == 1}">
 																	<c:if test="${p_count.count == 1}">
 																		<div class="item active">
@@ -231,7 +244,6 @@
 												</div>
 											</div>
 										</div>
-										</c:forEach>
 									</div>
 								</div>
 								<div class="col-md-1">
@@ -243,6 +255,11 @@
 								</div>
 
 							</div>
+							
+							</c:forEach>
+							
+							
+							
 							<!-- ********************* -->
 						</div>
 					</div>
@@ -556,11 +573,6 @@
 			}
 			
 		});
-		
-		
-		
-
-		
 		
 		function initSaveObject(){
 			saveObject1 = new Object(), saveObject2 = new Object(), saveObject3 = new Object();
