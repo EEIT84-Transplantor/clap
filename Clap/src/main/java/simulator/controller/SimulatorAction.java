@@ -96,6 +96,7 @@ public class SimulatorAction extends ActionSupport implements ServletRequestAwar
 		}
 //		System.out.println("hi"+simulatorVOsArray);
 		request.setAttribute("simulatorVOs", simulatorVOs);
+		request.setAttribute("simulatorVOsJSON", simulatorVOsArray);
 		return SUCCESS;
 	}
 	@Override
