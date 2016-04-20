@@ -22,19 +22,29 @@ public class BodySimulatorAction extends ActionSupport {
 	private CategoryService categoryService;
 	private Double weight;
 	private Double height;
-	private Integer smoking;
-	private Integer drinking;
-	private Integer exercising;
+	private Double smoking;
+	private Double drinking;
+	private Double exercising;
 	private Integer env_id;
 
-	public Integer getSmoking() {
+	
+	public Double getSmoking() {
 		return smoking;
 	}
-	public void setSmoking(Integer smoking) {
+	public void setSmoking(Double smoking) {
 		this.smoking = smoking;
 	}
-	public Integer getDrinking() {
+	public Double getDrinking() {
 		return drinking;
+	}
+	public void setDrinking(Double drinking) {
+		this.drinking = drinking;
+	}
+	public Double getExercising() {
+		return exercising;
+	}
+	public void setExercising(Double exercising) {
+		this.exercising = exercising;
 	}
 	public Integer getEnv_id() {
 		return env_id;
@@ -42,15 +52,7 @@ public class BodySimulatorAction extends ActionSupport {
 	public void setEnv_id(Integer env_id) {
 		this.env_id = env_id;
 	}
-	public void setDrinking(Integer drinking) {
-		this.drinking = drinking;
-	}
-	public Integer getExercising() {
-		return exercising;
-	}
-	public void setExercising(Integer exercising) {
-		this.exercising = exercising;
-	}
+	
 	public Double getWeight() {
 		return weight;
 	}
@@ -84,11 +86,14 @@ public class BodySimulatorAction extends ActionSupport {
 		if(weight!=null&&weight>0&&height==null&&height>0){
 			bmi = weight/(Math.pow(height/100,2.0));
 		}
+
 		//categoryService 的calculate還沒做~
 		List<SimulatorVO>simulatorVOs =categoryService.calculate(env_id,bmi,smoking,drinking,exercising);
-		
+
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
+		
+		
 		request.setAttribute("simulatorVOs", simulatorVOs);
 		return SUCCESS;
 	}
