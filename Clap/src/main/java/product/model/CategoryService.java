@@ -62,6 +62,8 @@ public class CategoryService {
 		for(CategoryVO categoryVO:categoryVOs){
 			
 			//放產品
+			System.out.println("i 喔喔"+productService);
+			System.out.println("i 喔546喔"+categoryVO.getId());
 			List<ProductVO> temp = productService.searchProductByCategory(categoryVO.getId());
 			List<ProductVO> productVOs = new ArrayList<>();
 			//改變產品數據
@@ -97,7 +99,7 @@ public class CategoryService {
 				//BMI
 				
 				Double bmiValue = 1.0;
-				if(bmi!=0){
+				if(bmi!=null){
 				if(bmi<18||bmi>24){
 					bmiValue = bmi*categoryVO.getBmi() ;
 				}
