@@ -202,6 +202,7 @@
 									
 									
 									
+									
 									<c:forEach var="simulatorVO" items="${simulatorVOs}" varStatus="c_count">
 									
 										<div id="${simulatorVO.categoryVO.name}" class="tab-pane fade in active">
@@ -218,7 +219,7 @@
 													<div id="sim_silder" class="carousel slide hidden-xs">
 														<!-- Wrapper for slides -->
 														<div class="carousel-inner">
-														<c:forEach items="${simulatorVO.productVOs}" var="product" varStatus="p_count">
+															<c:forEach items="${simulatorVO.productVOs}" var="product" varStatus="p_count">
 															
 																<c:if test="${p_count.count % 6 == 1}">
 																	<c:if test="${p_count.count == 1}">
@@ -232,7 +233,7 @@
 																<div class="col-sm-2">
 																	<div class="col-item">
 																		<div class="photo" id="haha">
-																			<img src="<c:url value="/resource/images/simulator/temp.png"/>" class="draggable" >
+																			<img src="<c:url value="data:image/png;base64,${simulatorVO.productimgVOs[p_count.count].img64}"/>" class="draggable" >
 																		</div>
 																	</div>
 																</div>
@@ -244,6 +245,7 @@
 												</div>
 											</div>
 										</div>
+
 									</div>
 								</div>
 								<div class="col-md-1">
@@ -253,13 +255,7 @@
 											aria-hidden="true"></span></a>
 									</div>
 								</div>
-
-							</div>
-							
-							</c:forEach>
-							
-							
-							
+							</div></c:forEach>
 							<!-- ********************* -->
 						</div>
 					</div>
