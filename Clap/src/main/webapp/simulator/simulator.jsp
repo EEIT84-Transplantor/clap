@@ -243,7 +243,6 @@
 	<script type="text/javascript">
 	
 		//get all products JSON String
-		JSON.parse(${simulatorVOsJSON});
 		//get all products when init
 // 		function initGetProducts(){
 // 			alert(JsonString.length);
@@ -262,16 +261,10 @@
 				$("body").fadeIn(400);
 			});
 		});
-<<<<<<< HEAD
 		
 		
 		//======  DOCUMENT READY  ======= 
-		$(document).ready(function(){
-			
-=======
-
-		$(document).ready(function() {
->>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
+		$(document).ready(function(){			
 			var environmentIndex = 0;
 			//set onclick to change env background
 			function initChangeBackClick() {
@@ -654,10 +647,6 @@
 				targetObject[key] = sourceObj[key];
 			}
 		}
-<<<<<<< HEAD
-		
-
-=======
 
 		function printObject(printedObj) {
 			for ( var key in printedObj) {
@@ -668,10 +657,8 @@
 		//get all products when init
 
 		function initGetProducts(JsonString){
-			var jsonarray = JSON.parse(JsonString);
-			
+			var jsonarray = JSON.parse(JsonString);			
 		}
->>>>>>> branch 'master' of https://github.com/EEIT84-Transplantor/clap.git
 		
 		
 	</script>
