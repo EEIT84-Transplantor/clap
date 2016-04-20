@@ -17,8 +17,8 @@
 <title>CLAP</title>
 <!-- Bootstrap -->
 <link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
-<%-- <link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet"> --%>
-<%-- <link href="<c:url value="/resource/css/silderbanner.css"/>" rel="stylesheet"> --%>
+<link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/silderbanner.css"/>" rel="stylesheet">
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
@@ -82,7 +82,7 @@
 							<c:forEach var="row" items="${cartList}">
 								<tr>
 									<td hidden="true">${row.id}</td>
-									<td>${row.name}</td>
+									<td class="name">${row.name}</td>
 									<td><select>
 											<c:forEach var="i" begin="1" end="${row.stock<10?row.stock:10}">
 												<c:choose>
@@ -94,11 +94,7 @@
 													</c:otherwise>
 												</c:choose>
 											</c:forEach>
-										</select>
-										
-											
-											
-										</td>
+										</select></td>
 									<td>${row.price}</td>
 									<td><input type="button" value="刪除" /></td>
 								</tr>
@@ -113,7 +109,7 @@
 					<table class="table">
 						<tr>
 							<td>商品數</td>
-							<td>${fn:length(cartList)} <br />${error}</td>
+							<td id="quantity">${fn:length(cartList)}<br />${error}</td>
 						</tr>
 						<tr>
 							<td>total</td>
@@ -160,8 +156,6 @@
 		$(function() {
 			getTotal();
 
-			
-			
 			//listener 刪除商品 修改數量 
 			for (var i = 0; i < trs; i++) {
 				$("input:eq(" + i + ")").click(function(event) {
@@ -198,10 +192,10 @@
 						"productArray" : productArray,
 						"promoTitle" : promoTitle
 					},
-				}).done(function(){
+				}).done(function() {
 					window.location.href = "<c:url value='/shopping/checkout.jsp'/>";
 				})
-				
+
 				//測試程式
 				console.log(url);
 				console.log({
@@ -222,13 +216,15 @@
 				var quantity = $("select:eq(" + i + ")").val();
 				total = price * quantity + total;
 			}
-			amount=total*promo>amount?amount:total*promo;
+			amount = total * promo > amount ? amount : total * promo;
 			var reduced = total * promo - amount;
 			$("#total").text(total);
 			$("#reduced").text(reduced);
 			$("#amount").text(amount);
+			
+			var quantity = $('.name').size();
+			$('#quantity').text(quantity);
 		}
-		
 	</script>
 </body>
 </html>

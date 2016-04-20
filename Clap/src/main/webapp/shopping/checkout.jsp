@@ -109,10 +109,6 @@
 								<td></td>
 								<td><input type="button" value="add" id="addCreditCard"></td>
 							</tr>
-							<tr>
-								<td id="false">false</td>
-								<td id="true">true</td>
-							</tr>
 						</table>
 					</form>
 				</div>
@@ -184,21 +180,6 @@
 					$("#error").text("請先選擇信用卡在結帳")
 				}
 			})
-
-			//測試新增卡片回傳的結果
-			$("#true").click(function() {
-				$("#hidden").prev().clone().prependTo("#cardTable");
-				$(".number:first").text(creditCardVO.creditCardPK.cc_number);
-				$(".goodthru:first").text(creditCardVO.cc_goodthru);
-				$(".cvv:first").text(creditCardVO.cc_cvv);
-				$(".creditCard:first").css("border-style", "");
-				selectCardListener(".creditCard:first");
-				$("#hidden").toggle();
-			})
-			$("#false").click(function() {
-				$("#false").text("信用卡資料錯誤");
-			})
-
 		})
 
 		//listener 選擇付款信用卡
