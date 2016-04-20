@@ -21,6 +21,7 @@ public class CategoryHibernateDAO implements CategoryDAO {
 	private Session session;
 	final private String SELECT_ALL = "from CategoryVO";
 	final private String SELECT_BY_NAME = "from CategoryVO where category_name=?";
+	final private String SELECT_BY_Id = "from CategoryVO where id=?";
 	@Override
 	public List<CategoryVO> selectAll(){
 		session = sessionFactory.getCurrentSession();
@@ -101,5 +102,6 @@ public class CategoryHibernateDAO implements CategoryDAO {
 		}
 		
 	};
+	
 	
 }
