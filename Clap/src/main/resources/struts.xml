@@ -249,6 +249,10 @@
 		<action name="appointmentAction" class="shopping.controller.AppointmentAction">
 			<result>/shopping/appointment.jsp</result>
 		</action>
+		<action name="deleteCartAction" class="shopping.controller.DeleteCartAction">
+			<result type="stream"></result>
+		</action>
+		
 	</package>
 
 	<package name="test" namespace="/test" extends="struts-default">
@@ -341,10 +345,10 @@
 	</package>
 
 	<package name="simulator" namespace="/simulator" extends="struts-default">
-	     <action name="simulatorAction" class="simulatorAction">
+		<action name="simulatorAction" class="simulatorAction">
 			<result>/simulator/simulator.jsp</result>
 		</action>
-	
+
 		<action name="bodySimulatorAction" class="bodySimulatorAction">
 			<result name="display">/simulator/simulator.jsp</result>
 			<result type="stream">

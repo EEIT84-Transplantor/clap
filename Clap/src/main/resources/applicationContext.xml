@@ -270,6 +270,9 @@
 		<property name="doctorService" ref="doctorService" />
 		<property name="orderDetailService" ref="orderDetailService" />
 	</bean>
+	<bean id="deleteCartAction" class="shopping.controller.DeleteCartAction">
+		<property name="cartService" ref="cartService" />
+	</bean>
 	
 	<!-- simulator-->
 	<bean id="simulatorAction" class="simulator.controller.SimulatorAction" scope="prototype">
