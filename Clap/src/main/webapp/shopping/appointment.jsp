@@ -72,10 +72,10 @@
 		orderList.add(orderDetailVO1);
 		orderList.add(orderDetailVO2);
 
-		int orderFormId = 1;
+		int orderform_id = 1;
 		
 		pageContext.setAttribute("orderList", orderList);
-		pageContext.setAttribute("orderFormId", orderFormId);
+		pageContext.setAttribute("orderform_id", orderform_id);
 	%-->
 <%-- 	<sql:query dataSource="clap/db" var="hospitalList"> --%>
 <!-- 		select top(10) * from hospital  -->
@@ -104,8 +104,8 @@
 								<td>${orderVO.productVO.name}</td>
 								<td><input type="date" class="time"></td>
 								<td><select class="doctor">
-										<c:forEach var="doctor" items="${doctorList.rows}">
-											<option value="${doctor.doctor_id}">${doctor.doctor_name}</option>
+										<c:forEach var="doctor" items="${doctorList}">
+											<option value="${doctor.id}">${doctor.name}</option>
 										</c:forEach>
 									</select></td>
 							</tr>
@@ -119,8 +119,8 @@
 			<div class="col-md-9">
 				<label>Choose Hospital:</label>
 				<select class="hospital form-control" id="hospital">
-					<c:forEach var="hospital" items="${hospitalList.rows}">
-						<option value="${hospital.hospital_address}" label="${hospital.hospital_name}">${hospital.hospital_id}</option>
+					<c:forEach var="hospital" items="${hospitalList}">
+						<option value="${hospital.address}" label="${hospital.name}">${hospital.id}</option>
 					</c:forEach>
 				</select>
 			</div>
@@ -144,7 +144,7 @@
 	<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap" async defer></script>
 	<script type="text/javascript">
 		$(function() {
-
+			
 			//顯示醫院地圖
 			$(".hospital").change(function() {
 				geocodeAddress(geocoder, map, $(this).val());
@@ -164,16 +164,14 @@
 				}
 				orderList[i]=JSON.stringify(data);
 			}
-			console.log(orderList);
 			var url = "<c:url value='/shopping/doAppointmentAction.action'/>";
 			$("#submit").click(function() {
 				$.ajax({
 					url : url,
-					dataType:'json',
 					data : {
 						"orderList": orderList,
 						"hospital" : $("#hospital option:selected").text(),
-						"orderFormId":"${orderFormId}",
+						"orderform_id":"${orderform_id}"
 					},
 				}).done(function() {
 					document.location.href="<c:url value='/shopping/finish.jsp'/>";

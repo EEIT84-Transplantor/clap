@@ -177,6 +177,7 @@
 						url : doCheckOutAction,
 						data : {"cc_number":cc_number}
 					}).done(function(result) {
+						console.log("appointmentAction");
 						window.location.href = "<c:url value='/shopping/appointmentAction.action'/>";
 					});
 				} else {

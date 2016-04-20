@@ -49,6 +49,16 @@ public class OrderDetailVO implements Serializable {
 	@JoinColumn(name = "orderform_id", insertable = false, updatable = false)
 	private OrderFormVO orderformVO;
 
+	
+	
+	@Override
+	public String toString() {
+		return "OrderDetailVO [id=" + id + ", product_id=" + product_id + ", ct_quantity=" + ct_quantity
+				+ ", doctor_id=" + doctor_id + ", orderform_id=" + orderform_id + ", orderdetail_surgerytime="
+				+ orderdetail_surgerytime + ", productVO=" + productVO + ", doctorVO=" + doctorVO + ", orderformVO="
+				+ orderformVO + "]";
+	}
+
 	public Timestamp getOrderdetail_surgerytime() {
 		return orderdetail_surgerytime;
 	}
