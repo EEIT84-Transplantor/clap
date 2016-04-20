@@ -91,7 +91,11 @@ public class BodySimulatorAction extends ActionSupport {
 			bmi = weight/(Math.pow(height/100,2.0));
 		}
 		List<SimulatorVO>simulatorVOs =simulatorService.calculate(env_id,bmi,smoking,drinking,exercising);
+		
+		
 		HttpServletRequest request = ServletActionContext.getRequest();
+		
+		
 		request.setAttribute("simulatorVOs", simulatorVOs);
 		return SUCCESS;
 	}
