@@ -48,9 +48,12 @@
 							<li><a href="${pageContext.request.contextPath}/shopping/cartAction.action" class="cart_anchor">${totalCart}</a></li>
 							<li><a href="${pageContext.request.contextPath}/shopping/shopping.action">Purchase</a></li>
 							<li class="active"><a href="#">About</a></li>
-							<li><a href="#">Simulator</a></li>
+							<li><a href="${pageContext.request.contextPath}/simulator/simulatorAction.action">Simulator</a></li>
 							<li><a href="#">Contact</a></li>
 							<li><a href="<c:url value="/member/account.jsp"/>">Account</a></li>
+							<c:if test="${login.type==2}">
+								<li><a href="${pageContext.request.contextPath}/paymentmanage/setpromotion.action">Administrator</a></li>
+							</c:if>
 						</ul>
 					</div>
 

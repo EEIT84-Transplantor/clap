@@ -12,10 +12,10 @@
 					<div class="col-md-2">
 						<h4>Shop</h4>
 						<ul>
-							<li><a href="#">Clap Store</a></li>
-							<li><a href="#">Organs</a></li>
+							<li><a href="${pageContext.request.contextPath}/shopping/shopping.action">Clap Store</a></li>
+							<li><a href="${pageContext.request.contextPath}/shopping/shopping.action">Organs</a></li>
 							<li><a href="#">Gift Card</a></li>
-							<li><a href="#">Shipping Detail</a></li>
+							<li><a href="${pageContext.request.contextPath}/simulator/simulatorAction.action">Simulator</a></li>
 						</ul>
 					</div>
 					<div class="col-md-2">
@@ -26,15 +26,15 @@
 							<li><a href="#">Order Status</a></li>
 							<li><a href='${pageContext.request.contextPath}/payment/paymentmanage.jsp'>Manage Payment</a></li>
 						</ul>
-					</div>
-					<div class="col-md-4">
+					</div>			
+					<div class="col-md-4">					
 						<h4>OPTION</h4>
 						<ul>
 							<li><a href="${pageContext.request.contextPath}/hahaha.ha">~Get Pictures~</a></li>
 							<li><a href="${pageContext.request.contextPath}/shopping/preReturnAction.action">Return Page</a></li>
 							<li><a href="${pageContext.request.contextPath}/product/displayproduct.action">Product Manage</a></li>
 							<li><a href="${pageContext.request.contextPath}/paymentmanage/setpromotion.action">Settings</a></li>
-						</ul>
+						</ul>				
 					</div>
 
 					<div class="col-md-2" style="border-left: #fff 1px solid;">

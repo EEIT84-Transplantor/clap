@@ -22,47 +22,6 @@
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
-	<!-- % 
-		Map<String, Object> name1 = new HashMap<>();
-		name1.put("id", 111);
-		name1.put("name", "abc");
-		name1.put("quantity", 2);
-		name1.put("price", 1000);
-		name1.put("stock", 5);
-		Map<String, Object> name2 = new HashMap<>();
-		name2.put("id", 222);
-		name2.put("name", "abc");
-		name2.put("quantity", 5);
-		name2.put("price", 2000);
-		name2.put("stock", 10);
-		Map<String, Object> name3 = new HashMap<>();
-		name3.put("id", 333);
-		name3.put("name", "abc");
-		name3.put("quantity", 10);
-		name3.put("price", 3000);
-		name3.put("stock", 1000);
-		ArrayList<Map<String, Object>> cartList = new ArrayList<>();
-		cartList.add(name1);
-		cartList.add(name2);
-		cartList.add(name3);
-
-		MemberVO memberVO = new MemberVO();
-		memberVO.setAmount(3000.0);
-
-		PromoVO promoVO1 = new PromoVO();
-		promoVO1.setPm_title("大特價");
-		promoVO1.setPm_discount(0.5);
-		PromoVO promoVO2 = new PromoVO();
-		promoVO2.setPm_title("小特價");
-		promoVO2.setPm_discount(0.8);
-		ArrayList<PromoVO> promoList = new ArrayList<>();
-		promoList.add(promoVO1);
-		promoList.add(promoVO2);
-
-		pageContext.setAttribute("login", memberVO);
-		pageContext.setAttribute("cartList", cartList);
-		pageContext.setAttribute("promoList", promoList);
-	%-->
 	<header><jsp:include page="/header.jsp" /></header>
 
 	<section id="wrap">
@@ -158,10 +117,20 @@
 
 			//listener 刪除商品 修改數量 
 			for (var i = 0; i < trs; i++) {
+				//刪除商品
 				$("input:eq(" + i + ")").click(function(event) {
 					$(event.target).parent().parent().remove();
 					getTotal();
+					var productid = $(this).parent().prevAll().eq(3).text();
+					$.ajax({
+						url:'<c:url value="/shopping/deleteCartAction.action"/>',
+						data: {"productid":productid}
+					}).done(function() {
+						console.log('delete success');
+					});
 				});
+
+				//修改數量
 				$("select:eq(" + i + ")").change(function() {
 					getTotal();
 				})
@@ -221,7 +190,7 @@
 			$("#total").text(total);
 			$("#reduced").text(reduced);
 			$("#amount").text(amount);
-			
+
 			var quantity = $('.name').size();
 			$('#quantity').text(quantity);
 		}

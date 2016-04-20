@@ -15,8 +15,7 @@
     </div>
      <a href="#side_Simulator" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Simulator</a>
     <div class="collapse" id="side_Simulator">
-      <a href="" class="list-group-item sub_list">Simulator1</a>
-      <a href="" class="list-group-item sub_list">Simulator2</a>
+      <a href="${pageContext.request.contextPath}/simulator/simulatorAction.action" class="list-group-item sub_list">Simulator</a>
     </div>
      <a href="#side_Appointment" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Appointment</a>
     <div class="collapse" id="side_Appointment">
