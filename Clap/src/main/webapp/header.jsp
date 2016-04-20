@@ -51,6 +51,9 @@
 							<li><a href="#">Simulator</a></li>
 							<li><a href="#">Contact</a></li>
 							<li><a href="<c:url value="/member/account.jsp"/>">Account</a></li>
+							<c:if test="${login.type==2}">
+								<li><a href="${pageContext.request.contextPath}/paymentmanage/setpromotion.action">Administrator</a></li>
+							</c:if>
 						</ul>
 					</div>
 
