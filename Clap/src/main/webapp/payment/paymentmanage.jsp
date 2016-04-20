@@ -19,7 +19,7 @@
 	<section id="wrap">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-2">side-nav:sub-menu</div>
+				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
 				<div class="col-md-10">
 					<h2>PAYMENT</h2>
 					<p>The Amazon.com Store Card and the Amazon Prime Store Card are issued by Synchrony Bank. If you have questions about the

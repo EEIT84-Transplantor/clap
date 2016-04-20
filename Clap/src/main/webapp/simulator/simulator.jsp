@@ -550,19 +550,10 @@
 			function initOrganBars() {
 				$("span.o_old").css("width", "200px");
 				$("span.o_new").css("width", "200px");
-			}
-			//test bar moving
-			$("#s_organs_r div.s_btn").on("click", function() {
-				var valueBox = new Object();
-				valueBox.oldVP = 100;
-				valueBox.newVP = 140;
-				valueBox.oldVE = 100;
-				valueBox.newVE = 50;
-				adjustOrganBars(7, valueBox);
-				for (var ii = 1; ii < 8; ii++) {
-					adjustOrganBars(ii, valueBox);
-				}
-			});
+
+			}			
+			
+
 			//function to adjust designated organ bar
 			function adjustOrganBars(index, valueBoxforAdjust) {
 				var oldValueP = valueBoxforAdjust.oldVP + 100;
@@ -570,42 +561,64 @@
 				var reverseP = (oldValueP > newValueP) ? true : false;
 				var oldValueE = valueBoxforAdjust.oldVE + 100;
 				var newValueE = valueBoxforAdjust.newVE + 100;
-				var reverseE = (oldValueE > newValueE) ? true : false;
-				if (reverseP) {
-					$("span[class='o_old organ" + index + "']").eq(0).css("z-index", "3").animate({
-						width : oldValueP + 'px'
-					}, 300);
-					$("span[class='o_new organ" + index + "']").eq(0).css("z-index", "5").animate({
-						width : newValueP + 'px'
-					}, 300);
-				} else {
-					$("span[class='o_old organ" + index + "']").eq(0).css("z-index", "5").animate({
-						width : oldValueP + 'px'
-					}, 300);
-					$("span[class='o_new organ" + index + "']").eq(0).css("z-index", "3").animate({
-						width : newValueP + 'px'
-					}, 300);
+
+				var reverseE = (oldValueE > newValueE)?true:false;
+				if(reverseP){
+					$("span[class='o_old organ" + index + "']").eq(0).css("z-index","3").animate({width: oldValueP+'px'}, 100);
+					$("span[class='o_new organ" + index + "']").eq(0).css("z-index","5").animate({width: newValueP+'px'}, 100);
+				}else{
+					$("span[class='o_old organ" + index + "']").eq(0).css("z-index","5").animate({width: oldValueP+'px'}, 100);
+					$("span[class='o_new organ" + index + "']").eq(0).css("z-index","3").animate({width: newValueP+'px'}, 100);
+
 				}
-				if (reverseE) {
-					$("span[class='o_old organ" + index + "']").eq(1).css("z-index", "3").animate({
-						width : oldValueE + 'px'
-					}, 300);
-					$("span[class='o_new organ" + index + "']").eq(1).css("z-index", "5").animate({
-						width : newValueE + 'px'
-					}, 300);
-				} else {
-					$("span[class='o_old organ" + index + "']").eq(1).css("z-index", "5").animate({
-						width : oldValueE + 'px'
-					}, 300);
-					$("span[class='o_new organ" + index + "']").eq(1).css("z-index", "3").animate({
-						width : newValueE + 'px'
-					}, 300);
+
+				if(reverseE){
+					$("span[class='o_old organ" + index + "']").eq(1).css("z-index","3").animate({width: oldValueE+'px'}, 100);
+					$("span[class='o_new organ" + index + "']").eq(1).css("z-index","5").animate({width: newValueE+'px'}, 100);
+				}else{
+					$("span[class='o_old organ" + index + "']").eq(1).css("z-index","5").animate({width: oldValueE+'px'}, 100);				
+					$("span[class='o_new organ" + index + "']").eq(1).css("z-index","3").animate({width: newValueE+'px'}, 100);
+
 				}
 			}
 
-		});
-
-		function initSaveObject() {
+			//add onmouseover onmouseout to organs
+			for(var iii = 1;iii<999;iii++){
+			$("img[name='product"+iii+"']").on("mouseover",function(){
+				//stop previous animation
+				$("span.o_old").stop();
+				$("span.o_new").stop();
+				
+				var valueBox = new Object();
+				var categoryIndex = $(this).attr("name");
+				categoryIndex = categoryIndex.substring(7, 8);
+				valueBox.oldVP = 100;
+				valueBox.newVP = 140;
+				valueBox.oldVE = 100;
+				valueBox.newVE = 50;
+				//start bar animation
+				adjustOrganBars(categoryIndex, valueBox);
+			}).on("mouseout",function(){
+				//stop previous animation
+				$("span.o_old").stop();
+				$("span.o_new").stop();
+				
+				var valueBox = new Object();
+				var categoryIndex = $(this).attr("name");
+				categoryIndex = categoryIndex.substring(7, 8);
+				valueBox.oldVP = 100;
+				valueBox.newVP = 100;
+				valueBox.oldVE = 100;
+				valueBox.newVE = 100;
+				//start bar animation
+				adjustOrganBars(categoryIndex, valueBox);
+			});
+			}
+			
+		});//end of document ready
+		
+		//init document save objects
+		function initSaveObject(){
 			saveObject1 = new Object(), saveObject2 = new Object(), saveObject3 = new Object();
 			saveContainer = new Object;
 			saveObject1.saved = false;
@@ -632,7 +645,15 @@
 		}
 
 		//get all products when init
-		function initGetProducts() {
+
+		function initGetProducts(JsonString){
+			var jsonarray = JSON.parse(JsonString);
+			
+		}
+		
+		
+	</script>
+
 
 		}
 	</script>
