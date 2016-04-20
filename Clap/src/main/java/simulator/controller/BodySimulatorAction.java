@@ -148,12 +148,12 @@ public class BodySimulatorAction extends ActionSupport {
 				productimgVOJsonArray.put(productimgVOJson);
 			}
 			SimulatorVO simulatorVO = new SimulatorVO();
-			JSONArray simulatorVOJSON = new JSONArray();
-			simulatorVOJSON.put(categoryJson);
+			JSONObject simulatorVOJSON = new JSONObject();
+			simulatorVOJSON.put("categoryVO", categoryJson);
 			simulatorVO.setCategoryVO(categoryVO);
-			simulatorVOJSON.put(productVOJsonArray);
+			simulatorVOJSON.put("productVOs", productVOJsonArray);
 			simulatorVO.setProductVOs(productVOs);
-			simulatorVOJSON.put(productimgVOJsonArray);
+			simulatorVOJSON.put("productimgVOs", productimgVOJsonArray);
 			simulatorVO.setProductimgVOs(productimgVOs);
 			simulatorVOsArray.put(simulatorVOJSON);
 			simulatorVOs.add(simulatorVO);

@@ -253,10 +253,13 @@
 
 		//======  DOCUMENT READY  ======= 
 		$(document).ready(function() {
+			var jsonarray;		
 			var environmentIndex = 0;
 			//get all products JSON String
 			$.ajax({url : "${pageContext.request.contextPath}/simulator/bodySimulatorAction",
-					data : createFactors()}).done(function(msg){console.log(msg.length);});
+					data : createFactors()}).done(function(msg){
+						jsonarray = JSON.parse(msg);	
+					});
 			
 			//set onclick to change env background
 			function initChangeBackClick() {
@@ -605,9 +608,10 @@
 					//stop previous animation
 					$("span.o_old").stop();
 					$("span.o_new").stop();
-
+					
 					var valueBox = new Object();
 					var categoryIndex = $(this).attr("name");
+					jsonarray[categoryIndex];
 					categoryIndex = categoryIndex.substring(7, 8);
 					valueBox.oldVP = 100;
 					valueBox.newVP = 140;
