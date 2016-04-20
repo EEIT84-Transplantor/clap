@@ -248,6 +248,8 @@
 		<property name="orderDetailService" ref="orderDetailService" />
 		<property name="cartService" ref="cartService" />
 		<property name="memberService" ref="memberService" />
+		<property name="hospitalService" ref="hospitalService" />
+		<property name="doctorService" ref="doctorService" />
 	</bean>
 	<bean id="deleteOrderAction" class="shopping.controller.DeleteOrderAction">
 		<property name="orderFormService" ref="orderFormService" />
@@ -259,7 +261,10 @@
 		<property name="returnService" ref="returnService" />
 	</bean>
 	<bean id="doAppointmentAction" class="shopping.controller.DoAppointmentAction">
-<!-- 		<property name="returnService" ref="returnService" /> -->
+		<property name="inventoryService" ref="inventoryService" />
+		<property name="inOutLogService" ref="inOutLogService" />
+		<property name="orderFormService" ref="orderFormService" />
+		<property name="orderDetailService" ref="orderDetailService" />
 	</bean>
 	
 	<!-- simulator-->

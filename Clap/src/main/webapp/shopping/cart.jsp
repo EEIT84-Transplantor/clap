@@ -22,7 +22,7 @@
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
-	<% 
+	<!-- % 
 		Map<String, Object> name1 = new HashMap<>();
 		name1.put("id", 111);
 		name1.put("name", "abc");
@@ -62,7 +62,7 @@
 		pageContext.setAttribute("login", memberVO);
 		pageContext.setAttribute("cartList", cartList);
 		pageContext.setAttribute("promoList", promoList);
-	%>
+	%-->
 	<header><jsp:include page="/header.jsp" /></header>
 
 	<section id="wrap">

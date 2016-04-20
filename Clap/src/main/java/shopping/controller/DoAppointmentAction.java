@@ -1,24 +1,79 @@
 package shopping.controller;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.interceptor.ParameterAware;
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.json.JSONObject;
+
 import com.opensymphony.xwork2.ActionSupport;
 
+import hospital.model.HospitalVO;
+import inventory.model.InOutLogService;
+import inventory.model.InventoryService;
+import shopping.model.OrderDetailService;
+import shopping.model.OrderDetailVO;
+import shopping.model.OrderFormService;
 import shopping.model.OrderFormVO;
 
-public class DoAppointmentAction extends ActionSupport {
+public class DoAppointmentAction extends ActionSupport implements ServletRequestAware, ParameterAware {
 
-	private String orderList;
+	private HttpServletRequest request;
+	private InOutLogService inOutLogService;
+	private OrderFormService orderFormService;
+	private OrderDetailService orderDetailService;
+	private InventoryService inventoryService;
+
+	private ArrayList<JSONObject> orderList;
 	private String hospital;
+	private String orderFormId;
 
-	public String getOrderList() {
-		return orderList;
+	public String getOrderFromId() {
+		return orderFormId;
 	}
 
-	public void setOrderList(String orderList) {
-		this.orderList = orderList;
+	public void setOrderFromId(String orderFromId) {
+		this.orderFormId = orderFromId;
 	}
 
+	public InventoryService getInventoryService() {
+		return inventoryService;
+	}
 
+	public void setInventoryService(InventoryService inventoryService) {
+		this.inventoryService = inventoryService;
+	}
 
+	public InOutLogService getInOutLogService() {
+		return inOutLogService;
+	}
+
+	public void setInOutLogService(InOutLogService inOutLogService) {
+		this.inOutLogService = inOutLogService;
+	}
+
+	public OrderFormService getOrderFormService() {
+		return orderFormService;
+	}
+
+	public void setOrderFormService(OrderFormService orderFormService) {
+		this.orderFormService = orderFormService;
+	}
+
+	public OrderDetailService getOrderDetailService() {
+		return orderDetailService;
+	}
+
+	public void setOrderDetailService(OrderDetailService orderDetailService) {
+		this.orderDetailService = orderDetailService;
+	}
 
 	public String getHospital() {
 		return hospital;
@@ -29,9 +84,48 @@ public class DoAppointmentAction extends ActionSupport {
 	}
 
 	@Override
+	public void setServletRequest(HttpServletRequest arg0) {
+		request = arg0;
+
+	}
+
+	@Override
+	public void setParameters(Map<String, String[]> arg0) {
+//		String[] orderListStr = arg0.get("orderList[]");
+//		orderList = new ArrayList<>();
+//		for (String orderStr : orderListStr) {
+//			JSONObject order = new JSONObject(orderStr);
+//			orderList.add(order);
+//		}
+	}
+
+	@Override
 	public String execute() throws Exception {
-		System.out.println(orderList);
-		System.out.println(hospital);
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+		// 修改 orderform
+		OrderFormVO orderFormVO = orderFormService.getOrderById(Integer.parseInt(orderFormId));
+		HospitalVO hospitalVO = new HospitalVO();
+		hospitalVO.setId(Integer.parseInt(hospital));
+		orderFormVO.setHospitalVO(hospitalVO);
+		orderFormService.updateOrderForm(orderFormVO);
+
+		// 修改 orderdetail inventory
+		OrderDetailVO orderDetailVO = new OrderDetailVO();
+		Integer orderDetailId;
+		for (JSONObject order : orderList) {
+			Date time = simpleDateFormat.parse((String) orderList.get(0).get("time"));
+			orderDetailId = (Integer) order.get("id");
+			orderDetailVO.setId(orderDetailId);
+			orderDetailVO.setDoctor_id((Integer) order.get("doctor"));
+			orderDetailVO.setOrderdetail_surgerytime(new Timestamp(time.getTime()));
+			orderDetailService.updateOrderDetail(orderDetailVO);
+
+			orderDetailVO = orderDetailService.getOrderDetailById(orderDetailId);
+			inventoryService.saleQuantity(orderDetailVO.getProductVO(),orderDetailVO.getCart_quantity(), hospital);
+		}
+
 		return super.execute();
 	}
 
