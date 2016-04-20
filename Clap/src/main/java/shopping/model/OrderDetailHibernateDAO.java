@@ -69,20 +69,17 @@ public class OrderDetailHibernateDAO implements OrderDetailDAO {
 	}
 
 	@Override
-	public OrderDetailVO select(Integer id, Integer product_id) {
+	public OrderDetailVO selectById(Integer id) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			Query query = session.createQuery("from OrderDetailVO where id = ? and product_id = ?");
-			query.setParameter(0, id);
-			query.setParameter(1, product_id);
-			return (OrderDetailVO) query.list().get(0);
+			return session.get(OrderDetailVO.class, id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 
-	public List<OrderDetailVO> select(Integer orderId){
+	public List<OrderDetailVO> select(Integer orderId) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Query query = session.createQuery("from OrderDetailVO where id=?");
@@ -94,5 +91,6 @@ public class OrderDetailHibernateDAO implements OrderDetailDAO {
 			return null;
 		}
 	}
-	
+
+
 }

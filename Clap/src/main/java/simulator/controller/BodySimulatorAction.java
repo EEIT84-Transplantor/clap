@@ -14,29 +14,37 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import product.model.CategoryService;
 import product.model.ProductService;
-import simulator.model.SimulatorService;
 import simulator.model.SimulatorVO;
 
 public class BodySimulatorAction extends ActionSupport {
 	private InputStream inputStream;
 	private ProductService productService;
 	private CategoryService categoryService;
-	private SimulatorService simulatorService;
 	private Double weight;
 	private Double height;
-	private Integer smoking;
-	private Integer drinking;
-	private Integer exercising;
+	private Double smoking;
+	private Double drinking;
+	private Double exercising;
 	private Integer env_id;
 
-	public Integer getSmoking() {
+	
+	public Double getSmoking() {
 		return smoking;
 	}
-	public void setSmoking(Integer smoking) {
+	public void setSmoking(Double smoking) {
 		this.smoking = smoking;
 	}
-	public Integer getDrinking() {
+	public Double getDrinking() {
 		return drinking;
+	}
+	public void setDrinking(Double drinking) {
+		this.drinking = drinking;
+	}
+	public Double getExercising() {
+		return exercising;
+	}
+	public void setExercising(Double exercising) {
+		this.exercising = exercising;
 	}
 	public Integer getEnv_id() {
 		return env_id;
@@ -44,15 +52,7 @@ public class BodySimulatorAction extends ActionSupport {
 	public void setEnv_id(Integer env_id) {
 		this.env_id = env_id;
 	}
-	public void setDrinking(Integer drinking) {
-		this.drinking = drinking;
-	}
-	public Integer getExercising() {
-		return exercising;
-	}
-	public void setExercising(Integer exercising) {
-		this.exercising = exercising;
-	}
+	
 	public Double getWeight() {
 		return weight;
 	}
@@ -74,10 +74,6 @@ public class BodySimulatorAction extends ActionSupport {
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
 	}
-	public void setSimulatorService(SimulatorService simulatorService) {
-		this.simulatorService = simulatorService;
-	}
-	
 
 	public String execute(){
 //		Double endurance = productService.getProductEndurance(productVO.getId());
@@ -90,8 +86,14 @@ public class BodySimulatorAction extends ActionSupport {
 		if(weight!=null&&weight>0&&height==null&&height>0){
 			bmi = weight/(Math.pow(height/100,2.0));
 		}
-		List<SimulatorVO>simulatorVOs =simulatorService.calculate(env_id,bmi,smoking,drinking,exercising);
+
+		//categoryService 的calculate還沒做~
+		List<SimulatorVO>simulatorVOs =categoryService.calculate(env_id,bmi,smoking,drinking,exercising);
+
+		
 		HttpServletRequest request = ServletActionContext.getRequest();
+		
+		
 		request.setAttribute("simulatorVOs", simulatorVOs);
 		return SUCCESS;
 	}

@@ -168,16 +168,16 @@
 		<property name="productService" ref="productService" />
 	</bean>
 	<bean id="showInventory" class="inventory.controller.ShowInventory">
-		<property name="inventoryService" ref="inventoryService"/>
+		<property name="inventoryService" ref="inventoryService" />
 	</bean>
 	<bean id="downloadInventoryExcel" class="inventory.controller.DownloadInventoryExcel">
-		<property name="inventoryService" ref="inventoryService"/>
+		<property name="inventoryService" ref="inventoryService" />
 	</bean>
 	<bean id="showInOutLog" class="inventory.controller.ShowInOutLog">
-		<property name="inOutLogService" ref="inOutLogService"/>
+		<property name="inOutLogService" ref="inOutLogService" />
 	</bean>
 	<bean id="downloadInOutLogExcel" class="inventory.controller.DownloadInOutLogExcel">
-		<property name="inOutLogService" ref="inOutLogService"/>
+		<property name="inOutLogService" ref="inOutLogService" />
 	</bean>
 	<!-- product -->
 	<bean id="productDAO" class="product.model.ProductHibernateDAO">
@@ -245,49 +245,50 @@
 	</bean>
 	<bean id="doCheckOutAction" class="shopping.controller.DoCheckOutAction">
 		<property name="orderFormService" ref="orderFormService" />
-		<property name="orderDetailService" ref="orderDetailService" />
 		<property name="cartService" ref="cartService" />
 		<property name="memberService" ref="memberService" />
+		<property name="orderDetailService" ref="orderDetailService" />
 	</bean>
 	<bean id="deleteOrderAction" class="shopping.controller.DeleteOrderAction">
 		<property name="orderFormService" ref="orderFormService" />
 	</bean>
-		<bean id="preReturnAction" class="shopping.controller.PreReturnAction">
+	<bean id="preReturnAction" class="shopping.controller.PreReturnAction">
 		<property name="returnService" ref="returnService" />
 	</bean>
 	<bean id="returnAction" class="shopping.controller.ReturnAction">
 		<property name="returnService" ref="returnService" />
 	</bean>
 	<bean id="doAppointmentAction" class="shopping.controller.DoAppointmentAction">
-<!-- 		<property name="returnService" ref="returnService" /> -->
+		<property name="inventoryService" ref="inventoryService" />
+		<property name="inOutLogService" ref="inOutLogService" />
+		<property name="orderFormService" ref="orderFormService" />
+		<property name="orderDetailService" ref="orderDetailService" />
+	</bean>
+	<bean id="appointmentAction" class="shopping.controller.AppointmentAction">
+		<property name="hospitalService" ref="hospitalService" />
+		<property name="doctorService" ref="doctorService" />
+		<property name="orderDetailService" ref="orderDetailService" />
 	</bean>
 	
 	<!-- simulator-->
-	<bean id="environmentDAO" class="simulator.model.EnvironmentHibernateDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="simulatorService" class="simulator.model.SimulatorService">
-		<property name="environmentDAO" ref="environmentDAO"/>
-	</bean>
 	<bean id="bodySimulatorAction" class="simulator.controller.BodySimulatorAction">
 		<property name="productService" ref="productService" />
 		<property name="categoryService" ref="categoryService" />
-		<property name="simulatorService" ref="simulatorService" />
 	</bean>
-	
-<!-- 	<bean id="showProductsAction" class="simulator.controller.ShowProductsAction"> -->
-<!-- 		<property name="productService" ref="productService" /> -->
-<!-- 		<property name="categoryService" ref="categoryService" /> -->
-<!-- 		<property name="simulatorService" ref="simulatorService" /> -->
-<!-- 	</bean> -->
-	
+
+	<!-- <bean id="showProductsAction" class="simulator.controller.ShowProductsAction"> -->
+	<!-- <property name="productService" ref="productService" /> -->
+	<!-- <property name="categoryService" ref="categoryService" /> -->
+	<!-- <property name="simulatorService" ref="simulatorService" /> -->
+	<!-- </bean> -->
+
 	<bean id="savePackAction" class="simulator.controller.SavePackAction">
 	</bean>
 	<bean id="getPackAction" class="simulator.controller.GetSavedPack">
 	</bean>
-<!-- 	<bean id="enviromentSimulatorAction" class="simulator.controller.EnviromentSimulatorAction"> -->
-<!-- 		<property name="simulatorService" ref="simulatorService" /> -->
-<!-- 	</bean> -->
-	
-	
+	<!-- <bean id="enviromentSimulatorAction" class="simulator.controller.EnviromentSimulatorAction"> -->
+	<!-- <property name="simulatorService" ref="simulatorService" /> -->
+	<!-- </bean> -->
+
+
 </beans>

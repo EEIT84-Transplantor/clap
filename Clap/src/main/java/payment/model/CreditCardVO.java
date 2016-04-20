@@ -20,7 +20,7 @@ public class CreditCardVO implements Serializable {
 
 	@EmbeddedId
 	private CreditCardPK creditCardPK;
-	@Column(name = "cc_goodrhru")
+	@Column(name = "cc_goodthru")
 	private String cc_goodthru;
 	@Column(name = "cc_cvv")
 	private String cc_cvv;

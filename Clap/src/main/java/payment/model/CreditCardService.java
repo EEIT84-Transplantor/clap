@@ -46,7 +46,7 @@ public class CreditCardService {
 		CreditCardVO result = null;
 		if (creditCardVO != null) {
 			String cc_cvv = creditCardVO.getCc_cvv();
-			String cc_goodrhru = creditCardVO.getCc_goodthru();
+			String cc_goodthru = creditCardVO.getCc_goodthru();
 			String cc_number = creditCardVO.getCreditCardPK().getCc_number();
 
 			String mb_email = creditCardVO.getCreditCardPK().getMb_email();
@@ -54,7 +54,7 @@ public class CreditCardService {
 			if (cc_cvv == null || cc_cvv.length() == 0) {
 				return result;
 			}
-			if (cc_goodrhru == null || cc_goodrhru.length() == 0) {
+			if (cc_goodthru == null || cc_goodthru.length() == 0) {
 				return result;
 			}
 			if (cc_number == null || cc_number.length() == 0) {
