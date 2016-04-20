@@ -272,11 +272,11 @@
 	</bean>
 	
 	<!-- simulator-->
-	<bean id="simulatorAction" class="simulator.controller.SimulatorAction">
+	<bean id="simulatorAction" class="simulator.controller.SimulatorAction" scope="prototype">
 		<property name="productService" ref="productService" />
 		<property name="categoryService" ref="categoryService" />
 	</bean>
-	<bean id="bodySimulatorAction" class="simulator.controller.BodySimulatorAction">
+	<bean id="bodySimulatorAction" class="simulator.controller.BodySimulatorAction" scope="prototype">
 		<property name="productService" ref="productService" />
 		<property name="categoryService" ref="categoryService" />
 	</bean>
