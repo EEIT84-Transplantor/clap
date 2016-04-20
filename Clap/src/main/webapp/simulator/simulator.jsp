@@ -85,7 +85,7 @@
 <!-- 							<div id="drop" class="Intestine"></div> -->
 							</div>
 						</div>
-						<div class="col-md-7">
+						<div class="col-md-7 opacityDiv" >
 							<h2>USER NAME</h2>
 							<p>Description Description Description Description Description </p>
 							<div class="row" id="s_graphic">

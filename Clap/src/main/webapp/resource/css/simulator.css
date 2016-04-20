@@ -206,15 +206,7 @@ a:hover{
 	-moz-border-radius: 0 50px 50px 0;
 	border-radius: 0 50px 50px 0;
 }
-.opacityDiv{
-	
-  background: rgba(255, 255, 255, 0.6); /* For browsers that do not support gradients */
-  background: -webkit-radial-gradient((rgba(255, 255, 255, 0.1), (rgba(255, 255, 255, 0.3), (rgba(255, 255, 255, 0.1)); /* Safari 5.1 to 6.0 */
-  background: -o-radial-gradient((rgba(255, 255, 255, 0.1), (rgba(255, 255, 255, 0.3), (rgba(255, 255, 255, 0.1)); /* For Opera 11.6 to 12.0 */
-  background: -moz-radial-gradient((rgba(255, 255, 255, 0.1), (rgba(255, 255, 255, 0.3), (rgba(255, 255, 255, 0.1)); /* For Firefox 3.6 to 15 */
-  background: radial-gradient(yellow, red, blue); /* Standard syntax */
 
-}
 #s_organs .nav-tabs{
 	width:700px;
 }
@@ -287,4 +279,13 @@ a:hover{
 }
 .btn{
 	padding:0;
+}
+.opacityDiv{
+ /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,2989d8+50,207cca+51,7db9e8+100;Blue+Gloss+Default */
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,7db9e8+100&1+0,0+100 */
+background: -moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%, rgba(125,185,232,0) 100%); /* FF3.6-15 */
+background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(125,185,232,0) 100%); /* Chrome10-25,Safari5.1-6 */
+background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 0%,rgba(125,185,232,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#007db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
 }
