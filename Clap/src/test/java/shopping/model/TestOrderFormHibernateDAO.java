@@ -29,7 +29,7 @@ public class TestOrderFormHibernateDAO {
 	private OrderFormVO orderFormVO;
 	private Integer id = 33;
 	private String mb_email = "poan@gmail.com";
-	private Integer total = 99999;
+	private Double total = 99999.0;
 
 	@Before
 	public void setUp() {

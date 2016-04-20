@@ -239,14 +239,14 @@ create table orderdetail(
 orderdetail_id int primary key identity,
 orderform_id int FOREIGN KEY REFERENCES orderform(orderform_id),
 product_id int FOREIGN KEY REFERENCES product(product_id),
-cart_quantity int,
+ct_quantity int,
 orderdetail_time datetime,
 doctor_id int FOREIGN KEY REFERENCES doctor(doctor_id), 
 orderdetail_surgerytime datetime 
 )
 
-insert into orderdetail(orderform_id, product_id, cart_quantity, orderdetail_time, doctor_id, orderdetail_surgerytime) values(1,1,10,'2020-01-01',1 , CURRENT_TIMESTAMP);
-insert into orderdetail(orderform_id, product_id, cart_quantity, orderdetail_time, doctor_id, orderdetail_surgerytime) values(2,2,20,'2020-01-01',2 , CURRENT_TIMESTAMP);
+insert into orderdetail(orderform_id, product_id, ct_quantity, orderdetail_time, doctor_id, orderdetail_surgerytime) values(1,1,10,'2020-01-01',1 , CURRENT_TIMESTAMP);
+insert into orderdetail(orderform_id, product_id, ct_quantity, orderdetail_time, doctor_id, orderdetail_surgerytime) values(2,2,20,'2020-01-01',2 , CURRENT_TIMESTAMP);
 select * from orderdetail
 
 ------------------------------------------------------------------------------------------------------------------------------------------------

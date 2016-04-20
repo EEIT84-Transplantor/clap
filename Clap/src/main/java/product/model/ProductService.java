@@ -66,6 +66,7 @@ public class ProductService {
 				productimgDAO.insert(productimgVO);
 				return true;
 			}else if(dbVO != null && productimgVO == null){
+				dbVO.setId(productVO.getId());
 				dbVO.setName(productVO.getName());
 				dbVO.setPrice(productVO.getPrice());
 				dbVO.setDescription(productVO.getDescription());
@@ -79,6 +80,7 @@ public class ProductService {
 				productimgDAO.insert(productimgVO);
 				return true;
 			}else{
+				dbVO.setId(productVO.getId());
 				dbVO.setName(productVO.getName());
 				dbVO.setPrice(productVO.getPrice());
 				dbVO.setDescription(productVO.getDescription());

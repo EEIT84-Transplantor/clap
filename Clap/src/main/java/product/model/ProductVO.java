@@ -10,13 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "product")
 public class ProductVO implements Serializable  {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "product_id")
 	private Integer id;
 	@Column(name = "product_name")
@@ -35,22 +35,40 @@ public class ProductVO implements Serializable  {
 	@JoinColumn(name = "category_id", insertable = false, updatable = false)
 	private CategoryVO categoryVO;
 	@Column(name = "product_value1")
-	private Integer value1;
+	private Double endurance;
 	@Column(name = "product_value2")
-	private Integer value2;
+	private Double skill;
+	@Transient
+	private Double finalValue1;
+	@Transient
+	private Double finalValue2;
 	
 	
-	public Integer getValue1() {
-		return value1;
+
+
+	public Double getEndurance() {
+		return endurance;
 	}
-	public void setValue1(Integer value1) {
-		this.value1 = value1;
+	public void setEndurance(Double endurance) {
+		this.endurance = endurance;
 	}
-	public Integer getValue2() {
-		return value2;
+	public Double getSkill() {
+		return skill;
 	}
-	public void setValue2(Integer value2) {
-		this.value2 = value2;
+	public void setSkill(Double skill) {
+		this.skill = skill;
+	}
+	public Double getFinalValue1() {
+		return finalValue1;
+	}
+	public void setFinalValue1(Double finalValue1) {
+		this.finalValue1 = finalValue1;
+	}
+	public Double getFinalValue2() {
+		return finalValue2;
+	}
+	public void setFinalValue2(Double finalValue2) {
+		this.finalValue2 = finalValue2;
 	}
 	public Integer getId() {
 		return id;

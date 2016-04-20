@@ -29,4 +29,14 @@ public class OrderDetailService {
 		return orderDetailHibernateDAO.select(orderId);
 	}
 
+	//修改orderDetailVO
+	public Boolean updateOrderDetail(OrderDetailVO orderDetailVO) {
+		return orderDetailHibernateDAO.update(orderDetailVO);
+	}
+	
+	//取得 orderDetailVO
+	public OrderDetailVO getOrderDetailById(Integer orderDetailId) {
+		return orderDetailHibernateDAO.selectById(orderDetailId);
+	}
+
 }

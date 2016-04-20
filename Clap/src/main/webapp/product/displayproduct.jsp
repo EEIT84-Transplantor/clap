@@ -79,7 +79,7 @@ word-wrap:break-word;
 										<thead>
 											<tr>
 												<th>Picture</th>
-												
+												<th>ID</th>
 												<th>Name</th>
 												<th>Price</th>
 												<th>Description</th>
@@ -91,6 +91,7 @@ word-wrap:break-word;
 										<tbody>
 											<tr>
 												<th><input id="newitemPic" type="file" name="upload" required="required"/></th>
+												<th><input class="form-control col-md-1" type="text" readonly="readonly" name="productVO.id" required="required"/></th>
 												<th><input class="form-control col-md-1" type="text" name="productVO.name" required="required"/></th>
 												<th><input class="form-control col-md-1" type="number" min="0" name="productVO.price" required="required"/></th>
 												<th><input class="form-control col-md-1" type="text" name="productVO.description" required="required"/></th>
@@ -391,6 +392,7 @@ word-wrap:break-word;
 					}
 				}
 			});
+			
 			$("#newitemPic").on("change", function(){
 				$("#submitInsert").attr("name", "true");
 			});

@@ -104,23 +104,36 @@ input{
 	border:2px #C13F2E solid;
 	background:#C13F2E;
 }
-.reset_btn{
-	
-	
-	width:90%;
-	margin-top:150px;
+.reset_btn{	
+	display:inline-block;
+	width:45%;
+	margin-top:0px;
 }
-.s_btn a{
+.s_btn {
 	display:block;
 	width:100%;
 	height:100%;
-	padding:10px 30px;
+	padding:10px 10px;
 	border:1px #2995B6 solid;
 	background-color:rgba(42,150,182,0.7);
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	text-align: center;
+}
+.s_btn2 {
+	height:auto;
+	padding:10px 10px;
+	border:1px #2995B6 solid;
+	background-color:rgba(42,150,182,0.7);
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	text-align: center;
+}
+
+.s_btn a:hover{
+	
 }
 .clear{
 	clear:both;

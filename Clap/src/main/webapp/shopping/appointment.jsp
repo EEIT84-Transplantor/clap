@@ -44,7 +44,7 @@
 		orderDetailVO1.put("id", 111);
 		orderDetailVO1.put("orderFormVO", orderFormVO1);
 		orderDetailVO1.put("productVO", productVO1);
-		orderDetailVO1.put("cart_quantity", 1);
+		orderDetailVO1.put("ct_quantity", 1);
 		orderDetailVO1.put("doctorVO", doctorVO1);
 		orderDetailVO1.put("time", new Timestamp(new java.util.Date().getTime()));
 
@@ -64,7 +64,7 @@
 		orderDetailVO2.put("id", 222);
 		orderDetailVO2.put("orderFormVO", orderFormVO2);
 		orderDetailVO2.put("productVO", productVO2);
-		orderDetailVO2.put("cart_quantity", 2);
+		orderDetailVO2.put("ct_quantity", 2);
 		orderDetailVO2.put("doctorVO", doctorVO2);
 		orderDetailVO2.put("time", new Timestamp(new java.util.Date().getTime()));
 
@@ -72,7 +72,10 @@
 		orderList.add(orderDetailVO1);
 		orderList.add(orderDetailVO2);
 
+		int orderFormId = 1;
+		
 		pageContext.setAttribute("orderList", orderList);
+		pageContext.setAttribute("orderFormId", orderFormId);
 	%>
 	<sql:query dataSource="clap/db" var="hospitalList">
 		select top(10) * from hospital 
@@ -102,7 +105,7 @@
 								<td><input type="date" class="time"></td>
 								<td><select class="doctor">
 										<c:forEach var="doctor" items="${doctorList.rows}">
-											<option>${doctor.doctor_name}</option>
+											<option value="${doctor.doctor_id}">${doctor.doctor_name}</option>
 										</c:forEach>
 									</select></td>
 							</tr>
@@ -152,25 +155,28 @@
 			$(".time").attr("min", now).attr("value", now);
 
 			//送出資料ajax
- 			var orderList = new Object();
+ 			var orderList = [];
 			for (var i = 0; i < $(".id").size(); i++) {
 				var data = {
 					id : $(".id").eq(i).text(),
 					time : $(".time").eq(i).val(),
 					doctor : $(".doctor").eq(i).val(),
 				}
-				orderList[i]=data;
+				orderList[i]=JSON.stringify(data);
 			}
+			console.log(orderList);
 			var url = "<c:url value='/shopping/doAppointmentAction.action'/>";
 			$("#submit").click(function() {
 				$.ajax({
 					url : url,
+					dataType:'json',
 					data : {
-						"orderList":orderList,
+						"orderList": orderList,
 						"hospital" : $("#hospital option:selected").text(),
+						"orderFormId":"${orderFormId}",
 					},
 				}).done(function() {
-
+					document.location.href="<c:url value='/shopping/finish.jsp'/>";
 				})
 			})
 		})
