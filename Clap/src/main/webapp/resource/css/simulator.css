@@ -255,9 +255,14 @@ a:hover{
 	height:80px;
 	background:none;
 }
+.col-item .photo{
+	width:90px;
+	width:90px;
+	background-size:container;
+}
 .col-item .photo img {
      margin: 10px auto; 
-     width: auto; 
+/*      width: auto;  */
 }
 .col-item {
     border: none;
