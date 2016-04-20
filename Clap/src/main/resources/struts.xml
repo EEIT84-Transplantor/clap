@@ -344,6 +344,10 @@
 	</package>
 
 	<package name="simulator" namespace="/simulator" extends="struts-default">
+	     <action name="simulatorAction" class="simulatorAction">
+			<result>/simulator/simulator.jsp</result>
+		</action>
+	
 		<action name="bodySimulatorAction" class="bodySimulatorAction">
 			<result name="display">/simulator/simulator.jsp</result>
 			<result type="stream">
