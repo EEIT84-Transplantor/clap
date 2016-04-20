@@ -47,7 +47,7 @@
 	
 						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px;">
 							<div class="hovereffect">
-								<img class="img-responsive" src="<c:url value="/resource/images/orgins/brain.jpg"/>" alt="">
+								<img class="img-responsive" src="data:image/png;base64,${productimg[product.id].img64}" alt="">
 								<div class="overlay">
 									<h2>${product.name}</h2>
 									<p>

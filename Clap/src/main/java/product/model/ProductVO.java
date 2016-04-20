@@ -45,6 +45,7 @@ public class ProductVO implements Serializable  {
 	
 	
 
+
 	public Double getEndurance() {
 		return endurance;
 	}

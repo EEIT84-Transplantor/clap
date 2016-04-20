@@ -1,5 +1,6 @@
 package shopping.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,9 +16,10 @@ import product.model.CategoryService;
 import product.model.CategoryVO;
 import product.model.ProductService;
 import product.model.ProductVO;
+import product.model.ProductimgVO;
 
 public class ShoppingAction extends ActionSupport implements ServletRequestAware{
-
+	
 	private CategoryService categoryService;
 	private ProductService productService;
 	private HttpServletRequest request;
@@ -36,11 +38,23 @@ public class ShoppingAction extends ActionSupport implements ServletRequestAware
 	@Override
 	public String execute() throws Exception {
 		List<CategoryVO>  categoryVOs= categoryService.getAllCategory();
+		
 		Map<String, List<ProductVO>> allCategoryProduct = new HashMap<String, List<ProductVO>>();
+		Map<Integer, ProductimgVO> productDetail = new HashMap<Integer, ProductimgVO>();
+		
 		for(CategoryVO categoryVO :categoryVOs){
-			allCategoryProduct.put(categoryVO.getName(), productService.searchProductByCategory(categoryVO.getId()));
+			List<ProductVO> list =  productService.searchProductByCategory(categoryVO.getId());
+			
+			List<ProductimgVO> productVOs = null;
+			for(ProductVO productVO:list){
+				productDetail.put(productVO.getId(), productService.getProductImgById(productVO.getId()));
+			}
+			
+			allCategoryProduct.put(categoryVO.getName(),list);
 		}
+		
 		request.setAttribute("allCategoryProduct", allCategoryProduct);
+		request.setAttribute("Productimg", productDetail);
 		
 		return SUCCESS;
 	}
