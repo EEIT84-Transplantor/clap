@@ -81,10 +81,9 @@ public class CartAction extends ActionSupport implements ServletRequestAware {
 		List<Map<String, Object>> cartList = new ArrayList<>();
 		List<PromoVO> promoList;
 		MemberVO memberVO = (MemberVO) session.getAttribute("login");
-		System.out.println(session.getAttribute("login"));
+		
 		//判斷是否登入
 		if (memberVO != null) {
-			System.out.println(3);
 			List<CartVO> cartVOs = cartService.getCart(memberVO.getEmail());
 			for (CartVO cartVO : cartVOs) {
 				Map<String, Object> map = new HashMap<String, Object>();

@@ -45,4 +45,9 @@ public class OrderFormService {
 		return orderFormHibernateDAO.select(id);
 	}
 
+	//修改orderDetail
+	public Boolean updateOrderForm(OrderFormVO orderFormVO) {
+		return orderFormHibernateDAO.update(orderFormVO);
+	}
+
 }

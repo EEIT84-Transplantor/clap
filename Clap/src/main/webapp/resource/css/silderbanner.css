@@ -16,13 +16,13 @@
 #category-silder {
 	margin-top:10px;
 }
-#category-silder .item{
+#category-silder-1 .item,#category-silder-2 .item,#category-silder-3 .item,#category-silder-4 .item,#category-silder-5 .item,#category-silder-6 .item,#category-silder-7 .item{
 	height:auto;
 	background:none;
 	padding:0 5px;
 }
 
-#category-silder .col-item{
+#category-silder-1 .col-item,#category-silder-2 .col-item,#category-silder-3 .col-item,#category-silder-4 .col-item,#category-silder-5 .col-item,#category-silder-6 .col-item,#category-silder-7 .col-item,{
 	border:1px #999 solid;
 	-webkit-border-radius: 5px;
 -moz-border-radius: 5px;
@@ -37,7 +37,7 @@ border-radius: 5px;
 .b_color{
 	color:#47BED9;
 }
-#category-silder h4{
+#category-silder-1 h4,#category-silder-2 h4,#category-silder-3 h4,#category-silder-4 h4,#category-silder-5 h4,#category-silder-6 h4,#category-silder-7 h4{
 	width:100%;
 	text-align: center;
 	color:#fff;
@@ -45,7 +45,7 @@ border-radius: 5px;
 	margin:0;
 	padding:10px 0 0 0;
 }
-#category-silder h5{
+#category-silder-1 h5,#category-silder-2 h5,#category-silder-3 h5,#category-silder-4 h5,#category-silder-5 h5,#category-silder-6 h5,#category-silder-7 h5,{
 	width:100%;
 	text-align: center;
 	color:#fff;
@@ -99,7 +99,7 @@ body {
 
 /* Declare heights because of positioning of img element */
 .carousel .item {
-  height:840px;
+  height:600px;
   background-color: #777;
 }
 .carousel-inner > .item > img {

@@ -47,7 +47,7 @@
 					<!-- 商品明細 -->
 					<div class="row">
 						<div class="col-md-4">
-							<img src="../resource/images/orgins/brain.png" class="img-responsive">
+							<img src="data:image/png;base64,${productimage}" class="img-responsive">
 						</div>
 						<div class="col-md-5">
 							<h3>${product.name}</h3>
@@ -130,7 +130,7 @@
 										<div class="col-sm-2">
 											<div class="col-item">
 												<div class="photo">
-													<a href="${pageContext.request.contextPath}/shopping/productDetial.action?productVO.id=${product.id}"><img src="../resource/images/orgins/brain.png"
+													<a href="${pageContext.request.contextPath}/shopping/productDetial.action?productVO.id=${product.id}"><img src="data:image/png;base64,${productimages[product.id]}"
 														class="img-responsive popularimg"  /></a>
 												</div>
 									

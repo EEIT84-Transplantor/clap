@@ -34,9 +34,9 @@ public class ProductVO implements Serializable  {
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "category_id", insertable = false, updatable = false)
 	private CategoryVO categoryVO;
-	@Column(name = "product_value1")
+	@Column(name = "product_endurance")
 	private Double endurance;
-	@Column(name = "product_value2")
+	@Column(name = "product_skill")
 	private Double skill;
 	@Transient
 	private Double finalValue1;
@@ -44,6 +44,7 @@ public class ProductVO implements Serializable  {
 	private Double finalValue2;
 	
 	
+
 
 	public Double getEndurance() {
 		return endurance;

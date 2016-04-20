@@ -11,6 +11,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
+
 <!-- Bootstrap -->
 <link href="<c:url value="/resource/css/bootstrap.min.css"/>"
 	rel="stylesheet">
@@ -96,7 +97,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<c:forEach items="${allCategoryProduct}" var="CategoryProducts">
+					<c:forEach items="${allCategoryProduct}" var="CategoryProducts" varStatus="c_count">
 						<div class="row">
 							<div class="col-md-9">
 								
@@ -106,19 +107,19 @@
 								<!-- Controls -->
 								<div class="controls pull-right hidden-xs">
 									<a class="left fa fa-chevron-left btn btn-success"
-										href="#category-silder" data-slide="prev"><span
+										href="#category-silder-${c_count.count}" data-slide="prev"><span
 										class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a>
 									<a class="right fa fa-chevron-right btn btn-success"
-										href="#category-silder" data-slide="next"><span
+										href="#category-silder-${c_count.count}" data-slide="next"><span
 										class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
 								</div>
 							</div>
 						</div>
-						<div id="category-silder" class="carousel slide hidden-xs">
+						<div id="category-silder-${c_count.count}" class="carousel slide hidden-xs category-silder">
 							<!-- Wrapper for slides -->
 							<div class="carousel-inner">
-								
-									<c:forEach items="${CategoryProducts.value}" var="product" varStatus="p_count">
+									<c:forEach items="${CategoryProducts.value}" var="products" varStatus="p_count">
+									
 										<c:if test="${p_count.count % 4 == 1}">
 										<c:if test="${p_count.count == 1}">
 										<div class="item active">
@@ -131,13 +132,13 @@
 										<div class="col-sm-3">
 											<div class="col-item">
 												<div class="photo">
-													<img src="../resource/images/orgins/brain.png"
+													<img src="data:image/png;base64,${Productimg[products.id].img64}"
 														class="img-responsive" alt="" />
 												</div>
 												<div class="info">
 													<div class="row">
 														<div class="price col-md-12">
-															<h4>${product.name}</h4>
+															<h4>${products.name}</h4>
 															<!--<h5 class="price-text-color">$199.99</h5> -->
 														</div>
 
@@ -147,10 +148,10 @@
 													<div class="separator clear-left">
 														<p class="btn-add">
 															<i class="fa fa-shopping-cart"></i><a href="javascript:void(0);"
-																onclick="changeCart(${product.id});" class="hidden-sm add-to-cart">Add to cart</a>
+																onclick="changeCart(${products.id});" class ="hidden-sm add-to-cart">Add to cart</a>
 														</p>
 														<p class="btn-details">
-															<i class="fa fa-list"></i><a href="${pageContext.request.contextPath}/shopping/productDetial.action?productVO.id=${product.id}" class="hidden-sm">More
+															<i class="fa fa-list"></i><a href="${pageContext.request.contextPath}/shopping/productDetial.action?productVO.id=${products.id}" class="hidden-sm">More
 																details</a>
 														</p>
 													</div>
@@ -167,9 +168,9 @@
 				
 			</div>
 		</div>
-		</c:forEach>
+		
 		</div>
-		</div>
+		</div></c:forEach>
 		</div>
 		<!-- 分類推薦 -->
 		</div>
@@ -227,7 +228,7 @@
             flyToElement($(itemImg), $('.cart_anchor'));
         });
     });
-
+ 
     </script>
 
 </body>
