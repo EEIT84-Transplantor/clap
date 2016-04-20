@@ -137,7 +137,7 @@ public class CategoryService {
 			simulatorVO.setProductVOs(productVOs);
 			result.add(simulatorVO);
 		}
-		return null;
+		return result;
 	}
 	
 }

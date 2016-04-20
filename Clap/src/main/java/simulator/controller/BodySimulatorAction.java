@@ -99,7 +99,7 @@ public class BodySimulatorAction extends ActionSupport {
         System.out.println("BodySimulatorAction [weight=" + weight + ", height=" + height + ", smoking=" + smoking + ", drinking="
 				+ drinking + ", exercising=" + exercising + ", env_id=" + env_id + "]");
 		//categoryService 的calculate還沒做~
-		List<SimulatorVO>simulatorVOs =categoryService.calculate(env_id,bmi,smoking,drinking,exercising);
+		List<SimulatorVO> simulatorVOs = categoryService.calculate(env_id,bmi,smoking,drinking,exercising);
 
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
@@ -159,7 +159,7 @@ public class BodySimulatorAction extends ActionSupport {
 			simulatorVOs.add(simulatorVO);
 			
 		}
-		
+		System.out.println("simulatorVOsArray length: "+simulatorVOsArray.toString().length());
 		request.setAttribute("simulatorVOs", simulatorVOs);
 		try {
 			inputStream  = new ByteArrayInputStream(simulatorVOsArray.toString().getBytes("UTF-8"));

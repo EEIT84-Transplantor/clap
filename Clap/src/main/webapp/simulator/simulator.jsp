@@ -76,16 +76,13 @@
 									</button>
 									<button class="reset_btn s_btn2 toreset">RESET</button>
 									<div class="sub_setting savingslot" id="saveSlot1">
-										1st
-										<span class="" aria-hidden="true"></span>
+										1st <span class="" aria-hidden="true"></span>
 									</div>
 									<div class="sub_setting savingslot" id="saveSlot2">
-										2nd
-										<span class="" aria-hidden="true"></span>
+										2nd <span class="" aria-hidden="true"></span>
 									</div>
 									<div class="sub_setting savingslot" id="saveSlot3">
-										3rd
-										<span class="" aria-hidden="true"></span>
+										3rd <span class="" aria-hidden="true"></span>
 									</div>
 									<button class="toclear">Clear Saves</button>
 								</div>
@@ -110,16 +107,12 @@
 											<img src="<c:url value="/resource/images/simulator/o_${row.index}.png"/>">
 											<div class="graphic_detail_all">
 												<div class="graphic_detail">
-													<span style="width: 70px;" class="o_old organ${row.index}">Power</span>
-													<strong>60%</strong>
-													<span style="background: #16536C; width: 200px;" class="o_new organ${row.index}">Power</span>
-													<strong>80%</strong>
+													<span style="width: 70px;" class="o_old organ${row.index}">Power</span> <strong>60%</strong> <span
+														style="background: #16536C; width: 200px;" class="o_new organ${row.index}">Power</span> <strong>80%</strong>
 												</div>
 												<div class="graphic_detail">
-													<span style="width: 90px;" class="o_old organ${row.index}">Endurance</span>
-													<strong>60%</strong>
-													<span style="background: #16536C; width: 250px;" class="o_new organ${row.index}">Endurance</span>
-													<strong>80%</strong>
+													<span style="width: 90px;" class="o_old organ${row.index}">Endurance</span> <strong>60%</strong> <span
+														style="background: #16536C; width: 250px;" class="o_new organ${row.index}">Endurance</span> <strong>80%</strong>
 												</div>
 											</div>
 										</div>
@@ -130,14 +123,10 @@
 										<ul class="nav nav-tabs">
 											<c:forEach var="simulatorVO" items="${simulatorVOs}" varStatus="c_count">
 												<c:if test="${c_count.count==1}">
-													<li class="active">
-														<a data-toggle="tab" href="#${simulatorVO.categoryVO.name}">${simulatorVO.categoryVO.name}</a>
-													</li>
+													<li class="active"><a data-toggle="tab" href="#${simulatorVO.categoryVO.name}">${simulatorVO.categoryVO.name}</a></li>
 												</c:if>
 												<c:if test="${c_count.count!=1}">
-													<li>
-														<a data-toggle="tab" href="#${simulatorVO.categoryVO.name}">${simulatorVO.categoryVO.name}</a>
-													</li>
+													<li><a data-toggle="tab" href="#${simulatorVO.categoryVO.name}">${simulatorVO.categoryVO.name}</a></li>
 												</c:if>
 											</c:forEach>
 										</ul>
@@ -164,8 +153,8 @@
 													<div class="col-md-1">
 														<!-- Controls -->
 														<div class="controls pull-right hidden-xs">
-															<a class="left fa fa-chevron-left btn" href="#sim_silder${simulatorVO.categoryVO.id}" data-slide="prev">
-																<span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+															<a class="left fa fa-chevron-left btn" href="#sim_silder${simulatorVO.categoryVO.id}" data-slide="prev"> <span
+																class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
 															</a>
 														</div>
 													</div>
@@ -187,7 +176,8 @@
 																	<div class="col-sm-2">
 																		<div class="col-item">
 																			<div class="photo" id="haha">
-																				<img name="product${simulatorVO.productVOs[p_count.count-1].id}" src="<c:url value="data:image/png;base64,${simulatorVO.productimgVOs[p_count.count-1].img64}"/>" class="draggable">
+																				<img name="product${simulatorVO.productVOs[p_count.count-1].id}"
+																					src="<c:url value="data:image/png;base64,${simulatorVO.productimgVOs[p_count.count-1].img64}"/>" class="draggable">
 																			</div>
 																		</div>
 																	</div>
@@ -205,8 +195,8 @@
 						<div class="col-md-1">
 							<!-- Controls -->
 							<div class="controls pull-right hidden-xs">
-								<a class="right fa fa-chevron-right btn" href="#sim_silder${simulatorVO.categoryVO.id}" data-slide="next">
-									<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+								<a class="right fa fa-chevron-right btn" href="#sim_silder${simulatorVO.categoryVO.id}" data-slide="next"> <span
+									class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
 								</a>
 							</div>
 						</div>
@@ -241,14 +231,13 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery.color-2.1.2.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery-ui.min.js"/>"></script>
 	<script type="text/javascript">
-	
-		//get all products JSON String
-		//get all products when init
-// 		function initGetProducts(){
-// 			alert(JsonString.length);
-// 			var jsonarray = JSON.parse(JsonString);			
-// 		}
-// 		initGetProducts();
+		
+
+		// 		function initGetProducts(){
+		// 			alert(JsonString.length);
+		// 			var jsonarray = JSON.parse(JsonString);			
+		// 		}
+		// 		initGetProducts();
 		//set open background color animation to dark
 		$("body").hide();
 		$("html").show().animate({
@@ -261,11 +250,14 @@
 				$("body").fadeIn(400);
 			});
 		});
-		
-		
+
 		//======  DOCUMENT READY  ======= 
-		$(document).ready(function(){			
+		$(document).ready(function() {
 			var environmentIndex = 0;
+			//get all products JSON String
+			$.ajax({url : "${pageContext.request.contextPath}/simulator/bodySimulatorAction",
+					data : createFactors()}).done(function(msg){console.log(msg.length);});
+			
 			//set onclick to change env background
 			function initChangeBackClick() {
 				$(".factor_item").on("click", function() {
@@ -561,8 +553,7 @@
 				$("span.o_old").css("width", "200px");
 				$("span.o_new").css("width", "200px");
 
-			}			
-			
+			}
 
 			//function to adjust designated organ bar
 			function adjustOrganBars(index, valueBoxforAdjust) {
@@ -572,63 +563,79 @@
 				var oldValueE = valueBoxforAdjust.oldVE + 100;
 				var newValueE = valueBoxforAdjust.newVE + 100;
 
-				var reverseE = (oldValueE > newValueE)?true:false;
-				if(reverseP){
-					$("span[class='o_old organ" + index + "']").eq(0).css("z-index","3").animate({width: oldValueP+'px'}, 100);
-					$("span[class='o_new organ" + index + "']").eq(0).css("z-index","5").animate({width: newValueP+'px'}, 100);
-				}else{
-					$("span[class='o_old organ" + index + "']").eq(0).css("z-index","5").animate({width: oldValueP+'px'}, 100);
-					$("span[class='o_new organ" + index + "']").eq(0).css("z-index","3").animate({width: newValueP+'px'}, 100);
+				var reverseE = (oldValueE > newValueE) ? true : false;
+				if (reverseP) {
+					$("span[class='o_old organ" + index + "']").eq(0).css("z-index", "3").animate({
+						width : oldValueP + 'px'
+					}, 100);
+					$("span[class='o_new organ" + index + "']").eq(0).css("z-index", "5").animate({
+						width : newValueP + 'px'
+					}, 100);
+				} else {
+					$("span[class='o_old organ" + index + "']").eq(0).css("z-index", "5").animate({
+						width : oldValueP + 'px'
+					}, 100);
+					$("span[class='o_new organ" + index + "']").eq(0).css("z-index", "3").animate({
+						width : newValueP + 'px'
+					}, 100);
 
 				}
 
-				if(reverseE){
-					$("span[class='o_old organ" + index + "']").eq(1).css("z-index","3").animate({width: oldValueE+'px'}, 100);
-					$("span[class='o_new organ" + index + "']").eq(1).css("z-index","5").animate({width: newValueE+'px'}, 100);
-				}else{
-					$("span[class='o_old organ" + index + "']").eq(1).css("z-index","5").animate({width: oldValueE+'px'}, 100);				
-					$("span[class='o_new organ" + index + "']").eq(1).css("z-index","3").animate({width: newValueE+'px'}, 100);
+				if (reverseE) {
+					$("span[class='o_old organ" + index + "']").eq(1).css("z-index", "3").animate({
+						width : oldValueE + 'px'
+					}, 100);
+					$("span[class='o_new organ" + index + "']").eq(1).css("z-index", "5").animate({
+						width : newValueE + 'px'
+					}, 100);
+				} else {
+					$("span[class='o_old organ" + index + "']").eq(1).css("z-index", "5").animate({
+						width : oldValueE + 'px'
+					}, 100);
+					$("span[class='o_new organ" + index + "']").eq(1).css("z-index", "3").animate({
+						width : newValueE + 'px'
+					}, 100);
 
 				}
 			}
 
 			//add onmouseover onmouseout to organs
-			for(var iii = 1;iii<999;iii++){
-			$("img[name='product"+iii+"']").on("mouseover",function(){
-				//stop previous animation
-				$("span.o_old").stop();
-				$("span.o_new").stop();
-				
-				var valueBox = new Object();
-				var categoryIndex = $(this).attr("name");
-				categoryIndex = categoryIndex.substring(7, 8);
-				valueBox.oldVP = 100;
-				valueBox.newVP = 140;
-				valueBox.oldVE = 100;
-				valueBox.newVE = 50;
-				//start bar animation
-				adjustOrganBars(categoryIndex, valueBox);
-			}).on("mouseout",function(){
-				//stop previous animation
-				$("span.o_old").stop();
-				$("span.o_new").stop();
-				
-				var valueBox = new Object();
-				var categoryIndex = $(this).attr("name");
-				categoryIndex = categoryIndex.substring(7, 8);
-				valueBox.oldVP = 100;
-				valueBox.newVP = 100;
-				valueBox.oldVE = 100;
-				valueBox.newVE = 100;
-				//start bar animation
-				adjustOrganBars(categoryIndex, valueBox);
-			});
+			for (var iii = 1; iii < 999; iii++) {
+				$("img[name='product" + iii + "']").on("mouseover", function() {
+					//stop previous animation
+					$("span.o_old").stop();
+					$("span.o_new").stop();
+
+					var valueBox = new Object();
+					var categoryIndex = $(this).attr("name");
+					categoryIndex = categoryIndex.substring(7, 8);
+					valueBox.oldVP = 100;
+					valueBox.newVP = 140;
+					valueBox.oldVE = 100;
+					valueBox.newVE = 50;
+					//start bar animation
+					adjustOrganBars(categoryIndex, valueBox);
+				}).on("mouseout", function() {
+					//stop previous animation
+					$("span.o_old").stop();
+					$("span.o_new").stop();
+
+					var valueBox = new Object();
+					var categoryIndex = $(this).attr("name");
+					categoryIndex = categoryIndex.substring(7, 8);
+					valueBox.oldVP = 100;
+					valueBox.newVP = 100;
+					valueBox.oldVE = 100;
+					valueBox.newVE = 100;
+					//start bar animation
+					adjustOrganBars(categoryIndex, valueBox);
+				});
 			}
-			
+
 		});//end of document ready
-		
+
 		//init document save objects
-		function initSaveObject(){
+		function initSaveObject() {
 			saveObject1 = new Object(), saveObject2 = new Object(), saveObject3 = new Object();
 			saveContainer = new Object;
 			saveObject1.saved = false;
@@ -656,14 +663,8 @@
 
 		//get all products when init
 
-		function initGetProducts(JsonString){
-			var jsonarray = JSON.parse(JsonString);			
-		}
-		
-		
-	</script>
-
-
+		function initGetProducts(JsonString) {
+			var jsonarray = JSON.parse(JsonString);
 		}
 	</script>
 </html>
