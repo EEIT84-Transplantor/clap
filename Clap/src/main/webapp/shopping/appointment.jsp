@@ -222,7 +222,7 @@
 			//導回首頁
 			setTimeout(function() {
 				window.location.href = "<c:url value='/index.jsp'/>";
-			}, 5000);
+			}, 3000);
 		}
 	</script>
 </body>
