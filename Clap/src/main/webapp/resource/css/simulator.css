@@ -196,15 +196,19 @@ a:hover{
 }
 .o_old{
 	z-index: 5;
-	background:#818181;
+	background: rgba(114, 179, 191, 0.6);
 	padding-left:10px;
-	font-size: 
-}
-.o_new{
-	z-index: 3;
 	-webkit-border-radius: 0 50px 50px 0;
 	-moz-border-radius: 0 50px 50px 0;
 	border-radius: 0 50px 50px 0;
+}
+.o_new{
+	z-index: 3;
+	padding-left:10px;
+	-webkit-border-radius: 0 50px 50px 0;
+	-moz-border-radius: 0 50px 50px 0;
+	border-radius: 0 50px 50px 0;
+	color: red;
 }
 
 #s_organs .nav-tabs{
@@ -281,9 +285,9 @@ a:hover{
 	padding:0;
 }
 .opacityDiv{
-background: -moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%, rgba(125,185,232,0) 100%); /* FF3.6-15 */
-background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(125,185,232,0) 100%); /* Chrome10-25,Safari5.1-6 */
-background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 0%,rgba(125,185,232,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+background: -moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.7) 0%, rgba(125,185,232,0) 60%); /* FF3.6-15 */
+background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.7) 0%,rgba(125,185,232,0) 60%); /* Chrome10-25,Safari5.1-6 */
+background: radial-gradient(ellipse at center,  rgba(255,255,255,0.7) 0%,rgba(125,185,232,0) 60%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#007db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
 }

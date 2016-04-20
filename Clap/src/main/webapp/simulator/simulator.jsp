@@ -89,97 +89,21 @@
 							<h2>USER NAME</h2>
 							<p>Description Description Description Description Description </p>
 							<div class="row" id="s_graphic">
+							<c:forEach begin="1" end="7" varStatus="row">
 								<div class="col-md-6 col-sm-12">
-									<img src="<c:url value="/resource/images/simulator/o_1.png"/>">
+									<img src="<c:url value="/resource/images/simulator/o_${row.index}.png"/>">
 									<div class="graphic_detail_all">
 										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
-												class="o_new"></span><strong>80%</strong>
+											<span style="width: 70px;" class="o_old organ${row.index}">Power</span><strong>60%</strong> <span style="background: #16536C; width: 200px;"
+												class="o_new organ${row.index}">Power</span><strong>80%</strong>
 										</div>
 										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
-												class="o_new"></span><strong>80%</strong>
+											<span style="width: 90px;" class="o_old organ${row.index}">Endurance</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
+												class="o_new organ${row.index}">Endurance</span><strong>80%</strong>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6 col-sm-12">
-									<img src="<c:url value="/resource/images/simulator/o_2.png"/>">
-									<div class="graphic_detail_all">
-										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-12">
-									<img src="<c:url value="/resource/images/simulator/o_3.png"/>">
-									<div class="graphic_detail_all">
-										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-12">
-									<img src="<c:url value="/resource/images/simulator/o_4.png"/>">
-									<div class="graphic_detail_all">
-										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-12">
-									<img src="<c:url value="/resource/images/simulator/o_5.png"/>">
-									<div class="graphic_detail_all">
-										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-12">
-									<img src="<c:url value="/resource/images/simulator/o_6.png"/>">
-									<div class="graphic_detail_all">
-										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-12">
-									<img src="<c:url value="/resource/images/simulator/o_7.png"/>">
-									<div class="graphic_detail_all">
-										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-									</div>
-								</div>
+							</c:forEach>
 							</div>
 							<div id="s_organs">
 								<div id="s_organs_l">
@@ -238,7 +162,7 @@
 																<div class="col-sm-2">
 																	<div class="col-item">
 																		<div class="photo" id="haha">
-																			<img src="<c:url value="data:image/png;base64,${simulatorVO.productimgVOs[p_count.count-1].img64}"/>" class="draggable" >
+																			<img name="product${simulatorVO.productVOs[p_count.count-1].id}" src="<c:url value="data:image/png;base64,${simulatorVO.productimgVOs[p_count.count-1].img64}"/>" class="draggable" >
 																		</div>
 																	</div>
 																</div>
@@ -333,9 +257,13 @@
 				 
 			});
 			}
+			//use init method for document
+			initOrganBars();
 			initSaveObject();		
 			initChangeBackClick();
 			$(".carousel").carousel("pause");
+			
+			//set dragging
 			$("#sim_silder img").draggable();
 			$("#people").droppable();
 			$(".draggable").draggable({ helper: 'clone',cursor: "crosshair", revert: "invalid",appendTo: 'body'});
@@ -572,6 +500,46 @@
 								console.log(msg);
 								});
 			}
+			//set organ bars original
+			function initOrganBars(){
+				$("span.o_old").css("width", "200px");
+				$("span.o_new").css("width", "200px");
+			}
+			//test bar moving
+			$("#s_organs_r div.s_btn").on("click",function(){
+				var valueBox = new Object();
+				valueBox.oldVP = 100;
+				valueBox.newVP = 140;
+				valueBox.oldVE = 100;
+				valueBox.newVE = 50;
+				adjustOrganBars(7, valueBox);
+				for(var ii = 1;ii<8;ii++){
+					adjustOrganBars(ii, valueBox);
+				}
+				});
+			//function to adjust designated organ bar
+			function adjustOrganBars(index, valueBoxforAdjust){
+				var oldValueP = valueBoxforAdjust.oldVP + 100;
+				var newValueP = valueBoxforAdjust.newVP + 100;
+				var reverseP = (oldValueP > newValueP)?true:false;
+				var oldValueE = valueBoxforAdjust.oldVE + 100;
+				var newValueE = valueBoxforAdjust.newVE + 100;
+				var reverseE = (oldValueE > newValueE)?true:false;
+				if(reverseP){
+					$("span[class='o_old organ" + index + "']").eq(0).css("z-index","3").animate({width: oldValueP+'px'}, 300);
+					$("span[class='o_new organ" + index + "']").eq(0).css("z-index","5").animate({width: newValueP+'px'}, 300);
+				}else{
+					$("span[class='o_old organ" + index + "']").eq(0).css("z-index","5").animate({width: oldValueP+'px'}, 300);
+					$("span[class='o_new organ" + index + "']").eq(0).css("z-index","3").animate({width: newValueP+'px'}, 300);
+				}
+				if(reverseE){
+					$("span[class='o_old organ" + index + "']").eq(1).css("z-index","3").animate({width: oldValueE+'px'}, 300);
+					$("span[class='o_new organ" + index + "']").eq(1).css("z-index","5").animate({width: newValueE+'px'}, 300);
+				}else{
+					$("span[class='o_old organ" + index + "']").eq(1).css("z-index","5").animate({width: oldValueE+'px'}, 300);				
+					$("span[class='o_new organ" + index + "']").eq(1).css("z-index","3").animate({width: newValueE+'px'}, 300);
+				}
+			}
 			
 		});
 		
@@ -603,6 +571,12 @@
 			}			
 		}
 		
+		//get all products when init
+		function initGetProducts(){
+			
+		}
+		
 		
 	</script>
+
 </html>
