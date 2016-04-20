@@ -24,7 +24,7 @@
 							<li><a href="#">Account</a></li>
 							<li><a href="#">View Body</a></li>
 							<li><a href="#">Order Status</a></li>
-							<li><a href="#">Manage Payment</a></li>
+							<li><a href="${pageContext.request.contextPath}/hahaha.ha">Manage Payment</a></li>
 						</ul>
 					</div>
 					<div class="col-md-4">

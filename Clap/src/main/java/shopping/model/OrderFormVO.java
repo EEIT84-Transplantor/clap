@@ -21,6 +21,7 @@ import hospital.model.HospitalVO;
 @Entity
 @Table(name="orderform")
 public class OrderFormVO implements Serializable  {
+	
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="orderform_id")
@@ -34,7 +35,7 @@ public class OrderFormVO implements Serializable  {
     @Column(name="orderform_status")
 	private Byte status;
     @ManyToOne
-    @JoinColumn(name="hospital_id",insertable=false,updatable=false)
+    @JoinColumn(name="hospital_id")
 	private HospitalVO hospitalVO;
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="orderform_id")

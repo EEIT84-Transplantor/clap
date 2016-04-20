@@ -1,6 +1,8 @@
 package simulator.controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +14,7 @@ import org.springframework.http.HttpRequest;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import javassist.bytecode.ByteArray;
 import product.model.CategoryService;
 import product.model.ProductService;
 import simulator.model.SimulatorVO;
@@ -68,8 +71,9 @@ public class BodySimulatorAction extends ActionSupport {
 	public void setCategoryService(CategoryService categoryService) {
 		this.categoryService = categoryService;
 	}
-	public void setInputStream(InputStream inputStream) {
-		this.inputStream = inputStream;
+	
+	public InputStream getInputStream() {
+		return inputStream;
 	}
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
@@ -86,7 +90,8 @@ public class BodySimulatorAction extends ActionSupport {
 		if(weight!=null&&weight>0&&height==null&&height>0){
 			bmi = weight/(Math.pow(height/100,2.0));
 		}
-
+        System.out.println("BodySimulatorAction [weight=" + weight + ", height=" + height + ", smoking=" + smoking + ", drinking="
+				+ drinking + ", exercising=" + exercising + ", env_id=" + env_id + "]");
 		//categoryService 的calculate還沒做~
 		List<SimulatorVO>simulatorVOs =categoryService.calculate(env_id,bmi,smoking,drinking,exercising);
 
@@ -95,6 +100,12 @@ public class BodySimulatorAction extends ActionSupport {
 		
 		
 		request.setAttribute("simulatorVOs", simulatorVOs);
+		try {
+			inputStream  = new ByteArrayInputStream("ok".getBytes("UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 
