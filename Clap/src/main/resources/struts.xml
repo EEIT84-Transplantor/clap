@@ -252,7 +252,7 @@
 		<action name="deleteCartAction" class="shopping.controller.DeleteCartAction">
 			<result type="stream"></result>
 		</action>
-		
+
 	</package>
 
 	<package name="test" namespace="/test" extends="struts-default">
@@ -344,7 +344,7 @@
 		</action>
 	</package>
 
-	<package name="simulator" namespace="/simulator" extends="struts-default">
+	<package name="simulator" namespace="/simulator" extends="json-default">
 		<action name="simulatorAction" class="simulatorAction">
 			<result>/simulator/simulator.jsp</result>
 		</action>
@@ -369,9 +369,11 @@
 			</result>
 		</action>
 		<action name="oneclickPackAction" class="oneclickPackAction">
-			<result type="stream"></result>
+			<interceptor-ref name="json">
+			<param name="enableSMD">true</param>
+			</interceptor-ref>
+			<result type="json"></result>
 		</action>
 	</package>
-
 </struts>
 

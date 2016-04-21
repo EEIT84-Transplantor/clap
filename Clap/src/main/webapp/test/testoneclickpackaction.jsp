@@ -31,18 +31,50 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
 	<script type="text/javascript">
+		var dataObj = {
+			"data" : [ {
+				"active" : "true",
+				"color" : "orange",
+				"date" : "2008-01-01",
+				"id" : "1",
+				"name" : "Chris"
+			}, {
+				"active" : "false",
+				"color" : "blue",
+				"date" : "2013-03-03",
+				"id" : "2",
+				"name" : "Kate"
+			}, {
+				"active" : "true",
+				"color" : "black",
+				"date" : "2013-05-03",
+				"id" : "3",
+				"name" : "Blade"
+			}, {
+				"active" : "false",
+				"color" : "yellow",
+				"date" : "2013-01-01",
+				"id" : "4",
+				"name" : "Zack"
+			} ]
+		};
+		
+		var data1 = JSON.stringify(dataObj);
+
 		$(function() {
-			var array = [1,2,3];
+
+			console.log(dataObj);
+			console.log(data1);
+			
 			$.ajax({
-				url:"<c:url value='/simulator/oneclickPackAction.action'/>",
-				data:{
-					"array":[1,2,3],
-				},
-				dataType:"json",
-				
-			}).done(function(){
-				console.log("done");
-			})			
+				url : "<c:url value='/simulator/oneclickPackAction.action'/>",
+				data : data1,
+				method:"POST",
+				contentType:"application/json",
+
+			}).done(function(result) {
+				console.log(result);
+			})
 		});
 	</script>
 </body>
