@@ -33,10 +33,13 @@
 										<div class="s_inpnut">
 											<label>Height: </label>
 											<input type="number" min="50" max="300" name="height">
+
 										</div>
+
 										<div class="s_inpnut">
 											<label>Weight:</label>
 											<input type="number" min="10" max="300" name="weight">
+
 										</div>
 									</div>
 									<div class="sub_setting">
@@ -86,16 +89,13 @@
 									</div>
 									<button class="toclear">Clear Saves</button>
 								</div>
+
 							</div>
 							<div class="col-md-3">
 								<div id="people">
-									<!-- 							<div id="drop" class="o_heart"></div> -->
-									<!-- 							<div id="drop" class="Lung"></div> -->
-									<!-- 							<div id="drop" class="Liver"></div> -->
-									<!-- 							<div id="drop" class="Kidney"></div> -->
-									<!-- 							<div id="drop" class="Stomach"></div> -->
-									<!-- 							<div id="drop" class="Cornea"></div> -->
-									<!-- 							<div id="drop" class="Intestine"></div> -->
+									<c:forEach var="simulatorVO" items="${simulatorVOs}" varStatus="c_count">
+								<div class="drop" id="o_${simulatorVO.categoryVO.id}"></div>
+								</c:forEach>
 								</div>
 							</div>
 							<div class="col-md-7 opacityDiv">
@@ -156,6 +156,7 @@
 															<a class="left fa fa-chevron-left btn" href="#sim_silder${simulatorVO.categoryVO.id}" data-slide="prev"> <span
 																class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
 															</a>
+
 														</div>
 													</div>
 													<div class="col-md-10">
@@ -174,13 +175,12 @@
 																		<div class="row">
 																	</c:if>
 																	<div class="col-sm-2">
-																		<div class="col-item">
-																			<div class="photo" id="haha">
-																				<img name="product${simulatorVO.productVOs[p_count.count-1].id}"
-																					src="<c:url value="data:image/png;base64,${simulatorVO.productimgVOs[p_count.count-1].img64}"/>" class="draggable">
-																			</div>
+																	<div class="col-item">
+																		<div class="photo" id="haha">
+																			<img src="<c:url value="data:image/png;base64,${simulatorVO.productimgVOs[p_count.count-1].img64}"/>" class="draggable${simulatorVO.categoryVO.id}"  width="100">
 																		</div>
 																	</div>
+																</div>
 																	<c:if test="${p_count.count % 4 == 0||p_count.count == fn:length(values)}">
 															</div>
 														</div>
@@ -282,38 +282,34 @@
 
 				});
 			}
+
 			//use init methods for document
 			sendAjaxForSim(createFactors());
 			initOrganBars();
 			initSaveObject();
+
 			initChangeBackClick();
-			$(".carousel").carousel("pause");
 
-			//set dragging
-			$("#sim_silder img").draggable();
-			$("#people").droppable();
-			$(".draggable").draggable({
-				helper : 'clone',
-				cursor : "crosshair",
-				revert : "invalid",
-				appendTo : 'body'
-			});
-
-			$("#people").droppable({
-				accept : ".draggable",
-				drop : function(event, ui) {
-					$(this).removeClass("border").removeClass("over");
-					var dropped = ui.draggable;
-					var droppedOn = $(this);
-					$(dropped).detach().css({
-						top : 0,
-						left : 0
-					}).appendTo(droppedOn);
-
-					$("#haha").html('<img src="' + $(dropped).attr("src") + '" class="disable_img" >');
-
-				}
-			});
+			
+// 				QQ
+				
+				$(".carousel").carousel("pause");
+				
+				for(var i = 0;i<=7;i++){
+					var temp = ".draggable"+i;
+					var otemp = "#o_"+i;
+				$(temp).draggable({ helper: 'clone',cursor: "crosshair", revert: "invalid",appendTo: 'body',drag:function(){$(this).parent().html('<img src="'+$(this).attr("src")+'" class="disable_img">');}});
+				console.log(temp);
+				$(otemp).droppable({ accept: temp, 
+			           drop: function(event, ui) {
+			              var dropped = ui.draggable;
+			              var droppedOn = $(this);
+			              $(dropped).detach().appendTo(droppedOn);
+			          }
+			    });
+			}
+			
+			
 
 			//setting of smoking, alcohol, and sport
 			var clicksetting1 = true, clicksetting2 = true, clicksetting3 = true;
@@ -541,6 +537,7 @@
 					updateAllValues();
 				});
 			}
+
 			//set organ bars original
 			function initOrganBars() {
 				$("span.o_old").css("width", "200px");
@@ -607,7 +604,7 @@
 					var categoryIndex = productId.substring(0, 1);
 					var productIndex = productId.substring(1);
 // 					var tempProductVO = jsonarray[categoryIndex].productVOs[productIndex];
-					alert(categoryIndex+" "+productIndex);
+				//	alert(categoryIndex+" "+productIndex);
 					valueBox.oldVP = 100;
 					valueBox.newVP = 140;
 					valueBox.oldVE = 100;
@@ -661,10 +658,12 @@
 			}
 		}
 
+
 		//get all products when init
 
 		function parseJSONText(JsonString) {
 			return JSON.parse(JsonString);
 		}
+
 	</script>
 </html>
