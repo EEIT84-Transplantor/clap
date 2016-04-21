@@ -273,18 +273,23 @@
 	<bean id="deleteCartAction" class="shopping.controller.DeleteCartAction">
 		<property name="cartService" ref="cartService" />
 	</bean>
-	
-	<!-- simulator-->
-	<bean id="simulatorAction" class="simulator.controller.SimulatorAction" scope="prototype">
+
+	<!-- simulator -->
+	<bean id="simulatorAction" class="simulator.controller.SimulatorAction"
+		scope="prototype">
 		<property name="productService" ref="productService" />
 		<property name="categoryService" ref="categoryService" />
 	</bean>
-	<bean id="bodySimulatorAction" class="simulator.controller.BodySimulatorAction" scope="prototype">
+	<bean id="bodySimulatorAction" class="simulator.controller.BodySimulatorAction"
+		scope="prototype">
 		<property name="productService" ref="productService" />
 		<property name="categoryService" ref="categoryService" />
 	</bean>
 	<bean id="oneclickPackAction" class="simulator.controller.OneclickPackAction">
-	
+		<property name="productService" ref="productService" />
+		<property name="orderFormService" ref="orderFormService" />
+		<property name="orderDetailService" ref="orderDetailService" />
+		<property name="inventoryService" ref="inventoryService" />
 	</bean>
 
 	<!-- <bean id="showProductsAction" class="simulator.controller.ShowProductsAction"> -->
@@ -296,6 +301,9 @@
 	<bean id="savePackAction" class="simulator.controller.SavePackAction">
 	</bean>
 	<bean id="getPackAction" class="simulator.controller.GetSavedPack">
+	</bean>
+	<bean id="addToCartAction" class="simulator.controller.AddToCartAction">
+		<property name="cartService" ref="cartService" />
 	</bean>
 	<!-- <bean id="enviromentSimulatorAction" class="simulator.controller.EnviromentSimulatorAction"> -->
 	<!-- <property name="simulatorService" ref="simulatorService" /> -->

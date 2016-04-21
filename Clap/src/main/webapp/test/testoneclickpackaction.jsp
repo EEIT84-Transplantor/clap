@@ -32,50 +32,54 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
 	<script type="text/javascript">
 		var dataObj = {
-			"data" : [ {
-				"active" : "true",
-				"color" : "orange",
-				"date" : "2008-01-01",
-				"id" : "1",
-				"name" : "Chris"
+			"productList" : [ {
+				"product_id" : "11",
 			}, {
-				"active" : "false",
-				"color" : "blue",
-				"date" : "2013-03-03",
-				"id" : "2",
-				"name" : "Kate"
+				"product_id" : "12",
 			}, {
-				"active" : "true",
-				"color" : "black",
-				"date" : "2013-05-03",
-				"id" : "3",
-				"name" : "Blade"
+				"product_id" : "13",
 			}, {
-				"active" : "false",
-				"color" : "yellow",
-				"date" : "2013-01-01",
-				"id" : "4",
-				"name" : "Zack"
+				"product_id" : "14",
 			} ]
 		};
-		
+
 		var data1 = JSON.stringify(dataObj);
 
 		$(function() {
+			oneclick();
+		});
+
+		function oneclick() {
 
 			console.log(dataObj);
 			console.log(data1);
-			
+
 			$.ajax({
 				url : "<c:url value='/simulator/oneclickPackAction.action'/>",
 				data : data1,
-				method:"POST",
-				contentType:"application/json",
-
-			}).done(function() {
-				console.log("done");
+				method : "POST",
+				contentType : "application/json",
+			}).done(function(result) {
+				if(result=true){
+					window.location.href = "<c:url value='/shopping/appointmentAction.action'/>";
+				}
 			})
-		});
+		}
+
+		function addcart() {
+
+			console.log(dataObj);
+			console.log(data1);
+
+			$.ajax({
+				url : "<c:url value='/simulator/addToCartAction.action'/>",
+				data : data1,
+				method : "POST",
+				contentType : "application/json",
+			}).done(function(result) {
+				console.log(result);
+			});
+		}
 	</script>
 </body>
 </html>

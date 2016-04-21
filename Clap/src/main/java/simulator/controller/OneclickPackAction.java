@@ -14,7 +14,31 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class OneclickPackAction extends ActionSupport {
+import inventory.model.InventoryService;
+import member.model.MemberVO;
+import product.model.ProductService;
+import shopping.model.CartVO;
+import shopping.model.OrderDetailService;
+import shopping.model.OrderDetailVO;
+import shopping.model.OrderFormService;
+import shopping.model.OrderFormVO;
+
+
+public class OneclickPackAction extends ActionSupport implements ServletRequestAware {
+
+
+	private OrderDetailService orderDetailService;
+	private OrderFormService orderFormService;
+	private InventoryService inventoryService;
+	private ProductService productService;
+	private HttpServletRequest request;
+
+	private List<CartVO> productList;
+	private List<Integer> outOfStock = new ArrayList<Integer>();
+	private String result;
+
+	@Override
+	public String execute() throws Exception {
 
 		System.out.println("execute 0");
 		System.out.println(request.getSession().getAttribute("login"));

@@ -23,6 +23,13 @@ html{
 	width:100%;
 	height:100%;
 	background: url("../images/simulator/people.png") center no-repeat;
+	position:relative;
+}
+#people div{
+	position:absolute;
+}
+#people div image{
+	background-size:container;
 }
 #s_setting{
 	border-right:1px #47BED9 solid;
@@ -122,6 +129,7 @@ input{
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	text-align: center;
+	margin-bottom:10px;
 }
 .s_btn2 {
 	height:auto;
@@ -268,6 +276,8 @@ a:hover{
 }
 .col-item .photo img {
      margin: 10px auto; 
+     width:90px;
+	width:90px;
 /*      width: auto;  */
 }
 .col-item {
@@ -289,5 +299,19 @@ background: -moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.7) 0
 background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.7) 0%,rgba(125,185,232,0) 60%); /* Chrome10-25,Safari5.1-6 */
 background: radial-gradient(ellipse at center,  rgba(255,255,255,0.7) 0%,rgba(125,185,232,0) 60%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#007db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
 
+#o_1{width:70px; height:65px; top:130px; right:145px; z-index:3;}
+#o_2{ width:100px; height:85px;top:180px; left:140px; z-index:2;}
+#o_3{width:60px; height:50px; top:210px;left:170px;z-index:3;}
+#o_4{width:80px; height:70px;top:190px;left:170px;z-index:1;}
+#o_5{width:150px; height:130px;top:210px;left:120px;}
+#o_6{width:120px; height:100px;top:115px;left:135px;z-index:2;}
+#o_7{width:170px; height:150px;top:50px;left:0;}
+#o_1 img,#o_2 img,#o_3 img,#o_4 img,#o_5 img,#o_6 img,#o_7 img{
+	width:100%;
+	height:100%;
+}
+.disabledrap{
+	background:red;
 }

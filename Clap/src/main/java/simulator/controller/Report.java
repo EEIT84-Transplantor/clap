@@ -1,6 +1,8 @@
 package simulator.controller;
 
-public class Report {
+import java.io.Serializable;
+
+public class Report{
 	private int id;
 	private String name;
 	private boolean active;

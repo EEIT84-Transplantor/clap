@@ -55,12 +55,13 @@ public class CategoryService {
 				//smoking, drinking and exercising will be from 0-100
 				//env_id will be null if nothing is passed in
 		
-		simulatorVO = new SimulatorVO();
+		
 		
 		List<CategoryVO> categoryVOs = getAllCategory();
 		//放目錄
 		for(CategoryVO categoryVO:categoryVOs){
 			
+			simulatorVO = new SimulatorVO();
 			//放產品
 			List<ProductVO> temp = productService.searchProductByCategory(categoryVO.getId());
 			List<ProductVO> productVOs = new ArrayList<>();
@@ -105,23 +106,23 @@ public class CategoryService {
 				//抽菸smoking
 				Double smokingValue = 1.0;
 				if(smoking!=0){
-					smokingValue = smoking * categoryVO.getSmoking();
+					smokingValue = (100 - smoking) * categoryVO.getSmoking()/100;
 				}
 				
 				//酗酒
 				Double drinkingValue = 1.0;
 				if(drinking!=0){
-				drinkingValue = drinking * categoryVO.getDrinking();
+				drinkingValue = (100 - drinking) * categoryVO.getDrinking()/100;
 				}
 				//運動
 				Double exercisingValue = 1.0;
 				if(exercising!=0){
-				exercisingValue = exercising * categoryVO.getExercising();
+				exercisingValue = exercising / categoryVO.getExercising()/100;
 				}
 				
 				Double totalEffect = envValue * bmiValue * smokingValue * drinkingValue * exercisingValue;
-				finalValue1 = finalValue1 * totalEffect;
-				finalValue2 = finalValue2 * totalEffect;
+				finalValue1 = skill * totalEffect;
+				finalValue2 = endurance * totalEffect;
 				//結束
 				productVO.setFinalValue1(finalValue1);
 				productVO.setFinalValue2(finalValue2);

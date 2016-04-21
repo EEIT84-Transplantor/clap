@@ -25,6 +25,7 @@ public class OrderFormService {
 		orderFormVO.setStatus((byte) 1);
 		orderFormVO.setTime(new Timestamp(Calendar.getInstance().getTimeInMillis()));
 		orderFormVO.setTotal(total);
+		System.out.println(orderFormVO.toString());
 		orderFormHibernateDAO.insert(orderFormVO);
 		return orderFormVO.getId();
 	}
@@ -50,4 +51,5 @@ public class OrderFormService {
 		return orderFormHibernateDAO.update(orderFormVO);
 	}
 
+	
 }
