@@ -70,7 +70,7 @@
 			console.log(data1);
 
 			$.ajax({
-				url : "<c:url value='/simulator/AddToCartAction.action'/>",
+				url : "<c:url value='/simulator/addToCartAction.action'/>",
 				data : data1,
 				method : "POST",
 				contentType : "application/json",
