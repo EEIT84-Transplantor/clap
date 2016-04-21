@@ -12,8 +12,10 @@
 
 		<!-- interceptors -->
 		<interceptors>
-			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
-			<interceptor name="creditCardInterceptor" class="component.interceptor.CreditCardInterceptor" />
+			<interceptor name="loginInterceptor"
+				class="component.interceptor.LoginInterceptor" />
+			<interceptor name="creditCardInterceptor"
+				class="component.interceptor.CreditCardInterceptor" />
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="defaultStack" />
@@ -60,10 +62,14 @@
 	<package name="payment" namespace="/payment" extends="struts-default">
 
 		<interceptors>
-			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
-			<interceptor name="paymentManageInterceptor" class="component.interceptor.PaymentManageInterceptor" />
-			<interceptor name="promoManageInterceptor" class="component.interceptor.PromoInterceptor" />
-			<interceptor name="AdminInterceptor" class="component.interceptor.AdminInterceptor" />
+			<interceptor name="loginInterceptor"
+				class="component.interceptor.LoginInterceptor" />
+			<interceptor name="paymentManageInterceptor"
+				class="component.interceptor.PaymentManageInterceptor" />
+			<interceptor name="promoManageInterceptor"
+				class="component.interceptor.PromoInterceptor" />
+			<interceptor name="AdminInterceptor"
+				class="component.interceptor.AdminInterceptor" />
 			<interceptor-stack name="paymentManageStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="paymentManageInterceptor" />
@@ -93,10 +99,12 @@
 		</action>
 	</package>
 
-	<package name="paymentmanage" namespace="/paymentmanage" extends="struts-default">
+	<package name="paymentmanage" namespace="/paymentmanage"
+		extends="struts-default">
 
 		<interceptors>
-			<interceptor name="AdminInterceptor" class="component.interceptor.AdminInterceptor" />
+			<interceptor name="AdminInterceptor"
+				class="component.interceptor.AdminInterceptor" />
 			<interceptor-stack name="promoManageInterceptorStack">
 				<interceptor-ref name="AdminInterceptor" />
 				<interceptor-ref name="defaultStack" />
@@ -131,8 +139,10 @@
 
 		<!-- interceptors -->
 		<interceptors>
-			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
-			<interceptor name="creditCardInterceptor" class="component.interceptor.CreditCardInterceptor" />
+			<interceptor name="loginInterceptor"
+				class="component.interceptor.LoginInterceptor" />
+			<interceptor name="creditCardInterceptor"
+				class="component.interceptor.CreditCardInterceptor" />
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="defaultStack" />
@@ -165,7 +175,8 @@
 
 	<package name="shopping" namespace="/shopping" extends="struts-default">
 		<interceptors>
-			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
+			<interceptor name="loginInterceptor"
+				class="component.interceptor.LoginInterceptor" />
 			<interceptor-stack name="returnStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="defaultStack" />
@@ -261,8 +272,10 @@
 
 	<package name="product" namespace="/product" extends="struts-default">
 		<interceptors>
-			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
-			<interceptor name="AdminInterceptor" class="component.interceptor.AdminInterceptor" />
+			<interceptor name="loginInterceptor"
+				class="component.interceptor.LoginInterceptor" />
+			<interceptor name="AdminInterceptor"
+				class="component.interceptor.AdminInterceptor" />
 			<interceptor-stack name="adminInterceptorStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="AdminInterceptor" />
@@ -357,11 +370,9 @@
 		</action>
 		<action name="oneclickPackAction" class="oneclickPackAction">
 			<interceptor-ref name="json">
-				<param name="enableSMD">true</param>
+			<param name="enableSMD">true</param>
 			</interceptor-ref>
-			<result type="json">
-				<param name="enableSMD">true</param>
-			</result>
+			<result type="json"></result>
 		</action>
 	</package>
 </struts>

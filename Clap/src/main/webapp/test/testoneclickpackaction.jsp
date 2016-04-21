@@ -72,8 +72,8 @@
 				method:"POST",
 				contentType:"application/json",
 
-			}).done(function() {
-				console.log("done");
+			}).done(function(result) {
+				console.log(result);
 			})
 		});
 	</script>
