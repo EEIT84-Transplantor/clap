@@ -106,18 +106,18 @@ public class CategoryService {
 				//抽菸smoking
 				Double smokingValue = 1.0;
 				if(smoking!=0){
-					smokingValue = smoking * categoryVO.getSmoking();
+					smokingValue = (100 - smoking) * categoryVO.getSmoking()/100;
 				}
 				
 				//酗酒
 				Double drinkingValue = 1.0;
 				if(drinking!=0){
-				drinkingValue = drinking * categoryVO.getDrinking();
+				drinkingValue = (100 - drinking) * categoryVO.getDrinking()/100;
 				}
 				//運動
 				Double exercisingValue = 1.0;
 				if(exercising!=0){
-				exercisingValue = exercising * categoryVO.getExercising();
+				exercisingValue = exercising / categoryVO.getExercising()/100;
 				}
 				
 				Double totalEffect = envValue * bmiValue * smokingValue * drinkingValue * exercisingValue;
