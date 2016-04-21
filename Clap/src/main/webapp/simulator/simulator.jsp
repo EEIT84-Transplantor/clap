@@ -175,13 +175,12 @@
 																		<div class="row">
 																	</c:if>
 																	<div class="col-sm-2">
-																		<div class="col-item">
-																			<div class="photo" id="haha">
-																				<img name="product${simulatorVO.productVOs[p_count.count-1].id}"
-																					src="<c:url value="data:image/png;base64,${simulatorVO.productimgVOs[p_count.count-1].img64}"/>" class="draggable">
-																			</div>
+																	<div class="col-item">
+																		<div class="photo" id="haha">
+																			<img src="<c:url value="data:image/png;base64,${simulatorVO.productimgVOs[p_count.count-1].img64}"/>" class="draggable${simulatorVO.categoryVO.id}"  width="100">
 																		</div>
 																	</div>
+																</div>
 																	<c:if test="${p_count.count % 4 == 0||p_count.count == fn:length(values)}">
 															</div>
 														</div>
