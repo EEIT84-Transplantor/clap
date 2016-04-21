@@ -234,7 +234,7 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery.color-2.1.2.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery-ui.min.js"/>"></script>
 	<script type="text/javascript">
-	var jsonarray;
+	
 
 		//set open background color animation to dark
 		$("body").hide();
@@ -300,7 +300,7 @@
 				
 				for(var i = 0;i<=7;i++){
 					var temp = ".draggable"+i;
-					
+		
 				$(temp).draggable({ 
 					helper: 'clone',
 					cursor: "crosshair", 
@@ -543,98 +543,102 @@
 					data : sentDataObj
 				}).done(function(msg) {
 					console.log("updates acquired");
-					jsonarray = parseJSONText(msg);
-					updateAllValues();
+					var newJsonObject = parseJSONText(msg);					
+					updateAllValues(newJsonObject);
 				});
 			}
 
 			//set organ bars original
 			function initOrganBars() {
-				$("span.o_old").css("width", "200px");
-				$("span.o_new").css("width", "200px");
+				$("span.o_old").css("width", "150px");
+				$("span.o_new").css("width", "150px");
 
 			}
 
 			//function to adjust designated organ bar
 			function adjustOrganBars(index, valueBoxforAdjust) {
-				var oldValueP = valueBoxforAdjust.oldVP + 100;
-				var newValueP = valueBoxforAdjust.newVP + 100;
+				var adjustBase = 50;
+				var oldValueP = valueBoxforAdjust.oldVP + adjustBase;
+				var newValueP = valueBoxforAdjust.newVP + adjustBase;
 				var reverseP = (oldValueP > newValueP) ? true : false;
-				var oldValueE = valueBoxforAdjust.oldVE + 100;
-				var newValueE = valueBoxforAdjust.newVE + 100;
+				var oldValueE = valueBoxforAdjust.oldVE + adjustBase;
+				var newValueE = valueBoxforAdjust.newVE + adjustBase;
+				
+				var animationSpeed = 200;
 
 				var reverseE = (oldValueE > newValueE) ? true : false;
 				if (reverseP) {
 					$("span[class='o_old organ" + index + "']").eq(0).css("z-index", "3").animate({
 						width : oldValueP + 'px'
-					}, 100);
+					}, animationSpeed);
 					$("span[class='o_new organ" + index + "']").eq(0).css("z-index", "5").animate({
 						width : newValueP + 'px'
-					}, 100);
+					}, animationSpeed);
 				} else {
 					$("span[class='o_old organ" + index + "']").eq(0).css("z-index", "5").animate({
 						width : oldValueP + 'px'
-					}, 100);
+					}, animationSpeed);
 					$("span[class='o_new organ" + index + "']").eq(0).css("z-index", "3").animate({
 						width : newValueP + 'px'
-					}, 100);
+					}, animationSpeed);
 
 				}
 
 				if (reverseE) {
 					$("span[class='o_old organ" + index + "']").eq(1).css("z-index", "3").animate({
 						width : oldValueE + 'px'
-					}, 100);
+					}, animationSpeed);
 					$("span[class='o_new organ" + index + "']").eq(1).css("z-index", "5").animate({
 						width : newValueE + 'px'
-					}, 100);
+					}, animationSpeed);
 				} else {
 					$("span[class='o_old organ" + index + "']").eq(1).css("z-index", "5").animate({
 						width : oldValueE + 'px'
-					}, 100);
+					}, animationSpeed);
 					$("span[class='o_new organ" + index + "']").eq(1).css("z-index", "3").animate({
 						width : newValueE + 'px'
-					}, 100);
+					}, animationSpeed);
 
 				}
 			}
 
 			//add onmouseover onmouseout to organs
-			function updateAllValues(){     
+			function updateAllValues(jsonarrayToUpdate){     
 			for (var iii = 1; iii < 799; iii++) {
 				var existIndex = $("img[name='product" + iii + "']").attr("name"); 
-				if(existIndex !== undefined){ 
+				if(existIndex !== undefined){
 				$("img[name='product" + iii + "']").on("mouseover", function() {
-					
 					//stop previous animation
 					$("span.o_old").stop();
 					$("span.o_new").stop();					
 					var valueBox = new Object();
 					var productId = $(this).attr("name");  
-					var categoryIndex = productId.substring(0, 1);
-					var productIndex = productId.substring(1);
-// 					var tempProductVO = jsonarray[categoryIndex].productVOs[productIndex];
-				//	alert(categoryIndex+" "+productIndex);
+					var categoryIndex = parseInt(productId.substring(7, 8)) - 1;
+					var productIndex = parseInt(productId.substring(8)) - 1;
+					var tempProductVO = jsonarrayToUpdate[categoryIndex].productVOs[productIndex];
+					var tempPower = parseFloat(tempProductVO.finalValue1) -1;
+					var tempEndur = parseFloat(tempProductVO.finalValue2) -1;
 					valueBox.oldVP = 100;
-					valueBox.newVP = 140;
+					valueBox.newVP = 100 + tempPower*100;
 					valueBox.oldVE = 100;
-					valueBox.newVE = 50;
+					valueBox.newVE = 100 + tempEndur*100;
 					//start bar animation
-					adjustOrganBars(categoryIndex, valueBox);
+					adjustOrganBars(categoryIndex + 1, valueBox);
 				}).on("mouseout", function() {
 					//stop previous animation
 					$("span.o_old").stop();
 					$("span.o_new").stop();
 
 					var valueBox = new Object();
-					var categoryIndex = $(this).attr("name");
-					categoryIndex = categoryIndex.substring(7, 8);
+					var productId = $(this).attr("name");  
+					var categoryIndex = parseInt(productId.substring(7, 8)) - 1;
+					var productIndex = parseInt(productId.substring(8)) - 1;
 					valueBox.oldVP = 100;
 					valueBox.newVP = 100;
 					valueBox.oldVE = 100;
 					valueBox.newVE = 100;
 					//start bar animation
-					adjustOrganBars(categoryIndex, valueBox);
+					adjustOrganBars(categoryIndex + 1, valueBox);
 				});
 				} 
 			}
