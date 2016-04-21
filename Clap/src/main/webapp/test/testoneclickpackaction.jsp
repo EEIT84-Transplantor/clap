@@ -33,13 +33,13 @@
 	<script type="text/javascript">
 		var dataObj = {
 			"productList" : [ {
-				"product_id" : "123",
+				"product_id" : "11",
 			}, {
-				"product_id" : "123",
+				"product_id" : "12",
 			}, {
-				"product_id" : "123",
+				"product_id" : "13",
 			}, {
-				"product_id" : "123",
+				"product_id" : "14",
 			} ]
 		};
 
@@ -60,7 +60,9 @@
 				method : "POST",
 				contentType : "application/json",
 			}).done(function(result) {
-				console.log(result);
+				if(result=true){
+					window.location.href = "<c:url value='/shopping/appointmentAction.action'/>";
+				}
 			})
 		}
 
