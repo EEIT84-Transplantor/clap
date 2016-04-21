@@ -38,7 +38,6 @@ public class OneclickPackAction extends ActionSupport {
 		this.data = data;
 	}
 
-	@JSON(name = "intarray")
 	public int[] getInts() {
 		return ints;
 	}
