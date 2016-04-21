@@ -314,7 +314,7 @@
 			        	   i = $(dropped).attr("categoryID");
 				           var droppedOn = $("#o_"+i);
 				           $(droppedOn).html("");
-				           $(droppedOn).append($(dropped).clone());
+				          $(droppedOn).append($(dropped).clone());
 			          }
 			    });
 				
