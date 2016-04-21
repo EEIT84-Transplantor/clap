@@ -101,14 +101,13 @@ public class BodySimulatorAction extends ActionSupport {
 		//categoryService 的calculate還沒做~
 		List<SimulatorVO> simulatorVOs = categoryService.calculate(env_id,bmi,smoking,drinking,exercising);
 
-		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		List<ProductVO> productVOs = null;
 		JSONArray simulatorVOsArray = new JSONArray();
-		for(CategoryVO categoryVO:categoryService.getAllCategory()){
+		for(SimulatorVO simulatorVO : simulatorVOs){
+			CategoryVO categoryVO = simulatorVO.getCategoryVO();
 			JSONObject categoryJson = new JSONObject();
-			
-			productVOs = productService.searchProductByCategory(categoryVO.getId());
+			productVOs = simulatorVO.getProductVOs();
 			categoryJson.put("id", categoryVO.getId());
 			categoryJson.put("name", categoryVO.getName());
 			categoryJson.put("smoking", categoryVO.getSmoking());
@@ -122,6 +121,7 @@ public class BodySimulatorAction extends ActionSupport {
 			JSONArray productimgVOJsonArray = new JSONArray();
 			JSONArray productVOJsonArray = new JSONArray();
 			List<ProductimgVO> productimgVOs = new ArrayList<ProductimgVO>();
+			
 			
 			for(ProductVO productVO:productVOs){
 				JSONObject productVOJson =new JSONObject();
@@ -142,12 +142,11 @@ public class BodySimulatorAction extends ActionSupport {
 				
 				productimgVOJson.put("id",temp.getId());
 //				productimgVOJson.put("img",temp.getImg());
-				productimgVOJson.put("img64",temp.getImg64());
+//				productimgVOJson.put("img64",temp.getImg64());
 				productimgVOs.add(temp);
 				productVOJsonArray.put(productVOJson);
 				productimgVOJsonArray.put(productimgVOJson);
 			}
-			SimulatorVO simulatorVO = new SimulatorVO();
 			JSONObject simulatorVOJSON = new JSONObject();
 			simulatorVOJSON.put("categoryVO", categoryJson);
 			simulatorVO.setCategoryVO(categoryVO);
@@ -156,8 +155,8 @@ public class BodySimulatorAction extends ActionSupport {
 			simulatorVOJSON.put("productimgVOs", productimgVOJsonArray);
 			simulatorVO.setProductimgVOs(productimgVOs);
 			simulatorVOsArray.put(simulatorVOJSON);
-			simulatorVOs.add(simulatorVO);
 			
+		
 		}
 		System.out.println("simulatorVOsArray length: "+simulatorVOsArray.toString().length());
 		request.setAttribute("simulatorVOs", simulatorVOs);
