@@ -370,7 +370,7 @@
 		</action>
 		<action name="oneclickPackAction" class="oneclickPackAction">
 			<interceptor-ref name="json">
-			<param name="enableSMD">true</param>
+				<param name="enableSMD">true</param>
 			</interceptor-ref>
 			<result type="json"></result>
 		</action>
