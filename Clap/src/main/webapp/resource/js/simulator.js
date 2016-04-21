@@ -8,6 +8,8 @@
 			tempOb.oldVE = initValue;
 			globalOrganValueArray.push(tempOb);
 		}
+		//**********Caca************
+		var organOnBodyArray = [0,0,0,0,0,0,0];
 		
 		//set open background color animation to dark
 		$("body").hide();
@@ -47,6 +49,8 @@
 						bg_img = "none";
 						environmentIndex = 0;
 					}
+					//*************caca
+					adjustOrgansWithEnvironment();
 					sendAjaxForSim(createFactors());
 					$('#fullPage').animate({
 						backgroundColor : 'rgb(0,0,0)'
@@ -58,7 +62,18 @@
 
 				});
 			}
-
+			
+			//*************caca
+			function adjustOrgansWithEnvironment(){
+				for (var bodyOrganPointer=0; bodyOrganPointer<7;bodyOrganPointer++){
+					if (organOnBodyArray[bodyOrganPointer]!=0){
+						var valueBox =createValueBox(globalJsonArray, organOnBodyArray[bodyOrganPointer]);
+						console.log(globalJsonArray +organOnBodyArray[bodyOrganPointer]);
+						adjustOrganBars(valueBox.categoryIndex + 1, valueBox);
+						droppingSet(organOnBodyArray[bodyOrganPointer]);
+					}
+				}
+			}
 			//use init methods for document
 			sendAjaxForSim(createFactors());
 			initOrganBars();
@@ -103,6 +118,8 @@
 			}).on("click", function() {
 				sendAjaxForSim(createFactors());
 				clicksetting1 = false;
+				//*************caca
+				adjustOrgansWithEnvironment();
 			}).on("mouseout", function() {
 				var selectedBar = $(this);
 				if (clicksetting1) {
@@ -118,6 +135,8 @@
 			}).on("click", function() {
 				sendAjaxForSim(createFactors());
 				clicksetting2 = false;
+				//*************caca
+				adjustOrgansWithEnvironment();
 			}).on("mouseout", function() {
 				var selectedBar = $(this);
 				if (clicksetting2) {
@@ -133,6 +152,8 @@
 			}).on("click", function() {
 				sendAjaxForSim(createFactors());
 				clicksetting3 = false;
+				//*************caca
+				adjustOrgansWithEnvironment();
 			}).on("mouseout", function() {
 				var selectedBar = $(this);
 				if (clicksetting3) {
@@ -275,6 +296,7 @@
 
 			function setEnvironmentBG(tempEnvIndex, ajaxDataObj) {
 				var bg_img;
+				console.log("set");
 				sendAjaxForSim(ajaxDataObj);
 				switch (tempEnvIndex) {
 				case 1:
@@ -294,6 +316,8 @@
 					bg_img = "none";
 					environmentIndex = 0;
 				}
+			
+		
 				$('#fullPage').animate({
 					backgroundColor : 'rgb(0,0,0)'
 				}, 100, function() {
@@ -492,6 +516,7 @@
 				valueBox.newVP = initValue + tempPower*100;
 				valueBox.oldVE = globalOrganValueArray[categoryIndex].oldVE;
 				valueBox.newVE = initValue + tempEndur*100;
+				console.log("hihi createValueBox");
 				return valueBox;
 			}
 			
@@ -503,6 +528,12 @@
 				globalOrganValueArray[categoryIndex].oldVP = valueBox.newVP;
 				globalOrganValueArray[categoryIndex].oldVE = valueBox.newVE;
 				resetOrganBars();
+				
+				//**************Caca*********
+				//store the products that are on the body into a organOnBodyArray list 
+				console.log(categoryIndex);
+				organOnBodyArray[categoryIndex] = productId;
+
 			}
 			
 		});//===%%%%===  END of DOCUMENT READY  ===%%%%=== 
