@@ -351,7 +351,7 @@
 					adjustOrganBars(valueBox.categoryIndex + 1, valueBox);
 				}).on("mouseout", function() {
 					var productId = $(this).attr("name"); 
-					resetOrganBars(productId);
+					resetOrganBars();
 					
 				});
 				} 
@@ -359,7 +359,7 @@
 			}
 			
 			//reset organ bar to old values
-			function resetOrganBars(productId){
+			function resetOrganBars(){
 				var valueBox = new Object();
 				
 				//start bar animation
@@ -502,7 +502,7 @@
 				var valueBox = createValueBox(globalJsonArray, productId);
 				globalOrganValueArray[categoryIndex].oldVP = valueBox.newVP;
 				globalOrganValueArray[categoryIndex].oldVE = valueBox.newVE;
-				resetOrganBars(productId);
+				resetOrganBars();
 			}
 			
 		});//===%%%%===  END of DOCUMENT READY  ===%%%%=== 
