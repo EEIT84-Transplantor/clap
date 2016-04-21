@@ -298,7 +298,7 @@
 	<bean id="getPackAction" class="simulator.controller.GetSavedPack">
 	</bean>
 	<bean id="addToCartAction" class="simulator.controller.AddToCartAction">
-		
+		<property name="cartService" ref="cartService" />
 	</bean>
 	<!-- <bean id="enviromentSimulatorAction" class="simulator.controller.EnviromentSimulatorAction"> -->
 	<!-- <property name="simulatorService" ref="simulatorService" /> -->
