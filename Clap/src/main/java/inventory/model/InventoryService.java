@@ -110,4 +110,13 @@ public class InventoryService {
 		}
 	}
 
+	// 有庫存回傳true，沒有回傳false
+	public Boolean inStock(Integer product_id, Integer ct_quantity) {
+		Boolean result = false;
+		Integer stock = inventoryDAO.getQuantityById(product_id);
+		if (stock >= ct_quantity) {
+			result = true;
+		}
+		return result;
+	}
 }
