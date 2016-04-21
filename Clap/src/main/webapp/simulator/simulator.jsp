@@ -16,6 +16,7 @@
 <link href="<c:url value="/resource/css/silderbanner.css"/>" rel="stylesheet">
 <link href="<c:url value='/resource/css/bootstrap-slider.css'/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/simulator.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/simple-sidebar"/>" rel="stylesheet">
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
@@ -99,7 +100,7 @@
 								</div>
 							</div>
 							<div class="col-md-7 opacityDiv">
-								<h2>USER NAME</h2>
+								<h2>Hello, ${login.name}</h2>
 								<p>Description Description Description Description Description</p>
 								<div class="row" id="s_graphic">
 									<c:forEach begin="1" end="7" varStatus="row">
@@ -177,7 +178,7 @@
 																	<div class="col-sm-2">
 																	<div class="col-item">
 																		<div class="photo" id="haha">
-																			<img name="product${product.id}" src="<c:url value="data:image/png;base64,${simulatorVO.productimgVOs[p_count.count-1].img64}"/>" class="draggable${simulatorVO.categoryVO.id}" categoryID="${simulatorVO.categoryVO.id}" width="100">
+																			<img name="product${product.id}" src="<c:url value="data:image/png;base64,${simulatorVO.productimgVOs[p_count.count-1].img64}"/>" class="p_drag draggable${simulatorVO.categoryVO.id}" categoryID="${simulatorVO.categoryVO.id}" width="100">
 																		</div>
 																	</div>
 																</div>
@@ -211,9 +212,11 @@
 			<div class="s_btn">
 				<a>ADD TO CART</a>
 			</div>
+			<c:if test="${login.oneclick}">
 			<div class="s_btn">
 				<a>ONE CLICK BUY</a>
 			</div>
+			</c:if>
 		</div>
 		<div class="clear"></div>
 		</div>
@@ -297,17 +300,25 @@
 				
 				for(var i = 0;i<=7;i++){
 					var temp = ".draggable"+i;
-					var otemp = "#o_"+i;
-				$(temp).draggable({ helper: 'clone',cursor: "crosshair", revert: "invalid",appendTo: 'body',drag:function(){$(this).parent().html('<img src="'+$(this).attr("src")+'" class="disable_img">');}});
-				$(otemp).droppable({ accept: temp, 
+		
+				$(temp).draggable({ 
+					helper: 'clone',
+					cursor: "crosshair", 
+					revert: "invalid",
+					appendTo: 'body'
+				});
+			}
+				$("#people").droppable({ 
+					   accept: $(".p_drag"), 
 			           drop: function(event, ui) {
-			              var dropped = ui.draggable;
-			              var droppedOn = $(this);
-			              $(dropped).detach().appendTo(droppedOn);
+			        	   var dropped = ui.draggable;
+			        	   i = $(dropped).attr("categoryID");
+				           var droppedOn = $("#o_"+i);
+				           $(droppedOn).html("");
+				          $(droppedOn).append($(dropped).clone());
 			          }
 			    });
-			}
-			
+				
 			
 
 			//setting of smoking, alcohol, and sport
