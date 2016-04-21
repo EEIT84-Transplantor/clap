@@ -29,18 +29,26 @@
 		<div class="collapse navbar-collapse" id="c-navbar-collapse">
 
 			<div class="row">
+
 				<ul class="nav nav-pills navbar-right">
+					<c:if test="${!empty login}">
+					<li style="color:#47BED9; padding:0 5px; background:#000;">Hello, ${login.name}</li>
+				</c:if>
 					<c:if test="${empty login}">
 						<li><a
-							href="${pageContext.request.contextPath}/member/signuplogin.jsp">Sign in</a></li>
+							href="${pageContext.request.contextPath}/member/signuplogin.jsp">Sign
+								in</a></li>
 					</c:if>
-					<c:if test="${login.type==2}">
+					<c:if test="${!empty login}">
 						<li><a
-							href="${pageContext.request.contextPath}/member/signuplogin.jsp">Log Out</a></li>
+							href="${pageContext.request.contextPath}/member/logOut.action">Log
+								Out</a></li>
 					</c:if>
-					<li><a
-						href="${pageContext.request.contextPath}/member/signuplogin.jsp"
-						class="active">Sign up <span class="sr-only">(current)</span></a></li>
+					<c:if test="${empty login}">
+						<li><a
+							href="${pageContext.request.contextPath}/member/signuplogin.jsp"
+							class="active">Sign up <span class="sr-only">(current)</span></a></li>
+					</c:if>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">language <img
@@ -54,10 +62,10 @@
 			</div>
 
 
-
-
 			<div class="row">
+
 				<ul class="nav navbar-nav navbar-right">
+
 					<li><a
 						href="${pageContext.request.contextPath}/shopping/cartAction.action"
 						class="cart_anchor">${totalCart}</a></li>
