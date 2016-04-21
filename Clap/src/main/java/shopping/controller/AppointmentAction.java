@@ -25,13 +25,11 @@ public class AppointmentAction extends ActionSupport implements ServletRequestAw
 		System.out.println("AppointmentAction 1");
 		Integer orderform_id = (Integer) request.getSession().getAttribute("orderform_id");
 		request.getSession().removeAttribute("orderform_id");
-		System.out.println(orderform_id);
 
 		System.out.println("AppointmentAction 2");
 		List<HospitalVO> hospitalList = hospitalService.getHospital();
 		List<DoctorVO> doctorList = doctorService.getDoctors();
 		List<OrderDetailVO> orderList = orderDetailService.getOrderDetailList(orderform_id);
-		System.out.println(orderList.toString());
 
 		System.out.println("AppointmentAction 3");
 		request.setAttribute("hospitalList", hospitalList);
