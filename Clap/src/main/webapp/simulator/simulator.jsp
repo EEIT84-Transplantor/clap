@@ -322,8 +322,8 @@
 			        	   i = $(dropped).attr("categoryID");
 				           var droppedOn = $("#o_"+i);
 				           $(droppedOn).html("");
-				           $(droppedOn).append($(dropped).clone());
-				           droppingSet();
+				           $(droppedOn).append($(dropped).clone());				           
+				           droppingSet($(dropped).attr("name"));
 			          }
 			});
 				
@@ -572,7 +572,7 @@
 				if(existIndex !== undefined){
 				$("img[name='product" + iii + "']").on("mouseover", function() {
 					var productId = $(this).attr("name");  
-					var valueBox = creatValueBox(jsonarrayToUpdate, productId);
+					var valueBox = createValueBox(jsonarrayToUpdate, productId);
 					
 					//start bar animation
 					adjustOrganBars(valueBox.categoryIndex + 1, valueBox);
@@ -584,20 +584,19 @@
 				} 
 			}
 			}
-			function droppingSet(){
-				
-			}
 			
 			//reset organ bar to old values
 			function resetOrganBars(productId){
 				var valueBox = new Object();
-				var categoryIndex = parseInt(productId.substring(7, 8)) - 1;
-				valueBox.oldVP = globalOrganValueArray[categoryIndex].oldVP;
-				valueBox.newVP = globalOrganValueArray[categoryIndex].oldVP;
-				valueBox.oldVE = globalOrganValueArray[categoryIndex].oldVE;
-				valueBox.newVE = globalOrganValueArray[categoryIndex].oldVE;
+				
 				//start bar animation
-				adjustOrganBars(categoryIndex + 1, valueBox);
+				for(var resetIndex = 1 ; resetIndex<8;resetIndex++){
+				valueBox.oldVP = globalOrganValueArray[resetIndex-1].oldVP;
+				valueBox.newVP = globalOrganValueArray[resetIndex-1].oldVP;
+				valueBox.oldVE = globalOrganValueArray[resetIndex-1].oldVE;
+				valueBox.newVE = globalOrganValueArray[resetIndex-1].oldVE;
+				adjustOrganBarsMultiTread(resetIndex, valueBox);
+				}
 			}
 			
 			//function to adjust designated organ bar
@@ -616,7 +615,7 @@
 				var reverseP = (oldValueP > newValueP) ? true : false;
 				var reverseE = (oldValueE > newValueE) ? true : false;
 				//set animation duration
-				var animationSpeed = 150;
+				var animationSpeed = 350;
 
 				
 				if (reverseP) {
@@ -653,7 +652,58 @@
 
 				}
 			}
-			function creatValueBox(jsonarrayToUpdate, productId){
+			//multiple organ bar adjust
+			function adjustOrganBarsMultiTread(index, valueBoxforAdjust) {				
+				//set moving delta
+				var adjustBase = 50;
+				//calculate bar length
+				var oldValueP = valueBoxforAdjust.oldVP + adjustBase-1;
+				var newValueP = valueBoxforAdjust.newVP + adjustBase-1;
+				var oldValueE = valueBoxforAdjust.oldVE + adjustBase-1;
+				var newValueE = valueBoxforAdjust.newVE + adjustBase-1;
+				//check if old value greater
+				var reverseP = (oldValueP > newValueP) ? true : false;
+				var reverseE = (oldValueE > newValueE) ? true : false;
+				//set animation duration
+				var animationSpeed = 200;
+				$("span[class='o_old organ" + index + "']").stop();
+				$("span[class='o_new organ" + index + "']").stop();	
+				
+				if (reverseP) {
+					$("span[class='o_old organ" + index + "']").eq(0).css("z-index", "3").animate({
+						width : oldValueP + 'px'
+					}, animationSpeed);
+					$("span[class='o_new organ" + index + "']").eq(0).css("z-index", "5").animate({
+						width : newValueP + 'px'
+					}, animationSpeed);
+				} else {
+					$("span[class='o_old organ" + index + "']").eq(0).css("z-index", "5").animate({
+						width : oldValueP + 'px'
+					}, animationSpeed);
+					$("span[class='o_new organ" + index + "']").eq(0).css("z-index", "3").animate({
+						width : newValueP + 'px'
+					}, animationSpeed);
+
+				}
+
+				if (reverseE) {
+					$("span[class='o_old organ" + index + "']").eq(1).css("z-index", "3").animate({
+						width : oldValueE + 'px'
+					}, animationSpeed);
+					$("span[class='o_new organ" + index + "']").eq(1).css("z-index", "5").animate({
+						width : newValueE + 'px'
+					}, animationSpeed);
+				} else {
+					$("span[class='o_old organ" + index + "']").eq(1).css("z-index", "5").animate({
+						width : oldValueE + 'px'
+					}, animationSpeed);
+					$("span[class='o_new organ" + index + "']").eq(1).css("z-index", "3").animate({
+						width : newValueE + 'px'
+					}, animationSpeed);
+
+				}
+			}
+			function createValueBox(jsonarrayToUpdate, productId){
 				if (jsonarrayToUpdate === undefined){
 					jsonarrayToUpdate = globalJsonArray;
 				}
@@ -665,11 +715,21 @@
 				var tempPower = parseFloat(tempProductVO.finalValue1) -1;
 				var tempEndur = parseFloat(tempProductVO.finalValue2) -1;
 				valueBox.categoryIndex = categoryIndex;
-		        valueBox.oldVP = initValue;
+		        valueBox.oldVP = globalOrganValueArray[categoryIndex].oldVP;
 				valueBox.newVP = initValue + tempPower*100;
-				valueBox.oldVE = initValue;
+				valueBox.oldVE = globalOrganValueArray[categoryIndex].oldVE;
 				valueBox.newVE = initValue + tempEndur*100;
 				return valueBox;
+			}
+			
+			//fix baseline when dropping
+			function droppingSet(productId){
+				var categoryIndex = parseInt(productId.substring(7, 8)) - 1;
+				var productIndex = parseInt(productId.substring(8)) - 1;
+				var valueBox = createValueBox(globalJsonArray, productId);
+				globalOrganValueArray[categoryIndex].oldVP = valueBox.newVP;
+				globalOrganValueArray[categoryIndex].oldVE = valueBox.newVE;
+				resetOrganBars(productId);
 			}
 			
 		});//===%%%%===  END of DOCUMENT READY  ===%%%%=== 
