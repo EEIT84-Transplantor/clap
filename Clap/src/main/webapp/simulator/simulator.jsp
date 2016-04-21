@@ -231,13 +231,8 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery.color-2.1.2.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery-ui.min.js"/>"></script>
 	<script type="text/javascript">
-		
+	var jsonarray;
 
-		// 		function initGetProducts(){
-		// 			alert(JsonString.length);
-		// 			var jsonarray = JSON.parse(JsonString);			
-		// 		}
-		// 		initGetProducts();
 		//set open background color animation to dark
 		$("body").hide();
 		$("html").show().animate({
@@ -251,22 +246,14 @@
 			});
 		});
 
-		//======  DOCUMENT READY  ======= 
+		//===%%%%===  DOCUMENT READY  ===%%%%=== 
 		$(document).ready(function() {
-			var jsonarray;		
 			var environmentIndex = 0;
-			//get all products JSON String
-			$.ajax({url : "${pageContext.request.contextPath}/simulator/bodySimulatorAction",
-					data : createFactors()}).done(function(msg){
-						jsonarray = JSON.parse(msg);	
-					});
-			
 			//set onclick to change env background
 			function initChangeBackClick() {
 				$(".factor_item").on("click", function() {
 					var src = $(this).find('img').attr('src');
 					var bg_img;
-
 					switch (src.substr(39, 1)) {
 					case "1":
 						bg_img = "s_bg_1.png";
@@ -284,7 +271,7 @@
 						bg_img = "none";
 						environmentIndex = 0;
 					}
-					sendEnvAjax(createFactors());
+					sendAjaxForSim(createFactors());
 					$('#fullPage').animate({
 						backgroundColor : 'rgb(0,0,0)'
 					}, 600, function() {
@@ -295,7 +282,8 @@
 
 				});
 			}
-			//use init method for document
+			//use init methods for document
+			sendAjaxForSim(createFactors());
 			initOrganBars();
 			initSaveObject();
 			initChangeBackClick();
@@ -504,7 +492,7 @@
 
 			function setEnvironmentBG(tempEnvIndex, ajaxDataObj) {
 				var bg_img;
-				sendEnvAjax(ajaxDataObj);
+				sendAjaxForSim(ajaxDataObj);
 				switch (tempEnvIndex) {
 				case 1:
 					bg_img = "s_bg_1.png";
@@ -540,15 +528,17 @@
 				setEnvironmentBG(savedObjectToBack.env_id, savedObjectToBack);
 			}
 
-			//Ajax send to Env Action 
-			function sendEnvAjax(sentDataObj) {
+			//Ajax send when enter or change Environment 
+			function sendAjaxForSim(sentDataObj) {
 
 				printObject(sentDataObj);
 				$.ajax({
 					url : "${pageContext.request.contextPath}/simulator/bodySimulatorAction",
 					data : sentDataObj
 				}).done(function(msg) {
-					console.log(msg);
+					console.log("updates acquired");
+					jsonarray = parseJSONText(msg);
+					updateAllValues();
 				});
 			}
 			//set organ bars original
@@ -603,16 +593,21 @@
 			}
 
 			//add onmouseover onmouseout to organs
-			for (var iii = 1; iii < 999; iii++) {
+			function updateAllValues(){     
+			for (var iii = 1; iii < 799; iii++) {
+				var existIndex = $("img[name='product" + iii + "']").attr("name"); 
+				if(existIndex !== undefined){ 
 				$("img[name='product" + iii + "']").on("mouseover", function() {
+					
 					//stop previous animation
 					$("span.o_old").stop();
-					$("span.o_new").stop();
-					
+					$("span.o_new").stop();					
 					var valueBox = new Object();
-					var categoryIndex = $(this).attr("name");
-					jsonarray[categoryIndex];
-					categoryIndex = categoryIndex.substring(7, 8);
+					var productId = $(this).attr("name");  
+					var categoryIndex = productId.substring(0, 1);
+					var productIndex = productId.substring(1);
+// 					var tempProductVO = jsonarray[categoryIndex].productVOs[productIndex];
+					alert(categoryIndex+" "+productIndex);
 					valueBox.oldVP = 100;
 					valueBox.newVP = 140;
 					valueBox.oldVE = 100;
@@ -634,9 +629,10 @@
 					//start bar animation
 					adjustOrganBars(categoryIndex, valueBox);
 				});
+				} 
 			}
-
-		});//end of document ready
+			}
+		});//===%%%%===  END of DOCUMENT READY  ===%%%%=== 
 
 		//init document save objects
 		function initSaveObject() {
@@ -667,8 +663,8 @@
 
 		//get all products when init
 
-		function initGetProducts(JsonString) {
-			var jsonarray = JSON.parse(JsonString);
+		function parseJSONText(JsonString) {
+			return JSON.parse(JsonString);
 		}
 	</script>
 </html>
