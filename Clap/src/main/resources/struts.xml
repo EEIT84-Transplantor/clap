@@ -166,6 +166,9 @@
 			<result name="success">/member/account.jsp</result>
 			<result name="input">/member/account.jsp</result>
 		</action>
+		<action name="logOut" class="member.controller.LogOutAction">
+			<result name="success">/index.jsp</result>
+		</action>
 		<action name="*">
 			<interceptor-ref name="loginStack" />
 			<result>/member/{1}.jsp</result>
