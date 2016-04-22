@@ -225,7 +225,9 @@
 	<bean id="doctorService" class="hospital.model.DoctorService">
 		<property name="doctorDAO" ref="doctorDAO" />
 	</bean>
-
+     <bean id="hospitalInfo" class="hospital.controller.HospitalInfoAction">
+		<property name="hospitalService" ref="hospitalService" />
+	</bean>
 	<!-- shopping controller -->
 	<bean id="cartAction" class="shopping.controller.CartAction">
 		<property name="cartService" ref="cartService" />
