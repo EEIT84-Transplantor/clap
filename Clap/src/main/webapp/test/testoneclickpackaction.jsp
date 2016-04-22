@@ -55,7 +55,8 @@
 			console.log(data1);
 
 			$.ajax({
-				url : "<c:url value='/simulator/oneclickPackAction.action'/>",
+// 				url : "<c:url value='/simulator/oneclickPackAction.action'/>",
+				url : "<c:url value='/hospital/hospitalInfo.action'/>",
 				data : data1,
 				method : "POST",
 				contentType : "application/json",

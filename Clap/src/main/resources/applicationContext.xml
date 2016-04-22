@@ -228,6 +228,7 @@
      <bean id="hospitalInfo" class="hospital.controller.HospitalInfoAction">
 		<property name="hospitalService" ref="hospitalService" />
 	</bean>
+	
 	<!-- shopping controller -->
 	<bean id="cartAction" class="shopping.controller.CartAction">
 		<property name="cartService" ref="cartService" />

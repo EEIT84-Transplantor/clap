@@ -25,7 +25,6 @@
 	padding: 5px;
 	font-family: 'Roboto', 'sans-serif';
 }
-
 </style>
 </head>
 <body>
@@ -43,7 +42,8 @@
 								<div class="row">
 									<div class="col-md-4">
 										<div class="form-group">
-											<label for="sel_city">city:</label> <select class="form-control" id="sel1">
+											<label for="sel_city">city:</label>
+											<select class="form-control" id="sel1">
 												<option>1</option>
 												<option>2</option>
 											</select>
@@ -51,16 +51,17 @@
 									</div>
 									<div class="col-md-4">
 										<div class="form-group">
-											<label for="sel1">hospital:</label> <select class="form-control" id="sel1">
+											<label for="sel1">hospital:</label>
+											<select class="form-control" id="sel1">
 												<option>1</option>
 												<option>2</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-md-2">
-										<button type="button" class="btn btn-warning" style="margin-top:25px;" id="drop" onclick="drop()">Warning</button>
+										<button type="button" class="btn btn-warning" style="margin-top: 25px;" id="drop" onclick="drop()">Warning</button>
 									</div>
-									
+
 								</div>
 							</div>
 							<div id="mapa" style="width: 100%; height: 500px;"></div>
@@ -133,6 +134,7 @@
 			}
 			markers = [];
 		}
+
 	</script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgpurFmJH7EtCW7FEf_VI_w4l9b2aBVMk&signed_in=true&callback=initMap"></script>
 
