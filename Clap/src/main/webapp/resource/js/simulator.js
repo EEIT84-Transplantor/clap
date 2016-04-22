@@ -2,14 +2,25 @@
 		//set init organ vaue
 		var initValue = 200;
 		var globalOrganValueArray = [];
-		for (var innd = 0;innd<7;innd++){
-			var tempOb = new Object();
-			tempOb.oldVP = initValue;
-			tempOb.oldVE = initValue;
-			globalOrganValueArray.push(tempOb);
+		initGlobalOrganValueArray();
+		function initGlobalOrganValueArray(){
+			globalOrganValueArray = [];
+			for (var innd = 0;innd<7;innd++){
+				var tempOb = new Object();
+				tempOb.oldVP = initValue;
+				tempOb.oldVE = initValue;
+				globalOrganValueArray.push(tempOb);
+			}
 		}
 		//**********Caca************
-		var organOnBodyArray = [0,0,0,0,0,0,0];
+		var organOnBodyArray = [0, 0, 0, 0, 0, 0, 0];
+		
+		//set Basic Pack
+		function setBasicPack(){
+			for(var goIndex = 1; goIndex <8; goIndex++){
+				organOnBodyArray.push('product' + goIndex + '1');
+			}	
+		}
 		
 		//set open background color animation to dark
 		$("body").hide();
@@ -50,7 +61,7 @@
 						environmentIndex = 0;
 					}
 					//*************caca
-					adjustOrgansWithEnvironment();
+					//adjustOrgansWithEnvironment();
 					sendAjaxForSim(createFactors());
 					$('#fullPage').animate({
 						backgroundColor : 'rgb(0,0,0)'
@@ -68,9 +79,16 @@
 				for (var bodyOrganPointer=0; bodyOrganPointer<7;bodyOrganPointer++){
 					if (organOnBodyArray[bodyOrganPointer]!=0){
 						var valueBox =createValueBox(globalJsonArray, organOnBodyArray[bodyOrganPointer]);
-						console.log(globalJsonArray +organOnBodyArray[bodyOrganPointer]);
+						console.log(globalJsonArray + organOnBodyArray[bodyOrganPointer]);
 						adjustOrganBars(valueBox.categoryIndex + 1, valueBox);
 						droppingSet(organOnBodyArray[bodyOrganPointer]);
+					}else{
+//						var valueBox = new Object();
+//						valueBox.oldVP = globalOrganValueArray[bodyOrganPointer].oldVP;
+//						valueBox.newVP = initValue;
+//						valueBox.oldVE = globalOrganValueArray[bodyOrganPointer].oldVE;
+//						valueBox.newVE = initValue;
+//						adjustOrganBars(bodyOrganPointer + 1, valueBox);
 					}
 				}
 			}
@@ -78,88 +96,169 @@
 			sendAjaxForSim(createFactors());
 			initOrganBars();
 			initSaveObject();
-
 			initChangeBackClick();
+			initOnEvents();
 
-			
-			//set dragging~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			function initOnEvents(){
+				//set add cart
+				$("#s_organs_r").on("click", function(){
+					alert("add to cart not done");
+				});
 				
-			$(".carousel").carousel("pause");
-			for(var i = 0;i<=7;i++){
-				var temp = ".draggable"+i;
-				$(temp).draggable({ 
-					helper: 'clone',
-					cursor: "crosshair", 
-					revert: "invalid",
-					appendTo: 'body'
+				//set dragging~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~				
+				$(".carousel").carousel("pause");
+				for(var i = 0;i<=7;i++){
+					var temp = ".draggable"+i;
+					$(temp).draggable({ 
+						helper: 'clone',
+						cursor: "crosshair", 
+						revert: "invalid",
+						appendTo: 'body'
+					});
+				}
+				$("#people").droppable({ 
+						   accept: $(".p_drag"), 
+				           drop: function(event, ui) {
+				        	   var dropped = ui.draggable;
+				        	   i = $(dropped).attr("categoryID");
+					           var droppedOn = $("#o_"+i);
+					           $(droppedOn).html("");
+					           $(droppedOn).append($(dropped).clone());				           
+					           droppingSet($(dropped).attr("name"));
+				          }
+				});
+					
+				
+
+				//setting of smoking, alcohol, and sport
+				var clicksetting1 = true, clicksetting2 = true, clicksetting3 = true;
+				$("#setting1").on("mousemove", function(event) {
+					var selectedBar = $(this);
+					if (clicksetting1) {
+						drawBar(selectedBar);
+					}
+				}).on("click", function() {
+					sendAjaxForSim(createFactors());
+					clicksetting1 = false;
+					//*************caca
+					//adjustOrgansWithEnvironment();
+				}).on("mouseout", function() {
+					var selectedBar = $(this);
+					if (clicksetting1) {
+						cleanBar(selectedBar);
+					}
+				});
+
+				$("#setting2").on("mousemove", function() {
+					var selectedBar = $(this);
+					if (clicksetting2) {
+						drawBar(selectedBar);
+					}
+				}).on("click", function() {
+					sendAjaxForSim(createFactors());
+					clicksetting2 = false;
+					//*************caca
+					//adjustOrgansWithEnvironment();
+				}).on("mouseout", function() {
+					var selectedBar = $(this);
+					if (clicksetting2) {
+						cleanBar(selectedBar);
+					}
+				});
+
+				$("#setting3").on("mousemove", function() {
+					var selectedBar = $(this);
+					if (clicksetting3) {
+						drawBar(selectedBar);
+					}
+				}).on("click", function() {
+					sendAjaxForSim(createFactors());
+					clicksetting3 = false;
+					//*************caca
+					//adjustOrgansWithEnvironment();
+				}).on("mouseout", function() {
+					var selectedBar = $(this);
+					if (clicksetting3) {
+						cleanBar(selectedBar);
+					}
+				});
+				
+				//set reset
+				$('button[class="reset_btn s_btn2 toreset"').on("click", function() {	
+					//reset settings and height weight
+					cleanBar($("#setting1"));
+					cleanBar($("#setting2"));
+					cleanBar($("#setting3"));
+					$("input[name='weight']").val("");
+					$("input[name='height']").val("");
+					clicksetting1 = true, clicksetting2 = true, clicksetting3 = true;
+					//reset organs pictures and organ array and saveContainer
+					$("div.drop").html("");
+					organOnBodyArray = [0, 0, 0, 0, 0, 0, 0];
+					initGlobalOrganValueArray();
+					//use reset values to change organ bars
+					resetOrganBars();
+					//update when reset all factors
+					sendAjaxForSim(createFactors());
+				});
+				
+				//set save			
+				$('button[class="reset_btn s_btn2 tosave"').on("click", function() {
+					var factors = createFactors();
+					var index = 1;
+					for ( var savedObjKey in saveContainer) {
+						var containerLength = Object.keys(saveContainer).length;
+						var savedObj = saveContainer[savedObjKey];
+						if (savedObj.saved == false) {
+							//save to page saveContainer
+							setSaveObject(factors, savedObj);
+							savedObj.saved = true;
+							for (var kk in organOnBodyArray){
+								savedObj.pack.push(organOnBodyArray[kk]);
+							}
+							//send save ajax
+							sendAjaxForSave();
+							//set save slot icon
+							$("#saveSlot" + index + " span").attr("class", "glyphicon glyphicon-open");
+							//set slot icon hover
+							$("#saveSlot" + index).on("mouseover", function() {
+								$("#saveSlot" + index + " span").attr("class", "glyphicon glyphicon-hand-up");
+							}).on("mouseout", function() {
+								$("#saveSlot" + index + " span").attr("class", "glyphicon glyphicon-open");
+							});
+							//set retrieval from save slot
+							$("#saveSlot" + index).css("opacity", "1").on("click", function() {
+								var tempObj = saveContainer["save" + index];
+								regenerateFromSave(tempObj);
+								recoverBodyOrgans(index);
+							});
+							break;
+						}
+						if (index == containerLength) {
+							alert("no more to save");
+						}
+						index++;
+					}
+					//set clear saves button
+					$("button.toclear").on("click", function() {
+						initSaveObject();
+						for (var index = 1; index <= 3; index++) {
+							$("#saveSlot" + index + " span").attr("class", "");
+							//clear save slot icon
+							$("#saveSlot" + index).css("opacity", "0.5").off("mouseover").off("mouseout").off("click");
+						}
+					})
+
+					//print saving status
+					for ( var savedObjKey in saveContainer) {
+						var savedObj = saveContainer[savedObjKey];
+						printObject(savedObj);
+					}
+
 				});
 			}
-			$("#people").droppable({ 
-					   accept: $(".p_drag"), 
-			           drop: function(event, ui) {
-			        	   var dropped = ui.draggable;
-			        	   i = $(dropped).attr("categoryID");
-				           var droppedOn = $("#o_"+i);
-				           $(droppedOn).html("");
-				           $(droppedOn).append($(dropped).clone());				           
-				           droppingSet($(dropped).attr("name"));
-			          }
-			});
 				
 			
-
-			//setting of smoking, alcohol, and sport
-			var clicksetting1 = true, clicksetting2 = true, clicksetting3 = true;
-			$("#setting1").on("mousemove", function(event) {
-				var selectedBar = $(this);
-				if (clicksetting1) {
-					drawBar(selectedBar);
-				}
-			}).on("click", function() {
-				sendAjaxForSim(createFactors());
-				clicksetting1 = false;
-				//*************caca
-				adjustOrgansWithEnvironment();
-			}).on("mouseout", function() {
-				var selectedBar = $(this);
-				if (clicksetting1) {
-					cleanBar(selectedBar);
-				}
-			});
-
-			$("#setting2").on("mousemove", function() {
-				var selectedBar = $(this);
-				if (clicksetting2) {
-					drawBar(selectedBar);
-				}
-			}).on("click", function() {
-				sendAjaxForSim(createFactors());
-				clicksetting2 = false;
-				//*************caca
-				adjustOrgansWithEnvironment();
-			}).on("mouseout", function() {
-				var selectedBar = $(this);
-				if (clicksetting2) {
-					cleanBar(selectedBar);
-				}
-			});
-
-			$("#setting3").on("mousemove", function() {
-				var selectedBar = $(this);
-				if (clicksetting3) {
-					drawBar(selectedBar);
-				}
-			}).on("click", function() {
-				sendAjaxForSim(createFactors());
-				clicksetting3 = false;
-				//*************caca
-				adjustOrgansWithEnvironment();
-			}).on("mouseout", function() {
-				var selectedBar = $(this);
-				if (clicksetting3) {
-					cleanBar(selectedBar);
-				}
-			});
 
 			function drawBar(selectedBar) {
 				var offset = selectedBar.offset();
@@ -192,17 +291,7 @@
 					"background" : "      linear-gradient(to right, #C13F2E 0%, rgba(0,0,0,0) 0%)"
 				});
 			}
-			//set reset
-			$('button[class="reset_btn s_btn2 toreset"').on("click", function() {				
-				cleanBar($("#setting1"));
-				cleanBar($("#setting2"));
-				cleanBar($("#setting3"));
-				$("input[name='weight']").val("");
-				$("input[name='height']").val("");
-				clicksetting1 = true, clicksetting2 = true, clicksetting3 = true;
-				//update when rest all factors
-				sendAjaxForSim(createFactors());
-			})
+			
 
 			//create factors
 			function createFactors() {
@@ -249,50 +338,7 @@
 				return factors;
 			}
 
-			//set save			
-			$('button[class="reset_btn s_btn2 tosave"').on("click", function() {
-				var factors = createFactors();
-				var index = 1;
-				for ( var savedObjKey in saveContainer) {
-					var containerLength = Object.keys(saveContainer).length;
-					var savedObj = saveContainer[savedObjKey];
-					if (savedObj.saved == false) {
-						setSaveObject(factors, savedObj);
-						savedObj.saved = true;
-						$("#saveSlot" + index + " span").attr("class", "glyphicon glyphicon-open");
-						//set save slot icon
-						$("#saveSlot" + index).on("mouseover", function() {
-							$("#saveSlot" + index + " span").attr("class", "glyphicon glyphicon-hand-up");
-						}).on("mouseout", function() {
-							$("#saveSlot" + index + " span").attr("class", "glyphicon glyphicon-open");
-						});
-						//set retrieval from save slot
-						$("#saveSlot" + index).css("opacity", "1").on("click", function() {
-							var tempObj = saveContainer["save" + index];
-							regenerateFromSave(tempObj);
-						});
-						break;
-					}
-					if (index == containerLength) {
-						alert("no more to save");
-					}
-					index++;
-				}
-				$("button.toclear").on("click", function() {
-					initSaveObject();
-					for (var index = 1; index <= 3; index++) {
-						$("#saveSlot" + index + " span").attr("class", "");
-						//clear save slot icon
-						$("#saveSlot" + index).css("opacity", "0.5").off("mouseover").off("mouseout").off("click");
-					}
-				})
 
-				for ( var savedObjKey in saveContainer) {
-					var savedObj = saveContainer[savedObjKey];
-					printObject(savedObj);
-				}
-
-			});
 
 			function setEnvironmentBG(tempEnvIndex, ajaxDataObj) {
 				var bg_img;
@@ -340,6 +386,7 @@
 
 				printObject(sentDataObj);
 				$.ajax({
+					method: "POST",
 					url : urlToSend,
 					data : sentDataObj
 				}).done(function(msg) {
@@ -349,7 +396,47 @@
 					updateAllValues(newJsonObject);
 				});
 			}
+			
+			//Ajax send when save or clear saves 
+			function sendAjaxForSave() {
+				for(var indexS = 3;indexS>0; indexS--){
+					var sentSave = saveContainer["save" + indexS];		
+						if(sentSave.saved){
+							var sentDataObj = new Object();
+							sentDataObj["pack" + indexS] = [];
+							var sentDataObjPackArray = sentDataObj["pack" + indexS];
+							sentDataObjPackArray.push(999);
+							for(var indexPack = 0; indexPack<7;indexPack++){
+								if(sentSave.pack[indexPack] !== 0){
+									var productId =  parseInt(sentSave.pack[indexPack].substring(7));
+									sentDataObjPackArray.push(productId);
+								}else{
+									sentDataObjPackArray.push(0);
+								}							
+							}
+							
+							var toSentJson = JSON.stringify(sentDataObj);
+							console.log(toSentJson);
+							console.log("send to save pack");
+							$.ajax({
+								method: "POST",
+								url : contextPath + "/simulator/savePackAction",
+								data : toSentJson,
+								contentType:"application/json"
+							}).done(function(msg) {
+								console.log("saved");
+								console.log("msg: " + msg);					
+							}).fail(function(msg){
+								console.log("failed");
+								console.log("msg: " + msg);		
+							});
+							break;
+						}
+					
 
+				}				
+			}
+			
 			//set organ bars original
 			function initOrganBars() {
 				$("span.o_old").css("width", initValue+50+"px");
@@ -360,7 +447,7 @@
 
 			//add onmouseover onmouseout to organs
 			function updateAllValues(jsonarrayToUpdate){     
-			for (var iii = 1; iii < 799; iii++) {
+			  for (var iii = 1; iii < 799; iii++) {
 				var existIndex = $("img[name='product" + iii + "']").attr("name"); 
 				if(existIndex !== undefined){
 				$("img[name='product" + iii + "']").off("mouseover", function() {
@@ -379,7 +466,8 @@
 					
 				});
 				} 
-			}
+			  }
+			  adjustOrgansWithEnvironment();
 			}
 			
 			//reset organ bar to old values
@@ -404,10 +492,10 @@
 				//set moving delta
 				var adjustBase = 50;
 				//calculate bar length
-				var oldValueP = valueBoxforAdjust.oldVP + adjustBase-1;
-				var newValueP = valueBoxforAdjust.newVP + adjustBase-1;
-				var oldValueE = valueBoxforAdjust.oldVE + adjustBase-1;
-				var newValueE = valueBoxforAdjust.newVE + adjustBase-1;
+				var oldValueP = valueBoxforAdjust.oldVP + adjustBase;
+				var newValueP = valueBoxforAdjust.newVP + adjustBase;
+				var oldValueE = valueBoxforAdjust.oldVE + adjustBase;
+				var newValueE = valueBoxforAdjust.newVE + adjustBase;
 				//check if old value greater
 				var reverseP = (oldValueP > newValueP) ? true : false;
 				var reverseE = (oldValueE > newValueE) ? true : false;
@@ -516,7 +604,6 @@
 				valueBox.newVP = initValue + tempPower*100;
 				valueBox.oldVE = globalOrganValueArray[categoryIndex].oldVE;
 				valueBox.newVE = initValue + tempEndur*100;
-				console.log("hihi createValueBox");
 				return valueBox;
 			}
 			
@@ -529,11 +616,21 @@
 				globalOrganValueArray[categoryIndex].oldVE = valueBox.newVE;
 				resetOrganBars();
 				
+				
 				//**************Caca*********
 				//store the products that are on the body into a organOnBodyArray list 
-				console.log(categoryIndex);
 				organOnBodyArray[categoryIndex] = productId;
-
+				console.log("Current dropped organs: [" + organOnBodyArray + "]");
+			}
+			
+			//recover body organs
+			function recoverBodyOrgans(savingSlotIndex){
+				var packToRecover = saveContainer["save"+savingSlotIndex].pack;
+				for(var iiii=0;iiii<7;iiii++){
+					alert(packToRecover[iiii]);
+				}
+				
+				alert(packToRecover);
 			}
 			
 		});//===%%%%===  END of DOCUMENT READY  ===%%%%=== 
@@ -545,6 +642,9 @@
 			saveObject1.saved = false;
 			saveObject2.saved = false;
 			saveObject3.saved = false;
+			saveObject1.pack = [];
+			saveObject2.pack = [];
+			saveObject3.pack = [];
 			saveContainer.save1 = saveObject1;
 			saveContainer.save2 = saveObject2;
 			saveContainer.save3 = saveObject3;
