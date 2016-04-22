@@ -12,10 +12,8 @@
 
 		<!-- interceptors -->
 		<interceptors>
-			<interceptor name="loginInterceptor"
-				class="component.interceptor.LoginInterceptor" />
-			<interceptor name="creditCardInterceptor"
-				class="component.interceptor.CreditCardInterceptor" />
+			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
+			<interceptor name="creditCardInterceptor" class="component.interceptor.CreditCardInterceptor" />
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="defaultStack" />
@@ -62,14 +60,10 @@
 	<package name="payment" namespace="/payment" extends="struts-default">
 
 		<interceptors>
-			<interceptor name="loginInterceptor"
-				class="component.interceptor.LoginInterceptor" />
-			<interceptor name="paymentManageInterceptor"
-				class="component.interceptor.PaymentManageInterceptor" />
-			<interceptor name="promoManageInterceptor"
-				class="component.interceptor.PromoInterceptor" />
-			<interceptor name="AdminInterceptor"
-				class="component.interceptor.AdminInterceptor" />
+			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
+			<interceptor name="paymentManageInterceptor" class="component.interceptor.PaymentManageInterceptor" />
+			<interceptor name="promoManageInterceptor" class="component.interceptor.PromoInterceptor" />
+			<interceptor name="AdminInterceptor" class="component.interceptor.AdminInterceptor" />
 			<interceptor-stack name="paymentManageStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="paymentManageInterceptor" />
@@ -99,12 +93,10 @@
 		</action>
 	</package>
 
-	<package name="paymentmanage" namespace="/paymentmanage"
-		extends="struts-default">
+	<package name="paymentmanage" namespace="/paymentmanage" extends="struts-default">
 
 		<interceptors>
-			<interceptor name="AdminInterceptor"
-				class="component.interceptor.AdminInterceptor" />
+			<interceptor name="AdminInterceptor" class="component.interceptor.AdminInterceptor" />
 			<interceptor-stack name="promoManageInterceptorStack">
 				<interceptor-ref name="AdminInterceptor" />
 				<interceptor-ref name="defaultStack" />
@@ -139,10 +131,8 @@
 
 		<!-- interceptors -->
 		<interceptors>
-			<interceptor name="loginInterceptor"
-				class="component.interceptor.LoginInterceptor" />
-			<interceptor name="creditCardInterceptor"
-				class="component.interceptor.CreditCardInterceptor" />
+			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
+			<interceptor name="creditCardInterceptor" class="component.interceptor.CreditCardInterceptor" />
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="defaultStack" />
@@ -178,8 +168,7 @@
 
 	<package name="shopping" namespace="/shopping" extends="struts-default">
 		<interceptors>
-			<interceptor name="loginInterceptor"
-				class="component.interceptor.LoginInterceptor" />
+			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
 			<interceptor-stack name="returnStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="defaultStack" />
@@ -257,6 +246,7 @@
 		</action>
 
 	</package>
+	
 	<package name="hospital" namespace="/hospital" extends="json-default">
 		<action name="hospitalInfo" class="hospitalInfo">
 			<interceptor-ref name="defaultStack" />
@@ -265,7 +255,9 @@
 			</interceptor-ref>
 			<result>/hospital/hospitalinfo.jsp</result>
 			<result type="json" name="showData">
-			
+			   <param name="excludeProperties">
+					request,hospitalService,locationService,location
+				</param>
 			</result>
 		</action>
 	</package>
@@ -287,10 +279,8 @@
 
 	<package name="product" namespace="/product" extends="struts-default">
 		<interceptors>
-			<interceptor name="loginInterceptor"
-				class="component.interceptor.LoginInterceptor" />
-			<interceptor name="AdminInterceptor"
-				class="component.interceptor.AdminInterceptor" />
+			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
+			<interceptor name="AdminInterceptor" class="component.interceptor.AdminInterceptor" />
 			<interceptor-stack name="adminInterceptorStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="AdminInterceptor" />
@@ -363,7 +353,6 @@
 		<action name="simulatorAction" class="simulatorAction">
 			<result>/simulator/simulator.jsp</result>
 		</action>
-
 		<action name="bodySimulatorAction" class="bodySimulatorAction">
 			<result name="display">/simulator/simulator.jsp</result>
 			<result type="stream">

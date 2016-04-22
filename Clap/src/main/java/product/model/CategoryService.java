@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //import simulator.model.SimulatorUtil;
+
 import simulator.model.SimulatorVO;
 
 public class CategoryService {
@@ -46,10 +47,11 @@ public class CategoryService {
 		}
 	}
 
-	public List<SimulatorVO> calculate(Integer env_id, Double bmi, Double smoking, Double drinking,
-			Double exercising) {
-		//return SimulatorUtil.calculate(productService, this, env_id, bmi, smoking, drinking, exercising);
-		return null;
-	}
+
+//	public List<SimulatorVO> calculate(Integer env_id, Double bmi, Double smoking, Double drinking,
+//			Double exercising) {
+//		return SimulatorUtil.calculate(productService, this, env_id, bmi, smoking, drinking, exercising);
+//	}
+
 	
 }

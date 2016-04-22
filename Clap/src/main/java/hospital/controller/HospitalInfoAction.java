@@ -1,9 +1,6 @@
 package hospital.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +11,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import hospital.model.HospitalService;
 import hospital.model.HospitalVO;
 import hospital.model.LocationService;
+
 
 public class HospitalInfoAction extends ActionSupport implements ServletRequestAware{
     private HttpServletRequest request;
@@ -29,10 +27,15 @@ public class HospitalInfoAction extends ActionSupport implements ServletRequestA
 
 	public List<HospitalVO> getHospitals() {
 		return hospitals;
+
 	}
 
-	public void setHospitals(List<HospitalVO> hospitals) {
-		this.hospitals = hospitals;
+	public HospitalService getHospitalService() {
+		return hospitalService;
+	}
+
+	public void setHospitalService(HospitalService hospitalService) {
+		this.hospitalService = hospitalService;
 	}
 
 
@@ -41,17 +44,11 @@ public class HospitalInfoAction extends ActionSupport implements ServletRequestA
 		this.location = location;
 	}
 
-
-	public void setHospitalService(HospitalService hospitalService) {
-		this.hospitalService = hospitalService;
-	}
-	
 	@Override
 	public String execute() throws Exception {
 	    if(location!=null){
 	        hospitals  = hospitalService.selectHospitalByLocation(location);
 			request.setAttribute("hospitals", hospitals);
-	    	
 	    	location = null;
 	    	return "showData";
 			
@@ -61,6 +58,7 @@ public class HospitalInfoAction extends ActionSupport implements ServletRequestA
 	    	request.setAttribute("locations", locationService.getLocation());
 	    	return SUCCESS;
 	    }
+
 	}
 
 	@Override

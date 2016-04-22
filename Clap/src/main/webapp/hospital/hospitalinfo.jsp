@@ -22,6 +22,7 @@
 #map {
 	height: 100%;
 }
+
 </style>
 </head>
 <body>
@@ -59,7 +60,6 @@
 											</div>
 										</div>
 									</div>
-
 									<div class="col-md-3">
 										<div class="input-group">
 
@@ -71,7 +71,6 @@
 											</div>
 										</div>
 									</div>
-
 								</div>
 							</div>
 							<div id="mapa" style="width: 100%; height: 500px;"></div>
@@ -103,8 +102,7 @@
 			url:url,
 			data: {"location":loaction}
 		}).done(function(msg){
-			 console.log();
-			 
+			
 			 $("#hospitalSelect").html('<option value="all">all</option>');
 			 
 			 

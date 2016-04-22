@@ -235,6 +235,7 @@
 		<property name="hospitalService" ref="hospitalService" />
 		<property name="locationService" ref="locationService" />
 	</bean>
+	
 	<!-- shopping controller -->
 	<bean id="cartAction" class="shopping.controller.CartAction">
 		<property name="cartService" ref="cartService" />
