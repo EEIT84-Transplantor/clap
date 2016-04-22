@@ -93,10 +93,10 @@ public class BodySimulatorAction extends ActionSupport {
 //		object.put("skill", skill);
 //		Map<String,String>error=new HashMap<String,String>();
 		Double bmi=null;
-		if(weight!=null&&weight>0&&height==null&&height>0){
+		if(weight!=null&&weight>0&&height!=null&&height>0){
 			bmi = weight/(Math.pow(height/100,2.0));
 		}
-        System.out.println("BodySimulatorAction [weight=" + weight + ", height=" + height + ", smoking=" + smoking + ", drinking="
+        System.out.println("BodySimulatorAction [weight=" + weight + ", height=" + height+ ", bmi=" + bmi + ", smoking=" + smoking + ", drinking="
 				+ drinking + ", exercising=" + exercising + ", env_id=" + env_id + "]");
 		//categoryService 的calculate還沒做~
 		List<SimulatorVO> simulatorVOs = categoryService.calculate(env_id,bmi,smoking,drinking,exercising);
