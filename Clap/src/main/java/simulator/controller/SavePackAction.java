@@ -58,11 +58,29 @@ public class SavePackAction extends ActionSupport {
 	public String execute() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
-
+		System.out.println("Pre process======================================");
+		System.out.println("Pack: "+pack1);
+		System.out.println("Pack: "+pack2);
+		System.out.println("Pack: "+pack3);
+		if(isSent(pack3)){
+			processPack(pack3);
+		}else if(isSent(pack2)){
+			processPack(pack2);
+			processPack(pack3);
+		}else{
+			processPack(pack1);
+			processPack(pack2);
+			processPack(pack3);
+		}
+		System.out.println("After process======================================");
+		System.out.println("Pack: "+pack1);
+		System.out.println("Pack: "+pack2);
+		System.out.println("Pack: "+pack3);
+		
+		
+		
 		session.setAttribute("pack1", pack1);
-
 		session.setAttribute("pack2", pack2);
-
 		session.setAttribute("pack3", pack3);
 		JSONArray jsonArray = new JSONArray();
 	
@@ -76,5 +94,25 @@ public class SavePackAction extends ActionSupport {
 			e.printStackTrace();
 		}
 		return SUCCESS;
+	}
+	
+	private boolean isSent(List<Integer> pack){
+		try {
+			return pack.get(0)==999;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	private List<Integer> processPack(List<Integer> pack){
+		if(pack!=null){
+			if(isSent(pack)){
+				pack.remove(0);
+			}else{
+				for(int index=0;index<pack.size();index++){
+					pack.set(index, 0);	
+				}
+			}
+		}
+		return pack;
 	}
 }

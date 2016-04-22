@@ -31,10 +31,12 @@ public class GetSavedPack extends ActionSupport {
 		List<Integer> productIds;
 
 		JSONArray jsonArray = new JSONArray();
-	
-		jsonArray.put(new JSONObject().put("pack1", (List<Integer>) session.getAttribute("pack1")));
-		jsonArray.put(new JSONObject().put("pack2", (List<Integer>) session.getAttribute("pack2")));
-		jsonArray.put(new JSONObject().put("pack3", (List<Integer>) session.getAttribute("pack3")));
+		for(int index=1;index<=3;index++){
+			List<Integer> tempList = (List<Integer>) session.getAttribute("pack"+index);
+			if(tempList!=null&&tempList.isEmpty()){
+				jsonArray.put(new JSONObject().put("pack"+index, tempList));	
+			}			
+		}
 		try {
 			inputStream = new ByteArrayInputStream(jsonArray.toString().getBytes("UTF-8"));
 		} catch (UnsupportedEncodingException e) {
