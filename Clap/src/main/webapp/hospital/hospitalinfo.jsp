@@ -56,7 +56,7 @@
 												</select>
 											</div>
 											<div style="width: 5%; display: inline-block;">
-												<button type="button" class="btn btn-warning" id="selectH">Warning</button>
+												<button type="button" class="btn btn-warning" id="selectH">Search</button>
 											</div>
 										</div>
 									</div>
