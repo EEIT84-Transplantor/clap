@@ -92,6 +92,7 @@
 					}
 				}
 			}
+			
 			//use init methods for document
 			sendAjaxForSim(createFactors());
 			initOrganBars();
@@ -440,7 +441,7 @@
 			//set organ bars original
 			function initOrganBars() {
 				$("span.o_old").css("width", initValue+50+"px");
-				$("span.o_new").css("width", initValue+50+"px");				
+				$("span.o_new").css("width", initValue+49+"px");				
 			}
 
 
@@ -450,21 +451,26 @@
 			  for (var iii = 1; iii < 799; iii++) {
 				var existIndex = $("img[name='product" + iii + "']").attr("name"); 
 				if(existIndex !== undefined){
-				$("img[name='product" + iii + "']").off("mouseover", function() {
-				}).off("mouseout", function() {					
-				});
+					$("img[name='product" + iii + "']").off("mouseover", function() {
+					}).off("mouseout", function() {					
+					});
+					
+					$("img[name='product" + iii + "']").on("mouseover", function() {
+						var productId = $(this).attr("name");  
+						var valueBox = createValueBox(jsonarrayToUpdate, productId);
+						
+						//start bar animation
+						adjustOrganBars(valueBox.categoryIndex + 1, valueBox);
+					}).on("mouseout", function() {
+						var productId = $(this).attr("name"); 
+						resetOrganBars();
+						
+					}).on("mousedown",function(){
+						
+					}).on("mouseup",function(){
+							
+					});
 				
-				$("img[name='product" + iii + "']").on("mouseover", function() {
-					var productId = $(this).attr("name");  
-					var valueBox = createValueBox(jsonarrayToUpdate, productId);
-					
-					//start bar animation
-					adjustOrganBars(valueBox.categoryIndex + 1, valueBox);
-				}).on("mouseout", function() {
-					var productId = $(this).attr("name"); 
-					resetOrganBars();
-					
-				});
 				} 
 			  }
 			  adjustOrgansWithEnvironment();

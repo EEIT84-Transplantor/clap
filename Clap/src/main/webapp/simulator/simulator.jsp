@@ -108,12 +108,12 @@
 											<img src="<c:url value="/resource/images/simulator/o_${row.index}.png"/>">
 											<div class="graphic_detail_all">
 												<div class="graphic_detail">
-													<span style="width: 200px;" class="o_old organ${row.index}">Power</span> <strong>1%</strong> <span
-														style="background: #16536C; width: 200px;" class="o_new organ${row.index}">Power</span> <strong>1%</strong>
+													<span style="width: 200px;" class="o_old organ${row.index}">Power</span> <strong>&nbsp</strong> <span
+														style="width: 195px;" class="o_new organ${row.index}">Power</span> <strong>&nbsp</strong>
 												</div>
 												<div class="graphic_detail">
-													<span style="width: 200px;" class="o_old organ${row.index}">Endurance</span> <strong>1%</strong> <span
-														style="background: #16536C; width: 200px;" class="o_new organ${row.index}">Endurance</span> <strong>1%</strong>
+													<span style="width: 200px;" class="o_old organ${row.index}">Endurance</span> <strong>&nbsp</strong> <span
+														style="width: 195px;" class="o_new organ${row.index}">Endurance</span> <strong>&nbsp</strong>
 												</div>
 											</div>
 										</div>
