@@ -246,16 +246,18 @@
 		</action>
 
 	</package>
-
+	
 	<package name="hospital" namespace="/hospital" extends="json-default">
-		<action name="hospitalInfo" class="hospital.controller.HospitalInfoAction">
+		<action name="hospitalInfo" class="hospitalInfo">
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="json">
 				<param name="enableSMD">true</param>
 			</interceptor-ref>
-			<result type="json">
-				<param name="excludeProperties">
-					request,hospitalService
+			<result>/hospital/hospitalinfo.jsp</result>
+			<result>/hospital/hospitalinfo.jsp</result>
+			<result type="json" name="showData">
+				<param name="includeProperties">
+					hospitals
 				</param>
 			</result>
 		</action>
