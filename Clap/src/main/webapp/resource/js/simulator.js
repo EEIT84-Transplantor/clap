@@ -633,7 +633,7 @@
 			function recoverBodyOrgans(savingSlotIndex){
 				var packToRecover = saveContainer["save"+savingSlotIndex].pack;
 				for(var iiii=0;iiii<7;iiii++){
-					alert(packToRecover[iiii]);
+					console.log(packToRecover[iiii]);
 				}
 				
 				alert(packToRecover);
