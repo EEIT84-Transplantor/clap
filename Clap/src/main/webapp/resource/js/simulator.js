@@ -2,11 +2,15 @@
 		//set init organ vaue
 		var initValue = 200;
 		var globalOrganValueArray = [];
-		for (var innd = 0;innd<7;innd++){
-			var tempOb = new Object();
-			tempOb.oldVP = initValue;
-			tempOb.oldVE = initValue;
-			globalOrganValueArray.push(tempOb);
+		initGlobalOrganValueArray();
+		function initGlobalOrganValueArray(){
+			globalOrganValueArray = [];
+			for (var innd = 0;innd<7;innd++){
+				var tempOb = new Object();
+				tempOb.oldVP = initValue;
+				tempOb.oldVE = initValue;
+				globalOrganValueArray.push(tempOb);
+			}
 		}
 		//**********Caca************
 		var organOnBodyArray = [0, 0, 0, 0, 0, 0, 0];
@@ -98,7 +102,7 @@
 			function initOnEvents(){
 				//set add cart
 				$("#s_organs_r").on("click", function(){
-					sendAjaxForSave();
+					alert("add to cart not done");
 				});
 				
 				//set dragging~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~				
@@ -180,14 +184,21 @@
 				});
 				
 				//set reset
-				$('button[class="reset_btn s_btn2 toreset"').on("click", function() {				
+				$('button[class="reset_btn s_btn2 toreset"').on("click", function() {	
+					//reset settings and height weight
 					cleanBar($("#setting1"));
 					cleanBar($("#setting2"));
 					cleanBar($("#setting3"));
 					$("input[name='weight']").val("");
 					$("input[name='height']").val("");
 					clicksetting1 = true, clicksetting2 = true, clicksetting3 = true;
-					//update when rest all factors
+					//reset organs pictures and organ array and saveContainer
+					$("div.drop").html("");
+					organOnBodyArray = [0, 0, 0, 0, 0, 0, 0];
+					initGlobalOrganValueArray();
+					//use reset values to change organ bars
+					resetOrganBars();
+					//update when reset all factors
 					sendAjaxForSim(createFactors());
 				});
 				
@@ -199,10 +210,17 @@
 						var containerLength = Object.keys(saveContainer).length;
 						var savedObj = saveContainer[savedObjKey];
 						if (savedObj.saved == false) {
+							//save to page saveContainer
 							setSaveObject(factors, savedObj);
 							savedObj.saved = true;
-							$("#saveSlot" + index + " span").attr("class", "glyphicon glyphicon-open");
+							for (var kk in organOnBodyArray){
+								savedObj.pack.push(organOnBodyArray[kk]);
+							}
+							//send save ajax
+							sendAjaxForSave();
 							//set save slot icon
+							$("#saveSlot" + index + " span").attr("class", "glyphicon glyphicon-open");
+							//set slot icon hover
 							$("#saveSlot" + index).on("mouseover", function() {
 								$("#saveSlot" + index + " span").attr("class", "glyphicon glyphicon-hand-up");
 							}).on("mouseout", function() {
@@ -212,6 +230,7 @@
 							$("#saveSlot" + index).css("opacity", "1").on("click", function() {
 								var tempObj = saveContainer["save" + index];
 								regenerateFromSave(tempObj);
+								recoverBodyOrgans(index);
 							});
 							break;
 						}
@@ -220,6 +239,7 @@
 						}
 						index++;
 					}
+					//set clear saves button
 					$("button.toclear").on("click", function() {
 						initSaveObject();
 						for (var index = 1; index <= 3; index++) {
@@ -229,6 +249,7 @@
 						}
 					})
 
+					//print saving status
 					for ( var savedObjKey in saveContainer) {
 						var savedObj = saveContainer[savedObjKey];
 						printObject(savedObj);
@@ -378,17 +399,42 @@
 			
 			//Ajax send when save or clear saves 
 			function sendAjaxForSave() {
-				var sentDataObj = createFactors();
-				printObject(sentDataObj);
-				$.ajax({
-					method: "POST",
-					url : contextPath + "/simulator/savePackAction",
-					data : sentDataObj
-				}).done(function(msg) {
-					console.log("saved");
-					console.log(msg);
+				for(var indexS = 3;indexS>0; indexS--){
+					var sentSave = saveContainer["save" + indexS];		
+						if(sentSave.saved){
+							var sentDataObj = new Object();
+							sentDataObj["pack" + indexS] = [];
+							var sentDataObjPackArray = sentDataObj["pack" + indexS];
+							sentDataObjPackArray.push(999);
+							for(var indexPack = 0; indexPack<7;indexPack++){
+								if(sentSave.pack[indexPack] !== 0){
+									var productId =  parseInt(sentSave.pack[indexPack].substring(7));
+									sentDataObjPackArray.push(productId);
+								}else{
+									sentDataObjPackArray.push(0);
+								}							
+							}
+							
+							var toSentJson = JSON.stringify(sentDataObj);
+							console.log(toSentJson);
+							console.log("send to save pack");
+							$.ajax({
+								method: "POST",
+								url : contextPath + "/simulator/savePackAction",
+								data : toSentJson,
+								contentType:"application/json"
+							}).done(function(msg) {
+								console.log("saved");
+								console.log("msg: " + msg);					
+							}).fail(function(msg){
+								console.log("failed");
+								console.log("msg: " + msg);		
+							});
+							break;
+						}
 					
-				});
+
+				}				
 			}
 			
 			//set organ bars original
@@ -558,7 +604,6 @@
 				valueBox.newVP = initValue + tempPower*100;
 				valueBox.oldVE = globalOrganValueArray[categoryIndex].oldVE;
 				valueBox.newVE = initValue + tempEndur*100;
-				console.log("hihi createValueBox");
 				return valueBox;
 			}
 			
@@ -571,12 +616,21 @@
 				globalOrganValueArray[categoryIndex].oldVE = valueBox.newVE;
 				resetOrganBars();
 				
+				
 				//**************Caca*********
 				//store the products that are on the body into a organOnBodyArray list 
-				console.log(categoryIndex);
-				console.log(organOnBodyArray);
 				organOnBodyArray[categoryIndex] = productId;
-
+				console.log("Current dropped organs: [" + organOnBodyArray + "]");
+			}
+			
+			//recover body organs
+			function recoverBodyOrgans(savingSlotIndex){
+				var packToRecover = saveContainer["save"+savingSlotIndex].pack;
+				for(var iiii=0;iiii<7;iiii++){
+					alert(packToRecover[iiii]);
+				}
+				
+				alert(packToRecover);
 			}
 			
 		});//===%%%%===  END of DOCUMENT READY  ===%%%%=== 
@@ -588,6 +642,9 @@
 			saveObject1.saved = false;
 			saveObject2.saved = false;
 			saveObject3.saved = false;
+			saveObject1.pack = [];
+			saveObject2.pack = [];
+			saveObject3.pack = [];
 			saveContainer.save1 = saveObject1;
 			saveContainer.save2 = saveObject2;
 			saveContainer.save3 = saveObject3;
