@@ -41,10 +41,8 @@
 										<div class="form-group">
 											<div style="width: 40%; display: inline-block;">
 												<select class="form-control" id="citySelect">
-												<option value="1">1</option>
-												<option value="2">2</option>
                                                     <c:forEach var="location" items="${locations}">
-													<option value="${location}">${location}</option>
+													<option value="${location.id}">${location.name}</option>
 													</c:forEach>
 												</select>
 											</div>
@@ -105,7 +103,18 @@
 			url:url,
 			data: {"location":loaction}
 		}).done(function(msg){
-			 console.log(msg);
+			 console.log();
+			 
+			 $("#hospitalSelect").html('<option value="all">all</option>');
+			 
+			 
+			 for(var i =0;i<msg["hospitals"].length;i++){
+			 $("#hospitalSelect").append($('<option>', { 
+			        value: msg["hospitals"][i].address,
+			        text : msg["hospitals"][i].name 
+			    }));
+			 
+			 }
 		});
 	});
 	

@@ -264,11 +264,8 @@
 				<param name="enableSMD">true</param>
 			</interceptor-ref>
 			<result>/hospital/hospitalinfo.jsp</result>
-			<result>/hospital/hospitalinfo.jsp</result>
 			<result type="json" name="showData">
-				<param name="includeProperties">
-					hospitals
-				</param>
+			
 			</result>
 		</action>
 	</package>

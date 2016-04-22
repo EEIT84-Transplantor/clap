@@ -225,8 +225,15 @@
 	<bean id="doctorService" class="hospital.model.DoctorService">
 		<property name="doctorDAO" ref="doctorDAO" />
 	</bean>
+	<bean id="locationDAO" class="hospital.model.LocationHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="locationService" class="hospital.model.LocationService">
+		<property name="locationDAO" ref="locationDAO" />
+	</bean>
      <bean id="hospitalInfo" class="hospital.controller.HospitalInfoAction">
 		<property name="hospitalService" ref="hospitalService" />
+		<property name="locationService" ref="locationService" />
 	</bean>
 	<!-- shopping controller -->
 	<bean id="cartAction" class="shopping.controller.CartAction">
