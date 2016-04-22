@@ -61,7 +61,7 @@
 				contentType : "application/json",
 			}).done(function(result) {
 				if(result=true){
-					window.location.href = "<c:url value='/shopping/appointmentAction.action'/>";
+// 					window.location.href = "<c:url value='/shopping/appointmentAction.action'/>";
 				}
 			})
 		}

@@ -257,7 +257,13 @@
 		</action>
 
 	</package>
-
+   
+   <package name="hospital" namespace="/hospital" extends="struts-default">
+   <action name="hospitalInfo" class="hospitalInfo">
+   <result>/hospital/hospitalinfo.jsp</result>
+   </action>
+   </package>
+   
 	<package name="test" namespace="/test" extends="struts-default">
 		<!-- action -->
 		<action name="testAction" class="test.TestAction">
