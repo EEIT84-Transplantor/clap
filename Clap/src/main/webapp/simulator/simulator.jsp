@@ -94,9 +94,9 @@
 							</div>
 							<div class="col-md-3">
 								<div id="people">
-									<c:forEach var="simulatorVO" items="${simulatorVOs}" varStatus="c_count">
-								<div class="drop" id="o_${simulatorVO.categoryVO.id}"></div>
-								</c:forEach>
+								  <c:forEach var="simulatorVO" items="${simulatorVOs}" varStatus="c_count">
+								    <div class="drop" id="o_${simulatorVO.categoryVO.id}"></div>
+								  </c:forEach>
 								</div>
 							</div>
 							<div class="col-md-7 opacityDiv">
@@ -210,7 +210,7 @@
 		</div>
 		<div id="s_organs_r">
 			<div class="s_btn">
-				<a>ADD TO CART</a>
+				<a href="javascript:void(0);">ADD TO CART</a>
 			</div>
 			<c:if test="${login.oneclick}">
 			<div class="s_btn">
@@ -232,7 +232,8 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery.color-2.1.2.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resource/js/jquery-ui.min.js"/>"></script>	
+	<script type="text/javascript" src="<c:url value="/resource/js/jquery-ui.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/codex-fly.js"/>"></script>	
 	<script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
 	var urlToSend = contextPath+ "/simulator/bodySimulatorAction";

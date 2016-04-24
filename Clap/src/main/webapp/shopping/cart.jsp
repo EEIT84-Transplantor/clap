@@ -125,8 +125,9 @@
 					$.ajax({
 						url:'<c:url value="/shopping/deleteCartAction.action"/>',
 						data: {"productid":productid}
-					}).done(function() {
+					}).done(function(msg) {
 						console.log('delete success');
+						$(".cart_anchor").text(msg);
 					});
 				});
 
