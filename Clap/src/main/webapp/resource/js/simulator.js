@@ -196,6 +196,7 @@
 					//reset organs pictures and organ array and saveContainer
 					$("div.drop").fadeOut(300, function(){
 						$("div.drop").html("");
+						$("div.drop").show();
 					});
 					organOnBodyArray = [0, 0, 0, 0, 0, 0, 0];
 					initGlobalOrganValueArray();
@@ -231,9 +232,12 @@
 							});
 							//set retrieval from save slot
 							$("#saveSlot" + index).css("opacity", "1").on("click", function() {
-								var tempObj = saveContainer["save" + index];								
-								recoverBodyOrgans(index);
+								var tempObj = saveContainer["save" + index];	
 								regenerateFromSave(tempObj);
+								$("div.drop").fadeOut(250);
+								$("div.drop").first().fadeOut(250, function(){
+									recoverBodyOrgans(index);
+								});								
 							});
 							break;
 						}
@@ -594,7 +598,7 @@
 						organOnBodyArray[iiii] = 0;
 					}
 				}
-				$("div.drop").fadeIn(300);
+				$("div.drop").fadeIn(350);
 			}
 			//add to cart
 		    function addingToCart() {		    	
