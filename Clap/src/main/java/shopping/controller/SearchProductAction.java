@@ -67,6 +67,7 @@ public class SearchProductAction extends ActionSupport implements ServletRequest
   			object.put("name", productVO.getName());
   			object.put("price", productVO.getPrice());
   			object.put("id", productVO.getId());
+  			object.put("image", productService.getProductImgById(productVO.getId()).getImg64());
   			objectArray.put(object);
   		}
   		
