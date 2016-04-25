@@ -17,9 +17,9 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 		<property name="url"
-			value="jdbc:sqlserver://clap.database.windows.net:1433;databaseName=clap" />
-		<property name="username" value="clap" />
-		<property name="password" value="ZXCzxc123" />
+			value="jdbc:sqlserver://clapeeit84.cyizgbhuhgzq.ap-northeast-1.rds.amazonaws.com:1433;databaseName=clap" />
+		<property name="username" value="sa" />
+		<property name="password" value="passw0rd" />
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
