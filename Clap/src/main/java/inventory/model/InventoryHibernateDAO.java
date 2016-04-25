@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.swing.JApplet;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -70,7 +72,7 @@ public class InventoryHibernateDAO implements InventoryDAO {
 		session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(FIND_QUANTITY_BY_PRODUCT_ID);
 		query.setParameter(0, productId);
-		query.setParameter(1, dateNow);
+		query.setParameter(1, new java.sql.Timestamp(System.currentTimeMillis()));
 		List<Object> inventoryVOs = query.list();
 		System.out.println(inventoryVOs.get(0));
 		return Integer.valueOf(inventoryVOs.get(0).toString());
