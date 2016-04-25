@@ -237,7 +237,7 @@
 								$("div.drop").fadeOut(250);
 								$("div.drop").first().fadeOut(250, function(){
 									recoverBodyOrgans(index);
-								});								
+								});			
 							});
 							break;
 						}
@@ -403,26 +403,19 @@
 			  for (var iii = 1; iii < 799; iii++) {
 				var existIndex = $("img[name='product" + iii + "']").attr("name"); 
 				if(existIndex !== undefined){
-					$("img[name='product" + iii + "']").off("mouseover", function() {
-					}).off("mouseout", function() {					
-					});
-					
-					$("img[name='product" + iii + "']").on("mouseover", function() {
+					$("img[name='product" + iii + "']").off("mouseover")
+					.on("mouseover", function() {
 						var productId = $(this).attr("name");  
 						var valueBox = createValueBox(jsonarrayToUpdate, productId);
-						
+
 						//start bar animation
 						adjustOrganBars(valueBox.categoryIndex + 1, valueBox);
-					}).on("mouseout", function() {
+					}).off("mouseout")
+					.on("mouseout", function() {
 						var productId = $(this).attr("name"); 
 						resetOrganBars();
 						
-					}).on("mousedown",function(){
-						
-					}).on("mouseup",function(){
-							
-					});
-				
+					});				
 				} 
 			  }
 			  adjustOrgansWithEnvironment();
