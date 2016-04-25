@@ -2,7 +2,7 @@ package shopping.controller;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
@@ -79,7 +79,7 @@ public class SetCartAction extends ActionSupport implements ServletRequestAware{
 					e.printStackTrace();
 				}
 			}else{
-				tempCart = new HashMap<Integer, Integer>();
+				tempCart = new Hashtable<Integer, Integer>();
 				session.setAttribute("tempCart", tempCart);
 				tempCart.put(cartVO.getProduct_id(), quantity);
 			}

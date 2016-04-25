@@ -2,6 +2,7 @@ package shopping.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
@@ -109,22 +110,22 @@ public class CartAction extends ActionSupport implements ServletRequestAware {
 			request.setAttribute("cartList", cartList);
 			request.setAttribute("promoList", promoList);
 		} else {
-			HashMap<Integer, Integer> temp = (HashMap<Integer, Integer>)request.getSession().getAttribute("tempCart");
+			Hashtable<Integer, Integer> temp = (Hashtable <Integer, Integer>)request.getSession().getAttribute("tempCart");
 			
-			
-			for(Integer i:temp.keySet()){
-				
-				Map<String, Object> map = new HashMap<String, Object>();
-				ProductVO productVO = productService.getProductById(i);
-				map.put("id", productVO.getId());
-				map.put("name", productVO.getName());
-				map.put("quantity", temp.get(i));
-				map.put("price", productVO.getPrice());
-				map.put("stock", inventoryService.getQuantity(productVO.getId()));
-				cartList.add(map);
-				
+			if(temp!=null){
+				for(Integer i:temp.keySet()){
+					
+					Map<String, Object> map = new HashMap<String, Object>();
+					ProductVO productVO = productService.getProductById(i);
+					map.put("id", productVO.getId());
+					map.put("name", productVO.getName());
+					map.put("quantity", temp.get(i));
+					map.put("price", productVO.getPrice());
+					map.put("stock", inventoryService.getQuantity(productVO.getId()));
+					cartList.add(map);
+					
+				}
 			}
-			
 			request.setAttribute("cartList", cartList);
 			
 		}

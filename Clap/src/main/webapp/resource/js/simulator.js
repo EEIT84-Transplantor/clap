@@ -92,6 +92,7 @@
 					}
 				}
 			}
+			
 			//use init methods for document
 			sendAjaxForSim(createFactors());
 			initOrganBars();
@@ -102,7 +103,7 @@
 			function initOnEvents(){
 				//set add cart
 				$("#s_organs_r").on("click", function(){
-					alert("add to cart not done");
+					addingToCart();
 				});
 				
 				//set dragging~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~				
@@ -193,13 +194,16 @@
 					$("input[name='height']").val("");
 					clicksetting1 = true, clicksetting2 = true, clicksetting3 = true;
 					//reset organs pictures and organ array and saveContainer
-					$("div.drop").html("");
+					$("div.drop").fadeOut(300, function(){
+						$("div.drop").html("");
+						$("div.drop").show();
+					});
 					organOnBodyArray = [0, 0, 0, 0, 0, 0, 0];
 					initGlobalOrganValueArray();
 					//use reset values to change organ bars
 					resetOrganBars();
 					//update when reset all factors
-					sendAjaxForSim(createFactors());
+					setEnvironmentBG(0, createFactors());
 				});
 				
 				//set save			
@@ -228,9 +232,12 @@
 							});
 							//set retrieval from save slot
 							$("#saveSlot" + index).css("opacity", "1").on("click", function() {
-								var tempObj = saveContainer["save" + index];
+								var tempObj = saveContainer["save" + index];	
 								regenerateFromSave(tempObj);
-								recoverBodyOrgans(index);
+								$("div.drop").fadeOut(250);
+								$("div.drop").first().fadeOut(250, function(){
+									recoverBodyOrgans(index);
+								});								
 							});
 							break;
 						}
@@ -381,66 +388,12 @@
 				setEnvironmentBG(savedObjectToBack.env_id, savedObjectToBack);
 			}
 
-			//Ajax send when enter or change Environment 
-			function sendAjaxForSim(sentDataObj) {
-
-				printObject(sentDataObj);
-				$.ajax({
-					method: "POST",
-					url : urlToSend,
-					data : sentDataObj
-				}).done(function(msg) {
-					console.log("updates acquired");
-					var newJsonObject = parseJSONText(msg);		
-					globalJsonArray = newJsonObject;
-					updateAllValues(newJsonObject);
-				});
-			}
 			
-			//Ajax send when save or clear saves 
-			function sendAjaxForSave() {
-				for(var indexS = 3;indexS>0; indexS--){
-					var sentSave = saveContainer["save" + indexS];		
-						if(sentSave.saved){
-							var sentDataObj = new Object();
-							sentDataObj["pack" + indexS] = [];
-							var sentDataObjPackArray = sentDataObj["pack" + indexS];
-							sentDataObjPackArray.push(999);
-							for(var indexPack = 0; indexPack<7;indexPack++){
-								if(sentSave.pack[indexPack] !== 0){
-									var productId =  parseInt(sentSave.pack[indexPack].substring(7));
-									sentDataObjPackArray.push(productId);
-								}else{
-									sentDataObjPackArray.push(0);
-								}							
-							}
-							
-							var toSentJson = JSON.stringify(sentDataObj);
-							console.log(toSentJson);
-							console.log("send to save pack");
-							$.ajax({
-								method: "POST",
-								url : contextPath + "/simulator/savePackAction",
-								data : toSentJson,
-								contentType:"application/json"
-							}).done(function(msg) {
-								console.log("saved");
-								console.log("msg: " + msg);					
-							}).fail(function(msg){
-								console.log("failed");
-								console.log("msg: " + msg);		
-							});
-							break;
-						}
-					
-
-				}				
-			}
 			
 			//set organ bars original
 			function initOrganBars() {
 				$("span.o_old").css("width", initValue+50+"px");
-				$("span.o_new").css("width", initValue+50+"px");				
+				$("span.o_new").css("width", initValue+49+"px");				
 			}
 
 
@@ -450,21 +403,26 @@
 			  for (var iii = 1; iii < 799; iii++) {
 				var existIndex = $("img[name='product" + iii + "']").attr("name"); 
 				if(existIndex !== undefined){
-				$("img[name='product" + iii + "']").off("mouseover", function() {
-				}).off("mouseout", function() {					
-				});
+					$("img[name='product" + iii + "']").off("mouseover", function() {
+					}).off("mouseout", function() {					
+					});
+					
+					$("img[name='product" + iii + "']").on("mouseover", function() {
+						var productId = $(this).attr("name");  
+						var valueBox = createValueBox(jsonarrayToUpdate, productId);
+						
+						//start bar animation
+						adjustOrganBars(valueBox.categoryIndex + 1, valueBox);
+					}).on("mouseout", function() {
+						var productId = $(this).attr("name"); 
+						resetOrganBars();
+						
+					}).on("mousedown",function(){
+						
+					}).on("mouseup",function(){
+							
+					});
 				
-				$("img[name='product" + iii + "']").on("mouseover", function() {
-					var productId = $(this).attr("name");  
-					var valueBox = createValueBox(jsonarrayToUpdate, productId);
-					
-					//start bar animation
-					adjustOrganBars(valueBox.categoryIndex + 1, valueBox);
-				}).on("mouseout", function() {
-					var productId = $(this).attr("name"); 
-					resetOrganBars();
-					
-				});
 				} 
 			  }
 			  adjustOrgansWithEnvironment();
@@ -627,13 +585,142 @@
 			function recoverBodyOrgans(savingSlotIndex){
 				var packToRecover = saveContainer["save"+savingSlotIndex].pack;
 				for(var iiii=0;iiii<7;iiii++){
-					alert(packToRecover[iiii]);
+					var productId = packToRecover[iiii]
+					if(productId !== 0){
+						var tempImg64 = $("img[name='"+productId+"']").attr("src");
+						$("#o_"+(iiii+1)).html("<img>");
+						$("#o_"+(iiii+1)+" img").attr("name", productId).attr("class", "p_drag draggable3 ui-draggable ui-draggable-handle")
+						.attr("categoryid",productId.substring(7,8))
+						.attr("src", tempImg64);
+						organOnBodyArray[iiii] = productId;
+					}else{
+						$("#o_"+(iiii+1)).html("");
+						organOnBodyArray[iiii] = 0;
+					}
 				}
-				
-				alert(packToRecover);
+				$("div.drop").fadeIn(350);
+			}
+			//add to cart
+		    function addingToCart() {		    	
+		    	var firstSend = true;
+		    	var productCount = 0;
+
+		    	for (var bodyIndex = 6;bodyIndex >= 0;bodyIndex--){
+		    		if(organOnBodyArray[bodyIndex] !== 0){
+		    			if(bodyIndex == 0){
+		    				setTimeoutToGo(firstSend, 0);
+		    			}else if(bodyIndex == 1){
+		    				setTimeoutToGo(firstSend, 1);
+		    			}else if(bodyIndex == 2){
+		    				setTimeoutToGo(firstSend, 2);
+		    			}else if(bodyIndex == 3){
+		    				setTimeoutToGo(firstSend, 3);
+		    			}else if(bodyIndex == 4){
+		    				setTimeoutToGo(firstSend, 4);
+		    			}else if(bodyIndex == 5){
+		    				setTimeoutToGo(firstSend, 5);
+		    			}else if(bodyIndex == 6){
+		    				setTimeoutToGo(firstSend, 6);
+		    			}
+		    			
+		    		}		    		
+		    	}
+			}
+		    //
+		    function setTimeoutToGo(firstSend, ii){
+		    	var lastIndex = 0;
+		    	if(firstSend){
+    				lastIndex = ii + 1;
+    			}		    			
+    			setTimeout(function(){
+    				var pdIdtoSent = organOnBodyArray[ii].substring(7);
+    				sendAjaxToCart(pdIdtoSent, lastIndex);
+    			}, 20 * ii + 1);
+    			firstSend = false;
+    			return lastIndex;
+		    }
+		    
+		    //Ajax send when enter or change Environment 
+			function sendAjaxForSim(sentDataObj) {
+
+				printObject(sentDataObj);
+				$.ajax({
+					method: "POST",
+					url : urlToSend,
+					data : sentDataObj
+				}).done(function(msg) {
+					console.log("updates acquired");
+					var newJsonObject = parseJSONText(msg);		
+					globalJsonArray = newJsonObject;
+					updateAllValues(newJsonObject);
+				});
 			}
 			
-		});//===%%%%===  END of DOCUMENT READY  ===%%%%=== 
+			//Ajax send when save or clear saves 
+			function sendAjaxForSave() {
+				for(var indexS = 3;indexS>0; indexS--){
+					var sentSave = saveContainer["save" + indexS];		
+						if(sentSave.saved){
+							var sentDataObj = new Object();
+							sentDataObj["pack" + indexS] = [];
+							var sentDataObjPackArray = sentDataObj["pack" + indexS];
+							sentDataObjPackArray.push(999);
+							for(var indexPack = 0; indexPack<7;indexPack++){
+								if(sentSave.pack[indexPack] !== 0){
+									var productId =  parseInt(sentSave.pack[indexPack].substring(7));
+									sentDataObjPackArray.push(productId);
+								}else{
+									sentDataObjPackArray.push(0);
+								}							
+							}
+							
+							var toSentJson = JSON.stringify(sentDataObj);
+							console.log(toSentJson);
+							console.log("send to save pack");
+							$.ajax({
+								method: "POST",
+								url : contextPath + "/simulator/savePackAction",
+								data : toSentJson,
+								contentType:"application/json"
+							}).done(function(msg) {
+								console.log("saved");
+								console.log("msg: " + msg);					
+							}).fail(function(msg){
+								console.log("failed");
+								console.log("msg: " + msg);		
+							});
+							break;
+						}
+					
+
+				}				
+			}
+		    
+		    //send ajax to cart
+		    function sendAjaxToCart(productIdToSend, lastIndex){
+		    	var urlToCart = contextPath + "/shopping/setCart.action";
+		    	var cartData = {"cartVO.product_id": productIdToSend};
+		    	console.log("send cart productId: " + productIdToSend);
+		    	$.ajax({
+		    		method:"POST",
+		    		url:urlToCart,
+		    		data:cartData
+		    	}).done(function(msg){
+		    		console.log(msg);
+		    		$(".cart_anchor").text(msg);
+		    	});
+		    	var categoryIndex = parseInt(productIdToSend.substring(0,1));
+	    		if(categoryIndex == lastIndex){
+		            //Select item image and pass to the function
+		    		$('html, body').animate({
+			           'scrollTop' : $(".cart_anchor").position().top
+			        });
+		    		var flyImg = $("#o_"+productIdToSend.substring(0,1));
+		    		flyToElement(flyImg, $('.cart_anchor'));
+	    		}
+		    }
+			
+		});//========================%%%%===  END of DOCUMENT READY  ===%%%%======================== 
 
 		//init document save objects
 		function initSaveObject() {
