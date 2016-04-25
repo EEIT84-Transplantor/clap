@@ -46,13 +46,15 @@ public class DeleteCartAction extends ActionSupport implements ServletRequestAwa
 			
 		} else {
 			Hashtable<Integer, Integer> temp = (Hashtable<Integer, Integer>)request.getSession().getAttribute("tempCart");
+			Integer deleteIndex = 0;
 			for(Integer i:temp.keySet()){
 				
 				if(Integer.parseInt(productid) == i){
-					temp.remove(i);
+					deleteIndex = i;
+					
 				}
 			}
-			
+			temp.remove(deleteIndex);
 			Integer totalCart = 0;
 			for(Integer integer :temp.keySet()){
 				totalCart += temp.get(integer);				

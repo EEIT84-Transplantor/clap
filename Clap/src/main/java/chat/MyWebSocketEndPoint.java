@@ -13,7 +13,7 @@ import javax.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/chat.c")
 public class MyWebSocketEndPoint {
-
+//
 private static final String USERNAME_KEY = "username";
 private static Map<String, Session> clients = Collections.synchronizedMap(new LinkedHashMap<String, Session>());
 @OnOpen
@@ -36,14 +36,30 @@ System.out.println("hi");
     //Give a list current online users to the new socket connection
     //because we store username as the key of the map, we can get all
     //  username list from the map's keySet
-    String response = "newUser|" + String.join("|", clients.keySet());
-    session.getBasicRemote().sendText(response);
-
+    System.out.println(newUsername);
+	if (newUsername.equalsIgnoreCase("admin")){
+		 String response = "newUser|" + String.join("|", clients.keySet());
+		 session.getBasicRemote().sendText(response);
+	}
     //Loop through all socket's session obj, then send a text message
-    for (Session client : clients.values()) {
-        if(client == session) continue;
-        client.getBasicRemote().sendText("newUser|" + newUsername);
+    for (String client: clients.keySet()){
+    	if (client.equalsIgnoreCase("admin")){
+    		if (clients.get(client)==session) continue;
+    		clients.get(client).getBasicRemote().sendText("newUser|" + newUsername);
+    		
+//    		for (Session client1 : clients.values()) {
+//    	        if(client1 == session) continue;
+//    	        clients.get(client).getBasicRemote().sendText("newUser|" + newUsername);
+//    	    }
+    	}else if (clients.get(client)==session){
+    		  String response = "newUser| Hi, How may I help you today" ;
+    		  session.getBasicRemote().sendText(response);
+    	}
     }
+//    for (Session client : clients.values()) {
+//        if(client == session) continue;
+//        client.getBasicRemote().sendText("newUser|" + newUsername);
+//    }
 }
 
 @OnMessage
@@ -55,25 +71,26 @@ public void onMessage(Session session, String message) throws Exception {
     String[] data = message.split("\\|");
     String destination = data[0];
     String messageContent = data[1];
-
     //Retrieve the sender's username from it's property
     String sender = (String)session.getUserProperties().get(USERNAME_KEY);
-
+System.out.println(destination);System.out.println("=================="+sender);
     //Deliver the message according to the destination
     //Outgoing Message format: "message|sender|content|messageType?"
     //the message type is optional, if the message is intended to be broadcast
     //  then the message type value is "|all"
-    if(destination.equals("all")) {
+    if(destination.equals("admin")) {
         //if the destination chat is 'all', then we broadcast the message
-        for (Session client : clients.values()) {
-            if(client.equals(session)) continue;
-            client.getBasicRemote().sendText("message|" + sender + "|" + messageContent + "|all" );
-        }
+    	clients.get("admin").getBasicRemote().sendText("message|" + sender + "|" + messageContent);
+//    	for (Session client : clients.values()) {
+//            if(client.equals(session)) continue;
+//            client.getBasicRemote().sendText("message|" + sender + "|" + messageContent + "|all" );
+//        }
     } else {
         //find the username to be sent, then deliver the message
+    
         Session client = clients.get(destination);
-        String response = "message|" + sender + "|" + messageContent;
-        client.getBasicRemote().sendText(response);
+        String response = "message|" + sender+ "|" + messageContent;
+        clients.get(destination).getBasicRemote().sendText(response);
     }
 }
 

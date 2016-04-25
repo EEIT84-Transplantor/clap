@@ -13,12 +13,12 @@
         <aside>
             <h5>Online User(s)</h5>
             <ul id="userList">
-                <li id="all" class="hoverable">All</li>
+                <li id="admin" class="hoverable">admin</li>
             </ul>
         </aside>
         <article>
             <div id="dialog">
-                <span>Chat to <span id="chatTo">All</span></span>
+                <span>Chat to <span id="chatTo">admin</span></span>
                 <div id="message-board"></div>
                 <hr>
                 <textarea id="message" placeholder="message.."></textarea>
@@ -37,15 +37,15 @@
         var sendBtnEl = articleEl.querySelector('#send');
         //label in the message board title
         var chatToEl = articleEl.querySelector('#chatTo'); 
-        // All btn, to chat to all people in the room
-        var chatToAllEl = document.querySelector('#all');
+        // admin btn, to chat to admin people in the room
+        var chatToAllEl = document.querySelector('#admin');
 
         // current chat destination
-        var chatTo = 'all'; 
+        var chatTo = 'admin'; 
 
         //Chat room that holds every conversation
         var chatRoom = {
-            'all': []
+            'admin': []
         };
 
         //socket object.
@@ -97,7 +97,7 @@
             disconnectBtnEl.disabled = true;
             usernameInputEl.value = '';
             messageBoardEl.innerHTML = '';
-            chatToEl.innerHTML = 'All';
+            chatToEl.innerHTML = 'admin';
             usernameListEl.innerHTML = '';
         }
         
@@ -114,6 +114,8 @@
                 liEl.id = username;
                 liEl.textContent = username;
                 liEl.onclick = chatToFn(username);
+                
+                
                 if(username != usernameInputEl.value) liEl.classList.add('hoverable');
                 documentFragment.appendChild(liEl);
             };
@@ -122,12 +124,18 @@
 
         function getMessage(sender, message, to) {
                 to = to || sender;
-
+				console.log(sender+"   " +message +"   "+to);
                 if(chatTo == to) {
                     var newChatEl = createNewChat(sender, message);
                     messageBoardEl.appendChild(newChatEl);
                 } else {
-                    var toEl = usernameListEl.querySelector('#' + to);
+                	 var toEl ;
+                	if (usernameInputEl.value.toLowerCase()!="admin"){
+                		toEl = usernameListEl.querySelector('#admin');
+                	}else{
+                		toEl = usernameListEl.querySelector('#' + to);
+                	}
+                
                     addCountMessage(toEl);
                 }
 
@@ -153,7 +161,7 @@
             if(sender == usernameInputEl.value)
                 sender = 'me';
 
-            senderEl.textContent = sender;
+            senderEl.textContent = sender+"    :  ";
             messageEl.textContent = message;
 
             newChatDivEl.appendChild(senderEl);
@@ -176,7 +184,7 @@
         }
 
         sendBtnEl.onclick = sendMessage;
-        chatToAllEl.onclick = chatToFn('all');
+        chatToAllEl.onclick = chatToFn('admin');
 
         function sendMessage() {
             var message = messageInputEl.value;
@@ -190,26 +198,34 @@
         }
 
         function chatToFn(username) {
-            return function(e) {
+        
+        	return function(e) {
                 if(username == usernameInputEl.value) return;
-
-                var countEl = usernameListEl.querySelector('#' + username + '>.count');
-                if(countEl) {
-                    countEl.remove();
-                }
-
-                chatToEl.textContent = username;
-                chatTo = username;
-                messageBoardEl.innerHTML = '';
-
-                var conversationList = chatRoom[chatTo];
-                if(!conversationList) return;
-                var df = document.createDocumentFragment();
-                conversationList.forEach(function (conversation) {
-                	var con = document.createTextNode(conversation);
-                    df.appendChild(con);
-                });
-                messageBoardEl.appendChild(df);
+                var countEl;
+                if(usernameInputEl.value.toLowerCase()=="admin"){
+                	countEl= usernameListEl.querySelector('#' + username + '>.count');
+            	}else{
+            		countEl = usernameListEl.querySelector('#' + "admin" + '>.count');
+            	}
+	               
+	                if(countEl) {
+	                    countEl.remove();
+	                }
+	
+	                chatToEl.textContent = username;
+	                chatTo = username;
+	                messageBoardEl.innerHTML = '';
+	
+	                var conversationList = chatRoom[chatTo];
+	                if(!conversationList) return;
+	                var df = document.createDocumentFragment();
+	                console.log(conversationList);
+	                conversationList.forEach(function (conversation) {
+	                	console.log(conversation);
+	                	var con = document.createTextNode(conversation);
+	                    df.appendChild(con);
+	                });
+	                messageBoardEl.appendChild(df);
             }
         }
         </script>
