@@ -74,7 +74,7 @@
 					<li class="active"><a href="#">About</a></li>
 					<li><a
 						href="${pageContext.request.contextPath}/simulator/simulatorAction.action">Simulator</a></li>
-					<li><a href="#">Contact</a></li>
+					<li><a href="${pageContext.request.contextPath}/chat/chatpage.jsp">Contact</a></li>
 					<li><a href="<c:url value="/member/account.jsp"/>">Account</a></li>
 					<c:if test="${login.type==2}">
 						<li><a
