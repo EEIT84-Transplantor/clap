@@ -13,7 +13,7 @@
         <aside>
             <h5>Online User(s)</h5>
             <ul id="userList">
-                <li id="admin" class="hoverable">admin</li>
+
             </ul>
         </aside>
         <article>
@@ -125,8 +125,9 @@
         function getMessage(sender, message, to) {
                 to = to || sender;
 				console.log(sender+"   " +message +"   "+to);
-                if(chatTo == to) {
-                    var newChatEl = createNewChat(sender, message);
+				  var  newChatEl = createNewChat(sender, message);
+				if(chatTo == to) {
+                   
                     messageBoardEl.appendChild(newChatEl);
                 } else {
                 	 var toEl ;
@@ -139,8 +140,10 @@
                     addCountMessage(toEl);
                 }
 
-                if(chatRoom[to]) chatRoom[to].push(newChatEl);
-                else chatRoom[to] = [newChatEl];
+                if(chatRoom[to]){ chatRoom[to].push(newChatEl);
+
+                }else{console.log(newChatEl); chatRoom[to] = [newChatEl];
+               }
         }
 
         function removeUser(removedUsername) {
@@ -198,7 +201,7 @@
         }
 
         function chatToFn(username) {
-        
+        	console.log(username);
         	return function(e) {
                 if(username == usernameInputEl.value) return;
                 var countEl;
@@ -215,15 +218,15 @@
 	                chatToEl.textContent = username;
 	                chatTo = username;
 	                messageBoardEl.innerHTML = '';
-	
+	console.log(chatRoom);
 	                var conversationList = chatRoom[chatTo];
 	                if(!conversationList) return;
 	                var df = document.createDocumentFragment();
 	                console.log(conversationList);
 	                conversationList.forEach(function (conversation) {
 	                	console.log(conversation);
-	                	var con = document.createTextNode(conversation);
-	                    df.appendChild(con);
+// 	                	var con = document.createTextNode(conversation);
+	                    df.appendChild(conversation);
 	                });
 	                messageBoardEl.appendChild(df);
             }

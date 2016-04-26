@@ -52,7 +52,7 @@ System.out.println("hi");
 //    	        clients.get(client).getBasicRemote().sendText("newUser|" + newUsername);
 //    	    }
     	}else if (clients.get(client)==session){
-    		  String response = "newUser| Hi, How may I help you today" ;
+    		  String response = "message|admin| Hi, How may I help you today" ;
     		  session.getBasicRemote().sendText(response);
     	}
     }
