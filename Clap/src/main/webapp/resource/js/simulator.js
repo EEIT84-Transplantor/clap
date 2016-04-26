@@ -23,21 +23,27 @@
 		}
 		
 		//set open background color animation to dark
-		$("body").hide();
+		$("body").hide();		
 		$("html").show().animate({
 			backgroundColor : '#031014'
 		}, 200, "linear", function() {
 			$("html").animate({
 				backgroundColor : '#062128'
-			}, 300, "linear");
-			$(document).ready(function() {
-				$("body").fadeIn(400);
-			});
+			}, 300, "linear");			
 		});
 
 		//===%%%%===  DOCUMENT READY  ===%%%%=== 
-		$(document).ready(function() {
+		$(document).ready(function() {			
 			var environmentIndex = 0;
+			
+			//use init methods for document			
+			initAjaxForSim(createFactors());
+			initOrganBars();
+			initSaveObject();
+			initChangeBackClick();
+			initOnEvents();
+			
+			
 			//set onclick to change env background
 			function initChangeBackClick() {
 				$(".factor_item").on("click", function() {
@@ -93,13 +99,23 @@
 				}
 			}
 			
-			//use init methods for document
-			sendAjaxForSim(createFactors());
-			initOrganBars();
-			initSaveObject();
-			initChangeBackClick();
-			initOnEvents();
+			//init ajax for sim 
+			function initAjaxForSim(sentDataObj) {
 
+				printObject(sentDataObj);
+				$.ajax({
+					method: "POST",
+					url : urlToSend,
+					data : sentDataObj
+				}).done(function(msg) {
+					console.log("updates acquired");
+					var newJsonObject = parseJSONText(msg);		
+					globalJsonArray = newJsonObject;
+					updateAllValues(newJsonObject);
+					$("body").fadeIn(400);
+				});
+			}
+			
 			function initOnEvents(){
 				//set add cart
 				$("#s_organs_r").on("click", function(){
