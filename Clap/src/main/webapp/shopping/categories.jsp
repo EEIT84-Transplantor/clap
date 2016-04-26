@@ -15,7 +15,6 @@
 <link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/silderbanner.css"/>" rel="stylesheet">
-
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
