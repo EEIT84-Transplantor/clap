@@ -19,7 +19,11 @@ SELECT * from creditcard;
 <!-- Bootstrap -->
 <link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
-
+<style type="text/css">
+th,td{
+background:#000;
+}
+</style>
 </head>
 <body>
 
@@ -29,79 +33,58 @@ SELECT * from creditcard;
 
 	<section id="wrap">
 		<div class="container">
-			<form class="form-horizontal" action='<c:url value="/setting/oneClickAction.action"/>' method="POST">
-				<div class="table-responsive">
-					<table class="table table-bordered table-striped table-highlight" hidden="true">
-					<label for="oneclick">Do you want to activate OneClick shopping</label>
-<!-- 自己刪 -->
-<!-- 					<div class="radio"> -->
-<!-- 						<label> Yes <input class="form-control" name="oneclick" type="radio" value="true"> -->
-<!-- 						</label> -->
-<!-- 					</div> -->
-<!-- 					<div class="radio"> -->
-<!-- 						<label> <input class="form-control" name="oneclick" type="radio" value="false" checked="checked"> No -->
-<!-- 						</label> -->
-<!-- 					</div> -->
-<!-- 自己刪 -->
-<form role="form">
-    <div class="radio">
-      <label><input type="radio" name="oneclick" value="true">Yes</label>
-    </div>
-    <div class="radio">
-      <label><input type="radio" name="oneclick" value="false" checked="checked">No</label>
-    </div>
-  </form>
+			<div class="row">
+				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
+				<div class="col-md-10" style="padding-left: 20px;">
+					<h2>One click setting</h2>
 
-          
+					<form class="form-horizontal" action='<c:url value="/setting/oneClickAction.action"/>' method="POST">
+
+						<p>Do you want to activate OneClick shopping</p>
 
 
+						<div class="radio">
+							<label><input type="radio" name="oneclick" value="true">Yes</label>
+						</div>
+						<div class="radio">
+							<label><input type="radio" name="oneclick" value="false" checked="checked">No</label>
+						</div>
+						<div class="table" style="margin-top:20px;">
+							<table class="table table-bordered table-striped" hidden="true">
 
+							
+								<tr>
+									<th>Deliver to</th>
+									<th>Phone</th>
+									<th>Hospital</th>
+									<th>Credit Card</th>
+								</tr>
+								<tr>
+									<td>${login.name}<input type="text" style="color: black; display: none;" value="${login.email}" readonly="readonly" name="email">
+									</td>
 
-
-
-
-
-
-
-
-					<br>
-
-					<tr>
-						<th colspan="4" id="tableTitle">One Click Setting</th>
-					</tr>
-					<tr>
-						<th>Deliver to</th>
-						<th>Phone</th>
-						<th>Hospital</th>
-						<th>Credit Card</th>
-					</tr>
-					<tr>
-						<td>${login.name}
-						<input type="text" style="color: black;display:none;" value="${login.email}" readonly="readonly" name="email">
-						</td>
-						
-						<td><input type="text" style="color: black;" value="${login.phone}" name="phone"></td>
-						<td><select style="color: black;" name="id">
-								<c:forEach var="row" items="${result.rows}">
-									<option value="${row.hospital_id}">${row.hospital_name}</option>
-								</c:forEach>
-						</select></td>
-						<td><select style="color: black;" name="number">
-								<c:forEach var="row" items="${creditcards.rows}" >
-									<option value="${row.cc_number}">${row.cc_number}</option>
-								</c:forEach>
-						</select></td>
-					</tr>
-					</table>
+									<td><input type="text" style="color: black; width:100%;" value="${login.phone}" name="phone"></td>
+									<td><select style="color: black; max-width:300px;" name="id">
+											<c:forEach var="row" items="${result.rows}">
+												<option value="${row.hospital_id}">${row.hospital_name}</option>
+											</c:forEach>
+									</select></td>
+									<td><select style="color: black;" name="number">
+											<c:forEach var="row" items="${creditcards.rows}">
+												<option value="${row.cc_number}">${row.cc_number}</option>
+											</c:forEach>
+									</select></td>
+								</tr>
+							</table>
+						</div>
+					</form>
+					<form role="form">
+						<button class="btn btn-default" type="button" style="display: none;">Submit</button>
+						<button class="btn btn-default" type="button" style="display: none;">Reset</button>
+					</form>
 				</div>
-			</form>
-			<form role="form">
-				<button class="btn btn-default" type="button" style="display: none;">Submit</button>
-				<button class="btn btn-default" type="button" style="display: none;">Reset</button>
-			</form>
 
-
-
+			</div>
 		</div>
 	</section>
 
@@ -110,9 +93,9 @@ SELECT * from creditcard;
 	</footer>
 
 	<!-- 載入js -->
-	<script src="../resource/js/jquery-1.12.2.min.js"/>"></script>
-	<script src="../resource/js/bootstrap.min.js"/>"></script>
-	<script src="../resource/js/loginsignup.js"/>"></script>
+	<script src="../resource/js/jquery-1.12.2.min.js"></script>
+	<script src="../resource/js/bootstrap.min.js"></script>
+	<script src="../resource/js/loginsignup.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var oneClickYes = $("input[type='radio']").eq(0);
@@ -133,7 +116,7 @@ SELECT * from creditcard;
 				submitBtn.fadeOut();
 				var formTitle = $("#tableTitle");
 				formTitle.html("One Click Setting");
-				formToAction.submit();				
+				formToAction.submit();
 			});
 
 			//onclick submit button
@@ -142,7 +125,7 @@ SELECT * from creditcard;
 				var formTitle = $("#tableTitle");
 				formTitle.html("One Click Setting: info updated");
 				formToAction.submit();
-				
+
 			});
 			//onclick reset button
 			$("form button").eq(1).on("click", function() {

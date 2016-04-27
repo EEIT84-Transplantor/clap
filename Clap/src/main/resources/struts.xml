@@ -4,7 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 
-	<constant name="struts.devMode" value="true" />
+	<constant name="struts.devMode" value="false" />
 	<constant name="struts.objectFactory" value="spring" />
 	<constant name="struts.multipart.maxSize" value="-1" />
 
@@ -70,18 +70,9 @@
 				class="component.interceptor.PromoInterceptor" />
 			<interceptor name="AdminInterceptor"
 				class="component.interceptor.AdminInterceptor" />
-			<interceptor-stack name="loginStack">
-				<interceptor-ref name="loginInterceptor" />
-				<interceptor-ref name="defaultStack" />
-			</interceptor-stack>
 			<interceptor-stack name="paymentManageStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="paymentManageInterceptor" />
-				<interceptor-ref name="defaultStack" />
-			</interceptor-stack>
-			<interceptor-stack name="promoManageInterceptorStack">
-				<interceptor-ref name="AdminInterceptor" />
-				<interceptor-ref name="promoManageInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>

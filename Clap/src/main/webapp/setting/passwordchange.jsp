@@ -21,7 +21,10 @@
 
 	<section id="wrap">
 		<div class="container">
-
+<div class="row">
+				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
+				<div class="col-md-10">
+				<h2>Change password</h2>
 			<div class="center-block" style="width:40%;">
 			<form role="form" action="<c:url value="/setting/changePasswordAction"/>" method="POST" >
 
@@ -45,7 +48,7 @@
 				<button class="btn btn-default" type="button">Submit</button>
 			</form>
 			</div>
-		</div>
+		</div>	</div>
 	</section>
 
 	<footer>

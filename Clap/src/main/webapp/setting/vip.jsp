@@ -20,7 +20,10 @@
 
 	<section id="wrap">
 		<div class="container">
-
+<div class="row">
+				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
+				<div class="col-md-10">
+				<h2>Change setting</h2>
 			<form class="form-horizontal" role="form" method="POST" style="border: solid white;">
 				<div class="form-group">
 					<label class="col-md-2 control-label" for="expire">Your VIP valid until:</label>
@@ -44,7 +47,7 @@
 			<br>
 			<button type="button" class="btn btn-success">Confirm auto renewal</button>
 			<button type="button" class="btn btn-default">Buy one more year</button>
-		</div>
+		</div></div>
 	</section>
 
 	<footer>
