@@ -177,7 +177,7 @@
 						window.location.href = "<c:url value='/shopping/appointmentAction.action'/>";
 					});
 				} else {
-					$("#error").text("Please Choolse a Credit Card")
+					$("#error").text("Please Choose a Credit Card")
 				}
 			})
 		})
