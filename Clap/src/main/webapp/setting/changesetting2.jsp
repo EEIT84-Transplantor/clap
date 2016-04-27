@@ -11,7 +11,9 @@
 <!-- Bootstrap -->
 <link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
-
+<!-- <style> -->
+	
+<!-- </style> -->
 </head>
 <body>
 	<header>
@@ -23,16 +25,16 @@
 			<form role="form" action="${pageContext.request.contextPath}/setting/changeSettingAction" method="POST" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="email">Email:</label>
-					<input class="form-control" name="email" type="email" value="poan@gmail.com" readonly="readonly">
+					<input class="form-control" name="email" type="email" value="${login.email}" readonly="readonly">
 				</div>
 
 				<div class="form-group">
 					<label for="name">Name:</label>
-					<input class="form-control" name="name" type="text" value="test" />
+					<input class="form-control" name="name" type="text" value="${login.name}" />
 				</div>
 				<div class="form-group">
 					<label for="phone">Phone:</label>
-					<input class="form-control" name="phone" type="number" maxlength="12">
+					<input class="form-control" name="phone" type="number" maxlength="12" value="${login.phone}">
 				</div>
 				<div class="form-group">
 					<label for="photo">Photo:</label>

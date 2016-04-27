@@ -23,9 +23,9 @@
 <link href="<c:url value="/resource/css/jquery-ui.structure.min.css"/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/jquery-ui.theme.min.css"/>" rel="stylesheet">
 <style type="text/css">
-input, select {
-	background-color: black;
-}
+/* input, select { */
+/* 	background-color: black; */
+/* } */
 
 #insertform {
 	display: none;

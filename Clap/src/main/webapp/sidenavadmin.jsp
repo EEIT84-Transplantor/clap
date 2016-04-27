@@ -6,6 +6,7 @@
       <a href="${pageContext.request.contextPath}/product/showInOutLog.action" class="list-group-item sub_list">Manage In Out Log</a>
       <a href="${pageContext.request.contextPath}/product/inventory.action" class="list-group-item sub_list">Import/Export</a>
       <a href="${pageContext.request.contextPath}/paymentmanage/prePromoteAction.action" class="list-group-item sub_list">Manage Promotion</a>
+  	  <a href="${pageContext.request.contextPath}/chat/chatpage.jsp" class="list-group-item sub_list">Manage Chat</a>
   </div>
 </div>
 
