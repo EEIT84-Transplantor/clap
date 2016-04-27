@@ -39,12 +39,12 @@
 					<script>
 						var controller = new ScrollMagic.Controller();
 						var tween = new TimelineMax()
-										.to("#front",1,{y:"60%"})
-										.to("#middle",1,{y:"40%"},0)
-										.to("#end",1,{y:"20%"},0)
-										.from("#slogan",0.1,{y:"70%",ease: Power2.easeOut,autoAlpha:0},0.4)
+										.to("#front",3,{y:"60%"})
+										.to("#middle",3,{y:"40%"},0)
+										.to("#end",3,{y:"20%"},0)
+										.from("#slogan",0.5,{y:"70%",ease: Power2.easeOut,autoAlpha:0},1)
 										
-						var scene = new ScrollMagic.Scene({triggerElement:"#screen",duration:"200%",triggerHook:"onEnter"})
+						var scene = new ScrollMagic.Scene({triggerElement:"#banner",duration:"150%"})
 										.addIndicators()
 										.addTo(controller)
 										.setTween(tween)
@@ -2021,7 +2021,7 @@
 					
 						var tween = new TimelineMax().fromTo($("#cellsvg path"),3.5,{fillOpacity:0},{strokeDashoffset:0,ease: Power1.easeIn})
 													 .to($("#cellsvg path"),1,{fillOpacity:1,strokeOpacity:0})
-													 .staggerFrom($("#og_text p"),3,{autoAlpha:0,y:"+=10",ease: Power0.easeNone},2,0)
+													 .staggerFrom($("#og_text p"),3,{autoAlpha:0,y:100,ease: Power0.easeNone},2,0)
 			 
 						var scene = new ScrollMagic.Scene({triggerElement:"#organ",offset:"100%"})
 										.addIndicators({name:"cell"})
@@ -3218,7 +3218,15 @@
 							$(this).css("stroke-dashoffset", lineLength);
 						})
 						
-						var tween = new TimelineMax().staggerTo($("#lg_text p"),3,{y:"-=10"},1,1)
+						console.log($("#lg_text p"));
+						
+						var tween = new TimelineMax().staggerFrom($("#lg_text p"),1,{autoAlpha:0,y:100},1,1)
+													 .to($("#lg_pic svg path"),2,{strokeDashoffset:0},0)
+													 .to($("#lg_pic svg path"),1,{autoAlpha:0},2)
+													 .from($("#lg_video"),1,{autoAlpha:0,onComplete:function(){
+														 $("#lg_video video")[0].play();
+													 }},2)
+													 
 						var scene = new ScrollMagic.Scene({triggerElement:"#lung"})
 										.addIndicators({name:"lung"})
 										.addTo(controller)
