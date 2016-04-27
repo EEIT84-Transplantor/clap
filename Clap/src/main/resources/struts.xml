@@ -60,18 +60,17 @@
 	<package name="payment" namespace="/payment" extends="struts-default">
 
 		<interceptors>
-			<interceptor name="loginInterceptor" class="component.interceptor.LoginInterceptor" />
-			<interceptor name="paymentManageInterceptor" class="component.interceptor.PaymentManageInterceptor" />
-			<interceptor name="promoManageInterceptor" class="component.interceptor.PromoInterceptor" />
-			<interceptor name="AdminInterceptor" class="component.interceptor.AdminInterceptor" />
+			<interceptor name="loginInterceptor"
+				class="component.interceptor.LoginInterceptor" />
+			<interceptor name="paymentManageInterceptor"
+				class="component.interceptor.PaymentManageInterceptor" />
+			<interceptor name="promoManageInterceptor"
+				class="component.interceptor.PromoInterceptor" />
+			<interceptor name="AdminInterceptor"
+				class="component.interceptor.AdminInterceptor" />
 			<interceptor-stack name="paymentManageStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="paymentManageInterceptor" />
-				<interceptor-ref name="defaultStack" />
-			</interceptor-stack>
-			<interceptor-stack name="promoManageInterceptorStack">
-				<interceptor-ref name="AdminInterceptor" />
-				<interceptor-ref name="promoManageInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
