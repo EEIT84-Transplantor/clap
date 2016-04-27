@@ -177,7 +177,7 @@
 						window.location.href = "<c:url value='/shopping/appointmentAction.action'/>";
 					});
 				} else {
-					$("#error").text("請先選擇信用卡在結帳")
+					$("#error").text("Please Choolse a Credit Card")
 				}
 			})
 		})
@@ -217,7 +217,7 @@
 				//隱藏清空新卡片表格
 				$("#hidden").toggle();
 			} else {
-				$("#false").text("信用卡資料錯誤");
+				$("#false").text("Credit Card is wrong, please try again");
 			}
 		}
 

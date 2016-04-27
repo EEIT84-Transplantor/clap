@@ -71,7 +71,7 @@
 								<td>${orderVO.total}</td>
 								<td>${orderVO.status}</td>
 								<td><c:if test="${orderVO.status==1}">
-										<input type="button" value="刪除" class="delete" />
+										<input type="button" value="delete" class="delete" />
 									</c:if></td>
 							</tr>
 						</c:forEach>
