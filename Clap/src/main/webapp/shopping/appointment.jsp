@@ -1,16 +1,6 @@
-<%@page import="hospital.model.HospitalVO"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="product.model.ProductVO"%>
-<%@page import="java.sql.Timestamp"%>
-<%@page import="shopping.model.OrderFormVO"%>
-<%@page import="hospital.model.DoctorVO"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="shopping.model.OrderDetailVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%@ page import="java.util.Map"%>
 <!DOCTYPE html>
 <html>
 <head>
