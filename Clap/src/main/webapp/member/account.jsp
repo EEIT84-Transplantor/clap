@@ -17,7 +17,7 @@ width:100%;
 padding:50px 0;
 background:#47BED9;
 }
-span{
+button span{
 display:block;
 margin-bottom:20px;
 }
@@ -34,7 +34,7 @@ margin-bottom:20px;
 				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
 				<div class="col-md-10">
 					<h2>Setting account </h2>
-					<p style="padding-left: 20px; margin-bottom:30px;">texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</p>
+					<p style="margin-bottom:30px;">texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</p>
 
 					<div class="row" style="padding-left: 15px;">
 						<div class="col-md-3">
