@@ -40,9 +40,13 @@ public class DeleteCartAction extends ActionSupport implements ServletRequestAwa
 		MemberVO memberVO = (MemberVO) request.getSession().getAttribute("login");
 		if (memberVO != null) {
 			String email = memberVO.getEmail();
-			cartService.removeCart(email, Integer.parseInt(productid));
+			Boolean check = cartService.removeCart(email, Integer.parseInt(productid));
 			//calculate total cart (not yet)
-			
+			try {
+				inputStream  = new ByteArrayInputStream(check.toString().getBytes("UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}	
 			
 		} else {
 			Hashtable<Integer, Integer> temp = (Hashtable<Integer, Integer>)request.getSession().getAttribute("tempCart");

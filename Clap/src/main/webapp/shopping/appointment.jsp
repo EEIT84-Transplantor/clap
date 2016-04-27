@@ -28,64 +28,6 @@
 </head>
 <body>
 
-	<!-- %
-		HospitalVO hospitalVO1 = new HospitalVO();
-		hospitalVO1.setId(11);
-		hospitalVO1.setName("臺大醫院");
-		hospitalVO1.setAddress("100台北市中正區中山南路8號");
-		OrderFormVO orderFormVO1 = new OrderFormVO();
-		orderFormVO1.setHospitalVO(hospitalVO1);
-		Map<String, Object> doctorVO1 = new HashMap<>();
-		doctorVO1.put("id", 1);
-		doctorVO1.put("name", "May");
-		ProductVO productVO1 = new ProductVO();
-		productVO1.setName("heart");
-		productVO1.setPrice(11111.0);
-		Map<String, Object> orderDetailVO1 = new HashMap<>();
-		orderDetailVO1.put("id", 111);
-		orderDetailVO1.put("orderFormVO", orderFormVO1);
-		orderDetailVO1.put("productVO", productVO1);
-		orderDetailVO1.put("ct_quantity", 1);
-		orderDetailVO1.put("doctorVO", doctorVO1);
-		orderDetailVO1.put("time", new Timestamp(new java.util.Date().getTime()));
-
-		HospitalVO hospitalVO2 = new HospitalVO();
-		hospitalVO2.setId(22);
-		hospitalVO2.setName("臺大醫院");
-		hospitalVO2.setAddress("100台北市中正區中山南路8號");
-		OrderFormVO orderFormVO2 = new OrderFormVO();
-		orderFormVO2.setHospitalVO(hospitalVO2);
-		Map<String, Object> doctorVO2 = new HashMap<>();
-		doctorVO2.put("id", 2);
-		doctorVO2.put("name", "May");
-		ProductVO productVO2 = new ProductVO();
-		productVO2.setName("heart");
-		productVO2.setPrice(22222.0);
-		Map<String, Object> orderDetailVO2 = new HashMap<>();
-		orderDetailVO2.put("id", 222);
-		orderDetailVO2.put("orderFormVO", orderFormVO2);
-		orderDetailVO2.put("productVO", productVO2);
-		orderDetailVO2.put("ct_quantity", 2);
-		orderDetailVO2.put("doctorVO", doctorVO2);
-		orderDetailVO2.put("time", new Timestamp(new java.util.Date().getTime()));
-
-		ArrayList<Map<String, Object>> orderList = new ArrayList<>();
-		orderList.add(orderDetailVO1);
-		orderList.add(orderDetailVO2);
-
-		int orderform_id = 1;
-		
-		pageContext.setAttribute("orderList", orderList);
-		pageContext.setAttribute("orderform_id", orderform_id);
-	%-->
-	<%-- 	<sql:query dataSource="clap/db" var="hospitalList"> --%>
-	<!-- 		select top(10) * from hospital  -->
-	<%-- 	</sql:query> --%>
-	<%-- 	<sql:query dataSource="clap/db" var="doctorList"> --%>
-	<!-- 		select top(10) * from doctor  -->
-	<%-- 	</sql:query> --%>
-
-
 	<header><jsp:include page="/header.jsp" /></header>
 	<div class="container">
 		<div class="row">

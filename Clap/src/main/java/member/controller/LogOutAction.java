@@ -16,7 +16,8 @@ public class LogOutAction extends ActionSupport{
 	public String execute(){
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
-		session.setAttribute("login",null);
+//		session.setAttribute("login",null);
+		session.invalidate();
 		return SUCCESS;
 	}
 }

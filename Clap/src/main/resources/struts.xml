@@ -48,12 +48,12 @@
 		<action name="renewVIPAction" class="setting.controller.RenewVIPAction">
 			<result name="success">/setting/vip.jsp</result>
 			<result name="input">/setting/vip.jsp</result>
-			<!-- <interceptor-ref name="creditCardInterceptor" /> -->
+			<interceptor-ref name="creditCardInterceptor" />
 		</action>
 		<action name="autoRenewVIPAction" class="setting.controller.AutoRenewVIPAction">
 			<result name="success">/setting/vip.jsp</result>
 			<result name="input">/setting/vip.jsp</result>
-			<!-- <interceptor-ref name="creditCardInterceptor" /> -->
+			<interceptor-ref name="creditCardInterceptor" />
 		</action>
 	</package>
 
@@ -71,7 +71,7 @@
 			</interceptor-stack>
 			<interceptor-stack name="promoManageInterceptorStack">
 				<interceptor-ref name="AdminInterceptor" />
-				<!-- <interceptor-ref name="promoManageInterceptor" /> -->
+				<interceptor-ref name="promoManageInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
@@ -115,12 +115,12 @@
 			<result>/paymentmanage/{1}.jsp</result>
 		</action>
 		<action name="prePromoteAction" class="prePromoteAction">
-			<!-- <interceptor-ref name="promoManageInterceptorStack" /> -->
+			<interceptor-ref name="promoManageInterceptorStack" />
 			<result name="success">/paymentmanage/setpromotion.jsp</result>
 			<result name="input">/paymentmanage/setpromotion.jsp</result>
 		</action>
 		<action name="setPromoteAction" class="setPromoteAction">
-			<!-- <interceptor-ref name="promoManageInterceptorStack" /> -->
+			<interceptor-ref name="promoManageInterceptorStack" />
 			<result name="success">/paymentmanage/setpromotion.jsp</result>
 			<result name="input">/paymentmanage/setpromotion.jsp</result>
 		</action>
@@ -246,6 +246,7 @@
 		</action>
 		<action name="deleteCartAction" class="shopping.controller.DeleteCartAction">
 			<result type="stream">
+				<param name="contentType">text/html</param>
 				<param name="inputName">inputStream</param>
 			</result>
 		</action>
