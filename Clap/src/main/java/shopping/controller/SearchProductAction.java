@@ -2,6 +2,7 @@ package shopping.controller;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import product.model.CategoryService;
 import product.model.ProductService;
 import product.model.ProductVO;
+import product.model.ProductimgVO;
 
 public class SearchProductAction extends ActionSupport implements ServletRequestAware{
     private HttpServletRequest request;
@@ -61,6 +63,7 @@ public class SearchProductAction extends ActionSupport implements ServletRequest
 	public String execute() throws Exception {
 		Integer categoryId = categoryService.selectByCategoryName(categoryname);
 		List<ProductVO> temp = productService.searchProduct(categoryId, min, max, keyword);
+		List<ProductimgVO> Pimages  = new ArrayList<ProductimgVO>();
 		JSONArray objectArray = new JSONArray();
   		for(ProductVO productVO:temp){
   			JSONObject object = new JSONObject();
@@ -69,6 +72,7 @@ public class SearchProductAction extends ActionSupport implements ServletRequest
   			object.put("id", productVO.getId());
   			object.put("image", productService.getProductImgById(productVO.getId()).getImg64());
   			objectArray.put(object);
+  			Pimages.add(productService.getProductImgById(productVO.getId()));
   		}
   		
        if(categoryId!=null||page!=null){
@@ -76,6 +80,7 @@ public class SearchProductAction extends ActionSupport implements ServletRequest
       		return SUCCESS; 
 		}else{
 			request.setAttribute("products", temp);
+			request.setAttribute("productImgs", Pimages);
 			return "search";  
 		}
 	}
