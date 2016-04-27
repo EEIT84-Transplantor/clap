@@ -1,0 +1,135 @@
+@CHARSET "UTF-8";
+
+/* all page */
+body {
+	margin: 0;
+}
+
+img {
+	position: absolute;
+	left: 0;
+}
+
+section {
+	height: 100vh;
+}
+
+section * {
+	position: absolute;
+}
+
+section>div {
+	width: 100%;
+	height: 100%
+}
+
+p {
+	font-size: 20px;
+	font-family: 'Alegreya Sans', sans-serif;
+}
+
+/* section banner */
+.screen {
+	height: 100vh;
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+}
+
+#front {
+	width: 60%;
+	bottom: 20%;
+}
+
+#middle {
+	width: 90%;
+	left: 30%;
+	top: -60%;
+}
+
+#end {
+	width: 80%;
+	left: 50%;
+	top: -10%
+}
+
+#slogan {
+	position: absolute;
+	top: 70%;
+	left: 58%;
+	font-size: 40px;
+	color: white;
+	font-family: 'Poiret One', cursive;
+}
+
+#bg {
+	height: 100%;
+	width: 100%
+}
+
+/* section origin */
+#origin {
+	height: 70%
+}
+
+#organ {
+	background-color: black;
+	position: relative;
+}
+
+#cellsvg {
+	position: absolute;
+	left: 25%;
+	top: 30%;
+}
+
+#og_text {
+	/* 	height:100%; */
+	width: 30%;
+	right: 20%;
+	top: 25%;
+	color: white;
+	vertical-align: middle;
+}
+
+/* section lung */
+#lg_video {
+	overflow: hidden;
+	height: 70%; 
+	width : 50%;
+	right: 0;
+	top: 0;
+	width: 50%;
+}
+
+#lg_video video {
+	position: absolute;
+	width:130%;
+	height: 100%;
+	right: -18%;
+}
+
+#lg_pic {
+	height: inherit;
+	width: 50%; 
+	top : 0;
+	right: 0;
+	top: 0;
+}
+
+#lg_pic svg {
+	width: 280px;
+	height: 480px;
+	right: 16%;
+	top:5%;
+}
+
+/* section structure */
+
+/* section team */
+
+/* section skill */
+
+/* section XXX */
+
+/* section XXX */

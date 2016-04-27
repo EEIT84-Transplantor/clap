@@ -473,7 +473,7 @@ header {
 }
 
 #sideMenu .panel {
-	background: #999;
+	background: white;
 	padding-bottom: 1px;
 }
 
@@ -484,7 +484,7 @@ header {
 }
 
 #sideMenu .sub_list {
-	color: #999;
+	color: white;
 	border: none;
 }
 
@@ -511,6 +511,27 @@ header {
 input, select, textarea{
 	color:#000;
 }
+#userList{
+
+	width: 150px; height: 500px;
+}
+
 #userList li{
-	background-color: green;
+	text-align: center;
+	display:block;
+	
+	width:match-parent;
+/* 	height:50px; */
+padding:20px 30px;
+
+}
+#userList li:hover{
+	background-color: #4D4A54;
+	 cursor: pointer;
+}
+#chatBackgroundWhole{
+	 background: url("../images/chatbackground.jpg") ;
+}
+#dialog{
+	width:match-parent;
 }

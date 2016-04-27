@@ -19,7 +19,7 @@
 <link href="<c:url value="/resource/css/simple-sidebar"/>" rel="stylesheet">
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
-<body>
+<body>	
 	<header><jsp:include page="/header.jsp" /></header>
 	<section id="top-wrap">
 		<div class="row">
@@ -225,6 +225,8 @@
 		</div>
 		</div>
 		</div>
+		<div id="ajaxloader" style="display:none">
+		<img src="${pageContext.request.contextPath}/resource/images/ajax loader.gif"></div>
 	</section>
 	<footer style="margin-top: -15px;"><jsp:include page="/footer.jsp" /></footer>
 	<!-- 載入js -->

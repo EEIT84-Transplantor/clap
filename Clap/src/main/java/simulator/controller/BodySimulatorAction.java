@@ -126,7 +126,7 @@ public class BodySimulatorAction extends ActionSupport {
 			for(ProductVO productVO:productVOs){
 				JSONObject productVOJson =new JSONObject();
 				JSONObject productimgVOJson = new JSONObject();
-				ProductimgVO temp = productService.getProductImgById(productVO.getId());
+//				ProductimgVO temp = productService.getProductImgById(productVO.getId());
 				productVOJson.put("id",productVO.getId());
 				productVOJson.put("name",productVO.getName());
 				productVOJson.put("price",productVO.getPrice());
@@ -140,20 +140,20 @@ public class BodySimulatorAction extends ActionSupport {
 				productVOJson.put("finalValue1",productVO.getFinalValue1());
 				productVOJson.put("finalValue2",productVO.getFinalValue2());
 				
-				productimgVOJson.put("id",temp.getId());
+//				productimgVOJson.put("id",temp.getId());
 //				productimgVOJson.put("img",temp.getImg());
 //				productimgVOJson.put("img64",temp.getImg64());
-				productimgVOs.add(temp);
+//				productimgVOs.add(temp);
 				productVOJsonArray.put(productVOJson);
 				productimgVOJsonArray.put(productimgVOJson);
 			}
 			JSONObject simulatorVOJSON = new JSONObject();
 			simulatorVOJSON.put("categoryVO", categoryJson);
-			simulatorVO.setCategoryVO(categoryVO);
+//			simulatorVO.setCategoryVO(categoryVO);
 			simulatorVOJSON.put("productVOs", productVOJsonArray);
-			simulatorVO.setProductVOs(productVOs);
+//			simulatorVO.setProductVOs(productVOs);
 			simulatorVOJSON.put("productimgVOs", productimgVOJsonArray);
-			simulatorVO.setProductimgVOs(productimgVOs);
+//			simulatorVO.setProductimgVOs(productimgVOs);
 			simulatorVOsArray.put(simulatorVOJSON);
 			
 		

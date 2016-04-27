@@ -23,7 +23,7 @@
     </div>
      <a href="#side_Contact" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Contact us</a>
     <div class="collapse" id="side_Contact">
-      <a href="" class="list-group-item sub_list">Contact us</a>
+      <a href="${pageContext.request.contextPath}/chat/chatpage.jsp" class="list-group-item sub_list">Contact us</a>
     </div>
      <a href="#side_Account" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Account</a>
     <div class="collapse" id="side_Account">
