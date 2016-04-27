@@ -47,7 +47,7 @@
 
 .title {
 	width: 80px;
-	word-break: break-all;
+word-wrap:break-word;
 	padding: 0;
 	margin: 0;
 }
