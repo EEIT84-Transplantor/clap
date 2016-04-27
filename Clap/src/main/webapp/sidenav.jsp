@@ -19,7 +19,7 @@
     </div>
      <a href="#side_Appointment" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Appointment</a>
     <div class="collapse" id="side_Appointment">
-      <a href="" class="list-group-item sub_list">Hospital</a>
+      <a href="${pageContext.request.contextPath}/hospital/hospitalInfo.action" class="list-group-item sub_list">Hospital</a>
     </div>
      <a href="#side_Contact" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Contact us</a>
     <div class="collapse" id="side_Contact">

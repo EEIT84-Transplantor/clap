@@ -87,6 +87,12 @@ public class SimulatorUtil {
 				}
 				
 				Double totalEffect = envValue * bmiValue * smokingValue * drinkingValue * exercisingValue;
+				if(skill==null){
+					skill=Math.ceil(Math.random()*100.0+1);
+				}
+				if(endurance==null){
+					endurance=Math.ceil(Math.random()*100.0+1);
+				}
 				finalValue1 = skill * totalEffect;
 				finalValue2 = endurance * totalEffect;
 				//結束

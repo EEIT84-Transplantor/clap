@@ -75,6 +75,7 @@ public class SetCreditCardAction extends ActionSupport implements ServletRequest
 
 	@Override
 	public String execute() throws Exception {
+		
 		CreditCardPK creditCardPK = new CreditCardPK();
 		creditCardPK.setCc_number(cc_number);
 		creditCardPK.setMb_email(mb_email);
@@ -82,7 +83,7 @@ public class SetCreditCardAction extends ActionSupport implements ServletRequest
 		creditCardVO.setCreditCardPK(creditCardPK);
 		creditCardVO.setCc_goodthru(cc_goodthru);
 		creditCardVO.setCc_cvv(cc_cvv);
-
+		System.out.println("sssssssssssssssssssssssssssssssssssssssssssssscreditCardVO"+creditCardVO.getCc_cvv());
 		creditCardService.setCard(creditCardVO);
 		inputStream = new ByteArrayInputStream("true".getBytes("UTF-8"));
 		return super.execute();
