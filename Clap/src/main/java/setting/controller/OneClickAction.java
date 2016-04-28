@@ -1,5 +1,10 @@
 package setting.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import member.model.MemberHibernateDAO;
@@ -63,6 +68,9 @@ public class OneClickAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		memberService.setOneClick(email, phone, id, number, oneclick);
+		HttpServletRequest request=ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		session.setAttribute("login",memberService.findByEmail(email));
 		return SUCCESS;
 	}
 

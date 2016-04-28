@@ -42,14 +42,24 @@ background:#000;
 
 						<p>Do you want to activate OneClick shopping</p>
 
-
+						<c:if test="${not login.oneclick}">
 						<div class="radio">
 							<label><input type="radio" name="oneclick" value="true">Yes</label>
 						</div>
 						<div class="radio">
 							<label><input type="radio" name="oneclick" value="false" checked="checked">No</label>
 						</div>
+						</c:if>
+						<c:if test="${login.oneclick}">
+						<div class="radio">
+							<label><input type="radio" name="oneclick" value="true" checked="checked">Yes</label>
+						</div>
+						<div class="radio">
+							<label><input type="radio" name="oneclick" value="false" >No</label>
+						</div>
+						</c:if>
 						<div class="table" style="margin-top:20px;">
+						
 							<table class="table table-bordered table-striped" hidden="true">
 
 							
