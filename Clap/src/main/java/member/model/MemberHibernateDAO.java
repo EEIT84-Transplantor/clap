@@ -47,6 +47,7 @@ public class MemberHibernateDAO implements MemberDAO {
 		MemberVO memberVO = new MemberVO();
 		memberVO.setEmail(email);
 		memberVO.setPassword(password);
+		memberVO.setAmount(0.0);
 		try {
 			session.save(memberVO);
 			return memberVO;

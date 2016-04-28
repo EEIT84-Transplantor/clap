@@ -4,10 +4,12 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <%
-	java.util.List<payment.model.PromoVO> promoVOs = (java.util.List<payment.model.PromoVO>) request.getAttribute("promoVOs");
+	java.util.List<payment.model.PromoVO> promoVOs = (java.util.List<payment.model.PromoVO>) request
+			.getAttribute("promoVOs");
 	String message = (String) request.getAttribute("message");
 	System.out.println("ggg" + message);
 	request.setAttribute("message", message);
+	
 	if (promoVOs == null) {
 		response.sendRedirect(request.getContextPath() + "/paymentmanage/prePromoteAction.action");
 	}
@@ -27,10 +29,9 @@
 	rel="stylesheet">
 <link href="../resource/css/customer.css" rel="stylesheet">
 <style type="text/css">
-input, select {
-	background-color: black;
-}
-
+/* input{  */
+/*  	background-color: #337ab7;  */
+/*  }  */
 #insertform {
 	display: none;
 }
@@ -46,18 +47,24 @@ input, select {
 
 .title {
 	width: 80px;
-	word-break: break-all;
+word-wrap:break-word;
 	padding: 0;
 	margin: 0;
 }
-.row{
-margin:10px 0;
+
+.row {
+	margin: 10px 0;
+}
+#successmessage{
+	color: green;
+	font-size: 18px;
+	
 }
 </style>
 </head>
 <body>
 	<header>
-		<jsp:include page="/header.jsp" />
+				<jsp:include page="/header.jsp" />
 	</header>
 	<section id="wrap">
 		<div class="container">
@@ -70,10 +77,12 @@ margin:10px 0;
 						<div class="col-md-2">
 							<input type="button" value="Add New Item" id="add" />
 						</div>
-						<div class="col-md-10" id="message">
-							<p>${message}</p>
+						<div class="col-md-10">
+							<p id="message">${message}</p>
+							<p id="successmessage">${successmessage}</p>
 							<s:fielderror name="promoVO.pm_discount" />
 						</div>
+			
 					</div>
 					<div class="row">
 						<div class="col-md-12 col-sm-12">
@@ -84,7 +93,7 @@ margin:10px 0;
 										<span>Search By:</span>
 									</div>
 									<div class="col-md-3 col-sm-5">
-										Starting Date<input type="datetime" name="expireFrom" />
+										Starting Date<input type="datetime" name="expireFrom"/>
 									</div>
 									<div class="col-md-3 col-sm-4">
 										Ending Date<input type="datetime" name="expireTo" />
@@ -99,8 +108,7 @@ margin:10px 0;
 										</select>
 									</div>
 									<div class="col-md-2 col-sm-1">
-										<br>
-										<input type="submit" value="search">
+										<br> <input type="submit" value="search">
 									</div>
 
 								</form>
@@ -134,7 +142,7 @@ margin:10px 0;
 														<option value="${categoryVO.name}">${categoryVO.name}</option>
 													</c:forEach>
 											</select></td>
-											<td><input type="datetime" name="promoVO.pm_expire" /></td>
+											<td><input type="datetime" name="promoVO.pm_expire" placeholder="yyyy-MM-dd HH:mm:ss"/></td>
 											<td><input type="text" name="promoVO.pm_title" /></td>
 											<td><input type="text" name="promoVO.pm_discount" /></td>
 											<td><input type="submit" value="add" /> <input
@@ -180,8 +188,9 @@ margin:10px 0;
 												type="text" class="form-control" name="promoVO.pm_discount"
 												value="${promoVO.pm_discount}" style="display: none">
 											</td>
-											<td><input class="update" type="button" value="update" />
-												<input type="button" value="cancel"
+											<td><input class="update" type="button" value="update"
+												style="background-color: #337ab7; color: white;" /> <input
+												type="button" value="cancel"
 												onclick="window.location.reload()" /></td>
 
 										</tr>
@@ -196,7 +205,7 @@ margin:10px 0;
 	</section>
 
 	<footer>
-		<jsp:include page="/footer.jsp" />
+				<jsp:include page="/footer.jsp" />
 	</footer>
 
 	<!-- 載入js -->
@@ -237,11 +246,11 @@ margin:10px 0;
 							});
 
 							$("#message").fadeOut(10000);
-
+							$("#successmessage").fadeOut(10000);
 							$('.update')
 									.click(
 											function() {
-												
+
 												var dataSend = "promoVO.pm_code="
 														+ $(this).parent()
 																.parent()

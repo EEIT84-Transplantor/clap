@@ -12,6 +12,11 @@
 <!-- Bootstrap -->
 <link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
+<style type="text/css">
+#addCreditForm,#useGiftForm,#AddPromoForm{
+font-size:14px;
+}
+</style>
 </head>
 <body>
 	<header><jsp:include page="/header.jsp" /></header>
@@ -84,8 +89,8 @@
 									<strong>USE GIFT CARD </strong>
 									<form id="useGiftForm">
 										Number :<input type="text" name="giftCardVO.gc_number"
-											value="1111" /> <br /> Code :<input type="text"
-											name="giftCardVO.gc_code" value="gccode1" /> <br /> <input
+											value="16258080" /> <br /> Code :<input type="text"
+											name="giftCardVO.gc_code" value="1" /> <br /> <input
 											type="button" value="use" id="useGiftCard"><br />
 									</form>
 								</div>
@@ -117,7 +122,7 @@
 									<strong>Add Promotion code</strong>
 
 									<form id="AddPromoForm">
-										Code :<input type="text" name="promoCodeVO.promoCode.pm_code" value="333" /> <br /> 
+										Code :<input type="text" name="promoCodeVO.promoCode.pm_code" value="99999999" /> <br /> 
 
 										<input type="button" value="ADD" id="AddPromoCode"><br />
 									</form>
@@ -167,7 +172,7 @@
 		
 		$('body').on('click','.delete_card',function() {
 			if (confirm("Do you want to delete this promotion code?") == true) {
-				var data = "creditCardVO.creditCard.cc_number="+$(this).prev().children(".cc_number").text();
+				var data = "creditCardVO.creditCardPK.cc_number="+$(this).prev().children(".cc_number").text()+"&creditCardVO.creditCardPK.mb_email=${login.email}";
 			 	var url = path;
 			    var action = "deleteCreditCard";
 			    sendPostRwquestPayment(url,data,action);
@@ -229,7 +234,6 @@
 		    var isError = json[0].isError;
 		    console.log(isError);
 		    if(isError){
-		    	alert("hi");
 		    	switch(key){
 		    	case "AddCreditCard":
 		    		$('#error').css("color","rgb(255,0,0)");
@@ -252,7 +256,11 @@
 		    var info = json[1];
 		    switch(key) {
 		    case "AddCreditCard":
-		    	  $(".payment_detail_box").last().after('<div class="payment_detail_box"><div class="creditCard"><div class="credit_info"><p class="cc_number">'+info.cc_number+'</p><p class="cc_goodthru">'+info.cc_goodthru+'</p><p class="cc_name">'+info.name+'</p><img src="../resource/images/'+info.cardType+'.png" width="60" /></div><div class="delete_card"><span class="glyphicon glyphicon-remove"></span></div></div></div>');
+		    	 if($('.payment_detail_box').length==0){
+		    		 $("#credit_content").append('<div class="payment_detail_box"><div class="creditCard"><div class="credit_info"><p class="cc_number">'+info.cc_number+'</p><p class="cc_goodthru">'+info.cc_goodthru+'</p><p class="cc_name">'+info.name+'</p><img src="../resource/images/'+info.cardType+'.png" width="60" /></div><div class="delete_card"><span class="glyphicon glyphicon-remove"></span></div></div></div>');
+		    	 }else{
+		    		 $(".payment_detail_box").last().after('<div class="payment_detail_box"><div class="creditCard"><div class="credit_info"><p class="cc_number">'+info.cc_number+'</p><p class="cc_goodthru">'+info.cc_goodthru+'</p><p class="cc_name">'+info.name+'</p><img src="../resource/images/'+info.cardType+'.png" width="60" /></div><div class="delete_card"><span class="glyphicon glyphicon-remove"></span></div></div></div>');
+		    	 }
 		    	  break;
 		    case "deleteCreditCard":
 		    	 if(info.result){

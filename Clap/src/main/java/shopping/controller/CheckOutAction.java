@@ -1,5 +1,7 @@
 package shopping.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +27,15 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 	private String productArray;
 	private String promoTitle;
 	private ProductService productService;
+	private InputStream inputStream;
+
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
 
 	@Override
 	public String execute() throws Exception {
@@ -33,8 +44,20 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 		Double price;
 		Integer quantity;
 		Double total = 0.0;
-		
-		//算出total
+		String result;
+
+		// 判斷是否登入
+		MemberVO memberVO = (MemberVO) session.getAttribute("login");
+		if(memberVO == null){
+			result="false";
+			return super.execute();
+		}else{
+			result="true";
+		}
+		inputStream = new ByteArrayInputStream(result.getBytes("UTF-8"));
+		System.out.println("aaaaaaaaaaaaaaa"+inputStream);
+
+		// 算出total
 		String[] productArray = request.getParameterValues("productArray[]");
 		for (String productStr : productArray) {
 			product = new JSONObject(productStr);
@@ -43,18 +66,18 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 			quantity = Integer.parseInt(product.get("quantity").toString());
 			total += price * quantity;
 		}
-		total*=Integer.parseInt(promoTitle);
-		
-		//取出creditCardList
-		MemberVO memberVO = (MemberVO) session.getAttribute("login");
+		total *= Integer.parseInt(promoTitle);
+
+		// 取出creditCardList
+		memberVO = (MemberVO) session.getAttribute("login");
 		List<CreditCardVO> creditCardList = creditCardService.getCards(memberVO.getEmail());
 
 		session.setAttribute("creditCardList", creditCardList);
 		session.setAttribute("total", total);
 		return super.execute();
-		
+
 	}
-	
+
 	public ProductService getProductService() {
 		return productService;
 	}
@@ -100,7 +123,5 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 	public void setProductArray(String productArray) {
 		this.productArray = productArray;
 	}
-
-	
 
 }

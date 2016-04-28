@@ -23,9 +23,9 @@
 <link href="<c:url value="/resource/css/jquery-ui.structure.min.css"/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/jquery-ui.theme.min.css"/>" rel="stylesheet">
 <style type="text/css">
-input, select {
-	background-color: black;
-}
+/* input, select { */
+/* 	background-color: black; */
+/* } */
 
 #insertform {
 	display: none;
@@ -78,8 +78,7 @@ word-wrap:break-word;
 									<table class="table table-condensed table-condensedalot">
 										<thead>
 											<tr>
-												<th>Picture</th>
-												<th>ID</th>
+												<th>Picture</th>												
 												<th>Name</th>
 												<th>Price</th>
 												<th>Description</th>
@@ -91,7 +90,6 @@ word-wrap:break-word;
 										<tbody>
 											<tr>
 												<th><input id="newitemPic" type="file" name="upload" required="required"/></th>
-												<th><input class="form-control col-md-1" type="text" readonly="readonly" name="productVO.id" required="required"/></th>
 												<th><input class="form-control col-md-1" type="text" name="productVO.name" required="required"/></th>
 												<th><input class="form-control col-md-1" type="number" min="0" name="productVO.price" required="required"/></th>
 												<th><input class="form-control col-md-1" type="text" name="productVO.description" required="required"/></th>

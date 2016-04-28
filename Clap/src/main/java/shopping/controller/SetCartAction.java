@@ -2,7 +2,7 @@ package shopping.controller;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
@@ -40,56 +40,59 @@ public class SetCartAction extends ActionSupport implements ServletRequestAware{
 	public String execute() throws Exception {
 		
 		HttpSession session = request.getSession();
-		MemberVO member = (MemberVO)session.getAttribute("login");
-		
-		List<CartVO> temp = null;
-		Integer totalCart = 0;
-	
-		Integer quantity = cartVO.getQuantity();
-		if(quantity==null||quantity==0){
-			quantity = 1;
-		}
-		
-		if(member!=null){
-			//會員
-			cartVO.setEmail(member.getEmail());
-			cartVO.setQuantity(quantity);
-			cartService.updateCart(cartVO);
-			temp = cartService.getCart(member.getEmail());
+		synchronized (session) {
+			MemberVO member = (MemberVO)session.getAttribute("login");
 			
-			for(CartVO vo:temp){
-				totalCart += vo.getQuantity();
+			List<CartVO> temp = null;
+			Integer totalCart = 0;
+		
+			Integer quantity = cartVO.getQuantity();
+			if(quantity==null||quantity==0){
+				quantity = 1;
 			}
-		}else{
-			Map<Integer,Integer> tempCart =null;
 			
-			if(session.getAttribute("tempCart")!=null){
-				try {
-					
-					tempCart = (Map<Integer,Integer>) session.getAttribute("tempCart");
-					
-					if(tempCart.get(cartVO.getProduct_id())!=null){
-						Integer temps = quantity+tempCart.get(cartVO.getProduct_id());
-						tempCart.put(cartVO.getProduct_id(), temps);
-					}else{
-						
-						tempCart.put(cartVO.getProduct_id(), quantity);
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
+			if(member!=null){
+				//會員
+				cartVO.setEmail(member.getEmail());
+				cartVO.setQuantity(quantity);
+				cartService.updateCart(cartVO);
+				temp = cartService.getCart(member.getEmail());
+				
+				for(CartVO vo:temp){
+					totalCart += vo.getQuantity();
 				}
 			}else{
-				tempCart = new HashMap<Integer, Integer>();
-				session.setAttribute("tempCart", tempCart);
-				tempCart.put(cartVO.getProduct_id(), quantity);
+				Map<Integer,Integer> tempCart =null;
+				
+				if(session.getAttribute("tempCart")!=null){
+					try {
+						
+						tempCart = (Map<Integer,Integer>) session.getAttribute("tempCart");
+						
+						if(tempCart.get(cartVO.getProduct_id())!=null){
+							Integer temps = quantity+tempCart.get(cartVO.getProduct_id());
+							tempCart.put(cartVO.getProduct_id(), temps);
+						}else{
+							
+							tempCart.put(cartVO.getProduct_id(), quantity);
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}else{
+					tempCart = new Hashtable<Integer, Integer>();
+					session.setAttribute("tempCart", tempCart);
+					tempCart.put(cartVO.getProduct_id(), quantity);
+				}
+				for(Integer integer :tempCart.keySet()){
+					totalCart += tempCart.get(integer);
+					session.setAttribute("totalCart", totalCart);
+				}
 			}
-			for(Integer integer :tempCart.keySet()){
-				totalCart += tempCart.get(integer);
-				session.setAttribute("totalCart", totalCart);
-			}
+			inputStream = new ByteArrayInputStream(totalCart.toString().getBytes("UTF-8"));
+			return SUCCESS;	
 		}
-		inputStream = new ByteArrayInputStream(totalCart.toString().getBytes("UTF-8"));
-		return SUCCESS;
+		
 	}
 
 	public CartVO getCartVO() {

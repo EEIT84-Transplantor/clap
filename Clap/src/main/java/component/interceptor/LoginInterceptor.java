@@ -28,7 +28,7 @@ public class LoginInterceptor extends AbstractInterceptor{
 		if (memberVO==null) {
 			//沒找到 儲存上一個頁面  導入login.jsp
 			session.put("uri", request.getRequestURI());
-			System.out.println(request.getRequestURI());
+			System.out.println("123"+memberVO);
 			return "login";
 		} else {
 			//找到 繼續下去

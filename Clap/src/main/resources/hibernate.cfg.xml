@@ -30,7 +30,7 @@
 		<mapping class="shopping.model.OrderDetailVO" />
 		<mapping class="hospital.model.HospitalVO" />
 		<mapping class="hospital.model.DoctorVO" />
-
+        <mapping class="hospital.model.LocationVO" />
 		
 		<!-- <mapping resource="hbm/cartvo.hbm.xml"/> -->
 		<!-- <mapping resource="hbm/orderformvo.hbm.xml"/> -->

@@ -57,7 +57,8 @@ public class InOutLogService {
 				InventoryVO inventoryVO3 = inventoryDAO.insert(inventoryVO);
 				InventoryVO inventoryVOTemp = inventoryDAO.selectByInventoryProperties(inventoryVO3);
 				inOutLogVO.setInventory_id(inventoryVOTemp.getId());
-				
+				inOutLogDAO.insert(inOutLogVO);
+				System.out.println(inOutLogVO);
 				if(inventoryVO3==null){
 					return false;
 				}else{

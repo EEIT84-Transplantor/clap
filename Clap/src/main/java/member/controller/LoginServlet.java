@@ -23,6 +23,8 @@ import payment.model.CreditCardService;
 import payment.model.CreditCardVO;
 import payment.model.PromoCodeService;
 import payment.model.PromoVO;
+import shopping.model.CartService;
+import shopping.model.CartVO;
 
 @WebServlet(urlPatterns = { "/member/login.servlet" })
 public class LoginServlet extends HttpServlet {
@@ -30,7 +32,7 @@ public class LoginServlet extends HttpServlet {
 	private MemberService memberService;
 	private PromoCodeService promoCodeService;
 	private HttpSession session;
-	
+	private CartService cartService;
 	
 	
 	@Override
@@ -39,6 +41,8 @@ public class LoginServlet extends HttpServlet {
 		memberService = (MemberService) context.getBean("memberService");
 		creditCardService = (CreditCardService) context.getBean("creditCardService");
 		promoCodeService = (PromoCodeService) context.getBean("promoCodeService");
+		cartService = (CartService) context.getBean("cartService");
+		
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,12 +50,10 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	public void doPost(HttpServletRequest request , HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(creditCardService);
 		MemberVO memberVO = null;
 		MemberService memberService = (MemberService) request.getAttribute("memberService");
 		Map<String,String> error = new HashMap<>();
 		request.setAttribute("error", error);
-		System.out.println("memeberVO222"+memberVO);		
 		//input
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
@@ -70,8 +72,15 @@ public class LoginServlet extends HttpServlet {
 		if ((memberVO=memberService.login(email, password.getBytes()))!=null) {
 			//放會員資料及付款資料 進session
 			session = request.getSession();
-			System.out.println("初始化login");
+			
 			session.setAttribute("login",memberVO);
+			List<CartVO> cart = cartService.getCart(memberVO.getEmail());
+			Integer totalCart = 0;
+			for(CartVO cartVO:cart ){
+				totalCart+=cartVO.getQuantity();
+			}
+			
+			session.setAttribute("totalCart", totalCart);
 			String uri = (String) session.getAttribute("uri");
 			
 			List<CreditCardVO> payment = creditCardService.getCards(email);

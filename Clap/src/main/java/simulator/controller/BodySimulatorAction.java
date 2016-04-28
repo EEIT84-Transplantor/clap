@@ -93,22 +93,21 @@ public class BodySimulatorAction extends ActionSupport {
 //		object.put("skill", skill);
 //		Map<String,String>error=new HashMap<String,String>();
 		Double bmi=null;
-		if(weight!=null&&weight>0&&height==null&&height>0){
+		if(weight!=null&&weight>0&&height!=null&&height>0){
 			bmi = weight/(Math.pow(height/100,2.0));
 		}
-        System.out.println("BodySimulatorAction [weight=" + weight + ", height=" + height + ", smoking=" + smoking + ", drinking="
+        System.out.println("BodySimulatorAction [weight=" + weight + ", height=" + height+ ", bmi=" + bmi + ", smoking=" + smoking + ", drinking="
 				+ drinking + ", exercising=" + exercising + ", env_id=" + env_id + "]");
 		//categoryService 的calculate還沒做~
 		List<SimulatorVO> simulatorVOs = categoryService.calculate(env_id,bmi,smoking,drinking,exercising);
 
-		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		List<ProductVO> productVOs = null;
 		JSONArray simulatorVOsArray = new JSONArray();
-		for(CategoryVO categoryVO:categoryService.getAllCategory()){
+		for(SimulatorVO simulatorVO : simulatorVOs){
+			CategoryVO categoryVO = simulatorVO.getCategoryVO();
 			JSONObject categoryJson = new JSONObject();
-			
-			productVOs = productService.searchProductByCategory(categoryVO.getId());
+			productVOs = simulatorVO.getProductVOs();
 			categoryJson.put("id", categoryVO.getId());
 			categoryJson.put("name", categoryVO.getName());
 			categoryJson.put("smoking", categoryVO.getSmoking());
@@ -123,10 +122,11 @@ public class BodySimulatorAction extends ActionSupport {
 			JSONArray productVOJsonArray = new JSONArray();
 			List<ProductimgVO> productimgVOs = new ArrayList<ProductimgVO>();
 			
+			
 			for(ProductVO productVO:productVOs){
 				JSONObject productVOJson =new JSONObject();
 				JSONObject productimgVOJson = new JSONObject();
-				ProductimgVO temp = productService.getProductImgById(productVO.getId());
+//				ProductimgVO temp = productService.getProductImgById(productVO.getId());
 				productVOJson.put("id",productVO.getId());
 				productVOJson.put("name",productVO.getName());
 				productVOJson.put("price",productVO.getPrice());
@@ -140,24 +140,23 @@ public class BodySimulatorAction extends ActionSupport {
 				productVOJson.put("finalValue1",productVO.getFinalValue1());
 				productVOJson.put("finalValue2",productVO.getFinalValue2());
 				
-				productimgVOJson.put("id",temp.getId());
+//				productimgVOJson.put("id",temp.getId());
 //				productimgVOJson.put("img",temp.getImg());
-				productimgVOJson.put("img64",temp.getImg64());
-				productimgVOs.add(temp);
+//				productimgVOJson.put("img64",temp.getImg64());
+//				productimgVOs.add(temp);
 				productVOJsonArray.put(productVOJson);
 				productimgVOJsonArray.put(productimgVOJson);
 			}
-			SimulatorVO simulatorVO = new SimulatorVO();
 			JSONObject simulatorVOJSON = new JSONObject();
 			simulatorVOJSON.put("categoryVO", categoryJson);
-			simulatorVO.setCategoryVO(categoryVO);
+//			simulatorVO.setCategoryVO(categoryVO);
 			simulatorVOJSON.put("productVOs", productVOJsonArray);
-			simulatorVO.setProductVOs(productVOs);
+//			simulatorVO.setProductVOs(productVOs);
 			simulatorVOJSON.put("productimgVOs", productimgVOJsonArray);
-			simulatorVO.setProductimgVOs(productimgVOs);
+//			simulatorVO.setProductimgVOs(productimgVOs);
 			simulatorVOsArray.put(simulatorVOJSON);
-			simulatorVOs.add(simulatorVO);
 			
+		
 		}
 		System.out.println("simulatorVOsArray length: "+simulatorVOsArray.toString().length());
 		request.setAttribute("simulatorVOs", simulatorVOs);

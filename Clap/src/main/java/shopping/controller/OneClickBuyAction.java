@@ -36,9 +36,6 @@ public class OneClickBuyAction extends ActionSupport implements ServletRequestAw
 	private OrderDetailService orderDetailService;
 	private OrderFormService orderFormService;
 
-
-	
-
 	public CartService getCartService() {
 		return cartService;
 	}
@@ -65,8 +62,6 @@ public class OneClickBuyAction extends ActionSupport implements ServletRequestAw
 	public void setCartVO(CartVO cartVO) {
 		this.cartVO = cartVO;
 	}
-
-
 
 	public CreditCardService getCreditCardService() {
 		return creditCardService;
@@ -101,24 +96,24 @@ public class OneClickBuyAction extends ActionSupport implements ServletRequestAw
 
 	@Override
 	public String execute() throws Exception {
-	 
-		MemberVO memberVO = (MemberVO)session.getAttribute("login");
-		if(memberVO!=null){
-			//會員信箱
+
+		MemberVO memberVO = (MemberVO) session.getAttribute("login");
+		if (memberVO != null) {
+			// 會員信箱
 			String email = memberVO.getEmail();
 			cartVO.setEmail(email);
-			//放入購物車
+			// 放入購物車
 			cartService.setCart(cartVO);
-			//取出
+			// 取出
 			List<Map<String, String>> maps = cartService.getCartList(email);
-			//算總額
-			Double total=0.0;
-			for(Map<String, String> map:maps){
+			// 算總額
+			Double total = 0.0;
+			for (Map<String, String> map : maps) {
 				String temp1 = map.get("price");
 				String temp2 = map.get("quantity");
 				Double price = Double.parseDouble(temp1);
 				Double quantity = Double.parseDouble(temp2);
-				total+=price*quantity;
+				total += price * quantity;
 			}
 			session.setAttribute("total", total);
 		}

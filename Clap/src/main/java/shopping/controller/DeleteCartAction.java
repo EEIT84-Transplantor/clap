@@ -1,5 +1,13 @@
 package shopping.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
@@ -7,7 +15,9 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import member.model.MemberVO;
+import product.model.ProductVO;
 import shopping.model.CartService;
+import shopping.model.CartVO;
 
 public class DeleteCartAction extends ActionSupport implements ServletRequestAware {
 
@@ -15,11 +25,61 @@ public class DeleteCartAction extends ActionSupport implements ServletRequestAwa
 	private CartService cartService;
 
 	private String productid;
+	private InputStream inputStream;
+
+	
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
 
 	@Override
 	public String execute() throws Exception {
-		String email = ((MemberVO) request.getSession().getAttribute("login")).getEmail();
-		cartService.removeCart(email, Integer.parseInt(productid));
+
+		MemberVO memberVO = (MemberVO) request.getSession().getAttribute("login");
+		if (memberVO != null) {
+			String email = memberVO.getEmail();
+			Boolean check = cartService.removeCart(email, Integer.parseInt(productid));
+			//calculate total cart (not yet)
+			List<CartVO> list = cartService.getCart(email);
+			Integer totalCart=0;
+			for(CartVO i:list){
+				totalCart+=i.getQuantity();
+			}
+			request.getSession().setAttribute("totalCart", totalCart);
+			try {
+				inputStream  = new ByteArrayInputStream(totalCart.toString().getBytes("UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}	
+			
+		} else {
+			Hashtable<Integer, Integer> temp = (Hashtable<Integer, Integer>)request.getSession().getAttribute("tempCart");
+			Integer deleteIndex = 0;
+			for(Integer i:temp.keySet()){
+				
+				if(Integer.parseInt(productid) == i){
+					deleteIndex = i;
+					
+				}
+			}
+			temp.remove(deleteIndex);
+			Integer totalCart = 0;
+			for(Integer integer :temp.keySet()){
+				totalCart += temp.get(integer);				
+			}
+			System.out.println("totalCart:  "+totalCart);
+			request.getSession().setAttribute("totalCart", totalCart);
+			request.getSession().setAttribute("tempCart", temp);
+			try {
+				inputStream  = new ByteArrayInputStream(totalCart.toString().getBytes("UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}			
+		}
 		return super.execute();
 	}
 

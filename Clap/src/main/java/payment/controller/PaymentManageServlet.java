@@ -16,13 +16,10 @@ import payment.model.CreditCardVO;
 public class PaymentManageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("hello");
-		System.out.println(request.getAttribute("results").toString());
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 		response.setCharacterEncoding("UTF-8");
 		out.print(request.getAttribute("results"));
-		System.out.println("最後!!!!!!");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

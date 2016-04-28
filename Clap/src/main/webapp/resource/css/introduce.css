@@ -1,0 +1,248 @@
+@CHARSET "UTF-8";
+
+/*-------------------- all page --------------------*/
+body {
+	margin: 0;
+	height: 100%;
+}
+
+body * {
+	font-family: 'Alegreya Sans', sans-serif;
+	font-size: 18px;
+	font-weight: 100;
+	text-align: center;
+}
+
+img {
+	position: absolute;
+	left: 0;
+}
+
+section {
+	height: 100vh;
+	position: relative;
+}
+
+section * {
+	position: absolute;
+}
+
+section>div {
+	width: 100%;
+	height: 100%
+}
+
+p {
+	position: static;
+	color: white;
+}
+
+h1{
+	font-size: 40px;
+}
+
+h3{
+	font-weight: 300;
+}
+
+.half {
+	height: 100%;
+	width: 50%;
+}
+
+.right {
+	top: 0;
+	right: 0;
+}
+
+.left {
+	top: 0;
+	left: 0;
+}
+
+.middle {
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+
+/*-------------------- section banner --------------------*/
+.screen {
+	height: 100vh;
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+}
+
+#front {
+	width: 60%;
+	bottom: 20%;
+}
+
+#middle {
+	width: 90%;
+	left: 30%;
+	top: -60%;
+}
+
+#end {
+	width: 80%;
+	left: 50%;
+	top: -10%
+}
+
+#slogan {
+	position: absolute;
+	top: 70%;
+	left: 58%;
+	font-size: 40px;
+	color: white;
+	font-family: 'Poiret One', cursive;
+}
+
+#bg {
+	height: 100%;
+	width: 100%
+}
+
+/*-------------------- section origin --------------------*/
+#origin {
+	height: 70vh;
+}
+
+#organ {
+	background-color: black;
+	position: relative;
+}
+
+#cellsvg {
+	position: absolute;
+	left: 25%;
+	top: 30%;
+}
+
+#og_text {
+	width: 30%;
+	right: 20%;
+	top: 25%;
+}
+
+/*-------------------- section lung --------------------*/
+#lung {
+	height: 70vh;
+	background-color: black;
+}
+
+#lg_video {
+	overflow: hidden;
+	height: 100%;
+	right: 0;
+	top: 0;
+	width: 100%;
+}
+
+#lg_video video {
+	position: absolute;
+	height: 100%;
+	left: 0;
+}
+
+#lg_pic {
+	height: inherit;
+	width: inherit;
+	top: 0;
+	right: 17%;
+}
+
+#lg_pic svg {
+	width: 280px;
+	height: 480px;
+	right: 16%;
+	top: 5%;
+	margin: 0 auto;
+}
+
+#lg_text {
+	width: 60%;
+	vertical-align: middle;
+
+	left: 20%;
+	top: 20%;
+}
+
+/*-------------------- section structure --------------------*/
+#structure {
+	background-color: gray;
+	height: 100vh;
+}
+
+#st_type0{
+	width:70%;
+	height:10%;
+	top: 10%;	
+}
+
+#st_type0 h1{
+	color: white;
+	padding-bottom:20px;
+	border-bottom: 1px solid;
+}
+
+#st_type1 {
+	width: 70%;
+	height: 70%;
+	top: 40%;
+}
+
+#st_type1 * {
+	position: relative;
+}
+
+#st_type1 div {
+	width: 33.33%;
+	height: 100%;
+	float: left;
+}
+
+#st_type1 h3{
+	color:white;
+}
+
+#st_type1 p {
+	width: 70%;
+	margin: 20px auto;
+}
+
+#st_type1 img {
+	width: 80px;
+	height: 80px;
+	opacity: 0.2;
+}
+
+/*-------------------- section team --------------------*/
+#team {
+	background-color: gray;
+}
+
+#team>div {
+	width: 25%;
+	position: relative;
+	float: left;
+}
+
+#team p {
+	color: black;
+}
+
+#team>div>img {
+	heigth: 100%;
+	width: 100%;
+}
+
+/*-------------------- section skill --------------------*/
+#skill {
+	background-color: white;
+}
+
+/*-------------------- section XXX --------------------*/
+
+/*-------------------- section XXX --------------------*/

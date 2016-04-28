@@ -23,7 +23,7 @@
 	<section id="top-wrap">
 		<div class="row">
 			<div class="col-md-12">
-			<div id="s_wrap">
+			<div id="s_wrap"> 
 				<div class="container" id="fullPage">
 					<div class="row">
 						<div class="col-md-2">

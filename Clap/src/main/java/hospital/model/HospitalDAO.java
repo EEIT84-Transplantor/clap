@@ -8,4 +8,7 @@ public interface HospitalDAO {
 	public abstract HospitalVO selectById(Integer id);
 
 	public abstract HospitalVO insert(HospitalVO hospitalVO);
+	
+	public abstract List<HospitalVO> selectByLocation(Integer id);
+	
 }

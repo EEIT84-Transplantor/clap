@@ -27,14 +27,16 @@
 	<section id="wrap">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
+				<div class="col-md-10">
+				<h2>Cart</h2>
 					<table class="table">
 						<thead>
 							<tr>
-								<td>商品</td>
-								<td>數量</td>
-								<td>價格</td>
-								<td>刪除</td>
+								<td>Product</td>
+								<td>Quantity</td>
+								<td>Price</td>
+								<td>Delete</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -55,7 +57,7 @@
 											</c:forEach>
 										</select></td>
 									<td>${row.price}</td>
-									<td><input type="button" value="刪除" /></td>
+									<td><input type="button" value="Delete" /></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -67,7 +69,7 @@
 				<div class="col-md-4">
 					<table class="table">
 						<tr>
-							<td>商品數</td>
+							<td>Quantity</td>
 							<td id="quantity">${fn:length(cartList)}<br />${error}</td>
 						</tr>
 						<tr>
@@ -84,7 +86,7 @@
 								</select></td>
 						</tr>
 						<tr>
-							<td>禮物卡</td>
+							<td>Gift Card</td>
 							<td id="amount">${login.amount}</td>
 						</tr>
 						<tr>
@@ -97,10 +99,10 @@
 			<div class="row">
 				<div class="col-md-10"></div>
 				<div class="col-md-2">
-					<input type="button" id="checkOut" class="btn btn-default btn-block" value="結帳">
+					<input type="button" id="checkOut" class="btn btn-default btn-block" value="Pay">
 				</div>
 			</div>
-		</div>
+		</div></div>
 	</section>
 
 	<footer><jsp:include page="/footer.jsp" /></footer>
@@ -125,8 +127,9 @@
 					$.ajax({
 						url:'<c:url value="/shopping/deleteCartAction.action"/>',
 						data: {"productid":productid}
-					}).done(function() {
+					}).done(function(msg) {
 						console.log('delete success');
+						$(".cart_anchor").text(msg);
 					});
 				});
 
@@ -161,8 +164,12 @@
 						"productArray" : productArray,
 						"promoTitle" : promoTitle
 					},
-				}).done(function() {
-					window.location.href = "<c:url value='/shopping/checkout.jsp'/>";
+				}).done(function(result) {
+					if(result=="true"){
+						window.location.href = "<c:url value='/shopping/checkout.jsp'/>";
+					}else{
+						window.location.href = "<c:url value='/member/signuplogin.jsp'/>";
+					}
 				})
 
 				//測試程式
