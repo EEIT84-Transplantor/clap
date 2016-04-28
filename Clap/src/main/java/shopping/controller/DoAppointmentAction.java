@@ -1,5 +1,7 @@
 package shopping.controller;
 
+import java.io.ByteArrayInputStream;
+
 import java.io.InputStream;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -31,6 +33,7 @@ public class DoAppointmentAction extends ActionSupport implements ServletRequest
 	private OrderFormService orderFormService;
 	private OrderDetailService orderDetailService;
 	private InventoryService inventoryService;
+	private InputStream inputStream;
 
 	private ArrayList<JSONObject> orderList;
 	private String hospital;
@@ -41,10 +44,6 @@ public class DoAppointmentAction extends ActionSupport implements ServletRequest
 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-		System.out.println(hospital);
-		System.out.println(orderform_id);
-		System.out.println(orderList.toString());
-		System.out.println("DoAppointmentAction 1");
 		// 修改 orderform
 		OrderFormVO orderFormVO = orderFormService.getOrderById(Integer.parseInt(orderform_id));
 		HospitalVO hospitalVO = new HospitalVO();
@@ -58,23 +57,30 @@ public class DoAppointmentAction extends ActionSupport implements ServletRequest
 		Integer orderDetailId;
 		Date time;
 		for (JSONObject order : orderList) {
-			System.out.println(1);
 			time = simpleDateFormat.parse((String) orderList.get(0).get("time"));
-			System.out.println(2);
 			orderDetailId = Integer.parseInt((String) order.get("id"));
-			System.out.println(3);
 			orderDetailVO = orderDetailService.getOrderDetailById(orderDetailId);
-			System.out.println(4);
 			orderDetailVO.setDoctor_id( Integer.parseInt((String) order.get("doctor")));
-			System.out.println(5);
 			orderDetailVO.setOrderdetail_surgerytime(new Timestamp(time.getTime()));
-			System.out.println(6);
 			inventoryService.saleQuantity(orderDetailVO.getProductVO(), orderDetailVO.getCart_quantity(), hospital);
-			System.out.println(7);
 		}
-
+		inputStream  = new ByteArrayInputStream("true".toString().getBytes("UTF-8"));
 		return super.execute();
 	}
+	
+	
+
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+
+
+
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
+
+
 
 	public String getOrderform_id() {
 		return orderform_id;

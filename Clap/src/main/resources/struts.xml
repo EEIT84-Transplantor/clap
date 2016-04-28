@@ -262,7 +262,6 @@
 				<param name="inputName">inputStream</param>
 			</result>
 		</action>
-
 	</package>
 
 	<package name="hospital" namespace="/hospital" extends="json-default">
