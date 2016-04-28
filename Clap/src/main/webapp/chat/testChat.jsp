@@ -58,8 +58,7 @@
             //ws is a websocket protocol
             //location.host + location.pathname is the current url
             //new WebSocket(url) will immediately open a websocket connection
-            console.log("ws://"+ location.host + "/Clap/chat.c?username=" + usernameInputEl.value);
-            socket = new WebSocket("ws://"+ location.host + "/Clap/chat.c?username=" + usernameInputEl.value);
+            socket = new WebSocket("ws://"+ location.host + location.pathname +"chat?username=" + usernameInputEl.value);
 
             //add the event listener for the socket object
             socket.onopen = socketOnOpen;
@@ -206,8 +205,7 @@
                 if(!conversationList) return;
                 var df = document.createDocumentFragment();
                 conversationList.forEach(function (conversation) {
-                	var con = document.createTextNode(conversation);
-                    df.appendChild(con);
+                    df.appendChild(conversation);
                 });
                 messageBoardEl.appendChild(df);
             }
