@@ -6,6 +6,9 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.struts2.ServletActionContext;
 import org.json.JSONObject;
 
@@ -90,6 +93,10 @@ public class ChangeSettingAction extends ActionSupport {
 		memberVO.setName(name);
 		memberVO.setPhone(phone);
 		memberService.updateSetting(memberVO, photo, contentType);
+		HttpServletRequest request = ServletActionContext.getRequest();
+		memberVO = memberService.findByEmail(email);
+		HttpSession session = request.getSession();
+		session.setAttribute("login", memberVO);
 		return SUCCESS;
 	}
 }

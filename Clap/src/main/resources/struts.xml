@@ -45,7 +45,6 @@
 		<action name="oneClickAction" class="setting.controller.OneClickAction">
 			<result name="success">/setting/oneclick.jsp</result>
 			<result name="input">/setting/oneclick.jsp</result>
-			<interceptor-ref name="creditCardInterceptor" />
 		</action>
 		<action name="renewVIPAction" class="setting.controller.RenewVIPAction">
 			<result name="success">/setting/vip.jsp</result>
@@ -251,7 +250,8 @@
 			</result>
 		</action>
 		<action name="doAppointmentAction" class="shopping.controller.DoAppointmentAction">
-			<result type="stream"></result>
+			<result type="stream">
+			</result>
 		</action>
 		<action name="appointmentAction" class="shopping.controller.AppointmentAction">
 			<result>/shopping/appointment.jsp</result>
@@ -262,7 +262,6 @@
 				<param name="inputName">inputStream</param>
 			</result>
 		</action>
-
 	</package>
 
 	<package name="hospital" namespace="/hospital" extends="json-default">

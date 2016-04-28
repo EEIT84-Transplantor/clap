@@ -42,7 +42,6 @@ public class ProductDetailAction extends ActionSupport implements ServletRequest
 	}
 	@Override
 	public String execute() throws Exception {
-		System.out.println("這是");
 		if(productVO==null){
 			return "input";
 		}
@@ -54,7 +53,6 @@ public class ProductDetailAction extends ActionSupport implements ServletRequest
 		for(ProductVO vo :popular){
 			productimages.put(vo.getId(), productService.getProductImgById(vo.getId()).getImg64());
 		}
-		System.out.println("這是"+popular.size());
 		
 		request.setAttribute("product", productVO);
 		request.setAttribute("productimages", productimages);

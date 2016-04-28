@@ -142,7 +142,7 @@ word-wrap:break-word;
 														<option value="${categoryVO.name}">${categoryVO.name}</option>
 													</c:forEach>
 											</select></td>
-											<td><input type="datetime" name="promoVO.pm_expire" placeholder="yyyy/MM/dd HH:mm:ss"/></td>
+											<td><input type="datetime" name="promoVO.pm_expire" placeholder="yyyy-MM-dd HH:mm:ss"/></td>
 											<td><input type="text" name="promoVO.pm_title" /></td>
 											<td><input type="text" name="promoVO.pm_discount" /></td>
 											<td><input type="submit" value="add" /> <input
