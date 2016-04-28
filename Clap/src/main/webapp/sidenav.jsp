@@ -10,8 +10,8 @@
     </div>
     <a href="#side_About" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">About us</a>
     <div class="collapse" id="side_About">
-      <a href="" class="list-group-item sub_list">Concept</a>
-      <a href="" class="list-group-item sub_list">Team members</a>
+      <a href="${pageContext.request.contextPath}/introduce/introduce.jsp" class="list-group-item sub_list">Concept</a>
+      <a href="${pageContext.request.contextPath}/introduce/introduce.jsp" class="list-group-item sub_list">Team members</a>
     </div>
      <a href="#side_Simulator" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Simulator</a>
     <div class="collapse" id="side_Simulator">

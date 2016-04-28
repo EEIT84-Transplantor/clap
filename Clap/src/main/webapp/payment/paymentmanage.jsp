@@ -84,8 +84,8 @@
 									<strong>USE GIFT CARD </strong>
 									<form id="useGiftForm">
 										Number :<input type="text" name="giftCardVO.gc_number"
-											value="1111" /> <br /> Code :<input type="text"
-											name="giftCardVO.gc_code" value="gccode1" /> <br /> <input
+											value="16258080" /> <br /> Code :<input type="text"
+											name="giftCardVO.gc_code" value="1" /> <br /> <input
 											type="button" value="use" id="useGiftCard"><br />
 									</form>
 								</div>
@@ -117,7 +117,7 @@
 									<strong>Add Promotion code</strong>
 
 									<form id="AddPromoForm">
-										Code :<input type="text" name="promoCodeVO.promoCode.pm_code" value="333" /> <br /> 
+										Code :<input type="text" name="promoCodeVO.promoCode.pm_code" value="99999999" /> <br /> 
 
 										<input type="button" value="ADD" id="AddPromoCode"><br />
 									</form>

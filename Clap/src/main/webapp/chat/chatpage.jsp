@@ -67,7 +67,7 @@ button {
 												readonly>
 										</c:when>
 										<c:when test="${login.type!=2}">
-											<input id="username" value="${login.name}" readonly>
+											<input id="username" value="${login.name}" >
 										</c:when>
 									</c:choose>
 									<c:if test="${empty login || login.type!=2}">

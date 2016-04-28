@@ -3,10 +3,9 @@
 					<div class="col-md-2">
 						<h4>About Us</h4>
 						<ul>
-							<li><a href="#">Clap Concept</a></li>
-							<li><a href="#">Founders</a></li>
-							<li><a href="#">Investors</a></li>
-							<li><a href="#">Job Opportunity</a></li>
+							<li><a href="${pageContext.request.contextPath}/introduce/introduce.jsp">Clap Concept</a></li>
+							<li><a href="${pageContext.request.contextPath}/introduce/introduce.jsp">Founders</a></li>
+							<li><a href="${pageContext.request.contextPath}/introduce/introduce.jsp">Investors</a></li>
 						</ul>
 					</div>
 					<div class="col-md-2">
@@ -14,7 +13,6 @@
 						<ul>
 							<li><a href="${pageContext.request.contextPath}/shopping/shopping.action">Clap Store</a></li>
 							<li><a href="${pageContext.request.contextPath}/shopping/shopping.action">Organs</a></li>
-							<li><a href="#">Gift Card</a></li>
 							<li><a href="${pageContext.request.contextPath}/simulator/simulatorAction.action">Simulator</a></li>
 						</ul>
 					</div>
@@ -23,16 +21,14 @@
 						<ul>
 							<li><a href='${pageContext.request.contextPath}/member/account.jsp'>Account</a></li>
 							<li><a href='${pageContext.request.contextPath}/shopping/cartAction.action'>View Cart</a></li>
-							<li><a href="#">Order Status</a></li>
 							<li><a href='${pageContext.request.contextPath}/payment/paymentmanage.jsp'>Manage Payment</a></li>
 						</ul>
 					</div>			
 					<div class="col-md-4">					
-						<h4>OPTION</h4>
+						<h4>Others</h4>
 						<ul>
-							<li><a href="${pageContext.request.contextPath}/hahaha.ha">~Get Pictures~</a></li>
+							<li><a href="${pageContext.request.contextPath}/hahaha.ha">Get Pictures</a></li>
 							<li><a href="${pageContext.request.contextPath}/shopping/preReturnAction.action">Return Page</a></li>
-							<li><a href="${pageContext.request.contextPath}/product/displayproduct.action">Product Manage</a></li>
 							<li><a href="${pageContext.request.contextPath}/paymentmanage/setpromotion.action">Settings</a></li>
 						</ul>				
 					</div>

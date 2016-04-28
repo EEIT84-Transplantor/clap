@@ -70,8 +70,8 @@ background:#000;
 											</c:forEach>
 									</select></td>
 									<td><select style="color: black;" name="number">
-											<c:forEach var="row" items="${creditcards.rows}">
-												<option value="${row.cc_number}">${row.cc_number}</option>
+											<c:forEach var="card" items="${cards}">
+												<option value="${card.creditCardPK.cc_number}">${card.creditCardPK.cc_number}</option>
 											</c:forEach>
 									</select></td>
 								</tr>
