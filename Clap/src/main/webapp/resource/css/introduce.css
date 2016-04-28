@@ -3,7 +3,6 @@
 /*-------------------- all page --------------------*/
 body {
 	margin: 0;
-	height: 100%;
 }
 
 body * {
@@ -11,6 +10,10 @@ body * {
 	font-size: 18px;
 	font-weight: 100;
 	text-align: center;
+}
+
+body div {
+	height: 100%;
 }
 
 img {
@@ -32,16 +35,11 @@ section>div {
 	height: 100%
 }
 
-p {
-	position: static;
-	color: white;
-}
-
-h1{
+h1 {
 	font-size: 40px;
 }
 
-h3{
+h3 {
 	font-weight: 300;
 }
 
@@ -63,6 +61,11 @@ h3{
 .middle {
 	left: 50%;
 	transform: translate(-50%, 0);
+}
+
+.blod {
+	font-size: 50px;
+	font-family: 'Rubik', sans-serif;
 }
 
 /*-------------------- section banner --------------------*/
@@ -106,7 +109,7 @@ h3{
 
 /*-------------------- section origin --------------------*/
 #origin {
-	height: 70vh;
+	height: 100vh;
 }
 
 #organ {
@@ -124,66 +127,88 @@ h3{
 	width: 30%;
 	right: 20%;
 	top: 25%;
+	color:white;
 }
 
-/*-------------------- section lung --------------------*/
-#lung {
-	height: 70vh;
-	background-color: black;
+/*-------------------- section origins --------------------*/
+#organs>div {
+	width: 50%
 }
 
-#lg_video {
-	overflow: hidden;
-	height: 100%;
-	right: 0;
-	top: 0;
-	width: 100%;
-}
-
-#lg_video video {
-	position: absolute;
-	height: 100%;
+#os_type0 {
 	left: 0;
 }
 
-#lg_pic {
-	height: inherit;
-	width: inherit;
-	top: 0;
-	right: 17%;
+#os_type0 h1 {
+	width: 70%;
+	top: 30%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
-#lg_pic svg {
-	width: 280px;
-	height: 480px;
-	right: 16%;
-	top: 5%;
-	margin: 0 auto;
+#os_type0 p {
+	width: 70%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 30px;
 }
 
-#lg_text {
-	width: 60%;
-	vertical-align: middle;
+#os_type1 {
+	right: 0;
+}
 
-	left: 20%;
-	top: 20%;
+#cell {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#arrow {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#stomach {
+	top: 30%;
+	left: 25%;
+	transform: translate(-50%, -50%);
+}
+
+#heart {
+	top: 30%;
+	left: 75%;
+	transform: translate(-50%, -50%);
+}
+
+#lung {
+	top: 70%;
+	left: 25%;
+	transform: translate(-50%, -50%);
+}
+
+#liver {
+	top: 70%;
+	left: 75%;
+	transform: translate(-50%, -50%);
 }
 
 /*-------------------- section structure --------------------*/
 #structure {
 	background-color: gray;
-	height: 100vh;
+	height: 80vh;
 }
 
-#st_type0{
-	width:70%;
-	height:10%;
-	top: 10%;	
+#st_type0 {
+	width: 70%;
+	height: 10%;
+	top: 10%;
 }
 
-#st_type0 h1{
+#st_type0 h1 {
 	color: white;
-	padding-bottom:20px;
+	padding-bottom: 20px;
 	border-bottom: 1px solid;
 }
 
@@ -203,13 +228,14 @@ h3{
 	float: left;
 }
 
-#st_type1 h3{
-	color:white;
+#st_type1 h3 {
+	color: white;
 }
 
 #st_type1 p {
 	width: 70%;
 	margin: 20px auto;
+	color: white;
 }
 
 #st_type1 img {
@@ -220,24 +246,51 @@ h3{
 
 /*-------------------- section team --------------------*/
 #team {
-	background-color: gray;
+	background-color: white;
+	height: 100vh;
 }
 
-#team>div {
-	width: 25%;
+#tm_type0 {
+	height: 20%;
+	top: 15%;
+}
+
+#tm_type0 p {
+	font-size: 50px;
+	text-align: left;
+	left: 10%;
+	width: 35%;
+}
+
+#tm_type1 {
+	height: 45%;
+	bottom: 5%;
+	background-position: center;
+	overflow: hidden;
+}
+
+#tm_type1 * {
 	position: relative;
+}
+
+
+#tm_type1 .tm_inf {
 	float: left;
+	width: 25%;
+	overflow: hidden;
 }
 
-#team p {
-	color: black;
-}
-
-#team>div>img {
-	heigth: 100%;
+#tm_type1 img {
 	width: 100%;
+	height: 80%;
 }
 
+#tm_type1_bg {
+	width: 100vw;
+	height: 80%;
+	position: absolute;
+	background-color: #D9E0E6;
+}
 /*-------------------- section skill --------------------*/
 #skill {
 	background-color: white;
