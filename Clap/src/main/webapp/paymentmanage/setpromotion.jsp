@@ -93,10 +93,10 @@ word-wrap:break-word;
 										<span>Search By:</span>
 									</div>
 									<div class="col-md-3 col-sm-5">
-										Starting Date<input type="datetime" name="expireFrom" />
+										Starting Date<input type="datetime" name="expireFrom" placeholder="yyyy/MM/dd HH:mm:ss"/>
 									</div>
 									<div class="col-md-3 col-sm-4">
-										Ending Date<input type="datetime" name="expireTo" />
+										Ending Date<input type="datetime" name="expireTo" placeholder="yyyy/MM/dd HH:mm:ss"/>
 									</div>
 									<div class="col-md-3 col-sm-1">
 										Category<br /> <select name="categoryName">
