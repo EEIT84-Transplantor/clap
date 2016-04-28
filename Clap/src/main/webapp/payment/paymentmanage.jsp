@@ -12,6 +12,11 @@
 <!-- Bootstrap -->
 <link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
+<style type="text/css">
+#addCreditForm,#useGiftForm,#AddPromoForm{
+font-size:14px;
+}
+</style>
 </head>
 <body>
 	<header><jsp:include page="/header.jsp" /></header>
