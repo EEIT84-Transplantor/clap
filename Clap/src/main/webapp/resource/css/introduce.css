@@ -12,6 +12,7 @@ img {
 
 section {
 	height: 100vh;
+	position:relative;
 }
 
 section * {
@@ -84,37 +85,37 @@ p {
 }
 
 #og_text {
-	/* 	height:100%; */
 	width: 30%;
 	right: 20%;
 	top: 25%;
-	color: white;
-	vertical-align: middle;
 }
 
 /* section lung */
+#lung{
+	height:70vh;
+	background-color:black;
+}
+
 #lg_video {
 	overflow: hidden;
-	height: 70%; 
-	width : 50%;
-	right: 0;
+	height: 100%; 
+	right:0;
 	top: 0;
-	width: 50%;
+	width:100%;
 }
 
 #lg_video video {
 	position: absolute;
-	width:130%;
 	height: 100%;
-	right: -18%;
+	left:0;
 }
 
 #lg_pic {
 	height: inherit;
-	width: 50%; 
+	width: inherit;
 	top : 0;
 	right: 0;
-	top: 0;
+	right: 17%;	
 }
 
 #lg_pic svg {
@@ -122,6 +123,7 @@ p {
 	height: 480px;
 	right: 16%;
 	top:5%;
+	margin:0 auto;
 }
 
 /* section structure */
