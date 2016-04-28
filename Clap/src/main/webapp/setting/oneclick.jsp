@@ -97,12 +97,20 @@ background:#000;
 	<script src="../resource/js/bootstrap.min.js"></script>
 	<script src="../resource/js/loginsignup.js"></script>
 	<script type="text/javascript">
+	var isOneclickOpen = "${login.oneclick}";
+	
 		$(document).ready(function() {
 			var oneClickYes = $("input[type='radio']").eq(0);
 			var oneClickNo = $("input[type='radio']").eq(1);
 			var submitBtn = $("form > button");
 			var ajaxUrl = "${pageContext.request.contextPath}" + "/setting/oneClickAction.action";
 			var formToAction = $("form.form-horizontal");
+			
+			if(isOneclickOpen == "true"){
+				oneClickYes.prop("checked");
+			}else{
+				oneClickNo.prop("checked");
+			}
 
 			oneClickYes.on("change", function() {
 				$("table").fadeIn();
