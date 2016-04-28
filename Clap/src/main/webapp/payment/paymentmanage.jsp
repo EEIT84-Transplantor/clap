@@ -229,7 +229,6 @@
 		    var isError = json[0].isError;
 		    console.log(isError);
 		    if(isError){
-		    	alert("hi");
 		    	switch(key){
 		    	case "AddCreditCard":
 		    		$('#error').css("color","rgb(255,0,0)");
