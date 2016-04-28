@@ -34,7 +34,7 @@ margin-bottom:20px;
 				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
 				<div class="col-md-10">
 					<h2>Setting account </h2>
-					<p style="margin-bottom:30px;">texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</p>
+					<p style="margin-bottom:30px;">Change your settings here</p>
 
 					<div class="row" style="padding-left: 15px;">
 						<div class="col-md-3">
