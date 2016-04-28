@@ -38,7 +38,7 @@ background:#000;
 				<div class="col-md-10" style="padding-left: 20px;">
 					<h2>One click setting</h2>
 
-					<form class="form-horizontal" action='<c:url value="/setting/oneClickAction.action"/>' method="POST">
+					<form id="yesorno" class="form-horizontal" action='<c:url value="/setting/oneClickAction.action"/>' method="POST">
 
 						<p>Do you want to activate OneClick shopping</p>
 
@@ -116,7 +116,14 @@ background:#000;
 				submitBtn.fadeOut();
 				var formTitle = $("#tableTitle");
 				formTitle.html("One Click Setting");
-				formToAction.submit();
+				$.ajax({
+					url:ajaxUrl,
+					method:"POST",
+					data:$("#yesorno").serialize()
+				}).done(function(msg){
+					console.log(msg);
+				});
+// 				formToAction.submit();
 			});
 
 			//onclick submit button

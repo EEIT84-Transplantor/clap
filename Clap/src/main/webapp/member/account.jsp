@@ -116,11 +116,11 @@ margin-bottom:20px;
 			});
 			//onclick VIP button
 			$("button").eq(5).on("click", function() {
-				location.href = vipUrl;
+				location.reload();
 			});
 			//onclick mailbox button
 			$("button").eq(6).on("click", function() {
-				location.href = mailUrl;
+				location.reload();
 			});
 		});
 	</script>
