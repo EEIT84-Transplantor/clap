@@ -55,7 +55,7 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 			result="true";
 		}
 		inputStream = new ByteArrayInputStream(result.getBytes("UTF-8"));
-		
+		System.out.println("aaaaaaaaaaaaaaa"+inputStream);
 
 		// 算出total
 		String[] productArray = request.getParameterValues("productArray[]");

@@ -535,3 +535,11 @@ padding:20px 30px;
 #dialog{
 	width:match-parent;
 }
+a:focus, a:hover {
+    color: #47BED9;
+    text-decoration: none;
+}
+
+footer li {
+	font-size:14px;
+}
