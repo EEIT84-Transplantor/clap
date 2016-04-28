@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import member.model.MemberVO;
 import product.model.ProductVO;
 import shopping.model.CartService;
+import shopping.model.CartVO;
 
 public class DeleteCartAction extends ActionSupport implements ServletRequestAware {
 
@@ -42,8 +44,14 @@ public class DeleteCartAction extends ActionSupport implements ServletRequestAwa
 			String email = memberVO.getEmail();
 			Boolean check = cartService.removeCart(email, Integer.parseInt(productid));
 			//calculate total cart (not yet)
+			List<CartVO> list = cartService.getCart(email);
+			Integer totalCart=0;
+			for(CartVO i:list){
+				totalCart+=i.getQuantity();
+			}
+			request.getSession().setAttribute("totalCart", totalCart);
 			try {
-				inputStream  = new ByteArrayInputStream(check.toString().getBytes("UTF-8"));
+				inputStream  = new ByteArrayInputStream(totalCart.toString().getBytes("UTF-8"));
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}	

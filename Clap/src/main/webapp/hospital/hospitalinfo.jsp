@@ -35,7 +35,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<h2>Hospital Info</h2>
-							<p>texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</p>
+							<p>These are the hospitals that we work with</p>
 							<div id="floating-panel">
 								<div class="row">
 									<div class="col-md-9">

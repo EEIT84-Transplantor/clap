@@ -34,7 +34,7 @@ margin-bottom:20px;
 				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
 				<div class="col-md-10">
 					<h2>Setting account </h2>
-					<p style="margin-bottom:30px;">texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</p>
+					<p style="margin-bottom:30px;">Change your settings here</p>
 
 					<div class="row" style="padding-left: 15px;">
 						<div class="col-md-3">
@@ -91,7 +91,7 @@ margin-bottom:20px;
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var contextPath = "${pageContext.request.contextPath}";
-			var paymentmanageUrl = contextPath + "/payment/paymentmanage.jsp";
+			var paymentmanageUrl = contextPath + "/payment/paymentmanage.action";
 			var passwordchangeUrl = contextPath + "/setting/passwordchange.jsp";
 			var changesettingUrl = contextPath + "/setting/changesetting.jsp";
 			var oneclickUrl = contextPath + "/setting/oneclick.jsp";
