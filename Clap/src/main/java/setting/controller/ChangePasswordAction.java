@@ -2,6 +2,10 @@ package setting.controller;
 
 import java.util.Arrays;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.conversion.annotations.TypeConversion;
 import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
@@ -10,13 +14,14 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import member.model.MemberService;
 import member.model.MemberVO;
 
-public class ChangePasswordAction extends ActionSupport {
+public class ChangePasswordAction extends ActionSupport implements ServletRequestAware{
 
 	private String email;
 	private byte[] password;
 	private byte[] newpassword;
 	private byte[] confirm;
 	private MemberService memberService;
+	private HttpServletRequest request;
 
 	public String getEmail() {
 		return email;
@@ -84,7 +89,14 @@ public class ChangePasswordAction extends ActionSupport {
 		MemberVO memberVO = memberService.findByEmail(email);
 		memberVO.setPassword(newpassword);
 		memberService.changePassword(email, newpassword);
+		request.getSession().setAttribute("login", memberVO);
 		return SUCCESS;
+	}
+
+	@Override
+	public void setServletRequest(HttpServletRequest request) {
+		this.request=request;
+		
 	}
 
 }

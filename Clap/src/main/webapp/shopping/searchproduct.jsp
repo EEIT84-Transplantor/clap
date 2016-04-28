@@ -43,7 +43,7 @@
 					<!--  內容可以寫這裡  -->
 					<div class="row" style="margin-bottom: 15px;" id="searchProduct">
 					<c:if test="${empty products[0]}">
-					Sorry, we can't find anything..QQ
+					Sorry, we can't find anything..
 					</c:if>
 					
 					<c:forEach items="${products}" var="product" varStatus="p_count">
@@ -51,12 +51,11 @@
 	
 						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px;">
 							<div class="hovereffect">
-								<img class="img-responsive" src="data:image/png;base64,${productimg[product.id].img64}" alt="">
+								<img class="img-responsive" src="data:image/png;base64,${productImgs[p_count.count].img64}" alt="">
 								<div class="overlay">
 									<h2>${product.name}</h2>
 									<p>
-										<span>$${product.price}</span> <a class="info add-to-cart" href="javascript:void(0);" onclick="changeCart(${product.id});">ADD TO
-											CART</a>
+										<span>$${product.price}</span> <a class="info add-to-cart" href="javascript:void(0);" onclick="changeCart(${product.id});">ADD TO CART</a>
 											<a class="info" style="background:green;" href="${pageContext.request.contextPath}/shopping/productDetial.action?productVO.id=${product.id}">MORE</a>
 									
 									</p>

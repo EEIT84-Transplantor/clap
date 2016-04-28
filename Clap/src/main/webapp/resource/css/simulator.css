@@ -65,6 +65,10 @@ input{
 	padding:0 15px;
 	color:#A5A6A6;
 }
+input, select, textarea {
+    color: #A5A6A6;
+}
+
 .factor_item{
 	width:47px;
 	width:44px;

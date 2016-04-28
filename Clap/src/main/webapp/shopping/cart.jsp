@@ -27,7 +27,9 @@
 	<section id="wrap">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
+				<div class="col-md-10">
+				<h2>Cart</h2>
 					<table class="table">
 						<thead>
 							<tr>
@@ -100,7 +102,7 @@
 					<input type="button" id="checkOut" class="btn btn-default btn-block" value="結帳">
 				</div>
 			</div>
-		</div>
+		</div></div>
 	</section>
 
 	<footer><jsp:include page="/footer.jsp" /></footer>
@@ -162,8 +164,12 @@
 						"productArray" : productArray,
 						"promoTitle" : promoTitle
 					},
-				}).done(function() {
-					window.location.href = "<c:url value='/shopping/checkout.jsp'/>";
+				}).done(function(result) {
+					if(result=="true"){
+						window.location.href = "<c:url value='/shopping/checkout.jsp'/>";
+					}else{
+						window.location.href = "<c:url value='/member/signuplogin.jsp'/>";
+					}
 				})
 
 				//測試程式

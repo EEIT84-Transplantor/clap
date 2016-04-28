@@ -21,7 +21,10 @@
 
 	<section id="wrap">
 		<div class="container">
-	
+	<div class="row">
+				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
+				<div class="col-md-10">
+				<h2>Change setting</h2>
 			<form role="form" action="<c:url value="/setting/changeSettingAction"/>" method="POST" enctype="multipart/form-data">
 				<div class="form-group">
 					<s:textfield class="form-control" name="email" type="text" label="Email" readonly="true" value="%{#session.login.email}" />
@@ -37,7 +40,7 @@
 				</div>
 				<button class="btn btn-default" type="button">Submit</button>
 			</form>
-		</div>
+		</div></div>
 	</section>
 
 	<footer>

@@ -16,8 +16,10 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-		<property name="url"
-			value="jdbc:sqlserver://clapeeit84.cyizgbhuhgzq.ap-northeast-1.rds.amazonaws.com:1433;databaseName=clap" />
+<!-- 		<property name="url" -->
+<!-- 			value="jdbc:sqlserver://clapeeit84.cyizgbhuhgzq.ap-northeast-1.rds.amazonaws.com:1433;databaseName=clap" /> -->
+<property name="url"
+			value="jdbc:sqlserver://localhost:1433;databaseName=clap" />
 		<property name="username" value="sa" />
 		<property name="password" value="passw0rd" />
 	</bean>
@@ -260,16 +262,16 @@
 		<property name="memberService" ref="memberService" />
 		<property name="orderDetailService" ref="orderDetailService" />
 	</bean>
-	<bean id="deleteOrderAction" class="shopping.controller.DeleteOrderAction">
+	<bean id="deleteOrderAction" class="shopping.controller.DeleteOrderAction" scope="prototype">
 		<property name="orderFormService" ref="orderFormService" />
 	</bean>
-	<bean id="preReturnAction" class="shopping.controller.PreReturnAction">
+	<bean id="preReturnAction" class="shopping.controller.PreReturnAction" scope="prototype">
 		<property name="returnService" ref="returnService" />
 	</bean>
-	<bean id="returnAction" class="shopping.controller.ReturnAction">
+	<bean id="returnAction" class="shopping.controller.ReturnAction" scope="prototype">
 		<property name="returnService" ref="returnService" />
 	</bean>
-	<bean id="doAppointmentAction" class="shopping.controller.DoAppointmentAction">
+	<bean id="doAppointmentAction" class="shopping.controller.DoAppointmentAction" scope="prototype">
 		<property name="inventoryService" ref="inventoryService" />
 		<property name="inOutLogService" ref="inOutLogService" />
 		<property name="orderFormService" ref="orderFormService" />
@@ -280,7 +282,7 @@
 		<property name="doctorService" ref="doctorService" />
 		<property name="orderDetailService" ref="orderDetailService" />
 	</bean>
-	<bean id="deleteCartAction" class="shopping.controller.DeleteCartAction">
+	<bean id="deleteCartAction" class="shopping.controller.DeleteCartAction" scope="prototype">
 		<property name="cartService" ref="cartService" />
 	</bean>
 

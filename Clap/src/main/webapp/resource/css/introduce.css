@@ -25,8 +25,25 @@ section>div {
 }
 
 p {
+	position:static;
 	font-size: 20px;
 	font-family: 'Alegreya Sans', sans-serif;
+	color:white;
+}
+
+.half{
+	height:100%;
+	width:50%;
+}
+
+.right{
+	top:0;
+	right:0;
+}
+
+.left{
+	top:0;
+	left:0;
 }
 
 /* section banner */
@@ -114,7 +131,6 @@ p {
 	height: inherit;
 	width: inherit;
 	top : 0;
-	right: 0;
 	right: 17%;	
 }
 
@@ -124,6 +140,13 @@ p {
 	right: 16%;
 	top:5%;
 	margin:0 auto;
+}
+
+#lg_text{
+	width: 60%;
+	vertical-align: middle;
+	left:20%;
+	top:20%;
 }
 
 /* section structure */
