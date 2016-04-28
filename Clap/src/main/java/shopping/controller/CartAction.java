@@ -96,6 +96,7 @@ public class CartAction extends ActionSupport implements ServletRequestAware {
 		//判斷是否登入
 		if (memberVO != null) {
 			List<CartVO> cartVOs = cartService.getCart(memberVO.getEmail());
+			Integer totalCart = 0;
 			for (CartVO cartVO : cartVOs) {
 				Map<String, Object> map = new HashMap<String, Object>();
 				ProductVO productVO = cartVO.getProductVO();
@@ -105,8 +106,10 @@ public class CartAction extends ActionSupport implements ServletRequestAware {
 				map.put("price", productVO.getPrice());
 				map.put("stock", inventoryService.getQuantity(productVO.getId()));
 				cartList.add(map);
+				totalCart+=cartVO.getQuantity();
 			}
 			promoList = promoCodeService.getPromos(memberVO.getEmail());
+			request.setAttribute("totalCart", totalCart);
 			request.setAttribute("cartList", cartList);
 			request.setAttribute("promoList", promoList);
 		} else {

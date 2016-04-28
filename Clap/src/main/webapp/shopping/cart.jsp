@@ -33,10 +33,10 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<td>商品</td>
-								<td>數量</td>
-								<td>價格</td>
-								<td>刪除</td>
+								<td>Product</td>
+								<td>Quantity</td>
+								<td>Price</td>
+								<td>Delete</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -57,7 +57,7 @@
 											</c:forEach>
 										</select></td>
 									<td>${row.price}</td>
-									<td><input type="button" value="刪除" /></td>
+									<td><input type="button" value="Delete" /></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -69,7 +69,7 @@
 				<div class="col-md-4">
 					<table class="table">
 						<tr>
-							<td>商品數</td>
+							<td>Quantity</td>
 							<td id="quantity">${fn:length(cartList)}<br />${error}</td>
 						</tr>
 						<tr>
@@ -86,7 +86,7 @@
 								</select></td>
 						</tr>
 						<tr>
-							<td>禮物卡</td>
+							<td>Gift Card</td>
 							<td id="amount">${login.amount}</td>
 						</tr>
 						<tr>
@@ -99,7 +99,7 @@
 			<div class="row">
 				<div class="col-md-10"></div>
 				<div class="col-md-2">
-					<input type="button" id="checkOut" class="btn btn-default btn-block" value="結帳">
+					<input type="button" id="checkOut" class="btn btn-default btn-block" value="Pay">
 				</div>
 			</div>
 		</div></div>

@@ -101,7 +101,7 @@
 							</div>
 							<div class="col-md-7 opacityDiv">
 								<h2>Hello, ${login.name}</h2>
-								<p>Description Description Description Description Description</p>
+								<p>Select organs or conditions that apply to you and see the power of each product</p>
 								<div class="row" id="s_graphic">
 									<c:forEach begin="1" end="7" varStatus="row">
 										<div class="col-md-6 col-sm-12">

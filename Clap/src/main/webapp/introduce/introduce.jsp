@@ -3234,22 +3234,6 @@
 					</script>
 				</section>
 				<section id="structure" class="demo">
-					<div style="background-image:url(member.png)"><h1>會員系統</h1></div>
-					<div style="background-image:url(shopping.png)"><h1>購物網站</h1></div>
-					<div style="background-image:url(simulator.png)"><h1>模擬系統</h1></div>
-				</section>
-				<section id="team" class="demo">
-					<div><h1>POAN</h1></div>
-					<div><h1>CACA</h1></div>
-					<div><h1>雅勵</h1></div>
-					<div><h1>皮卡</h1></div>
-				</section>
-				<section id="skill" class="demo">
-					<div >
-						<img class="middle" src="skills.png">
-					</div>
-				</section>
-				<section id="structure" class="demo">
 					<div id="st_type0" class="middle">
 						<h1 class="middle">Service</h1>
 					</div>

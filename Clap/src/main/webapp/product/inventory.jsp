@@ -52,12 +52,12 @@
                                         <div class="form-group">
                                             <label>Please Enter Product Name or Product Id</label><br>
                                             <label>Product Name</label>
-                                            <input class="form-control" name="productName" value="${productName}">
+                                            <input class="form-control" name="productName" value="">
                                            
                                         </div>
                                         <div class="form-group">
                                             <label>Product Id</label>
-                                            <input class="form-control" name="inOutLogVO.product_id"  value="${inOutLogVO.product_id}">
+                                            <input class="form-control" name="inOutLogVO.product_id"  value="">
                                         </div>
                         				 <div class="form-group">
                                             <label>Import or Export</label><br>
@@ -70,20 +70,20 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Quantity</label>
-                                            <input class="form-control" name="quantity" value="${quantity}">
+                                            <input class="form-control" name="quantity" value="">
                                            
                                         </div>
                                         <div class="form-group">
                                             <label>Manufacture Date</label>
-                                            <input class="form-control" name="manufactureDate" value="${manufactureDate}">
+                                            <input class="form-control" name="manufactureDate" value="" placeholder="yyyy/MM/dd">
                                         </div>
                                         <div class="form-group">
                                             <label>Expiration Date</label>
-                                            <input class="form-control" name="expiryDate" value="${expiryDate}">
+                                            <input class="form-control" name="expiryDate" value="" placeholder="yyyy/MM/dd">
                                         </div>
                                         <div class="form-group">
                                             <label>Destination</label>
-                                            <input class="form-control" name="inOutLogVO.destination" value="${inOutLogVO.destination}">
+                                            <input class="form-control" name="inOutLogVO.destination" value="">
                                         </div>
                                       
                                         

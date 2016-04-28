@@ -40,7 +40,10 @@ public class PasswordSettingServlet extends HttpServlet {
 		if (password.trim().length() != 0 && password.equals(passwordconfirm)) {
 			memberService.signUp(email, password);
 			memberVO = memberService.login(email, password.getBytes());
-			request.setAttribute("login", memberVO);
+			System.out.println(memberVO);
+			HttpSession session = request.getSession();
+			session.setAttribute("login", memberVO);
+			
 			request.getRequestDispatcher("../index.jsp").forward(request, response);
 		} else {
 			error.put("password", "password confirm failure");
