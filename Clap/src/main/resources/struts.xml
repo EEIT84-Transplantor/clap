@@ -175,10 +175,13 @@
 		<interceptors>
 			<interceptor name="loginInterceptor"
 				class="component.interceptor.LoginInterceptor" />
+			<interceptor name="creditCardInterceptor"
+				class="component.interceptor.CreditCardInterceptor" />
 			<interceptor-stack name="returnStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
+
 		</interceptors>
 		<global-results>
 			<result type="redirect" name="login">/member/signuplogin.jsp</result>
@@ -220,6 +223,7 @@
 			<result name="success">/shopping/cart.jsp</result>
 		</action>
 		<action name="setCreditCardAction" class="shopping.controller.SetCreditCardAction">
+<!-- 			<interceptor-ref name="creditCardInterceptor"></interceptor-ref> -->
 			<result type="stream">
 				<param name="contentType">text/plain</param>
 				<param name="inputName">inputStream</param>

@@ -91,7 +91,7 @@ margin-bottom:20px;
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var contextPath = "${pageContext.request.contextPath}";
-			var paymentmanageUrl = contextPath + "/payment/paymentmanage.jsp";
+			var paymentmanageUrl = contextPath + "/payment/paymentmanage.action";
 			var passwordchangeUrl = contextPath + "/setting/passwordchange.jsp";
 			var changesettingUrl = contextPath + "/setting/changesetting.jsp";
 			var oneclickUrl = contextPath + "/setting/oneclick.jsp";

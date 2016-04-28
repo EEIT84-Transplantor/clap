@@ -167,7 +167,7 @@
 		
 		$('body').on('click','.delete_card',function() {
 			if (confirm("Do you want to delete this promotion code?") == true) {
-				var data = "creditCardVO.creditCard.cc_number="+$(this).prev().children(".cc_number").text();
+				var data = "creditCardVO.creditCardPK.cc_number="+$(this).prev().children(".cc_number").text()+"&creditCardVO.creditCardPK.mb_email=${login.email}";
 			 	var url = path;
 			    var action = "deleteCreditCard";
 			    sendPostRwquestPayment(url,data,action);

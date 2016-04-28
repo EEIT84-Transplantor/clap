@@ -136,7 +136,7 @@
 				</table>
 			</div>
 			<div class="col-md-2">
-				<input type="button" class="btn btn-default btn-block" value="付款" id="submit">
+				<input type="button" class="btn btn-default btn-block" value="Pay" id="submit">
 			</div>
 		</div>
 
