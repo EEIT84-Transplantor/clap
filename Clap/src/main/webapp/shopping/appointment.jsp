@@ -15,6 +15,11 @@
 <link href="<c:url value="/resource/css/avgrund.css"/>" rel="stylesheet">
 
 <!-- 在這加上你自己的css檔案連結  -->
+<style>
+	.text{
+		color:black;
+	}
+</style>
 </head>
 <body>
 
@@ -107,7 +112,7 @@
 						"hospital" : $("#hospital option:selected").text(),
 						"orderform_id" : "${orderform_id}"
 					},
-				}).done(function() {
+				}).done(function(e) {
 					finish();
 				})
 			})
@@ -147,6 +152,7 @@
 			$('#submit').avgrund({
 				width : 380, // max is 640px
 				height : 280, // max is 350px
+				holderClass: 'text',
 				openOnEvent : false, // set to 'false' to init on load
 				template : '購買完成 五秒後回首頁' // or function (elem) { }, or $('.content')
 			});
