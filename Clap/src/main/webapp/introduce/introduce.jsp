@@ -5,10 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:100' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:100,200,300,400,500' rel='stylesheet' type='text/css'>
 <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic|Josefin+Slab:400,700italic|Poiret+One' type='text/css'>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/style.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/examples.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/introduce.css" type="text/css">
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
@@ -20,7 +18,6 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.3/plugins/ScrollToPlugin.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/examples.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/introduce.js"></script>
 
 </head>
@@ -3236,9 +3233,60 @@
 					
 					</script>
 				</section>
-				<section id="structure" class="demo"></section>
-				<section id="team" class="demo"></section>
-				<section id="skill" class="demo"></section>
+				<section id="structure" class="demo">
+					<div id="st_type0" class="middle">
+						<h1 class="middle">Service</h1>
+					</div>
+					<div id="st_type1" class="middle">
+						<div>
+							<img src="membericon.png">
+							<h3>MEMBER</h3>
+							<p>Ethically Compliant Umbilical Cord Stem Cells are harvested from the donated Umbilical Cord . </p>
+						</div>
+						<div>
+							<img src="shoppingicon.png">
+							<h3>SHOPPING</h3>
+							<p>From this beautiful gift, the Umbilical Cord Stem Cells are concentrated and screened .</p>
+						</div>
+						<div>
+							<img src="simulatoricon.png">
+							<h3>SIMULATOR</h3>
+							<p>These Umbilical Cells are carefully screened for infectious disease 3 times .   </p>
+						</div>					
+					</div>
+					<script type="text/javascript">
+						$(function(){
+							$("#st_type1 img").mouseover(function(e){
+								TweenMax.to($(this),0.5,{opacity:1,scale:1.1});
+							})
+							$("#st_type1 img").mouseout(function(e){
+								TweenMax.to($(this),0.5,{opacity:0.2,scale:1});
+							})
+						})
+					
+					</script>
+				</section>
+				<section id="team" class="demo">
+					<div>
+						<p>柏安</p>
+						<img src="team.png">	
+					</div>
+					<div>
+						<p>雅勵</p>
+						<img src="team.png">	
+					</div>
+					<div>
+						<p>愈穎</p>
+						<img src="team.png">	
+					</div>
+					<div>
+						<p>倩郁</p>
+						<img src="team.png">	
+					</div>
+				</section>
+				<section id="skill" class="demo">
+					<img class="middle" src="skills.png">
+				</section>
 				<section id="XXX" class="demo"></section>
 			</div>
 		</div>
