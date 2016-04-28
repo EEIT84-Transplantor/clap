@@ -251,7 +251,11 @@
 		    var info = json[1];
 		    switch(key) {
 		    case "AddCreditCard":
-		    	  $(".payment_detail_box").last().after('<div class="payment_detail_box"><div class="creditCard"><div class="credit_info"><p class="cc_number">'+info.cc_number+'</p><p class="cc_goodthru">'+info.cc_goodthru+'</p><p class="cc_name">'+info.name+'</p><img src="../resource/images/'+info.cardType+'.png" width="60" /></div><div class="delete_card"><span class="glyphicon glyphicon-remove"></span></div></div></div>');
+		    	 if($('.payment_detail_box').length==0){
+		    		 $("#credit_content").append('<div class="payment_detail_box"><div class="creditCard"><div class="credit_info"><p class="cc_number">'+info.cc_number+'</p><p class="cc_goodthru">'+info.cc_goodthru+'</p><p class="cc_name">'+info.name+'</p><img src="../resource/images/'+info.cardType+'.png" width="60" /></div><div class="delete_card"><span class="glyphicon glyphicon-remove"></span></div></div></div>');
+		    	 }else{
+		    		 $(".payment_detail_box").last().after('<div class="payment_detail_box"><div class="creditCard"><div class="credit_info"><p class="cc_number">'+info.cc_number+'</p><p class="cc_goodthru">'+info.cc_goodthru+'</p><p class="cc_name">'+info.name+'</p><img src="../resource/images/'+info.cardType+'.png" width="60" /></div><div class="delete_card"><span class="glyphicon glyphicon-remove"></span></div></div></div>');
+		    	 }
 		    	  break;
 		    case "deleteCreditCard":
 		    	 if(info.result){
