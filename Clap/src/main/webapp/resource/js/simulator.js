@@ -48,8 +48,10 @@
 			function initChangeBackClick() {
 				$(".factor_item").on("click", function() {
 					var src = $(this).find('img').attr('src');
+					
 					var bg_img;
-					switch (src.substr(39, 1)) {
+					console.log("bg_imghahahhhhhhhh"+src.substr(src.lastIndexOf(".png")-1, 1));
+					switch (src.substr(src.lastIndexOf(".png")-1, 1)) {
 					case "1":
 						bg_img = "s_bg_1.png";
 						environmentIndex = 1;

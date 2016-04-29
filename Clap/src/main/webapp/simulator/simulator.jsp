@@ -16,7 +16,7 @@
 <link href="<c:url value="/resource/css/silderbanner.css"/>" rel="stylesheet">
 <link href="<c:url value='/resource/css/bootstrap-slider.css'/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/simulator.css"/>" rel="stylesheet">
-<link href="<c:url value="/resource/css/simple-sidebar"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/simple-sidebar.css"/>" rel="stylesheet">
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>	
