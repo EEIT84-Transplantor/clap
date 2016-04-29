@@ -27,7 +27,7 @@ public class ProductimgVO implements Serializable {
 			to64byte[index] = this.img[index];
 			
 		}
-		System.out.println(to64byte.length);
+//		System.out.println(to64byte.length);
 		this.img64= Base64.getEncoder().encodeToString(to64byte);
 		return this.img64;
 	}

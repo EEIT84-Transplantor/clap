@@ -114,9 +114,9 @@ public class BodySimulatorAction extends ActionSupport {
 			if (weight != null && weight > 0 && height != null && height > 0) {
 				bmi = weight / (Math.pow(height / 100, 2.0));
 			}
-			System.out.println("BodySimulatorAction [weight=" + weight + ", height=" + height + ", bmi=" + bmi
-					+ ", smoking=" + smoking + ", drinking=" + drinking + ", exercising=" + exercising + ", env_id="
-					+ env_id + "]");
+//			System.out.println("BodySimulatorAction [weight=" + weight + ", height=" + height + ", bmi=" + bmi
+//					+ ", smoking=" + smoking + ", drinking=" + drinking + ", exercising=" + exercising + ", env_id="
+//					+ env_id + "]");
 			// categoryService 的calculate
 			ServletContext context = ServletActionContext.getServletContext();
 			List<CategoryVO> categoryVOs=(List<CategoryVO>) context.getAttribute("globalCategoryVOs");
@@ -179,7 +179,7 @@ public class BodySimulatorAction extends ActionSupport {
 				simulatorVOsArray.put(simulatorVOJSON);
 
 			}
-			System.out.println("simulatorVOsArray length: " + simulatorVOsArray.toString().length());
+//			System.out.println("simulatorVOsArray length: " + simulatorVOsArray.toString().length());
 			request.setAttribute("simulatorVOs", simulatorVOs);
 			try {
 				inputStream = new ByteArrayInputStream(simulatorVOsArray.toString().getBytes("UTF-8"));

@@ -70,6 +70,8 @@ public class SetCartAction extends ActionSupport implements ServletRequestAware{
 						tempCart = (Map<Integer,Integer>) session.getAttribute("tempCart");
 						
 						if(tempCart.get(cartVO.getProduct_id())!=null){
+							System.out.println("ㄚㄚㄚ"+quantity+"sss"+tempCart.get(cartVO.getProduct_id()));
+							
 							Integer temps = quantity+tempCart.get(cartVO.getProduct_id());
 							tempCart.put(cartVO.getProduct_id(), temps);
 						}else{

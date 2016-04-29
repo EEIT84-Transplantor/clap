@@ -117,7 +117,6 @@ public class CartAction extends ActionSupport implements ServletRequestAware {
 			
 			if(temp!=null){
 				for(Integer i:temp.keySet()){
-					
 					Map<String, Object> map = new HashMap<String, Object>();
 					ProductVO productVO = productService.getProductById(i);
 					map.put("id", productVO.getId());
@@ -126,9 +125,9 @@ public class CartAction extends ActionSupport implements ServletRequestAware {
 					map.put("price", productVO.getPrice());
 					map.put("stock", inventoryService.getQuantity(productVO.getId()));
 					cartList.add(map);
-					
 				}
 			}
+			
 			request.setAttribute("cartList", cartList);
 			
 		}

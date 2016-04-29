@@ -11,9 +11,7 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import product.model.CategoryService;
 import product.model.CategoryVO;
-import product.model.ProductService;
 import product.model.ProductVO;
 import product.model.ProductimgVO;
 
