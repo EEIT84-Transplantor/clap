@@ -83,14 +83,17 @@
 		<param-name>pass</param-name>
 		<param-value>TransplantorEEIT84</param-value>
 	</context-param>
-
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/classes/applicationContext.xml</param-value>
 	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>component.listener.InitListener</listener-class>
+	</listener>
+
 
 
 </web-app>
