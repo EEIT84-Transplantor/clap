@@ -222,7 +222,6 @@
 			<result name="success">/shopping/cart.jsp</result>
 		</action>
 		<action name="setCreditCardAction" class="shopping.controller.SetCreditCardAction">
-
 			<!-- <interceptor-ref name="creditCardInterceptor"></interceptor-ref> -->
 			<result type="stream">
 				<param name="contentType">text/plain</param>
