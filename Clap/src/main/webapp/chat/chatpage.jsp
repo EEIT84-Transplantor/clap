@@ -163,9 +163,9 @@ button {
 			//ws is a websocket protocol
 			//location.host + location.pathname is the current url
 			//new WebSocket(url) will immediately open a websocket connection
-			console.log("ws://" + location.host + "/Clap/chat.c?username="
+			console.log("wss://" + location.host + "/Clap/chat.c?username="
 					+ usernameInputEl.value);
-			socket = new WebSocket("ws://" + location.host
+			socket = new WebSocket("wss://" + location.host
 					+ "/Clap/chat.c?username=" + usernameInputEl.value);
 
 			//add the event listener for the socket object
