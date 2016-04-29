@@ -20,7 +20,7 @@ public class OrderDetailService {
 		OrderDetailVO orderDetailVO = new OrderDetailVO();
 		orderDetailVO.setId(orderform_id);
 		orderDetailVO.setProduct_id(cartVO.getProduct_id());
-		orderDetailVO.setCart_quantity(cartVO.getQuantity());
+		orderDetailVO.setCt_quantity(cartVO.getQuantity());
 		orderDetailVO.setOrderform_id(orderform_id);
 		return orderDetailHibernateDAO.insert(orderDetailVO);
 	}

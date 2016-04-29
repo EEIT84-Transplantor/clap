@@ -222,14 +222,15 @@
 			<result name="success">/shopping/cart.jsp</result>
 		</action>
 		<action name="setCreditCardAction" class="shopping.controller.SetCreditCardAction">
-<!-- 			<interceptor-ref name="creditCardInterceptor"></interceptor-ref> -->
+
+			<!-- <interceptor-ref name="creditCardInterceptor"></interceptor-ref> -->
 			<result type="stream">
 				<param name="contentType">text/plain</param>
 				<param name="inputName">inputStream</param>
 			</result>
 		</action>
 		<action name="orderFormAction" class="shopping.controller.OrderFormAction">
-			<result name="success">/shopping/return.jsp</result>
+			<result name="success">/shopping/orderform.jsp</result>
 		</action>
 		<action name="orderDetailAction" class="shopping.controller.OrderDetailAction">
 			<result name="success">/shopping/ordertdetail.jsp</result>
@@ -369,16 +370,6 @@
 	</package>
 
 	<package name="simulator" namespace="/simulator" extends="json-default">
-		<action name="simulatorAction" class="simulatorAction">
-			<result>/simulator/simulator.jsp</result>
-		</action>
-		<action name="bodySimulatorAction" class="bodySimulatorAction">
-			<result name="display">/simulator/simulator.jsp</result>
-			<result type="stream">
-				<param name="contentType">text/html</param>
-				<param name="inputName">inputStream</param>
-			</result>
-		</action>
 		<action name="savePackAction" class="savePackAction">
 			<interceptor-ref name="json">
 				<param name="enableSMD">true</param>
@@ -417,6 +408,26 @@
 					productList,cartService,request,session
 				</param>
 			</result>
+		</action>
+	</package>
+
+	<!-- for url without Transaction -->
+	<package name="passTransaction" namespace="/fastpass" extends="json-default">
+		<action name="simulatorAction" class="simulatorAction">
+			<result>/simulator/simulator.jsp</result>
+		</action>
+		<action name="bodySimulatorAction" class="bodySimulatorAction">
+			<result name="display">/simulator/simulator.jsp</result>
+			<result type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<action name="shopping" class="shopping.controller.ShoppingAction">
+			<result name="success">/shopping/shopping.jsp</result>
+		</action>
+		<action name="categories" class="shopping.controller.CategoriesAction">
+			<result name="success">/shopping/categories.jsp</result>
 		</action>
 	</package>
 </struts>
