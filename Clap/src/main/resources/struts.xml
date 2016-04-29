@@ -229,7 +229,7 @@
 			</result>
 		</action>
 		<action name="orderFormAction" class="shopping.controller.OrderFormAction">
-			<result name="success">/shopping/return.jsp</result>
+			<result name="success">/shopping/orderform.jsp</result>
 		</action>
 		<action name="orderDetailAction" class="shopping.controller.OrderDetailAction">
 			<result name="success">/shopping/ordertdetail.jsp</result>

@@ -95,7 +95,7 @@
 							<tr>
 								<td>${orderVO.id}</td>
 								<td>${orderVO.orderFormVO.hospitalVO.name}</td>
-								<td>${orderVO.time}</td>
+								<td>${orderVO.orderdetail_surgerytime}</td>
 								<td>${orderVO.doctorVO.name}</td>
 								<td>${orderVO.productVO.name}</td>
 								<td>${orderVO.ct_quantity}</td>

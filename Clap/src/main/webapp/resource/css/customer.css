@@ -198,6 +198,10 @@ label {
 	background-color: #000;
 }
 
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+	color: #47BED9;	
+}
+
 .nav-pills>li>a {
 	padding: 1px 7px;
 	color: #000;
@@ -536,7 +540,7 @@ padding:20px 30px;
 	width:match-parent;
 }
 a:focus, a:hover {
-    color: #47BED9;
+    color: #0188A7;
     text-decoration: none;
 }
 

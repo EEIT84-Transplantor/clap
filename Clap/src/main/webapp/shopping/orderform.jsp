@@ -1,8 +1,3 @@
-<%@page import="java.sql.Timestamp"%>
-<%@page import="java.util.Calendar"%>
-<%@page import="java.sql.Date"%>
-<%@page import="shopping.model.OrderFormVO"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
@@ -16,38 +11,11 @@
 <title>CLAP</title>
 <!-- Bootstrap -->
 <link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
-<%-- <link href="<c:url value="/resource/css/silderbanner.css"/>" rel="stylesheet"> --%>
-<%-- <link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet"> --%>
+<link href="<c:url value="/resource/css/silderbanner.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
-	<!--%
-		OrderFormVO orderFormVO1 = new OrderFormVO();
-		orderFormVO1.setId(1111);
-		orderFormVO1.setTime(new Timestamp(Calendar.getInstance().getTimeInMillis()));
-		orderFormVO1.setTotal(11111);
-		orderFormVO1.setStatus(new Byte("1"));
-
-		OrderFormVO orderFormVO3 = new OrderFormVO();
-		orderFormVO3.setId(3333);
-		orderFormVO3.setTime(new Timestamp(Calendar.getInstance().getTimeInMillis()));
-		orderFormVO3.setTotal(33333);
-		orderFormVO3.setStatus(new Byte("3"));
-
-		OrderFormVO orderFormVO2 = new OrderFormVO();
-		orderFormVO2.setId(2222);
-		orderFormVO2.setTime(new Timestamp(Calendar.getInstance().getTimeInMillis()));
-		orderFormVO2.setTotal(22222);
-		orderFormVO2.setStatus(new Byte("2"));
-
-		ArrayList<OrderFormVO> orderList = new ArrayList<>();
-		orderList.add(orderFormVO1);
-		orderList.add(orderFormVO2);
-		orderList.add(orderFormVO3);
-
-		pageContext.setAttribute("orderList", orderList);
-	%-->
-
 	<header><jsp:include page="/header.jsp" /></header>
 
 	<div class="container">
@@ -66,7 +34,7 @@
 					<tbody>
 						<c:forEach var="orderVO" items="${orderList}">
 							<tr>
-								<td><a href="<c:url value='/shopping/orderDetail.action?id:${orderVO.id}'/>">${orderVO.id}</a></td>
+								<td><a href="<c:url value='/shopping/orderDetailAction.action?orderId=${orderVO.id}'/>">${orderVO.id}</a></td>
 								<td>${orderVO.time}</td>
 								<td>${orderVO.total}</td>
 								<td>${orderVO.status}</td>

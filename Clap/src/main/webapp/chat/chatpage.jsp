@@ -23,7 +23,11 @@
 button {
 	color: black;
 }
+
 </style>
+
+
+
 </head>
 <body>
 	<header>
@@ -132,6 +136,7 @@ button {
 		src="${pageContext.request.contextPath}/resource/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		//DOM Element
+		
 		var usernameInputEl = document.querySelector("#username");
 		var connectBtnEl = document.querySelector('#connect');
 		var disconnectBtnEl = document.querySelector('#disconnect');
@@ -163,8 +168,6 @@ button {
 			//ws is a websocket protocol
 			//location.host + location.pathname is the current url
 			//new WebSocket(url) will immediately open a websocket connection
-			console.log("wss://" + location.host + "/Clap/chat.c?username="
-					+ usernameInputEl.value);
 			socket = new WebSocket("wss://" + location.host
 					+ "/Clap/chat.c?username=" + usernameInputEl.value);
 
@@ -174,11 +177,10 @@ button {
 			socket.onclose = socketOnClose;
 		}
 		$(document).ready(function() {
-			console.log("admin came" + usernameInputEl.value);
-
 			if (usernameInputEl.value == "admin") {
 				connect();
 			}
+		
 		});
 		function disconnect() {
 			//close the connection and the reset the socket object
