@@ -10,7 +10,7 @@ public interface OrderFormDAO {
 
 	public Boolean update(OrderFormVO orderFormVO);
 
-	public List<OrderFormDAO> select();
+	public List<OrderFormVO> select();
 
 	public OrderFormVO select(Integer id);
 

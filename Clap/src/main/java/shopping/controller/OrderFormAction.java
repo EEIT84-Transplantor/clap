@@ -14,8 +14,6 @@ public class OrderFormAction extends ActionSupport implements ServletRequestAwar
 	private OrderFormService orderFormService;
 	private HttpServletRequest request;
 
-	
-	
 	public OrderFormService getOrderFormService() {
 		return orderFormService;
 	}
@@ -36,6 +34,7 @@ public class OrderFormAction extends ActionSupport implements ServletRequestAwar
 		MemberVO memberVO = (MemberVO) request.getSession().getAttribute("login");
 		String email = memberVO.getEmail();
 		request.setAttribute("orderList", orderFormService.getOrderList(email));
+		System.out.println("XXXXX"+orderFormService.getOrderList(email));
 		return super.execute();
 	}
 
