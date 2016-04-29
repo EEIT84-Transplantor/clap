@@ -232,9 +232,9 @@
 	<!-- 載入js -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resource/js/jquery.color-2.1.2.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resource/js/jquery-ui.min.js"/>"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/json2/20150503/json2.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/codex-fly.js"/>"></script>	
 	<script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
