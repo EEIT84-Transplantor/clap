@@ -40,6 +40,7 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 	@Override
 	public String execute() throws Exception {
 
+		System.out.println("checkout");
 		JSONObject product;
 		Double price;
 		Integer quantity;
@@ -48,14 +49,13 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 
 		// 判斷是否登入
 		MemberVO memberVO = (MemberVO) session.getAttribute("login");
+		System.out.println(memberVO);
 		if(memberVO == null){
-			result="false";
+			inputStream = new ByteArrayInputStream("false".getBytes("UTF-8"));
 			return super.execute();
 		}else{
-			result="true";
+			inputStream = new ByteArrayInputStream("true".getBytes("UTF-8"));
 		}
-		inputStream = new ByteArrayInputStream(result.getBytes("UTF-8"));
-		System.out.println("aaaaaaaaaaaaaaa"+inputStream);
 
 		// 算出total
 		String[] productArray = request.getParameterValues("productArray[]");

@@ -2004,10 +2004,7 @@
 		c1.825,1.176,3.5,2.487,5.803,2.516c0.851,0.011,1.292,0.567,1.323,1.405C61.648,132.401,61.636,133.201,61.642,134.001z"/>
 </svg>
 						<div id="og_text">
-							<p>Ethically Compliant Umbilical Cord Stem Cells are harvested from the donated Umbilical Cord of a healthy live birth of a pre-screened baby and mother. </p>
-							<p>From this beautiful gift, the Umbilical Cord Stem Cells are concentrated and screened for viability and health in the use of approved Medical IRB Studies, Surgeries, Tissue Repair, and Auto Immune Disorders.</p>			
-							<p>Umbilical Cord Stem Cells have the ability to differentiate into many tissues of the body.</p>			
-							<p>These Umbilical Cells are carefully screened for infectious disease 3 times before the final process of concentration in a lab where they fall under the jurisdiction and strict compliance standards of Tissue Bank Regulation.   </p>			
+							<p>an undifferentiated cell of a multicellular organism which is capable of giving rise to indefinitely more cells of the same type, and from which certain other kinds of cell arise by differentiation.</p>			
 						</div>
 					</div>
 					<script>				
@@ -2024,8 +2021,8 @@
 				</section>
 				<section id="organs" class="demo">
 					<div id="os_type0">
-						<h1 class="blod">Customizable Icons.</h1>
-						<p>You can easily change the color, size, orientation, shadow and more. By using our icons' Smart Strokes with Illustrator or Sketch to adjust the stroke width and thickness.</p>
+						<h1 class="blod">Eight tiny organs grown by scientists</h1>
+						<p>Why might you want to grow a tiny organ? Small organs, or parts of them, are useful for studying both development and disease, and for toxicity testing or testing new treatments. In some cases, mini organs will be able to replace research using animals.But they also offer a tantalising glimpse of a world in which we can grow complex solid organs for transplant. These tiny organs – often more like proto-organs with just some of an organ’s functions – are quite literally ‘starting small’, first seeing if it’s even possible. Here we list eight tiny organs that have been grown so far.</p>
 					</div>
 					<div id="os_type1">
 						<svg version="1.1" id="heart" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -2362,7 +2359,9 @@
 				<section id="skill" class="demo">
 					<img class="middle" src="skills.png">
 				</section>
-				<section id="XXX" class="demo"></section>
+				<section id="XXX" class="demo">
+					<a href="/Clap/index.jsp">back</a>
+				</section>
 			</div>
 		</div>
 	</div>
