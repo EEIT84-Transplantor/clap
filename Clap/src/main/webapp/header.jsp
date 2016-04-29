@@ -69,13 +69,15 @@
 					<li><a 
 						href="${pageContext.request.contextPath}/shopping/cartAction.action"
 						class="cart_anchor">${totalCart}</a></li>
-					<li><a id="purchase"
-						href="${pageContext.request.contextPath}/shopping/shopping.action">Purchase</a></li>
-					<li><a id="about" href="${pageContext.request.contextPath}/introduce/introduce.jsp">About</a></li>
-					<li><a id="simulator"
-						href="${pageContext.request.contextPath}/simulator/simulatorAction.action">Simulator</a></li>
-					<li><a id="contact" href="${pageContext.request.contextPath}/chat/chatpage.jsp">Contact</a></li>
-					<li><a id="account" href="<c:url value="/member/account.jsp"/>">Account</a></li>
+
+					<li><a
+						href="${pageContext.request.contextPath}/fastpass/shopping.action">Purchase</a></li>
+					<li class="active"><a href="#">About</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/fastpass/simulatorAction.action">Simulator</a></li>
+					<li><a href="${pageContext.request.contextPath}/chat/chatpage.jsp">Contact</a></li>
+					<li><a href="<c:url value="/member/account.jsp"/>">Account</a></li>
+
 					<c:if test="${login.type==2}">
 						<li><a
 							id="administrator" href="${pageContext.request.contextPath}/paymentmanage/setpromotion.action">Administrator</a></li>
