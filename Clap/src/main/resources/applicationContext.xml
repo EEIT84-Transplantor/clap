@@ -16,14 +16,14 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+<!-- <property name="url" -->
+<!-- 			value="jdbc:sqlserver://clapeeit84.cyizgbhuhgzq.ap-northeast-1.rds.amazonaws.com:1433;databaseName=clap" /> -->
+<!-- 			<property name="username" value="sa" /> -->
+<!-- 			<property name="password" value="passw0rd" /> -->
 <property name="url"
-			value="jdbc:sqlserver://clapeeit84.cyizgbhuhgzq.ap-northeast-1.rds.amazonaws.com:1433;databaseName=clap" />
+			value="jdbc:sqlserver://eeit84clap.database.windows.net:1433;databaseName=clap" />
 			<property name="username" value="clap" />
 			<property name="password" value="Sa123456" />
-<!-- 	clapeeit84.cyizgbhuhgzq.ap-northeast-1.rds.amazonaws.com -->
-<!-- 	eeit84clap.database.windows.net	 -->
-<!-- 		<property name="username" value="sa" /> -->
-<!-- 		<property name="password" value="passw0rd" /> -->
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
