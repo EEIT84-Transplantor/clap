@@ -31,10 +31,47 @@
 		<filter-name>OpenSessionViewFilter</filter-name>
 		<filter-class>component.filter.OpenSessionViewFilter</filter-class>
 	</filter>
+<!-- 	all the mapping with transaction -->
 	<filter-mapping>
 		<filter-name>OpenSessionViewFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/setting/*</url-pattern>
 	</filter-mapping>
+	<filter-mapping>
+		<filter-name>OpenSessionViewFilter</filter-name>
+		<url-pattern>/payment/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>OpenSessionViewFilter</filter-name>
+		<url-pattern>/paymentmanage/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>OpenSessionViewFilter</filter-name>
+		<url-pattern>/member/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>OpenSessionViewFilter</filter-name>
+		<url-pattern>/shopping/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>OpenSessionViewFilter</filter-name>
+		<url-pattern>/hospital/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>OpenSessionViewFilter</filter-name>
+		<url-pattern>/product/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>OpenSessionViewFilter</filter-name>
+		<url-pattern>/simulator/oneclickPackAction</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>OpenSessionViewFilter</filter-name>
+		<url-pattern>/simulator/addToCartAction</url-pattern>
+	</filter-mapping>
+	
+	
+	
+	
 	<filter>
 		<filter-name>ActoinContextFilter</filter-name>
 		<filter-class>component.filter.ActoinContextFilter</filter-class>
