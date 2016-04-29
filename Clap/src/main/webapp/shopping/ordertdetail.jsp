@@ -26,7 +26,7 @@
 </head>
 <body>
 
-	<%
+	<!-- %
 		HospitalVO hospitalVO1 = new HospitalVO();
 		hospitalVO1.setId(11);
 		hospitalVO1.setName("臺大醫院");
@@ -72,7 +72,7 @@
 		orderList.add(orderDetailVO2);
 
 		pageContext.setAttribute("orderList", orderList);
-	%>
+	%-->
 
 	<header><jsp:include page="/header.jsp" /></header>
 	<div class="container">

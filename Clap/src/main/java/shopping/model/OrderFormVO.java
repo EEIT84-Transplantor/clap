@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,8 +39,7 @@ public class OrderFormVO implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "hospital_id", insertable = false)
 	private HospitalVO hospitalVO;
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "orderform_id")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "orderformVO",cascade = CascadeType.ALL)
 	private Set<OrderDetailVO> orderDetailVOs;
 
 	public Integer getId() {

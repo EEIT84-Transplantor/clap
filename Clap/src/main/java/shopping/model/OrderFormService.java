@@ -35,21 +35,19 @@ public class OrderFormService {
 		return orderFormHibernateDAO.delete(id);
 	}
 
-	//取得某會員有所有的orderform
+	// 取得某會員有所有的orderform
 	public List<OrderFormVO> getOrderList(String email) {
 		return orderFormHibernateDAO.select(email);
 	}
 
-
-	//依照id搜尋
+	// 依照id搜尋
 	public OrderFormVO getOrderById(Integer id) {
 		return orderFormHibernateDAO.select(id);
 	}
 
-	//修改orderDetail
+	// 修改orderDetail
 	public Boolean updateOrderForm(OrderFormVO orderFormVO) {
 		return orderFormHibernateDAO.update(orderFormVO);
 	}
 
-	
 }

@@ -21,7 +21,6 @@ public class OpenSessionViewFilter implements Filter {
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
-
 		sessionFactory = (SessionFactory) WebApplicationContextUtils
 				.getWebApplicationContext(fConfig.getServletContext()).getBean("sessionFactory");
 	}
@@ -31,16 +30,24 @@ public class OpenSessionViewFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-
 		try {
+			long start = System.currentTimeMillis();
+			System.out.println(start-System.currentTimeMillis());
 			sessionFactory.getCurrentSession().beginTransaction();
+
 //			System.out.println("Transaction start");
+
 			chain.doFilter(request, response);
+			System.out.println(start-System.currentTimeMillis());
 			sessionFactory.getCurrentSession().getTransaction().commit();
+
 //			System.out.println("Transaction commit");
+
 		} catch (HibernateException e) {
 			sessionFactory.getCurrentSession().getTransaction().rollback();
+
 //			System.out.println("Transaction rollback");
+
 			chain.doFilter(request, response);
 		}
 
