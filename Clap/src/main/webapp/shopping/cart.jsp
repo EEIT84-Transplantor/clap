@@ -165,6 +165,8 @@
 						"promoTitle" : promoTitle
 					},
 				}).done(function(result) {
+					console.log("result");
+					console.log(result);
 					if(result=="true"){
 						window.location.href = "<c:url value='/shopping/checkout.jsp'/>";
 					}else{
