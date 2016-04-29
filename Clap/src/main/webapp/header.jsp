@@ -70,10 +70,10 @@
 						href="${pageContext.request.contextPath}/shopping/cartAction.action"
 						class="cart_anchor">${totalCart}</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/shopping/shopping.action">Purchase</a></li>
+						href="${pageContext.request.contextPath}/fastpass/shopping.action">Purchase</a></li>
 					<li class="active"><a href="#">About</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/simulator/simulatorAction.action">Simulator</a></li>
+						href="${pageContext.request.contextPath}/fastpass/simulatorAction.action">Simulator</a></li>
 					<li><a href="${pageContext.request.contextPath}/chat/chatpage.jsp">Contact</a></li>
 					<li><a href="<c:url value="/member/account.jsp"/>">Account</a></li>
 					<c:if test="${login.type==2}">

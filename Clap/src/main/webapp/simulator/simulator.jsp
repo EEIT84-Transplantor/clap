@@ -238,7 +238,7 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/codex-fly.js"/>"></script>	
 	<script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
-	var urlToSend = contextPath+ "/simulator/bodySimulatorAction";
+	var urlToSend = contextPath+ "/fastpass/bodySimulatorAction";
 	
 	
 	</script>
