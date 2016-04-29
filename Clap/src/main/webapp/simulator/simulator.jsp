@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
 <!-- Bootstrap -->
-<link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 <link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/silderbanner.css"/>" rel="stylesheet">
 <link href="<c:url value='/resource/css/bootstrap-slider.css'/>" rel="stylesheet">
@@ -178,7 +178,7 @@
 																	<div class="col-sm-2">
 																	<div class="col-item">
 																		<div class="photo" id="haha">
-																			<img name="product${product.id}" src="<c:url value="data:image/png;base64,${simulatorVO.productimgVOs[p_count.count-1].img64}"/>" class="p_drag draggable${simulatorVO.categoryVO.id}" categoryID="${simulatorVO.categoryVO.id}" width="100">
+																			<img name="product${product.id}" src="data:image/png;base64,${simulatorVO.productimgVOs[p_count.count-1].img64}" class="p_drag draggable${simulatorVO.categoryVO.id}" categoryID="${simulatorVO.categoryVO.id}" width="100">
 																		</div>
 																	</div>
 																</div>
@@ -230,8 +230,8 @@
 	</section>
 	<footer style="margin-top: -15px;"><jsp:include page="/footer.jsp" /></footer>
 	<!-- 載入js -->
-	<script type="text/javascript" src="<c:url value="/resource/js/jquery-1.12.2.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery.color-2.1.2.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery-ui.min.js"/>"></script>
