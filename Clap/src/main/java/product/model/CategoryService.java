@@ -2,6 +2,7 @@ package product.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import simulator.model.SimulatorUtil;
 
@@ -50,9 +51,10 @@ public class CategoryService {
 	}
 
 
-	public List<SimulatorVO> calculate(Integer env_id, Double bmi, Double smoking, Double drinking,
+	public List<SimulatorVO> calculate(List<CategoryVO> categoryVOs , Map<Integer, List<ProductVO>> mapOfProductVOs,
+			Map<Integer, List<ProductimgVO>> mapOfProductimgVOs, Integer env_id, Double bmi, Double smoking, Double drinking,
 			Double exercising) {
-		return SimulatorUtil.calculate(productService, this, env_id, bmi, smoking, drinking, exercising);
+		return SimulatorUtil.calculate(categoryVOs, mapOfProductVOs, mapOfProductimgVOs, env_id, bmi, smoking, drinking, exercising);
 	}
 
 	

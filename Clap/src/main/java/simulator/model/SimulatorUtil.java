@@ -2,6 +2,7 @@ package simulator.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import product.model.CategoryService;
 import product.model.CategoryVO;
@@ -11,26 +12,26 @@ import product.model.ProductimgVO;
 
 public class SimulatorUtil {
 
-	public static List<SimulatorVO> calculate(ProductService productService, CategoryService categoryService,Integer env_id, Double bmi, Double smoking, Double drinking,
+	public static List<SimulatorVO> calculate(List<CategoryVO> categoryVOs , Map<Integer, List<ProductVO>> mapOfProductVOs,
+			Map<Integer, List<ProductimgVO>> mapOfProductimgVOs, Integer env_id, Double bmi, Double smoking, Double drinking,
 			Double exercising) {
 		List<SimulatorVO> result  = new ArrayList<SimulatorVO>();
-		List<ProductimgVO> productimgVOs = new ArrayList<ProductimgVO>();
+		
 		SimulatorVO simulatorVO = null;
 		//process the environment and body factors, use it to calculate the SimulatorVO
 				//if bmi ==null, ignore this factor
 				//smoking, drinking and exercising will be from 0-100
 				//env_id will be null if nothing is passed in
 		
-		
-		
-		List<CategoryVO> categoryVOs = categoryService.getAllCategory();
 		//放目錄
 		for(CategoryVO categoryVO:categoryVOs){
 			
 			simulatorVO = new SimulatorVO();
 			//放產品
-			List<ProductVO> temp = productService.searchProductByCategory(categoryVO.getId());
-			List<ProductVO> productVOs = new ArrayList<>();
+			List<ProductVO> temp = mapOfProductVOs.get(categoryVO.getId());
+			List<ProductVO> productVOs = new ArrayList<ProductVO>();
+			List<ProductimgVO> productimgVOs = new ArrayList<ProductimgVO>();
+			
 			//改變產品數據
 			for(ProductVO productVO : temp){
 				//宣告
@@ -102,8 +103,8 @@ public class SimulatorUtil {
 			}
 			
 			//放圖片
-			for(ProductVO productVO : productVOs){
-				productimgVOs.add(productService.getProductImgById(productVO.getId()));
+			for(int index = 0; index<productVOs.size();index++){
+				productimgVOs.add(mapOfProductimgVOs.get(categoryVO.getId()).get(index));
 			}
 			simulatorVO.setCategoryVO(categoryVO);
 			simulatorVO.setProductimgVOs(productimgVOs);

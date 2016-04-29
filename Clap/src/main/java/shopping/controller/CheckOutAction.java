@@ -74,6 +74,7 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 
 		session.setAttribute("creditCardList", creditCardList);
 		session.setAttribute("total", total);
+		
 		return super.execute();
 
 	}
