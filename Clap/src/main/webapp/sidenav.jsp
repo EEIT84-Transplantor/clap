@@ -5,7 +5,7 @@
    <div class="collapse" id="side_Purchase">
       
       <c:forEach items="${categoriesList}" var="cList">
-      <a href="${pageContext.request.contextPath}/shopping/categories.action?organ=${cList.name}" class="list-group-item sub_list">${cList.name}</a>
+      <a href="${pageContext.request.contextPath}/fastpass/categories.action?organ=${cList.name}" class="list-group-item sub_list">${cList.name}</a>
       </c:forEach>
     </div>
     <a href="#side_About" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">About us</a>
@@ -15,7 +15,7 @@
     </div>
      <a href="#side_Simulator" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Simulator</a>
     <div class="collapse" id="side_Simulator">
-      <a href="${pageContext.request.contextPath}/simulator/simulatorAction.action" class="list-group-item sub_list">Simulator</a>
+      <a href="${pageContext.request.contextPath}/fastpass/simulatorAction.action" class="list-group-item sub_list">Simulator</a>
     </div>
      <a href="#side_Appointment" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Appointment</a>
     <div class="collapse" id="side_Appointment">

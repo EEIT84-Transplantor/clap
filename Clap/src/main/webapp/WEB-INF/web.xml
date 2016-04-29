@@ -34,6 +34,10 @@
 <!-- 	all the mapping with transaction -->
 	<filter-mapping>
 		<filter-name>OpenSessionViewFilter</filter-name>
+		<url-pattern>/index.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>OpenSessionViewFilter</filter-name>
 		<url-pattern>/setting/*</url-pattern>
 	</filter-mapping>
 	<filter-mapping>
@@ -62,11 +66,7 @@
 	</filter-mapping>
 	<filter-mapping>
 		<filter-name>OpenSessionViewFilter</filter-name>
-		<url-pattern>/simulator/oneclickPackAction</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>OpenSessionViewFilter</filter-name>
-		<url-pattern>/simulator/addToCartAction</url-pattern>
+		<url-pattern>/simulator/*</url-pattern>
 	</filter-mapping>
 	
 	

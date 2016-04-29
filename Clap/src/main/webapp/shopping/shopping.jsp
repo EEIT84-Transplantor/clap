@@ -63,7 +63,7 @@
 						<div class="row">
 							<div class="col-md-9">
 								
-								<h3 ><a class="b_color" href="${pageContext.request.contextPath}/shopping/categories.action?organ=${CategoryProducts.key}">${CategoryProducts.key}</a></h3>
+								<h3 ><a class="b_color" href="${pageContext.request.contextPath}/fastpass/categories.action?organ=${CategoryProducts.key}">${CategoryProducts.key}</a></h3>
 							</div>
 							<div class="col-md-3">
 								<!-- Controls -->
