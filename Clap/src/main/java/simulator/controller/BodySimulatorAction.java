@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -116,9 +117,12 @@ public class BodySimulatorAction extends ActionSupport {
 			System.out.println("BodySimulatorAction [weight=" + weight + ", height=" + height + ", bmi=" + bmi
 					+ ", smoking=" + smoking + ", drinking=" + drinking + ", exercising=" + exercising + ", env_id="
 					+ env_id + "]");
-			// categoryService 的calculate還沒做~
-			List<SimulatorVO> simulatorVOs = categoryService.calculate(env_id, bmi, smoking, drinking, exercising);
-
+			// categoryService 的calculate
+			ServletContext context = ServletActionContext.getServletContext();
+			List<CategoryVO> categoryVOs=(List<CategoryVO>) context.getAttribute("globalCategoryVOs");
+			Map<Integer, List<ProductVO>> mapOfProductVOs = (Map<Integer, List<ProductVO>>) context.getAttribute("globalProductVOs");		
+			Map<Integer, List<ProductimgVO>> mapOfProductimgVOs = (Map<Integer, List<ProductimgVO>>) context.getAttribute("globalProductimgVOs");
+			List<SimulatorVO> simulatorVOs = categoryService.calculate(categoryVOs, mapOfProductVOs, mapOfProductimgVOs, env_id, bmi, smoking, drinking, exercising);
 			HttpServletRequest request = ServletActionContext.getRequest();
 			List<ProductVO> productVOs = null;
 			JSONArray simulatorVOsArray = new JSONArray();

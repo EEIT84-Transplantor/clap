@@ -16,7 +16,7 @@
 
 
 			<a class="navbar-brand"
-				href="${pageContext.request.contextPath}/shopping/shopping.jsp">
+				href="${pageContext.request.contextPath}/index.jsp">
 				<img class="hidden-xs"
 				src="${pageContext.request.contextPath}/resource/images/logo.png">
 				<img class="visible-xs"
