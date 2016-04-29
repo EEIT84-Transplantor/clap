@@ -5,7 +5,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
@@ -16,13 +18,14 @@ import org.json.JSONObject;
 import com.opensymphony.xwork2.ActionSupport;
 
 import product.model.CategoryService;
+import product.model.CategoryVO;
 import product.model.ProductService;
 import product.model.ProductVO;
 import product.model.ProductimgVO;
 
 public class SearchProductAction extends ActionSupport implements ServletRequestAware{
     private HttpServletRequest request;
-    private CategoryService categoryService;
+    private ServletContext context;
     private ProductService productService;
     private String categoryname;
     private Double min;
@@ -34,6 +37,14 @@ public class SearchProductAction extends ActionSupport implements ServletRequest
         return inputStream;
     }
  
+	public ProductService getProductService() {
+		return productService;
+	}
+
+	public void setProductService(ProductService productService) {
+		this.productService = productService;
+	}
+
 	public void setPage(String page) {
 		this.page = page;
 	}
@@ -43,12 +54,6 @@ public class SearchProductAction extends ActionSupport implements ServletRequest
 	}
 
 	public SearchProductAction() {
-	}
-	public void setCategoryService(CategoryService categoryService) {
-		this.categoryService = categoryService;
-	}
-	public void setProductService(ProductService productService) {
-		this.productService = productService;
 	}
 	public void setCategoryname(String categoryname) {
 		this.categoryname = categoryname;
@@ -61,8 +66,23 @@ public class SearchProductAction extends ActionSupport implements ServletRequest
 	}
 	@Override
 	public String execute() throws Exception {
-		Integer categoryId = categoryService.selectByCategoryName(categoryname);
-		List<ProductVO> temp = productService.searchProduct(categoryId, min, max, keyword);
+		context = request.getServletContext();
+		List<CategoryVO> categoryVOs = (List<CategoryVO>)context.getAttribute("globalCategoryVOs");
+		Map<Integer,List<ProductVO>> globalProductVOs = (Map<Integer,List<ProductVO>>)context.getAttribute("globalProductVOs");
+		Map<Integer,List<ProductimgVO>> globalProductimgVOs = (Map<Integer,List<ProductimgVO>>)context.getAttribute("globalProductimgVOs");
+		CategoryVO target = null;
+		List<ProductVO> temp = null;
+		if(categoryname!=null){
+		for(CategoryVO categoryVO:categoryVOs){
+			if(categoryVO.getName().equals(categoryname)){
+				target = categoryVO;
+				break;
+			}
+		}
+		temp = productService.searchProduct(target.getId(), min, max, keyword);
+		}else{
+			temp = productService.searchProduct(null, min, max, keyword);
+		}
 		List<ProductimgVO> Pimages  = new ArrayList<ProductimgVO>();
 		JSONArray objectArray = new JSONArray();
   		for(ProductVO productVO:temp){
@@ -75,7 +95,7 @@ public class SearchProductAction extends ActionSupport implements ServletRequest
   			Pimages.add(productService.getProductImgById(productVO.getId()));
   		}
   		
-       if(categoryId!=null||page!=null){
+       if(target!=null||page!=null){
     	   inputStream = new ByteArrayInputStream(objectArray.toString().getBytes("UTF-8"));
       		return SUCCESS; 
 		}else{

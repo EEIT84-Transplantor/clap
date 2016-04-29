@@ -31,14 +31,12 @@ public class OpenSessionViewFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		try {
-			long start = System.currentTimeMillis();
-			System.out.println(start-System.currentTimeMillis());
 			sessionFactory.getCurrentSession().beginTransaction();
 
 //			System.out.println("Transaction start");
 
 			chain.doFilter(request, response);
-			System.out.println(start-System.currentTimeMillis());
+			
 			sessionFactory.getCurrentSession().getTransaction().commit();
 
 //			System.out.println("Transaction commit");

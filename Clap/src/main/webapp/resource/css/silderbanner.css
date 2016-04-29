@@ -334,16 +334,16 @@ body {
 }
 
 .hovereffect:hover h2 {
-  -webkit-transform: translateY(15px);
-  -ms-transform: translateY(15px);
-  transform: translateY(15px);
+  -webkit-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  transform: translateY(10px);
   color: #47BED9;
 }
 
 .hovereffect a.info {
   display: inline-block;
   text-decoration: none;
-  padding: 7px 14px;
+  padding: 3px 14px;
   text-transform: uppercase;
   color: #fff;
   
@@ -403,5 +403,5 @@ body {
 
 .hovereffect span {
   display: inline-block;
-  margin: 45px 0 0 0;
+  margin: 30px 0 0 0;
   }
