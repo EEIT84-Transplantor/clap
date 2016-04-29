@@ -36,7 +36,6 @@ public class OpenSessionViewFilter implements Filter {
 //			System.out.println("Transaction start");
 
 			chain.doFilter(request, response);
-			
 			sessionFactory.getCurrentSession().getTransaction().commit();
 
 //			System.out.println("Transaction commit");
