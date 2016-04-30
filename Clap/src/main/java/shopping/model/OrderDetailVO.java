@@ -24,6 +24,7 @@ import product.model.ProductVO;
 @Entity
 @Table(name = "orderdetail")
 public class OrderDetailVO implements Serializable {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "orderdetail_id")
@@ -47,25 +48,7 @@ public class OrderDetailVO implements Serializable {
 	private DoctorVO doctorVO;
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "orderform_id", insertable = false, updatable = false)
-	private OrderFormVO orderformVO;
-
-	
-	
-	@Override
-	public String toString() {
-		return "OrderDetailVO [id=" + id + ", product_id=" + product_id + ", ct_quantity=" + ct_quantity
-				+ ", doctor_id=" + doctor_id + ", orderform_id=" + orderform_id + ", orderdetail_surgerytime="
-				+ orderdetail_surgerytime + ", productVO=" + productVO + ", doctorVO=" + doctorVO + ", orderformVO="
-				+ orderformVO + "]";
-	}
-
-	public Timestamp getOrderdetail_surgerytime() {
-		return orderdetail_surgerytime;
-	}
-
-	public void setOrderdetail_surgerytime(Timestamp orderdetail_surgerytime) {
-		this.orderdetail_surgerytime = orderdetail_surgerytime;
-	}
+	private OrderFormVO orderFormVO;
 
 	public Integer getId() {
 		return id;
@@ -83,11 +66,11 @@ public class OrderDetailVO implements Serializable {
 		this.product_id = product_id;
 	}
 
-	public Integer getCart_quantity() {
+	public Integer getCt_quantity() {
 		return ct_quantity;
 	}
 
-	public void setCart_quantity(Integer ct_quantity) {
+	public void setCt_quantity(Integer ct_quantity) {
 		this.ct_quantity = ct_quantity;
 	}
 
@@ -107,6 +90,14 @@ public class OrderDetailVO implements Serializable {
 		this.orderform_id = orderform_id;
 	}
 
+	public Timestamp getOrderdetail_surgerytime() {
+		return orderdetail_surgerytime;
+	}
+
+	public void setOrderdetail_surgerytime(Timestamp orderdetail_surgerytime) {
+		this.orderdetail_surgerytime = orderdetail_surgerytime;
+	}
+
 	public ProductVO getProductVO() {
 		return productVO;
 	}
@@ -123,12 +114,12 @@ public class OrderDetailVO implements Serializable {
 		this.doctorVO = doctorVO;
 	}
 
-	public OrderFormVO getOrderformVO() {
-		return orderformVO;
+	public OrderFormVO getOrderFormVO() {
+		return orderFormVO;
 	}
 
-	public void setOrderformVO(OrderFormVO orderformVO) {
-		this.orderformVO = orderformVO;
+	public void setOrderFormVO(OrderFormVO orderFormVO) {
+		this.orderFormVO = orderFormVO;
 	}
 
 }

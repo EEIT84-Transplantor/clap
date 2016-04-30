@@ -16,7 +16,7 @@
 
 
 			<a class="navbar-brand"
-				href="${pageContext.request.contextPath}/shopping/shopping.jsp">
+				href="${pageContext.request.contextPath}/index.jsp">
 				<img class="hidden-xs"
 				src="${pageContext.request.contextPath}/resource/images/logo.png">
 				<img class="visible-xs"
@@ -66,19 +66,22 @@
 
 				<ul class="nav navbar-nav navbar-right">
 
-					<li><a
+					<li><a 
 						href="${pageContext.request.contextPath}/shopping/cartAction.action"
 						class="cart_anchor">${totalCart}</a></li>
+
 					<li><a
-						href="${pageContext.request.contextPath}/shopping/shopping.action">Purchase</a></li>
-					<li><a href="#">About</a></li>
+						href="${pageContext.request.contextPath}/fastpass/shopping.action">Purchase</a></li>
+					<li><a href="${pageContext.request.contextPath}/introduce/introduce.jsp">About</a></li>
+
 					<li><a
-						href="${pageContext.request.contextPath}/simulator/simulatorAction.action">Simulator</a></li>
+						href="${pageContext.request.contextPath}/fastpass/simulatorAction.action">Simulator</a></li>
 					<li><a href="${pageContext.request.contextPath}/chat/chatpage.jsp">Contact</a></li>
 					<li><a href="<c:url value="/member/account.jsp"/>">Account</a></li>
+
 					<c:if test="${login.type==2}">
 						<li><a
-							href="${pageContext.request.contextPath}/paymentmanage/setpromotion.action">Administrator</a></li>
+							id="administrator" href="${pageContext.request.contextPath}/paymentmanage/setpromotion.action">Administrator</a></li>
 					</c:if>
 				</ul>
 			</div>

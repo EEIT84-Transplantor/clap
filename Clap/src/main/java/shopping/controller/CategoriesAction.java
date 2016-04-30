@@ -4,51 +4,58 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.util.ServletContextAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import product.model.CategoryService;
-import product.model.ProductService;
+import product.model.CategoryVO;
 import product.model.ProductVO;
 import product.model.ProductimgVO;
 
 public class CategoriesAction extends ActionSupport implements ServletRequestAware{
 	private HttpServletRequest request;
-	private CategoryService categoryService;
-	private ProductService productService;
 	private String organ;
+	private ServletContext context;
 	public CategoriesAction() {
 	}
-	
-	public void setCategoryService(CategoryService categoryService) {
-		this.categoryService = categoryService;
-	}
-
-	public void setProductService(ProductService productService) {
-		this.productService = productService;
-	}
-	
-	
 	public void setOrgan(String organ) {
 		this.organ = organ;
 	}
 
 	@Override
 	public String execute() throws Exception {
+		context = request.getServletContext();
+		List<CategoryVO> globalCategoryVOs = (List<CategoryVO>)context.getAttribute("globalCategoryVOs");
+		Map<Integer,List<ProductVO>> globalProductVOs = (Map<Integer,List<ProductVO>>)context.getAttribute("globalProductVOs");
+		Map<Integer,List<ProductimgVO>> globalProductimgVOs = (Map<Integer,List<ProductimgVO>>)context.getAttribute("globalProductimgVOs");
+		
+		CategoryVO target = null;
 		if(organ==null){
-			organ = categoryService.getAllCategory().get(0).getName();
+			organ = globalCategoryVOs.get(0).getName();
 		}
-		List<ProductVO> lists = productService.searchProductByCategory(categoryService.selectByCategoryName(organ));
+
+		for(int i = 0;i<globalCategoryVOs.size();i++){
+			if(globalCategoryVOs.get(i).getName().equals(organ)){
+				target = globalCategoryVOs.get(i);
+				break;
+			}
+		}
+		
+		List<ProductVO> lists = globalProductVOs.get(target.getId());
+		List<ProductimgVO> imglists =  globalProductimgVOs.get(target.getId());
+		
+		
 		Map<Integer, ProductimgVO> productimg = new HashMap<Integer, ProductimgVO>();
 		
-		for(ProductVO vo:lists){
-			productimg.put(vo.getId(), productService.getProductImgById(vo.getId()));
+		for(int i = 0;i<lists.size();i++){
+			            
+			productimg.put(lists.get(i).getId(), imglists.get(i));
 		}
-		
-		
 		
 		if(lists!=null){
 			request.setAttribute("organ", organ);

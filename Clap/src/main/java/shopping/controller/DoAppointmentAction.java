@@ -62,7 +62,7 @@ public class DoAppointmentAction extends ActionSupport implements ServletRequest
 			orderDetailVO = orderDetailService.getOrderDetailById(orderDetailId);
 			orderDetailVO.setDoctor_id( Integer.parseInt((String) order.get("doctor")));
 			orderDetailVO.setOrderdetail_surgerytime(new Timestamp(time.getTime()));
-			inventoryService.saleQuantity(orderDetailVO.getProductVO(), orderDetailVO.getCart_quantity(), hospital);
+			inventoryService.saleQuantity(orderDetailVO.getProductVO(), orderDetailVO.getCt_quantity(), hospital);
 		}
 		inputStream  = new ByteArrayInputStream("true".toString().getBytes("UTF-8"));
 		return super.execute();

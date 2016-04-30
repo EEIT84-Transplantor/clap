@@ -61,15 +61,20 @@ margin-bottom:20px;
 					</div>
 					
 					<div class="row" style="padding-left: 15px;  margin-top:20px;">
-					<div class="col-md-3">
-						<button type="button" class="btn btn-primary btn-lg">
-							<span class="glyphicon glyphicon-star-empty" aria-hidden="true" style="font-size: 50px;"></span><p>Activate VIP</p>
-						</button>
+						<div class="col-md-3">
+							<button type="button" class="btn btn-primary btn-lg">
+								<span class="glyphicon glyphicon-star-empty" aria-hidden="true" style="font-size: 50px;"></span><p>Activate VIP</p>
+							</button>
 						</div>
 						<div class="col-md-3">
-						<button type="button" class="btn btn-primary btn-lg">
-							<span class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size: 50px;"></span><p>Mail Box</p>
-						</button>
+							<button type="button" class="btn btn-primary btn-lg">
+								<span class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size: 50px;"></span><p>Mail Box</p>
+							</button>
+						</div>
+						<div class="col-md-3">
+							<button type="button" class="btn btn-primary btn-lg">
+								<span class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size: 50px;"></span><p>OrderDetail</p>
+							</button>
 						</div>
 						
 					</div>
@@ -97,6 +102,7 @@ margin-bottom:20px;
 			var oneclickUrl = contextPath + "/setting/oneclick.jsp";
 			var vipUrl = contextPath + "/setting/vip.jsp";
 			var mailUrl = contextPath + "/message/mailbox.jsp";
+			var orderFormUrl = contextPath + "/shopping/orderFormAction.action";
 
 			//onclick paymentmanage button
 			$("button").eq(1).on("click", function() {
@@ -121,6 +127,10 @@ margin-bottom:20px;
 			//onclick mailbox button
 			$("button").eq(6).on("click", function() {
 				location.reload();
+			});
+			//onclick mailbox button
+			$("button").eq(7).on("click", function() {
+				location.href = orderFormUrl;
 			});
 		});
 	</script>

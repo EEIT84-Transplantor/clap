@@ -11,9 +11,9 @@
 					<div class="col-md-2">
 						<h4>Shop</h4>
 						<ul>
-							<li><a href="${pageContext.request.contextPath}/shopping/shopping.action">Clap Store</a></li>
-							<li><a href="${pageContext.request.contextPath}/shopping/shopping.action">Organs</a></li>
-							<li><a href="${pageContext.request.contextPath}/simulator/simulatorAction.action">Simulator</a></li>
+							<li><a href="${pageContext.request.contextPath}/fastpass/shopping.action">Clap Store</a></li>
+							<li><a href="${pageContext.request.contextPath}/fastpass/shopping.action">Organs</a></li>
+							<li><a href="${pageContext.request.contextPath}/fastpass/simulatorAction.action">Simulator</a></li>
 						</ul>
 					</div>
 					<div class="col-md-2">

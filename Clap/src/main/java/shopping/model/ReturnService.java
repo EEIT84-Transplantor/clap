@@ -80,9 +80,9 @@ public class ReturnService {
 						}						
 						returnVO.setProduct_id(odtVO.getProduct_id());
 						returnVO.setProduct_name(odtVO.getProductVO().getName());
-						returnVO.setShipping_date(new java.sql.Date(odtVO.getOrderformVO().getTime().getTime()));
-						returnVO.setOrderform_id(odtVO.getOrderformVO().getId());
-						returnVO.setOrderDetail_quantity(odtVO.getCart_quantity());
+						returnVO.setShipping_date(new java.sql.Date(odtVO.getOrderFormVO().getTime().getTime()));
+						returnVO.setOrderform_id(odtVO.getOrderFormVO().getId());
+						returnVO.setOrderDetail_quantity(odtVO.getCt_quantity());
 
 						
 						returnVOs.add(returnVO);

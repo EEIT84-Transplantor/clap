@@ -33,7 +33,7 @@
 		});
 
 		//===%%%%===  DOCUMENT READY  ===%%%%=== 
-		$(document).ready(function() {			
+		$(window).load(function() {			
 			var environmentIndex = 0;
 			
 			//use init methods for document			
@@ -48,8 +48,10 @@
 			function initChangeBackClick() {
 				$(".factor_item").on("click", function() {
 					var src = $(this).find('img').attr('src');
+					
 					var bg_img;
-					switch (src.substr(39, 1)) {
+					console.log("bg_imghahahhhhhhhh"+src.substr(src.lastIndexOf(".png")-1, 1));
+					switch (src.substr(src.lastIndexOf(".png")-1, 1)) {
 					case "1":
 						bg_img = "s_bg_1.png";
 						environmentIndex = 1;
@@ -68,15 +70,24 @@
 					}
 					//*************caca
 					//adjustOrgansWithEnvironment();
-					sendAjaxForSim(createFactors());
+
+					
 					$('#fullPage').animate({
 						backgroundColor : 'rgb(0,0,0)'
 					}, 100, function() {   
 						$('#s_wrap').css('backgroundImage', "url("+contextPath+"/resource/images/simulator/"+bg_img+")");
-					}).animate({
-						backgroundColor : 'rgba(0,0,0,0.1)'
-					}, 600);
+					});
+					sendAjaxForSim(createFactors());
 
+				});
+			}
+			
+			//shading background
+			function bgTransition(){
+				$('#fullPage').animate({
+					backgroundColor : 'rgb(0,0,0)'
+				}, 10, function() {				
+					
 				});
 			}
 			
@@ -115,7 +126,6 @@
 					$("body").fadeIn(400);
 				});
 			}
-			
 			function initOnEvents(){
 				//set add cart
 				$("#s_organs_r").on("click", function(){
@@ -155,6 +165,7 @@
 						drawBar(selectedBar);
 					}
 				}).on("click", function() {
+					bgTransition();
 					sendAjaxForSim(createFactors());
 					clicksetting1 = false;
 					//*************caca
@@ -172,6 +183,7 @@
 						drawBar(selectedBar);
 					}
 				}).on("click", function() {
+					bgTransition();
 					sendAjaxForSim(createFactors());
 					clicksetting2 = false;
 					//*************caca
@@ -189,6 +201,7 @@
 						drawBar(selectedBar);
 					}
 				}).on("click", function() {
+					bgTransition();
 					sendAjaxForSim(createFactors());
 					clicksetting3 = false;
 					//*************caca
@@ -391,9 +404,7 @@
 					backgroundColor : 'rgb(0,0,0)'
 				}, 100, function() {
 					$('#s_wrap').css('backgroundImage', "url("+contextPath+"/resource/images/simulator/"+bg_img+")");
-				}).animate({
-					backgroundColor : 'rgba(0,0,0,0.1)'
-				}, 600);
+				});
 			}
 			function regenerateFromSave(savedObjectToBack) {
 				drawBarToPercent($("#setting1"), savedObjectToBack.smoking);
@@ -649,9 +660,33 @@
     			return lastIndex;
 		    }
 		    
+		    //ajaxLoader showing
+		    function showAjaxLoader(){
+		    	
+		    	var targetDiv = $("div.opacityDiv");
+		    	var width = targetDiv.width();
+		    	var height = targetDiv.height();
+		    	
+		    	var position = targetDiv.position();
+		    	var top = position.top + height/2;
+		    	var left = position.left + width*40/100;
+		    	
+		    	$("#ajaxloader").css({
+		    		"position":"absolute",
+		    		"top":top,
+		    		"left":left
+		    	});
+		    	$("#ajaxloader").show();
+		    }
+		    //ajaxLoader hiding
+		    function hideAjaxLoader(){
+		    	$("#ajaxloader").hide();
+		    }
+
 		    //Ajax send when enter or change Environment 
 			function sendAjaxForSim(sentDataObj) {
-
+				
+				showAjaxLoader();
 				printObject(sentDataObj);
 				$.ajax({
 					method: "POST",
@@ -659,9 +694,13 @@
 					data : sentDataObj
 				}).done(function(msg) {
 					console.log("updates acquired");
+					$('#fullPage').animate({
+						backgroundColor : 'rgba(0,0,0,0.1)'
+					}, 600);
 					var newJsonObject = parseJSONText(msg);		
 					globalJsonArray = newJsonObject;
 					updateAllValues(newJsonObject);
+					hideAjaxLoader();
 				});
 			}
 			

@@ -16,10 +16,14 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+<!-- <property name="url" -->
+<!-- 			value="jdbc:sqlserver://clapeeit84.cyizgbhuhgzq.ap-northeast-1.rds.amazonaws.com:1433;databaseName=clap" /> -->
+<!-- 			<property name="username" value="sa" /> -->
+<!-- 			<property name="password" value="passw0rd" /> -->
 <property name="url"
 			value="jdbc:sqlserver://eeit84clap.database.windows.net:1433;databaseName=clap" />
-		<property name="username" value="clap" />
-		<property name="password" value="Sa123456" />
+			<property name="username" value="clap" />
+			<property name="password" value="Sa123456" />
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
@@ -231,11 +235,11 @@
 	<bean id="locationService" class="hospital.model.LocationService">
 		<property name="locationDAO" ref="locationDAO" />
 	</bean>
-     <bean id="hospitalInfo" class="hospital.controller.HospitalInfoAction">
+	<bean id="hospitalInfo" class="hospital.controller.HospitalInfoAction">
 		<property name="hospitalService" ref="hospitalService" />
 		<property name="locationService" ref="locationService" />
 	</bean>
-	
+
 	<!-- shopping controller -->
 	<bean id="cartAction" class="shopping.controller.CartAction">
 		<property name="cartService" ref="cartService" />
@@ -260,16 +264,20 @@
 		<property name="memberService" ref="memberService" />
 		<property name="orderDetailService" ref="orderDetailService" />
 	</bean>
-	<bean id="deleteOrderAction" class="shopping.controller.DeleteOrderAction" scope="prototype">
+	<bean id="deleteOrderAction" class="shopping.controller.DeleteOrderAction"
+		scope="prototype">
 		<property name="orderFormService" ref="orderFormService" />
 	</bean>
-	<bean id="preReturnAction" class="shopping.controller.PreReturnAction" scope="prototype">
+	<bean id="preReturnAction" class="shopping.controller.PreReturnAction"
+		scope="prototype">
 		<property name="returnService" ref="returnService" />
 	</bean>
-	<bean id="returnAction" class="shopping.controller.ReturnAction" scope="prototype">
+	<bean id="returnAction" class="shopping.controller.ReturnAction"
+		scope="prototype">
 		<property name="returnService" ref="returnService" />
 	</bean>
-	<bean id="doAppointmentAction" class="shopping.controller.DoAppointmentAction" scope="prototype">
+	<bean id="doAppointmentAction" class="shopping.controller.DoAppointmentAction"
+		scope="prototype">
 		<property name="inventoryService" ref="inventoryService" />
 		<property name="inOutLogService" ref="inOutLogService" />
 		<property name="orderFormService" ref="orderFormService" />
@@ -280,7 +288,8 @@
 		<property name="doctorService" ref="doctorService" />
 		<property name="orderDetailService" ref="orderDetailService" />
 	</bean>
-	<bean id="deleteCartAction" class="shopping.controller.DeleteCartAction" scope="prototype">
+	<bean id="deleteCartAction" class="shopping.controller.DeleteCartAction"
+		scope="prototype">
 		<property name="cartService" ref="cartService" />
 	</bean>
 

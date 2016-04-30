@@ -28,7 +28,7 @@
 		<!-- TOP SEARCH BAR-->
 		<div class="navbar-wrapper">
 			<div class="container">
-				<nav class="navbar navbar-static-top shoppingbar">
+				<nav class="navbar navbar-static-top shoppingbar" style="top:110px;">
 					<div class="container">
 						<div class="navbar-header">
 						<form action="${pageContext.request.contextPath}/shopping/searchProduct.action">
@@ -53,55 +53,17 @@
 		<!-- END TOP SEARCH BAR-->
 
 		<!-- Carousel -->
-		<div id="shoppingbanner" class="carousel slide" data-ride="carousel">
-			<!-- Indicators -->
-			<ol class="carousel-indicators">
-				<li data-target="#shoppingbanner" data-slide-to="0" class="active"></li>
-				<li data-target="#shoppingbanner" data-slide-to="1"></li>
-			</ol>
-			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<img class="first-slide" src="../resource/images/banner-1.jpg"
-						alt="See more future.">
-					<div class="container">
-						<div class="carousel-caption">
-							<h2>See more future.</h2>
-							<p>That's one small step for CLAP, one giant leap for mankind.</p>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<img class="third-slide" src="../resource/images/banner-2.jpg"
-						alt="Improve your life">
-					<div class="container">
-						<div class="carousel-caption">
-							<h2>New life revolution</h2>
-							<p>That's one small step for CLAP, one giant leap for
-								mankind.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<a class="left carousel-control" href="#shoppingbanner" role="button"
-				data-slide="prev"> <span
-				class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			</a> <a class="right carousel-control" href="#shoppingbanner"
-				role="button" data-slide="next"> <span
-				class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			</a>
-		</div>
+
 		<!-- /.carousel -->
 		<!-- 分類推薦 -->
-		<div class="container">
+		<div class="container" style="margin-top:70px;">
 			<div class="row">
 				<div class="col-md-12">
 					<c:forEach items="${allCategoryProduct}" var="CategoryProducts" varStatus="c_count">
 						<div class="row">
 							<div class="col-md-9">
 								
-								<h3 ><a class="b_color" href="${pageContext.request.contextPath}/shopping/categories.action?organ=${CategoryProducts.key}">${CategoryProducts.key}</a></h3>
+								<h3 ><a class="b_color" href="${pageContext.request.contextPath}/fastpass/categories.action?organ=${CategoryProducts.key}">${CategoryProducts.key}</a></h3>
 							</div>
 							<div class="col-md-3">
 								<!-- Controls -->
