@@ -71,7 +71,7 @@
 						class="cart_anchor">${totalCart}</a></li>
 					<li><a
 						href="${pageContext.request.contextPath}/shopping/shopping.action">Purchase</a></li>
-					<li class="active"><a href="#">About</a></li>
+					<li><a href="#">About</a></li>
 					<li><a
 						href="${pageContext.request.contextPath}/simulator/simulatorAction.action">Simulator</a></li>
 					<li><a href="${pageContext.request.contextPath}/chat/chatpage.jsp">Contact</a></li>

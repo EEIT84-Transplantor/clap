@@ -17,9 +17,10 @@
     <div class="collapse" id="side_Simulator">
       <a href="${pageContext.request.contextPath}/simulator/simulatorAction.action" class="list-group-item sub_list">Simulator</a>
     </div>
-     <a href="#side_Appointment" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Appointment</a>
+     <a href="#side_Appointment" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Location</a>
     <div class="collapse" id="side_Appointment">
       <a href="${pageContext.request.contextPath}/hospital/hospitalInfo.action" class="list-group-item sub_list">Hospital</a>
+    
     </div>
      <a href="#side_Contact" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Contact us</a>
     <div class="collapse" id="side_Contact">
@@ -27,6 +28,7 @@
     </div>
      <a href="#side_Account" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Account</a>
     <div class="collapse" id="side_Account">
+    <a href="${pageContext.request.contextPath}/shopping/orderFormAction.action" class="list-group-item sub_list">Order Detail</a>
       <a href="${pageContext.request.contextPath}/member/account.jsp" class="list-group-item sub_list">Setting</a>
       <a href="${pageContext.request.contextPath}/payment/paymentmanage.action" class="list-group-item sub_list">Payment</a>
     </div>
