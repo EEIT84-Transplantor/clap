@@ -58,6 +58,7 @@ button {
 
 				<div class="col-md-10" id="chatBackgroundWhole">
 					<img src="../resource/images/chatbg.jpg"/>
+					<div id="chat_wrap">
 					<h2>Customer Online Service</h2>
 					<P>What can we help you with? Enter the questions you have and
 						get the answer right away.</P>
@@ -153,6 +154,7 @@ button {
 
 						<div class="col-md-2"></div>
 					</div>
+				</div>
 				</div>
 			</div>
 		</div>
