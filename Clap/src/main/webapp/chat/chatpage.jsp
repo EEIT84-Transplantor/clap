@@ -162,9 +162,9 @@ button {
 		src="${pageContext.request.contextPath}/resource/js/jquery-1.12.2.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resource/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
+		<script type="text/javascript">
 		//DOM Element
-
+		
 		var usernameInputEl = document.querySelector("#username");
 		var connectBtnEl = document.querySelector('#connect');
 		var disconnectBtnEl = document.querySelector('#disconnect');
@@ -208,7 +208,7 @@ button {
 			if (usernameInputEl.value == "admin") {
 				connect();
 			}
-
+		
 		});
 		function disconnect() {
 			//close the connection and the reset the socket object
