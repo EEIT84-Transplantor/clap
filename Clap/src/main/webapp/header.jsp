@@ -66,7 +66,7 @@
 
 				<ul class="nav navbar-nav navbar-right">
 
-					<li><a 
+					<li id="ccart"><a 
 						href="${pageContext.request.contextPath}/shopping/cartAction.action"
 						class="cart_anchor">${totalCart}</a></li>
 

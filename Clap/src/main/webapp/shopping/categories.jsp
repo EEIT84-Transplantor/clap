@@ -124,9 +124,13 @@ slider.on('slide', function (ev) {
     var pricerange = $('#p_price').val().split(",");
     min = pricerange[0];
     max = pricerange[1];
-    document.getElementById("min_price").innerHTML="$"+min;
-    document.getElementById("max_price").innerHTML="$"+max;
-    var url = "<%=request.getContextPath()%>/shopping/searchProduct.action";
+//     document.getElementById("min_price").innerHTML="$"+min;
+//     document.getElementById("max_price").innerHTML="$"+max;
+    
+});
+
+$("#price_btn").on('click',function(){
+	var url = "<%=request.getContextPath()%>/shopping/searchProduct.action";
 	var data = {"categoryname":categoryname,"min":min,"max":max,"keyword":keyword};
 
 	var result = ajax(url, data);

@@ -127,14 +127,15 @@ slider.on('slide', function (ev) {
     var pricerange = $('#p_price').val().split(",");
     min = pricerange[0];
     max = pricerange[1];
-    document.getElementById("min_price").innerHTML="$"+min;
-    document.getElementById("max_price").innerHTML="$"+max;
-    var url = "<%=request.getContextPath()%>/shopping/searchProduct.action";
+//     document.getElementById("min_price").innerHTML="$"+min;
+//     document.getElementById("max_price").innerHTML="$"+max;
+});
+$("#price_btn").on('click',function(){
+	var url = "<%=request.getContextPath()%>/shopping/searchProduct.action";
 	var data = {"page":"search","min":min,"max":max,"keyword":keyword};
 
-	ajax(url, data);
+	var result = ajax(url, data);
 });
-
 </script>
 	<script type="text/javascript">
     function changeCart(id) {

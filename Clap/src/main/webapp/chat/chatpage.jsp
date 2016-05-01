@@ -14,14 +14,16 @@
 <link href="${pageContext.request.contextPath}/resource/css/customer.css" rel="stylesheet">
 <style>
 #dialog {
-	background: white;
-	width: 300px;
+	background: rgba(255,255,255,0.5);
+	width: 100%;
 	height: 300px;
-	color: black;
+	color: #000;
+	border-radius: 5px;
+	border:1px #fff solid;
 }
 
 button {
-	color: black;
+	color: #000;
 }
 
 </style>
@@ -49,77 +51,77 @@ button {
 				</div>
 				
 				<div class="col-md-10" id="chatBackgroundWhole">
-					<div class="col-md-2">
-						<c:if test="${login.type==2}">
-							<h5>Online User(s)</h5>
-							<ul id="userList">
-
-							</ul>
-						</c:if>
-					</div>
-					<div class="col-md-8" id="chatBackground">
-
-						<div class="row">
-							<div class="col-md-12" style="margin: 20px 0px">
-								<aside>
-									<c:choose>
+				<img src="../resource/images/chatbg.jpg" />
+				<h2>Customer Online Service</h2>
+				<P>what can we help you with? Please tell us more about your issue.</P>
+				<p id="u_name">
+				
+				<em style="color:#47BED9;">Hello,</em>
+				
+				<c:choose>
 										<c:when test="${empty login}">
 											<input id="username" placeholder="Your Name" autofocus>
 										</c:when>
 										<c:when test="${login.type==2}">
-											<input id="username" value="admin" style="display: none"
+											<input id="username" value="admin" 
 												readonly>
 										</c:when>
 										<c:when test="${login.type!=2}">
 											<input id="username" value="${login.name}" >
 										</c:when>
 									</c:choose>
-									<c:if test="${empty login || login.type!=2}">
-										<button id="connect">Chat</button>
-										<button id="disconnect" disabled>Leave</button>
-									</c:if>
-									<c:if test="${login.type==2}">
-										<button id="connect" style="display: none">Chat</button>
-										<button id="disconnect" disabled style="display: none">Leave</button>
-									</c:if>
-								</aside>
-							</div>
-						</div>
+				
+				
+				</p>
+					<div class="col-md-2 l_side" >
+						<c:if test="${login.type==2}">
+							<h5>Online User(s)</h5>
+							<ul id="userList">
+
+							</ul>
+						</c:if>
+						<c:if test="${empty login || login.type!=2}">
+                               <li><button type="button" class="btn btn-success btn-circle btn-lg"><a href="callto:123" id="phoneicon"><i class="glyphicon glyphicon-earphone"></i></a></button></li>
+                              <li><button id="connect" type="button" class="btn btn-success btn-circle btn-lg"><i class="glyphicon glyphicon-headphones"></i></button></li>
+							 <li><button id="disconnect" type="button" class="btn btn-success btn-circle btn-lg"><i class="glyphicon glyphicon-eye-close"></i></button></li>
+						</c:if>
+					</div>
+					<div class="col-md-8 r_side" id="chatBackground">
+
 
 						<div class="row" style="margin: 20px 0px">
 							<div class="col-md-12">
 								<article>
 									<div class="row">
 
-
 										<div class="col-md-12" id="dialog">
 											<c:if test="${empty login || login.type!=2}">
-												<span>You are chatting to <span id="chatTo">Customer
-														Service</span></span>
+												<p style="margin-top:10px;"><span>You are chatting to <span id="chatTo">Customer
+														Service</span></span></p>
 												<div id="message-board"></div>
 												<hr>
 											</c:if>
 											<c:if test="${login.type==2}">
-												<span>You are chatting to <span id="chatTo"></span></span>
+												<p style="margin-top:10px;"><span>You are chatting to <span id="chatTo"></span></span></p>
 												<div id="message-board"></div>
 												<hr>
 											</c:if>
 
 
 										</div>
-																				<div class="col-md-12" style="margin: 20px 0px;">
+										<div class="col-md-12" style="margin: 20px 0px;">
 										<div class="row">
-											<div class="col-md-6" style="margin: 20px 0px;">
-												<textarea id="message" placeholder="message.."></textarea>
+											<div class="col-md-10" >
+												<textarea id="message" placeholder="message.." style="width:100%;"></textarea>
 											</div>
-											<div class="col-md-4" style="margin: 20px 0px;">
-												<button id="send">Send</button>
+											<div class="col-md-2" >
+												<button id="send" type="button" class="btn btn-success" style="width:90%; height:100;">Send</button>
 											</div>
-											<div class="col-md-2" style="margin: 20px 0px;"></div>
+										
 										</div>
 																				</div>
 									</div>
-								</article>
+						</article>
 							</div>
 						</div>
 
@@ -168,7 +170,7 @@ button {
 			//ws is a websocket protocol
 			//location.host + location.pathname is the current url
 			//new WebSocket(url) will immediately open a websocket connection
-			socket = new WebSocket("wss://" + location.host
+			socket = new WebSocket("ws://" + location.host
 					+ "/Clap/chat.c?username=" + usernameInputEl.value);
 
 			//add the event listener for the socket object

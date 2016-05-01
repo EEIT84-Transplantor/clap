@@ -6,14 +6,14 @@ html{
 
 .container {
 	width:100%;
-	padding:0 100px;
+	padding:0 30px;
 }
 
 #s_wrap{
 	height:720px;
 	width:100%;
 /* 	background: url("../images/simulator/s_bg_1.png") center no-repeat; */
-	background:#062128;
+/* 	background:#062128; */
 }
 #s_wrap .col-md-2,#s_wrap .col-md-3,#s_wrap .col-md-7{
 	padding:40px 0 40px 30px;

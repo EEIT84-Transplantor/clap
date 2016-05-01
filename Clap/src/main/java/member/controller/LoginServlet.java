@@ -70,8 +70,35 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		if ((memberVO=memberService.login(email, password.getBytes()))!=null) {
-			//放會員資料及付款資料 進session
 			session = request.getSession();
+			//清空購物車
+			Map<Integer, Integer> tempCart = (Map<Integer, Integer>)session.getAttribute("tempCart");
+		
+			if (tempCart != null) {
+				
+				for(Integer key:tempCart.keySet()){
+					
+					Integer newQuantity=tempCart.get(key);
+					for(CartVO cartvo:cartService.getCart(email)){
+						System.out.println("9 9 "+cartvo.getProduct_id());
+						if(cartvo.getProduct_id().equals(key)){
+							System.out.println("a"+cartvo.getQuantity());
+							newQuantity = tempCart.get(key)+cartvo.getQuantity();
+							break;
+						}
+					}
+					System.out.println("b"+newQuantity);
+					cartService.setCart(email, key, newQuantity);
+					
+					
+				}
+				
+				session.removeAttribute("tempCart");
+				
+			}
+			
+			//放會員資料及付款資料 進session
+			
 			
 			session.setAttribute("login",memberVO);
 			List<CartVO> cart = cartService.getCart(memberVO.getEmail());

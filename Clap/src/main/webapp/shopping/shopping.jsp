@@ -13,12 +13,10 @@
 <title>CLAP</title>
 
 <!-- Bootstrap -->
-<link href="<c:url value="/resource/css/bootstrap.min.css"/>"
-	rel="stylesheet">
-<link href="<c:url value="/resource/css/customer.css"/>"
-	rel="stylesheet">
-<link href="<c:url value="/resource/css/silderbanner.css"/>"
-	rel="stylesheet">
+<link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/silderbanner.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/cust_product.css"/>" rel="stylesheet">
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
@@ -63,15 +61,15 @@
 						<div class="row">
 							<div class="col-md-9">
 								
-								<h3 ><a class="b_color" href="${pageContext.request.contextPath}/fastpass/categories.action?organ=${CategoryProducts.key}">${CategoryProducts.key}</a></h3>
+								<h3 style="margin-left:25px;margin-bottom:20px;"><a style="font-size:25px; font-weight:700;text-transform: uppercase;" class="b_color" href="${pageContext.request.contextPath}/fastpass/categories.action?organ=${CategoryProducts.key}">${CategoryProducts.key}</a></h3>
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-3" >
 								<!-- Controls -->
 								<div class="controls pull-right hidden-xs">
-									<a class="left fa fa-chevron-left btn btn-success"
+									<a class="left fa fa-chevron-left btn btn-primary"
 										href="#category-silder-${c_count.count}" data-slide="prev"><span
 										class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a>
-									<a class="right fa fa-chevron-right btn btn-success"
+									<a class="right fa fa-chevron-right btn btn-primary"
 										href="#category-silder-${c_count.count}" data-slide="next"><span
 										class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
 								</div>
@@ -92,34 +90,40 @@
 											<div class="row">
 										</c:if>
 										<div class="col-sm-3">
-											<div class="col-item">
-												<div class="photo">
-													<img src="data:image/png;base64,${Productimg[products.id].img64}"
-														class="img-responsive" alt="" />
-												</div>
-												<div class="info">
-													<div class="row">
-														<div class="price col-md-12">
-															<h4>${products.name}</h4>
-															<!--<h5 class="price-text-color">$199.99</h5> -->
-														</div>
-
-													</div>
-												</div>
-												<div class="g_btn">
-													<div class="separator clear-left">
-														<p class="btn-add">
-															<i class="fa fa-shopping-cart"></i><a href="javascript:void(0);"
-																onclick="changeCart(${products.id});" class ="hidden-sm add-to-cart">Add to cart</a>
-														</p>
-														<p class="btn-details">
-															<i class="fa fa-list"></i><a href="${pageContext.request.contextPath}/shopping/productDetial.action?productVO.id=${products.id}" class="hidden-sm">More
-																details</a>
-														</p>
-													</div>
-													<div class="clearfix"></div>
-												</div>
-											</div>
+									
+											
+											 <!-- PERSONAL -->
+            <div class="block personal fl">
+                <!-- CONTENT -->
+                <div class="content">
+                    <p class="price">
+                        <sup>$</sup>
+                        <span>${products.price}</span>
+                        <sub>/per.</sub>
+                    </p>
+                </div>
+                <!-- /CONTENT -->
+                <!-- FEATURES -->
+                <ul class="features">
+                <li>
+                <img src="data:image/png;base64,${Productimg[products.id].img64}" class="img-responsive" alt="" width="250"/>
+				</li>
+                    <li>Name : ${products.name}</li>
+<!--                     <li>Ratting : -->
+<%--                      <c:forEach step="1" begin="1" end="${products.rating}"> --%>
+<%--                      <span class="fontawesome-star"> --%>
+<%--                      </c:forEach> --%>
+<!--                     </li> -->
+                </ul>
+                <a href="javascript:void(0);" onclick="changeCart(${products.id});" class ="hidden-sm add-to-cart"><button type="button" class="btn btn-success btn-circle btn-lg"><i class="glyphicon glyphicon-shopping-cart"></i></button></a>
+                <!-- /FEATURES -->
+                <!-- PT-FOOTER -->
+                <div class="pt-footer">
+                    <p><a href="${pageContext.request.contextPath}/shopping/productDetial.action?productVO.id=${products.id}" class="hidden-sm">More information</a></p>
+                </div>
+                <!-- /PT-FOOTER -->
+            </div>
+            <!-- /PERSONAL -->
 										</div>
 
 										<c:if test="${p_count.count % 4 == 0||p_count.count == fn:length(values)}">
@@ -182,11 +186,11 @@
     $(document).ready(function(){
         $('.add-to-cart').on('click',function(){
             //Scroll to top if cart icon is hidden on top
-            $('html, body').animate({
-                'scrollTop' : $(".cart_anchor").position().top
-            });
+//             $('html, body').animate({
+//                 'scrollTop' : $(".cart_anchor").position().top
+//             });
             //Select item image and pass to the function
-            var itemImg = $(this).parent().parent().parent().parent().children().find('img').eq(0);
+            var itemImg = $(this).prev().children().find('img').eq(0);
             flyToElement($(itemImg), $('.cart_anchor'));
         });
     });
