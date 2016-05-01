@@ -66,7 +66,7 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 			quantity = Integer.parseInt(product.get("quantity").toString());
 			total += price * quantity;
 		}
-		total *= Integer.parseInt(promoTitle);
+		total *= Double.parseDouble(promoTitle);
 
 		// 取出creditCardList
 		memberVO = (MemberVO) session.getAttribute("login");

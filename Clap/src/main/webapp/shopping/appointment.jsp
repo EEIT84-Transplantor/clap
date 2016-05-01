@@ -25,8 +25,10 @@
 
 	<header><jsp:include page="/header.jsp" /></header>
 	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
+	<div class="row">
+				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
+				<div class="col-md-10">
+		
 				<table class="table">
 					<thead>
 						<tr>
@@ -50,27 +52,78 @@
 						</c:forEach>
 					</tbody>
 				</table>
-			</div>
-		</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<p>These are the hospitals that we work with</p>
+							<div id="floating-panel">
+								<div class="row">
+									<div class="col-md-9">
+										<div class="form-group">
+											<div style="width: 40%; display: inline-block;">
+												<select class="form-control" id="citySelect">
+                                                    <c:forEach var="location" items="${locations}">
+													<option value="${location.id}">${location.name}</option>
+													</c:forEach>
+												</select>
+											</div>
+											<div style="width: 40%; display: inline-block;">
+												<select class="form-control" id="hospitalSelect">
+													<option value="all">all</option>
+													<c:forEach var="hospital" items="${hospitals}">
+													<option value="${hospital.address}">${hospital.name}</option>
+													</c:forEach>
+												</select>
+											</div>
+											<div style="width: 5%; display: inline-block;">
+												<button type="button" class="btn btn-warning" id="selectH">Search</button>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="input-group">
 
-		<div class="row">
-			<div class="col-md-9">
-				<label>Choose Hospital:</label>
-				<select class="hospital form-control" id="hospital">
-					<c:forEach var="hospital" items="${hospitalList}">
-						<option value="${hospital.address}" label="${hospital.name}">${hospital.id}</option>
-					</c:forEach>
-				</select>
+											<input type="textbox" class="form-control" placeholder="Search" name="srch-term" id="address" value="臺大醫院">
+											<div class="input-group-btn">
+												<button class="btn btn-default" type="submit" id="submit">
+													<i class="glyphicon glyphicon-search"></i>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="mapa" style="width: 100%; height: 500px;"></div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			</div>
-			<div class="col-md-3" style="height: 100%;">
-				<input type="button" value="submit" id="submit" class="btn btn-default" height="100%">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<div id="map" style="width: 100%; height: 500px;"></div>
-			</div>
-		</div>
 	</div>
 
 	<footer><jsp:include page="/footer.jsp" /></footer>
