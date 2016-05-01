@@ -52,7 +52,7 @@ public void onOpen(Session session) throws Exception {
 //    	        clients.get(client).getBasicRemote().sendText("newUser|" + newUsername);
 //    	    }
     	}else if (clients.get(client)==session){
-    		  String response = "message|admin| Hi "+newUsername+", How may I help you today?" ;
+    		  String response = "message|admin| Hi "+newUsername+", How can I help you today?" ;
     		  session.getBasicRemote().sendText(response);
     	}
     }

@@ -29,6 +29,9 @@
 button {
 	color: #000;
 }
+
+#chatBackgroundWhole{
+}
 </style>
 
 
@@ -54,10 +57,10 @@ button {
 				</div>
 
 				<div class="col-md-10" id="chatBackgroundWhole">
-					<img src="../resource/images/chatbg.jpg" />
+					<img src="../resource/images/chatbg.jpg"/>
 					<h2>Customer Online Service</h2>
-					<P>what can we help you with? Please tell us more about your
-						issue.</P>
+					<P>What can we help you with? Enter the questions you have and
+						get the answer right away.</P>
 					<p id="u_name">
 
 						<em style="color: #47BED9;">Hello,</em>
@@ -73,14 +76,7 @@ button {
 								<input id="username" value="${login.name}">
 							</c:when>
 						</c:choose>
-						<c:if test="${empty login || login.type!=2}">
-										<button id="connect">Chat</button>
-										<button id="disconnect" disabled>Leave</button>
-									</c:if>
-									<c:if test="${login.type==2}">
-										<button id="connect" style="display: none">Chat</button>
-										<button id="disconnect" disabled style="display: none">Leave</button>
-									</c:if>
+
 
 					</p>
 					<div class="col-md-2 l_side">
@@ -104,6 +100,10 @@ button {
 									class="btn btn-success btn-circle btn-lg">
 									<i class="glyphicon glyphicon-eye-close"></i>
 								</button></li>
+						</c:if>
+						<c:if test="${login.type==2}">
+							<button id="connect" style="display: none">Chat</button>
+							<button id="disconnect" disabled style="display: none">Leave</button>
 						</c:if>
 					</div>
 					<div class="col-md-8 r_side" id="chatBackground">
@@ -162,9 +162,9 @@ button {
 		src="${pageContext.request.contextPath}/resource/js/jquery-1.12.2.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resource/js/bootstrap.min.js"></script>
-		<script type="text/javascript">
+	<script type="text/javascript">
 		//DOM Element
-		
+
 		var usernameInputEl = document.querySelector("#username");
 		var connectBtnEl = document.querySelector('#connect');
 		var disconnectBtnEl = document.querySelector('#disconnect');
@@ -196,6 +196,7 @@ button {
 			//ws is a websocket protocol
 			//location.host + location.pathname is the current url
 			//new WebSocket(url) will immediately open a websocket connection
+			console.log("huuhu");
 			socket = new WebSocket("ws://" + location.host
 					+ "/Clap/chat.c?username=" + usernameInputEl.value);
 
@@ -208,7 +209,7 @@ button {
 			if (usernameInputEl.value == "admin") {
 				connect();
 			}
-		
+
 		});
 		function disconnect() {
 			//close the connection and the reset the socket object
