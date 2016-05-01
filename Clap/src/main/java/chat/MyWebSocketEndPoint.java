@@ -11,7 +11,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/chat")
+@ServerEndpoint(value = "/chat.c")
 public class MyWebSocketEndPoint {
 //
 private static final String USERNAME_KEY = "username";
@@ -52,7 +52,7 @@ public void onOpen(Session session) throws Exception {
 //    	        clients.get(client).getBasicRemote().sendText("newUser|" + newUsername);
 //    	    }
     	}else if (clients.get(client)==session){
-    		  String response = "message|admin| Hi "+newUsername+", How may I help you today?" ;
+    		  String response = "message|admin| Hi "+newUsername+", How can I help you today?" ;
     		  session.getBasicRemote().sendText(response);
     	}
     }
