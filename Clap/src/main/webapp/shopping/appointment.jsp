@@ -28,13 +28,17 @@
 	<div class="row">
 				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
 				<div class="col-md-10">
-		
+		        <h2>Appointment Doctor</h2>
+				<p>Welcome to use appointment system.</p>
 				<table class="table">
 					<thead>
-						<tr>
+						<tr style="background:#666;">
 							<td><label>product</label></td>
 							<td><label>appointment time</label></td>
+							<td><label>city</label></td>
+							<td><label>hospital</label></td>
 							<td><label>doctor</label></td>
+							<td><label>confirm</label></td>
 						</tr>
 					</thead>
 					<tbody>
@@ -43,11 +47,27 @@
 								<td class="id" hidden="true">${orderVO.id}</td>
 								<td>${orderVO.productVO.name}</td>
 								<td><input type="date" class="time"></td>
-								<td><select class="doctor">
+								<td><select class="form-control" id="citySelect">
+                                                    <c:forEach var="location" items="${locations}">
+													<option value="${location.id}">${location.name}</option>
+													</c:forEach>
+												</select>
+												</td>
+								<td>
+								<select class="form-control" id="hospitalSelect">
+													<option value="all">all</option>
+													<c:forEach var="hospital" items="${hospitals}">
+													<option value="${hospital.address}">${hospital.name}</option>
+													</c:forEach>
+												</select>
+								</td>
+								<td><select class="form-control" class="doctor">
 										<c:forEach var="doctor" items="${doctorList}">
 											<option value="${doctor.id}">${doctor.name}</option>
 										</c:forEach>
-									</select></td>
+									</select>
+								</td>
+								<td><input type="button" value="submit" id="submit" class="btn btn-success" ></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -102,18 +122,7 @@
 								</div>
 							</div>
 							<div id="mapa" style="width: 100%; height: 500px;"></div>
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+
 				
 				
 				
@@ -133,14 +142,118 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery.avgrund.js"/>"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap" async defer></script>
+
 	<script type="text/javascript">
+	var markers = [];
+	var map;
+	var geocoder;
+	function initMap() {
+		map = new google.maps.Map(document.getElementById('mapa'), {
+			zoom : 12,
+			center : {
+				lat : 25.033493,
+				lng : 121.564101
+			}
+		});
+
+		geocoder = new google.maps.Geocoder();
+
+		document.getElementById('submit').addEventListener('click', function() {
+			geocodeAddress("search", geocoder, map);
+		});
+		document.getElementById('selectH').addEventListener('click', function() {
+			geocodeAddress("select", geocoder, map);
+		});
+	}
+
+	function addMarkerWithTimeout(position, timeout) {
+		window.setTimeout(function() {
+			markers.push(new google.maps.Marker({
+				position : position,
+				map : map,
+				animation : google.maps.Animation.DROP
+			}));
+		}, timeout);
+	}
+
+	function clearMarkers() {
+		for (var i = 0; i < markers.length; i++) {
+			markers[i].setMap(null);
+		}
+		markers = [];
+	}
+	var totalHospital;
+	function geocodeAddress(target, geocoder, resultsMap) {
+
+		var address = [];
+		if (target == "search") {
+			address.push(document.getElementById('address').value);
+
+		} else if (target = "select") {
+			var temp = document.getElementById('hospitalSelect');
+			if (temp.value == "all") {
+				for (var i = 1; i < temp.length; i++) {
+					address.push(temp.options[i].value);
+				}
+			} else {
+				address = [ temp.value ];
+			}
+		}
+
+		totalHospital = [];
+		for (var i = 0; i < address.length; i++) {
+			geocoder.geocode({
+				'address' : address[i]
+			}, function(results, status) {
+				if (status === google.maps.GeocoderStatus.OK) {
+					addHlocation(results[0].geometry.location, address, resultsMap);
+				} else {
+					alert('Geocode was not successful for the following reason: ' + status);
+				}
+			});
+		}
+	}
+
+	function addHlocation(location, address, resultsMap) {
+		totalHospital.push(location);
+		if (address.length == totalHospital.length) {
+			//清除所有座標
+			clearMarkers();
+			//設定地圖中心
+			resultsMap.setCenter(totalHospital[0]);
+			//每隔0.2秒加入一間醫院
+			for (var i = 0; i < totalHospital.length; i++) {
+				addMarkerWithTimeout(totalHospital[i], i * 200);
+			}
+		}
+	}
+	
 		$(function() {
 
 			//顯示醫院地圖
-			$(".hospital").change(function() {
-				geocodeAddress(geocoder, map, $(this).val());
-			})
+			$("#citySelect").on("change",function(){
+		var  url = "<%=request.getContextPath()%>/hospital/hospitalInfo";
+		var  loaction = $(this).val();
+		$.ajax({
+			method:"POST",
+			url:url,
+			data: {"location":loaction}
+		}).done(function(msg){
+			
+			 $("#hospitalSelect").html('<option value="all">all</option>');
+			 
+			 
+			 for(var i =0;i<msg["hospitals"].length;i++){
+			 $("#hospitalSelect").append($('<option>', { 
+			        value: msg["hospitals"][i].address,
+			        text : msg["hospitals"][i].name 
+			    }));
+			 
+			 }
+		});
+	});
+	
+		
 
 			//日期限制
 			var now = new Date().toISOString().substring(0, 10);
@@ -172,33 +285,7 @@
 
 		})
 
-		function initMap() {
-			map = new google.maps.Map(document.getElementById('map'), {
-				zoom : 15,
-				center : {
-					lat : -34.397,
-					lng : 150.644
-				}
-			});
-			geocoder = new google.maps.Geocoder();
-			geocodeAddress(geocoder, map, $(".hospital:first").val());
-		}
-
-		function geocodeAddress(geocoder, resultsMap, address) {
-			geocoder.geocode({
-				'address' : address
-			}, function(results, status) {
-				if (status === google.maps.GeocoderStatus.OK) {
-					resultsMap.setCenter(results[0].geometry.location);
-					marker = new google.maps.Marker({
-						map : resultsMap,
-						position : results[0].geometry.location
-					});
-				} else {
-					alert('Geocode was not successful for the following reason: ' + status);
-				}
-			});
-		}
+		
 
 		function finish() {
 			//顯示彈出式窗
@@ -216,5 +303,7 @@
 			}, 3000);
 		}
 	</script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgpurFmJH7EtCW7FEf_VI_w4l9b2aBVMk&signed_in=true&callback=initMap"></script>
+	
 </body>
 </html>
