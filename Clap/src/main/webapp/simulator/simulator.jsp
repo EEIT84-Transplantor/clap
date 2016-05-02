@@ -27,7 +27,7 @@
 				<div id="s_wrap">
 					<div class="container" id="fullPage">
 						<div class="row">
-							<div class="col-md-2">
+							<div class="col-md-2" style="display:none;">
 								<div id="s_setting">
 									<div class="sub_setting">
 										<h3>Personal Info</h3>
@@ -93,14 +93,17 @@
 
 							</div>
 							<div class="col-md-3">
-								<div id="people">
+							<div id="people">
+							<img id="pp_gb" src="<c:url value="/resource/images/simulator/people.png"/>" class="img-responsive" >
+							
 								  <c:forEach var="simulatorVO" items="${simulatorVOs}" varStatus="c_count">
 								    <div class="drop" id="o_${simulatorVO.categoryVO.id}"></div>
 								  </c:forEach>
 								</div>
 							</div>
-							<div class="col-md-7 opacityDiv">
-								<h2>Hello, ${login.name}</h2>
+							
+							<div class="col-md-9 opacityDiv">
+								<h2 style="margin-top:40px;">Hello, ${login.name}</h2>
 								<p>Select organs or conditions that apply to you and see the power of each product</p>
 								<div class="row" id="s_graphic">
 									<c:forEach begin="1" end="7" varStatus="row">
@@ -166,7 +169,7 @@
 															<div class="carousel-inner">
 																<c:forEach items="${simulatorVO.productVOs}" var="product" varStatus="p_count">
 
-																	<c:if test="${p_count.count % 4 == 1}">
+																	<c:if test="${p_count.count % 6 == 1}">
 																		<c:if test="${p_count.count == 1}">
 																			<div class="item active">
 																		</c:if>
@@ -182,7 +185,7 @@
 																		</div>
 																	</div>
 																</div>
-																	<c:if test="${p_count.count % 4 == 0||p_count.count == fn:length(values)}">
+																	<c:if test="${p_count.count % 6 == 0||p_count.count == fn:length(values)}">
 															</div>
 														</div>
 														</c:if>

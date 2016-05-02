@@ -143,7 +143,7 @@
 						appendTo: 'body'
 					});
 				}
-				$("#people").droppable({ 
+				$("#pp_gb").droppable({ 
 						   accept: $(".p_drag"), 
 				           drop: function(event, ui) {
 				        	   var dropped = ui.draggable;
