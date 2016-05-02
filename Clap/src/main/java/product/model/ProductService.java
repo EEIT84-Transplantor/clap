@@ -87,7 +87,7 @@ public class ProductService {
 				dbVO.setDescription(productVO.getDescription());
 				dbVO.setDiscount(productVO.getDiscount());
 				dbVO.setCategory_id(productVO.getCategory_id());
-				if(productImg.length>0){
+				if(productImg!=null && productImg.length>0){
 					productimgVO.setImg(productImg);
 				}
 				return true;

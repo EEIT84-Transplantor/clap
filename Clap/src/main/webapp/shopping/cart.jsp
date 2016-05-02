@@ -209,40 +209,17 @@
 			
 			var promo = $("select:last option:selected").val();
 			for (var i = 0; i < trs; i++) {
-// 				var price = $("select:eq(" + i + ")").parent().next().text();
-// 				var quantity = $("select:eq(" + i + ")").val();
                 var price = $("#p_detail tr").eq(i).children().eq(3).text().substring(1);
 				var quantity = $("#p_detail tr").eq(i).children().eq(2).children().val();
-				console.log("price"+price);
-				console.log("quantity"+quantity);
 				total = price * quantity + total;
 			}
 			console.log("ahahahha"+total+amount);
 			amount = total * promo > amount ? amount : total * promo;
-			var reduced = total * promo - amount;
-			$("#total").text(total);
-			$("#reduced").text(reduced);
+			var finaltotal = total * promo - amount;
 			$("#amount").text(amount);
-
-// 			var quantity = $('.name').size();
-// 			$('#quantity').text(quantity);
+			$("#reduced").text(total-finaltotal);
+			$("#total").text(finaltotal);
 			
-			
-			
-		//yali
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 				var totalCount = 0;
 				var quantity_select = $(".quantity_select");
 				
@@ -253,13 +230,6 @@
 		
 			
 		}
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		//yali

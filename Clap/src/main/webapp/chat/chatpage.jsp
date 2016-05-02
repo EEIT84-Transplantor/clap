@@ -10,22 +10,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
 <!-- Bootstrap -->
-<link href="${pageContext.request.contextPath}/resource/css/bootstrap.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resource/css/customer.css" rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resource/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resource/css/customer.css"
+	rel="stylesheet">
 <style>
 #dialog {
-	background: rgba(255,255,255,0.5);
+	background: rgba(255, 255, 255, 0.5);
 	width: 100%;
 	height: 300px;
 	color: #000;
 	border-radius: 5px;
-	border:1px #fff solid;
+	border: 1px #fff solid;
 }
 
 button {
 	color: #000;
 }
 
+#chatBackgroundWhole{
+}
 </style>
 
 
@@ -49,31 +55,32 @@ button {
 						</c:otherwise>
 					</c:choose>
 				</div>
-				
+
 				<div class="col-md-10" id="chatBackgroundWhole">
-				<img src="../resource/images/chatbg.jpg" />
-				<h2>Customer Online Service</h2>
-				<P>what can we help you with? Please tell us more about your issue.</P>
-				<p id="u_name">
-				
-				<em style="color:#47BED9;">Hello,</em>
-				
-				<c:choose>
-										<c:when test="${empty login}">
-											<input id="username" placeholder="Your Name" autofocus>
-										</c:when>
-										<c:when test="${login.type==2}">
-											<input id="username" value="admin" 
-												readonly>
-										</c:when>
-										<c:when test="${login.type!=2}">
-											<input id="username" value="${login.name}" >
-										</c:when>
-									</c:choose>
-				
-				
-				</p>
-					<div class="col-md-2 l_side" >
+					<img src="../resource/images/chatbg.jpg"/>
+					<div id="chat_wrap">
+					<h2>Customer Online Service</h2>
+					<P>What can we help you with? Enter the questions you have and
+						get the answer right away.</P>
+					<p id="u_name">
+
+						<em style="color: #47BED9;">Hello,</em>
+
+						<c:choose>
+							<c:when test="${empty login}">
+								<input id="username" placeholder="Your Name" autofocus>
+							</c:when>
+							<c:when test="${login.type==2}">
+								<input id="username" value="admin" readonly>
+							</c:when>
+							<c:when test="${login.type!=2}">
+								<input id="username" value="${login.name}">
+							</c:when>
+						</c:choose>
+
+
+					</p>
+					<div class="col-md-2 l_side">
 						<c:if test="${login.type==2}">
 							<h5>Online User(s)</h5>
 							<ul id="userList">
@@ -81,9 +88,23 @@ button {
 							</ul>
 						</c:if>
 						<c:if test="${empty login || login.type!=2}">
-                               <li><button type="button" class="btn btn-success btn-circle btn-lg"><a href="callto:123" id="phoneicon"><i class="glyphicon glyphicon-earphone"></i></a></button></li>
-                              <li><button id="connect" type="button" class="btn btn-success btn-circle btn-lg"><i class="glyphicon glyphicon-headphones"></i></button></li>
-							 <li><button id="disconnect" type="button" class="btn btn-success btn-circle btn-lg"><i class="glyphicon glyphicon-eye-close"></i></button></li>
+							<li><button type="button"
+									class="btn btn-success btn-circle btn-lg">
+									<a href="callto:123" id="phoneicon"><i
+										class="glyphicon glyphicon-earphone"></i></a>
+								</button></li>
+							<li><button id="connect" type="button"
+									class="btn btn-success btn-circle btn-lg">
+									<i class="glyphicon glyphicon-headphones"></i>
+								</button></li>
+							<li><button id="disconnect" type="button"
+									class="btn btn-success btn-circle btn-lg">
+									<i class="glyphicon glyphicon-eye-close"></i>
+								</button></li>
+						</c:if>
+						<c:if test="${login.type==2}">
+							<button id="connect" style="display: none">Chat</button>
+							<button id="disconnect" disabled style="display: none">Leave</button>
 						</c:if>
 					</div>
 					<div class="col-md-8 r_side" id="chatBackground">
@@ -96,13 +117,17 @@ button {
 
 										<div class="col-md-12" id="dialog">
 											<c:if test="${empty login || login.type!=2}">
-												<p style="margin-top:10px;"><span>You are chatting to <span id="chatTo">Customer
-														Service</span></span></p>
+												<p style="margin-top: 10px;">
+													<span>You are chatting to <span id="chatTo">Customer
+															Service</span></span>
+												</p>
 												<div id="message-board"></div>
 												<hr>
 											</c:if>
 											<c:if test="${login.type==2}">
-												<p style="margin-top:10px;"><span>You are chatting to <span id="chatTo"></span></span></p>
+												<p style="margin-top: 10px;">
+													<span>You are chatting to <span id="chatTo"></span></span>
+												</p>
 												<div id="message-board"></div>
 												<hr>
 											</c:if>
@@ -110,23 +135,26 @@ button {
 
 										</div>
 										<div class="col-md-12" style="margin: 20px 0px;">
-										<div class="row">
-											<div class="col-md-10" >
-												<textarea id="message" placeholder="message.." style="width:100%;"></textarea>
+											<div class="row">
+												<div class="col-md-10">
+													<textarea id="message" placeholder="message.."
+														style="width: 100%;"></textarea>
+												</div>
+												<div class="col-md-2">
+													<button id="send" type="button" class="btn btn-success"
+														style="width: 90%; height: 100;">Send</button>
+												</div>
+
 											</div>
-											<div class="col-md-2" >
-												<button id="send" type="button" class="btn btn-success" style="width:90%; height:100;">Send</button>
-											</div>
-										
 										</div>
-																				</div>
 									</div>
-						</article>
+								</article>
 							</div>
 						</div>
 
 						<div class="col-md-2"></div>
 					</div>
+				</div>
 				</div>
 			</div>
 		</div>
@@ -138,7 +166,7 @@ button {
 		src="${pageContext.request.contextPath}/resource/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		//DOM Element
-		
+
 		var usernameInputEl = document.querySelector("#username");
 		var connectBtnEl = document.querySelector('#connect');
 		var disconnectBtnEl = document.querySelector('#disconnect');
@@ -170,6 +198,7 @@ button {
 			//ws is a websocket protocol
 			//location.host + location.pathname is the current url
 			//new WebSocket(url) will immediately open a websocket connection
+			console.log("huuhu");
 			socket = new WebSocket("ws://" + location.host
 					+ "/Clap/chat.c?username=" + usernameInputEl.value);
 
@@ -182,7 +211,7 @@ button {
 			if (usernameInputEl.value == "admin") {
 				connect();
 			}
-		
+
 		});
 		function disconnect() {
 			//close the connection and the reset the socket object
