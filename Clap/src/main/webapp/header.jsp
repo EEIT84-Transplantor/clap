@@ -80,7 +80,7 @@
 
 					<c:if test="${login.type==2}">
 						<li><a
-							id="administrator" href="${pageContext.request.contextPath}/paymentmanage/setpromotion.action">Administrator</a></li>
+							id="administrator" href="${pageContext.request.contextPath}/product/preDisplayAction.action">Administrator</a></li>
 					</c:if>
 				</ul>
 			</div>

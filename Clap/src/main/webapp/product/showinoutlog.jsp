@@ -69,13 +69,13 @@ margin:10px 0;
 							<table id="example" class="table">
 								<thead>
 									<tr>
-										<th>Log ID</th>
-										<th>Inv. ID</th>
-										<th>P. ID</th>
-										<th>In Quant.</th>
-										<th>Out Quant.</th>
-										<th>Order ID</th>
-										<th>Manu. Date</th>
+										<th>Id</th>
+										<th>Inv.Id</th>
+										<th>P.Id</th>
+										<th>InQ.</th>
+										<th>OutQ.</th>
+										<th>OrderId</th>
+										<th>M.Date</th>
 										<th>Exp. Date</th>
 										<th>Destination</th>
 										<th>Date</th>
