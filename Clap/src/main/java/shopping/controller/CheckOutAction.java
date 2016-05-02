@@ -40,7 +40,6 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 	@Override
 	public String execute() throws Exception {
 
-		System.out.println("checkout");
 		JSONObject product;
 		Double price;
 		Integer quantity;
@@ -66,7 +65,7 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 			quantity = Integer.parseInt(product.get("quantity").toString());
 			total += price * quantity;
 		}
-		total *= Integer.parseInt(promoTitle);
+		total *= Double.parseDouble(promoTitle);
 
 		// 取出creditCardList
 		memberVO = (MemberVO) session.getAttribute("login");

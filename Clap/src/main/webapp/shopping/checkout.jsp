@@ -16,6 +16,28 @@
 <link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/shopping.css"/>" rel="stylesheet">
 <!-- 在這加上你自己的css檔案連結  -->
+
+<style type="text/css">
+.number {
+	letter-spacing: 3px;
+	left: 15%;
+	top: 50%;
+	position: absolute;
+}
+
+.goodthru {
+	position: absolute;
+	top: 70%;
+	left: 60%;
+}
+
+#addCreditForm {
+	position: relative;
+	top: 50%;
+	transform: translate(0, -50%);
+}
+</style>
+
 </head>
 <body>
 	<header><jsp:include page="/header.jsp" /></header>
@@ -27,17 +49,10 @@
 					<div class="creditCard">
 						<table>
 							<tr>
-								<td><label>Number</label></td>
 								<td><label class="number">${creditCardVO.creditCardPK.cc_number}</label></td>
 							</tr>
 							<tr>
-								<td><label>Good thru</label></td>
 								<td><label class="goodthru">${creditCardVO.cc_goodthru}</label></td>
-
-							</tr>
-							<tr>
-								<td><label>CVV</label></td>
-								<td><label class="cvv">${creditCardVO.cc_cvv}</label></td>
 							</tr>
 						</table>
 					</div>
@@ -51,15 +66,15 @@
 						<table>
 							<tr>
 								<td><label>Number</label></td>
-								<td><input type="text" name="creditCardVO.creditCard.cc_number" value="6011226470739645" class="number" /></td>
+								<td><input type="text" name="creditCardVO.creditCard.cc_number" value="6011226470739645" id="number"/></td>
 							</tr>
 							<tr>
 								<td><label>Good thru</label></td>
-								<td><input type="text" name="creditCardVO.cc_goodthru" value="11/22" class="goodthru" /></td>
+								<td><input type="text" name="creditCardVO.cc_goodthru" value="11/22" id="goodthru"/></td>
 							</tr>
 							<tr>
 								<td><label>CVV</label></td>
-								<td><input type="text" name="creditCardVO.cc_cvv" value="333" class="cvv" /></td>
+								<td><input type="text" name="creditCardVO.cc_cvv" value="333" id="cvv"/></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -136,6 +151,8 @@
 				}
 			})
 		})
+		
+		var cardvo;
 
 		//listener 選擇付款信用卡
 		function selectCardListener(creditCard) {
@@ -161,11 +178,11 @@
 		//在畫面產生新卡片
 		function setNewCard(result) {
 			if (result) {
+				console.log(cardvo);
 				//產生新卡片
 				$("#hidden").prev().clone().prependTo("#cardTable");
 				$(".number:first").text(cardvo.cc_number);
 				$(".goodthru:first").text(cardvo.cc_goodthru);
-				$(".cvv:first").text(cardvo.cc_cvv);
 				$(".creditCard:first").css("border-style", "");
 				selectCardListener(".creditCard:first");
 				//隱藏清空新卡片表格
@@ -179,9 +196,9 @@
 		function setNewCardVO() {
 			cardvo = {
 				"mb_email" : "${login.email}",
-				"cc_number" : $(".number:last").val(),
-				"cc_goodthru" : $(".goodthru:last").val(),
-				"cc_cvv" : $(".cvv:last").val()
+				"cc_number" : $("#number").val(),
+				"cc_goodthru" : $("#goodthru").val(),
+				"cc_cvv" : $("#cvv").val()
 			}
 			return cardvo;
 		};

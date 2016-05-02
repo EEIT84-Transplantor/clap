@@ -37,10 +37,7 @@
 					</div>
 					<script>
 						var controller = new ScrollMagic.Controller();
-						var tween = new TimelineMax().to("#front", 3, { y : "-30%" })
-													 .to("#middle", 3, { y : "-20%" }, 0)
-													 .to("#end", 3, { y : "-10%" }, 0)
-													 .from("#slogan", 0.5, { y : "70%", ease : Power2.easeOut, autoAlpha : 0 }, 0.5)
+						var tween = new TimelineMax().to("#front", 3, { y : "-30%" }).to("#middle", 3, { y : "-20%" }, 0).to("#end", 3, { y : "-10%" }, 0).from("#slogan", 0.5, { y : "70%", ease : Power2.easeOut, autoAlpha : 0 }, 0.5)
 						var scene = new ScrollMagic.Scene({ triggerElement : "#banner", duration : "150%", triggerHook : "onLeave" }).addIndicators({ name : "banner" }).addTo(controller).setTween(tween).setPin("#banner")
 					</script>
 				</section>
@@ -2338,7 +2335,7 @@
 				</section>
 				<section id="structure" class="demo">
 					<div id="st_type0" class="middle">
-						<h1 class="middle">Structure </h1>
+						<h1 class="middle">Structure</h1>
 					</div>
 					<div id="st_type1" class="middle">
 						<div>
@@ -2395,12 +2392,36 @@
 							<p>Thinker</p>
 						</div>
 					</div>
+
 					<script type="text/javascript">
 						var tween = new TimelineMax().staggerFrom("#tm_type1 .tm_inf", 1.5, { x : "+=400%", ease : Back.easeOut.config(1) }, 0.2)
 						new ScrollMagic.Scene({ triggerElement : "#team", duration : 500, triggerHook : "onLeave" }).addIndicators().addTo(controller).setTween(tween).setPin("#team")
 					</script>
 				</section>
+				<section id="mvc" class="demo">
+					<div id="mvc_type0">
+						<div class="tm_mvc" style="background-color: rgba(0, 255, 255, 0.16)">M</div>
+						<div class="tm_mvc" style="background-color: rgba(0, 128, 0, 0.12)">V</div>
+						<div class="tm_mvc" style="background-color: rgba(255, 0, 0, 0.1)">C</div>
+						<img id="as" src="as.png">
+						<img id="bs" src="bs.png">
+						<img id="cs" src="cs.png">
+						<img id="ds" src="ds.png">
+					</div>
+					<script type="text/javascript">
+						var tween = new TimelineMax()
+						.from("#mvc_type0 div",1,{autoAlpha : 0})
+						.from($("#mvc_type0 img"), 1, { autoAlpha : 0 })
+						.to("#as", 1, { x : "-590%" }, 1).to("#bs", 1, { x : "-390%" }, 1).to("#cs", 1, { x : "0%" }, 1).to("#ds", 1, { x : "480%" }, 1).to("#as", 1, { x : "0%" }, 3).to("#bs", 1, { x : "580%" }, 3).to("#cs", 1, { x : "380%" }, 3).to("#ds", 1, { x : "-490%" }, 3).to("#as", 1, { x : "480%" }, 5).to("#bs", 1, { x : "-490%" }, 5).to("#cs", 1, { x : "-100%" }, 5).to("#ds", 1, { x : "100%" }, 5)
+						new ScrollMagic.Scene({ triggerElement : "#mvc", duration : 1500, triggerHook : "onLeave" }).addIndicators({ name : "img" }).addTo(controller).setTween(tween).setPin("#mvc")
+					</script>
+				</section>
 				<section id="skill" class="demo">
+					<div id="think">
+						<img src="t1.png">
+						<img src="t2.png">
+						<img src="t3.png">
+					</div>
 					<div id="sl_type0">
 						<h1 class="middle">Skill</h1>
 					</div>
@@ -2409,41 +2430,33 @@
 							<img src="f3.png">
 							<img src="f2.png">
 							<img src="f1.png">
-							<img src="f0.png">
+							<img class="s1_icon" src="f0.png">
 						</div>
 						<div>
 							<img src="b3.png">
 							<img src="b2.png">
 							<img src="b1.png">
-							<img src="b0.png">
+							<img class="s1_icon" src="b0.png">
 						</div>
 						<div>
 							<img src="d3.png">
 							<img src="d2.png">
 							<img src="d1.png">
-							<img src="d0.png">
+							<img class="s1_icon" src="d0.png">
 						</div>
-
 					</div>
 					<script type="text/javascript">
-						var fronts = $("#sl_type1").children().eq(0).children();
-						$(fronts[3]).click(
-							function() {
-								new TimelineMax().fromTo(fronts[2], 2, { x : 0, autoAlpha : 0 }, { autoAlpha : 1, rotationY : "+=180", transformOrigin : "right top", transformPerspective : 5000, ease : Elastic.easeOut.config(1, 0.3) }, 0).fromTo(fronts[1], 2, { x : "100%", autoAlpha : 0 }, { autoAlpha : 1, rotationY : "+=180", transformOrigin : "right top", transformPerspective : 5000, ease : Elastic.easeOut.config(1, 0.3) }, 1).fromTo(fronts[0], 2, { x : "200%", autoAlpha : 0 },
-									{ autoAlpha : 1, rotationY : "+=180", transformOrigin : "right top", transformPerspective : 5000, ease : Elastic.easeOut.config(1, 0.3) }, 2)
-							})
-						var ends = $("#sl_type1").children().eq(1).children();
-						$(ends[3]).click(
-							function() {
-								new TimelineMax().fromTo(ends[2], 2, { x : 0, autoAlpha : 0 }, { autoAlpha : 1, rotationY : "+=180", transformOrigin : "right top", transformPerspective : 5000, ease : Elastic.easeOut.config(1, 0.3) }).fromTo(ends[1], 2, { x : "100%", autoAlpha : 0 }, { autoAlpha : 1, rotationY : "+=180", transformOrigin : "right top", transformPerspective : 5000, ease : Elastic.easeOut.config(1, 0.3) }, 1).fromTo(ends[0], 2, { x : "200%", autoAlpha : 0 },
-									{ autoAlpha : 1, rotationY : "+=180", transformOrigin : "right top", transformPerspective : 5000, ease : Elastic.easeOut.config(1, 0.3) }, 2)
-							})
-						var dbs = $("#sl_type1").children().eq(2).children();
-						$(dbs[3]).click(
-							function() {
-								new TimelineMax().fromTo(dbs[2], 2, { x : 0, autoAlpha : 0 }, { autoAlpha : 1, rotationY : "+=180", transformOrigin : "right top", transformPerspective : 5000, ease : Elastic.easeOut.config(1, 0.3) }).fromTo(dbs[1], 2, { x : "100%", autoAlpha : 0 }, { autoAlpha : 1, rotationY : "+=180", transformOrigin : "right top", transformPerspective : 5000, ease : Elastic.easeOut.config(1, 0.3) }, 1).fromTo(dbs[0], 2, { x : "200%", autoAlpha : 0 },
-									{ autoAlpha : 1, rotationY : "+=180", transformOrigin : "right top", transformPerspective : 5000, ease : Elastic.easeOut.config(1, 0.3) }, 2)
-							})
+						TweenMax.set("#think img", { autoAlpha : 0, rotationX : "+=90" })
+						$(".s1_icon").click(function() {
+							TweenMax.set("#sl_type1 img", { transformOrigin : "right top" })
+							var tween = new TimelineMax().staggerFromTo($(this).siblings(), 2, { cycle : { x : [ 0, "100%", "200%" ] }, autoAlpha : 0 }, { autoAlpha : 1, rotationY : "+=180", transformPerspective : 5000, ease : Elastic.easeOut.config(1, 0.5) }, -0.5)
+						})
+						$("#sl_type0").click(function() {
+							TweenMax.set("#sl_type1 img", { transformOrigin : "right center" })
+							new TimelineMax().to("#sl_type1 img", 1, { rotationX : "+=90" ,ease: Power3.easeIn})
+							                 .to("#think img", 1, { autoAlpha : 1, rotationX : "+=90" ,ease: Power3.easeOut})
+							$("#sl_type0 h1").text("Thinks");
+						})
 					</script>
 				</section>
 				<section id="XXX" class="demo">
