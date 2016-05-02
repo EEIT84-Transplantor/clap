@@ -39,6 +39,8 @@ public class CategoriesAction extends ActionSupport implements ServletRequestAwa
 			organ = globalCategoryVOs.get(0).getName();
 		}
 
+		
+		
 		for(int i = 0;i<globalCategoryVOs.size();i++){
 			if(globalCategoryVOs.get(i).getName().equals(organ)){
 				target = globalCategoryVOs.get(i);
