@@ -59,7 +59,7 @@ float:left;
 #insform{
 width:400px;
 margin:0px;
-background-color:#403F3A;
+background-color:#2E2E2E;
 font-family: 'Fauna One', serif;
 position: relative;
 border: 5px solid #53585C;
