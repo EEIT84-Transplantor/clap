@@ -56,7 +56,6 @@
 							class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">English</a></li>
-							<li><a href="#">Chinese</a></li>
 						</ul></li>
 				</ul>
 			</div>

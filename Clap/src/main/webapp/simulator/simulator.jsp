@@ -26,19 +26,19 @@
 			<div class="col-md-12">
 				<div id="s_wrap">
 					<div class="container" id="fullPage">
-						<div class="row">
-							<div class="col-md-2">
+						
+						
 								<div id="s_setting">
 									<div class="sub_setting">
 										<h3>Personal Info</h3>
 										<div class="s_inpnut">
-											<label>Height: </label>
+											<label>Height : </label>
 											<input type="number" min="50" max="300" name="height">
 
 										</div>
 
 										<div class="s_inpnut">
-											<label>Weight:</label>
+											<label>Weight :</label>
 											<input type="number" min="10" max="300" name="weight">
 
 										</div>
@@ -75,32 +75,38 @@
 										</div>
 										<div class="clear"></div>
 									</div>
-									<button class="reset_btn s_btn2 tosave">
+									
+									<button class="reset_btn s_btn2 tosave btn_4">
 										<span class="glyphicon glyphicon-save" aria-hidden="true"></span>
 									</button>
-									<button class="reset_btn s_btn2 toreset">RESET</button>
-									<div class="sub_setting savingslot" id="saveSlot1">
+									<div class="sub_setting savingslot btn_4" id="saveSlot1">
 										1st <span class="" aria-hidden="true"></span>
 									</div>
-									<div class="sub_setting savingslot" id="saveSlot2">
+									<div class="sub_setting savingslot btn_4" id="saveSlot2">
 										2nd <span class="" aria-hidden="true"></span>
 									</div>
-									<div class="sub_setting savingslot" id="saveSlot3">
+									<div class="sub_setting savingslot btn_4" id="saveSlot3">
 										3rd <span class="" aria-hidden="true"></span>
 									</div>
+									
+									<button class="reset_btn toreset">RESET</button>
 									<button class="toclear">Clear Saves</button>
 								</div>
 
-							</div>
+							
+							<div class="row">
 							<div class="col-md-3">
-								<div id="people">
+							<div id="people">
+							<img id="pp_gb" src="<c:url value="/resource/images/simulator/people.png"/>" class="img-responsive" >
+							
 								  <c:forEach var="simulatorVO" items="${simulatorVOs}" varStatus="c_count">
 								    <div class="drop" id="o_${simulatorVO.categoryVO.id}"></div>
 								  </c:forEach>
 								</div>
 							</div>
-							<div class="col-md-7 opacityDiv">
-								<h2>Hello, ${login.name}</h2>
+							
+							<div class="col-md-9 opacityDiv">
+								<h2 style="margin-top:40px;">Hello, ${login.name}</h2>
 								<p>Select organs or conditions that apply to you and see the power of each product</p>
 								<div class="row" id="s_graphic">
 									<c:forEach begin="1" end="7" varStatus="row">
@@ -166,7 +172,7 @@
 															<div class="carousel-inner">
 																<c:forEach items="${simulatorVO.productVOs}" var="product" varStatus="p_count">
 
-																	<c:if test="${p_count.count % 4 == 1}">
+																	<c:if test="${p_count.count % 6 == 1}">
 																		<c:if test="${p_count.count == 1}">
 																			<div class="item active">
 																		</c:if>
@@ -182,7 +188,7 @@
 																		</div>
 																	</div>
 																</div>
-																	<c:if test="${p_count.count % 4 == 0||p_count.count == fn:length(values)}">
+																	<c:if test="${p_count.count % 6 == 0||p_count.count == fn:length(values)}">
 															</div>
 														</div>
 														</c:if>
