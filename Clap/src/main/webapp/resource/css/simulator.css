@@ -39,7 +39,7 @@ html{
 }
 #s_setting{
 	margin:auto 0;
-	height:550px;
+	height:auto;
 	position:absolute;
 	top:40px;
 	left:0;
