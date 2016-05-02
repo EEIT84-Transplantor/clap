@@ -40,7 +40,6 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 	@Override
 	public String execute() throws Exception {
 
-		System.out.println("checkout");
 		JSONObject product;
 		Double price;
 		Integer quantity;
