@@ -214,7 +214,7 @@
 				});
 				
 				//set reset
-				$('button[class="reset_btn s_btn2 toreset"').on("click", function() {	
+				$('button[class="reset_btn toreset"').on("click", function() {	
 					//reset settings and height weight
 					cleanBar($("#setting1"));
 					cleanBar($("#setting2"));
@@ -236,7 +236,7 @@
 				});
 				
 				//set save			
-				$('button[class="reset_btn s_btn2 tosave"').on("click", function() {
+				$('button[class="reset_btn s_btn2 tosave btn_4"').on("click", function() {
 					var factors = createFactors();
 					var index = 1;
 					for ( var savedObjKey in saveContainer) {

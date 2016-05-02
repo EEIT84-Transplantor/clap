@@ -26,19 +26,19 @@
 			<div class="col-md-12">
 				<div id="s_wrap">
 					<div class="container" id="fullPage">
-						<div class="row">
-							<div class="col-md-2" style="display:none;">
+						
+						
 								<div id="s_setting">
 									<div class="sub_setting">
 										<h3>Personal Info</h3>
 										<div class="s_inpnut">
-											<label>Height: </label>
+											<label>Height : </label>
 											<input type="number" min="50" max="300" name="height">
 
 										</div>
 
 										<div class="s_inpnut">
-											<label>Weight:</label>
+											<label>Weight :</label>
 											<input type="number" min="10" max="300" name="weight">
 
 										</div>
@@ -75,23 +75,26 @@
 										</div>
 										<div class="clear"></div>
 									</div>
-									<button class="reset_btn s_btn2 tosave">
+									
+									<button class="reset_btn s_btn2 tosave btn_4">
 										<span class="glyphicon glyphicon-save" aria-hidden="true"></span>
 									</button>
-									<button class="reset_btn s_btn2 toreset">RESET</button>
-									<div class="sub_setting savingslot" id="saveSlot1">
+									<div class="sub_setting savingslot btn_4" id="saveSlot1">
 										1st <span class="" aria-hidden="true"></span>
 									</div>
-									<div class="sub_setting savingslot" id="saveSlot2">
+									<div class="sub_setting savingslot btn_4" id="saveSlot2">
 										2nd <span class="" aria-hidden="true"></span>
 									</div>
-									<div class="sub_setting savingslot" id="saveSlot3">
+									<div class="sub_setting savingslot btn_4" id="saveSlot3">
 										3rd <span class="" aria-hidden="true"></span>
 									</div>
+									
+									<button class="reset_btn toreset">RESET</button>
 									<button class="toclear">Clear Saves</button>
 								</div>
 
-							</div>
+							
+							<div class="row">
 							<div class="col-md-3">
 							<div id="people">
 							<img id="pp_gb" src="<c:url value="/resource/images/simulator/people.png"/>" class="img-responsive" >
