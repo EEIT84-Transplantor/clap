@@ -68,14 +68,16 @@ color: #6EB6D2;
 z-index:5;
 padding:10px;
 }
-input{
+#insertform input{
 width:100%;
 height:35px;
 margin-top:5px;
 border:1px solid #999;
+align:left;
+}
+input{
 border-radius:3px;
 padding:5px;
-align:left;
 }
 
 #hi {
@@ -118,6 +120,9 @@ color:white;
 select{
 margin:2px;
 	height: 35px;
+}
+input[placeholder], [placeholder], *[placeholder] {
+    color: white !important;
 }
 </style>
 </head>
@@ -180,12 +185,13 @@ margin:2px;
 						<form
 							action="${pageContext.request.contextPath}/paymentmanage/prePromoteAction.action">
 							<div class="col-md-4 col-sm-5" style="margin: 0; padding: 0;">
-								Starting Date<input type="datetime" name="expireFrom" />
+								Starting Date<input type="datetime" name="expireFrom" placeholder="yyyy-MM-dd" />
 							</div>
 							<div class="col-md-4 col-sm-4">
-								Ending Date<input type="datetime" name="expireTo" />
+								Ending Date<input type="datetime" name="expireTo" placeholder="yyyy-MM-dd" />
 							</div>
-							<div class="col-md-3 col-sm-1">
+							<div class="col-md-1 col-sm-4"></div>
+							<div class="col-md-2 col-sm-1">
 								Category<br /> <select name="categoryName">
 									<option value="All">All</option>
 									<c:forEach var="categoryVO" varStatus="index"
