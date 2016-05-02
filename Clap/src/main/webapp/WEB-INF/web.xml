@@ -68,7 +68,10 @@
 		<filter-name>OpenSessionViewFilter</filter-name>
 		<url-pattern>/simulator/*</url-pattern>
 	</filter-mapping>
-
+   <filter-mapping>
+		<filter-name>OpenSessionViewFilter</filter-name>
+		<url-pattern>/hahaha.ha</url-pattern>
+	</filter-mapping>
 	
 	<filter>
 		<filter-name>ActoinContextFilter</filter-name>
