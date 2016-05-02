@@ -29,6 +29,49 @@
 
 #insertform {
 	display: none;
+	border-radius:5px;
+position: absolute;
+top: 0px;
+left: 0px;
+height: 100%;
+width: 100%;
+background: #000;
+display: none;
+
+
+}
+.form{
+border-radius:5px;
+padding:20px 30px;
+box-shadow:0 0 15px;
+font-size:14px;
+font-weight:bold;
+width:350px;
+margin:20px 250px 0 35px;
+float:left;
+}
+#insform{
+width:400px;
+margin:0px;
+background-color:#2E2E2E;
+font-family: 'Fauna One', serif;
+position: relative;
+border: 5px solid #53585C;
+border-radius:20px;
+color: #6EB6D2;
+z-index:5;
+padding:10px;
+}
+#insertform input{
+width:100%;
+height:35px;
+margin-top:5px;
+border:1px solid #999;
+align:left;
+}
+input{
+border-radius:3px;
+padding:5px;
 }
 
 
@@ -74,35 +117,22 @@ word-wrap:break-word;
 						<div class="col-md-11">
 							<form id="insertform" action="${pageContext.request.contextPath}/product/setProductAction.action" method="POST"
 								enctype="multipart/form-data">
-								<div class="table-responsive">
-									<table class="table table-condensed table-condensedalot">
-										<thead>
-											<tr>
-												<th>Picture</th>												
-												<th>Name</th>
-												<th>Price</th>
-												<th>Description</th>
-												<th>Discount</th>
-												<th>Category</th>
-												<th></th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<th><input id="newitemPic" type="file" name="upload" required="required"/></th>
-												<th><input class="form-control col-md-1" type="text" name="productVO.name" required="required"/></th>
-												<th><input class="form-control col-md-1" type="number" min="0" name="productVO.price" required="required"/></th>
-												<th><input class="form-control col-md-1" type="text" name="productVO.description" required="required"/></th>
-												<th><input class="form-control col-md-1" type="number" min="0" max="1" name="productVO.discount" required="required"/></th>
-												<th><select id="category" name="productVO.category_id" required="required">
+								<div class="table-responsive" id="insform">
+									
+												<p style="font-size:24px">Enter Product Detail</p><hr>
+												
+												<h5>Picture</h5><input id="newitemPic" type="file" name="upload" required="required"/>
+												<h5>Name</h5><input class="form-control col-md-1" type="text" name="productVO.name" required="required"/>
+												<h5>Price</h5><input class="form-control col-md-1" type="number" min="0" name="productVO.price" required="required"/>
+												<h5>Description</h5><input class="form-control col-md-1" type="text" name="productVO.description" required="required"/>
+												<h5>Discount</h5><input class="form-control col-md-1" type="number" min="0" max="1" name="productVO.discount" required="required"/>
+												<h5>Category</h5><select id="category" name="productVO.category_id" required="required">
 													<c:forEach items="${categoryVOs}" var="row">
 														<option value="${row.id}">${row.name}</option>														
 													</c:forEach>
-												</select></th>
-												<th><input id="submitInsert" type="button" value="add" /> <input id="insertCancel" type="button" value="cancel" /></th>
-											</tr>
-										</tbody>
-									</table>
+												</select>
+												<input id="submitInsert" type="button" value="add" /> <input id="insertCancel" type="button" value="cancel" />
+									
 								</div>
 							</form>
 						</div>
@@ -167,8 +197,8 @@ word-wrap:break-word;
 											</td>
 											<td class="col-md-3">
 											  <img class="delete" src="${pageContext.request.contextPath}/resource/images/empty-trash-512.png" height="20px" width="20px" /> 
-											  <button class="btn btn-primary btn-xs sendUpdate" type="button">Update</button> 
-											  <button class="btn btn-default btn-xs cancelUpdate" type="button">Cancel</button>
+											  <br><button style="margin:10px 0;"class="btn btn-primary btn-xs sendUpdate" type="button">Update</button> 
+											  <br><button class="btn btn-default btn-xs cancelUpdate" type="button">Cancel</button>
 											</td>
 
 										</tr>
@@ -374,12 +404,19 @@ word-wrap:break-word;
 		$(document).ready(function() {
 			var table = $('#example').DataTable();
 
-			$("#add").on("click", function() {
+// 			$("#add").on("click", function() {
 
-				$("table.table-condensedalot tr>th:first-child").css("max-width","13em").css("width","auto");
-				$("table.table-condensedalot tr>th>input:first-child").css("max-width","13em").css("width","auto");
-				$("#insertform").show();
-			});
+// 				$("table.table-condensedalot tr>th:first-child").css("max-width","13em").css("width","auto");
+// 				$("table.table-condensedalot tr>th>input:first-child").css("max-width","13em").css("width","auto");
+// 				$("#insertform").show();
+// 			});
+$("#add").click(function() {
+								$("#insertform").css("display", "block");
+							});
+							$("#insertform #insertCancel").click(function() {
+								$("#insertform").css("display", "none");
+							});
+
 			
 			$("#submitInsert").on("click", function(){
 				if(confirm("Add a new product?")){
@@ -414,9 +451,9 @@ word-wrap:break-word;
 				}
 
 			});
-			$("#insertCancel").on("click", function() {
-				$("#insertform").css("display", "none");
-			});
+// 			$("#insertCancel").on("click", function() {
+// 				$("#insertform").css("display", "none");
+// 			});
 
 			
 			function sendPostRequestProduct(url, data) {

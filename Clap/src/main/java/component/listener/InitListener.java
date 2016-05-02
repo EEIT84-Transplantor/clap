@@ -1,6 +1,8 @@
 package component.listener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +46,9 @@ public class InitListener implements ServletContextListener {
 		
 		sessionFactory.getCurrentSession().getTransaction().commit();
 		
+		
+	
+		context.setAttribute("categoriesList", categoryVOs);
 		context.setAttribute("globalCategoryVOs", categoryVOs);
 		context.setAttribute("globalProductVOs", mapOfProductVOs);
 		context.setAttribute("globalProductimgVOs", mapOfProductimgVOs);

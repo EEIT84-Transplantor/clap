@@ -35,10 +35,8 @@
 						<tr style="background:#666;">
 							<td><label>product</label></td>
 							<td><label>appointment time</label></td>
-							<td><label>city</label></td>
-							<td><label>hospital</label></td>
 							<td><label>doctor</label></td>
-							<td><label>confirm</label></td>
+<!-- 							<td><label>confirm</label></td> -->
 						</tr>
 					</thead>
 					<tbody>
@@ -47,27 +45,14 @@
 								<td class="id" hidden="true">${orderVO.id}</td>
 								<td>${orderVO.productVO.name}</td>
 								<td><input type="date" class="time"></td>
-								<td><select class="form-control" id="citySelect">
-                                                    <c:forEach var="location" items="${locations}">
-													<option value="${location.id}">${location.name}</option>
-													</c:forEach>
-												</select>
-												</td>
 								<td>
-								<select class="form-control" id="hospitalSelect">
-													<option value="all">all</option>
-													<c:forEach var="hospital" items="${hospitals}">
-													<option value="${hospital.address}">${hospital.name}</option>
-													</c:forEach>
-												</select>
-								</td>
-								<td><select class="form-control" class="doctor">
+								<select class="form-control" class="doctor">
 										<c:forEach var="doctor" items="${doctorList}">
 											<option value="${doctor.id}">${doctor.name}</option>
 										</c:forEach>
 									</select>
 								</td>
-								<td><input type="button" value="submit" id="submit" class="btn btn-success" ></td>
+<!-- 								<td><input type="button" value="submit" id="submit" class="btn btn-success" ></td> -->
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -113,7 +98,7 @@
 
 											<input type="textbox" class="form-control" placeholder="Search" name="srch-term" id="address" value="臺大醫院">
 											<div class="input-group-btn">
-												<button class="btn btn-default" type="submit" id="submit">
+												<button class="btn btn-default" type="submit" id="submit_y">
 													<i class="glyphicon glyphicon-search"></i>
 												</button>
 											</div>
@@ -158,7 +143,7 @@
 
 		geocoder = new google.maps.Geocoder();
 
-		document.getElementById('submit').addEventListener('click', function() {
+		document.getElementById('submit_y').addEventListener('click', function() {
 			geocodeAddress("search", geocoder, map);
 		});
 		document.getElementById('selectH').addEventListener('click', function() {
@@ -289,18 +274,18 @@
 
 		function finish() {
 			//顯示彈出式窗
-			$('#submit').avgrund({
-				width : 380, // max is 640px
-				height : 280, // max is 350px
-				holderClass: 'text',
-				openOnEvent : false, // set to 'false' to init on load
-				template : '購買完成 五秒後回首頁' // or function (elem) { }, or $('.content')
-			});
+// 			$('#submit').avgrund({
+// 				width : 380, // max is 640px
+// 				height : 280, // max is 350px
+// 				holderClass: 'text',
+// 				openOnEvent : false, // set to 'false' to init on load
+// 				template : '購買完成 五秒後回首頁' // or function (elem) { }, or $('.content')
+// 			});
 			
 			//導回首頁
-			setTimeout(function() {
-				window.location.href = "<c:url value='/index.jsp'/>";
-			}, 3000);
+// 			setTimeout(function() {
+// 				window.location.href = "<c:url value='/index.jsp'/>";
+// 			}, 3000);
 		}
 	</script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgpurFmJH7EtCW7FEf_VI_w4l9b2aBVMk&signed_in=true&callback=initMap"></script>

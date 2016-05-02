@@ -1,8 +1,10 @@
 package shopping.controller;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +30,7 @@ public class ShoppingAction extends ActionSupport implements ServletRequestAware
 		Map<Integer,List<ProductVO>> globalProductVOs = (Map<Integer,List<ProductVO>>)context.getAttribute("globalProductVOs");
 		Map<Integer,List<ProductimgVO>> globalProductimgVOs = (Map<Integer,List<ProductimgVO>>)context.getAttribute("globalProductimgVOs");
 
-		Map<String, List<ProductVO>> allCategoryProduct = new HashMap<String, List<ProductVO>>();
+		Map<String, List<ProductVO>> allCategoryProduct = new LinkedHashMap<String, List<ProductVO>>();
 		Map<Integer, ProductimgVO> productDetail = new HashMap<Integer, ProductimgVO>();
 
 		

@@ -20,12 +20,12 @@ public class AppointmentAction extends ActionSupport implements ServletRequestAw
 
 	@Override
 	public String execute() throws Exception {
-		
+		System.out.println("啥軌");
 
 		// 給值
 		
 		Integer orderform_id = (Integer) request.getSession().getAttribute("orderform_id");
-		request.getSession().removeAttribute("orderform_id");
+//		request.getSession().removeAttribute("orderform_id");
 
 		List<HospitalVO> hospitalList = hospitalService.getHospital();
 		List<DoctorVO> doctorList = doctorService.getDoctors();

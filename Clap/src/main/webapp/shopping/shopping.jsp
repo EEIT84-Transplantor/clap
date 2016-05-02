@@ -108,7 +108,7 @@
                 <li>
                 <img src="data:image/png;base64,${Productimg[products.id].img64}" class="img-responsive" alt="" width="250"/>
 				</li>
-                    <li>Name : ${products.name}</li>
+                    <li style="text-align:center;"> ${products.name}</li>
 <!--                     <li>Ratting : -->
 <%--                      <c:forEach step="1" begin="1" end="${products.rating}"> --%>
 <%--                      <span class="fontawesome-star"> --%>
