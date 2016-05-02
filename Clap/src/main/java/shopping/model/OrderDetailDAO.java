@@ -12,6 +12,8 @@ public interface OrderDetailDAO {
 
 	public List<OrderDetailVO> select();
 
-	public OrderDetailVO select(Integer id, Integer product_id);
+	public List<OrderDetailVO> select(Integer id);
+
+	public OrderDetailVO selectById(Integer id);
 
 }

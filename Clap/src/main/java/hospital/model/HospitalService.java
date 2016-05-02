@@ -39,4 +39,12 @@ public class HospitalService {
 		}
     	return result;
     }
+    
+    public List<HospitalVO> selectHospitalByLocation(Integer id) {
+    	List<HospitalVO> result = null;
+    	
+     	result = hospitalDAO.selectByLocation(id);
+    	
+    	return result;
+	}
 }

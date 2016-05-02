@@ -4,7 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 
-	<constant name="struts.devMode" value="true" />
+	<constant name="struts.devMode" value="false" />
 	<constant name="struts.objectFactory" value="spring" />
 	<constant name="struts.multipart.maxSize" value="-1" />
 
@@ -39,25 +39,23 @@
 			<result name="input">/setting/changesetting.jsp</result>
 		</action>
 		<action name="changePasswordAction" class="setting.controller.ChangePasswordAction">
-			<result name="success">/setting/passwordchange.jsp</result>
+			<result name="success">/index.jsp</result>
 			<result name="input">/setting/passwordchange.jsp</result>
 		</action>
 		<action name="oneClickAction" class="setting.controller.OneClickAction">
 			<result name="success">/setting/oneclick.jsp</result>
 			<result name="input">/setting/oneclick.jsp</result>
-			<interceptor-ref name="creditCardInterceptor" />
 		</action>
 		<action name="renewVIPAction" class="setting.controller.RenewVIPAction">
 			<result name="success">/setting/vip.jsp</result>
 			<result name="input">/setting/vip.jsp</result>
-			<!-- <interceptor-ref name="creditCardInterceptor" /> -->
+			<interceptor-ref name="creditCardInterceptor" />
 		</action>
 		<action name="autoRenewVIPAction" class="setting.controller.AutoRenewVIPAction">
 			<result name="success">/setting/vip.jsp</result>
 			<result name="input">/setting/vip.jsp</result>
-			<!-- <interceptor-ref name="creditCardInterceptor" /> -->
+			<interceptor-ref name="creditCardInterceptor" />
 		</action>
-
 	</package>
 
 	<package name="payment" namespace="/payment" extends="struts-default">
@@ -74,11 +72,6 @@
 			<interceptor-stack name="paymentManageStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="paymentManageInterceptor" />
-				<interceptor-ref name="defaultStack" />
-			</interceptor-stack>
-			<interceptor-stack name="promoManageInterceptorStack">
-				<interceptor-ref name="AdminInterceptor" />
-				<!-- <interceptor-ref name="promoManageInterceptor" /> -->
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
@@ -99,6 +92,7 @@
 			<result>/payment/{1}.jsp</result>
 		</action>
 	</package>
+
 	<package name="paymentmanage" namespace="/paymentmanage"
 		extends="struts-default">
 
@@ -123,15 +117,13 @@
 			<result>/paymentmanage/{1}.jsp</result>
 		</action>
 		<action name="prePromoteAction" class="prePromoteAction">
-			<!-- <interceptor-ref name="promoManageInterceptorStack" /> -->
+			<interceptor-ref name="promoManageInterceptorStack" />
 			<result name="success">/paymentmanage/setpromotion.jsp</result>
 			<result name="input">/paymentmanage/setpromotion.jsp</result>
 		</action>
 		<action name="setPromoteAction" class="setPromoteAction">
-			<interceptor-ref name="AdminInterceptor" />
-			<!-- <interceptor-ref name="promoManageInterceptorStack" /> -->
-			<result type="redirect" name="success">/paymentmanage/setpromotion.jsp
-			</result>
+			<interceptor-ref name="promoManageInterceptorStack" />
+			<result name="success">/paymentmanage/setpromotion.jsp</result>
 			<result name="input">/paymentmanage/setpromotion.jsp</result>
 		</action>
 
@@ -168,6 +160,9 @@
 			<result name="success">/member/account.jsp</result>
 			<result name="input">/member/account.jsp</result>
 		</action>
+		<action name="logOut" class="member.controller.LogOutAction">
+			<result name="success">/index.jsp</result>
+		</action>
 		<action name="*">
 			<interceptor-ref name="loginStack" />
 			<result>/member/{1}.jsp</result>
@@ -175,17 +170,18 @@
 
 	</package>
 
-	<!-- shopping -->
 	<package name="shopping" namespace="/shopping" extends="struts-default">
 		<interceptors>
 			<interceptor name="loginInterceptor"
 				class="component.interceptor.LoginInterceptor" />
+			<interceptor name="creditCardInterceptor"
+				class="component.interceptor.CreditCardInterceptor" />
 			<interceptor-stack name="returnStack">
 				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
+
 		</interceptors>
-				<!-- global-results -->
 		<global-results>
 			<result type="redirect" name="login">/member/signuplogin.jsp</result>
 		</global-results>
@@ -214,7 +210,6 @@
 		</action>
 		<action name="searchProduct" class="shopping.controller.SearchProductAction">
 			<result type="stream">
-
 				<param name="contentType">text/html</param>
 				<param name="searchinputName">inputStream</param>
 			</result>
@@ -227,31 +222,61 @@
 			<result name="success">/shopping/cart.jsp</result>
 		</action>
 		<action name="setCreditCardAction" class="shopping.controller.SetCreditCardAction">
+			<!-- <interceptor-ref name="creditCardInterceptor"></interceptor-ref> -->
 			<result type="stream">
 				<param name="contentType">text/plain</param>
 				<param name="inputName">inputStream</param>
 			</result>
 		</action>
 		<action name="orderFormAction" class="shopping.controller.OrderFormAction">
-			<result name="success">/shopping/return.jsp</result>
+			<result name="success">/shopping/orderform.jsp</result>
 		</action>
 		<action name="orderDetailAction" class="shopping.controller.OrderDetailAction">
 			<result name="success">/shopping/ordertdetail.jsp</result>
 		</action>
 		<action name="checkOutAction" class="shopping.controller.CheckOutAction">
-			<result name="success">/shopping/checkout.jsp</result>
+			<result type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">inputStream</param>
+			</result>
 		</action>
 		<action name="doCheckOutAction" class="shopping.controller.DoCheckOutAction">
-			<result name="input">/shopping/cartAction.action</result>
 			<result name="success">/shopping/appointment.jsp</result>
 		</action>
 		<action name="deleteOrderAction" class="shopping.controller.DeleteOrderAction">
-			<result type="stream"></result>
+			<result type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
 		</action>
 		<action name="doAppointmentAction" class="shopping.controller.DoAppointmentAction">
-			<result type="stream"></result>
+			<result type="stream">
+			</result>
 		</action>
-		
+		<action name="appointmentAction" class="shopping.controller.AppointmentAction">
+			<result>/shopping/appointment.jsp</result>
+		</action>
+		<action name="deleteCartAction" class="shopping.controller.DeleteCartAction">
+			<result type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+	</package>
+
+	<package name="hospital" namespace="/hospital" extends="json-default">
+		<action name="hospitalInfo" class="hospitalInfo">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="json">
+				<param name="enableSMD">true</param>
+			</interceptor-ref>
+			<result>/hospital/hospitalinfo.jsp</result>
+			<result type="json" name="showData">
+				<param name="excludeProperties">
+					request,hospitalService,locationService,location
+				</param>
+			</result>
+		</action>
 	</package>
 
 	<package name="test" namespace="/test" extends="struts-default">
@@ -332,7 +357,7 @@
 				<param name="bufferSize">1024</param>
 			</result>
 		</action>
-		
+
 		<action name="downloadInOutLogExcel" class="downloadInOutLogExcel">
 			<result name="success" type="stream">
 				<param name="contentType">application/vnd.ms-excel</param>
@@ -342,22 +367,12 @@
 			</result>
 		</action>
 	</package>
-	
-	<package name="simulator" namespace="/simulator" extends="struts-default">
-		<action name="bodySimulatorAction" class="bodySimulatorAction">
-			<result name="display">/simulator/simulator.jsp</result>
-			<result type="stream">
-				<param name="contentType">text/html</param>
-				<param name="inputName">inputStream</param>
-			</result>
-		</action>
-		<action name="showProductsAction" class="showProductsAction">
-			<result type="stream">
-				<param name="contentType">text/html</param>
-				<param name="inputName">inputStream</param>
-			</result>
-		</action>
+
+	<package name="simulator" namespace="/simulator" extends="json-default">
 		<action name="savePackAction" class="savePackAction">
+			<interceptor-ref name="json">
+				<param name="enableSMD">true</param>
+			</interceptor-ref>
 			<result type="stream">
 				<param name="contentType">text/html</param>
 				<param name="inputName">inputStream</param>
@@ -369,8 +384,50 @@
 				<param name="inputName">inputStream</param>
 			</result>
 		</action>
-	
+		<action name="oneclickPackAction" class="oneclickPackAction">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="json">
+				<param name="enableSMD">true</param>
+			</interceptor-ref>
+			<result name="success" type="json">
+				<param name="includeProperties">result</param>
+			</result>
+			<result name="input" type="json">
+				<param name="includeProperties">
+					result,outOfStock
+				</param>
+			</result>
+		</action>
+		<action name="addToCartAction" class="addToCartAction">
+			<interceptor-ref name="json">
+				<param name="enableSMD">true</param>
+			</interceptor-ref>
+			<result type="json">
+				<param name="excludeProperties">
+					productList,cartService,request,session
+				</param>
+			</result>
+		</action>
 	</package>
-	
+
+	<!-- for url without Transaction -->
+	<package name="passTransaction" namespace="/fastpass" extends="json-default">
+		<action name="simulatorAction" class="simulatorAction">
+			<result>/simulator/simulator.jsp</result>
+		</action>
+		<action name="bodySimulatorAction" class="bodySimulatorAction">
+			<result name="display">/simulator/simulator.jsp</result>
+			<result type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<action name="shopping" class="shopping.controller.ShoppingAction">
+			<result name="success">/shopping/shopping.jsp</result>
+		</action>
+		<action name="categories" class="shopping.controller.CategoriesAction">
+			<result name="success">/shopping/categories.jsp</result>
+		</action>
+	</package>
 </struts>
 

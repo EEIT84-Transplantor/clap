@@ -1,10 +1,27 @@
 package product.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import simulator.model.SimulatorUtil;
+
+//import simulator.model.SimulatorUtil;
+
+import simulator.model.SimulatorVO;
 
 public class CategoryService {
 	private CategoryDAO categoryDAO;
+	private ProductService productService;
 	
+	public ProductService getProductService() {
+		return productService;
+	}
+
+	public void setProductService(ProductService productService) {
+		this.productService = productService;
+	}
+
 	public CategoryDAO getCategoryDAO() {
 		return categoryDAO;
 	}
@@ -32,5 +49,13 @@ public class CategoryService {
 			return null;
 		}
 	}
+
+
+	public List<SimulatorVO> calculate(List<CategoryVO> categoryVOs , Map<Integer, List<ProductVO>> mapOfProductVOs,
+			Map<Integer, List<ProductimgVO>> mapOfProductimgVOs, Integer env_id, Double bmi, Double smoking, Double drinking,
+			Double exercising) {
+		return SimulatorUtil.calculate(categoryVOs, mapOfProductVOs, mapOfProductimgVOs, env_id, bmi, smoking, drinking, exercising);
+	}
+
 	
 }

@@ -47,7 +47,7 @@
 								<div class="row" id="password_group">
 									<div class="row">
 										<label class="col-md-3">Password : </label>
-										<input type="text" name="password" class="col-md-9">${requestScope.error.password}</div>
+										<input type="password" name="password" class="col-md-9">${requestScope.error.password}</div>
 									<div class="row">
 										<input type="submit" value="Login" class="btn col-md-12">
 									</div>

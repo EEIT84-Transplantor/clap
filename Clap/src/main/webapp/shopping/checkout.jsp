@@ -1,7 +1,3 @@
-<%@page import="member.model.MemberVO"%>
-<%@page import="payment.model.CreditCardPK"%>
-<%@page import="payment.model.CreditCardVO"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
@@ -15,53 +11,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
 <!-- Bootstrap -->
-<link href="<c:url value="/resource/css/bootstrap.min.css"/>" " rel="stylesheet">
-<link href="<c:url value="/resource/css/silderbanner.css"/>" " rel="stylesheet">
-<link href="<c:url value="/resource/css/customer.css"/>" " rel="stylesheet">
-<link href="<c:url value="/resource/css/shopping.css"/>" " rel="stylesheet">
+<link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/silderbanner.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/shopping.css"/>" rel="stylesheet">
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
-
-	<!--%
-		ArrayList<CreditCardVO> creditCardList = new ArrayList<>();
-		CreditCardVO card1 = new CreditCardVO();
-		CreditCardPK card1PK = new CreditCardPK();
-		card1PK.setCc_number("111111111");
-		card1PK.setMb_email("poan@gmail.com");
-		card1.setCreditCardPK(card1PK);
-		card1.setCc_cvv("111");
-		card1.setCc_goodthru("11/11");
-
-		CreditCardVO card2 = new CreditCardVO();
-		CreditCardPK card2PK = new CreditCardPK();
-		card2PK.setCc_number("222222222");
-		card2PK.setMb_email("poan@gmail.com");
-		card2.setCreditCardPK(card2PK);
-		card2.setCc_cvv("222");
-		card2.setCc_goodthru("22/22");
-
-		CreditCardVO card3 = new CreditCardVO();
-		CreditCardPK card3PK = new CreditCardPK();
-		card3PK.setCc_number("333333333");
-		card3PK.setMb_email("poan@gmail.com");
-		card3.setCreditCardPK(card3PK);
-		card3.setCc_cvv("333");
-		card3.setCc_goodthru("33/33");
-
-		creditCardList.add(card1);
-		creditCardList.add(card2);
-		creditCardList.add(card3);
-
-		MemberVO memberVO = new MemberVO();
-		memberVO.setEmail("poan@gmail.com");
-
-		pageContext.setAttribute("creditCardList", creditCardList);
-		pageContext.setAttribute("total", "413413");
-		pageContext.setAttribute("login", memberVO);
-	%-->
-
-
 	<header><jsp:include page="/header.jsp" /></header>
 	<div class="container">
 		<div id="cardTable" class="row">
@@ -109,10 +65,6 @@
 								<td></td>
 								<td><input type="button" value="add" id="addCreditCard"></td>
 							</tr>
-							<tr>
-								<td id="false">false</td>
-								<td id="true">true</td>
-							</tr>
 						</table>
 					</form>
 				</div>
@@ -140,7 +92,7 @@
 				</table>
 			</div>
 			<div class="col-md-2">
-				<input type="button" class="btn btn-default btn-block" value="付款" id="submit">
+				<input type="button" class="btn btn-default btn-block" value="Pay" id="submit">
 			</div>
 		</div>
 
@@ -175,30 +127,14 @@
 				if ("cc_number" in window) {
 					$.ajax({
 						url : doCheckOutAction,
-						data : cc_number,
-						dataType : "json"
+						data : {"cc_number":cc_number}
 					}).done(function(result) {
-						document.location.href="<c:url value='/shopping/doCheckOutAction.action'/>";
-					})
+						window.location.href = "<c:url value='/shopping/appointmentAction.action'/>";
+					});
 				} else {
-					$("#error").text("請先選擇信用卡在結帳")
+					$("#error").text("Please Choose a Credit Card")
 				}
 			})
-
-			//測試新增卡片回傳的結果
-			$("#true").click(function() {
-				$("#hidden").prev().clone().prependTo("#cardTable");
-				$(".number:first").text(creditCardVO.creditCardPK.cc_number);
-				$(".goodthru:first").text(creditCardVO.cc_goodthru);
-				$(".cvv:first").text(creditCardVO.cc_cvv);
-				$(".creditCard:first").css("border-style", "");
-				selectCardListener(".creditCard:first");
-				$("#hidden").toggle();
-			})
-			$("#false").click(function() {
-				$("#false").text("信用卡資料錯誤");
-			})
-
 		})
 
 		//listener 選擇付款信用卡
@@ -207,7 +143,6 @@
 				$(".creditCard").css("border-style", "");
 				$(this).css("border-color", "red").css("border-style", "solid");
 				cc_number = $(this).contents().find("label.number").text();
-				console.log(cc_number);
 			});
 		}
 
@@ -236,7 +171,7 @@
 				//隱藏清空新卡片表格
 				$("#hidden").toggle();
 			} else {
-				$("#false").text("信用卡資料錯誤");
+				$("#false").text("Credit Card is wrong, please try again");
 			}
 		}
 

@@ -664,27 +664,27 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 			this.resize = this._resize.bind(this);
 			window.addEventListener("resize", this.resize, false);
 
-//			// Bind tooltip-related handlers
-//			if (this.options.tooltip === 'hide') {
+			// Bind tooltip-related handlers
+			if (this.options.tooltip === 'hide') {
 				this._addClass(this.tooltip, 'hide');
 				this._addClass(this.tooltip_min, 'hide');
 				this._addClass(this.tooltip_max, 'hide');
-//			} else if (this.options.tooltip === 'always') {
-//				this._showTooltip();
-//				this._alwaysShowTooltip = true;
-//			} else {
-//				this.showTooltip = this._showTooltip.bind(this);
-//				this.hideTooltip = this._hideTooltip.bind(this);
-//
-//				this.sliderElem.addEventListener("mouseenter", this.showTooltip, false);
-//				this.sliderElem.addEventListener("mouseleave", this.hideTooltip, false);
-//
-//				this.handle1.addEventListener("focus", this.showTooltip, false);
-//				this.handle1.addEventListener("blur", this.hideTooltip, false);
-//
-//				this.handle2.addEventListener("focus", this.showTooltip, false);
-//				this.handle2.addEventListener("blur", this.hideTooltip, false);
-//			}
+			} else if (this.options.tooltip === 'always') {
+				this._showTooltip();
+				this._alwaysShowTooltip = true;
+			} else {
+				this.showTooltip = this._showTooltip.bind(this);
+				this.hideTooltip = this._hideTooltip.bind(this);
+
+				this.sliderElem.addEventListener("mouseenter", this.showTooltip, false);
+				this.sliderElem.addEventListener("mouseleave", this.hideTooltip, false);
+
+				this.handle1.addEventListener("focus", this.showTooltip, false);
+				this.handle1.addEventListener("blur", this.hideTooltip, false);
+
+				this.handle2.addEventListener("focus", this.showTooltip, false);
+				this.handle2.addEventListener("blur", this.hideTooltip, false);
+			}
 
 			if (this.options.enabled) {
 				this.enable();

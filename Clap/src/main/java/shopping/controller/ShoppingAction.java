@@ -4,50 +4,52 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.ServletRequestAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import product.model.CategoryService;
 import product.model.CategoryVO;
-import product.model.ProductService;
 import product.model.ProductVO;
+import product.model.ProductimgVO;
 
-public class ShoppingAction extends ActionSupport implements ServletRequestAware{
+public class ShoppingAction extends ActionSupport implements ServletRequestAware {
 
-	private CategoryService categoryService;
-	private ProductService productService;
 	private HttpServletRequest request;
-	
-	public ShoppingAction() {
-	}
-	
-	public void setCategoryService(CategoryService categoryService) {
-		this.categoryService = categoryService;
-	}
-
-	public void setProductService(ProductService productService) {
-		this.productService = productService;
-	}
+	private ServletContext context;
 
 	@Override
 	public String execute() throws Exception {
-		List<CategoryVO>  categoryVOs= categoryService.getAllCategory();
-		Map<String, List<ProductVO>> allCategoryProduct = new HashMap<String, List<ProductVO>>();
-		for(CategoryVO categoryVO :categoryVOs){
-			allCategoryProduct.put(categoryVO.getName(), productService.searchProductByCategory(categoryVO.getId()));
-		}
-		request.setAttribute("allCategoryProduct", allCategoryProduct);
 		
+		context = request.getServletContext();
+		List<CategoryVO> categoryVOs = (List<CategoryVO>)context.getAttribute("globalCategoryVOs");
+		Map<Integer,List<ProductVO>> globalProductVOs = (Map<Integer,List<ProductVO>>)context.getAttribute("globalProductVOs");
+		Map<Integer,List<ProductimgVO>> globalProductimgVOs = (Map<Integer,List<ProductimgVO>>)context.getAttribute("globalProductimgVOs");
+
+		Map<String, List<ProductVO>> allCategoryProduct = new HashMap<String, List<ProductVO>>();
+		Map<Integer, ProductimgVO> productDetail = new HashMap<Integer, ProductimgVO>();
+
+		
+		for(int i = 0; i<categoryVOs.size();i++){
+			List<ProductVO> list = globalProductVOs.get(categoryVOs.get(i).getId());
+			List<ProductimgVO> ProductimgVOs = globalProductimgVOs.get(categoryVOs.get(i).getId());
+			for(int j = 0; j<list.size();j++){
+				productDetail.put(list.get(j).getId(),ProductimgVOs.get(j));
+			}
+			allCategoryProduct.put(categoryVOs.get(i).getName(), list);
+		}
+
+		request.setAttribute("allCategoryProduct", allCategoryProduct);
+		request.setAttribute("Productimg", productDetail);
+
 		return SUCCESS;
 	}
 
 	@Override
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
-		
+
 	}
 }

@@ -82,7 +82,7 @@ public class CartHibernateDAO implements CartDAO {
 		CartVO result = null;
 		session = sessionFactory.getCurrentSession();
 		try {
-			session.saveOrUpdate(cartVO);
+			session.update(cartVO);
 			result = cartVO;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,8 +94,12 @@ public class CartHibernateDAO implements CartDAO {
 	public CartVO update(String email, Integer id, Integer quantity) {
 		CartVO result = null;
 		CartVO temp = new CartVO();
-		temp.setEmail(email);
-		temp.setProduct_id(id);
+		for(CartVO vo:selectByEmail(email)){
+			if(vo.getProduct_id().equals(id)){
+				temp = vo;
+			}
+		}
+		
 		temp.setQuantity(quantity);
 		session = sessionFactory.getCurrentSession();
 		try {

@@ -11,13 +11,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
+
 <!-- Bootstrap -->
-<link href="<c:url value="/resource/css/bootstrap.min.css"/>"
-	rel="stylesheet">
-<link href="<c:url value="/resource/css/customer.css"/>"
-	rel="stylesheet">
-<link href="<c:url value="/resource/css/silderbanner.css"/>"
-	rel="stylesheet">
+<link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/silderbanner.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/cust_product.css"/>" rel="stylesheet">
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
@@ -27,7 +26,7 @@
 		<!-- TOP SEARCH BAR-->
 		<div class="navbar-wrapper">
 			<div class="container">
-				<nav class="navbar navbar-static-top shoppingbar">
+				<nav class="navbar navbar-static-top shoppingbar" style="top:110px;">
 					<div class="container">
 						<div class="navbar-header">
 						<form action="${pageContext.request.contextPath}/shopping/searchProduct.action">
@@ -52,73 +51,35 @@
 		<!-- END TOP SEARCH BAR-->
 
 		<!-- Carousel -->
-		<div id="shoppingbanner" class="carousel slide" data-ride="carousel">
-			<!-- Indicators -->
-			<ol class="carousel-indicators">
-				<li data-target="#shoppingbanner" data-slide-to="0" class="active"></li>
-				<li data-target="#shoppingbanner" data-slide-to="1"></li>
-			</ol>
-			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<img class="first-slide" src="../resource/images/banner-1.jpg"
-						alt="See more future.">
-					<div class="container">
-						<div class="carousel-caption">
-							<h2>See more future.</h2>
-							<p>That's one small step for CLAP, one giant leap for mankind.</p>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<img class="third-slide" src="../resource/images/banner-2.jpg"
-						alt="Improve your life">
-					<div class="container">
-						<div class="carousel-caption">
-							<h2>New life revolution</h2>
-							<p>That's one small step for CLAP, one giant leap for
-								mankind.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<a class="left carousel-control" href="#shoppingbanner" role="button"
-				data-slide="prev"> <span
-				class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			</a> <a class="right carousel-control" href="#shoppingbanner"
-				role="button" data-slide="next"> <span
-				class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			</a>
-		</div>
+
 		<!-- /.carousel -->
 		<!-- 分類推薦 -->
-		<div class="container">
+		<div class="container" style="margin-top:70px;">
 			<div class="row">
 				<div class="col-md-12">
-					<c:forEach items="${allCategoryProduct}" var="CategoryProducts">
+					<c:forEach items="${allCategoryProduct}" var="CategoryProducts" varStatus="c_count">
 						<div class="row">
 							<div class="col-md-9">
 								
-								<h3 ><a class="b_color" href="${pageContext.request.contextPath}/shopping/categories.action?organ=${CategoryProducts.key}">${CategoryProducts.key}</a></h3>
+								<h3 style="margin-left:25px;margin-bottom:20px;"><a style="font-size:25px; font-weight:700;text-transform: uppercase;" class="b_color" href="${pageContext.request.contextPath}/fastpass/categories.action?organ=${CategoryProducts.key}">${CategoryProducts.key}</a></h3>
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-3" >
 								<!-- Controls -->
 								<div class="controls pull-right hidden-xs">
-									<a class="left fa fa-chevron-left btn btn-success"
-										href="#category-silder" data-slide="prev"><span
+									<a class="left fa fa-chevron-left btn btn-primary"
+										href="#category-silder-${c_count.count}" data-slide="prev"><span
 										class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a>
-									<a class="right fa fa-chevron-right btn btn-success"
-										href="#category-silder" data-slide="next"><span
+									<a class="right fa fa-chevron-right btn btn-primary"
+										href="#category-silder-${c_count.count}" data-slide="next"><span
 										class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
 								</div>
 							</div>
 						</div>
-						<div id="category-silder" class="carousel slide hidden-xs">
+						<div id="category-silder-${c_count.count}" class="carousel slide hidden-xs category-silder">
 							<!-- Wrapper for slides -->
 							<div class="carousel-inner">
-								
-									<c:forEach items="${CategoryProducts.value}" var="product" varStatus="p_count">
+									<c:forEach items="${CategoryProducts.value}" var="products" varStatus="p_count">
+									
 										<c:if test="${p_count.count % 4 == 1}">
 										<c:if test="${p_count.count == 1}">
 										<div class="item active">
@@ -129,34 +90,40 @@
 											<div class="row">
 										</c:if>
 										<div class="col-sm-3">
-											<div class="col-item">
-												<div class="photo">
-													<img src="../resource/images/orgins/brain.png"
-														class="img-responsive" alt="" />
-												</div>
-												<div class="info">
-													<div class="row">
-														<div class="price col-md-12">
-															<h4>${product.name}</h4>
-															<!--<h5 class="price-text-color">$199.99</h5> -->
-														</div>
-
-													</div>
-												</div>
-												<div class="g_btn">
-													<div class="separator clear-left">
-														<p class="btn-add">
-															<i class="fa fa-shopping-cart"></i><a href="javascript:void(0);"
-																onclick="changeCart(${product.id});" class="hidden-sm add-to-cart">Add to cart</a>
-														</p>
-														<p class="btn-details">
-															<i class="fa fa-list"></i><a href="${pageContext.request.contextPath}/shopping/productDetial.action?productVO.id=${product.id}" class="hidden-sm">More
-																details</a>
-														</p>
-													</div>
-													<div class="clearfix"></div>
-												</div>
-											</div>
+									
+											
+											 <!-- PERSONAL -->
+            <div class="block personal fl">
+                <!-- CONTENT -->
+                <div class="content">
+                    <p class="price">
+                        <sup>$</sup>
+                        <span>${products.price}</span>
+                        <sub>/per.</sub>
+                    </p>
+                </div>
+                <!-- /CONTENT -->
+                <!-- FEATURES -->
+                <ul class="features">
+                <li>
+                <img src="data:image/png;base64,${Productimg[products.id].img64}" class="img-responsive" alt="" width="250"/>
+				</li>
+                    <li>Name : ${products.name}</li>
+<!--                     <li>Ratting : -->
+<%--                      <c:forEach step="1" begin="1" end="${products.rating}"> --%>
+<%--                      <span class="fontawesome-star"> --%>
+<%--                      </c:forEach> --%>
+<!--                     </li> -->
+                </ul>
+                <a href="javascript:void(0);" onclick="changeCart(${products.id});" class ="hidden-sm add-to-cart"><button type="button" class="btn btn-success btn-circle btn-lg"><i class="glyphicon glyphicon-shopping-cart"></i></button></a>
+                <!-- /FEATURES -->
+                <!-- PT-FOOTER -->
+                <div class="pt-footer">
+                    <p><a href="${pageContext.request.contextPath}/shopping/productDetial.action?productVO.id=${products.id}" class="hidden-sm">More information</a></p>
+                </div>
+                <!-- /PT-FOOTER -->
+            </div>
+            <!-- /PERSONAL -->
 										</div>
 
 										<c:if test="${p_count.count % 4 == 0||p_count.count == fn:length(values)}">
@@ -167,9 +134,9 @@
 				
 			</div>
 		</div>
-		</c:forEach>
+		
 		</div>
-		</div>
+		</div></c:forEach>
 		</div>
 		<!-- 分類推薦 -->
 		</div>
@@ -219,15 +186,15 @@
     $(document).ready(function(){
         $('.add-to-cart').on('click',function(){
             //Scroll to top if cart icon is hidden on top
-            $('html, body').animate({
-                'scrollTop' : $(".cart_anchor").position().top
-            });
+//             $('html, body').animate({
+//                 'scrollTop' : $(".cart_anchor").position().top
+//             });
             //Select item image and pass to the function
-            var itemImg = $(this).parent().parent().parent().parent().children().find('img').eq(0);
+            var itemImg = $(this).prev().children().find('img').eq(0);
             flyToElement($(itemImg), $('.cart_anchor'));
         });
     });
-
+ 
     </script>
 
 </body>

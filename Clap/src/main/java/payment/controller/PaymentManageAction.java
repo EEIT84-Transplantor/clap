@@ -283,6 +283,8 @@ public class PaymentManageAction extends ActionSupport implements ValidationAwar
 			System.out.println(res.toString());
 		
 		}else if(buttonClicked.equalsIgnoreCase("deleteCreditCard")){
+			System.out.println(creditCardVO);
+			System.out.println(creditCardVO.getCreditCardPK().getCc_number());
 			//removeCard should be able to take in email as param
 			Boolean resultBoolean = creditCardService.removeCard(creditCardVO.getCreditCardPK().getCc_number(),email);
 			JSONObject result = new JSONObject();

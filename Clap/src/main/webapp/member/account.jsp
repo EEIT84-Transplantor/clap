@@ -11,7 +11,17 @@
 <!-- Bootstrap -->
 <link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
-
+<style>
+.btn{
+width:100%;
+padding:50px 0;
+background:#47BED9;
+}
+button span{
+display:block;
+margin-bottom:20px;
+}
+</style>
 </head>
 <body>
 	<header>
@@ -21,34 +31,56 @@
 	<section id="wrap">
 		<div class="container">
 			<div class="row">
-			<div class="center-block" style="width:60%;">
-			
-				<div class="row">
-				<div class="col-md-1"></div>
-				<button type="button" class="btn btn-primary btn-lg col-md-4">Payment Manage</button>
-				<div class="col-md-2"></div>
-				<button type="button" class="btn btn-default btn-lg col-md-4">Change Password</button>
-				<div class="col-md-1"></div>
+				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
+				<div class="col-md-10">
+					<h2>Setting account </h2>
+					<p style="margin-bottom:30px;">Change your settings here</p>
+
+					<div class="row" style="padding-left: 15px;">
+						<div class="col-md-3">
+						<button type="button" class="btn btn-primary btn-lg" >
+							<span class="glyphicon glyphicon-user" aria-hidden="true" style="font-size: 50px;"></span><p>Payment Manage</p>
+						</button>
+						</div>
+						<div class="col-md-3">
+						<button type="button" class="btn btn-primary btn-lg ">
+							<span class="glyphicon glyphicon-wrench" aria-hidden="true" style="font-size: 50px;"></span><p>Change Password</p>
+						</button>
+						</div>
+						<div class="col-md-3">
+						<button type="button" class="btn btn-primary btn-lg ">
+							<span class="glyphicon glyphicon-cog" aria-hidden="true" style="font-size: 50px;"></span><p>Change Setting</p>
+						</button>
+						</div>
+						<div class="col-md-3">
+						<button type="button" class="btn btn-primary btn-lg">
+							<span class="glyphicon glyphicon-usd" aria-hidden="true" style="font-size: 50px;"></span><p>Set Oneclick Shopping</p>
+						</button>
+						</div>
+					
+					</div>
+					
+					<div class="row" style="padding-left: 15px;  margin-top:20px;">
+						<div class="col-md-3">
+							<button type="button" class="btn btn-primary btn-lg">
+								<span class="glyphicon glyphicon-star-empty" aria-hidden="true" style="font-size: 50px;"></span><p>Activate VIP</p>
+							</button>
+						</div>
+						<div class="col-md-3">
+							<button type="button" class="btn btn-primary btn-lg">
+								<span class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size: 50px;"></span><p>Mail Box</p>
+							</button>
+						</div>
+						<div class="col-md-3">
+							<button type="button" class="btn btn-primary btn-lg">
+								<span class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size: 50px;"></span><p>OrderDetail</p>
+							</button>
+						</div>
+						
+					</div>
+
+
 				</div>
-				<br>
-				<div class="row">
-				<div class="col-md-1"></div>
-				<button type="button" class="btn btn-default btn-lg col-md-4">Change Setting</button>
-				<div class="col-md-2"></div>
-				<button type="button" class="btn btn-primary btn-lg col-md-4">Set Oneclick Shopping</button>
-				<div class="col-md-1"></div>
-				</div>
-				<br>
-				<div class="row">
-				<div class="col-md-1"></div>
-				<button type="button" class="btn btn-primary btn-lg col-md-4">Activate VIP</button>
-				<div class="col-md-2"></div>
-				<button type="button" class="btn btn-default btn-lg col-md-4">Mail Box</button>
-				<div class="col-md-1"></div>
-				</div>
-				
-			
-			</div>
 			</div>
 		</div>
 	</section>
@@ -58,20 +90,20 @@
 	</footer>
 
 	<!-- 載入js -->
-	<script src="../resource/js/jquery-1.12.2.min.js"/></script>
-	<script src="../resource/js/bootstrap.min.js"/></script>
-	<script src="../resource/js/loginsignup.js"/></script>
+	<script src="../resource/js/jquery-1.12.2.min.js" /></script>
+	<script src="../resource/js/bootstrap.min.js" /></script>
+	<script src="../resource/js/loginsignup.js" /></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var contextPath = "${pageContext.request.contextPath}";
-			var paymentmanageUrl = contextPath + "/payment/paymentmanage.jsp";
+			var paymentmanageUrl = contextPath + "/payment/paymentmanage.action";
 			var passwordchangeUrl = contextPath + "/setting/passwordchange.jsp";
 			var changesettingUrl = contextPath + "/setting/changesetting.jsp";
 			var oneclickUrl = contextPath + "/setting/oneclick.jsp";
 			var vipUrl = contextPath + "/setting/vip.jsp";
 			var mailUrl = contextPath + "/message/mailbox.jsp";
-			
-			
+			var orderFormUrl = contextPath + "/shopping/orderFormAction.action";
+
 			//onclick paymentmanage button
 			$("button").eq(1).on("click", function() {
 				location.href = paymentmanageUrl;
@@ -90,11 +122,15 @@
 			});
 			//onclick VIP button
 			$("button").eq(5).on("click", function() {
-				location.href = vipUrl;
+				location.reload();
 			});
 			//onclick mailbox button
 			$("button").eq(6).on("click", function() {
-				location.href = mailUrl;
+				location.reload();
+			});
+			//onclick mailbox button
+			$("button").eq(7).on("click", function() {
+				location.href = orderFormUrl;
 			});
 		});
 	</script>

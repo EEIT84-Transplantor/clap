@@ -92,12 +92,12 @@ public class TestOrderDetailHibernateDAO {
 //		assertEquals(expected, actual);
 //	}
 //	
-//	@Test
-//	public void testSelectById(){
-//		expected=1;
-//		actual=orderDetailHibernateDAO.select(1).size();
-//		assertEquals(expected, actual);
-//	}
+	@Test
+	public void testSelectById(){
+		expected=1;
+		actual=orderDetailHibernateDAO.select(5).size();
+		assertEquals(expected, actual);
+	}
 	
 
 }

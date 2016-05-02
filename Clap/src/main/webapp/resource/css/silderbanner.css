@@ -5,24 +5,24 @@
 	top:180px;
 }
 .carousel-caption {
-	bottom:50px;
+	top:250px;
 	left:180px;
 }
 .carousel-caption h2{
 	font-size:36px;
 	color:#fff;
-	text-align:left;
+	text-align:center;
 }
 #category-silder {
 	margin-top:10px;
 }
-#category-silder .item{
+#category-silder-1 .item,#category-silder-2 .item,#category-silder-3 .item,#category-silder-4 .item,#category-silder-5 .item,#category-silder-6 .item,#category-silder-7 .item{
 	height:auto;
 	background:none;
 	padding:0 5px;
 }
 
-#category-silder .col-item{
+#category-silder-1 .col-item,#category-silder-2 .col-item,#category-silder-3 .col-item,#category-silder-4 .col-item,#category-silder-5 .col-item,#category-silder-6 .col-item,#category-silder-7 .col-item,{
 	border:1px #999 solid;
 	-webkit-border-radius: 5px;
 -moz-border-radius: 5px;
@@ -37,7 +37,7 @@ border-radius: 5px;
 .b_color{
 	color:#47BED9;
 }
-#category-silder h4{
+#category-silder-1 h4,#category-silder-2 h4,#category-silder-3 h4,#category-silder-4 h4,#category-silder-5 h4,#category-silder-6 h4,#category-silder-7 h4{
 	width:100%;
 	text-align: center;
 	color:#fff;
@@ -45,7 +45,7 @@ border-radius: 5px;
 	margin:0;
 	padding:10px 0 0 0;
 }
-#category-silder h5{
+#category-silder-1 h5,#category-silder-2 h5,#category-silder-3 h5,#category-silder-4 h5,#category-silder-5 h5,#category-silder-6 h5,#category-silder-7 h5,{
 	width:100%;
 	text-align: center;
 	color:#fff;
@@ -99,7 +99,7 @@ body {
 
 /* Declare heights because of positioning of img element */
 .carousel .item {
-  height:840px;
+  height:600px;
   background-color: #777;
 }
 .carousel-inner > .item > img {
@@ -304,7 +304,7 @@ body {
   overflow: hidden;
   top: 0;
   left: 0;
-  background-color: rgba(75,75,75,0.2);
+/*   background-color: rgba(75,75,75,0.2); */
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
 }
@@ -334,16 +334,16 @@ body {
 }
 
 .hovereffect:hover h2 {
-  -webkit-transform: translateY(15px);
-  -ms-transform: translateY(15px);
-  transform: translateY(15px);
+  -webkit-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  transform: translateY(10px);
   color: #47BED9;
 }
 
 .hovereffect a.info {
   display: inline-block;
   text-decoration: none;
-  padding: 7px 14px;
+  padding: 3px 14px;
   text-transform: uppercase;
   color: #fff;
   
@@ -403,5 +403,5 @@ body {
 
 .hovereffect span {
   display: inline-block;
-  margin: 45px 0 0 0;
+  margin: 30px 0 0 0;
   }

@@ -15,7 +15,6 @@
 <link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/silderbanner.css"/>" rel="stylesheet">
-
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
 <body>
@@ -47,7 +46,7 @@
 	
 						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px;">
 							<div class="hovereffect">
-								<img class="img-responsive" src="<c:url value="/resource/images/orgins/brain.jpg"/>" alt="">
+								<img class="img-responsive" src="data:image/png;base64,${productimg[product.id].img64}" alt="">
 								<div class="overlay">
 									<h2>${product.name}</h2>
 									<p>
@@ -101,7 +100,7 @@
 		var productArray = JSON.parse(msg);
 		$("#searchProduct").text("");
 		for(var index in productArray){
-			$("#searchProduct").append('<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px;"><div class="hovereffect"><img class="img-responsive" src="<c:url value="/resource/images/orgins/brain.jpg"/>" alt=""><div class="overlay"><h2>'+productArray[index].name+'</h2><p><span>$'+productArray[index].price+'</span> <a class="info add-to-cart" href="javascript:void(0);" onclick="changeCart('+productArray[index].id+');">ADD TO CART</a><a class="info" style="background:green;" href="${pageContext.request.contextPath}/shopping/productDetial.action?productVO.id='+productArray[index].id+'">MORE</a></p></div></div></div>');
+			$("#searchProduct").append('<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px;"><div class="hovereffect"><img class="img-responsive" src="data:image/png;base64,'+productArray[index].image+'" alt=""><div class="overlay"><h2>'+productArray[index].name+'</h2><p><span>$'+productArray[index].price+'</span> <a class="info add-to-cart" href="javascript:void(0);" onclick="changeCart('+productArray[index].id+');">ADD TO CART</a><a class="info" style="background:green;" href="${pageContext.request.contextPath}/shopping/productDetial.action?productVO.id='+productArray[index].id+'">MORE</a></p></div></div></div>');
 		}
 	};
 	
@@ -125,9 +124,13 @@ slider.on('slide', function (ev) {
     var pricerange = $('#p_price').val().split(",");
     min = pricerange[0];
     max = pricerange[1];
-    document.getElementById("min_price").innerHTML="$"+min;
-    document.getElementById("max_price").innerHTML="$"+max;
-    var url = "<%=request.getContextPath()%>/shopping/searchProduct.action";
+//     document.getElementById("min_price").innerHTML="$"+min;
+//     document.getElementById("max_price").innerHTML="$"+max;
+    
+});
+
+$("#price_btn").on('click',function(){
+	var url = "<%=request.getContextPath()%>/shopping/searchProduct.action";
 	var data = {"categoryname":categoryname,"min":min,"max":max,"keyword":keyword};
 
 	var result = ajax(url, data);

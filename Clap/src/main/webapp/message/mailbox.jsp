@@ -26,8 +26,9 @@ SELECT * from message where mb_email = 'lee@gmail.com' ;
 	<section id="wrap">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-2">side-nav:sub-menu</div>
+				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
 				<div class="col-md-10">
+				<h2>Mailbox</h2>
 					<form class="form-horizontal" action='<c:url value=""/>' method="POST">
 						<div class="table-responsive">
 							<table class="table table-bordered">

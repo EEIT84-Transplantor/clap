@@ -4,7 +4,7 @@
   position: relative;
 }
 .slider.slider-horizontal {
-  width: 80px;
+  width: 90%;
   height: 1px;
   margin:0 10px;
 }
@@ -160,7 +160,7 @@
   position: absolute;
   width:10px;
   height: 10px;
-  background-color: #00A600;
+  background-color: #666;
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff149bdf', endColorstr='#ff0480be', GradientType=0);
   filter: none;
@@ -220,3 +220,11 @@ font-weight:lighter;
 font-size:12px;
 }
 
+.tooltip-inner {
+    max-width: 200px;
+    padding: 3px 8px;
+    color: #fff;
+    text-align: center;
+    background-color: #47BED9 !important;
+    border-radius: 4px;
+}

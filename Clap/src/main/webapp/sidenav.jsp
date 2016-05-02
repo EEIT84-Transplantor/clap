@@ -5,29 +5,30 @@
    <div class="collapse" id="side_Purchase">
       
       <c:forEach items="${categoriesList}" var="cList">
-      <a href="${pageContext.request.contextPath}/shopping/categories.action?organ=${cList.name}" class="list-group-item sub_list">${cList.name}</a>
+      <a href="${pageContext.request.contextPath}/fastpass/categories.action?organ=${cList.name}" class="list-group-item sub_list">${cList.name}</a>
       </c:forEach>
     </div>
     <a href="#side_About" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">About us</a>
     <div class="collapse" id="side_About">
-      <a href="" class="list-group-item sub_list">Concept</a>
-      <a href="" class="list-group-item sub_list">Team members</a>
+      <a href="${pageContext.request.contextPath}/introduce/introduce.jsp" class="list-group-item sub_list">Concept</a>
+      <a href="${pageContext.request.contextPath}/introduce/introduce.jsp" class="list-group-item sub_list">Team members</a>
     </div>
      <a href="#side_Simulator" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Simulator</a>
     <div class="collapse" id="side_Simulator">
-      <a href="" class="list-group-item sub_list">Simulator1</a>
-      <a href="" class="list-group-item sub_list">Simulator2</a>
+      <a href="${pageContext.request.contextPath}/fastpass/simulatorAction.action" class="list-group-item sub_list">Simulator</a>
     </div>
-     <a href="#side_Appointment" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Appointment</a>
+     <a href="#side_Appointment" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Location</a>
     <div class="collapse" id="side_Appointment">
-      <a href="" class="list-group-item sub_list">Hospital</a>
+      <a href="${pageContext.request.contextPath}/hospital/hospitalInfo.action" class="list-group-item sub_list">Hospital</a>
+    
     </div>
      <a href="#side_Contact" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Contact us</a>
     <div class="collapse" id="side_Contact">
-      <a href="" class="list-group-item sub_list">Contact us</a>
+      <a href="${pageContext.request.contextPath}/chat/chatpage.jsp" class="list-group-item sub_list">Contact us</a>
     </div>
      <a href="#side_Account" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#sideMenu">Account</a>
     <div class="collapse" id="side_Account">
+    <a href="${pageContext.request.contextPath}/shopping/orderFormAction.action" class="list-group-item sub_list">Order Detail</a>
       <a href="${pageContext.request.contextPath}/member/account.jsp" class="list-group-item sub_list">Setting</a>
       <a href="${pageContext.request.contextPath}/payment/paymentmanage.action" class="list-group-item sub_list">Payment</a>
     </div>

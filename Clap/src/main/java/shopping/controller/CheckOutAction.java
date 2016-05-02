@@ -1,5 +1,7 @@
 package shopping.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +27,57 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 	private String productArray;
 	private String promoTitle;
 	private ProductService productService;
+	private InputStream inputStream;
+
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
+
+	@Override
+	public String execute() throws Exception {
+
+		System.out.println("checkout");
+		JSONObject product;
+		Double price;
+		Integer quantity;
+		Double total = 0.0;
+		String result;
+
+		// 判斷是否登入
+		MemberVO memberVO = (MemberVO) session.getAttribute("login");
+		System.out.println(memberVO);
+		if(memberVO == null){
+			inputStream = new ByteArrayInputStream("false".getBytes("UTF-8"));
+			return super.execute();
+		}else{
+			inputStream = new ByteArrayInputStream("true".getBytes("UTF-8"));
+		}
+
+		// 算出total
+		String[] productArray = request.getParameterValues("productArray[]");
+		for (String productStr : productArray) {
+			product = new JSONObject(productStr);
+			Integer prodcutId = Integer.parseInt((String) product.get("productId"));
+			price = productService.getProductById(prodcutId).getPrice();
+			quantity = Integer.parseInt(product.get("quantity").toString());
+			total += price * quantity;
+		}
+		total *= Double.parseDouble(promoTitle);
+
+		// 取出creditCardList
+		memberVO = (MemberVO) session.getAttribute("login");
+		List<CreditCardVO> creditCardList = creditCardService.getCards(memberVO.getEmail());
+
+		session.setAttribute("creditCardList", creditCardList);
+		session.setAttribute("total", total);
+		
+		return super.execute();
+
+	}
 
 	public ProductService getProductService() {
 		return productService;
@@ -70,36 +123,6 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 
 	public void setProductArray(String productArray) {
 		this.productArray = productArray;
-	}
-
-	@Override
-	public String execute() throws Exception {
-
-		JSONObject product;
-		Double price;
-		Integer quantity;
-		Double total = 0.0;
-		
-		//算出total
-		String[] productArray = request.getParameterValues("productArray[]");
-		for (String productStr : productArray) {
-			product = new JSONObject(productStr);
-			Integer prodcutId = Integer.parseInt((String) product.get("productId"));
-			price = productService.getProductById(prodcutId).getPrice();
-			quantity = Integer.parseInt(product.get("quantity").toString());
-			total += price * quantity;
-		}
-		total*=Integer.parseInt(promoTitle);
-		
-		//取出creditCardList
-		MemberVO memberVO = (MemberVO) session.getAttribute("login");
-		List<CreditCardVO> creditCardList = creditCardService.getCards(memberVO.getEmail());
-
-		session.setAttribute("creditCardList", creditCardList);
-		session.setAttribute("total", total);
-		
-		return super.execute();
-		
 	}
 
 }

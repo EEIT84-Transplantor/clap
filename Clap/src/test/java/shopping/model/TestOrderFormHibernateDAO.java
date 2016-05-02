@@ -28,7 +28,7 @@ public class TestOrderFormHibernateDAO {
 	
 	private OrderFormVO orderFormVO;
 	private Integer id = 33;
-	private String mb_email = "poan@gmail.com";
+	private String mb_email = "bennett108@gmail.com";
 	private Double total = 99999.0;
 
 	@Before
@@ -76,12 +76,12 @@ public class TestOrderFormHibernateDAO {
 //		assertEquals(expected, actual);
 //	};
 
-	@Test
-	public void testDDelete() {
-		Boolean expected = true;
-		Boolean actual = orderFormHibernateDAO.delete(id);
-		assertEquals(expected, actual);
-	};
+//	@Test
+//	public void testDDelete() {
+//		Boolean expected = true;
+//		Boolean actual = orderFormHibernateDAO.delete(id);
+//		assertEquals(expected, actual);
+//	};
 //
 //	@Test
 //	public void testSelect2() {
@@ -98,12 +98,12 @@ public class TestOrderFormHibernateDAO {
 //		assertEquals(expected, actual);
 //	}
 //	
-//	@Test
-//	public void testSelectByEmail(){
-//		expected = 8;
-//		actual=orderFormHibernateDAO.select(mb_email).size();
-//		assertEquals(expected, actual);
-//	}
+	@Test
+	public void testSelectByEmail(){
+		expected = 1;
+		actual=orderFormHibernateDAO.select(mb_email).size();
+		assertEquals(expected, actual);
+	}
 
 }
 

@@ -60,26 +60,26 @@ public class TestOrderFormService extends TestCase {
 		assertEquals(expected, actual);
 	}
 
-	@Test
-	public void testbRemoveOrder() {
-		orderFormService.removeOrder(id);
-		actual = orderFormService.getOrderById(id);
-		assertNull(actual);
-	}
-
-	@Test
-	public void testcGetOrderList() {
-		expected = 2;
-		actual = orderFormService.getOrderList(mb_email).size();
-		assertEquals(expected, actual);
-	}
-	
-	@Test
-	public void testdGetOrderById(){
-		expected=mb_email;
-		actual=orderFormService.getOrderById(3).getMb_email();
-		assertEquals(expected, actual);
-	}
+//	@Test
+//	public void testbRemoveOrder() {
+//		orderFormService.removeOrder(id);
+//		actual = orderFormService.getOrderById(id);
+//		assertNull(actual);
+//	}
+//
+//	@Test
+//	public void testcGetOrderList() {
+//		expected = 2;
+//		actual = orderFormService.getOrderList(mb_email).size();
+//		assertEquals(expected, actual);
+//	}
+//	
+//	@Test
+//	public void testdGetOrderById(){
+//		expected=mb_email;
+//		actual=orderFormService.getOrderById(3).getMb_email();
+//		assertEquals(expected, actual);
+//	}
 
 }
 

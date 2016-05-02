@@ -11,438 +11,242 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLAP</title>
 <!-- Bootstrap -->
-<link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 <link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/silderbanner.css"/>" rel="stylesheet">
 <link href="<c:url value='/resource/css/bootstrap-slider.css'/>" rel="stylesheet">
 <link href="<c:url value="/resource/css/simulator.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/simple-sidebar.css"/>" rel="stylesheet">
 <!-- 在這加上你自己的css檔案連結  -->
 </head>
-<body>
+<body>	
 	<header><jsp:include page="/header.jsp" /></header>
 	<section id="top-wrap">
 		<div class="row">
 			<div class="col-md-12">
-			<div id="s_wrap">
-				<div class="container" id="fullPage">
-					<div class="row">
-						<div class="col-md-2">
-							<div id="s_setting">
-								<div class="sub_setting">
-									<h3>Personal Info</h3>
-									<div class="s_inpnut">
-										<label>Height: </label> <input type="number" min="50" max="300" name="height">
-									</div>
-									<div class="s_inpnut">
-										<label>Weight:</label><input type="number" min="10" max="300" name="weight">
-									</div>
-								</div>
-								<div class="sub_setting">
+				<div id="s_wrap">
+					<div class="container" id="fullPage">
+						
+						
+								<div id="s_setting">
+									<div class="sub_setting">
+										<h3>Personal Info</h3>
+										<div class="s_inpnut">
+											<label>Height : </label>
+											<input type="number" min="50" max="300" name="height">
 
-									<h3>Daily Behaviors</h3>
-									<div class="setting_item">
-										<img src="<c:url value="/resource/images/simulator/smoke.png"/>"><div id="setting1"></div>
+										</div>
+
+										<div class="s_inpnut">
+											<label>Weight :</label>
+											<input type="number" min="10" max="300" name="weight">
+
+										</div>
 									</div>
-									<div class="setting_item">
-										<img src="<c:url value="/resource/images/simulator/wine.png"/>"><div id="setting2"></div>
+									<div class="sub_setting">
+
+										<h3>Daily Behaviors</h3>
+										<div class="setting_item">
+											<img src="<c:url value="/resource/images/simulator/smoke.png"/>">
+											<div id="setting1"></div>
+										</div>
+										<div class="setting_item">
+											<img src="<c:url value="/resource/images/simulator/wine.png"/>">
+											<div id="setting2"></div>
+										</div>
+										<div class="setting_item">
+											<img src="<c:url value="/resource/images/simulator/sport.png"/>">
+											<div id="setting3"></div>
+										</div>
 									</div>
-									<div class="setting_item">
-										<img src="<c:url value="/resource/images/simulator/sport.png"/>"><div id="setting3"></div>
+									<div class="sub_setting">
+										<h3>Environmental Setting</h3>
+										<div class="factor_item">
+											<img src="<c:url value="/resource/images/simulator/factor_1.png"/>">
+										</div>
+										<div class="factor_item">
+											<img src="<c:url value="/resource/images/simulator/factor_2.png"/>">
+										</div>
+										<div class="factor_item">
+											<img src="<c:url value="/resource/images/simulator/factor_3.png"/>">
+										</div>
+										<div class="factor_item">
+											<img src="<c:url value="/resource/images/simulator/factor_4.png"/>">
+										</div>
+										<div class="clear"></div>
 									</div>
+									
+									<button class="reset_btn s_btn2 tosave btn_4">
+										<span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+									</button>
+									<div class="sub_setting savingslot btn_4" id="saveSlot1">
+										1st <span class="" aria-hidden="true"></span>
+									</div>
+									<div class="sub_setting savingslot btn_4" id="saveSlot2">
+										2nd <span class="" aria-hidden="true"></span>
+									</div>
+									<div class="sub_setting savingslot btn_4" id="saveSlot3">
+										3rd <span class="" aria-hidden="true"></span>
+									</div>
+									
+									<button class="reset_btn toreset">RESET</button>
+									<button class="toclear">Clear Saves</button>
 								</div>
-								<div class="sub_setting">
-									<h3>Environmental Setting</h3>
-									<div class="factor_item">
-										<img src="<c:url value="/resource/images/simulator/factor_1.png"/>">
-									</div>
-									<div class="factor_item">
-										<img src="<c:url value="/resource/images/simulator/factor_2.png"/>">
-									</div>
-									<div class="factor_item">
-										<img src="<c:url value="/resource/images/simulator/factor_3.png"/>">
-									</div>
-									<div class="factor_item">
-										<img src="<c:url value="/resource/images/simulator/factor_4.png"/>">
-									</div>
-									<div class="clear"></div>
-								</div>
-								<button class="reset_btn s_btn2 tosave">SAVE</button>
-								<button class="reset_btn s_btn2 toreset">RESET</button>
-								<div class="sub_setting">To add</div>
-							</div>
-						</div>
-						<div class="col-md-3">
+
+							
+							<div class="row">
+							<div class="col-md-3">
 							<div id="people">
-<!-- 							<div id="drop" class="o_heart"></div> -->
-<!-- 							<div id="drop" class="Lung"></div> -->
-<!-- 							<div id="drop" class="Liver"></div> -->
-<!-- 							<div id="drop" class="Kidney"></div> -->
-<!-- 							<div id="drop" class="Stomach"></div> -->
-<!-- 							<div id="drop" class="Cornea"></div> -->
-<!-- 							<div id="drop" class="Intestine"></div> -->
-							</div>
-						</div>
-						<div class="col-md-7">
-							<h2>USER NAME</h2>
-							<p>Description Description Description Description Description </p>
-							<div class="row" id="s_graphic">
-								<div class="col-md-6 col-sm-12">
-									<img src="<c:url value="/resource/images/simulator/o_1.png"/>">
-									<div class="graphic_detail_all">
-										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-12">
-									<img src="<c:url value="/resource/images/simulator/o_2.png"/>">
-									<div class="graphic_detail_all">
-										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-12">
-									<img src="<c:url value="/resource/images/simulator/o_3.png"/>">
-									<div class="graphic_detail_all">
-										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-12">
-									<img src="<c:url value="/resource/images/simulator/o_4.png"/>">
-									<div class="graphic_detail_all">
-										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-12">
-									<img src="<c:url value="/resource/images/simulator/o_5.png"/>">
-									<div class="graphic_detail_all">
-										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-12">
-									<img src="<c:url value="/resource/images/simulator/o_6.png"/>">
-									<div class="graphic_detail_all">
-										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-12">
-									<img src="<c:url value="/resource/images/simulator/o_7.png"/>">
-									<div class="graphic_detail_all">
-										<div class="graphic_detail">
-											<span style="width: 70px;" class="o_old">skillA</span><strong>60%</strong> <span style="background: #72B3BF; width: 200px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-										<div class="graphic_detail">
-											<span style="width: 90px;" class="o_old">skillB</span><strong>60%</strong> <span style="background: #16536C; width: 250px;"
-												class="o_new"></span><strong>80%</strong>
-										</div>
-									</div>
+							<img id="pp_gb" src="<c:url value="/resource/images/simulator/people.png"/>" class="img-responsive" >
+							
+								  <c:forEach var="simulatorVO" items="${simulatorVOs}" varStatus="c_count">
+								    <div class="drop" id="o_${simulatorVO.categoryVO.id}"></div>
+								  </c:forEach>
 								</div>
 							</div>
-							<div id="s_organs">
-								<div id="s_organs_l">
-									<ul class="nav nav-tabs">
-										<li class="active"><a data-toggle="tab" href="#organ1">organ1</a></li>
-										<li><a data-toggle="tab" href="#organ2">organ2</a></li>
-										<li><a data-toggle="tab" href="#organ3">organ3</a></li>
-										<li><a data-toggle="tab" href="#organ4">organ4</a></li>
-										<li><a data-toggle="tab" href="#organ5">organ5</a></li>
-										<li><a data-toggle="tab" href="#organ6">organ6</a></li>
-										<li><a data-toggle="tab" href="#organ7">organ7</a></li>
-									</ul>
-									<div class="tab-content">
-										<div id="organ1" class="tab-pane fade in active">
-											<!-- ****************************** -->
-											<div class="row">
-												<div class="col-md-1">
-													<!-- Controls -->
-													<div class="controls pull-right hidden-xs">
-														<a class="left fa fa-chevron-left btn" href="#sim_silder" data-slide="prev"><span class="glyphicon glyphicon-menu-left"
-															aria-hidden="true"></span></a>
-													</div>
+							
+							<div class="col-md-9 opacityDiv">
+								<h2 style="margin-top:40px;">Hello, ${login.name}</h2>
+								<p>Select organs or conditions that apply to you and see the power of each product</p>
+								<div class="row" id="s_graphic">
+									<c:forEach begin="1" end="7" varStatus="row">
+										<div class="col-md-6 col-sm-12">
+											<img src="<c:url value="/resource/images/simulator/o_${row.index}.png"/>">
+											<div class="graphic_detail_all">
+												<div class="graphic_detail">
+													<span style="width: 200px;" class="o_old organ${row.index}">Power</span> <strong>&nbsp</strong> <span
+														style="width: 195px;" class="o_new organ${row.index}">Power</span> <strong>&nbsp</strong>
 												</div>
-												<div class="col-md-10">
-													<div id="sim_silder" class="carousel slide hidden-xs">
-														<!-- Wrapper for slides -->
-														<div class="carousel-inner">
-															<%-- 								<c:forEach items="${popular}" var="product" varStatus="p_count"> --%>
-															<c:forEach begin="1" end="8" step="1" varStatus="p_count">
-																<c:if test="${p_count.count % 6 == 1}">
-																	<c:if test="${p_count.count == 1}">
-																		<div class="item active">
-																	</c:if>
-																	<c:if test="${p_count.count != 1}">
-																		<div class="item">
-																	</c:if>
-																	<div class="row">
-																</c:if>
-																<div class="col-sm-2">
-																	<div class="col-item">
-																		<div class="photo" id="haha">
-																			<img src="<c:url value="/resource/images/simulator/temp.png"/>" class="draggable" >
-																		</div>
-																	</div>
-																</div>
-																<c:if test="${p_count.count % 6 == 0||p_count.count == fn:length(values)}">
-														</div>
-													</div>
-													</c:if>
-													</c:forEach>
+												<div class="graphic_detail">
+													<span style="width: 200px;" class="o_old organ${row.index}">Endurance</span> <strong>&nbsp</strong> <span
+														style="width: 195px;" class="o_new organ${row.index}">Endurance</span> <strong>&nbsp</strong>
 												</div>
 											</div>
 										</div>
-									</div>
+									</c:forEach>
 								</div>
-								<div class="col-md-1">
-									<!-- Controls -->
-									<div class="controls pull-right hidden-xs">
-										<a class="right fa fa-chevron-right btn" href="#sim_silder" data-slide="next"><span class="glyphicon glyphicon-menu-right"
-											aria-hidden="true"></span></a>
+								<div id="s_organs">
+									<div id="s_organs_l">
+										<ul class="nav nav-tabs">
+											<c:forEach var="simulatorVO" items="${simulatorVOs}" varStatus="c_count">
+												<c:if test="${c_count.count==1}">
+													<li class="active"><a data-toggle="tab" href="#${simulatorVO.categoryVO.name}">${simulatorVO.categoryVO.name}</a></li>
+												</c:if>
+												<c:if test="${c_count.count!=1}">
+													<li><a data-toggle="tab" href="#${simulatorVO.categoryVO.name}">${simulatorVO.categoryVO.name}</a></li>
+												</c:if>
+											</c:forEach>
+										</ul>
+										<div class="tab-content">
+
+
+
+
+
+
+
+
+
+											<c:forEach var="simulatorVO" items="${simulatorVOs}" varStatus="c_count">
+												<c:if test="${c_count.count==1}">
+													<div id="${simulatorVO.categoryVO.name}" class="tab-pane fade in active">
+												</c:if>
+												<c:if test="${c_count.count!=1}">
+													<div id="${simulatorVO.categoryVO.name}" class="tab-pane fade">
+												</c:if>
+
+												<!-- ****************************** -->
+												<div class="row">
+													<div class="col-md-1">
+														<!-- Controls -->
+														<div class="controls pull-right hidden-xs">
+															<a class="left fa fa-chevron-left btn" href="#sim_silder${simulatorVO.categoryVO.id}" data-slide="prev"> <span
+																class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+															</a>
+
+														</div>
+													</div>
+													<div class="col-md-10">
+														<div id="sim_silder${simulatorVO.categoryVO.id}" class="carousel slide hidden-xs">
+															<!-- Wrapper for slides -->
+															<div class="carousel-inner">
+																<c:forEach items="${simulatorVO.productVOs}" var="product" varStatus="p_count">
+
+																	<c:if test="${p_count.count % 6 == 1}">
+																		<c:if test="${p_count.count == 1}">
+																			<div class="item active">
+																		</c:if>
+																		<c:if test="${p_count.count != 1}">
+																			<div class="item">
+																		</c:if>
+																		<div class="row">
+																	</c:if>
+																	<div class="col-sm-2">
+																	<div class="col-item">
+																		<div class="photo" id="haha">
+																			<img name="product${product.id}" src="data:image/png;base64,${simulatorVO.productimgVOs[p_count.count-1].img64}" class="p_drag draggable${simulatorVO.categoryVO.id}" categoryID="${simulatorVO.categoryVO.id}" width="100">
+																		</div>
+																	</div>
+																</div>
+																	<c:if test="${p_count.count % 6 == 0||p_count.count == fn:length(values)}">
+															</div>
+														</div>
+														</c:if>
+											</c:forEach>
+										</div>
 									</div>
 								</div>
 
 							</div>
-							<!-- ********************* -->
+						</div>
+						<div class="col-md-1">
+							<!-- Controls -->
+							<div class="controls pull-right hidden-xs">
+								<a class="right fa fa-chevron-right btn" href="#sim_silder${simulatorVO.categoryVO.id}" data-slide="next"> <span
+									class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div id="s_organs_r">
-					<div class="s_btn">
-						<a>ADD TO CART</a>
-					</div>
-					<div class="s_btn">
-						<a>ONE CLICK BUY</a>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
+				</c:forEach>
+				<!-- ********************* -->
+
 			</div>
 		</div>
+		<div id="s_organs_r">
+			<div class="s_btn">
+				<a href="javascript:void(0);">ADD TO CART</a>
+			</div>
+			<c:if test="${login.oneclick}">
+			<div class="s_btn">
+				<a>ONE CLICK BUY</a>
+			</div>
+			</c:if>
+		</div>
+		<div class="clear"></div>
 		</div>
 		</div>
 		</div>
+		</div>
+		</div>
+		</div>
+		<div id="ajaxloader" style="display:none">
+		<img src="${pageContext.request.contextPath}/resource/images/ajax loader.gif"></div>
 	</section>
 	<footer style="margin-top: -15px;"><jsp:include page="/footer.jsp" /></footer>
 	<!-- 載入js -->
-	<script type="text/javascript" src="<c:url value="/resource/js/jquery-1.12.2.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resource/js/jquery.color-2.1.2.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resource/js/jquery-ui.min.js"/>"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/json2/20150503/json2.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/codex-fly.js"/>"></script>	
 	<script type="text/javascript">
-		$(".factor_item").on("click", function() {
-			var src = $(this).find('img').attr('src');
-			var bg_img;
-
-			switch (src.substr(39, 1)) {
-			case "1":
-				bg_img = "s_bg_1.png";
-				break;
-			case "2":
-				bg_img = "s_bg_2.png";
-				break;
-			case "3":
-				bg_img = "s_bg_3.png";
-				break;
-			case "4":
-				bg_img = "none";
-			}
-			
-			 $('#fullPage').animate(
-					 {backgroundColor: 'rgb(0,0,0)'}, 600, function(){
-						 $('#s_wrap').css('backgroundImage', "url(<c:url value='/resource/images/simulator/"+bg_img+"'/>)");
-					 }).animate({backgroundColor: 'rgba(0,0,0,0.1)'}, 600);
-
-		});
-		
-		$(document).ready(function(){
-			$(".carousel").carousel("pause");
-			$("#sim_silder img").draggable();
-			$("#people").droppable();
-			$(".draggable").draggable({ helper: 'clone',cursor: "crosshair", revert: "invalid",appendTo: 'body'});
-			
-			$("#people").droppable({ accept: ".draggable", 
-		           drop: function(event, ui) {
-		              $(this).removeClass("border").removeClass("over");
-		              var dropped = ui.draggable;
-		              var droppedOn = $(this);
-		              $(dropped).detach().css({top: 0,left: 0}).appendTo(droppedOn);
-		             
-		             $("#haha").html('<img src="'+$(dropped).attr("src")+'" class="disable_img" >');
-		              
-		          }
-		    });
-			
-			//setting of smoking, alcohol, and sport
-			var clicksetting1 = true, clicksetting2 = true, clicksetting3 = true; 
-			$("#setting1").on("mousemove", function(event){
-				var selectedBar = $(this);
-				if(clicksetting1){
-				drawBar(selectedBar);
-				}
-			}).on("click", function(){
-				clicksetting1 = false;
-			}).on("mouseout", function(){
-				var selectedBar = $(this);
-				if(clicksetting1){
-				cleanBar(selectedBar);
-				}
-			});
-			
-			$("#setting2").on("mousemove", function(){
-				var selectedBar = $(this);
-				if(clicksetting2){
-				drawBar(selectedBar);
-				}
-			}).on("click", function(){
-				clicksetting2 = false;
-			}).on("mouseout", function(){
-				var selectedBar = $(this);
-				if(clicksetting2){
-				cleanBar(selectedBar);
-				}
-			});
-			
-			$("#setting3").on("mousemove", function(){
-				var selectedBar = $(this);
-				if(clicksetting3){
-				drawBar(selectedBar);
-				}
-			}).on("click", function(){
-				clicksetting3 = false;
-			}).on("mouseout", function(){
-				var selectedBar = $(this);
-				if(clicksetting3){
-				cleanBar(selectedBar);
-				}
-			});
-			
-			function drawBar(selectedBar){
-				var offset = selectedBar.offset();
-				var width = selectedBar.width();
-				var percent = (event.pageX - offset.left) / width;
-				percent = 100 * percent;
-				selectedBar.css({
-				"background": "-webkit-linear-gradient(left, #C13F2E "+ percent +"%, rgba(0,0,0,0) "+ percent +"%)",
-			    "background":  "  -moz-linear-gradient(left, #C13F2E "+ percent +"%, rgba(0,0,0,0) "+ percent +"%)",
-			    "background":  "   -ms-linear-gradient(left, #C13F2E "+ percent +"%,rgba(0,0,0,0) "+ percent +"%)",
-			    "background":  "    -o-linear-gradient(left, #C13F2E "+ percent +"%,rgba(0,0,0,0) "+ percent +"%)",
-			    "background":   "      linear-gradient(to right, #C13F2E "+ percent +"%,rgba(0,0,0,0) "+ percent +"%)"
-				});
-			}
-			function cleanBar(selectedBar){
-				selectedBar.css({
-				"background": "-webkit-linear-gradient(left, #C13F2E 0%, rgba(0,0,0,0) 0%)",
-			    "background":  "  -moz-linear-gradient(left, #C13F2E 0%, rgba(0,0,0,0) 0%)",
-			    "background":  "   -ms-linear-gradient(left, #C13F2E 0%, rgba(0,0,0,0) 0%)",
-			    "background":  "    -o-linear-gradient(left, #C13F2E 0%, rgba(0,0,0,0) 0%)",
-			    "background":   "      linear-gradient(to right, #C13F2E 0%, rgba(0,0,0,0) 0%)"
-				});
-			}
-			//set reset
-			$('button[class="reset_btn s_btn2 toreset"').on("click",function(){
-				cleanBar($("#setting1"));
-				cleanBar($("#setting2"));
-				cleanBar($("#setting3"));
-				clicksetting1 = true, clicksetting2 = true, clicksetting3 = true; 				
-			})
-			//set save			
-			$('button[class="reset_btn s_btn2 tosave"').on("click",function(){
-				var factors = new Object();
-				var tempAttr = $("#setting1").css("background");
-				var index = tempAttr.indexOf('%)',0);
-				tempAttr = tempAttr.substring(0, index);
-				tempAttr = tempAttr.substring(tempAttr.lastIndexOf(')')+1);
-				var temp = parseInt(tempAttr); 
-				if(index == -1){
-				factors.smoking = 0;
-				}else{
-				factors.smoking = temp;
-				}
-				var tempAttr = $("#setting2").css("background");
-				var index = tempAttr.indexOf('%)',0);
-				tempAttr = tempAttr.substring(0, index);
-				tempAttr = tempAttr.substring(tempAttr.lastIndexOf(')')+1);
-				var temp = parseInt(tempAttr); 
-				if(index == -1){
-				factors.drinking = 0;
-				}else{
-				factors.drinking = temp;
-				}
-				var tempAttr = $("#setting3").css("background");
-				var index = tempAttr.indexOf('%)',0);
-				tempAttr = tempAttr.substring(0, index);
-				tempAttr = tempAttr.substring(tempAttr.lastIndexOf(')')+1);
-				var temp = parseInt(tempAttr); 
-				if(index == -1){
-				factors.exercising = 0;
-				}else{
-				factors.exercising = temp;
-				}
-				var weight = $("input[name='weight']").val();
-				var height = $("input[name='height']").val();
-				weight = (weight == "")?60:(weight > 300)?300:(weight < 10)?10:weight;
-				height = (height == "")?175:(height > 300)?300:(height < 50)?50:height;
-				$("input[name='height']").val(height);
-				$("input[name='weight']").val(weight);
-				factors.weight = weight;
-				factors.height = height;	
-			})
-			
-		});
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	var contextPath = "${pageContext.request.contextPath}";
+	var urlToSend = contextPath+ "/fastpass/bodySimulatorAction";
+	
+	
 	</script>
+	<script type="text/javascript" src="<c:url value="/resource/js/simulator.js"/>"></script>
 </html>

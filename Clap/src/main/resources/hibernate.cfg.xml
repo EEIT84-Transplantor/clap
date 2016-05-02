@@ -8,7 +8,7 @@
 
 		<property name="hibernate.cache.use_second_level_cache">false</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
-		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.show_sql">false</property>
 		<property name="hibernate.current_session_context_class">thread</property>
 
 		<mapping class="member.model.MemberVO" />
@@ -30,8 +30,7 @@
 		<mapping class="shopping.model.OrderDetailVO" />
 		<mapping class="hospital.model.HospitalVO" />
 		<mapping class="hospital.model.DoctorVO" />
-
-		<mapping class="simulator.model.EnvironmentVO" />
+        <mapping class="hospital.model.LocationVO" />
 		
 		<!-- <mapping resource="hbm/cartvo.hbm.xml"/> -->
 		<!-- <mapping resource="hbm/orderformvo.hbm.xml"/> -->

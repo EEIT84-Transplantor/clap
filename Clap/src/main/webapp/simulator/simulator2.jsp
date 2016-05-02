@@ -266,6 +266,15 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery.color-2.1.2.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery-ui.min.js"/>"></script>
 	<script type="text/javascript">
+	//set open background color animation to dark
+	$("body").hide();
+	$("html").show().animate({backgroundColor: '#031014'}, 200, "linear", function(){
+		$("html").animate({backgroundColor: '#062128'}, 300,"linear");
+		$(document).ready(function(){
+			$("body").fadeIn(400);
+		});
+	});
+	
 	var heartBeat, heartBeat2;	
 	$("#sim_silder img").on("mouseover", function(event) {
 			var dragSrc = $(this).attr("src");
@@ -276,13 +285,13 @@
 				$("#abc img").fadeOut();
 			});
 			
-			setTimeout(function(){ heartBeat = setInterval(function(){ $("#abc img").fadeOut(); }, 1000);	}, 500);
-			heartBeat2 = setInterval(function(){ $("#abc img").show(); }, 1000);			
+// 			setTimeout(function(){ heartBeat = setInterval(function(){ $("#abc img").fadeOut(); }, 1000);	}, 500);
+// 			heartBeat2 = setInterval(function(){ $("#abc img").show(); }, 1000);			
 			
 		}).on("mouseout", function(){
-			$("#abc img").fadeOut();
-			clearInterval(heartBeat);
-			clearInterval(heartBeat2);		
+// 			$("#abc img").fadeOut();
+// 			clearInterval(heartBeat);
+// 			clearInterval(heartBeat2);		
 		});
 	
 		$(".factor_item").on("click", function() {

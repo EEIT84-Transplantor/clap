@@ -58,6 +58,7 @@ public class ProductService {
 
 		try {
 			if(dbVO == null && productimgVO == null){
+				productVO.setId(generateNewProductId(productVO.getCategory_id()));				
 				productimgVO = new ProductimgVO();
 				productimgVO.setId(productDAO.insert(productVO).getId());
 				if(productImg.length>0){
@@ -86,7 +87,7 @@ public class ProductService {
 				dbVO.setDescription(productVO.getDescription());
 				dbVO.setDiscount(productVO.getDiscount());
 				dbVO.setCategory_id(productVO.getCategory_id());
-				if(productImg.length>0){
+				if(productImg!=null && productImg.length>0){
 					productimgVO.setImg(productImg);
 				}
 				return true;
@@ -131,5 +132,22 @@ public class ProductService {
 	public Integer getIdByProductName(String productName){
 		return productDAO.getProductIdByName(productName);
 	}
+	
+	
+	//private method generate New ProductId
+	private Integer generateNewProductId(Integer categoryId){
+		Integer oldId = 0;
+		Integer newId = null;
+		List<ProductVO> tempPdList = this.searchProductByCategory(categoryId);
+		for (ProductVO pVo : tempPdList){
+			oldId = (oldId >= pVo.getId())?oldId:pVo.getId();
+		}
+		Integer tempNew = Integer.valueOf(oldId.toString().substring(1))+1;
+		newId = Integer.valueOf(categoryId.toString() + tempNew.toString());
+		System.out.println("oldIdoldIdoldIdoldId: "+oldId);
+		System.out.println("newIdnewIdnewIdnewId: "+newId);
+		return newId;
+	}
+	
 
 }

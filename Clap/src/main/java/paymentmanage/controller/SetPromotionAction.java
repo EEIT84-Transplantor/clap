@@ -47,6 +47,7 @@ public class SetPromotionAction extends ActionSupport{
 
 	public String execute(){
 		HttpServletRequest request = ServletActionContext.getRequest();
+		System.out.println("hihi"+promoVO+category);
 		String message="";
 		if(promoVO.getPm_discount()==null||promoVO.getPm_discount()>1||promoVO.getPm_discount()<0){
 			message+="Discount is not Valid<br>";
@@ -67,11 +68,8 @@ public class SetPromotionAction extends ActionSupport{
 		
 		System.out.println("insertttt");
 		promoVO.setPd_category(categoryService.selectByCategoryName(category));
-		System.out.println("hiiiiiiiiiiiiiiiiiiiiiiiiiiii"+promoVO.getPm_title());
-		System.out.println("insert"+promoVO.getPd_category()+promoVO.getPm_code()+promoVO.getPm_discount()+promoVO.getPm_title());
 		boolean result = false;
 		if (!promoService.isAvailable(promoVO.getPm_code())){
-			System.out.println("save");
 			result = promoService.setPromo(promoVO);
 		}else{
 			result = promoService.updatePromo(promoVO);
@@ -81,10 +79,8 @@ public class SetPromotionAction extends ActionSupport{
 		
 		request.setAttribute("isChanged", result);
 		if(result){
-			System.out.println("successsss");
-			request.getSession().setAttribute("message", "Update Successfully");
+			request.getSession().setAttribute("successmessage", "Update Successfully");
 		}else{
-			System.out.println("unsuccesssss");
 			request.getSession().setAttribute("message", "The information you entered was wrong, please try again");
 		}
 		System.out.println("yayayayay");

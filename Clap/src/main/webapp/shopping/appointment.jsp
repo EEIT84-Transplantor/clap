@@ -1,16 +1,6 @@
-<%@page import="hospital.model.HospitalVO"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="product.model.ProductVO"%>
-<%@page import="java.sql.Timestamp"%>
-<%@page import="shopping.model.OrderFormVO"%>
-<%@page import="hospital.model.DoctorVO"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="shopping.model.OrderDetailVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%@ page import="java.util.Map"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,78 +10,35 @@
 <title>CLAP</title>
 <!-- Bootstrap -->
 <link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet">
-<%-- <link href="<c:url value="/resource/css/silderbanner.css"/>" rel="stylesheet"> --%>
-<%-- <link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet"> --%>
+<link href="<c:url value="/resource/css/silderbanner.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/customer.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/avgrund.css"/>" rel="stylesheet">
 
 <!-- 在這加上你自己的css檔案連結  -->
+<style>
+	.text{
+		color:black;
+	}
+</style>
 </head>
 <body>
 
-	<%
-		HospitalVO hospitalVO1 = new HospitalVO();
-		hospitalVO1.setId(11);
-		hospitalVO1.setName("臺大醫院");
-		hospitalVO1.setAddress("100台北市中正區中山南路8號");
-		OrderFormVO orderFormVO1 = new OrderFormVO();
-		orderFormVO1.setHospitalVO(hospitalVO1);
-		Map<String, Object> doctorVO1 = new HashMap<>();
-		doctorVO1.put("id", 1);
-		doctorVO1.put("name", "May");
-		ProductVO productVO1 = new ProductVO();
-		productVO1.setName("heart");
-		productVO1.setPrice(11111.0);
-		Map<String, Object> orderDetailVO1 = new HashMap<>();
-		orderDetailVO1.put("id", 111);
-		orderDetailVO1.put("orderFormVO", orderFormVO1);
-		orderDetailVO1.put("productVO", productVO1);
-		orderDetailVO1.put("ct_quantity", 1);
-		orderDetailVO1.put("doctorVO", doctorVO1);
-		orderDetailVO1.put("time", new Timestamp(new java.util.Date().getTime()));
-
-		HospitalVO hospitalVO2 = new HospitalVO();
-		hospitalVO2.setId(22);
-		hospitalVO2.setName("臺大醫院");
-		hospitalVO2.setAddress("100台北市中正區中山南路8號");
-		OrderFormVO orderFormVO2 = new OrderFormVO();
-		orderFormVO2.setHospitalVO(hospitalVO2);
-		Map<String, Object> doctorVO2 = new HashMap<>();
-		doctorVO2.put("id", 2);
-		doctorVO2.put("name", "May");
-		ProductVO productVO2 = new ProductVO();
-		productVO2.setName("heart");
-		productVO2.setPrice(22222.0);
-		Map<String, Object> orderDetailVO2 = new HashMap<>();
-		orderDetailVO2.put("id", 222);
-		orderDetailVO2.put("orderFormVO", orderFormVO2);
-		orderDetailVO2.put("productVO", productVO2);
-		orderDetailVO2.put("ct_quantity", 2);
-		orderDetailVO2.put("doctorVO", doctorVO2);
-		orderDetailVO2.put("time", new Timestamp(new java.util.Date().getTime()));
-
-		ArrayList<Map<String, Object>> orderList = new ArrayList<>();
-		orderList.add(orderDetailVO1);
-		orderList.add(orderDetailVO2);
-
-		pageContext.setAttribute("orderList", orderList);
-	%>
-	<sql:query dataSource="clap/db" var="hospitalList">
-		select top(10) * from hospital 
-	</sql:query>
-	<sql:query dataSource="clap/db" var="doctorList">
-		select top(10) * from doctor 
-	</sql:query>
-
-
 	<header><jsp:include page="/header.jsp" /></header>
 	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
+	<div class="row">
+				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
+				<div class="col-md-10">
+		        <h2>Appointment Doctor</h2>
+				<p>Welcome to use appointment system.</p>
 				<table class="table">
 					<thead>
-						<tr>
+						<tr style="background:#666;">
 							<td><label>product</label></td>
 							<td><label>appointment time</label></td>
+							<td><label>city</label></td>
+							<td><label>hospital</label></td>
 							<td><label>doctor</label></td>
+							<td><label>confirm</label></td>
 						</tr>
 					</thead>
 					<tbody>
@@ -100,36 +47,92 @@
 								<td class="id" hidden="true">${orderVO.id}</td>
 								<td>${orderVO.productVO.name}</td>
 								<td><input type="date" class="time"></td>
-								<td><select class="doctor">
-										<c:forEach var="doctor" items="${doctorList.rows}">
-											<option>${doctor.doctor_name}</option>
+								<td><select class="form-control" id="citySelect">
+                                                    <c:forEach var="location" items="${locations}">
+													<option value="${location.id}">${location.name}</option>
+													</c:forEach>
+												</select>
+												</td>
+								<td>
+								<select class="form-control" id="hospitalSelect">
+													<option value="all">all</option>
+													<c:forEach var="hospital" items="${hospitals}">
+													<option value="${hospital.address}">${hospital.name}</option>
+													</c:forEach>
+												</select>
+								</td>
+								<td><select class="form-control" class="doctor">
+										<c:forEach var="doctor" items="${doctorList}">
+											<option value="${doctor.id}">${doctor.name}</option>
 										</c:forEach>
-									</select></td>
+									</select>
+								</td>
+								<td><input type="button" value="submit" id="submit" class="btn btn-success" ></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-			</div>
-		</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<p>These are the hospitals that we work with</p>
+							<div id="floating-panel">
+								<div class="row">
+									<div class="col-md-9">
+										<div class="form-group">
+											<div style="width: 40%; display: inline-block;">
+												<select class="form-control" id="citySelect">
+                                                    <c:forEach var="location" items="${locations}">
+													<option value="${location.id}">${location.name}</option>
+													</c:forEach>
+												</select>
+											</div>
+											<div style="width: 40%; display: inline-block;">
+												<select class="form-control" id="hospitalSelect">
+													<option value="all">all</option>
+													<c:forEach var="hospital" items="${hospitals}">
+													<option value="${hospital.address}">${hospital.name}</option>
+													</c:forEach>
+												</select>
+											</div>
+											<div style="width: 5%; display: inline-block;">
+												<button type="button" class="btn btn-warning" id="selectH">Search</button>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="input-group">
 
-		<div class="row">
-			<div class="col-md-9">
-				<label>Choose Hospital:</label>
-				<select class="hospital form-control" id="hospital">
-					<c:forEach var="hospital" items="${hospitalList.rows}">
-						<option value="${hospital.hospital_address}" label="${hospital.hospital_name}">${hospital.hospital_id}</option>
-					</c:forEach>
-				</select>
+											<input type="textbox" class="form-control" placeholder="Search" name="srch-term" id="address" value="臺大醫院">
+											<div class="input-group-btn">
+												<button class="btn btn-default" type="submit" id="submit">
+													<i class="glyphicon glyphicon-search"></i>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="mapa" style="width: 100%; height: 500px;"></div>
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			</div>
-			<div class="col-md-3" style="height: 100%;">
-				<input type="button" value="submit" id="submit" class="btn btn-default" height="100%">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<div id="map" style="width: 100%; height: 500px;"></div>
-			</div>
-		</div>
 	</div>
 
 	<footer><jsp:include page="/footer.jsp" /></footer>
@@ -138,70 +141,169 @@
 	<script type="text/javascript" src="<c:url value="/resource/js/jquery-1.12.2.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap" async defer></script>
+	<script type="text/javascript" src="<c:url value="/resource/js/jquery.avgrund.js"/>"></script>
+
 	<script type="text/javascript">
+	var markers = [];
+	var map;
+	var geocoder;
+	function initMap() {
+		map = new google.maps.Map(document.getElementById('mapa'), {
+			zoom : 12,
+			center : {
+				lat : 25.033493,
+				lng : 121.564101
+			}
+		});
+
+		geocoder = new google.maps.Geocoder();
+
+		document.getElementById('submit').addEventListener('click', function() {
+			geocodeAddress("search", geocoder, map);
+		});
+		document.getElementById('selectH').addEventListener('click', function() {
+			geocodeAddress("select", geocoder, map);
+		});
+	}
+
+	function addMarkerWithTimeout(position, timeout) {
+		window.setTimeout(function() {
+			markers.push(new google.maps.Marker({
+				position : position,
+				map : map,
+				animation : google.maps.Animation.DROP
+			}));
+		}, timeout);
+	}
+
+	function clearMarkers() {
+		for (var i = 0; i < markers.length; i++) {
+			markers[i].setMap(null);
+		}
+		markers = [];
+	}
+	var totalHospital;
+	function geocodeAddress(target, geocoder, resultsMap) {
+
+		var address = [];
+		if (target == "search") {
+			address.push(document.getElementById('address').value);
+
+		} else if (target = "select") {
+			var temp = document.getElementById('hospitalSelect');
+			if (temp.value == "all") {
+				for (var i = 1; i < temp.length; i++) {
+					address.push(temp.options[i].value);
+				}
+			} else {
+				address = [ temp.value ];
+			}
+		}
+
+		totalHospital = [];
+		for (var i = 0; i < address.length; i++) {
+			geocoder.geocode({
+				'address' : address[i]
+			}, function(results, status) {
+				if (status === google.maps.GeocoderStatus.OK) {
+					addHlocation(results[0].geometry.location, address, resultsMap);
+				} else {
+					alert('Geocode was not successful for the following reason: ' + status);
+				}
+			});
+		}
+	}
+
+	function addHlocation(location, address, resultsMap) {
+		totalHospital.push(location);
+		if (address.length == totalHospital.length) {
+			//清除所有座標
+			clearMarkers();
+			//設定地圖中心
+			resultsMap.setCenter(totalHospital[0]);
+			//每隔0.2秒加入一間醫院
+			for (var i = 0; i < totalHospital.length; i++) {
+				addMarkerWithTimeout(totalHospital[i], i * 200);
+			}
+		}
+	}
+	
 		$(function() {
 
 			//顯示醫院地圖
-			$(".hospital").change(function() {
-				geocodeAddress(geocoder, map, $(this).val());
-			})
+			$("#citySelect").on("change",function(){
+		var  url = "<%=request.getContextPath()%>/hospital/hospitalInfo";
+		var  loaction = $(this).val();
+		$.ajax({
+			method:"POST",
+			url:url,
+			data: {"location":loaction}
+		}).done(function(msg){
+			
+			 $("#hospitalSelect").html('<option value="all">all</option>');
+			 
+			 
+			 for(var i =0;i<msg["hospitals"].length;i++){
+			 $("#hospitalSelect").append($('<option>', { 
+			        value: msg["hospitals"][i].address,
+			        text : msg["hospitals"][i].name 
+			    }));
+			 
+			 }
+		});
+	});
+	
+		
 
 			//日期限制
 			var now = new Date().toISOString().substring(0, 10);
 			$(".time").attr("min", now).attr("value", now);
 
 			//送出資料ajax
- 			var orderList = new Object();
+			var orderList = [];
 			for (var i = 0; i < $(".id").size(); i++) {
 				var data = {
 					id : $(".id").eq(i).text(),
 					time : $(".time").eq(i).val(),
 					doctor : $(".doctor").eq(i).val(),
 				}
-				orderList[i]=data;
+				orderList[i] = JSON.stringify(data);
 			}
 			var url = "<c:url value='/shopping/doAppointmentAction.action'/>";
 			$("#submit").click(function() {
 				$.ajax({
 					url : url,
 					data : {
-						"orderList":orderList,
+						"orderList" : orderList,
 						"hospital" : $("#hospital option:selected").text(),
+						"orderform_id" : "${orderform_id}"
 					},
-				}).done(function() {
-
+				}).done(function(e) {
+					finish();
 				})
 			})
+
 		})
 
-		function initMap() {
-			map = new google.maps.Map(document.getElementById('map'), {
-				zoom : 15,
-				center : {
-					lat : -34.397,
-					lng : 150.644
-				}
-			});
-			geocoder = new google.maps.Geocoder();
-			geocodeAddress(geocoder, map, $(".hospital:first").val());
-		}
+		
 
-		function geocodeAddress(geocoder, resultsMap, address) {
-			geocoder.geocode({
-				'address' : address
-			}, function(results, status) {
-				if (status === google.maps.GeocoderStatus.OK) {
-					resultsMap.setCenter(results[0].geometry.location);
-					marker = new google.maps.Marker({
-						map : resultsMap,
-						position : results[0].geometry.location
-					});
-				} else {
-					alert('Geocode was not successful for the following reason: ' + status);
-				}
+		function finish() {
+			//顯示彈出式窗
+			$('#submit').avgrund({
+				width : 380, // max is 640px
+				height : 280, // max is 350px
+				holderClass: 'text',
+				openOnEvent : false, // set to 'false' to init on load
+				template : '購買完成 五秒後回首頁' // or function (elem) { }, or $('.content')
 			});
+			
+			//導回首頁
+			setTimeout(function() {
+				window.location.href = "<c:url value='/index.jsp'/>";
+			}, 3000);
 		}
 	</script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgpurFmJH7EtCW7FEf_VI_w4l9b2aBVMk&signed_in=true&callback=initMap"></script>
+	
 </body>
 </html>

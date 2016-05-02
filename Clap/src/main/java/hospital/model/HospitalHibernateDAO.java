@@ -10,7 +10,8 @@ public class HospitalHibernateDAO implements HospitalDAO{
     private SessionFactory sessionFactory;
     private Session session;
     final private String SELECT_ALL = "from HospitalVO"; 
-	
+    final private String SELECT_BY_LOCATION = "from HospitalVO where location_id = ?"; 
+    
 	public HospitalHibernateDAO() {
 	}
 
@@ -55,6 +56,16 @@ public class HospitalHibernateDAO implements HospitalDAO{
 			e.printStackTrace();
 		}
 		
+		return result;
+	}
+
+	@Override
+	public List<HospitalVO> selectByLocation(Integer id) {
+		List<HospitalVO> result = null;
+		session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(SELECT_BY_LOCATION);
+		query.setParameter(0, id);
+		result = query.list();
 		return result;
 	}
 

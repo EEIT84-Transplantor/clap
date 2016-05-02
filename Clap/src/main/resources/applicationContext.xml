@@ -16,10 +16,14 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-		<property name="url"
-			value="jdbc:sqlserver://localhost:1433;databaseName=clap" />
-		<property name="username" value="sa" />
-		<property name="password" value="passw0rd" />
+<!-- <property name="url" -->
+<!-- 			value="jdbc:sqlserver://clapeeit84.cyizgbhuhgzq.ap-northeast-1.rds.amazonaws.com:1433;databaseName=clap" /> -->
+<!-- 			<property name="username" value="sa" /> -->
+<!-- 			<property name="password" value="passw0rd" /> -->
+<property name="url"
+			value="jdbc:sqlserver://eeit84clap.database.windows.net:1433;databaseName=clap" />
+			<property name="username" value="clap" />
+			<property name="password" value="Sa123456" />
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
@@ -168,16 +172,16 @@
 		<property name="productService" ref="productService" />
 	</bean>
 	<bean id="showInventory" class="inventory.controller.ShowInventory">
-		<property name="inventoryService" ref="inventoryService"/>
+		<property name="inventoryService" ref="inventoryService" />
 	</bean>
 	<bean id="downloadInventoryExcel" class="inventory.controller.DownloadInventoryExcel">
-		<property name="inventoryService" ref="inventoryService"/>
+		<property name="inventoryService" ref="inventoryService" />
 	</bean>
 	<bean id="showInOutLog" class="inventory.controller.ShowInOutLog">
-		<property name="inOutLogService" ref="inOutLogService"/>
+		<property name="inOutLogService" ref="inOutLogService" />
 	</bean>
 	<bean id="downloadInOutLogExcel" class="inventory.controller.DownloadInOutLogExcel">
-		<property name="inOutLogService" ref="inOutLogService"/>
+		<property name="inOutLogService" ref="inOutLogService" />
 	</bean>
 	<!-- product -->
 	<bean id="productDAO" class="product.model.ProductHibernateDAO">
@@ -196,6 +200,7 @@
 	</bean>
 	<bean id="categoryService" class="product.model.CategoryService">
 		<property name="categoryDAO" ref="categoryDAO" />
+		<property name="productService" ref="productService" />
 	</bean>
 	<bean id="preDisplayActionStruts" class="product.controller.PreDisplayAction">
 		<property name="productService" ref="productService" />
@@ -224,6 +229,16 @@
 	<bean id="doctorService" class="hospital.model.DoctorService">
 		<property name="doctorDAO" ref="doctorDAO" />
 	</bean>
+	<bean id="locationDAO" class="hospital.model.LocationHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="locationService" class="hospital.model.LocationService">
+		<property name="locationDAO" ref="locationDAO" />
+	</bean>
+	<bean id="hospitalInfo" class="hospital.controller.HospitalInfoAction">
+		<property name="hospitalService" ref="hospitalService" />
+		<property name="locationService" ref="locationService" />
+	</bean>
 
 	<!-- shopping controller -->
 	<bean id="cartAction" class="shopping.controller.CartAction">
@@ -245,49 +260,73 @@
 	</bean>
 	<bean id="doCheckOutAction" class="shopping.controller.DoCheckOutAction">
 		<property name="orderFormService" ref="orderFormService" />
-		<property name="orderDetailService" ref="orderDetailService" />
 		<property name="cartService" ref="cartService" />
 		<property name="memberService" ref="memberService" />
+		<property name="orderDetailService" ref="orderDetailService" />
 	</bean>
-	<bean id="deleteOrderAction" class="shopping.controller.DeleteOrderAction">
+	<bean id="deleteOrderAction" class="shopping.controller.DeleteOrderAction"
+		scope="prototype">
 		<property name="orderFormService" ref="orderFormService" />
 	</bean>
-		<bean id="preReturnAction" class="shopping.controller.PreReturnAction">
+	<bean id="preReturnAction" class="shopping.controller.PreReturnAction"
+		scope="prototype">
 		<property name="returnService" ref="returnService" />
 	</bean>
-	<bean id="returnAction" class="shopping.controller.ReturnAction">
+	<bean id="returnAction" class="shopping.controller.ReturnAction"
+		scope="prototype">
 		<property name="returnService" ref="returnService" />
 	</bean>
-	<bean id="doAppointmentAction" class="shopping.controller.DoAppointmentAction">
-<!-- 		<property name="returnService" ref="returnService" /> -->
+	<bean id="doAppointmentAction" class="shopping.controller.DoAppointmentAction"
+		scope="prototype">
+		<property name="inventoryService" ref="inventoryService" />
+		<property name="inOutLogService" ref="inOutLogService" />
+		<property name="orderFormService" ref="orderFormService" />
+		<property name="orderDetailService" ref="orderDetailService" />
 	</bean>
-	
-	<!-- simulator-->
-	<bean id="environmentDAO" class="simulator.model.EnvironmentHibernateDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
+	<bean id="appointmentAction" class="shopping.controller.AppointmentAction">
+		<property name="hospitalService" ref="hospitalService" />
+		<property name="doctorService" ref="doctorService" />
+		<property name="orderDetailService" ref="orderDetailService" />
 	</bean>
-	<bean id="simulatorService" class="simulator.model.SimulatorService">
-		<property name="environmentDAO" ref="environmentDAO"/>
+	<bean id="deleteCartAction" class="shopping.controller.DeleteCartAction"
+		scope="prototype">
+		<property name="cartService" ref="cartService" />
 	</bean>
-	<bean id="bodySimulatorAction" class="simulator.controller.BodySimulatorAction">
+
+	<!-- simulator -->
+	<bean id="simulatorAction" class="simulator.controller.SimulatorAction"
+		scope="prototype">
 		<property name="productService" ref="productService" />
 		<property name="categoryService" ref="categoryService" />
-		<property name="simulatorService" ref="simulatorService" />
 	</bean>
-	
-<!-- 	<bean id="showProductsAction" class="simulator.controller.ShowProductsAction"> -->
-<!-- 		<property name="productService" ref="productService" /> -->
-<!-- 		<property name="categoryService" ref="categoryService" /> -->
-<!-- 		<property name="simulatorService" ref="simulatorService" /> -->
-<!-- 	</bean> -->
-	
+	<bean id="bodySimulatorAction" class="simulator.controller.BodySimulatorAction"
+		scope="prototype">
+		<property name="productService" ref="productService" />
+		<property name="categoryService" ref="categoryService" />
+	</bean>
+	<bean id="oneclickPackAction" class="simulator.controller.OneclickPackAction">
+		<property name="productService" ref="productService" />
+		<property name="orderFormService" ref="orderFormService" />
+		<property name="orderDetailService" ref="orderDetailService" />
+		<property name="inventoryService" ref="inventoryService" />
+	</bean>
+
+	<!-- <bean id="showProductsAction" class="simulator.controller.ShowProductsAction"> -->
+	<!-- <property name="productService" ref="productService" /> -->
+	<!-- <property name="categoryService" ref="categoryService" /> -->
+	<!-- <property name="simulatorService" ref="simulatorService" /> -->
+	<!-- </bean> -->
+
 	<bean id="savePackAction" class="simulator.controller.SavePackAction">
 	</bean>
 	<bean id="getPackAction" class="simulator.controller.GetSavedPack">
 	</bean>
-<!-- 	<bean id="enviromentSimulatorAction" class="simulator.controller.EnviromentSimulatorAction"> -->
-<!-- 		<property name="simulatorService" ref="simulatorService" /> -->
-<!-- 	</bean> -->
-	
-	
+	<bean id="addToCartAction" class="simulator.controller.AddToCartAction">
+		<property name="cartService" ref="cartService" />
+	</bean>
+	<!-- <bean id="enviromentSimulatorAction" class="simulator.controller.EnviromentSimulatorAction"> -->
+	<!-- <property name="simulatorService" ref="simulatorService" /> -->
+	<!-- </bean> -->
+
+
 </beans>
