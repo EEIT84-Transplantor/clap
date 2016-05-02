@@ -223,6 +223,7 @@ a:hover{
 }
 .graphic_detail_all{
 	float:left;
+	width:90%;
 }
 .graphic_detail{
 	position:relative;

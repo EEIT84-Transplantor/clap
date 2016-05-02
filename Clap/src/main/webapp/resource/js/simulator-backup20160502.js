@@ -1,6 +1,5 @@
 		var globalJsonArray;
 		//set init organ vaue
-		var percentBase = 200;
 		var initValue = 200;
 		var globalOrganValueArray = [];
 		initGlobalOrganValueArray();
@@ -435,8 +434,8 @@
 			
 			//set organ bars original
 			function initOrganBars() {
-				$("span.o_old").css("width", initValue*50/percentBase + "%");
-				$("span.o_new").css("width", initValue*49.9/percentBase + "%");				
+				$("span.o_old").css("width", initValue+50+"px");
+				$("span.o_new").css("width", initValue+49+"px");				
 			}
 
 
@@ -484,7 +483,7 @@
 				$("span.o_old").stop();
 				$("span.o_new").stop();	
 				//set moving delta
-				var adjustBase = 0;
+				var adjustBase = 50;
 				//calculate bar length
 				var oldValueP = valueBoxforAdjust.oldVP + adjustBase;
 				var newValueP = valueBoxforAdjust.newVP + adjustBase;
@@ -499,34 +498,34 @@
 				
 				if (reverseP) {
 					$("span[class='o_old organ" + index + "']").eq(0).css("z-index", "3").animate({
-						width : oldValueP*50/percentBase + '%'
+						width : oldValueP + 'px'
 					}, animationSpeed);
 					$("span[class='o_new organ" + index + "']").eq(0).css("z-index", "5").animate({
-						width : newValueP*50/percentBase + '%'
+						width : newValueP + 'px'
 					}, animationSpeed);
 				} else {
 					$("span[class='o_old organ" + index + "']").eq(0).css("z-index", "5").animate({
-						width : oldValueP*50/percentBase + '%'
+						width : oldValueP + 'px'
 					}, animationSpeed);
 					$("span[class='o_new organ" + index + "']").eq(0).css("z-index", "3").animate({
-						width : newValueP*50/percentBase + '%'
+						width : newValueP + 'px'
 					}, animationSpeed);
 
 				}
 
 				if (reverseE) {
 					$("span[class='o_old organ" + index + "']").eq(1).css("z-index", "3").animate({
-						width : oldValueE*50/percentBase + '%'
+						width : oldValueE + 'px'
 					}, animationSpeed);
 					$("span[class='o_new organ" + index + "']").eq(1).css("z-index", "5").animate({
-						width : newValueE*50/percentBase + '%'
+						width : newValueE + 'px'
 					}, animationSpeed);
 				} else {
 					$("span[class='o_old organ" + index + "']").eq(1).css("z-index", "5").animate({
-						width : oldValueE*50/percentBase + '%'
+						width : oldValueE + 'px'
 					}, animationSpeed);
 					$("span[class='o_new organ" + index + "']").eq(1).css("z-index", "3").animate({
-						width : newValueE*50/percentBase + '%'
+						width : newValueE + 'px'
 					}, animationSpeed);
 
 				}
@@ -534,12 +533,12 @@
 			//multiple organ bar adjust
 			function adjustOrganBarsMultiTread(index, valueBoxforAdjust) {				
 				//set moving delta
-				var adjustBase = 0;
+				var adjustBase = 50;
 				//calculate bar length
-				var oldValueP = valueBoxforAdjust.oldVP + adjustBase;
-				var newValueP = valueBoxforAdjust.newVP + adjustBase;
-				var oldValueE = valueBoxforAdjust.oldVE + adjustBase;
-				var newValueE = valueBoxforAdjust.newVE + adjustBase;
+				var oldValueP = valueBoxforAdjust.oldVP + adjustBase-1;
+				var newValueP = valueBoxforAdjust.newVP + adjustBase-1;
+				var oldValueE = valueBoxforAdjust.oldVE + adjustBase-1;
+				var newValueE = valueBoxforAdjust.newVE + adjustBase-1;
 				//check if old value greater
 				var reverseP = (oldValueP > newValueP) ? true : false;
 				var reverseE = (oldValueE > newValueE) ? true : false;
@@ -550,34 +549,34 @@
 				
 				if (reverseP) {
 					$("span[class='o_old organ" + index + "']").eq(0).css("z-index", "3").animate({
-						width : oldValueP*50/percentBase + '%'
+						width : oldValueP + 'px'
 					}, animationSpeed);
 					$("span[class='o_new organ" + index + "']").eq(0).css("z-index", "5").animate({
-						width : newValueP*50/percentBase + '%'
+						width : newValueP + 'px'
 					}, animationSpeed);
 				} else {
 					$("span[class='o_old organ" + index + "']").eq(0).css("z-index", "5").animate({
-						width : oldValueP*50/percentBase + '%'
+						width : oldValueP + 'px'
 					}, animationSpeed);
 					$("span[class='o_new organ" + index + "']").eq(0).css("z-index", "3").animate({
-						width : newValueP*50/percentBase + '%'
+						width : newValueP + 'px'
 					}, animationSpeed);
 
 				}
 
 				if (reverseE) {
 					$("span[class='o_old organ" + index + "']").eq(1).css("z-index", "3").animate({
-						width : oldValueE*50/percentBase + '%'
+						width : oldValueE + 'px'
 					}, animationSpeed);
 					$("span[class='o_new organ" + index + "']").eq(1).css("z-index", "5").animate({
-						width : newValueE*50/percentBase + '%'
+						width : newValueE + 'px'
 					}, animationSpeed);
 				} else {
 					$("span[class='o_old organ" + index + "']").eq(1).css("z-index", "5").animate({
-						width : oldValueE*50/percentBase + '%'
+						width : oldValueE + 'px'
 					}, animationSpeed);
 					$("span[class='o_new organ" + index + "']").eq(1).css("z-index", "3").animate({
-						width : newValueE*50/percentBase + '%'
+						width : newValueE + 'px'
 					}, animationSpeed);
 
 				}
