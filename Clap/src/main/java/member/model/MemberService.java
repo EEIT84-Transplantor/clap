@@ -21,7 +21,7 @@ public class MemberService {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		MemberService ms = (MemberService) context.getBean("memberService");
-		System.out.println(ms.login("andrew@gmail.com", "andrew".getBytes()));
+		
 	}
 
 	private MemberDAO dao;
@@ -144,7 +144,7 @@ public class MemberService {
 	}
 
 	public Double getAmount(String email) {
-		System.out.println("kkkk" + dao);
+		
 
 		return dao.selectByEmail(email).getAmount();
 	}

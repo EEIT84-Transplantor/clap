@@ -345,9 +345,9 @@ word-wrap:break-word;
 		
 		dataObj.productimg64 = uploadFiles64['img'+dataObj['productVO.id']];
 		
-		console.log(dataObj['productVO.id']+" "+dataObj['productVO.name']+" "+dataObj['productVO.description']);
+		
 		//var data = table.row($(this).parent().parent().children(':first')).data();
-		//console.log(data[1]);		
+		//		
 		if (confirm("Do you want to update this product?") == true) {
 			$.ajax({
 				method: "POST",
@@ -438,7 +438,7 @@ $("#add").click(function() {
 			
 			$('tbody tr td').on("click", function() {
 				var data = table.cell(this).data();
-				//console.log(data);
+				//
 				// 			if(!$(this).is(':last-child')){
 				// 				$(this).attr("contenteditable",'true');
 				// 			}
@@ -446,7 +446,7 @@ $("#add").click(function() {
 			});
 			$('tbody tr td').blur(function() {
 				if (!$(this).is(':last-child')) {
-					//console.log(table.row($(this).parent()).data());
+					//
 					// 				$(this).siblings(":last");	
 				}
 
@@ -460,10 +460,10 @@ $("#add").click(function() {
 				request = new XMLHttpRequest();
 				request.onreadystatechange = doReadyStateChange;
 				request.open("POST", url, true);
-				console.log(url);
+				
 				request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 				request.send(data);
-				console.log(url + '33');
+				
 			}
 			;
 			function doReadyStateChange() {
@@ -471,7 +471,7 @@ $("#add").click(function() {
 					if (request.status == 200) {
 						processJSON(request.responseText);
 					} else {
-						console.log("Error Code:" + request.status + ", " + request.statusText);
+						
 					}
 				}
 			}

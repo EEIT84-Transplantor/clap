@@ -6,7 +6,7 @@
 	java.util.List<payment.model.PromoVO> promoVOs = (java.util.List<payment.model.PromoVO>) request
 			.getAttribute("promoVOs");
 	String message = (String) request.getAttribute("message");
-	System.out.println("ggg" + message);
+	
 	request.setAttribute("message", message);
 
 	if (promoVOs == null) {
@@ -288,7 +288,7 @@ select {
 
 				var dataSend = "promoVO.pm_code=" + $(this).parent().parent().children().eq(0).children().text() + "&category=" + $(this).parent().parent().children().eq(1).children().text() + "&promoVO.pm_expire=" + $(this).parent().parent().children().eq(2).children().text() + "&promoVO.pm_title=" + encodeURI($(this).parent().parent().children().eq(3).children().text()) + "&promoVO.pm_discount=" + $(this).parent().parent().children().eq(4).children().text();
 
-				console.log(dataSend);
+				
 				// 												sendPostRequestProduct(
 				// 														"${pageContext.request.contextPath}/payment/setPromoteAction.action?",
 				// 														dataSend);

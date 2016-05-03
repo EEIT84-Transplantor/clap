@@ -42,7 +42,7 @@ public class UpdateProductAction extends ActionSupport {
 	}
 
 	public String execute() throws Exception {
-    	System.out.println("action test ================== "+productVO);
+    	
 		String JSONstr = "";
     	byte[] imgbyte =null;
     	Byte[] imgByte =null;
@@ -57,12 +57,12 @@ public class UpdateProductAction extends ActionSupport {
 		}
 		
     	boolean isChanged = false;
-    	System.out.println(productVO);
+    	
     	try {
 			isChanged = productService.setOrUpdateProduct(productVO, imgByte);
-			System.out.println("isChanged: "+isChanged);
+			
 		} catch (Exception e) {
-			System.out.println("Action failed");
+			
 			e.printStackTrace();
 		}
 

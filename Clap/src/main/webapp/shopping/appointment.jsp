@@ -251,11 +251,11 @@
 							time : $(".time").eq(i).val(),
 							doctor : $(".doctor").eq(i).val(),
 						}
-						console.log(data);
+						
 						orderList[i] = JSON.stringify(data);
 					}
-					console.log(orderList);
-					console.log("hid" + hid);
+					
+					
 					$.ajax({
 						url : url,
 						data : {

@@ -18,7 +18,7 @@ public class CreditCardService {
 		CreditCardDAO cdao = (CreditCardDAO) context.getBean("creditCardDAO");
 
 //		CreditCardVO cvo = cdao.selectByCcNumber("1111222233334444");
-//		System.out.println(cservice.isAvailable(cvo));
+//		
 
 	}
 

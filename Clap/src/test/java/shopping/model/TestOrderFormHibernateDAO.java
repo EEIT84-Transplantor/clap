@@ -64,7 +64,7 @@ public class TestOrderFormHibernateDAO {
 //		expected = "lee@gmail.com";
 //		orderFormVO.setId(id);
 //		orderFormVO.setMb_email("lee@gmail.com");
-//		System.out.println(orderFormHibernateDAO.update(orderFormVO));
+//		
 //		actual = orderFormHibernateDAO.select(id).getMb_email();
 //		assertEquals(expected, actual);
 //	};

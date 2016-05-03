@@ -16,19 +16,19 @@ public class TimeConverter extends StrutsTypeConverter {
         };
 		for (DateFormat df : TimeFormat)
 		  try {
-			  System.out.println("��TimeConverter��");
+			  
 			  java.util.Date date = (java.util.Date) df.parse(values[0]);
 			  return new java.sql.Time(date.getTime());
 		  } catch (ParseException e) {
 			  //e.printStackTrace();
-			  //System.out.println("Invalid format - ��ܤ����T");
+			  //
 			  //throw new TypeConversionException("Invalid format - ��ܤ����T");
 		  }
 		return null;
 	}
 
 	public String convertToString(Map context, Object obj) {
-		System.out.println("��TimeConverter To String��");
+		
 		SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
 		return df.format(obj);
 	}
@@ -39,10 +39,10 @@ public class TimeConverter extends StrutsTypeConverter {
 		try {
 			java.util.Date date = (java.util.Date) sdf.parse("21:07:31");
 			//java.util.Date date = (java.util.Date) sdf.parse("21:07");
-			System.out.println("java.sql.Time="+ new java.sql.Time(date.getTime()));
+			
 
 			String str = sdf.format(date);
-			System.out.println("str=" + str);
+			
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

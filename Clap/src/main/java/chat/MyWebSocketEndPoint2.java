@@ -18,7 +18,7 @@ private static final String USERNAME_KEY = "username";
 private static Map<String, Session> clients = Collections.synchronizedMap(new LinkedHashMap<String, Session>());
 @OnOpen
 public void onOpen(Session session) throws Exception {
-System.out.println("hi");
+
     //Get the new socket's username from url
     //e.g. url: ws://localhost:8080/chat?username=Andi, so Andi is the username
     Map<String, List<String>> parameter = session.getRequestParameterMap();

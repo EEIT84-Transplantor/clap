@@ -31,8 +31,8 @@ public class CreditCardjdbcDAO implements CreditCardDAO {
 			vo.setCc_goodthru("10/18");
 			vo.setCc_cvv("333");
 			vo.setCreditCardPK(creditCard);
-           // System.out.println(cdao.insert(vo).getCc_cvv());
-           // System.out.println(cdao.delete(vo.getCc_number()));
+           // 
+           // 
             
 		}
 	

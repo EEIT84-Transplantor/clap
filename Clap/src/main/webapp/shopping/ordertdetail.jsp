@@ -77,7 +77,7 @@
 		}
 
 		function geocodeAddress(geocoder, resultsMap) {
-			console.log();
+			
 			var address = "${orderList[0].orderFormVO.hospitalVO.address}";
 			;
 			geocoder.geocode({

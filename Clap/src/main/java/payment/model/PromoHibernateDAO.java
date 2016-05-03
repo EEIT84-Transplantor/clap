@@ -51,7 +51,7 @@ public class PromoHibernateDAO implements PromoDAO{
 	public List<PromoVO> selectByStartDate(Date startDate) {
 		session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(SELECT_ALL_UNEXPIRED);
-		System.out.println(startDate);
+		
 		query.setDate(0, startDate);
 		List<PromoVO> result = query.list();
 		return result;
@@ -60,7 +60,7 @@ public class PromoHibernateDAO implements PromoDAO{
 	public List<PromoVO> selectByEndingDate (Date endDate) {
 		session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(SELECT_ALL_ENDING_DATE);
-		System.out.println(endDate);
+		
 		query.setDate(0, endDate);
 		List<PromoVO> result = query.list();
 		return result;
@@ -70,7 +70,7 @@ public class PromoHibernateDAO implements PromoDAO{
 	public List<PromoVO> selectByBetweenDates (Date startDate, Date endDate) {
 		session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(SELECT_ALL_BETWEEN);
-		System.out.println(endDate);
+		
 		query.setDate(0, startDate);
 		query.setDate(1, endDate);
 		List<PromoVO> result = query.list();

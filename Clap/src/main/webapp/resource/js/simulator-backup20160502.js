@@ -50,7 +50,7 @@
 					var src = $(this).find('img').attr('src');
 					
 					var bg_img;
-					console.log("bg_imghahahhhhhhhh"+src.substr(src.lastIndexOf(".png")-1, 1));
+					
 					var indexOfEnviron = src.substr(src.lastIndexOf(".png")-1, 1);
 					switch (indexOfEnviron) {
 					case "1":
@@ -104,7 +104,7 @@
 				for (var bodyOrganPointer=0; bodyOrganPointer<7;bodyOrganPointer++){
 					if (organOnBodyArray[bodyOrganPointer]!=0){
 						var valueBox =createValueBox(globalJsonArray, organOnBodyArray[bodyOrganPointer]);
-						console.log(globalJsonArray + organOnBodyArray[bodyOrganPointer]);
+						
 						adjustOrganBars(valueBox.categoryIndex + 1, valueBox);
 						droppingSet(organOnBodyArray[bodyOrganPointer]);
 					}else{
@@ -127,7 +127,7 @@
 					url : urlToSend,
 					data : sentDataObj
 				}).done(function(msg) {
-					console.log("updates acquired");
+					
 					var newJsonObject = parseJSONText(msg);		
 					globalJsonArray = newJsonObject;
 					updateAllValues(newJsonObject);
@@ -386,7 +386,7 @@
 
 			function setEnvironmentBG(tempEnvIndex, ajaxDataObj) {
 				var bg_img;
-				console.log("set");
+				
 				sendAjaxForSim(ajaxDataObj);
 				switch (tempEnvIndex) {
 				case 1:
@@ -613,7 +613,7 @@
 				//**************Caca*********
 				//store the products that are on the body into a organOnBodyArray list 
 				organOnBodyArray[categoryIndex] = productId;
-				console.log("Current dropped organs: [" + organOnBodyArray + "]");
+				
 			}
 			
 			//recover body organs
@@ -708,7 +708,7 @@
 					url : urlToSend,
 					data : sentDataObj
 				}).done(function(msg) {
-					console.log("updates acquired");
+					
 					$('#fullPage').animate({
 						backgroundColor : 'rgba(0,0,0,0.1)'
 					}, 600);
@@ -738,19 +738,19 @@
 							}
 							
 							var toSentJson = JSON.stringify(sentDataObj);
-							console.log(toSentJson);
-							console.log("send to save pack");
+							
+							
 							$.ajax({
 								method: "POST",
 								url : contextPath + "/simulator/savePackAction",
 								data : toSentJson,
 								contentType:"application/json"
 							}).done(function(msg) {
-								console.log("saved");
-								console.log("msg: " + msg);					
+								
+													
 							}).fail(function(msg){
-								console.log("failed");
-								console.log("msg: " + msg);		
+								
+										
 							});
 							break;
 						}
@@ -763,13 +763,13 @@
 		    function sendAjaxToCart(productIdToSend, lastIndex){
 		    	var urlToCart = contextPath + "/shopping/setCart.action";
 		    	var cartData = {"cartVO.product_id": productIdToSend};
-		    	console.log("send cart productId: " + productIdToSend);
+		    	
 		    	$.ajax({
 		    		method:"POST",
 		    		url:urlToCart,
 		    		data:cartData
 		    	}).done(function(msg){
-		    		console.log(msg);
+		    		
 		    		$(".cart_anchor").text(msg);
 		    	});
 		    	var categoryIndex = parseInt(productIdToSend.substring(0,1));
@@ -812,7 +812,7 @@
 
 		function printObject(printedObj) {
 			for ( var key in printedObj) {
-				console.log("[" + key + "]: " + printedObj[key]);
+				
 			}
 		}
 

@@ -163,7 +163,7 @@
 				data : data,
 				dataType : "json"
 			}).done(function(result) {
-				console.log(result);
+				
 				setNewCard(result);
 			})
 		}
@@ -171,7 +171,7 @@
 		//在畫面產生新卡片
 		function setNewCard(result) {
 			if (result) {
-				console.log(cardvo);
+				
 				//產生新卡片
 				$("#hidden").prev().clone().prependTo("#cardTable");
 				$(".number:first").text(cardvo.cc_number);

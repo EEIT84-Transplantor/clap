@@ -8,8 +8,8 @@ public class GiftCardService {
 	public static void main(String[] args){
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		GiftCardService gservice = (GiftCardService)context.getBean("giftCardService");
-		System.out.println(gservice.isAvailable("1111"));
-		System.out.println(gservice.getAmount("1111"));
+		
+		
 		gservice.useCard("1111","gccode1");
 	}
 	

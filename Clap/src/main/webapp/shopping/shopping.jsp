@@ -165,7 +165,7 @@
     	request = new XMLHttpRequest();
 		request.onreadystatechange = doReadyStateChange;
 		request.open("POST", url, true);
-		console.log(url);
+		
 		request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 		request.send(data);
 	}
@@ -177,7 +177,7 @@
                 $(".cart_anchor").text(request.responseText);
                 
 			} else {
-				console.log("Error Code:" + request.status + ", "+ request.statusText);
+				
 			}
 		}
 	}

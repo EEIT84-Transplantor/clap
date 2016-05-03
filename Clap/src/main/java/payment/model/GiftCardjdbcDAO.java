@@ -17,8 +17,8 @@ public class GiftCardjdbcDAO implements GiftCardDAO {
 	public static void main(String[]  args){
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		GiftCardDAO gdao = (GiftCardDAO) context.getBean("giftCardDAO");
-		System.out.println(gdao.selectAll().size());
-		System.out.println(gdao.selectByGcNumber("1111").getGc_code());
+		
+		
 		
 		GiftCardVO vo = new GiftCardVO();
 		vo.setGc_amount(300.0);
@@ -26,10 +26,10 @@ public class GiftCardjdbcDAO implements GiftCardDAO {
 		vo.setGc_code("gccode3");
 		vo.setGc_number("3333");
 		
-		//System.out.println(gdao.insert(vo).getGc_amount());
+		//
 		vo.setGc_amount(350.0);
-		//System.out.println(gdao.update(vo));
-		//System.out.println(gdao.delete("3333"));
+		//
+		//
 	}
 	
 	
