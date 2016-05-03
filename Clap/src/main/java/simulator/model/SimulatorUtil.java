@@ -111,8 +111,8 @@ public class SimulatorUtil {
 				}
 				finalValue1 = skill * totalEffect;
 				finalValue2 = endurance * totalEffect;
-				finalValue1 = (finalValue1>2.8)?2.8:finalValue1;
-				finalValue2 = (finalValue2>2.8)?2.8:finalValue2;
+				finalValue1 = (finalValue1>2.9)?2.9:finalValue1;
+				finalValue2 = (finalValue2>2.9)?2.9:finalValue2;
 				
 				//結束
 				productVO.setFinalValue1(finalValue1);
