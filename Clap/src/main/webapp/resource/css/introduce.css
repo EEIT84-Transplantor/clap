@@ -7,9 +7,10 @@ body {
 
 body * {
 	font-family: 'Alegreya Sans', sans-serif;
-	font-size: 18px;
+	font-size: 25px;
 	font-weight: 100;
 	text-align: center;
+	color: rgba(0, 0, 0, 0.5);
 }
 
 body div {
@@ -25,7 +26,6 @@ section {
 	width: 100vw;
 	height: 100vh;
 	position: relative;
-	height: 100vh;
 }
 
 section * {
@@ -133,6 +133,11 @@ h3 {
 	color: white;
 }
 
+#og_text p {
+	font-family: "微軟正黑體";
+	color: white;
+}
+
 /*-------------------- section origins --------------------*/
 #organs>div {
 	width: 50%
@@ -154,11 +159,12 @@ h3 {
 	margin-top: 150px;
 	margin-bottom: 150px;
 	font-size: 50px;
-	border-bottom: 1px solid;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 #os_type0 p {
 	font-size: 25px;
+	font-family: "微軟正黑體";
 }
 
 #os_type1 {
@@ -254,7 +260,6 @@ h3 {
 /*-------------------- section team --------------------*/
 #team {
 	background-color: white;
-	height: 100vh;
 }
 
 #team>div {
@@ -270,8 +275,8 @@ h3 {
 	text-align: left;
 	left: 10%;
 	width: 35%;
-	float: left;
-	top: 30%;
+	top: 10%;
+	margin: 25px;
 }
 
 #tm_type1 {
@@ -374,9 +379,9 @@ h3 {
 
 #think {
 	width: 43%;
-    position: absolute;
-    top: 27%;
-    left: 28.5%;
+	position: absolute;
+	top: 27%;
+	left: 28.5%;
 }
 
 #think img {
@@ -385,7 +390,6 @@ h3 {
 	background-color: rgba(255, 255, 255, 0);
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0);
 	margin-bottom: 2%;
-	
 }
 
 /*-------------------- section XXX --------------------*/

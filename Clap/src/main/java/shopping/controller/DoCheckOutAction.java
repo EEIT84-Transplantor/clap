@@ -146,39 +146,4 @@ public class DoCheckOutAction extends ActionSupport implements ServletRequestAwa
 
 	}
 
-	// @Override
-	// public String execute() throws Exception {
-	//
-	// // 計算購物金
-	// Double total = (Double) session.getAttribute("total");
-	// MemberVO memberVO = (MemberVO) session.getAttribute("login");
-	// String email = memberVO.getEmail();
-	// Double amount = memberService.getAmount(email);
-	// if (total > amount) {
-	// memberService.setAmount(email, 0.0);
-	// } else {
-	// memberService.setAmount(email, amount - total);
-	// }
-	//
-	// // 成功後新增一筆訂單
-	// Integer orderform_id = orderFormService.setOrderForm(total, email);
-	//
-	// // 新增訂單明細 清空購物車
-	// List<CartVO> cartList = cartService.getCart(email);
-	// Map<String, String> errors = new HashMap<String, String>();
-	// for (CartVO cartVO : cartList) {
-	// orderDetailService.setOrderDetail(orderform_id, cartVO);
-	// // 判斷是否還有庫存
-	// // if (!inventoryService.saleQuantity(cartVO.getProductVO(),
-	// // cartVO.getQuantity(), null)) {
-	// // System.out.println(4);
-	// // request.setAttribute(cartVO.getProductVO().getName() + "error",
-	// // "sorry, we don't have enough " +
-	// // cartVO.getProductVO().getName());
-	// // return "input";
-	// }
-	// cartService.removeCart(email);
-	//
-	// return super.execute();
-	// }
 }

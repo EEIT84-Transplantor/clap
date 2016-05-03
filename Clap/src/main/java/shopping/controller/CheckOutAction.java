@@ -51,6 +51,7 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 		System.out.println(memberVO);
 		if(memberVO == null){
 			inputStream = new ByteArrayInputStream("false".getBytes("UTF-8"));
+			session.setAttribute("uri",request.getHeader("Referer"));
 			return super.execute();
 		}else{
 			inputStream = new ByteArrayInputStream("true".getBytes("UTF-8"));

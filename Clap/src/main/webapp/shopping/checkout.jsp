@@ -171,6 +171,7 @@
 				data : data,
 				dataType : "json"
 			}).done(function(result) {
+				console.log(result);
 				setNewCard(result);
 			})
 		}
