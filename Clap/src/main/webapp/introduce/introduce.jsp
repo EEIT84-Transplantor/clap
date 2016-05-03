@@ -2068,10 +2068,10 @@
 		c1.825,1.176,3.5,2.487,5.803,2.516c0.851,0.011,1.292,0.567,1.323,1.405C61.648,132.401,61.636,133.201,61.642,134.001z" />
 </svg>
 						<div id="og_text">
-							<p>an undifferentiated cell of a multicellular organism which is capable of giving rise to indefinitely more cells of the same type, and from which certain other kinds of cell arise by differentiation.</p>
-							<p>an undifferentiated cell of a multicellular organism which is capable of giving rise to indefinitely more cells of the same type, and from which certain other kinds of cell arise by differentiation.</p>
-							<p>an undifferentiated cell of a multicellular organism which is capable of giving rise to indefinitely more cells of the same type, and from which certain other kinds of cell arise by differentiation.</p>
-							<p>an undifferentiated cell of a multicellular organism which is capable of giving rise to indefinitely more cells of the same type, and from which certain other kinds of cell arise by differentiation.</p>
+							<p>"特別"，"國際化"，"改變思維"　 這三個形容詞是我們在討論專題時要給這個網站的特色．經過許多小組討論及資料蒐集，我們這組決定要做一個概念網站，像概念車及概念手機一樣，給未來的世界一個想像．</p>
+							<p>隨著科技的進步，越來越多器官培養的成功例子，啟發了我們對未來的醫療想像．在未來的世界，器官培養已經可以量產時，我們會需要什麼樣的網站來搭配這個科技的變遷？</p>
+							<p>一個給現代人對未來的想像，一個給未來的人使用的網站，ＣＬＡＰ就是我們給自己的解答</p>
+							<p>現在就請跟這個幹細胞的腳步一起進入這個給未來的我們的網站吧！</p>
 						</div>
 					</div>
 					<script>
@@ -2082,9 +2082,9 @@
 				</section>
 				<section id="organs" class="demo">
 					<div id="os_type0">
-						<h1>Eight Tiny Organs Grown By Scientists</h1>
-						<p>In some cases, mini organs will be able to replace research using animals.But they also offer a tantalising glimpse of a world in which we can grow complex solid organs for transplant.</p>
-						<p>These tiny organs – often more like proto-organs with just some of an organ’s functions – are quite literally ‘starting small’, first seeing if it’s even possible. Here we list eight tiny organs that have been grown so far.</p>
+						<h1>Seven Lab Grown Organs From Stem Cells are Changing the World of Transplants </h1>
+						<p>幹細胞是原始且未特化的細胞，它是未充分分化、具有再生各種組織器官的潛在功能的一類細胞。幹細胞存在所有多細胞組織裡，能經由有絲分裂與分化來分裂成多種的特化細胞，而且可以利用自我更新來提供更多幹細胞。</p>
+						<p>我們的科學家用了幹細胞成功培養了７種不同的器官及人造血，有肝，心，肺，胃，腸，血及腎．這些器官不但能量產，我們更研發出了有功能的器官讓使用者可以根據自己的條件來選擇購買的產品．</p>
 					</div>
 					<div id="os_type1">
 						<svg version="1.1" id="heart" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="170.08px" height="170.08px" viewBox="0 0 170.08 170.08" enable-background="new 0 0 170.08 170.08" xml:space="preserve">
@@ -2370,7 +2370,7 @@
 				</section>
 				<section id="team" class="demo">
 					<div id="tm_type0">
-						<p>They'll hold together in life and death whatever may happen.</p>
+						<p>The strength of the team is each individual member.The strength of each member is the team.</p>
 					</div>
 					<div id="tm_type1">
 						<div id="tm_type1_bg"></div>
