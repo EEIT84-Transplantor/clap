@@ -2365,9 +2365,9 @@
 						})
 					</script>
 				</section>
-				<section id="table" class="demo">
+<!-- 				<section id="table" class="demo"> -->
 					
-				</section>
+<!-- 				</section> -->
 				<section id="team" class="demo">
 					<div id="tm_type0">
 						<p>The strength of the team is each individual member.The strength of each member is the team.</p>
