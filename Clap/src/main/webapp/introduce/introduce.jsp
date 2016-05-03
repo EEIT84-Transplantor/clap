@@ -2365,6 +2365,9 @@
 						})
 					</script>
 				</section>
+				<section id="table" class="demo">
+					
+				</section>
 				<section id="team" class="demo">
 					<div id="tm_type0">
 						<p>They'll hold together in life and death whatever may happen.</p>
@@ -2455,7 +2458,7 @@
 							TweenMax.set("#sl_type1 img", { transformOrigin : "right center" })
 							new TimelineMax().to("#sl_type1 img", 1, { rotationX : "+=90" ,ease: Power3.easeIn})
 							                 .to("#think img", 1, { autoAlpha : 1, rotationX : "+=90" ,ease: Power3.easeOut})
-							$("#sl_type0 h1").text("Thinks");
+							$("#sl_type0 h1").text("Thanks");
 						})
 					</script>
 				</section>
