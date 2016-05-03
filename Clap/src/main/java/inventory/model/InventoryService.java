@@ -43,6 +43,10 @@ public class InventoryService {
 		List<InOutLogVO> allInOutLogs = inOutLogDAO.selectByProductId(productVO.getId());
 		List<Integer> quantityList = new ArrayList<Integer>();
 		for (InOutLogVO vo : allInOutLogs) {
+			System.out.println("QQQQQQ"+vo.getInQuantity()+","+vo.getOutQuantity());
+			if(vo.getOutQuantity()==null){
+				vo.setOutQuantity(0);
+			}
 			int inOut = (vo.getInQuantity() - vo.getOutQuantity());
 			quantityList.add(inOut);
 			if (inOut > 0) {

@@ -46,7 +46,7 @@
 								<td>${orderVO.productVO.name}</td>
 								<td><input type="date" class="time"></td>
 								<td>
-								<select class="form-control" class="doctor">
+								<select class="form-control doctor">
 										<c:forEach var="doctor" items="${doctorList}">
 											<option value="${doctor.id}">${doctor.name}</option>
 										</c:forEach>
@@ -57,15 +57,6 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				
-				
-				
-				
-				
-				
-				
-				
-				
 				
 				
 				<p>These are the hospitals that we work with</p>
@@ -84,7 +75,7 @@
 												<select class="form-control" id="hospitalSelect">
 													<option value="all">all</option>
 													<c:forEach var="hospital" items="${hospitals}">
-													<option value="${hospital.address}">${hospital.name}</option>
+													<option value="${hospital.address}" hid="${hospital.id}">${hospital.name}</option>
 													</c:forEach>
 												</select>
 											</div>
@@ -132,6 +123,9 @@
 	var markers = [];
 	var map;
 	var geocoder;
+	var infowindow;
+	var contentString;
+	 var hid;
 	function initMap() {
 		map = new google.maps.Map(document.getElementById('mapa'), {
 			zoom : 12,
@@ -149,15 +143,25 @@
 		document.getElementById('selectH').addEventListener('click', function() {
 			geocodeAddress("select", geocoder, map);
 		});
-	}
+		
+		contentString = '<div id="content" ><h3 style="color:#000;">appointment</h3><button style="width:100px;height:30px;" class="btn btn-default" type="submit" id="submit">confirm</button></div>';
 
-	function addMarkerWithTimeout(position, timeout) {
+		 infowindow = new google.maps.InfoWindow({
+		   content: contentString
+		 });
+		 
+	}
+	
+	function addMarkerWithTimeout(position,temphid,timeout) {
 		window.setTimeout(function() {
 			markers.push(new google.maps.Marker({
 				position : position,
 				map : map,
 				animation : google.maps.Animation.DROP
-			}));
+			}).addListener('click', function() {
+			       hid = temphid;
+				   infowindow.open(map, this);
+			 }));
 		}, timeout);
 	}
 
@@ -208,10 +212,41 @@
 			resultsMap.setCenter(totalHospital[0]);
 			//每隔0.2秒加入一間醫院
 			for (var i = 0; i < totalHospital.length; i++) {
-				addMarkerWithTimeout(totalHospital[i], i * 200);
+				
+			       var ss =  document.getElementById('hospitalSelect');
+			       hid =  ss.options[i].getAttribute("hid");
+		
+				   addMarkerWithTimeout(totalHospital[i],hid, i * 200);
 			}
 		}
 	}
+	
+	 
+
+
+	
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 		$(function() {
 
@@ -231,7 +266,8 @@
 			 for(var i =0;i<msg["hospitals"].length;i++){
 			 $("#hospitalSelect").append($('<option>', { 
 			        value: msg["hospitals"][i].address,
-			        text : msg["hospitals"][i].name 
+			        text : msg["hospitals"][i].name, 
+			        hid : msg["hospitals"][i].id
 			    }));
 			 
 			 }
@@ -244,48 +280,60 @@
 			var now = new Date().toISOString().substring(0, 10);
 			$(".time").attr("min", now).attr("value", now);
 
-			//送出資料ajax
-			var orderList = [];
-			for (var i = 0; i < $(".id").size(); i++) {
-				var data = {
-					id : $(".id").eq(i).text(),
-					time : $(".time").eq(i).val(),
-					doctor : $(".doctor").eq(i).val(),
-				}
-				orderList[i] = JSON.stringify(data);
-			}
+			
+			
 			var url = "<c:url value='/shopping/doAppointmentAction.action'/>";
-			$("#submit").click(function() {
+			$("#mapa").on("click","#submit",function(){
+				
+				
+				
+				//送出資料ajax
+				var orderList = [];
+				for (var i = 0; i < $(".id").size(); i++) {
+					var data = {
+						id : $(".id").eq(i).text(),
+						time : $(".time").eq(i).val(),
+						doctor : $(".doctor").eq(i).val(),
+					}
+					console.log(data);
+					orderList[i] = JSON.stringify(data);
+				}
+				
+				
+				
+				console.log(orderList);
+				console.log("hid"+hid);
+				
+				
 				$.ajax({
 					url : url,
 					data : {
 						"orderList" : orderList,
-						"hospital" : $("#hospital option:selected").text(),
+						"hospital" : hid,
 						"orderform_id" : "${orderform_id}"
 					},
 				}).done(function(e) {
 					finish();
 				})
-			})
-
+			});
 		})
 
 		
 
 		function finish() {
 			//顯示彈出式窗
-// 			$('#submit').avgrund({
-// 				width : 380, // max is 640px
-// 				height : 280, // max is 350px
-// 				holderClass: 'text',
-// 				openOnEvent : false, // set to 'false' to init on load
-// 				template : '購買完成 五秒後回首頁' // or function (elem) { }, or $('.content')
-// 			});
+			$('#submit').avgrund({
+				width : 380, // max is 640px
+				height : 280, // max is 350px
+				holderClass: 'text',
+				openOnEvent : false, // set to 'false' to init on load
+				template : 'Thanks your purchase! The page will redirect after 3s.' // or function (elem) { }, or $('.content')
+			});
 			
 			//導回首頁
-// 			setTimeout(function() {
-// 				window.location.href = "<c:url value='/index.jsp'/>";
-// 			}, 3000);
+			setTimeout(function() {
+				window.location.href = "<c:url value='/index.jsp'/>";
+			}, 3000);
 		}
 	</script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgpurFmJH7EtCW7FEf_VI_w4l9b2aBVMk&signed_in=true&callback=initMap"></script>

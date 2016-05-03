@@ -36,7 +36,7 @@ public class DoAppointmentAction extends ActionSupport implements ServletRequest
 	private InputStream inputStream;
 
 	private ArrayList<JSONObject> orderList;
-	private String hospital;
+	private Integer hospital;
 	private String orderform_id;
 
 	@Override
@@ -47,7 +47,7 @@ public class DoAppointmentAction extends ActionSupport implements ServletRequest
 		// 修改 orderform
 		OrderFormVO orderFormVO = orderFormService.getOrderById(Integer.parseInt(orderform_id));
 		HospitalVO hospitalVO = new HospitalVO();
-		hospitalVO.setId(Integer.parseInt(hospital));
+		hospitalVO.setId(hospital);
 		orderFormVO.setHospitalVO(hospitalVO);
 		orderFormService.updateOrderForm(orderFormVO);
 
@@ -62,7 +62,8 @@ public class DoAppointmentAction extends ActionSupport implements ServletRequest
 			orderDetailVO = orderDetailService.getOrderDetailById(orderDetailId);
 			orderDetailVO.setDoctor_id( Integer.parseInt((String) order.get("doctor")));
 			orderDetailVO.setOrderdetail_surgerytime(new Timestamp(time.getTime()));
-			inventoryService.saleQuantity(orderDetailVO.getProductVO(), orderDetailVO.getCt_quantity(), hospital);
+			System.out.println(orderDetailVO+","+hospital);
+			inventoryService.saleQuantity(orderDetailVO.getProductVO(), orderDetailVO.getCt_quantity(), hospital.toString());
 		}
 		inputStream  = new ByteArrayInputStream("true".toString().getBytes("UTF-8"));
 		return super.execute();
@@ -122,11 +123,11 @@ public class DoAppointmentAction extends ActionSupport implements ServletRequest
 		this.orderDetailService = orderDetailService;
 	}
 
-	public String getHospital() {
+	public Integer getHospital() {
 		return hospital;
 	}
 
-	public void setHospital(String hospital) {
+	public void setHospital(Integer hospital) {
 		this.hospital = hospital;
 	}
 

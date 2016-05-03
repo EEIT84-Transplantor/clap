@@ -20,7 +20,6 @@ public class AppointmentAction extends ActionSupport implements ServletRequestAw
 
 	@Override
 	public String execute() throws Exception {
-		System.out.println("啥軌");
 
 		// 給值
 		
