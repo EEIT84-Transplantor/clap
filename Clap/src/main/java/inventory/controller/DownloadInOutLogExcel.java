@@ -71,10 +71,10 @@ public class DownloadInOutLogExcel extends ActionSupport{
 			 rowhead.createCell(8).setCellValue("Destination");
 			 rowhead.createCell(9).setCellValue("Date");
 			 List<InOutLogVO> inOutLogVOs = inOutLogService.getAll();
-			 System.out.println(inOutLogVOs);
+			 
 			 int index=1;
 			 for (InOutLogVO inOutLogVO:inOutLogVOs) {
-				 System.out.println("hii");
+				 
 			         HSSFRow row = sheet.createRow(index);
 			         row.createCell(0).setCellValue(inOutLogVO.getId());
 			         row.createCell(1).setCellValue(inOutLogVO.getInventory_id());
@@ -119,9 +119,9 @@ public class DownloadInOutLogExcel extends ActionSupport{
 //			 }
 //			 file = new File("\\hii\\inventory.xls");
 			 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			 System.out.println("1");
+			 
 //			 FileOutputStream fileOut = new FileOutputStream(img);
-			 System.out.println("2");
+			 
 			 wb.write(baos);
 			 excelStream = new ByteArrayInputStream(baos.toByteArray());
 			
@@ -131,7 +131,7 @@ public class DownloadInOutLogExcel extends ActionSupport{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-         System.out.println("Data is saved in excel file.");
+         
     
 		return SUCCESS;
 	}

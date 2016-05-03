@@ -274,7 +274,7 @@ button {
 
 		function getMessage(sender, message, to) {
 			to = to || sender;
-			console.log(sender + "   " + message + "   " + to);
+			
 			var newChatEl = createNewChat(sender, message);
 			if (chatTo == to) {
 
@@ -294,7 +294,7 @@ button {
 				chatRoom[to].push(newChatEl);
 
 			} else {
-				console.log(newChatEl);
+				
 				chatRoom[to] = [ newChatEl ];
 			}
 		}
@@ -357,7 +357,7 @@ button {
 		}
 
 		function chatToFn(username) {
-			console.log(username);
+			
 			return function(e) {
 				if (username == usernameInputEl.value)
 					return;
@@ -377,14 +377,14 @@ button {
 				chatToEl.textContent = username;
 				chatTo = username;
 				messageBoardEl.innerHTML = '';
-				console.log(chatRoom);
+				
 				var conversationList = chatRoom[chatTo];
 				if (!conversationList)
 					return;
 				var df = document.createDocumentFragment();
-				console.log(conversationList);
+				
 				conversationList.forEach(function(conversation) {
-					console.log(conversation);
+					
 					// 	                	var con = document.createTextNode(conversation);
 					df.appendChild(conversation);
 				});

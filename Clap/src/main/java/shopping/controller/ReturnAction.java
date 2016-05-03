@@ -29,13 +29,6 @@ public class ReturnAction {
 	public String execute(){
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String email = ((MemberVO)request.getSession().getAttribute("login")).getEmail();
-		
-		System.out.println(returnVO.getProduct_id());
-		System.out.println(returnVO.getProduct_name());
-		System.out.println(returnVO.getOrderDetail_quantity());
-		System.out.println(returnVO.getShipping_date());
-		System.out.println(returnVO.getOrderform_id());
-		System.out.println(returnVO);
 		returnService.returnProduct(returnVO);
 		List<ReturnVO> returnVOs = returnService.getReturnableOrderProduct(email);
 		if(returnVOs!=null){

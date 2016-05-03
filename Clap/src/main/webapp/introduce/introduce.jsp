@@ -38,7 +38,7 @@
 					<script>
 						var controller = new ScrollMagic.Controller();
 						var tween = new TimelineMax().to("#front", 3, { y : "-30%" }).to("#middle", 3, { y : "-20%" }, 0).to("#end", 3, { y : "-10%" }, 0).from("#slogan", 0.5, { y : "70%", ease : Power2.easeOut, autoAlpha : 0 }, 0.5)
-						var scene = new ScrollMagic.Scene({ triggerElement : "#banner", duration : "150%", triggerHook : "onLeave" }).addIndicators({ name : "banner" }).addTo(controller).setTween(tween).setPin("#banner")
+						var scene = new ScrollMagic.Scene({ triggerElement : "#banner", duration : "150%", triggerHook : "onLeave" }).addTo(controller).setTween(tween).setPin("#banner")
 					</script>
 				</section>
 				<section id="origin" class="demo">
@@ -2077,7 +2077,7 @@
 					<script>
 						var tween = new TimelineMax().fromTo($("#cellsvg path"), 16, { fillOpacity : 0 }, { strokeDashoffset : 0, ease : Power1.easeIn }).to($("#cellsvg path"), 3, { fillOpacity : 1, strokeOpacity : 0 }).staggerFromTo($("#og_text p"), 10, { y : 350, rotationX : 90 }, { y : -100, rotationX : -90 }, 3, 0).to($("#cellsvg"), 1, { x : "100%", ease : Sine.easeIn }, 17)
 
-						var scene = new ScrollMagic.Scene({ triggerElement : "#origin", duration : "400%", triggerHook : "onLeave" }).addIndicators({ name : "cell" }).addTo(controller).setTween(tween).setPin("#origin", { pushFollower : false })
+						var scene = new ScrollMagic.Scene({ triggerElement : "#origin", duration : "400%", triggerHook : "onLeave" }).addTo(controller).setTween(tween).setPin("#origin", { pushFollower : false })
 					</script>
 				</section>
 				<section id="organs" class="demo">
@@ -2330,7 +2330,7 @@
 					</div>
 					<script type="text/javascript">
 						var tween = new TimelineMax().to("#cell path", 2, { strokeDashoffset : 0 }).from("#arrow path", 1, { autoAlpha : 0 }).to("#heart path", 1, { strokeDashoffset : 0 }).to("#liver path", 1, { strokeDashoffset : 0 }).to("#lung path", 1, { strokeDashoffset : 0 }).to("#stomach path", 1, { strokeDashoffset : 0 })
-						new ScrollMagic.Scene({ triggerElement : "#organs", duration : 1000, triggerHook : "onLeave" }).addIndicators({ name : "organs" }).addTo(controller).setTween(tween).setPin("#organs")
+						new ScrollMagic.Scene({ triggerElement : "#organs", duration : 1000, triggerHook : "onLeave" }).addTo(controller).setTween(tween).setPin("#organs")
 					</script>
 				</section>
 				<section id="structure" class="demo">
@@ -2395,7 +2395,7 @@
 					</div>
 					<script type="text/javascript">
 						var tween = new TimelineMax().staggerFrom("#tm_type1 .tm_inf", 1.5, { x : "+=400%", ease : Back.easeOut.config(1) }, 0.2)
-						new ScrollMagic.Scene({ triggerElement : "#team", duration : 500, triggerHook : "onLeave" }).addIndicators().addTo(controller).setTween(tween).setPin("#team")
+						new ScrollMagic.Scene({ triggerElement : "#team", duration : 500, triggerHook : "onLeave" }).addTo(controller).setTween(tween).setPin("#team")
 					</script>
 				</section>
 				<section id="mvc" class="demo">
@@ -2413,7 +2413,7 @@
 						.from("#mvc_type0 div",1,{autoAlpha : 0})
 						.from($("#mvc_type0 img"), 1, { autoAlpha : 0 })
 						.to("#as", 1, { x : "-590%" }, 1).to("#bs", 1, { x : "-390%" }, 1).to("#cs", 1, { x : "0%" }, 1).to("#ds", 1, { x : "480%" }, 1).to("#as", 1, { x : "0%" }, 3).to("#bs", 1, { x : "580%" }, 3).to("#cs", 1, { x : "380%" }, 3).to("#ds", 1, { x : "-490%" }, 3).to("#as", 1, { x : "480%" }, 5).to("#bs", 1, { x : "-490%" }, 5).to("#cs", 1, { x : "-100%" }, 5).to("#ds", 1, { x : "100%" }, 5)
-						new ScrollMagic.Scene({ triggerElement : "#mvc", duration : 1500, triggerHook : "onLeave" }).addIndicators({ name : "img" }).addTo(controller).setTween(tween).setPin("#mvc")
+						new ScrollMagic.Scene({ triggerElement : "#mvc", duration : 1500, triggerHook : "onLeave" }).addTo(controller).setTween(tween).setPin("#mvc")
 					</script>
 				</section>
 				<section id="skill" class="demo">

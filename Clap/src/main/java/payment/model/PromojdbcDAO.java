@@ -18,8 +18,8 @@ public class PromojdbcDAO implements PromoDAO {
 	public static void main(String[] args){
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		PromoDAO pdao = (PromoDAO)context.getBean("promoDAO");
-		System.out.println(pdao.selectAll().size());
-		System.out.println(pdao.selectByCode("222").getPm_title());
+		
+		
 //		PromoVO vvo = pdao.selectByCode("222");
 //		vvo.setPm_code("777");
 //		vvo.setPm_title("test");

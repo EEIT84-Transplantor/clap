@@ -154,7 +154,7 @@ $("#price_btn").on('click',function(){
                 $(".cart_anchor").text(request.responseText);
                 
 			} else {
-				console.log("Error Code:" + request.status + ", "+ request.statusText);
+				
 			}
 		}
 	}

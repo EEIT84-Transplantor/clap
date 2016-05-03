@@ -50,7 +50,7 @@ public class SetCartAction extends ActionSupport implements ServletRequestAware 
 
 	@Override
 	public String execute() throws Exception {
-		System.out.println("recevied" + cartVO.getQuantity());
+		
 		HttpSession session = request.getSession();
 		synchronized (session) {
 			MemberVO member = (MemberVO) session.getAttribute("login");
@@ -118,7 +118,7 @@ public class SetCartAction extends ActionSupport implements ServletRequestAware 
 					session.setAttribute("totalCart", totalCart);
 				}
 			}
-			System.out.println("send" + totalCart);
+			
 			inputStream = new ByteArrayInputStream(totalCart.toString()
 					.getBytes("UTF-8"));
 			

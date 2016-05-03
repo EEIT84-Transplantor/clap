@@ -26,7 +26,7 @@ public class SetCreditCardAction extends ActionSupport implements ServletRequest
 
 	@Override
 	public String execute() throws Exception {
-		System.out.println("setcard");
+		
 		CreditCardPK creditCardPK = new CreditCardPK();
 		creditCardPK.setCc_number(cc_number);
 		creditCardPK.setMb_email(mb_email);

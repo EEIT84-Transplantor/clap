@@ -41,9 +41,9 @@ public class CategoryService {
 	}
 	public Integer selectByCategoryName(String category_name){
 		List<CategoryVO>list = categoryDAO.selectByCategoryName(category_name);
-		System.out.println(list.size());
+		
 		if(list!=null&&list.size()!=0){
-			System.out.println("here"+list.get(0).getId());
+			
 			return list.get(0).getId();
 		}else{
 			return null;

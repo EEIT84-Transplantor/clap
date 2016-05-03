@@ -88,9 +88,9 @@ public class DownloadInventoryExcel extends ActionSupport {
 			 }
 			 file = new File("\\hii\\inventory.xls");
 			 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			 System.out.println("1");
+			 
 //			 FileOutputStream fileOut = new FileOutputStream(img);
-			 System.out.println("2");
+			 
 			 wb.write(baos);
 			 excelStream = new ByteArrayInputStream(baos.toByteArray());
 			
@@ -100,7 +100,7 @@ public class DownloadInventoryExcel extends ActionSupport {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-         System.out.println("Data is saved in excel file.");
+         
     
 		return SUCCESS;
 	}

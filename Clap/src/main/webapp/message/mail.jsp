@@ -84,7 +84,7 @@ SELECT * from creditcard;
 			
 			//onclick delete button
 			$("form button").eq(0).on("click", function() {
-				console.log("delete sent");
+				
 				formToAction.submit();
 			});
 

@@ -39,7 +39,7 @@ public class MemberVO implements Serializable{
 			// session.update(memberVO);
 			// session.delete(memberVO);
 			memberVO = session.get(MemberVO.class, "poan@gmail.com");
-			System.out.println("hahaha:"+memberVO.toString());
+			
 			transaction.commit();
 		} catch (Exception e) {
 			transaction.rollback();

@@ -542,7 +542,7 @@
 					url : "${pageContext.request.contextPath}/simulator/bodySimulatorAction",
 					data : sentDataObj
 				}).done(function(msg) {
-					console.log("updates acquired");
+					
 					jsonarray = parseJSONText(msg);
 					updateAllValues();
 				});
@@ -664,7 +664,7 @@
 
 		function printObject(printedObj) {
 			for ( var key in printedObj) {
-				console.log("[" + key + "]: " + printedObj[key]);
+				
 			}
 		}
 

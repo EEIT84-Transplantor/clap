@@ -54,7 +54,7 @@ public class SimulatorAction extends ActionSupport implements ServletRequestAwar
 		List<SimulatorVO> simulatorVOs = categoryService.calculate(categoryVOs, mapOfProductVOs, mapOfProductimgVOs, 0, 20.0, 0.0, 0.0, 0.0);
 //		for(CategoryVO categoryVO:categoryService.getAllCategory()){
 		
-//		System.out.println("hi"+simulatorVOsArray);
+//		
 		request.setAttribute("simulatorVOs", simulatorVOs);
 
 		return SUCCESS;

@@ -71,7 +71,7 @@ public class DeleteCartAction extends ActionSupport implements ServletRequestAwa
 			for(Integer integer :temp.keySet()){
 				totalCart += temp.get(integer);				
 			}
-			System.out.println("totalCart:  "+totalCart);
+			
 			request.getSession().setAttribute("totalCart", totalCart);
 			request.getSession().setAttribute("tempCart", temp);
 			try {

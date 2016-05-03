@@ -45,7 +45,7 @@ public class PrePromoteAction extends ActionSupport {
 	
 
 	public String execute(){
-		System.out.println("hellollololololol preAction");
+		
 		List<PromoVO> promoVOs = null;
 		if(expireFrom!=null){
 			promoVOs = promoService.getAllPromosByStartDate(expireFrom);
@@ -68,14 +68,14 @@ public class PrePromoteAction extends ActionSupport {
 				promoVOs=temp2;
 			}
 		}
-		System.out.println(categoryName);
+		
 		if(categoryName!=null &&!categoryName.equalsIgnoreCase("All")){
-			System.out.println("hi");
+			
 			Integer id = categoryService.selectByCategoryName(categoryName);
 			if(promoVOs ==null){
-				System.out.println("hi");
+				
 				promoVOs = promoService.getAllPromosByCategory(id);
-				System.out.println(promoVOs);
+				
 			}else{
 				List<PromoVO> temp = new ArrayList<PromoVO>();
 				temp = promoService.getAllPromosByCategory(id);
@@ -96,7 +96,7 @@ public class PrePromoteAction extends ActionSupport {
 
 		String message = (String) request.getSession().getAttribute("message");
 		request.getSession().removeAttribute("message");
-		System.out.println(message);
+		
 		request.setAttribute("message", message);
 		request.setAttribute("categoryVOs", categoryVOs);
 		return "success";
