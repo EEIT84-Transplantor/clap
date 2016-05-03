@@ -8,7 +8,7 @@ body {
 body * {
 	font-family: 'Alegreya Sans', sans-serif;
 	font-size: 25px;
-	font-weight: 100;
+	font-weight: 400;
 	text-align: center;
 	color: rgba(0, 0, 0, 0.5);
 }
@@ -209,7 +209,7 @@ h3 {
 
 /*-------------------- section structure --------------------*/
 #structure {
-	background-color: rgb(207, 207, 207);
+	background-color: rgba(0,0,0,0.5);
 	height: 80vh;
 }
 
