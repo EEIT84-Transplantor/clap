@@ -110,7 +110,7 @@ public class InOutAction extends ActionSupport {
 	@Override
 	public String execute(){
 		
-		System.out.println(expiryDate+""+manufactureDate);
+		
 		try{
 		    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		    Date parsedDate = dateFormat.parse(expiryDate);
@@ -126,7 +126,7 @@ public class InOutAction extends ActionSupport {
 			e.printStackTrace();
 		}
 		Boolean result = false;
-		System.out.println(inOutLogVO.getManufactureDate()+"   "+inOutLogVO.getExpiryDate());
+		
 		if (inOutLogVO.getProduct_id()==null && productName!=null){
 			Integer id = productService.getIdByProductName(productName);
 			inOutLogVO.setProduct_id(id);
@@ -139,7 +139,7 @@ public class InOutAction extends ActionSupport {
 			inOutLogVO.setOutQuantity(quantity);
 			result= inOutLogService.exportProduct(inOutLogVO);
 		}
-		System.out.println(result);
+		
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		if (result){

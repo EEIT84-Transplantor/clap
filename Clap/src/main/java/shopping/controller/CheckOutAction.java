@@ -48,7 +48,7 @@ public class CheckOutAction extends ActionSupport implements ServletRequestAware
 
 		// 判斷是否登入
 		MemberVO memberVO = (MemberVO) session.getAttribute("login");
-		System.out.println(memberVO);
+		
 		if(memberVO == null){
 			inputStream = new ByteArrayInputStream("false".getBytes("UTF-8"));
 			session.setAttribute("uri",request.getHeader("Referer"));

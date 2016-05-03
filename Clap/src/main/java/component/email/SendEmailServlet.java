@@ -39,7 +39,7 @@ public class SendEmailServlet extends HttpServlet {
 		String content = request.getParameter("content");
 
 		String resultMessage = "";
-		System.out.println(host + "\n" + port + "\n" + user+"\n"+pass + "\n" + recipient + "\n" + subject + "\n" + content);
+		
 		try {
 			EmailUtility.sendEmail(host, port, user, pass, recipient, subject, content);
 			resultMessage = "The e-mail was sent successfully";

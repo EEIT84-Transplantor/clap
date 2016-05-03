@@ -79,7 +79,7 @@ public class DoCheckOutAction extends ActionSupport implements ServletRequestAwa
 		// 清空購物車
 		cartService.removeCart(email);
 		session.setAttribute("totalCart", 0);
-		System.out.println(123);
+		
 		return super.execute();
 	}
 

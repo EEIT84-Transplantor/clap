@@ -24,7 +24,7 @@ public class ShowInOutLog extends ActionSupport{
 	
 	public String execute(){
 		List<InOutLogVO>inOutLogVOs = inOutLogService.getAll();
-		System.out.println(inOutLogVOs);
+		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("inOutLogVOs",inOutLogVOs);
 		return SUCCESS;

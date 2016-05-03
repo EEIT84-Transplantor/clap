@@ -12,7 +12,7 @@ public class PromoCodeService {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		PromoCodeService pservice = (PromoCodeService)context.getBean("promoCodeService");
 		
-		System.out.println(pservice.getPromo("caca@gmail.com","111").getPm_title());
+		
 	
 	}
 	
@@ -48,9 +48,9 @@ public class PromoCodeService {
 		PromoCode promoCode = new PromoCode();
 		promoCode.setMb_email(mb_email);
 		promoCode.setPm_code(pm_code);
-		System.out.println("######################################A");
+		
 		PromoCodeVO temp = dao.insert(promoCode);
-		System.out.println("######################################B");
+		
 		if(temp!=null){
 			result = temp;
 		}

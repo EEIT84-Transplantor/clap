@@ -71,7 +71,7 @@
 						"orderId" : orderId
 					},
 				}).done(function(result) {
-					console.log(result);
+					
 					if (result == "true") {
 						$(button).parent().parent().remove();
 					}

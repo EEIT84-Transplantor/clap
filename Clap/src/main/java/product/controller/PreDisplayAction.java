@@ -34,7 +34,7 @@ public class PreDisplayAction extends ActionSupport {
 
 		try {
 			List<ProductimgVO> imgVOList = productService.getProductImgByList(productList);
-			System.out.println("productList: " + productList.size() + ", imgVOList: " + imgVOList.size());
+			
 			for (ProductimgVO imgVO : imgVOList) {
 				try {
 					productImgs.add(imgVO.getImg64());
@@ -45,7 +45,7 @@ public class PreDisplayAction extends ActionSupport {
 		} catch (Exception e) {
 		}
 
-		System.out.println(productList);
+		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("productVOs", productList);
 		request.setAttribute("productImgs", productImgs);

@@ -222,7 +222,7 @@ font-size:14px;
 				if (request.status == 200) {
                     processJSON(request.responseText);
 				} else {
-					console.log("Error Code:" + request.status + ", "+ request.statusText);
+					
 					processJSON(request.responseText);
 				}
 			}
@@ -232,7 +232,7 @@ font-size:14px;
 			var json = JSON.parse(data);
 		    var key = json[0].buttonClicked;
 		    var isError = json[0].isError;
-		    console.log(isError);
+		    
 		    if(isError){
 		    	switch(key){
 		    	case "AddCreditCard":

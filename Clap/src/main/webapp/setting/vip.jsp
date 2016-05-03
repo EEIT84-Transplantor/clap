@@ -75,7 +75,7 @@
 				var confirmed = confirm("You want to change auto-renewal service, are you sure?");
 				if (confirmed) {
 					$("form").attr("action", contextPath + "/setting/autoRenewVIPAction.action");
-					console.log("Confirm auto renewal");
+					
 					$("form").submit();
 				}else{
 					location.reload();
@@ -87,7 +87,7 @@
 				if (confirmed) {
 					//send Buy one more year
 					$("form").attr("action", contextPath + "/setting/renewVIPAction.action");
-					console.log("Buy one more year");
+					
 					$("form").submit();
 				}
 			});

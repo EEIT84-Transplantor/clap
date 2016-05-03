@@ -30,7 +30,7 @@ public class PromoInterceptor extends AbstractInterceptor {
 		HttpServletRequest request = (HttpServletRequest)invocation.getInvocationContext().get("HTTP_REQUEST");
 		
 		List<PromoVO> promoVOs = promoService.getAllPromos(true);
-		System.out.println(promoVOs);
+		
 		List<CategoryVO> categoryVOs = categoryService.getAllCategory();
 		request.setAttribute("promoVOs", promoVOs);
 		request.setAttribute("categoryVOs", categoryVOs);

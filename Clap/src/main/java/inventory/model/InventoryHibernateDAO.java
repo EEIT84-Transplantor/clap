@@ -68,14 +68,14 @@ public class InventoryHibernateDAO implements InventoryDAO {
 		Calendar currentDate = Calendar.getInstance(); //Get the current date
 		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss"); //format it as per your requirement
 		dateNow = formatter.format(currentDate.getTime());
-		System.out.println(dateNow);
+		
 		session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(FIND_QUANTITY_BY_PRODUCT_ID);
 		query.setParameter(0, productId);
 		query.setParameter(1, new java.sql.Timestamp(System.currentTimeMillis()));
 //		List<Object> inventoryVOs = query.list();
 		List<Object> inventoryVOs = query.list();
-		System.out.println(productId+"      "+inventoryVOs.get(0));
+		
 		return Integer.valueOf(inventoryVOs.get(0).toString());
 	};
 

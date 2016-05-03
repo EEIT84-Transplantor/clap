@@ -32,21 +32,21 @@ public class PaymentManageInterceptor extends AbstractInterceptor {
 		ActionContext ctx = invocation.getInvocationContext();
 		Map<String, Object> session = ctx.getSession();
 		MemberVO mVo = (MemberVO) session.get("login");
-		System.out.println(mVo + "sadasdasdas");
+		
 		invocation.addPreResultListener(new PreResultListener() {
 
 			@Override
 			public void beforeResult(ActionInvocation invocation, String resultCode) {
 				String email = mVo.getEmail();
-				System.out.println(creditCardService);
+				
 				List<CreditCardVO> payment = creditCardService.getCards(email);
 
 				Double amount = mVo.getAmount();
 				List<String> cardType = new ArrayList<>();
-				System.out.println(payment);
+				
 				if(payment!=null){
 					for (CreditCardVO cardIt : payment) {
-						System.out.println("hi");
+						
 						String visa = "^4[0-9]{12}(?:[0-9]{3})?$";
 						String master = "^5[1-5][0-9]{14}$";
 						String jcb = "^(?:2131|1800|35\\d{3})\\d{11}$";

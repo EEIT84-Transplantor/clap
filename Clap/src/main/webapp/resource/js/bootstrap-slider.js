@@ -957,12 +957,12 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 					this._addClass(this.tooltip, 'in');
 					this.tooltip_min.style.display = 'none';
 					this.tooltip_max.style.display = 'none';
-					console.log("1");
+					
 				} else {
 					this._addClass(this.tooltip_min, 'in');
 					this._addClass(this.tooltip_max, 'in');
 					this.tooltip.style.display = 'none';
-					console.log("2");
+					
 				}
 				this._state.over = true;
 			},

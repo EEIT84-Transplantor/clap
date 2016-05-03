@@ -103,16 +103,16 @@ left: 0;
 				
 			});
 			$("button.btn-success").on("click", function() {
-				console.log();
-				console.log();
+				
+				
 				$(this).parent().prev().children().eq(0).submit();
 			});
 			$("form").submit(function(event) {
 				if ("" != "") {
-					console.log("Submit error");
+					
 					event.preventDefault();
 				} else {
-					console.log("Submit done");
+					
 					return;
 				}
 			});

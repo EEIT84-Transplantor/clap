@@ -26,8 +26,8 @@ public class PromoService {
 		PromoDAO pdao = (PromoDAO)context.getBean("promoDAO");
 		PromoVO vo = pdao.selectByCode("111");
 		//vo.setPm_code("666");
-		//System.out.println(pservice.setPromo(vo));
-		System.out.println(pservice.isAvailable("666"));
+		//
+		
 	}
 	
 	public PromoService() {
@@ -45,7 +45,7 @@ public class PromoService {
 			Double pm_discount = promoVO.getPm_discount();
 			java.util.Date pm_expire = promoVO.getPm_expire();
 			String pm_title = promoVO.getPm_title();
-			System.out.println(pd_category+pm_code+pm_discount+pm_expire+pm_title);
+			
 			if(pd_category==null){
 				return result;
 			}
@@ -64,7 +64,7 @@ public class PromoService {
 			}
 			if(dao.insert(promoVO)!=null){
 				result = true;
-				System.out.println("insert insert insert in service");
+				
 			}
 		}
 		return result;

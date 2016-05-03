@@ -19,11 +19,11 @@ public class EmailconfirmCode {
 
 	public static void main(String[] args) {
 		// EmailconfirmCode ee = new EmailconfirmCode();
-		// System.out.println(ee.generateEmailCfmCode("abc@yahoo.com.tw"));
+		// 
 	}
 
 	public String generateCheckingCode(String email, String randomString) {
-		System.out.println("Start checking Confirm code");
+		
 		String confirmCode = email + inputCode + randomString; // combine a string for digester
 		try {
 			// apply SHA-512 than to String (128 chars)
@@ -35,14 +35,14 @@ public class EmailconfirmCode {
 		} catch (NoSuchAlgorithmException e) {
 			return null;
 		}
-		System.out.println(randomString + "/" + confirmCode);
-		System.out.println("generated confirmcode: " + confirmCode + " (" + confirmCode.length() + ")");
+		
+		
 		return randomString + confirmCode; //return 15 random chars and 32 chars from MD5
 
 	}
 
 	public String generateEmailCfmCode(String email) {
-		System.out.println("Start generating Confirm code");
+		
 		String randomString = getRandomString(15);
 		String confirmCode = email + inputCode + randomString;
 		try {
@@ -55,8 +55,8 @@ public class EmailconfirmCode {
 		} catch (NoSuchAlgorithmException e) {
 			return null;
 		}
-		System.out.println(randomString + "/" + confirmCode);
-		System.out.println("generated confirmcode: " + confirmCode + " (" + confirmCode.length() + ")");
+		
+		
 		return randomString + confirmCode; //return 15 random chars and 32 chars from MD5
 	}
 
@@ -75,7 +75,7 @@ public class EmailconfirmCode {
 	}
 
 	private String generatePrimeNumber(long gettingNumberUpperInput) {
-		System.out.println("Start generating PN");
+		
 		long gettingNumber = 2L;
 		final long gettingNumberUpper = gettingNumberUpperInput;
 
@@ -96,7 +96,7 @@ public class EmailconfirmCode {
 			}
 			gettingNumber--;
 		}
-		System.out.println(gettingNumber);
+		
 
 		return Long.toString(gettingNumber);
 	}

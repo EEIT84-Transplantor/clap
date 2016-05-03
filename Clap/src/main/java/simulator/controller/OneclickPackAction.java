@@ -40,13 +40,13 @@ public class OneclickPackAction extends ActionSupport implements ServletRequestA
 	@Override
 	public String execute() throws Exception {
 
-		System.out.println("execute 0");
-		System.out.println(request.getSession().getAttribute("login"));
+		
+		
 		MemberVO memberVO = (MemberVO) request.getSession().getAttribute("login");
 		String mb_email = memberVO.getEmail();
 		Double total = 0.0;
 
-		System.out.println("execute 1");
+		
 		// 判斷所有商品都有庫存 計算訂單總額
 		for (CartVO cartVO : productList) {
 			Integer product_id = cartVO.getProduct_id();
@@ -56,7 +56,7 @@ public class OneclickPackAction extends ActionSupport implements ServletRequestA
 				outOfStock.add(product_id);
 			}
 		}
-		System.out.println(outOfStock.isEmpty());
+		
 		if (!outOfStock.isEmpty()) {
 			setResult("false");
 			return super.input();
@@ -66,14 +66,14 @@ public class OneclickPackAction extends ActionSupport implements ServletRequestA
 		Integer orderform_id = orderFormService.setOrderForm(total, mb_email);
 		request.getSession().setAttribute("orderform_id", orderform_id);
 
-		System.out.println("execute 2");
+		
 		// 把訂單編號放入orderDetailVO
 		for (CartVO cartVO : productList) {
 			cartVO.setQuantity(1);
 			orderDetailService.setOrderDetail(orderform_id, cartVO);
 		}
 
-		System.out.println("execute 3");
+		
 		// 回傳結果
 		setResult("true");
 		return super.execute();

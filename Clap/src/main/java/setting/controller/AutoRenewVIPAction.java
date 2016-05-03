@@ -40,7 +40,7 @@ public class AutoRenewVIPAction extends ActionSupport implements ServletRequestA
 
 	@Override
 	public String execute() throws Exception {
-		System.out.println(autorenew);
+		
 		MemberVO memberVO = (MemberVO) request.getSession().getAttribute("login");
 		memberService.setAutoRenew(memberVO,autorenew);
 		return "success";

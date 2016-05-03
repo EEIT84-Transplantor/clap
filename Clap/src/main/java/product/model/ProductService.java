@@ -93,7 +93,7 @@ public class ProductService {
 				return true;
 			}
 		} catch (Exception e) {
-			System.out.println("=====     insert failed     =====");
+			
 			e.printStackTrace();
 			return false;
 		}
@@ -144,8 +144,8 @@ public class ProductService {
 		}
 		Integer tempNew = Integer.valueOf(oldId.toString().substring(1))+1;
 		newId = Integer.valueOf(categoryId.toString() + tempNew.toString());
-		System.out.println("oldIdoldIdoldIdoldId: "+oldId);
-		System.out.println("newIdnewIdnewIdnewId: "+newId);
+		
+		
 		return newId;
 	}
 	

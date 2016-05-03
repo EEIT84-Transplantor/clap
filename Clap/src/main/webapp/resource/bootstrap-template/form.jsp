@@ -58,16 +58,16 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("form button").on("click", function() {
-				console.log();
-				console.log();
+				
+				
 				$("form").submit();
 			});
 			$("form").submit(function(event) {
 				if ($("input").val() == "") {
-					console.log("Submit error");
+					
 					event.preventDefault();
 				} else {
-					console.log("Submit done");
+					
 					return;
 				}
 			});

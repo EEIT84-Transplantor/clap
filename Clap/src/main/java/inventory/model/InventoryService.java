@@ -43,7 +43,7 @@ public class InventoryService {
 		List<InOutLogVO> allInOutLogs = inOutLogDAO.selectByProductId(productVO.getId());
 		List<Integer> quantityList = new ArrayList<Integer>();
 		for (InOutLogVO vo : allInOutLogs) {
-			System.out.println("QQQQQQ"+vo.getInQuantity()+","+vo.getOutQuantity());
+			
 			if(vo.getOutQuantity()==null){
 				vo.setOutQuantity(0);
 			}
@@ -66,10 +66,10 @@ public class InventoryService {
 				}
 			}
 		}
-		System.out.println(totalIn);
-		System.out.println(totalOut);
-		System.out.println(restToCut);
-		System.out.println(pointer);
+		
+		
+		
+		
 		if ((totalIn + totalOut) >= soldQuantity) {
 			while (soldQuantity > 0) {
 
@@ -87,7 +87,7 @@ public class InventoryService {
 						newInOutLogVO.setDestination(destination);
 						newInOutLogVO.setDate(new Timestamp(System.currentTimeMillis()));
 						inOutLogDAO.insert(newInOutLogVO);
-						System.out.println("Greater " + quantityList);
+						
 						break;
 					} else {
 						InOutLogVO inOutLogVO = allInOutLogs.get(pointer);
@@ -103,7 +103,7 @@ public class InventoryService {
 						newInOutLogVO.setDate(new Timestamp(System.currentTimeMillis()));
 						inOutLogDAO.insert(newInOutLogVO);
 						soldQuantity -= quantityList.get(pointer);
-						System.out.println("Rest " + soldQuantity);
+						
 					}
 				}
 				pointer++;

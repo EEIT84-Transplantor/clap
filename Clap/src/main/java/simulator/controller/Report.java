@@ -10,7 +10,7 @@ public class Report{
 	private String color;
 
 	public Report() {
-		System.out.println("Inside Constructor with 0 arguments");
+		
 	}
 
 	public Report(int id, String name, boolean active, String date, String color) {

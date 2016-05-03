@@ -76,7 +76,7 @@ public class PaymentFilter implements Filter {
 //			Double amount = 9.99;
 			Double amount = mVo.getAmount();
 
-			System.out.println("aaa"+cservice);
+			
 			
 //			Double amount = 9.99;
 //			Double amount = mService.getAmount();

@@ -18,13 +18,13 @@ public class PromoCodejdbcDAO implements PromoCodeDAO {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		PromoCodeDAO  pdao = (PromoCodeDAO)context.getBean("promoCodeDAO");
 		
-		System.out.println(pdao.selectAll().size());
-		System.out.println(pdao.selectByEmail("caca@gmail.com").size());
+		
+		
 		
 	//	pdao.insert("poan@gmail.com", "222");
 	//	pdao.delete("poan@gmail.com", "222");
 		
-		System.out.println(pdao.selectPromoVOByEmail("caca@gmail.com").size());
+		
 	}
 	
 	
@@ -198,7 +198,7 @@ public class PromoCodejdbcDAO implements PromoCodeDAO {
 			ps = conn.prepareStatement(INSERT);
 			ps.setString(1, mb_email);
 			ps.setString(2, pc_code);
-			System.out.println("ss");
+			
 			if(ps.executeUpdate() == 1){
 				result = new PromoCodeVO();
 				PromoCode promoCodetemp = new PromoCode();

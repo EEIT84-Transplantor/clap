@@ -77,7 +77,7 @@ public class PromoCodeHibernateDAO implements PromoCodeDAO{
 		PromoCodeVO result = session.get(PromoCodeVO.class, temp);
 		try {
 			session.delete(result);
-			System.out.println(result);
+			
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
