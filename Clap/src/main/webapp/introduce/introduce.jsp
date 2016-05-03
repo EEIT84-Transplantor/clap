@@ -2394,8 +2394,8 @@
 						</div>
 					</div>
 					<script type="text/javascript">
-// 						var tween = new TimelineMax().staggerFrom("#tm_type1 .tm_inf", 1.5, { x : "+=400%", ease : Back.easeOut.config(1) }, 0.2)
-// 						new ScrollMagic.Scene({ triggerElement : "#team", duration : 500, triggerHook : "onLeave" }).addIndicators().addTo(controller).setTween(tween).setPin("#team")
+						var tween = new TimelineMax().staggerFrom("#tm_type1 .tm_inf", 1.5, { x : "+=400%", ease : Back.easeOut.config(1) }, 0.2)
+						new ScrollMagic.Scene({ triggerElement : "#team", duration : 500, triggerHook : "onLeave" }).addIndicators().addTo(controller).setTween(tween).setPin("#team")
 					</script>
 				</section>
 				<section id="mvc" class="demo">
