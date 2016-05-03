@@ -52,14 +52,17 @@ public class SimulatorUtil {
 				if(env_id == 1){
 					//森林
 					envValue = categoryVO.getForest();
+					envValue = Math.pow(envValue, 1.5);
 				}
 				if(env_id == 2){
 					//城市
 					envValue = categoryVO.getCity();
+					envValue = Math.pow(envValue, 1.5);
 				}
 				if(env_id == 3){
 					//工廠
 					envValue = categoryVO.getIndustrial();
+					envValue = Math.pow(envValue, 1.5);
 				}
 				}
 				//BMI
@@ -73,18 +76,30 @@ public class SimulatorUtil {
 				//抽菸smoking
 				Double smokingValue = 1.0;
 				if(smoking!=0){
-					smokingValue = (100 - smoking) * categoryVO.getSmoking()/100;
+					int indexOfTemp = ((int)Math.round(smoking) / 19);
+					
+					smokingValue = (6 - indexOfTemp) * categoryVO.getSmoking()/6;
+					smokingValue = Math.sqrt(smokingValue);
 				}
 				
 				//酗酒
-				Double drinkingValue = 1.0;
+				Double drinkingValue = 1.0;				
 				if(drinking!=0){
-				drinkingValue = (100 - drinking) * categoryVO.getDrinking()/100;
+					int indexOfTemp = ((int)Math.round(drinking) / 19);
+					drinkingValue = (6 - indexOfTemp) * categoryVO.getDrinking()/6;
+					drinkingValue = Math.sqrt(drinkingValue);
 				}
 				//運動
 				Double exercisingValue = 1.0;
 				if(exercising!=0){
-				exercisingValue = exercising / categoryVO.getExercising()/100;
+					int indexOfTemp = ((int)Math.round(exercising) / 19);
+					exercisingValue = indexOfTemp / categoryVO.getExercising()/5+1;
+					exercisingValue = Math.pow(exercisingValue, 0.7);
+					if(exercising>60){
+						indexOfTemp = ((int)Math.round((exercising-60)/8+60) / 19);
+						exercisingValue = indexOfTemp / categoryVO.getExercising()/5+1;
+						exercisingValue = Math.pow(exercisingValue, 0.7);
+					}
 				}
 				
 				Double totalEffect = envValue * bmiValue * smokingValue * drinkingValue * exercisingValue;
