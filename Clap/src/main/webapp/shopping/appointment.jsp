@@ -144,7 +144,7 @@
 			geocodeAddress("select", geocoder, map);
 		});
 		
-		contentString = '<div id="content" ><h3 style="color:#000;">appointment</h3><button style="width:100px;height:30px;" class="btn btn-default" type="submit" id="submit">confirm</button></div>';
+		contentString = '<div id="content"><h3 style="color:#000;">appointment</h3><button style="width:100px;height:30px;" class="btn btn-default" type="submit" id="submit">confirm</button></div>';
 
 		 infowindow = new google.maps.InfoWindow({
 		   content: contentString
