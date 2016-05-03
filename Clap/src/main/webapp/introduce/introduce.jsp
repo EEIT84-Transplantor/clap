@@ -3,11 +3,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Clap</title>
 
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:800' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Rubik:900' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:100,200,300,400,500' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Open+Sans:800' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Rubik:900' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Alegreya+Sans:100,200,300,400,500' rel='stylesheet' type='text/css'>
 <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic|Josefin+Slab:400,700italic|Poiret+One' type='text/css'>
 <link rel="stylesheet" href="/Clap/resource/css/introduce.css" type="text/css">
 
