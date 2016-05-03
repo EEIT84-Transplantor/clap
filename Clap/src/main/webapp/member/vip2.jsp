@@ -70,20 +70,20 @@
 			
 			//onclick Confirm auto renewal button
 			$("div[class='container']>button").eq(0).on("click", function() {
-				console.log("Confirm auto renewal");
+				
 				
 				if(isRenewal){
 					var confirmed = confirm("Auto pay by your credit card, are you sure?");
 					if(confirmed){
 						//send autorenew to servlet
-						console.log("send auto-renewal");
+						
 						$.ajax().done();
 					}
 				}else{
 					var confirmed = confirm("Auto-renewal will be cancelled, are you sure?");
 					if(confirmed){
 						//cancel autorenew in servlet
-						console.log("cancel auto-renewal");
+						
 						$.ajax().done();
 					}
 				}
@@ -93,7 +93,7 @@
 				var confirmed = confirm("Buy one more year VIP by credit card, are you sure?");
 				if(confirmed){
 					//send Buy one more year to servlet
-					console.log("Buy one more year");
+					
 					$.ajax().done();
 				}
 			});

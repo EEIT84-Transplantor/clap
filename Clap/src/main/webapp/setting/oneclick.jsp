@@ -139,14 +139,14 @@ background:#000;
 					method:"POST",
 					data:$("#yesorno").serialize()
 				}).done(function(msg){
-					console.log(msg);
+					
 				});
 // 				formToAction.submit();
 			});
 
 			//onclick submit button
 			$("form button").eq(0).on("click", function() {
-				console.log("submit");
+				
 				var formTitle = $("#tableTitle");
 				formTitle.html("One Click Setting: info updated");
 				formToAction.submit();

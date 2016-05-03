@@ -179,7 +179,7 @@ public class BodySimulatorAction extends ActionSupport {
 				simulatorVOsArray.put(simulatorVOJSON);
 
 			}
-//			System.out.println("simulatorVOsArray length: " + simulatorVOsArray.toString().length());
+//			
 			request.setAttribute("simulatorVOs", simulatorVOs);
 			try {
 				inputStream = new ByteArrayInputStream(simulatorVOsArray.toString().getBytes("UTF-8"));

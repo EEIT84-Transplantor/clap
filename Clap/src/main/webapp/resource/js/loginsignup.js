@@ -2,12 +2,12 @@
 function comparePassword(email,oldPassword,newPassword,url){
 	if(oldPassword!=null&&oldPassword.length!==0){
 		if (oldPassword!=newPassword) {
-			console.log(oldPassword);
+			
 			$("#info_text").text("inconsistent password, please try again!");
 		} else {
 			var url = url+"/member/passwordSettingServlet.servlet";
 			var queryString = "?email="+email+"&passwordconfirm="+newPassword+"&password="+oldPassword;
-			console.log(queryString);
+			
 			window.location = url+ queryString;
 		}
 	}else{
@@ -39,7 +39,7 @@ function doReadyStateChange() {
 				$("#info_text").show();
 			}
 		} else {
-			console.log("Error Code:"+request.status+", "+request.statusText);
+			
 		}
 	}
 }

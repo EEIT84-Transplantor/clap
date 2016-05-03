@@ -36,7 +36,7 @@ public void onOpen(Session session) throws Exception {
     //Give a list current online users to the new socket connection
     //because we store username as the key of the map, we can get all
     //  username list from the map's keySet
-    System.out.println(newUsername);
+    
 	if (newUsername.equalsIgnoreCase("admin")){
 		 String response = "newUser|" + String.join("|", clients.keySet());
 		 session.getBasicRemote().sendText(response);
@@ -73,7 +73,7 @@ public void onMessage(Session session, String message) throws Exception {
     String messageContent = data[1];
     //Retrieve the sender's username from it's property
     String sender = (String)session.getUserProperties().get(USERNAME_KEY);
-System.out.println(destination);System.out.println("=================="+sender);
+
     //Deliver the message according to the destination
     //Outgoing Message format: "message|sender|content|messageType?"
     //the message type is optional, if the message is intended to be broadcast

@@ -19,7 +19,7 @@ public class MemberJdbcDAO implements MemberDAO {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		MemberDAO mdao = (MemberDAO) context.getBean("memberDAO");
-		System.out.println(mdao.insert(null, "password".getBytes()));
+		
 	}
 
 
@@ -137,7 +137,7 @@ public class MemberJdbcDAO implements MemberDAO {
 		try {
 			conn=dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(UPDATE);
-			System.out.println(email + password);
+			
 			ps.setBytes(1, password);
 			ps.setString(2, email);
 			
@@ -157,7 +157,7 @@ public class MemberJdbcDAO implements MemberDAO {
 				}
 			}
 		}
-		System.out.println(result);
+		
 		return result;
 	}
 
@@ -186,7 +186,7 @@ public class MemberJdbcDAO implements MemberDAO {
 				}
 			}
 		}
-		System.out.println(result);
+		
 		return result;
 	}
 

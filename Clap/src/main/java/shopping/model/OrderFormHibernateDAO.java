@@ -86,7 +86,7 @@ public class OrderFormHibernateDAO implements OrderFormDAO {
 			Query query = session.createQuery("from OrderFormVO where mb_email=?");
 			query.setParameter(0, email);
 			List<OrderFormVO> orderList = query.list();
-			System.out.println("dao"+orderList);
+			
 			return orderList;
 		} catch (Exception e) {
 			e.printStackTrace();

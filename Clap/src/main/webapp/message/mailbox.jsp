@@ -84,7 +84,7 @@ SELECT * from message where mb_email = 'lee@gmail.com' ;
 
 			//onclick delete button
 			$("form button").eq(0).on("click", function() {
-				console.log("delete sent");
+				
 				formToAction.submit();
 			});
 

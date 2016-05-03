@@ -47,7 +47,7 @@ public class SetPromotionAction extends ActionSupport{
 
 	public String execute(){
 		HttpServletRequest request = ServletActionContext.getRequest();
-		System.out.println("hihi"+promoVO+category);
+		
 		String message="";
 		if(promoVO.getPm_discount()==null||promoVO.getPm_discount()>1||promoVO.getPm_discount()<0){
 			message+="Discount is not Valid<br>";
@@ -66,14 +66,14 @@ public class SetPromotionAction extends ActionSupport{
 			return INPUT;
 		}
 		
-		System.out.println("insertttt");
+		
 		promoVO.setPd_category(categoryService.selectByCategoryName(category));
 		boolean result = false;
 		if (!promoService.isAvailable(promoVO.getPm_code())){
 			result = promoService.setPromo(promoVO);
 		}else{
 			result = promoService.updatePromo(promoVO);
-			System.out.println("update");
+			
 		}
 		
 		
@@ -83,7 +83,7 @@ public class SetPromotionAction extends ActionSupport{
 		}else{
 			request.getSession().setAttribute("message", "The information you entered was wrong, please try again");
 		}
-		System.out.println("yayayayay");
+		
 //		List<PromoVO> promoVOs = promoService.getAllPromos(true);
 //		List<CategoryVO> categoryVOs = categoryService.getAllCategory();
 //		request.setAttribute("promoVOs", promoVOs);

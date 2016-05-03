@@ -142,7 +142,7 @@
 						url:'<c:url value="/shopping/deleteCartAction.action"/>',
 						data: {"productid":productid}
 					}).done(function(msg) {
-						console.log('delete success');
+						
 						$(".cart_anchor").text(msg);
 					});
 				});
@@ -213,7 +213,7 @@
 				var quantity = $("#p_detail tr").eq(i).children().eq(2).children().val();
 				total = price * quantity + total;
 			}
-			console.log("ahahahha"+total+amount);
+			
 			amount = total * promo > amount ? amount : total * promo;
 			var finaltotal = total * promo - amount;
 			$("#amount").text(amount);
@@ -248,9 +248,9 @@
 				if (request.readyState == 4) {
 					if (request.status == 200) {
 		                $(".cart_anchor").text(request.responseText);
-		                console.log("recevied quantity"+request.responseText);
+		                
 					} else {
-						console.log("Error Code:" + request.status + ", "+ request.statusText);
+						
 					}
 				}
 			}

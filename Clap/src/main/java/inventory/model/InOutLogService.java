@@ -39,7 +39,7 @@ public class InOutLogService {
 			inventoryVO.setProduct_id(product_id);
 			InventoryVO inventoryVO2 = inventoryDAO.selectByInventoryProperties(inventoryVO);
 			
-			System.out.println(inventoryVO2);
+			
 			if(inventoryVO2!=null){
 				inOutLogVO.setInventory_id(inventoryVO2.getId());
 				InOutLogVO result=inOutLogDAO.insert(inOutLogVO);
@@ -58,7 +58,7 @@ public class InOutLogService {
 				InventoryVO inventoryVOTemp = inventoryDAO.selectByInventoryProperties(inventoryVO3);
 				inOutLogVO.setInventory_id(inventoryVOTemp.getId());
 				inOutLogDAO.insert(inOutLogVO);
-				System.out.println(inOutLogVO);
+				
 				if(inventoryVO3==null){
 					return false;
 				}else{
@@ -82,9 +82,9 @@ public class InOutLogService {
 			inventoryVO.setManufactureDate(manufactureDate);
 			boolean result=inOutLogDAO.update(inOutLogVO);
 			InventoryVO inventoryVO2 = inventoryDAO.selectByInventoryProperties(inventoryVO);
-			System.out.println(inventoryVO2);
+			
 			if(inventoryVO2!=null){
-				System.out.println(inventoryVO2.getQuantity());
+				
 				Integer num = inventoryVO2.getQuantity()-inOutLogVO.getOutQuantity();
 				if(num >=0){
 					inventoryVO2.setQuantity(num);
@@ -94,7 +94,7 @@ public class InOutLogService {
 				}
 				return false; 
 			}
-			System.out.println("cannot buy with no inventory");
+			
 			return false;
 
 		} catch (Exception e) {

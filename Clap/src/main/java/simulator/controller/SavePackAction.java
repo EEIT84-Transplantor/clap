@@ -58,10 +58,10 @@ public class SavePackAction extends ActionSupport {
 	public String execute() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
-		System.out.println("Pre process======================================");
-		System.out.println("Pack: "+pack1);
-		System.out.println("Pack: "+pack2);
-		System.out.println("Pack: "+pack3);
+		
+		
+		
+		
 		if(isSent(pack3)){
 			processPack(pack3);
 		}else if(isSent(pack2)){
@@ -72,10 +72,10 @@ public class SavePackAction extends ActionSupport {
 			processPack(pack2);
 			processPack(pack3);
 		}
-		System.out.println("After process======================================");
-		System.out.println("Pack: "+pack1);
-		System.out.println("Pack: "+pack2);
-		System.out.println("Pack: "+pack3);
+		
+		
+		
+		
 		
 		
 		

@@ -51,7 +51,7 @@ public class DoAppointmentAction extends ActionSupport implements ServletRequest
 		orderFormVO.setHospitalVO(hospitalVO);
 		orderFormService.updateOrderForm(orderFormVO);
 
-		System.out.println("DoAppointmentAction 2");
+		
 		// 修改 orderdetail inventory
 		OrderDetailVO orderDetailVO;
 		Integer orderDetailId;
@@ -62,7 +62,7 @@ public class DoAppointmentAction extends ActionSupport implements ServletRequest
 			orderDetailVO = orderDetailService.getOrderDetailById(orderDetailId);
 			orderDetailVO.setDoctor_id( Integer.parseInt((String) order.get("doctor")));
 			orderDetailVO.setOrderdetail_surgerytime(new Timestamp(time.getTime()));
-			System.out.println(orderDetailVO+","+hospital);
+			
 			inventoryService.saleQuantity(orderDetailVO.getProductVO(), orderDetailVO.getCt_quantity(), hospital.toString());
 		}
 		inputStream  = new ByteArrayInputStream("true".toString().getBytes("UTF-8"));

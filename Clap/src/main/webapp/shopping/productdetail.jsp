@@ -156,7 +156,7 @@
 		request.onreadystatechange = doReadyStateChange;
 		request.open("POST", url, true);
 		request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-		console.log("send quantity"+quantity);
+		
 		request.send(data);
 	}
     
@@ -164,9 +164,9 @@
 		if (request.readyState == 4) {
 			if (request.status == 200) {
                 $(".cart_anchor").text(request.responseText);
-                console.log("recevied quantity"+request.responseText);
+                
 			} else {
-				console.log("Error Code:" + request.status + ", "+ request.statusText);
+				
 			}
 		}
 	}

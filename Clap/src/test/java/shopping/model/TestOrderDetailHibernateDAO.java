@@ -59,7 +59,7 @@ public class TestOrderDetailHibernateDAO {
 //	public void bselect() {
 //		session = sessionFactory.getCurrentSession();
 //		expected=id;
-//		System.out.println(orderDetailHibernateDAO.select(id, Product_id));
+//		
 //		actual=orderDetailHibernateDAO.select(id, Product_id).getId();
 //		assertEquals(expected, actual);
 //	}
@@ -88,7 +88,7 @@ public class TestOrderDetailHibernateDAO {
 //		session = sessionFactory.getCurrentSession();
 //		expected=true;
 //		actual=orderDetailHibernateDAO.select().size()>10;
-//		System.out.println(orderDetailHibernateDAO.select().size());
+//		
 //		assertEquals(expected, actual);
 //	}
 //	

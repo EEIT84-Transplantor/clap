@@ -122,7 +122,7 @@
 				}).done(function(msg) {
 					//ajax success
 					JSON.parse(msg);
-					console.log("send ajax " + msg);
+					
 					var formTitle = $("#tableTitle");
 					formTitle.html("One Click Setting");
 				});
@@ -130,7 +130,7 @@
 
 			//onclick submit button
 			$("form button").eq(0).on("click", function() {
-				console.log("submit");
+				
 				var email = "${memberVO.email}";
 				if (email == "") {
 					email = "andrew@gmail.com";
@@ -151,7 +151,7 @@
 					}
 				}).done(function(msg) {
 					//ajax success
-					console.log("send ajax " + msg);
+					
 					var formTitle = $("#tableTitle");
 					formTitle.html("One Click Setting: info updated");
 				});

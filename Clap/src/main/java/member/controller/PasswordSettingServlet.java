@@ -40,7 +40,7 @@ public class PasswordSettingServlet extends HttpServlet {
 		if (password.trim().length() != 0 && password.equals(passwordconfirm)) {
 			memberService.signUp(email, password);
 			memberVO = memberService.login(email, password.getBytes());
-			System.out.println(memberVO);
+			
 			HttpSession session = request.getSession();
 			session.setAttribute("login", memberVO);
 			

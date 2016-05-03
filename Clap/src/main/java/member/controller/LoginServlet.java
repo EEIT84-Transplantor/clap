@@ -131,7 +131,7 @@ public class LoginServlet extends HttpServlet {
 			
 			//導回原畫面
 			String uri = (String) session.getAttribute("uri");
-//			System.out.println(request.getHeader("Referer"));
+//			
 			if (uri == null) {
 				response.sendRedirect("../index.jsp");
 			} else {
