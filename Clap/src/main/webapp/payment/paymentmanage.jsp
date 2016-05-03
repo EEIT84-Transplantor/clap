@@ -27,9 +27,9 @@ font-size:14px;
 				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
 				<div class="col-md-10">
 					<h2>PAYMENT</h2>
-					<p>The Amazon.com Store Card and the Amazon Prime Store Card are issued by Synchrony Bank. If you have questions about the
-						Amazon.com Store Card or the Amazon Prime Store Card, call 1-866-634-8379 FREE, available 24 hours a day. The Amazon.com Store Card or the Amazon Prime Store Card may be used for purchases at Amazon.com and for purchases from other merchants who have enabled
-						the Amazon.com Store Card or the Amazon Prime Store Card as a payment option, but may not be used for the purchase of digital newspaper and magazine subscriptions or games and software downloads at Amazon.com.</p>
+					<p>The CLAP Store Card and the CLAP Prime Store Card are issued by Synchrony Bank. If you have questions about the
+						CLAP Store Card or the CLAP Prime Store Card, call 1-866-634-8379 FREE, available 24 hours a day. The CLAP Store Card or the CLAP Prime Store Card may be used for purchases at CLAP and for purchases from other merchants who have enabled
+						the CLAPStore Card or the CLAP Prime Store Card as a payment option, but may not be used for the purchase of digital newspaper and magazine subscriptions or games and software downloads at CLAP.</p>
 					<ul class="nav nav-tabs">
 						<li><a href="#credit_content" data-toggle="tab">Credit Cards</a></li>
 						<li><a href="#gift_content" data-toggle="tab">Gift Cards</a></li>
