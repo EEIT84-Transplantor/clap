@@ -95,16 +95,8 @@
 
 		</div>
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-10">
 				<span id="error"></span>
-			</div>
-			<div class="col-md-4">
-				<table class="htable" id="test">
-					<tr>
-						<td>total</td>
-						<td>${total}</td>
-					</tr>
-				</table>
 			</div>
 			<div class="col-md-2">
 				<input type="button" class="btn btn-default btn-block" value="Pay" id="submit">

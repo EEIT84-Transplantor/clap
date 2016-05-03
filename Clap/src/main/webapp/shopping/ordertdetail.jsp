@@ -20,7 +20,7 @@
 	<header><jsp:include page="/header.jsp" /></header>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12" style="height:1000px">
+			<div class="col-md-12">
 				<table class="table">
 					<thead>
 						<tr>
