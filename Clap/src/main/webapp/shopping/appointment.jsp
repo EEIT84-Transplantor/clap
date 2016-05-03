@@ -16,27 +16,27 @@
 
 <!-- 在這加上你自己的css檔案連結  -->
 <style>
-	.text{
-		color:black;
-	}
+.text {
+	color: black;
+}
 </style>
 </head>
 <body>
 
 	<header><jsp:include page="/header.jsp" /></header>
 	<div class="container">
-	<div class="row">
-				<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
-				<div class="col-md-10">
-		        <h2>Appointment Doctor</h2>
+		<div class="row">
+			<div class="col-md-2"><jsp:include page="/sidenav.jsp" /></div>
+			<div class="col-md-10">
+				<h2>Appointment Doctor</h2>
 				<p>Welcome to use appointment system.</p>
 				<table class="table">
 					<thead>
-						<tr style="background:#666;">
+						<tr style="background: #666;">
 							<td><label>product</label></td>
 							<td><label>appointment time</label></td>
 							<td><label>doctor</label></td>
-<!-- 							<td><label>confirm</label></td> -->
+							<!-- 							<td><label>confirm</label></td> -->
 						</tr>
 					</thead>
 					<tbody>
@@ -45,81 +45,70 @@
 								<td class="id" hidden="true">${orderVO.id}</td>
 								<td>${orderVO.productVO.name}</td>
 								<td><input type="date" class="time"></td>
-								<td>
-								<select class="form-control doctor">
+								<td><select class="form-control doctor">
 										<c:forEach var="doctor" items="${doctorList}">
 											<option value="${doctor.id}">${doctor.name}</option>
 										</c:forEach>
-									</select>
-								</td>
-<!-- 								<td><input type="button" value="submit" id="submit" class="btn btn-success" ></td> -->
+									</select></td>
+								<!-- 								<td><input type="button" value="submit" id="submit" class="btn btn-success" ></td> -->
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-				
-				
-				<p>These are the hospitals that we work with</p>
-							<div id="floating-panel">
-								<div class="row">
-									<div class="col-md-9">
-										<div class="form-group">
-											<div style="width: 40%; display: inline-block;">
-												<select class="form-control" id="citySelect">
-                                                    <c:forEach var="location" items="${locations}">
-													<option value="${location.id}">${location.name}</option>
-													</c:forEach>
-												</select>
-											</div>
-											<div style="width: 40%; display: inline-block;">
-												<select class="form-control" id="hospitalSelect">
-													<option value="all">all</option>
-													<c:forEach var="hospital" items="${hospitals}">
-													<option value="${hospital.address}" hid="${hospital.id}">${hospital.name}</option>
-													</c:forEach>
-												</select>
-											</div>
-											<div style="width: 5%; display: inline-block;">
-												<button type="button" class="btn btn-warning" id="selectH">Search</button>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-3">
-										<div class="input-group">
 
-											<input type="textbox" class="form-control" placeholder="Search" name="srch-term" id="address" value="臺大醫院">
-											<div class="input-group-btn">
-												<button class="btn btn-default" type="submit" id="submit_y">
-													<i class="glyphicon glyphicon-search"></i>
-												</button>
-											</div>
-										</div>
-									</div>
+
+				<p>These are the hospitals that we work with</p>
+				<div id="floating-panel">
+					<div class="row">
+						<div class="col-md-9">
+							<div class="form-group">
+								<div style="width: 40%; display: inline-block;">
+									<select class="form-control" id="citySelect">
+										<c:forEach var="location" items="${locations}">
+											<option value="${location.id}">${location.name}</option>
+										</c:forEach>
+									</select>
+								</div>
+								<div style="width: 40%; display: inline-block;">
+									<select class="form-control" id="hospitalSelect">
+										<option value="all">all</option>
+										<c:forEach var="hospital" items="${hospitals}">
+											<option value="${hospital.address}" hid="${hospital.id}">${hospital.name}</option>
+										</c:forEach>
+									</select>
+								</div>
+								<div style="width: 5%; display: inline-block;">
+									<button type="button" class="btn btn-warning" id="selectH">Search</button>
 								</div>
 							</div>
-							<div id="mapa" style="width: 100%; height: 500px;"></div>
+						</div>
+						<div class="col-md-3">
+							<div class="input-group">
 
-				
-				
-				
-				
-				
-				
-				
-				
-				
+								<input type="textbox" class="form-control" placeholder="Search" name="srch-term" id="address" value="臺大醫院">
+								<div class="input-group-btn">
+									<button class="btn btn-default" type="submit" id="submit_y">
+										<i class="glyphicon glyphicon-search"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="mapa" style="width: 100%; height: 500px;"></div>
+
 			</div>
-	</div>
+		</div>
 
-	<footer><jsp:include page="/footer.jsp" /></footer>
+		<footer><jsp:include page="/footer.jsp" /></footer>
 
-	<!-- 載入js -->
-	<script type="text/javascript" src="<c:url value="/resource/js/jquery-1.12.2.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resource/js/jquery.avgrund.js"/>"></script>
+		<!-- 載入js -->
+		<script type="text/javascript" src="<c:url value="/resource/js/jquery-1.12.2.min.js"/>"></script>
+		<script type="text/javascript" src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
+		<script type="text/javascript" src="<c:url value="/resource/js/json2.js"/>"></script>
+		<script type="text/javascript" src="<c:url value="/resource/js/jquery.avgrund.js"/>"></script>
 
-	<script type="text/javascript">
+		<script type="text/javascript">
 	var markers = [];
 	var map;
 	var geocoder;
@@ -221,122 +210,81 @@
 		}
 	}
 	
-	 
-
-
-	
- 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 		$(function() {
-
 			//顯示醫院地圖
 			$("#citySelect").on("change",function(){
-		var  url = "<%=request.getContextPath()%>/hospital/hospitalInfo";
-		var  loaction = $(this).val();
-		$.ajax({
-			method:"POST",
-			url:url,
-			data: {"location":loaction}
-		}).done(function(msg){
-			
-			 $("#hospitalSelect").html('<option value="all">all</option>');
-			 
-			 
-			 for(var i =0;i<msg["hospitals"].length;i++){
-			 $("#hospitalSelect").append($('<option>', { 
-			        value: msg["hospitals"][i].address,
-			        text : msg["hospitals"][i].name, 
-			        hid : msg["hospitals"][i].id
-			    }));
-			 
-			 }
-		});
-	});
-	
-		
+					var  url = "<%=request.getContextPath()%>/hospital/hospitalInfo";
+					var loaction = $(this).val();
+					$.ajax({
+						method : "POST",
+						url : url,
+						data : {
+							"location" : loaction
+						}
+					}).done(function(msg) {
 
-			//日期限制
-			var now = new Date().toISOString().substring(0, 10);
-			$(".time").attr("min", now).attr("value", now);
+						$("#hospitalSelect").html('<option value="all">all</option>');
 
-			
-			
-			var url = "<c:url value='/shopping/doAppointmentAction.action'/>";
-			$("#mapa").on("click","#submit",function(){
-				
-				
-				
-				//送出資料ajax
-				var orderList = [];
-				for (var i = 0; i < $(".id").size(); i++) {
-					var data = {
-						id : $(".id").eq(i).text(),
-						time : $(".time").eq(i).val(),
-						doctor : $(".doctor").eq(i).val(),
+						for (var i = 0; i < msg["hospitals"].length; i++) {
+							$("#hospitalSelect").append($('<option>', {
+								value : msg["hospitals"][i].address,
+								text : msg["hospitals"][i].name,
+								hid : msg["hospitals"][i].id
+							}));
+
+						}
+					});
+				});
+
+				//日期限制
+				var now = new Date().toISOString().substring(0, 10);
+				$(".time").attr("min", now).attr("value", now);
+
+				var url = "<c:url value='/shopping/doAppointmentAction.action'/>";
+				$("#mapa").on("click", "#submit", function() {
+
+					//送出資料ajax
+					var orderList = [];
+					for (var i = 0; i < $(".id").size(); i++) {
+						var data = {
+							id : $(".id").eq(i).text(),
+							time : $(".time").eq(i).val(),
+							doctor : $(".doctor").eq(i).val(),
+						}
+						console.log(data);
+						orderList[i] = JSON.stringify(data);
 					}
-					console.log(data);
-					orderList[i] = JSON.stringify(data);
-				}
-				
-				
-				
-				console.log(orderList);
-				console.log("hid"+hid);
-				
-				
-				$.ajax({
-					url : url,
-					data : {
-						"orderList" : orderList,
-						"hospital" : hid,
-						"orderform_id" : "${orderform_id}"
-					},
-				}).done(function(e) {
-					finish();
-				})
-			});
-		})
+					console.log(orderList);
+					console.log("hid" + hid);
+					$.ajax({
+						url : url,
+						data : {
+							"orderList" : orderList,
+							"hospital" : hid,
+							"orderform_id" : "${orderform_id}"
+						},
+					}).done(function(e) {
+						finish();
+					})
+				});
+			})
 
-		
+			function finish() {
+				//顯示彈出式窗
+				$('#submit').avgrund({
+					width : 380, // max is 640px
+					height : 280, // max is 350px
+					holderClass : 'text',
+					openOnEvent : false, // set to 'false' to init on load
+					template : 'Thanks your purchase! The page will redirect after 3s.' // or function (elem) { }, or $('.content')
+				});
 
-		function finish() {
-			//顯示彈出式窗
-			$('#submit').avgrund({
-				width : 380, // max is 640px
-				height : 280, // max is 350px
-				holderClass: 'text',
-				openOnEvent : false, // set to 'false' to init on load
-				template : 'Thanks your purchase! The page will redirect after 3s.' // or function (elem) { }, or $('.content')
-			});
-			
-			//導回首頁
-			setTimeout(function() {
-				window.location.href = "<c:url value='/index.jsp'/>";
-			}, 3000);
-		}
-	</script>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgpurFmJH7EtCW7FEf_VI_w4l9b2aBVMk&signed_in=true&callback=initMap"></script>
-	
+				//導回首頁
+				setTimeout(function() {
+					window.location.href = "<c:url value='/index.jsp'/>";
+				}, 3000);
+			}
+		</script>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgpurFmJH7EtCW7FEf_VI_w4l9b2aBVMk&signed_in=true&callback=initMap"></script>
 </body>
 </html>
