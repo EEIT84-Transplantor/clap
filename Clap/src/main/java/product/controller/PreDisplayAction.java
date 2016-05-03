@@ -19,53 +19,51 @@ public class PreDisplayAction extends ActionSupport {
 	private Integer pageNumber;
 	private ProductService productService;
 	private CategoryService categoryService;
-	
 
-	public void setCategoryService(CategoryService categoryService) {
-		this.categoryService = categoryService;
-	}
-	public void setPageNumber(Integer pageNumber) {
-		this.pageNumber = pageNumber;
-	}
-	public void setProductService(ProductService productService) {
-		this.productService = productService;
-	}
-	
-	public String execute(){
-		List<ProductVO> productList=null;
-		if (pageNumber==null||pageNumber<=0){
-			 productList = productService.getProductByTopAmount(1, 20, 200);
-
-		}else{
-			 productList = productService.getProductByTopAmount(pageNumber, 20, 200);
-
-		}
+	public String execute() {
 		
-		List<String> productImgs = new ArrayList<String>();;
+		List<ProductVO> productList = null;
+		
+		if (pageNumber == null || pageNumber <= 0) {
+			productList = productService.getProductByTopAmount(1, 20, 200);
+		} else {
+			productList = productService.getProductByTopAmount(pageNumber, 20, 200);
+		}
+
+		List<String> productImgs = new ArrayList<String>();
+
 		try {
 			List<ProductimgVO> imgVOList = productService.getProductImgByList(productList);
-			System.out.println("productList: "+productList.size()+", imgVOList: "+imgVOList.size());
-
-			for(ProductimgVO imgVO:imgVOList){
+			System.out.println("productList: " + productList.size() + ", imgVOList: " + imgVOList.size());
+			for (ProductimgVO imgVO : imgVOList) {
 				try {
 					productImgs.add(imgVO.getImg64());
 				} catch (Exception e) {
 					productImgs.add("");
 				}
-				
-
 			}
 		} catch (Exception e) {
 		}
-		
+
 		System.out.println(productList);
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("productVOs", productList);
 		request.setAttribute("productImgs", productImgs);
 		request.setAttribute("categoryVOs", categoryService.getAllCategory());
-		
+
 		return SUCCESS;
 	}
-	
-	
+
+	public void setCategoryService(CategoryService categoryService) {
+		this.categoryService = categoryService;
+	}
+
+	public void setPageNumber(Integer pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+
+	public void setProductService(ProductService productService) {
+		this.productService = productService;
+	}
+
 }

@@ -2365,12 +2365,10 @@
 						})
 					</script>
 				</section>
-<!-- 				<section id="table" class="demo"> -->
-					
-<!-- 				</section> -->
 				<section id="team" class="demo">
 					<div id="tm_type0">
-						<p>The strength of the team is each individual member.The strength of each member is the team.</p>
+						<p>The strength of the team is each individual member.
+						<br>The strength of each member is the team.</p>
 					</div>
 					<div id="tm_type1">
 						<div id="tm_type1_bg"></div>
@@ -2395,7 +2393,6 @@
 							<p>Thinker</p>
 						</div>
 					</div>
-
 					<script type="text/javascript">
 						var tween = new TimelineMax().staggerFrom("#tm_type1 .tm_inf", 1.5, { x : "+=400%", ease : Back.easeOut.config(1) }, 0.2)
 						new ScrollMagic.Scene({ triggerElement : "#team", duration : 500, triggerHook : "onLeave" }).addIndicators().addTo(controller).setTween(tween).setPin("#team")

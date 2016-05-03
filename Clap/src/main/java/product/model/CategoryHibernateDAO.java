@@ -29,7 +29,6 @@ public class CategoryHibernateDAO implements CategoryDAO {
 		try {
 			categoryVOs = session.createQuery(SELECT_ALL).list();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return categoryVOs;
