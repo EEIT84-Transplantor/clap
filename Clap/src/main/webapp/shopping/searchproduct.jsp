@@ -31,7 +31,7 @@
 						</div>
 						<div class="col-md-4">
 							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+								<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" value="${keyword}">
 								<div class="input-group-btn">
 									<button class="btn btn-default" type="submit">
 										<i class="glyphicon glyphicon-search"></i>
@@ -51,7 +51,7 @@
 	
 						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px;">
 							<div class="hovereffect">
-								<img class="img-responsive" src="data:image/png;base64,${productImgs[p_count.count].img64}" alt="">
+								<img class="img-responsive" src="data:image/png;base64,${productImgs[p_count.count-1].img64}" alt="">
 								<div class="overlay">
 									<h2>${product.name}</h2>
 									<p>

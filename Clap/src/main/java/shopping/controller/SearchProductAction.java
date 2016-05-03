@@ -72,7 +72,11 @@ public class SearchProductAction extends ActionSupport implements ServletRequest
 		Map<Integer,List<ProductimgVO>> globalProductimgVOs = (Map<Integer,List<ProductimgVO>>)context.getAttribute("globalProductimgVOs");
 		CategoryVO target = null;
 		List<ProductVO> temp = null;
+		if(keyword!=null){
+			request.setAttribute("keyword", keyword);
+		}
 		if(categoryname!=null){
+			
 		for(CategoryVO categoryVO:categoryVOs){
 			if(categoryVO.getName().equals(categoryname)){
 				target = categoryVO;
