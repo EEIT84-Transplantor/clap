@@ -70,9 +70,9 @@ font-size:14px;
 											<div class="addCard">
 												<strong>NEW CARD </strong>
 												<form id="addCreditForm">
-													Number :<input type="text" name="creditCardVO.creditCardPK.cc_number" value="6011226470739645" /> <br /> 
-													Good thru :<input type="text" name="creditCardVO.cc_goodthru" value="11/22" /><br /> 
-													CVV :<input type="text" name="creditCardVO.cc_cvv" value="333" /> <br /> 
+													Number :<input type="text" name="creditCardVO.creditCardPK.cc_number" value="" /> <br /> 
+													Good thru :<input type="text" name="creditCardVO.cc_goodthru" value="" /><br /> 
+													CVV :<input type="text" name="creditCardVO.cc_cvv" value="" /> <br /> 
 													<input type="button" value="add" id="addCreditCard"><br />
 												</form>
 											</div>
@@ -89,7 +89,7 @@ font-size:14px;
 									<strong>USE GIFT CARD </strong>
 									<form id="useGiftForm">
 										Number :<input type="text" name="giftCardVO.gc_number"
-											value="16258080" /> <br /> Code :<input type="text"
+											 /> <br /> Code :<input type="text"
 											name="giftCardVO.gc_code" value="1" /> <br /> <input
 											type="button" value="use" id="useGiftCard"><br />
 									</form>
@@ -122,7 +122,7 @@ font-size:14px;
 									<strong>Add Promotion code</strong>
 
 									<form id="AddPromoForm">
-										Code :<input type="text" name="promoCodeVO.promoCode.pm_code" value="99999999" /> <br /> 
+										Code :<input type="text" name="promoCodeVO.promoCode.pm_code" value="" /> <br /> 
 
 										<input type="button" value="ADD" id="AddPromoCode"><br />
 									</form>
